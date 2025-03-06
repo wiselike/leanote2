@@ -259,6 +259,7 @@ func (this *AttachService) OrganizeAttachFiles(userId, title, content string) (r
 	if find == nil || len(find) < 1 {
 		return
 	}
+	find = DeduplicateMatches(find)
 
 	// 格式化titile
 	title = FixFilename(title)

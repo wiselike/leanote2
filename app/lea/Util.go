@@ -384,7 +384,7 @@ func FixFilename(filename string) string {
 		//		str := `life "%&()+,/:;<>=?@\|`
 		// . == \\.
 		// $ === \\$
-		reg, _ := regexp.Compile("\\.|/|#|\\$|!|\\^|\\*|'| |\"|%|&|\\(|\\)|\\+|\\,|/|:|;|<|>|=|\\?|@|\\||\\\\")
+		reg, _ := regexp.Compile(`\.|/|#|\$|!|\^|\*|'| |"|%|&|\(|\)|\+|\,|/|:|;|<|>|=|\?|@|\||\\`)
 		filename = reg.ReplaceAllString(filename, "-")
 		filename = strings.Trim(filename, "-") // 左右单独的-去掉
 		// 把空格替换成-
@@ -430,4 +430,17 @@ func GetRandomFilePath(userId, uuid string) string {
 	}
 	//return Digest3(userId) + "/" + userId + "/" + Digest2(uuid)
 	return userId
+}
+
+// 通用去重函数（基于完整匹配）
+func DeduplicateMatches(matches [][]string) [][]string {
+	seen := make(map[string]bool)
+	var unique [][]string
+	for _, match := range matches {
+		if len(match) > 0 && !seen[match[0]] {
+			seen[match[0]] = true
+			unique = append(unique, match)
+		}
+	}
+	return unique
 }
