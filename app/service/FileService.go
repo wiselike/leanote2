@@ -46,7 +46,8 @@ func (this *FileService) ListImagesWithPage(userId, albumId, key string, pageNum
 	if albumId != "" {
 		q["AlbumId"] = bson.ObjectIdHex(albumId)
 	} else {
-		q["IsDefaultAlbum"] = true
+		// q["IsDefaultAlbum"] = true // 不再返回默认相册里的图片
+		return info.Page{Count: 0, List: files}
 	}
 	if key != "" {
 		q["Title"] = bson.M{"$regex": bson.RegEx{".*?" + key + ".*", "i"}}
