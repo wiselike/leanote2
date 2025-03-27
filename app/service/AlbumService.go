@@ -27,6 +27,16 @@ func (this *AlbumService) GetAlbums(userId string) []info.Album {
 	return albums
 }
 
+// get album by id
+func (this *AlbumService) GetAlbumById(userId, albumId string) *info.Album {
+	album := &info.Album{}
+	if albumId == "" || albumId == "null" {
+		return album
+	}
+	db.GetByIdAndUserId(db.Albums, albumId, userId, album)
+	return album
+}
+
 // delete album
 // presupposition: has no images under this ablum
 func (this *AlbumService) DeleteAlbum(userId, albumId string) (bool, string) {

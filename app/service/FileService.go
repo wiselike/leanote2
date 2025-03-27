@@ -119,7 +119,9 @@ func (this *FileService) DeleteImage(userId, fileId string) (bool, string) {
 				Log(file.Path)
 				err = os.Remove(path.Join(revel.BasePath, "/public/", file.Path))
 			} else {
-				err = os.Remove(path.Join(ConfigS.GlobalStringConfigs["files.dir"], file.Path))
+				fullPath := path.Join(ConfigS.GlobalStringConfigs["files.dir"], file.Path)
+				err = os.Remove(fullPath)
+				DeleteFile(path.Dir(fullPath)) // 只有空文件才会删除成功
 			}
 			if err == nil {
 				return true, ""

@@ -111,17 +111,20 @@ func (c File) uploadImage(from, albumId string) (re info.Re) {
 	// defer file.Close()
 
 	// data, err := ioutil.ReadAll(file)
-
-	// 生成文件扩展名
 	newGuid := NewGuid()
 
 	userId := c.GetUserId()
 
-	if from == "logo" || from == "blogLogo" {
+	if from == "logo" || from == "blogLogo" { // 上传logo则放到logo目录
 		fileUrlPath = "public/upload/" + Digest3(userId) + "/" + userId + "/images/logo"
 		dir = path.Join(revel.BasePath, fileUrlPath)
 	} else {
-		fileUrlPath = GetRandomFilePath(userId, newGuid) + "/images"
+		album := albumService.GetAlbumById(c.GetUserId(), albumId)
+		if album.Name == "" { // 相册名为空，则是默认相册，并且是文章中的图片
+			fileUrlPath = GetRandomFilePath(userId, newGuid) + "/images-tmp"
+		} else { // 相册名不为空的，上传到对应相册文件夹
+			fileUrlPath = GetRandomFilePath(userId, newGuid) + "/albums/" + album.Name
+		}
 		dir = path.Join(service.ConfigS.GlobalStringConfigs["files.dir"], fileUrlPath)
 	}
 
@@ -129,22 +132,21 @@ func (c File) uploadImage(from, albumId string) (re info.Re) {
 	if err != nil {
 		return re
 	}
-	// 生成新的文件名
-	filename := handel.Filename
 
+	// 生成新的随机文件名
 	var ext string
 	if from == "pasteImage" {
 		handel.Filename = c.Message("unTitled")
 		ext = ".png" // TODO 可能不是png类型
 	} else {
-		_, ext = SplitFilename(filename)
+		_, ext = SplitFilename(handel.Filename)
 		if ext != ".gif" && ext != ".jpg" && ext != ".png" && ext != ".bmp" && ext != ".jpeg" {
 			resultMsg = "Please upload image"
 			return re
 		}
 	}
 
-	filename = newGuid + ext
+	filename := newGuid + ext
 
 	var maxFileSize float64
 	if from == "logo" {
@@ -171,7 +173,7 @@ func (c File) uploadImage(from, albumId string) (re info.Re) {
 		LogJ(err)
 		return re
 	}
-	// 改变成gif图片
+	// 备份原始图片
 	_, toPathGif := TransPicture(toPath, path.Join(service.ConfigS.GlobalStringConfigs["files.dir"], "backup-origins", c.GetUserId(), time.Now().Format("2006")))
 	filename = GetFilename(toPathGif)
 	filesize := GetFilesize(toPathGif)
@@ -195,6 +197,9 @@ func (c File) uploadImage(from, albumId string) (re info.Re) {
 
 	Ok, resultMsg = fileService.AddImage(fileInfo, albumId, c.GetUserId(), from == "" || from == "pasteImage")
 	resultMsg = c.Message(resultMsg)
+	if !Ok { // 若数据库插入image失败，本地image也没必要保存
+		DeleteFile(toPath)
+	}
 
 	fileInfo.Path = "" // 不要返回
 	re.Item = fileInfo
