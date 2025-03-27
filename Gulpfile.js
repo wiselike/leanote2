@@ -159,12 +159,12 @@ gulp.task('devToProHtml', function() {
 var path = require('path');
 gulp.task('i18n', function() {
     var keys = {};
-    var reg = /getMsg\(["']+(.+?)["']+/g;
+    var reg = /getMsg\((['"])((?:(?!\1).|\\\1)*?)\1/g;
     // {rule: "required", msg: "inputNewPassword"},
     var reg2 = /msg: ?"?([0-9a-zA-Z]*)"?/g;
     function getKey(data) {
-        while(ret = reg.exec(data)) {
-            keys[ret[1]] = 1;
+        while ((ret = reg.exec(data)) !== null) {
+            keys[ret[2].replace(/\\(['"])/g, '$1')] = 1;
         }
 
         while(ret2 = reg2.exec(data)) {
@@ -276,13 +276,13 @@ gulp.task('i18n', function() {
 
         // 写入到文件中
         var toFilename = targetFilename + '.' + lang + '.js';
-        fs.writeFile(base + '/js/i18n/' + toFilename, str);
+        fs.writeFileSync(base + '/js/i18n/' + toFilename, str);
     }
 
     function genTinymceLang(lang) {
         var msgs = getAllMsgs(leanoteBase + 'messages/' + lang + '/tinymce_editor.conf');
         var str = 'tinymce.addI18n("' + lang + '",' + JSON.stringify(msgs) + ');';
-        fs.writeFile(base + '/tinymce/langs/' + lang + '.js', str);
+        fs.writeFileSync(base + '/tinymce/langs/' + lang + '.js', str);
     }
 
     var langs = getAllLangs();
