@@ -23,6 +23,22 @@ type FileService struct {
 
 // add Image
 func (this *FileService) AddImage(image info.File, albumId, userId string, needCheckSize bool) (ok bool, msg string) {
+	defer func() {
+		if r := recover(); r != nil {
+			switch v := r.(type) {
+			case string:
+				if strings.Contains(v, "invalid input to ObjectIdHex") {
+					msg = "Album not found! Please create an album first." //相册不存在，请先添加相册！
+				} else {
+					msg = "Album not found."
+				}
+			default:
+				msg = "Internel Server Error"
+			}
+			ok = false
+			return
+		}
+	}()
 	image.CreatedTime = time.Now()
 	if albumId != "" {
 		image.AlbumId = bson.ObjectIdHex(albumId)

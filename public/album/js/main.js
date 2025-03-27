@@ -781,6 +781,7 @@ var o = {
 	                self.uploadRefreshImageList();
 	            } else {
 	                data.context.empty();
+	                alert(data.result.Msg);
 	                var tpl = $('<li><div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a></div></li>');
 	                tpl.find('div').append('<b>' + getMsg('Error') + ':</b> ' + data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>]</small> ' + data.result.Msg);
 	                data.context.append(tpl);
