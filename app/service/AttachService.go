@@ -6,10 +6,12 @@ import (
 	"github.com/wiselike/leanote-of-unofficial/app/info"
 	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	"gopkg.in/mgo.v2/bson"
-	"io/ioutil"
 	"os"
 	"path"
+	"path/filepath"
 	"regexp"
+	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -24,15 +26,7 @@ func (this *AttachService) AddAttach(attach info.Attach, fromApi bool) (ok bool,
 	attach.CreatedTime = time.Now()
 	ok = db.Insert(db.Attachs, attach)
 
-	note := noteService.GetNoteById(attach.NoteId.Hex())
-
-	// api调用时, 添加attach之前是没有note的
-	var userId string
-	if note.NoteId != "" {
-		userId = note.UserId.Hex()
-	} else {
-		userId = attach.UploadUserId.Hex()
-	}
+	userId := attach.UploadUserId.Hex()
 
 	if ok {
 		// 更新笔记的attachs num
@@ -51,15 +45,7 @@ func (this *AttachService) AddAttach(attach info.Attach, fromApi bool) (ok bool,
 // addNum 1或-1
 func (this *AttachService) updateNoteAttachNum(noteId bson.ObjectId, addNum int) bool {
 	num := db.Count(db.Attachs, bson.M{"NoteId": noteId})
-	/*
-		note := info.Note{}
-		note = noteService.GetNoteById(noteId.Hex())
-		note.AttachNum += addNum
-		if note.AttachNum < 0 {
-			note.AttachNum = 0
-		}
-		Log(note.AttachNum)
-	*/
+
 	return db.UpdateByQField(db.Notes, bson.M{"_id": noteId}, "AttachNum", num)
 }
 
@@ -111,8 +97,13 @@ func (this *AttachService) DeleteAllAttachs(noteId, userId string) bool {
 	if note.UserId.Hex() == userId {
 		attachs := []info.Attach{}
 		db.ListByQ(db.Attachs, bson.M{"NoteId": bson.ObjectIdHex(noteId)}, &attachs)
+		var fullPath string
 		for _, attach := range attachs {
-			os.Remove(path.Join(ConfigS.GlobalStringConfigs["files.dir"], attach.Path))
+			fullPath = path.Join(ConfigS.GlobalStringConfigs["files.dir"], attach.Path)
+			os.Remove(fullPath)
+		}
+		if fullPath != "" {
+			os.Remove(path.Dir(fullPath))
 		}
 		return true
 	}
@@ -134,12 +125,13 @@ func (this *AttachService) DeleteAttach(attachId, userId string) (bool, string) 
 
 		if db.Delete(db.Attachs, bson.M{"_id": bson.ObjectIdHex(attachId)}) {
 			this.updateNoteAttachNum(attach.NoteId, -1)
-			attach.Path = strings.TrimLeft(attach.Path, "/")
-			err := os.Remove(path.Join(ConfigS.GlobalStringConfigs["files.dir"], attach.Path))
+			var fullPath string
+			fullPath = path.Join(ConfigS.GlobalStringConfigs["files.dir"], attach.Path)
+			err := os.Remove(fullPath)
 			if err == nil {
-				// userService.UpdateAttachSize(note.UserId.Hex(), -attach.Size)
 				// 修改note Usn
 				noteService.IncrNoteUsn(attach.NoteId.Hex(), userId)
+				os.Remove(path.Dir(fullPath))
 
 				return true, "delete file success"
 			}
@@ -204,13 +196,8 @@ func (this *AttachService) CopyAttachs(noteId, toNoteId, toUserId string) bool {
 		// 文件复制一份
 		_, ext := SplitFilename(attach.Name)
 		newFilename := NewGuid() + ext
-		dir := toUserId + "/attachs"
-		filePath := path.Join(dir, newFilename)
-		err := os.MkdirAll(path.Join(basePath, dir), 0755)
-		if err != nil {
-			return false
-		}
-		_, err = CopyFile(path.Join(basePath, attach.Path), path.Join(basePath, filePath))
+		filePath := path.Join(toUserId, "attachs", this.getAttachNoteTitle(attach.Path), newFilename)
+		_, err := CopyFile(path.Join(basePath, attach.Path), path.Join(basePath, filePath))
 		if err != nil {
 			return false
 		}
@@ -239,9 +226,7 @@ func (this *AttachService) UpdateOrDeleteAttachApi(noteId, userId string, files 
 
 	for _, attach := range attachs {
 		fileId := attach.AttachId.Hex()
-		if !nowAttachs[fileId] {
-			// 需要删除的
-			// TODO 权限验证去掉
+		if !nowAttachs[fileId] { // 需要删除的
 			this.DeleteAttach(fileId, userId)
 		}
 	}
@@ -252,87 +237,53 @@ func (this *AttachService) UpdateOrDeleteAttachApi(noteId, userId string, files 
 
 var noteAttachReg = regexp.MustCompile("(getAttach)\\?fileId=([a-z0-9A-Z]+)")
 
-// 整理node附件，按标题来存放，以便于到服务器上检索维护
-func (this *AttachService) OrganizeAttachFiles(userId, title, content string) (rmDir string) {
-	// 获取所有的fileId
-	find := noteAttachReg.FindAllStringSubmatch(content, -1) // 查找
-	if find == nil || len(find) < 1 {
-		return
-	}
-	find = DeduplicateMatches(find)
-
-	// 格式化titile
-	title = FixFilename(title)
+// 整理node附件，只需要从数据库里查NoteId就能获取所有附件清单
+func (this *AttachService) ReOrganizeAttachFiles(userId, noteId, title string) bool {
 	if title == "" {
-		title = "empty-titles-set"
+		return false // title不存在就不整理了，下次再整理
 	}
+	title = FixFilename(title)
+	attachs := []info.Attach{}
+	db.ListByQ(db.Attachs, bson.M{"UploadUserId": bson.ObjectIdHex(userId), "NoteId": bson.ObjectIdHex(noteId)}, &attachs)
+	sort.Slice(attachs, func(i, j int) bool { return attachs[i].AttachId < attachs[j].AttachId })
 
+	var oldFullPath, newFullPath string
 	basePath := ConfigS.GlobalStringConfigs["files.dir"]
-	newDbPathDir := path.Join(GetRandomFilePath(userId, ""), "/attachs/", title)
-	newPathDir := path.Join(basePath, newDbPathDir)
-	if err := os.MkdirAll(newPathDir, 0755); err != nil {
-		return
-	}
-	for i, each := range find {
-		if each != nil && len(each) == 3 {
-			// 查找原路径
-			file := info.Attach{}
-			if db.Get(db.Attachs, each[2], &file); file.Path != "" {
-				// 创建文件名，并移动路径
-				oldFullPath := path.Join(basePath, file.Path)
-				fname := strings.Split(path.Base(file.Path), "_")
-				file.Path = path.Join(newDbPathDir, fmt.Sprintf("%d_%s", i, fname[len(fname)-1]))
-				newFullPath := path.Join(basePath, file.Path)
-				if oldFullPath != newFullPath {
-					if err := os.Rename(oldFullPath, newFullPath); err == nil {
-						// 更新数据库
-						if ok := db.Update(db.Attachs, bson.M{"_id": bson.ObjectIdHex(each[2])}, file); !ok {
-							// 数据库写失败，回滚
-							os.Rename(newFullPath, oldFullPath)
-							continue
-						}
-						// 保存第一个附件的文件夹，作为旧路径，用于删除
-						if rmDir == "" {
-							rmDir = path.Dir(oldFullPath)
-						}
-					}
+	for i, attach := range attachs {
+		var newAttachPath string
+		// 判断需要重命名和移动attach
+		attachName := filepath.Base(attach.Path)
+		if oldAttachTitle := this.getAttachNoteTitle(attach.Path); oldAttachTitle != title || !strings.HasPrefix(attachName, strconv.Itoa(i)+"_") {
+			fName := strings.Split(attachName, "_")
+			newAttachPath = filepath.Join(userId, "/attachs/", title, fmt.Sprintf("%d_%s", i, fName[len(fName)-1]))
+
+			oldFullPath = filepath.Join(basePath, attach.Path)
+			newFullPath = filepath.Join(basePath, newAttachPath)
+			if err := os.MkdirAll(filepath.Dir(newFullPath), 0755); err != nil {
+				return false
+			}
+			if err := MoveFile(oldFullPath, newFullPath); err == nil {
+				// 更新数据库
+				attach.Path = newAttachPath
+				if ok := db.Update(db.Attachs, bson.M{"UploadUserId": bson.ObjectIdHex(userId), "_id": attach.AttachId}, &attach); !ok {
+					// 数据库写失败，回滚
+					MoveFile(newFullPath, oldFullPath)
+					continue
 				}
 			}
 		}
 	}
 
-	// 没有移动任何文件的话，则仅删除空文件夹
-	if rmDir == "" {
-		os.Remove(newPathDir)
-		return
-	}
-
-	// 带文件夹结束符，避免比较到部分文件名
-	// 避免删除空标题集合文件夹
-	if strings.HasPrefix(newPathDir+"/", rmDir+"/") || path.Base(rmDir) == "empty-titles-set" {
-		return "" // 不删除
-	}
-	return
+	DeleteFile(filepath.Dir(oldFullPath))
+	return true
 }
 
-// 整理node附件，同上。带删除旧文件夹
-func (this *AttachService) ReOrganizeAttachFiles(userId, noteId, title, content string, hasTitle, hasContent bool) bool {
-	if !hasTitle && !hasContent {
-		return true
-	}
-	if !hasTitle { // 获取title
-		title = noteService.GetNote(noteId, userId).Title
-	}
-	if !hasContent { // 获取content
-		content = noteService.GetNoteContent(noteId, userId).Content
-	}
+func (this *AttachService) getAttachNoteTitle(path string) string {
+	// file.Path值是相对路径：path.Join(userId, "attachs", title, "xxx.txt")
+	paths := strings.Split(filepath.Clean(path), string(filepath.Separator))
 
-	if oldDir := this.OrganizeAttachFiles(userId, title, content); oldDir != "" {
-		// 删旧的空文件夹，如果仅部分文件移动，不应删除整个文件夹，因为可能发生从其他笔记里拷贝
-		dir, _ := ioutil.ReadDir(oldDir)
-		if len(dir) == 0 {
-			os.RemoveAll(oldDir)
-		}
+	if len(paths) == 4 {
+		return paths[2]
 	}
-	return true
+	return ""
 }

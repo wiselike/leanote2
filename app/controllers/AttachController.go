@@ -51,13 +51,6 @@ func (c Attach) uploadAttach(noteId string) (re info.Re) {
 	var data []byte
 	c.Params.Bind(&data, "file")
 
-	// file, handel, err := c.Request.FormFile("file")
-	// if err != nil {
-	// 	return re
-	// }
-	// defer file.Close()
-
-	// data, err := ioutil.ReadAll(file)
 	if data == nil || len(data) == 0 {
 		return re
 	}
@@ -72,9 +65,9 @@ func (c Attach) uploadAttach(noteId string) (re info.Re) {
 	}
 
 	// 生成上传路径
-	//	filePath := "files/" + c.GetUserId() + "/attachs"
-	newGuid := NewGuid()
-	filePath := GetRandomFilePath(c.GetUserId(), newGuid) + "/attachs"
+	title := noteService.GetNote(noteId, c.GetUserId()).Title
+	title = FixFilename(title)
+	filePath := path.Join(c.GetUserId(), "attachs", title)
 	dir := path.Join(service.ConfigS.GlobalStringConfigs["files.dir"], filePath)
 	err := os.MkdirAll(dir, 0755)
 	if err != nil {
@@ -86,7 +79,7 @@ func (c Attach) uploadAttach(noteId string) (re info.Re) {
 	// 生成新的文件名
 	filename := handel.Filename
 	_, ext := SplitFilename(filename) // .doc
-	filename = newGuid + ext
+	filename = NewGuid() + ext
 	toPath := dir + "/" + filename
 	err = ioutil.WriteFile(toPath, data, 0777)
 	if err != nil {

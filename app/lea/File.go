@@ -77,15 +77,29 @@ func ListDir(dir string) []string {
 func CopyFile(srcName, dstName string) (written int64, err error) {
 	src, err := os.Open(srcName)
 	if err != nil {
-		return
+		return 0, err
 	}
 	defer src.Close()
-	dst, err := os.OpenFile(dstName, os.O_WRONLY|os.O_CREATE, 0644)
+	dst, err := os.OpenFile(dstName, os.O_WRONLY|os.O_CREATE, 0644) // 默认权限0644
 	if err != nil {
-		return
+		return 0, err
 	}
 	defer dst.Close()
 	return io.Copy(dst, src)
+}
+
+func MoveFile(src, dst string) error {
+	// 先尝试同盘移动
+	err := os.Rename(src, dst)
+	if err != nil {
+		// 再尝试异盘移动
+		_, err = CopyFile(src, dst)
+		if err != nil {
+			return err
+		}
+		return os.Remove(src)
+	}
+	return nil
 }
 
 func CopyDir(source string, dest string) (err error) {
