@@ -204,7 +204,7 @@ func (c Note) UpdateNoteOrContent(noteOrContent info.NoteOrContent) revel.Result
 			Content:      noteOrContent.Content,
 			Abstract:     noteOrContent.Abstract}
 
-		noteImageService.OrganizeImageFiles(c.GetUserId(), noteOrContent.Title, noteOrContent.Content)
+		noteImageService.ReOrganizeImageFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title, &noteContent.Content, false)
 		attachService.ReOrganizeAttachFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title)
 
 		note = noteService.AddNoteAndContentForController(note, noteContent, c.GetUserId())
@@ -235,8 +235,18 @@ func (c Note) UpdateNoteOrContent(noteOrContent info.NoteOrContent) revel.Result
 
 	// web端不控制
 	if needUpdateNote {
-		noteService.UpdateNote(c.GetUserId(),
-			noteOrContent.NoteId, noteUpdate, -1)
+		noteService.UpdateNote(c.GetUserId(), noteOrContent.NoteId, noteUpdate, -1)
+	}
+
+	if c.Has("Title") && !c.Has("Content") {
+		noteImageService.ReOrganizeImageFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title, &noteOrContent.Content, true)
+		attachService.ReOrganizeAttachFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title)
+	} else if c.Has("Content") {
+		if !c.Has("Title") {
+			noteOrContent.Title = noteService.GetNote(noteOrContent.NoteId, c.GetUserId()).Title
+		}
+		noteImageService.ReOrganizeImageFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title, &noteOrContent.Content, false)
+		attachService.ReOrganizeAttachFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title)
 	}
 
 	//-------------
@@ -244,8 +254,6 @@ func (c Note) UpdateNoteOrContent(noteOrContent info.NoteOrContent) revel.Result
 	// contentOk := false
 	// contentMsg := ""
 	if c.Has("Content") {
-		//		noteService.UpdateNoteContent(noteOrContent.UserId, c.GetUserId(),
-		//			noteOrContent.NoteId, noteOrContent.Content, noteOrContent.Abstract)
 		// contentOk, contentMsg, afterContentUsn =
 		noteService.UpdateNoteContent(c.GetUserId(),
 			noteOrContent.NoteId, noteOrContent.Content, noteOrContent.Abstract,
@@ -255,16 +263,9 @@ func (c Note) UpdateNoteOrContent(noteOrContent info.NoteOrContent) revel.Result
 		noteService.UpdateAutoBackupState(noteOrContent.NoteId, c.GetUserId(), noteOrContent.IsAutoBackup)
 	}
 
-	if c.Has("Title") || c.Has("Content") {
-		noteImageService.ReOrganizeImageFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title, noteOrContent.Content, c.Has("Title"), c.Has("Content"))
-		attachService.ReOrganizeAttachFiles(c.GetUserId(), noteOrContent.NoteId, noteOrContent.Title)
-
-	}
-
 	// Log("usn", "afterContentUsn", afterContentUsn + "")
 	// Log(contentOk)
 	// Log(contentMsg)
-
 	return c.RenderJSON(true)
 }
 
