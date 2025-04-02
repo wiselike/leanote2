@@ -73,7 +73,7 @@ func (this *TrashService) DeleteTrash(noteId, userId string) bool {
 		return false
 	}
 	// delete note's attachs
-	ok := attachService.DeleteAllAttachs(noteId, userId)
+	ok := attachService.DeleteAllAttachs(userId, noteId)
 
 	// 设置删除位
 	ok = db.UpdateByIdAndUserIdMap(db.Notes, noteId, userId,
@@ -87,6 +87,9 @@ func (this *TrashService) DeleteTrash(noteId, userId string) bool {
 
 	// 删除content history
 	ok = db.DeleteByIdAndUserId(db.NoteContentHistories, noteId, userId)
+
+	// delete all images
+	ok = noteImageService.DeleteNoteImages(userId, noteId)
 
 	// 重新统计tag's count
 	// TODO 这里会改变tag's Usn
@@ -107,7 +110,7 @@ func (this *TrashService) DeleteTrashApi(noteId, userId string, usn int) (bool, 
 	}
 
 	// delete note's attachs
-	ok := attachService.DeleteAllAttachs(noteId, userId)
+	ok := attachService.DeleteAllAttachs(userId, noteId)
 
 	// 设置删除位
 	afterUsn := userService.IncrUsn(userId)
@@ -120,6 +123,9 @@ func (this *TrashService) DeleteTrashApi(noteId, userId string, usn int) (bool, 
 
 	// 删除content history
 	ok = db.DeleteByIdAndUserId(db.NoteContentHistories, noteId, userId)
+
+	// delete all images
+	ok = noteImageService.DeleteNoteImages(userId, noteId)
 
 	// 一个BUG, iOS删除直接调用这个API, 结果没有重新recount
 	// recount notebooks' notes number

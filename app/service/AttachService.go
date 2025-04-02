@@ -92,19 +92,21 @@ func (this *AttachService) UpdateImageTitle(userId, fileId, title string) bool {
 }
 
 // Delete note to delete attas firstly
-func (this *AttachService) DeleteAllAttachs(noteId, userId string) bool {
+func (this *AttachService) DeleteAllAttachs(userId, noteId string) bool {
 	note := noteService.GetNoteById(noteId)
 	if note.UserId.Hex() == userId {
 		attachs := []info.Attach{}
 		db.ListByQ(db.Attachs, bson.M{"NoteId": bson.ObjectIdHex(noteId)}, &attachs)
 		var fullPath string
+		basePath := ConfigS.GlobalStringConfigs["files.dir"]
 		for _, attach := range attachs {
-			fullPath = path.Join(ConfigS.GlobalStringConfigs["files.dir"], attach.Path)
+			fullPath = path.Join(basePath, attach.Path)
 			os.Remove(fullPath)
 		}
 		if fullPath != "" {
 			os.Remove(path.Dir(fullPath))
 		}
+		db.DeleteAll(db.Attachs, bson.M{"NoteId": bson.ObjectIdHex(noteId)})
 		return true
 	}
 
@@ -197,6 +199,7 @@ func (this *AttachService) CopyAttachs(noteId, toNoteId, toUserId string) bool {
 		_, ext := SplitFilename(attach.Name)
 		newFilename := NewGuid() + ext
 		filePath := path.Join(toUserId, "attachs", this.getAttachNoteTitle(attach.Path), newFilename)
+		os.MkdirAll(filepath.Dir(filePath), 0755)
 		_, err := CopyFile(path.Join(basePath, attach.Path), path.Join(basePath, filePath))
 		if err != nil {
 			return false

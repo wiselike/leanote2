@@ -338,7 +338,7 @@ func (this *NoteService) AddNoteContent(noteContent info.NoteContent) info.NoteC
 	db.Insert(db.NoteContents, noteContent)
 
 	// 更新笔记图片
-	noteImageService.UpdateNoteImages(noteContent.UserId.Hex(), noteContent.NoteId.Hex(), "", noteContent.Content)
+	noteImageService.UpdateNoteImages(noteContent.UserId.Hex(), noteContent.NoteId.Hex(), noteContent.Content)
 
 	return noteContent
 }
@@ -643,7 +643,7 @@ func (this *NoteService) UpdateNoteContent(updatedUserId, noteId, content, abstr
 		})
 
 		// 更新笔记图片
-		noteImageService.UpdateNoteImages(userId, noteId, note.ImgSrc, content)
+		noteImageService.UpdateNoteImages(userId, noteId, content)
 
 		return true, "", afterUsn
 	}
@@ -745,33 +745,8 @@ func (this *NoteService) IsBlog(noteId string) bool {
 }
 
 // 复制note
-// 正常的可以用
-// 先查, 再新建
-// 要检查下notebookId是否是自己的
 func (this *NoteService) CopyNote(noteId, notebookId, userId string) info.Note {
-	if notebookService.IsMyNotebook(notebookId, userId) {
-		note := this.GetNote(noteId, userId)
-		noteContent := this.GetNoteContent(noteId, userId)
-
-		// 重新生成noteId
-		note.NoteId = bson.NewObjectId()
-		note.NotebookId = bson.ObjectIdHex(notebookId)
-
-		noteContent.NoteId = note.NoteId
-		note = this.AddNoteAndContent(note, noteContent, note.UserId)
-
-		// 更新blog状态
-		isBlog := this.updateToNotebookBlog(note.NoteId.Hex(), notebookId, userId)
-
-		// recount
-		notebookService.ReCountNotebookNumberNotes(notebookId)
-
-		note.IsBlog = isBlog
-
-		return note
-	}
-
-	return info.Note{}
+	return this.CopySharedNote(noteId, notebookId, userId, userId)
 }
 
 // 复制别人的共享笔记给我
@@ -779,7 +754,7 @@ func (this *NoteService) CopyNote(noteId, notebookId, userId string) info.Note {
 func (this *NoteService) CopySharedNote(noteId, notebookId, fromUserId, myUserId string) info.Note {
 	// 判断是否共享了给我
 	// Log(notebookService.IsMyNotebook(notebookId, myUserId))
-	if notebookService.IsMyNotebook(notebookId, myUserId) && shareService.HasReadPerm(fromUserId, myUserId, noteId) {
+	if notebookService.IsMyNotebook(notebookId, myUserId) && (fromUserId == myUserId || shareService.HasReadPerm(fromUserId, myUserId, noteId)) {
 		note := this.GetNote(noteId, fromUserId)
 		if note.NoteId == "" {
 			return info.Note{}

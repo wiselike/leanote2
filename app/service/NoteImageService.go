@@ -37,13 +37,7 @@ func (this *NoteImageService) GetNoteIds(imageId string) []bson.ObjectId {
 
 // 解析内容中的图片, 建立图片与note的关系
 // <img src="/file/outputImage?fileId=12323232" />
-// 图片必须是我的, 不然不添加
-// imgSrc 防止博客修改了, 但内容删除了
-func (this *NoteImageService) UpdateNoteImages(userId, noteId, imgSrc, content string) bool {
-	// 让主图成为内容的一员
-	if imgSrc != "" {
-		content = "<img src=\"" + imgSrc + "\" >" + content
-	}
+func (this *NoteImageService) UpdateNoteImages(userId, noteId, content string) bool {
 	// life 添加getImage
 	find := noteImageReg.FindAllStringSubmatch(content, -1) // 查找所有的
 
@@ -60,7 +54,6 @@ func (this *NoteImageService) UpdateNoteImages(userId, noteId, imgSrc, content s
 				fileId = each[2] // 现在有两个子表达式了
 				// 之前没能添加过的
 				if _, ok := hasAdded[fileId]; !ok {
-					Log(fileId)
 					// 判断是否是我的文件
 					if fileService.IsMyFile(userId, fileId) {
 						noteImage.ImageId = bson.ObjectIdHex(fileId)
@@ -70,6 +63,30 @@ func (this *NoteImageService) UpdateNoteImages(userId, noteId, imgSrc, content s
 				}
 			}
 		}
+	}
+
+	return true
+}
+
+func (this *NoteImageService) DeleteNoteImages(userId, noteId string) bool {
+	imageIDs := []info.NoteImage{}
+	db.ListByQ(db.NoteImages, bson.M{"NoteId": bson.ObjectIdHex(noteId)}, &imageIDs)
+	defer db.DeleteAll(db.NoteImages, bson.M{"NoteId": bson.ObjectIdHex(noteId)})
+
+	var fullPath string
+	basePath := ConfigS.GlobalStringConfigs["files.dir"]
+	for _, image := range imageIDs {
+		file := &info.File{}
+		fileId := image.ImageId.Hex()
+		if db.GetByIdAndUserId(db.Files, fileId, userId, file); file.Path != "" {
+			if db.DeleteByIdAndUserId(db.Files, fileId, userId) {
+				fullPath = path.Join(basePath, file.Path)
+				DeleteFile(fullPath)
+			}
+		}
+	}
+	if fullPath != "" {
+		os.Remove(path.Dir(fullPath))
 	}
 
 	return true
@@ -163,7 +180,7 @@ func (this *NoteImageService) getImagesByNoteIds(noteIds []bson.ObjectId) map[st
 // 返回值true代表content已更新；false代表content无更新
 func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string, content *string, noContent bool) (res bool) {
 	if title == "" {
-		return false
+		title = "empty-title-images"
 	}
 	title = FixFilename(title)
 
@@ -177,16 +194,10 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 	}()
 	moveNoteImage := func(i int, imageId string, file *info.File) (res bool) {
 		// 创建移动路径
-		if i < 0 {
-			newImagePath = filepath.Join(userId, "/images/", title, filepath.Base(file.Path))
-			oldFullPath = filepath.Join(basePath, file.Path)
-			newFullPath = filepath.Join(basePath, newImagePath)
-		} else {
-			fName := strings.Split(filepath.Base(file.Path), "_")
-			newImagePath = filepath.Join(userId, "/images/", title, fmt.Sprintf("%d_%s", i, fName[len(fName)-1]))
-			oldFullPath = path.Join(basePath, file.Path)
-			newFullPath = path.Join(basePath, newImagePath)
-		}
+		fName := strings.Split(filepath.Base(file.Path), "_")
+		newImagePath = filepath.Join(userId, "/images/", title, fmt.Sprintf("%d_%s", i, fName[len(fName)-1]))
+		oldFullPath = path.Join(basePath, file.Path)
+		newFullPath = path.Join(basePath, newImagePath)
 		if err := os.MkdirAll(filepath.Dir(newFullPath), 0755); err != nil {
 			return false
 		}
@@ -196,6 +207,7 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 			}
 		}()
 
+		Logf("moveNoteImage(%s): %s -> %s", imageId, file.Path, newImagePath)
 		if oldFullPath != newFullPath && MoveFile(oldFullPath, newFullPath) == nil {
 			// 更新数据库
 			file.Path = newImagePath
@@ -205,12 +217,15 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 				return false
 			}
 		}
+
 		return true
 	}
 	copyNoteImage := func(i int, imageId string, file *info.File) bool {
-		if ok, newID := fileService.CopyImageToTitle(userId, imageId, title, userId); ok {
+		oldPath := file.Path
+		if ok, newID := fileService.CopyImageToTitle(userId, imageId, title, userId, file); ok {
 			// 复制过img后，需要更新note正文
 			*content = strings.ReplaceAll(*content, "Image?fileId="+imageId, "Image?fileId="+newID)
+			Logf("copyNoteImage(%s->%s): %s -> %s", imageId, newID, oldPath, file.Path)
 			return true
 		}
 		return false
@@ -219,10 +234,11 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 	if noContent { // 只需移动图片
 		note_imageIDs := []info.NoteImage{}
 		db.ListByQ(db.NoteImages, bson.M{"NoteId": bson.ObjectIdHex(noteId)}, &note_imageIDs)
-		for _, image := range note_imageIDs {
+		for i, image := range note_imageIDs {
 			file := &info.File{}
 			if db.GetByIdAndUserId(db.Files, image.ImageId.Hex(), userId, file); file.Path != "" {
-				moveNoteImage(-1, image.ImageId.Hex(), file)
+				Logf("moveNoteImage, 因为只有note标题变了")
+				moveNoteImage(i, image.ImageId.Hex(), file)
 			}
 		}
 
@@ -269,13 +285,16 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 				if _, ok := note_imageIDs[image_id]; ok { // 重命名、移动
 					note_imageIDs[image_id] = false // 标记该图片已处理
 
+					Logf("moveNoteImage, 因为新旧content都有用到此图片")
 					moveNoteImage(i, image_id, file)
 				} else { // 这里要区分，是不是其他note/album的image
 					if other_noteORalbum_imageId(image_id, file) { // 复制，并更新content
+						Logf("copyNoteImage, 因为此图片来自其他note/album")
 						if copyNoteImage(i, image_id, file) {
 							res = true
 						}
 					} else { // 移动
+						Logf("moveNoteImage, 因为此图片不来自其他note/album")
 						moveNoteImage(i, image_id, file)
 					}
 				}
@@ -298,7 +317,9 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 			if needDelete {
 				file := &info.File{}
 				if db.GetByIdAndUserId(db.Files, image_id, userId, file); file.Path != "" {
-					DeleteFile(path.Join(basePath, file.Path))
+					if db.DeleteByIdAndUserId(db.Files, image_id, userId) {
+						DeleteFile(path.Join(basePath, file.Path))
+					}
 				}
 			}
 		}
