@@ -4,7 +4,7 @@ all: build
 
 # format golang code
 fmt:
-	find -name "*.go" -exec go fmt {} \;
+	find ./app -name "*.go" -exec go fmt {} \;
 
 # only build temporarily
 build:

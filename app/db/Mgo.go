@@ -376,11 +376,11 @@ func GetIdAndUserIdBsonQ(id, userId bson.ObjectId) bson.M {
 // DB处理错误
 func Err(err error) bool {
 	if err != nil {
-		fmt.Println(err)
 		// 删除时, 查找
 		if err.Error() == "not found" {
 			return true
 		}
+		LogE2(3, err.Error())
 		return false
 	}
 	return true
@@ -392,13 +392,13 @@ func CheckMongoSessionLost() {
 	// fmt.Println("检查CheckMongoSessionLostErr")
 	err := Session.Ping()
 	if err != nil {
-		Log("Lost connection to db!")
+		LogE("Lost connection to db!")
 		Session.Refresh()
 		err = Session.Ping()
 		if err == nil {
-			Log("Reconnect to db successful.")
+			LogW("Reconnect to db successful.")
 		} else {
-			Log("重连失败!!!! 警告")
+			LogE("重连失败!!!! 警告")
 		}
 	}
 }
