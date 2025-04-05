@@ -635,15 +635,15 @@ func (this *NoteService) UpdateNoteContent(updatedUserId, noteId, content, abstr
 
 	oldContent := this.GetNoteContent(noteId, userId)
 	if db.UpdateByIdAndUserIdMap(db.NoteContents, noteId, userId, data) {
+		// 先更新笔记图片，以便于history中可以正确删除不用了的图片
+		noteImageService.UpdateNoteImages(userId, noteId, content)
+
 		// 更新文章成功, 则添加旧文章到历史记录里
 		noteContentHistoryService.AddHistory(noteId, userId, info.EachHistory{UpdatedUserId: bson.ObjectIdHex(updatedUserId),
 			IsAutoBackup: oldContent.IsAutoBackup,
 			Content:      oldContent.Content, // 把旧文章加入历史
 			UpdatedTime:  oldContent.UpdatedTime,
 		})
-
-		// 更新笔记图片
-		noteImageService.UpdateNoteImages(userId, noteId, content)
 
 		return true, "", afterUsn
 	}

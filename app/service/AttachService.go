@@ -101,10 +101,10 @@ func (this *AttachService) DeleteAllAttachs(userId, noteId string) bool {
 		basePath := ConfigS.GlobalStringConfigs["files.dir"]
 		for _, attach := range attachs {
 			fullPath = path.Join(basePath, attach.Path)
-			os.Remove(fullPath)
+			DeleteFile(fullPath)
 		}
 		if fullPath != "" {
-			os.Remove(path.Dir(fullPath))
+			DeleteFile(path.Dir(fullPath))
 		}
 		db.DeleteAll(db.Attachs, bson.M{"NoteId": bson.ObjectIdHex(noteId)})
 		return true
@@ -129,12 +129,10 @@ func (this *AttachService) DeleteAttach(attachId, userId string) (bool, string) 
 			this.updateNoteAttachNum(attach.NoteId, -1)
 			var fullPath string
 			fullPath = path.Join(ConfigS.GlobalStringConfigs["files.dir"], attach.Path)
-			err := os.Remove(fullPath)
-			if err == nil {
+			if ok := DeleteFile(fullPath); ok {
 				// 修改note Usn
 				noteService.IncrNoteUsn(attach.NoteId.Hex(), userId)
-				os.Remove(path.Dir(fullPath))
-
+				DeleteFile(path.Dir(fullPath))
 				return true, "delete file success"
 			}
 			return false, "delete file error"
@@ -277,7 +275,9 @@ func (this *AttachService) ReOrganizeAttachFiles(userId, noteId, title string) b
 		}
 	}
 
-	DeleteFile(filepath.Dir(oldFullPath))
+	if oldFullPath != "" {
+		DeleteFile(path.Dir(oldFullPath))
+	}
 	return true
 }
 

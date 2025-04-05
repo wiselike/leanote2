@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2"
@@ -304,7 +303,10 @@ func Get2(collection *mgo.Collection, id bson.ObjectId, i interface{}) {
 	collection.FindId(id).One(i)
 }
 func GetLastOneInArray(collection *mgo.Collection, id, userId, field string, i interface{}) {
-	collection.Find(GetIdAndUserIdQ(id, userId)).Select(bson.M{"Histories": bson.M{"$slice": -1}}).One(i)
+	collection.Find(GetIdAndUserIdQ(id, userId)).Select(bson.M{field: bson.M{"$slice": -1}}).One(i)
+}
+func GetFirstOneInArray(collection *mgo.Collection, id, userId, field string, i interface{}) {
+	collection.Find(GetIdAndUserIdQ(id, userId)).Select(bson.M{field: bson.M{"$slice": 1}}).One(i)
 }
 func GetByQ(collection *mgo.Collection, q interface{}, i interface{}) {
 	collection.Find(q).One(i)

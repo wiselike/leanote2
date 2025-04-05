@@ -3,8 +3,9 @@ package service
 import (
 	"github.com/wiselike/leanote-of-unofficial/app/db"
 	"github.com/wiselike/leanote-of-unofficial/app/info"
-	//	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	"gopkg.in/mgo.v2/bson"
+	"path"
 	"sort"
 	"time"
 )
@@ -13,22 +14,11 @@ import (
 type NoteContentHistoryService struct {
 }
 
-var UseMongoVer int
-
-func isMongo2() bool {
-	if db.Session != nil {
-		if info, err := db.Session.BuildInfo(); err == nil {
-			return !info.VersionAtLeast(3)
-		}
-	}
-	return true
-}
-
 // 新建一个note, 不添加历史记录
 // 添加历史，在数据库中倒序存放：前面的是老的，后面是新的（与原来的顺序相反）
-func (this *NoteContentHistoryService) AddHistory(noteId, userId string, oneHistory info.EachHistory) {
+func (this *NoteContentHistoryService) AddHistory(noteId, userId string, newHistory info.EachHistory) {
 	// 检查是否是空
-	if oneHistory.Content == "" {
+	if newHistory.Content == "" {
 		return
 	}
 
@@ -38,49 +28,33 @@ func (this *NoteContentHistoryService) AddHistory(noteId, userId string, oneHist
 		return
 	}
 
-	// 判断使用的mongo版本
-	if UseMongoVer == 0 {
-		if isMongo2() {
-			UseMongoVer = 2
-		} else {
-			UseMongoVer = 3
-		}
-	}
-
 	var historiesLenth int
-	if UseMongoVer == 2 {
-		// 使用mongodb2的版本，效率较低，而且耗内存
-		history := info.NoteContentHistory{}
-		db.GetByIdAndUserId(db.NoteContentHistories, noteId, userId, &history)
-		if history.NoteId == "" {
-			historiesLenth = -1
-		} else {
-			historiesLenth = len(history.Histories)
-		}
+	history := &info.NoteContentHistory{}
+	db.GetByIdAndUserId(db.NoteContentHistories, noteId, userId, history)
+	if history.NoteId == "" {
+		historiesLenth = -1
 	} else {
-		// mongodb3才支持，可以优化速度和效率
-		// 只获取数字即可，不获取所有历史的正文内容
-		historiesLenth = db.GetNoteHistoriesCount(db.NoteContentHistories, noteId, userId)
+		historiesLenth = len(history.Histories)
 	}
 
-	if historiesLenth == -1 {
-		this.newHistory(noteId, userId, oneHistory)
+	if historiesLenth == -1 { // historiesLenth==0时，也不能newHistory，必须pushHistory
+		this.newHistory(noteId, userId, newHistory)
 	} else {
 		// 读取最新的历史记录，判断是否是AutoBackup；
-		var lastContentHistory info.NoteContentHistory
-		db.GetLastOneInArray(db.NoteContentHistories, noteId, userId, "Histories", &lastContentHistory)
-		if len(lastContentHistory.Histories) > 0 && lastContentHistory.Histories[0].IsAutoBackup {
-			db.UpdateByIdAndUserIdPop(db.NoteContentHistories, noteId, userId, "Histories", 1)
-			historiesLenth--
-		}
+		if historiesLenth > 0 && history.Histories[historiesLenth-1].IsAutoBackup {
+			// 清理不再用的图片
+			this.CleanImage(history, &newHistory, historiesLenth-1)
 
-		// 判断是否超出 maxSize, 如果是则pop掉一个最老的
-		if historiesLenth >= maxSize {
+			db.UpdateByIdAndUserIdPop(db.NoteContentHistories, noteId, userId, "Histories", 1)
+		} else if historiesLenth >= maxSize { // 判断是否超出 maxSize, 如果是则pop掉一个最老的
+			// 清理不再用的图片
+			this.CleanImage(history, &newHistory, 0)
+
 			db.UpdateByIdAndUserIdPop(db.NoteContentHistories, noteId, userId, "Histories", -1)
 		}
 
 		// 插入一个历史记录，只能后插
-		db.UpdateByIdAndUserIdPush(db.NoteContentHistories, noteId, userId, "Histories", oneHistory)
+		db.UpdateByIdAndUserIdPush(db.NoteContentHistories, noteId, userId, "Histories", newHistory)
 	}
 
 	return
@@ -95,10 +69,10 @@ func (this *NoteContentHistoryService) UpdateHistoryBackupState(noteId, userId s
 }
 
 // 新建历史
-func (this *NoteContentHistoryService) newHistory(noteId, userId string, oneHistory info.EachHistory) {
-	history := info.NoteContentHistory{NoteId: bson.ObjectIdHex(noteId),
+func (this *NoteContentHistoryService) newHistory(noteId, userId string, newHistory info.EachHistory) {
+	history := &info.NoteContentHistory{NoteId: bson.ObjectIdHex(noteId),
 		UserId:    bson.ObjectIdHex(userId),
-		Histories: []info.EachHistory{oneHistory},
+		Histories: []info.EachHistory{newHistory},
 	}
 
 	// 保存之
@@ -124,6 +98,156 @@ func (this *NoteContentHistoryService) DeleteHistory(noteId, userId, timeToDel s
 	if err != nil {
 		return
 	}
+
+	// 清理不再用的图片
+	history := &info.NoteContentHistory{}
+	db.GetByIdAndUserId(db.NoteContentHistories, noteId, userId, history)
+	getI := func() int {
+		for i, each := range history.Histories {
+			if each.UpdatedTime == t {
+				return i
+			}
+		}
+		return -1
+	}
+	this.CleanImage(history, nil, getI())
+
 	db.DeleteOneHistory(db.NoteContentHistories, noteId, userId, t)
 	return
+}
+
+func (this *NoteContentHistoryService) CleanImage(history *info.NoteContentHistory, newHistory *info.EachHistory, num int) {
+	if len(history.Histories) <= num {
+		return
+	}
+
+	noteId := history.NoteId.Hex()
+	userId := history.UserId.Hex()
+
+	//
+	findDelete := noteImageReg.FindAllStringSubmatch(history.Histories[num].Content, -1) // 查找
+	if findDelete == nil || len(findDelete) < 1 {
+		return
+	}
+	findDelete = DeduplicateMatches(findDelete)
+
+	// 获取history、newHistory里的images
+	findAll := make([][]string, 0, 10)
+	for i := len(history.Histories) - 1; i >= 0; i-- {
+		if i == num {
+			continue
+		}
+		find := noteImageReg.FindAllStringSubmatch(history.Histories[i].Content, -1) // 查找
+		if find == nil || len(find) < 1 {
+			continue
+		}
+		findAll = append(findAll, find...)
+	}
+	if newHistory != nil {
+		find := noteImageReg.FindAllStringSubmatch(newHistory.Content, -1) // 查找
+		if find != nil && len(find) > 1 {
+			findAll = append(findAll, find...)
+		}
+	}
+	findAll = DeduplicateMatches(findAll)
+
+	findDelete = SliceMinus(findDelete, findAll)
+	if len(findDelete) < 1 {
+		return
+	}
+
+	// 获取NoteImages，也就是Content里的images
+	note_imageIDs_tmp := []info.NoteImage{}
+	db.ListByQ(db.NoteImages, bson.M{"NoteId": bson.ObjectIdHex(noteId)}, &note_imageIDs_tmp)
+	note_imageIDs := make(map[string]bool)
+	for i := range note_imageIDs_tmp {
+		note_imageIDs[note_imageIDs_tmp[i].ImageId.Hex()] = true
+	}
+
+	basePath := ConfigS.GlobalStringConfigs["files.dir"]
+	var fullPath string
+	for _, each := range findDelete {
+		if each != nil && len(each) == 3 {
+			image_id := each[2]
+			if _, ok := note_imageIDs[image_id]; !ok { // 要删除
+				needDelete := true
+
+				// 判断其他笔记是否有用此图片
+				noteImages := noteImageService.GetNoteIds(image_id)
+				noteIdHex := bson.ObjectIdHex(noteId)
+				for i := range noteImages {
+					if noteImages[i] != noteIdHex {
+						needDelete = false
+						break // 其他笔记有用此图片，不删除
+					}
+				}
+
+				if needDelete {
+					file := &info.File{}
+					if db.GetByIdAndUserId(db.Files, image_id, userId, file); file.Path != "" {
+						if db.DeleteByIdAndUserId(db.Files, image_id, userId) {
+							fullPath = path.Join(basePath, file.Path)
+							DeleteFile(fullPath)
+						}
+					}
+				}
+			}
+		}
+	}
+	if fullPath != "" {
+		DeleteFile(path.Dir(fullPath))
+	}
+
+	return
+}
+
+// 删除history里的所有图片，并清理history数据库
+func (this *NoteContentHistoryService) CleanHistoryAndImages(userId, noteId string) bool {
+	histories := &info.NoteContentHistory{}
+	db.GetByIdAndUserId(db.NoteContentHistories, noteId, userId, histories)
+
+	// 获取history、newHistory里的images
+	findDelete := make([][]string, 0, 10)
+	for i := len(histories.Histories) - 1; i >= 0; i-- {
+		find := noteImageReg.FindAllStringSubmatch(histories.Histories[i].Content, -1) // 查找
+		if find == nil || len(find) < 1 {
+			continue
+		}
+		findDelete = append(findDelete, find...)
+	}
+	findDelete = DeduplicateMatches(findDelete)
+
+	basePath := ConfigS.GlobalStringConfigs["files.dir"]
+	var fullPath string
+	for _, each := range findDelete {
+		if each != nil && len(each) == 3 {
+			image_id := each[2]
+			needDelete := true
+
+			// 判断其他笔记是否有用此图片
+			noteImages := noteImageService.GetNoteIds(image_id)
+			noteIdHex := bson.ObjectIdHex(noteId)
+			for i := range noteImages {
+				if noteImages[i] != noteIdHex {
+					needDelete = false
+					break // 其他笔记有用此图片，不删除
+				}
+			}
+
+			if needDelete {
+				file := &info.File{}
+				if db.GetByIdAndUserId(db.Files, image_id, userId, file); file.Path != "" {
+					if db.DeleteByIdAndUserId(db.Files, image_id, userId) {
+						fullPath = path.Join(basePath, file.Path)
+						DeleteFile(fullPath)
+					}
+				}
+			}
+		}
+	}
+	if fullPath != "" {
+		DeleteFile(path.Dir(fullPath))
+	}
+
+	return db.DeleteByIdAndUserId(db.NoteContentHistories, noteId, userId)
 }

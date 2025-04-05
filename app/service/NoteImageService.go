@@ -86,7 +86,7 @@ func (this *NoteImageService) DeleteNoteImages(userId, noteId string) bool {
 		}
 	}
 	if fullPath != "" {
-		os.Remove(path.Dir(fullPath))
+		DeleteFile(path.Dir(fullPath))
 	}
 
 	return true
@@ -203,7 +203,7 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 		}
 		defer func() {
 			if !res { // 失败时，仅空目录删除
-				os.Remove(filepath.Dir(newFullPath))
+				DeleteFile(filepath.Dir(newFullPath))
 			}
 		}()
 
@@ -302,28 +302,33 @@ func (this *NoteImageService) ReOrganizeImageFiles(userId, noteId, title string,
 		}
 	}
 
-	// 处理已删除的图片
-	for image_id, needDelete := range note_imageIDs {
-		if needDelete {
-			noteImages := this.GetNoteIds(image_id)
-			noteIdHex := bson.ObjectIdHex(noteId)
-			for i := range noteImages {
-				if noteImages[i] != noteIdHex {
-					needDelete = false
-					break // 其他笔记有用此图片，不删除
-				}
-			}
-
+	// 不需要再在这里删除图片了，因为note图片的删除动作，只会发生在NoteContentHistoryService里
+	return
+	/*
+		for image_id, needDelete := range note_imageIDs {
 			if needDelete {
-				file := &info.File{}
-				if db.GetByIdAndUserId(db.Files, image_id, userId, file); file.Path != "" {
-					if db.DeleteByIdAndUserId(db.Files, image_id, userId) {
-						DeleteFile(path.Join(basePath, file.Path))
+				noteImages := this.GetNoteIds(image_id)
+				noteIdHex := bson.ObjectIdHex(noteId)
+				for i := range noteImages {
+					if noteImages[i] != noteIdHex {
+						needDelete = false
+						break // 其他笔记有用此图片，不删除
+					}
+				}
+
+				if needDelete {
+					// 判断当前笔记的历史里有没有用此图片，有用则不删除
+
+					file := &info.File{}
+					if db.GetByIdAndUserId(db.Files, image_id, userId, file); file.Path != "" {
+						if db.DeleteByIdAndUserId(db.Files, image_id, userId) {
+							DeleteFile(path.Join(basePath, file.Path))
+						}
 					}
 				}
 			}
 		}
-	}
 
-	return
+		return
+	*/
 }

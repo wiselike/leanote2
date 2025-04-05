@@ -115,16 +115,16 @@ func (this *FileService) DeleteImage(userId, fileId string) (bool, string) {
 		if db.DeleteByIdAndUserId(db.Files, fileId, userId) {
 			// delete image
 			// TODO
-			var err error
+			var res bool
 			if strings.HasPrefix(file.Path, "/upload/") {
 				Log(file.Path)
-				err = os.Remove(path.Join(revel.BasePath, "/public/", file.Path))
+				res = DeleteFile(path.Join(revel.BasePath, "/public/", file.Path))
 			} else {
 				fullPath := path.Join(ConfigS.GlobalStringConfigs["files.dir"], file.Path)
-				err = os.Remove(fullPath)
+				res = DeleteFile(fullPath)
 				DeleteFile(path.Dir(fullPath)) // 只有空文件才会删除成功
 			}
-			if err == nil {
+			if res {
 				return true, ""
 			}
 			return false, "delete file error!"
