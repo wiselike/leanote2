@@ -5,6 +5,13 @@ import (
 	"time"
 )
 
+// 调整notebooks, 可能是排序, 可能是移动到其它笔记本下
+type DragNotebooksInfo struct {
+	CurNotebookId    string
+	ParentNotebookId string
+	Siblings         []string
+}
+
 // 在数据库中每个
 // 修改字段必须要在NotebookService中修改ParseAndSortNotebooks(没有匿名字段), 以后重构
 type Notebook struct {

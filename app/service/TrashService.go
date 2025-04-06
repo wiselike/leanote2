@@ -3,6 +3,7 @@ package service
 import (
 	"github.com/wiselike/leanote-of-unofficial/app/db"
 	"github.com/wiselike/leanote-of-unofficial/app/info"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -36,9 +37,11 @@ func (this *TrashService) DeleteNote(noteId, userId string) bool {
 		// 更新note isTrash = true
 		if db.UpdateByIdAndUserId(db.Notes, noteId, userId, bson.M{"$set": bson.M{"IsTrash": true, "Usn": userService.IncrUsn(userId)}}) {
 			// recount notebooks' notes number
-			notebookIdO := noteService.GetNotebookId(noteId)
-			notebookId := notebookIdO.Hex()
-			notebookService.ReCountNotebookNumberNotes(notebookId)
+			if notebookId := noteService.GetNotebookId(noteId).Hex(); notebookId != "" {
+				notebookService.ReCountNotebookNumberNotes(notebookId)
+			} else {
+				LogE("this note has no NoteBook: %s", noteId)
+			}
 			return true
 		}
 	}
@@ -73,7 +76,7 @@ func (this *TrashService) DeleteTrash(noteId, userId string) bool {
 		return false
 	}
 	// delete note's attachs
-	ok := attachService.DeleteAllAttachs(noteId, userId)
+	ok := attachService.DeleteAllAttachs(userId, noteId)
 
 	// 设置删除位
 	ok = db.UpdateByIdAndUserIdMap(db.Notes, noteId, userId,
@@ -85,8 +88,11 @@ func (this *TrashService) DeleteTrash(noteId, userId string) bool {
 	// delete content
 	ok = db.DeleteByIdAndUserId(db.NoteContents, noteId, userId)
 
-	// 删除content history
-	ok = db.DeleteByIdAndUserId(db.NoteContentHistories, noteId, userId)
+	// 删除content history, history images
+	ok = noteContentHistoryService.CleanHistoryAndImages(userId, noteId)
+
+	// delete images, noteImages
+	ok = noteImageService.DeleteNoteImages(userId, noteId)
 
 	// 重新统计tag's count
 	// TODO 这里会改变tag's Usn
@@ -107,7 +113,7 @@ func (this *TrashService) DeleteTrashApi(noteId, userId string, usn int) (bool, 
 	}
 
 	// delete note's attachs
-	ok := attachService.DeleteAllAttachs(noteId, userId)
+	ok := attachService.DeleteAllAttachs(userId, noteId)
 
 	// 设置删除位
 	afterUsn := userService.IncrUsn(userId)
@@ -118,8 +124,11 @@ func (this *TrashService) DeleteTrashApi(noteId, userId string, usn int) (bool, 
 	// delete content
 	ok = db.DeleteByIdAndUserId(db.NoteContents, noteId, userId)
 
-	// 删除content history
-	ok = db.DeleteByIdAndUserId(db.NoteContentHistories, noteId, userId)
+	// 删除content history, history images
+	ok = noteContentHistoryService.CleanHistoryAndImages(userId, noteId)
+
+	// delete images, noteImages
+	ok = noteImageService.DeleteNoteImages(userId, noteId)
 
 	// 一个BUG, iOS删除直接调用这个API, 结果没有重新recount
 	// recount notebooks' notes number

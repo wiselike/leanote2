@@ -432,7 +432,7 @@ func GetRandomFilePath(userId, uuid string) string {
 	return userId
 }
 
-// 通用去重函数（基于完整匹配）
+// 用于FindAllStringSubmatch后的去重函数（基于完整匹配）
 func DeduplicateMatches(matches [][]string) [][]string {
 	seen := make(map[string]bool)
 	var unique [][]string
@@ -443,4 +443,27 @@ func DeduplicateMatches(matches [][]string) [][]string {
 		}
 	}
 	return unique
+}
+
+// 在FindAllStringSubmatch后， s1 中有但 s2 中没有的元素行
+func SliceMinus(s1, s2 [][]string) [][]string {
+	// 用 map 存储 s2 中每个子切片的第一个元素
+	keySet := make(map[string]struct{})
+	for _, item := range s2 {
+		if len(item) > 0 {
+			keySet[item[0]] = struct{}{}
+		}
+	}
+
+	// 遍历 s1，保留那些首元素不在 s2 中的项
+	var result [][]string
+	for _, item := range s1 {
+		if len(item) == 0 {
+			continue // 空行跳过
+		}
+		if _, exists := keySet[item[0]]; !exists {
+			result = append(result, item)
+		}
+	}
+	return result
 }

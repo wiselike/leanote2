@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2"
@@ -304,7 +303,10 @@ func Get2(collection *mgo.Collection, id bson.ObjectId, i interface{}) {
 	collection.FindId(id).One(i)
 }
 func GetLastOneInArray(collection *mgo.Collection, id, userId, field string, i interface{}) {
-	collection.Find(GetIdAndUserIdQ(id, userId)).Select(bson.M{"Histories": bson.M{"$slice": -1}}).One(i)
+	collection.Find(GetIdAndUserIdQ(id, userId)).Select(bson.M{field: bson.M{"$slice": -1}}).One(i)
+}
+func GetFirstOneInArray(collection *mgo.Collection, id, userId, field string, i interface{}) {
+	collection.Find(GetIdAndUserIdQ(id, userId)).Select(bson.M{field: bson.M{"$slice": 1}}).One(i)
 }
 func GetByQ(collection *mgo.Collection, q interface{}, i interface{}) {
 	collection.Find(q).One(i)
@@ -376,11 +378,11 @@ func GetIdAndUserIdBsonQ(id, userId bson.ObjectId) bson.M {
 // DB处理错误
 func Err(err error) bool {
 	if err != nil {
-		fmt.Println(err)
 		// 删除时, 查找
 		if err.Error() == "not found" {
 			return true
 		}
+		LogE2(3, err.Error())
 		return false
 	}
 	return true
@@ -392,13 +394,13 @@ func CheckMongoSessionLost() {
 	// fmt.Println("检查CheckMongoSessionLostErr")
 	err := Session.Ping()
 	if err != nil {
-		Log("Lost connection to db!")
+		LogE("Lost connection to db!")
 		Session.Refresh()
 		err = Session.Ping()
 		if err == nil {
-			Log("Reconnect to db successful.")
+			LogW("Reconnect to db successful.")
 		} else {
-			Log("重连失败!!!! 警告")
+			LogE("重连失败!!!! 警告")
 		}
 	}
 }

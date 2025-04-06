@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -23,6 +24,22 @@ type FileService struct {
 
 // add Image
 func (this *FileService) AddImage(image info.File, albumId, userId string, needCheckSize bool) (ok bool, msg string) {
+	defer func() {
+		if r := recover(); r != nil {
+			switch v := r.(type) {
+			case string:
+				if strings.Contains(v, "invalid input to ObjectIdHex") {
+					msg = "Album not found! Please create an album first." //相册不存在，请先添加相册！
+				} else {
+					msg = "Album not found."
+				}
+			default:
+				msg = "Internel Server Error"
+			}
+			ok = false
+			return
+		}
+	}()
 	image.CreatedTime = time.Now()
 	if albumId != "" {
 		image.AlbumId = bson.ObjectIdHex(albumId)
@@ -46,7 +63,8 @@ func (this *FileService) ListImagesWithPage(userId, albumId, key string, pageNum
 	if albumId != "" {
 		q["AlbumId"] = bson.ObjectIdHex(albumId)
 	} else {
-		q["IsDefaultAlbum"] = true
+		// q["IsDefaultAlbum"] = true // 不再返回默认相册里的图片
+		return info.Page{Count: 0, List: files}
 	}
 	if key != "" {
 		q["Title"] = bson.M{"$regex": bson.RegEx{".*?" + key + ".*", "i"}}
@@ -97,14 +115,16 @@ func (this *FileService) DeleteImage(userId, fileId string) (bool, string) {
 		if db.DeleteByIdAndUserId(db.Files, fileId, userId) {
 			// delete image
 			// TODO
-			var err error
+			var res bool
 			if strings.HasPrefix(file.Path, "/upload/") {
 				Log(file.Path)
-				err = os.Remove(path.Join(revel.BasePath, "/public/", file.Path))
+				res = DeleteFile(path.Join(revel.BasePath, "/public/", file.Path))
 			} else {
-				err = os.Remove(path.Join(ConfigS.GlobalStringConfigs["files.dir"], file.Path))
+				fullPath := path.Join(ConfigS.GlobalStringConfigs["files.dir"], file.Path)
+				res = DeleteFile(fullPath)
+				DeleteFile(path.Dir(fullPath)) // 只有空文件才会删除成功
 			}
-			if err == nil {
+			if res {
 				return true, ""
 			}
 			return false, "delete file error!"
@@ -197,6 +217,9 @@ func (this *FileService) GetFile(userId, fileId string) string {
 			return path
 		}
 
+		if userId == "" {
+			return ""
+		}
 		// 2014/12/28 修复, 如果是分享给用户组, 那就不行, 这里可以实现
 		for _, noteId := range noteIds {
 			note := noteService.GetNoteById(noteId.Hex())
@@ -240,46 +263,39 @@ func (this *FileService) GetFile(userId, fileId string) string {
 	return ""
 }
 
-// 复制共享的笔记时, 复制其中的图片到我本地
 // 复制图片
 func (this *FileService) CopyImage(userId, fileId, toUserId string) (bool, string) {
-	// 是否已经复制过了
-	file2 := info.File{}
-	db.GetByQ(db.Files, bson.M{"UserId": bson.ObjectIdHex(toUserId), "FromFileId": bson.ObjectIdHex(fileId)}, &file2)
-	if file2.FileId != "" {
-		return true, file2.FileId.Hex()
-	}
-
-	// 复制之
-	file := info.File{}
-	db.GetByIdAndUserId(db.Files, fileId, userId, &file)
-
-	if file.FileId == "" || file.UserId.Hex() != userId {
+	if userId == "" || toUserId == "" {
 		return false, ""
+	}
+	return this.CopyImageToTitle(userId, fileId, "", toUserId, nil)
+}
+
+func (this *FileService) CopyImageToTitle(userId, fileId, newTitle, toUserId string, file *info.File) (bool, string) {
+	if file == nil {
+		file = &info.File{}
+		db.GetByIdAndUserId(db.Files, fileId, userId, file)
 	}
 
 	_, ext := SplitFilename(file.Name)
-	guid := NewGuid()
-	newFilename := guid + ext
+	newFilename := NewGuid() + ext
 
 	basePath := ConfigS.GlobalStringConfigs["files.dir"]
-	// TODO 统一目录格式
-	// dir := "files/" + toUserId + "/images"
-	dir := GetRandomFilePath(toUserId, guid) + "/images"
-	filePath := path.Join(dir, newFilename)
-	err := os.MkdirAll(path.Join(basePath, dir), 0755)
-	if err != nil {
-		return false, ""
+	if newTitle == "" {
+		newTitle = this.getImageNoteTitle(file.Path)
 	}
-
-	_, err = CopyFile(path.Join(basePath, file.Path), path.Join(basePath, filePath))
+	oldFilePath := file.Path
+	file.Path = path.Join(toUserId, "images", newTitle, newFilename)
+	fullFilePath := path.Join(basePath, file.Path)
+	os.MkdirAll(filepath.Dir(fullFilePath), 0755)
+	_, err := CopyFile(path.Join(basePath, oldFilePath), fullFilePath)
 	if err != nil {
 		return false, ""
 	}
 
 	fileInfo := info.File{Name: newFilename,
 		Title:      file.Title,
-		Path:       filePath,
+		Path:       file.Path,
 		Size:       file.Size,
 		FromFileId: file.FileId}
 	id := bson.NewObjectId()
@@ -300,4 +316,14 @@ func (this *FileService) IsMyFile(userId, fileId string) bool {
 		return false
 	}
 	return db.Has(db.Files, bson.M{"UserId": bson.ObjectIdHex(userId), "_id": bson.ObjectIdHex(fileId)})
+}
+
+func (this *FileService) getImageNoteTitle(path string) string {
+	// file.Path值是相对路径：path.Join(userId, "attachs", title, "xxx.txt")
+	paths := strings.Split(filepath.Clean(path), string(filepath.Separator))
+
+	if len(paths) == 4 {
+		return paths[2]
+	}
+	return ""
 }

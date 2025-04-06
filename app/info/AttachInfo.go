@@ -9,7 +9,7 @@ import (
 type Attach struct {
 	AttachId     bson.ObjectId `bson:"_id,omitempty"` //
 	NoteId       bson.ObjectId `bson:"NoteId"`        //
-	UploadUserId bson.ObjectId `bson:"UploadUserId"`  // 可以不是note owner, 协作者userId
+	UploadUserId bson.ObjectId `bson:"UploadUserId"`  // 可以不是note owner, 协作者userId, 2025-04-02: 取消协作者的概念，都是作者
 	Name         string        `Name`                 // file name, md5, such as 13232312.doc
 	Title        string        `Title`                // raw file name
 	Size         int64         `Size`                 // file size (byte)
