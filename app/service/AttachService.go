@@ -265,6 +265,7 @@ func (this *AttachService) ReOrganizeAttachFiles(userId, noteId, title string) b
 			if err := os.MkdirAll(filepath.Dir(newFullPath), 0755); err != nil {
 				return false
 			}
+			Logf("moveAttach(%s): %s -> %s", attach.AttachId.Hex(), attach.Path, newAttachPath)
 			if err := MoveFile(oldFullPath, newFullPath); err == nil {
 				// 更新数据库
 				attach.Path = newAttachPath
