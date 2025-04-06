@@ -1,12 +1,14 @@
 package controllers
 
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/revel"
 	"math/rand"
 	"strings"
 	"time"
+
+	"github.com/wiselike/revel"
+
+	"github.com/wiselike/leanote-of-unofficial/app/info"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 )
 
 // 用户登录/注销/找回密码

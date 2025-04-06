@@ -1,8 +1,9 @@
 package member
 
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/info"
 	"github.com/wiselike/revel"
+
+	"github.com/wiselike/leanote-of-unofficial/app/info"
 )
 
 // 分组管理

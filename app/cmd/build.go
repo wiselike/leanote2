@@ -10,9 +10,11 @@ import (
 	"strings"
 
 	"fmt"
-	"github.com/wiselike/leanote-of-unofficial/app/cmd/harness" // 只改了这个
+
 	"github.com/wiselike/revel-cmd/model"
 	"github.com/wiselike/revel-cmd/utils"
+
+	"github.com/wiselike/leanote-of-unofficial/app/cmd/harness" // 只改了这个
 )
 
 var cmdBuild = &Command{

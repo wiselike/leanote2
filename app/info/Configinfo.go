@@ -1,8 +1,9 @@
 package info
 
 import (
-	"gopkg.in/mgo.v2/bson"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 // 配置, 每一个配置一行记录

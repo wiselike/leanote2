@@ -5,16 +5,18 @@ import (
 	"crypto/tls"
 	"encoding/base64"
 	"fmt"
-	"github.com/wiselike/leanote-of-unofficial/app/db"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"gopkg.in/mgo.v2/bson"
 	"html/template"
 	"net"
 	"net/smtp"
 	"strconv"
 	"strings"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
+
+	"github.com/wiselike/leanote-of-unofficial/app/db"
+	"github.com/wiselike/leanote-of-unofficial/app/info"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 )
 
 // 发送邮件

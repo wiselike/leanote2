@@ -3,6 +3,16 @@ package app
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
+	"math"
+	"net/url"
+	"reflect"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/wiselike/revel"
+
 	"github.com/wiselike/leanote-of-unofficial/app/controllers"
 	"github.com/wiselike/leanote-of-unofficial/app/controllers/admin"
 	"github.com/wiselike/leanote-of-unofficial/app/controllers/api"
@@ -13,14 +23,6 @@ import (
 	"github.com/wiselike/leanote-of-unofficial/app/lea/i18n"
 	"github.com/wiselike/leanote-of-unofficial/app/lea/route"
 	"github.com/wiselike/leanote-of-unofficial/app/service"
-	"github.com/wiselike/revel"
-	"html/template"
-	"math"
-	"net/url"
-	"reflect"
-	"strconv"
-	"strings"
-	"time"
 )
 
 func init() {

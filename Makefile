@@ -1,10 +1,14 @@
 all: build
 
-.PHONY:fmt build release
+.PHONY:fmt build release github-release clean
 
 # format golang code
 fmt:
-	find ./app -name "*.go" -exec go fmt {} \;
+	@if command -v goimports >/dev/null 2>&1; then \
+		find ./app -name "*.go" -exec goimports -local github.com/wiselike/leanote-of-unofficial -l -w {} \; ;\
+	else \
+		find ./app -name "*.go" -exec go fmt {} \; ;\
+	fi
 
 # only build temporarily
 build:
@@ -38,3 +42,6 @@ github-release: gulp
 	@mv release/leanote-of-unofficial github-release/linux-x64-leanote-of-unofficial
 	@rm -rf release;
 	@echo -e "\n\ngithub-release finished in ./github-release:" && ls -alh github-release;
+
+clean:
+	rm -rf tmp/ release/ github-release target

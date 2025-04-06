@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/info"
 	"github.com/wiselike/revel"
+
+	"github.com/wiselike/leanote-of-unofficial/app/info"
 	//	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 )
 

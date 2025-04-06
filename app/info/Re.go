@@ -1,7 +1,5 @@
 package info
 
-import ()
-
 // controller ajax返回
 type Re struct {
 	Ok   bool

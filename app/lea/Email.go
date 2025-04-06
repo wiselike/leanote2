@@ -1,9 +1,10 @@
 package lea
 
 import (
-	"github.com/wiselike/revel"
 	"net/smtp"
 	"strings"
+
+	"github.com/wiselike/revel"
 )
 
 // 发送邮件

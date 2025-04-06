@@ -2,13 +2,15 @@ package i18n
 
 import (
 	"fmt"
-	"github.com/robfig/config"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/revel"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/robfig/config"
+	"github.com/wiselike/revel"
+
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 )
 
 const (

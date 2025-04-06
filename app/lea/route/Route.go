@@ -1,8 +1,10 @@
 package route
 
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/db"
 	"github.com/wiselike/revel"
+
+	"github.com/wiselike/leanote-of-unofficial/app/db"
+
 	// . "github.com/wiselike/leanote-of-unofficial/app/lea"
 	"net/url"
 	"strings"

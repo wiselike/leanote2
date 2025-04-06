@@ -7,13 +7,14 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
-	"gopkg.in/mgo.v2/bson"
 	"io"
 	math_rand "math/rand"
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
+	"gopkg.in/mgo.v2/bson"
 )
 
 // 字符串

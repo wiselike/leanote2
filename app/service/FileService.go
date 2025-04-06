@@ -3,11 +3,6 @@ package service
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/wiselike/leanote-of-unofficial/app/db"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/revel"
-	"gopkg.in/mgo.v2/bson"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -15,6 +10,13 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/wiselike/revel"
+	"gopkg.in/mgo.v2/bson"
+
+	"github.com/wiselike/leanote-of-unofficial/app/db"
+	"github.com/wiselike/leanote-of-unofficial/app/info"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 )
 
 const DEFAULT_ALBUM_ID = "52d3e8ac99c37b7f0d000001"

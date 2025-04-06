@@ -2,10 +2,6 @@ package service
 
 import (
 	"fmt"
-	"github.com/wiselike/leanote-of-unofficial/app/db"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"gopkg.in/mgo.v2/bson"
 	"os"
 	"path"
 	"path/filepath"
@@ -14,6 +10,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
+
+	"github.com/wiselike/leanote-of-unofficial/app/db"
+	"github.com/wiselike/leanote-of-unofficial/app/info"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 )
 
 type AttachService struct {

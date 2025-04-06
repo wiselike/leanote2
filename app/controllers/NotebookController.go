@@ -2,9 +2,11 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
+
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2/bson"
+
+	"github.com/wiselike/leanote-of-unofficial/app/info"
 	//	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	//	"io/ioutil"
 )

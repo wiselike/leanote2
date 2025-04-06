@@ -1,8 +1,9 @@
 package info
 
 import (
-	"gopkg.in/mgo.v2/bson"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 // 主题, 每个用户有多个主题, 这里面有主题的配置信息

@@ -17,6 +17,7 @@ import (
 	"github.com/jessevdk/go-flags"
 
 	"bytes"
+
 	"github.com/agtorre/gocolorize"
 	"github.com/wiselike/revel-cmd/logger"
 	"github.com/wiselike/revel-cmd/model"

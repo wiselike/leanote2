@@ -1,8 +1,10 @@
 package binder
 
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/info"
 	"github.com/wiselike/revel"
+
+	"github.com/wiselike/leanote-of-unofficial/app/info"
+
 	//	"github.com/wiselike/leanote-of-unofficial/app/controllers/api"
 	"fmt"
 	"reflect"

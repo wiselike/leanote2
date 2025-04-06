@@ -30,12 +30,13 @@ import (
 	"time"
 
 	"encoding/json"
-	"github.com/wiselike/revel-cmd/model"
-	"github.com/wiselike/revel-cmd/utils"
-	"github.com/wiselike/revel-cmd/watcher"
 	"html/template"
 	"io/ioutil"
 	"sync"
+
+	"github.com/wiselike/revel-cmd/model"
+	"github.com/wiselike/revel-cmd/utils"
+	"github.com/wiselike/revel-cmd/watcher"
 )
 
 var (

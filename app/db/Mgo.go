@@ -1,12 +1,14 @@
 package db
 
 import (
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"strings"
+	"time"
+
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"strings"
-	"time"
+
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 )
 
 // Init mgo and the common DAO

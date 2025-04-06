@@ -3,8 +3,9 @@ package controllers
 import (
 	"github.com/wiselike/revel"
 	//	"encoding/json"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
 	"gopkg.in/mgo.v2/bson"
+
+	"github.com/wiselike/leanote-of-unofficial/app/info"
 	//	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	//	"io/ioutil"
 )

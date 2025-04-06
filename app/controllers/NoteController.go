@@ -3,10 +3,6 @@ package controllers
 import (
 	"github.com/wiselike/revel"
 	//	"encoding/json"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/service"
-	"gopkg.in/mgo.v2/bson"
 	"os"
 	"os/exec"
 	"path"
@@ -14,6 +10,13 @@ import (
 	"runtime"
 	"strings"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
+
+	"github.com/wiselike/leanote-of-unofficial/app/info"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote-of-unofficial/app/service"
+
 	//	"github.com/wiselike/leanote-of-unofficial/app/types"
 	//	"io/ioutil"
 	"fmt"

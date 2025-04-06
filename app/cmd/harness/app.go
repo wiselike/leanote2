@@ -14,9 +14,10 @@ import (
 	"sync"
 	"time"
 
+	"runtime"
+
 	"github.com/wiselike/revel-cmd/model"
 	"github.com/wiselike/revel-cmd/utils"
-	"runtime"
 )
 
 // App contains the configuration for running a Revel app.  (Not for the app itself)

@@ -3,8 +3,9 @@ package lea
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/wiselike/revel"
 	"sync"
+
+	"github.com/wiselike/revel"
 )
 
 const defautDepth = 1

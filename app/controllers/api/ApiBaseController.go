@@ -1,16 +1,18 @@
 package api
 
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/controllers"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/service"
-	"gopkg.in/mgo.v2/bson"
 	"io/ioutil"
 	"os"
 	"path"
 	"strings"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
+
+	"github.com/wiselike/leanote-of-unofficial/app/controllers"
+	"github.com/wiselike/leanote-of-unofficial/app/info"
+	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote-of-unofficial/app/service"
 )
 
 // 公用Controller, 其它Controller继承它

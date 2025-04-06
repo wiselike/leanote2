@@ -6,6 +6,7 @@ import (
 	//	"gopkg.in/mgo.v2/bson"
 	. "github.com/wiselike/leanote-of-unofficial/app/lea"
 	"github.com/wiselike/leanote-of-unofficial/app/lea/captcha"
+
 	//	"github.com/wiselike/leanote-of-unofficial/app/types"
 	//	"io/ioutil"
 	//	"fmt"

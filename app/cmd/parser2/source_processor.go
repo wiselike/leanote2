@@ -1,17 +1,18 @@
 package parser2
 
 import (
-	"github.com/wiselike/revel-cmd/logger"
-	"github.com/wiselike/revel-cmd/model"
-	"github.com/wiselike/revel-cmd/utils"
 	"go/ast"
 	"go/parser"
 	"go/scanner"
 	"go/token"
-	"golang.org/x/tools/go/packages"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/wiselike/revel-cmd/logger"
+	"github.com/wiselike/revel-cmd/model"
+	"github.com/wiselike/revel-cmd/utils"
+	"golang.org/x/tools/go/packages"
 )
 
 type (
