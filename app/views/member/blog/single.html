@@ -7,29 +7,29 @@
 		<div class="panel-body">
 		<p>
 			{{msg $ "singleTips"}}
-		    <a href="/member/blog/addOrUpdateSingle" id="addBtn" class="btn btn-success">{{msg $ "addSingle"}}</a>
-	    </p>
-        <ul class="list-group gutter list-group-lg list-group-sp sortable">
-        	{{range .singles}}
-        	<li class="list-group-item" draggable="true" data-id="{{.SingleId}}">
-	            <span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i></span>
-	            <span class="pull-right">
-	              <a href="/member/blog/addOrUpdateSingle?singleId={{.SingleId}}"><i class="fa fa-pencil icon-muted fa-fw m-r-xs page-edit" data-id="{{.SingleId}}"></i></a>
-	              <a href="#"><i class="fa fa-times icon-muted fa-fw page-delete" data-id="{{.SingleId}}"></i></a> 
-	            </span>
-	            <div class="pull-right" style="margin-right: 10px">
-	            	{{msg $ "permanentLink"}}: /single/<input data-id="{{.SingleId}}" class="url-title" type="text" value="{{if .UrlTitle}}{{.UrlTitle|decodeUrlValue}}{{else}}{{.SingleId}}{{end}}"/>
-	            </div>
-	            <div class="clear">
-		          {{.Title}}	
-	            </div>
-	          </li>
-          {{end}}
-        </ul>
-      </div>
-      {{if .singles}}
-      <footer class="panel-footer text-right bg-light lter">
-		    <button type="submit" id="baseBtn" class="btn btn-success">{{msg . "saveSort"}}</button>
+			<a href="/member/blog/addOrUpdateSingle" id="addBtn" class="btn btn-success">{{msg $ "addSingle"}}</a>
+		</p>
+		<ul class="list-group gutter list-group-lg list-group-sp sortable">
+			{{range .singles}}
+			<li class="list-group-item" draggable="true" data-id="{{.SingleId}}">
+				<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i></span>
+				<span class="pull-right">
+					<a href="/member/blog/addOrUpdateSingle?singleId={{.SingleId}}"><i class="fa fa-pencil icon-muted fa-fw m-r-xs page-edit" data-id="{{.SingleId}}"></i></a>
+					<a href="#"><i class="fa fa-times icon-muted fa-fw page-delete" data-id="{{.SingleId}}"></i></a>
+				</span>
+				<div class="pull-right" style="margin-right: 10px">
+					{{msg $ "permanentLink"}}: /single/<input data-id="{{.SingleId}}" class="url-title" type="text" value="{{if .UrlTitle}}{{.UrlTitle|decodeUrlValue}}{{else}}{{.SingleId}}{{end}}"/>
+				</div>
+				<div class="clear">
+					{{.Title}}
+				</div>
+			</li>
+		{{end}}
+	</ul>
+</div>
+{{if .singles}}
+<footer class="panel-footer text-right bg-light lter">
+	<button type="submit" id="baseBtn" class="btn btn-success">{{msg . "saveSort"}}</button>
 	</footer>
 	{{end}}
 	</section>
@@ -53,7 +53,7 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$(".page-delete").click(function() {
 		var singleId = $(this).data('id');
 		art.confirm(getMsg("Are you sure ?"), function() {
@@ -67,7 +67,7 @@ $(function() {
 			});
 		});
 	});
-	
+
 	$(".url-title").change(function(){
 		var $t = $(this);
 		var url = $t.val();

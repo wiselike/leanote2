@@ -1,21 +1,21 @@
 /**
- * EventUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EventUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint loopfunc:true*/
 /*eslint no-loop-func:0 */
 
 /**
- * This class wraps the browsers native event logic with more convenient methods.
- *
- * @class tinymce.dom.EventUtils
- */
+	* This class wraps the browsers native event logic with more convenient methods.
+	*
+	* @class tinymce.dom.EventUtils
+	*/
 define("tinymce/dom/EventUtils", [], function() {
 	"use strict";
 
@@ -24,8 +24,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	var deprecated = {keyLocation: 1, layerX: 1, layerY: 1, returnValue: 1};
 
 	/**
-	 * Binds a native event to a callback on the speified target.
-	 */
+		* Binds a native event to a callback on the speified target.
+		*/
 	function addEvent(target, name, callback, capture) {
 		if (target.addEventListener) {
 			target.addEventListener(name, callback, capture || false);
@@ -35,8 +35,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * Unbinds a native event callback on the specified target.
-	 */
+		* Unbinds a native event callback on the specified target.
+		*/
 	function removeEvent(target, name, callback, capture) {
 		if (target.removeEventListener) {
 			target.removeEventListener(name, callback, capture || false);
@@ -46,8 +46,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * Normalizes a native event object or just adds the event specific methods on a custom event.
-	 */
+		* Normalizes a native event object or just adds the event specific methods on a custom event.
+		*/
 	function fix(originalEvent, data) {
 		var name, event = data || {}, undef;
 
@@ -132,9 +132,9 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * Bind a DOMContentLoaded event across browsers and executes the callback once the page DOM is initialized.
-	 * It will also set/check the domLoaded state of the event_utils instance so ready isn't called multiple times.
-	 */
+		* Bind a DOMContentLoaded event across browsers and executes the callback once the page DOM is initialized.
+		* It will also set/check the domLoaded state of the event_utils instance so ready isn't called multiple times.
+		*/
 	function bindOnReady(win, callback, eventUtils) {
 		var doc = win.document, event = {type: 'ready'};
 
@@ -195,8 +195,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * This class enables you to bind/unbind native events to elements and normalize it's behavior across browsers.
-	 */
+		* This class enables you to bind/unbind native events to elements and normalize it's behavior across browsers.
+		*/
 	function EventUtils() {
 		var self = this, events = {}, count, expando, hasFocusIn, hasMouseEnterLeave, mouseEnterLeave;
 
@@ -211,12 +211,12 @@ define("tinymce/dom/EventUtils", [], function() {
 		self.events = events;
 
 		/**
-		 * Executes all event handler callbacks for a specific event.
-		 *
-		 * @private
-		 * @param {Event} evt Event object.
-		 * @param {String} id Expando id value to look for.
-		 */
+			* Executes all event handler callbacks for a specific event.
+			*
+			* @private
+			* @param {Event} evt Event object.
+			* @param {String} id Expando id value to look for.
+			*/
 		function executeHandlers(evt, id) {
 			var callbackList, i, l, callback, container = events[id];
 
@@ -239,15 +239,15 @@ define("tinymce/dom/EventUtils", [], function() {
 		}
 
 		/**
-		 * Binds a callback to an event on the specified target.
-		 *
-		 * @method bind
-		 * @param {Object} target Target node/window or custom object.
-		 * @param {String} names Name of the event to bind.
-		 * @param {function} callback Callback function to execute when the event occurs.
-		 * @param {Object} scope Scope to call the callback function on, defaults to target.
-		 * @return {function} Callback function that got bound.
-		 */
+			* Binds a callback to an event on the specified target.
+			*
+			* @method bind
+			* @param {Object} target Target node/window or custom object.
+			* @param {String} names Name of the event to bind.
+			* @param {function} callback Callback function to execute when the event occurs.
+			* @param {Object} scope Scope to call the callback function on, defaults to target.
+			* @return {function} Callback function that got bound.
+			*/
 		self.bind = function(target, names, callback, scope) {
 			var id, callbackList, i, name, fakeName, nativeHandler, capture, win = window;
 
@@ -370,14 +370,14 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Unbinds the specified event by name, name and callback or all events on the target.
-		 *
-		 * @method unbind
-		 * @param {Object} target Target node/window or custom object.
-		 * @param {String} names Optional event name to unbind.
-		 * @param {function} callback Optional callback function to unbind.
-		 * @return {EventUtils} Event utils instance.
-		 */
+			* Unbinds the specified event by name, name and callback or all events on the target.
+			*
+			* @method unbind
+			* @param {Object} target Target node/window or custom object.
+			* @param {String} names Optional event name to unbind.
+			* @param {function} callback Optional callback function to unbind.
+			* @return {EventUtils} Event utils instance.
+			*/
 		self.unbind = function(target, names, callback) {
 			var id, callbackList, i, ci, name, eventMap;
 
@@ -459,14 +459,14 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Fires the specified event on the specified target.
-		 *
-		 * @method fire
-		 * @param {Object} target Target node/window or custom object.
-		 * @param {String} name Event name to fire.
-		 * @param {Object} args Optional arguments to send to the observers.
-		 * @return {EventUtils} Event utils instance.
-		 */
+			* Fires the specified event on the specified target.
+			*
+			* @method fire
+			* @param {Object} target Target node/window or custom object.
+			* @param {String} name Event name to fire.
+			* @param {Object} args Optional arguments to send to the observers.
+			* @return {EventUtils} Event utils instance.
+			*/
 		self.fire = function(target, name, args) {
 			var id;
 
@@ -495,13 +495,13 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Removes all bound event listeners for the specified target. This will also remove any bound
-		 * listeners to child nodes within that target.
-		 *
-		 * @method clean
-		 * @param {Object} target Target node/window object.
-		 * @return {EventUtils} Event utils instance.
-		 */
+			* Removes all bound event listeners for the specified target. This will also remove any bound
+			* listeners to child nodes within that target.
+			*
+			* @method clean
+			* @param {Object} target Target node/window object.
+			* @return {EventUtils} Event utils instance.
+			*/
 		self.clean = function(target) {
 			var i, children, unbind = self.unbind;
 
@@ -539,8 +539,8 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Destroys the event object. Call this on IE to remove memory leaks.
-		 */
+			* Destroys the event object. Call this on IE to remove memory leaks.
+			*/
 		self.destroy = function() {
 			events = {};
 		};

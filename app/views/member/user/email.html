@@ -13,9 +13,9 @@
 					<span class="label label-green">{{msg . "verified"}}</span>
 				{{else}}
 					<span class="label label-red">{{msg . "unVerified"}}</span>
-					<a class="a raw nowToActive">{{msg . "verifiedNow"}}</a> 
+					<a class="a raw nowToActive">{{msg . "verifiedNow"}}</a>
 					{{msg . "or"}}
-					<a class="a raw reSendActiveEmail">{{msg . "resendVerifiedEmail"}}</a> 
+					<a class="a raw reSendActiveEmail">{{msg . "resendVerifiedEmail"}}</a>
 				{{end}}
 
 				<hr />
@@ -23,7 +23,7 @@
 				<div class="alert alert-danger" id="emailMsg" style="display: none"></div>
 				<div class="form-group">
 					<label>{{msg . "updateEmail"}}</label>
-					<input type="text" class="form-control" 
+					<input type="text" class="form-control"
 						id="email"
 						data-rules='[
 							{rule: "required", msg: "inputEmail"},
@@ -54,12 +54,12 @@
 
 <!-- 激活邮件 -->
 <div class="modal fade bs-modal-sm" id="reSendActiveEmailDialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+	<div class="modal-dialog modal-sm">
 	<div class="modal-content">
-	  <div class="modal-header">
+		<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<h4 class="modal-title" class="modalTitle">{{msg . "sendVerifiedEmail"}}</h4>
-	  </div>
+	</div>
 		<div class="modal-body">
 			<div style="max-height: 300px; padding: 5px 0; text-align: center; overflow-y: auto; overflow-x: hidden" class="weibo">
 				<span class="text">
@@ -73,7 +73,7 @@
 			<button type="button" class="btn btn-success viewEmailBtn disabled">{{msg . "checkEmail"}}</button>
 		</div>
 	</div>
-  </div>
+</div>
 </div>
 
 </div>

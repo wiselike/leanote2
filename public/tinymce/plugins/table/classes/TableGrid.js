@@ -1,21 +1,21 @@
 /**
- * TableGrid.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TableGrid.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a grid out of a table element. This
- * makes it a whole lot easier to handle complex tables with
- * col/row spans.
- *
- * @class tinymce.tableplugin.TableGrid
- * @private
- */
+	* This class creates a grid out of a table element. This
+	* makes it a whole lot easier to handle complex tables with
+	* col/row spans.
+	*
+	* @class tinymce.tableplugin.TableGrid
+	* @private
+	*/
 define("tinymce/tableplugin/TableGrid", [
 	"tinymce/util/Tools",
 	"tinymce/Env"

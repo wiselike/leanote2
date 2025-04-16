@@ -16,123 +16,123 @@
 					<div class="clearfix" id="notebooks">
 						{{range $notebook := .arrMap.registerSharedNotebooks}}
 						<div class="row">
-						  <div class="col-xs-8">
+							<div class="col-xs-8">
 							<input type="text" class="form-control" placeholder="notebookId" name="registerSharedNotebookIds[]"
 								value="{{$notebook.notebookId}}"
 							>
-						  </div>
-						  <div class="col-xs-4">
-	  						<select class="form-control" name="registerSharedNotebookPerms[]">
+						</div>
+						<div class="col-xs-4">
+							<select class="form-control" name="registerSharedNotebookPerms[]">
 								<option value="0" {{if eq $notebook.perm "0"}}selected{{end}}>Read Only</option>
 								<option value="1" {{if eq $notebook.perm "1"}}selected{{end}}>Writable</option>
 							</select>
-						  </div>
+						</div>
 						</div>
 						{{end}}
-						
-							
+
+
 						<div class="row">
-						  <div class="col-xs-8">
+							<div class="col-xs-8">
 							<input type="text" class="form-control" placeholder="notebookId" name="registerSharedNotebookIds[]">
-						  </div>
-						  <div class="col-xs-4">
-	  						<select class="form-control" name="registerSharedNotebookPerms[]">
+						</div>
+						<div class="col-xs-4">
+							<select class="form-control" name="registerSharedNotebookPerms[]">
 								<option value="0">Read Only</option>
 								<option value="1">Writable</option>
 							</select>
-						  </div>
+						</div>
 						</div>
 						<div class="row">
-						  <div class="col-xs-8">
+							<div class="col-xs-8">
 							<input type="text" class="form-control" placeholder="notebookId" name="registerSharedNotebookIds[]">
-						  </div>
-						  <div class="col-xs-4">
-	  						<select class="form-control" name="registerSharedNotebookPerms[]">
+						</div>
+						<div class="col-xs-4">
+							<select class="form-control" name="registerSharedNotebookPerms[]">
 								<option value="0">Read Only</option>
 								<option value="1">Writable</option>
 							</select>
-						  </div>
+						</div>
 						</div>
 					</div>
 					The notebooks will shared to register user
 				</div>
-				
+
 				<div class="form-group">
 					<label>Shared Notes</label>
 					<div class="clearfix" id="notebooks">
 						{{range $note := .arrMap.registerSharedNotes}}
 						<div class="row">
-						  <div class="col-xs-8">
+							<div class="col-xs-8">
 							<input type="text" class="form-control" name="registerSharedNoteIds[]"
 								value="{{$note.noteId}}"
 							/>
-						  </div>
-						  <div class="col-xs-4">
-	  						<select class="form-control" name="registerSharedNotePerms[]">
+						</div>
+						<div class="col-xs-4">
+							<select class="form-control" name="registerSharedNotePerms[]">
 								<option value="0" {{if eq $note.perm "0"}}selected{{end}}>Read Only</option>
 								<option value="1" {{if eq $note.perm "1"}}selected{{end}}>Writable</option>
 							</select>
-						  </div>
+						</div>
 						</div>
 						{{end}}
-						
+
 						<div class="row">
-						  <div class="col-xs-8">
+							<div class="col-xs-8">
 							<input type="text" class="form-control" placeholder="noteId" name="registerSharedNoteIds[]">
-						  </div>
-						  <div class="col-xs-4">
-	  						<select class="form-control" name="registerSharedNotePerms[]">
-								<option value="0">Read Only</option>
-								<option value="1">Writable</option>
-							</select>
-						  </div>
 						</div>
-						
-						<div class="row">
-						  <div class="col-xs-8">
-							<input type="text" class="form-control" placeholder="noteId" name="registerSharedNoteIds[]">
-						  </div>
-						  <div class="col-xs-4">
-	  						<select class="form-control" name="registerSharedNotePerms[]">
+						<div class="col-xs-4">
+							<select class="form-control" name="registerSharedNotePerms[]">
 								<option value="0">Read Only</option>
 								<option value="1">Writable</option>
 							</select>
-						  </div>
+						</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-8">
+							<input type="text" class="form-control" placeholder="noteId" name="registerSharedNoteIds[]">
+						</div>
+						<div class="col-xs-4">
+							<select class="form-control" name="registerSharedNotePerms[]">
+								<option value="0">Read Only</option>
+								<option value="1">Writable</option>
+							</select>
+						</div>
 						</div>
 					</div>
 					The notes will shared to register user
 				</div>
-				
+
 				<div class="form-group">
 					<label>Copy Notes</label>
 					<div class="clearfix" id="notebooks">
 						{{range $noteId := .arr.registerCopyNoteIds}}
 						<div class="row">
-						  <div class="col-xs-12">
+							<div class="col-xs-12">
 							<input type="text" class="form-control" name="registerCopyNoteIds[]"
 								value="{{$noteId}}"
 								placeholder="noteId"
 							/>
-						  </div>
+						</div>
 						</div>
 						{{end}}
-						
+
 						<div class="row">
-						  <div class="col-xs-12">
+							<div class="col-xs-12">
 							<input type="text" class="form-control" name="registerCopyNoteIds[]" placeholder="noteId"/>
-						  </div>
 						</div>
-						
+						</div>
+
 						<div class="row">
-						  <div class="col-xs-12">
+							<div class="col-xs-12">
 							<input type="text" class="form-control" name="registerCopyNoteIds[]" placeholder="noteId"/>
-						  </div>
+						</div>
 						</div>
 					</div>
 					The notes will copy to register user
 				</div>
 			</div>
-			
+
 			<footer class="panel-footer text-right bg-light lter">
 				<button type="submit" id="submit" class="btn btn-success btn-s-xs">Submit</button>
 			</footer>
@@ -146,12 +146,12 @@
 <script src="/public/admin/js/jquery-validation-1.13.0/jquery.validate.js"></script>
 <script>
 var a = "{{json .arrMap}}"
-	
-	
+
+
 $(function() {
 
 	init_validator("#formContainer");
-	
+
 	$("#submit").click(function(e){
 			e.preventDefault();
 			var t = this;

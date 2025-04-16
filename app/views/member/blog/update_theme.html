@@ -1,17 +1,17 @@
 {{template "member/top.html" .}}
-<div class="m-b-md"> 
+<div class="m-b-md">
 	<h3 class="m-b-none">
 		{{if .isNew}}
 			{{msg $ "addTheme"}}
 		{{else}}
 			{{msg $ "updateTheme"}}
-		- 
+		-
 		{{.theme.Name}}
 		{{end}}
 		<a class="btn btn-default" href="/preview?themeId={{.themeId}}" target="_blank"><span class="fa fa-eye"></span> {{msg . "preview"}}</a>
-		
+
 		<small>
-		
+
 		<a target="_blank" href="https://github.com/wiselike/leanote-of-unofficial/wiki/leanote-blog-theme-api">{{msg . "needHelp"}} {{msg . "Leanote Blog Theme Api"}}</a>
 		</small>
 	</h3>
@@ -50,16 +50,16 @@
 			{{msg . "tplStyleScript"}}:
 		</header>
 		<div class="panel-body" style="<!--height:430px;-->overflow: auto;">
-	
+
 	<div class="list-group bg-white file-list">
 		{{range .myTpls}}
-		<a href="#" class="list-group-item " data-file="{{.}}"> 
-			<i class="fa fa-remove icon-muted remove-file" title="delete file" ></i> 
+		<a href="#" class="list-group-item " data-file="{{.}}">
+			<i class="fa fa-remove icon-muted remove-file" title="delete file" ></i>
 			<span class="filename" data-filename="{{.}}">{{.}}</span>
 			<span class="badge"></span>
 		</a>
 		{{end}}
-		
+
 		</div>
 	</div>
 	<footer class="panel-footer text-right bg-light lter">
@@ -78,7 +78,7 @@
 			<div id="tplContent" class="form-control" style="width: 100%; height: 500px;"></div>
 		</div>
 		<footer class="panel-footer text-right bg-light lter">
-		    <button type="submit" id="saveBtn" class="btn btn-success">{{msg . "save"}}</button>
+			<button type="submit" id="saveBtn" class="btn btn-success">{{msg . "save"}}</button>
 		</footer>
 	</section>
 </div>
@@ -99,7 +99,7 @@
 				enctype="multipart/form-data" target="logoTarget">
 				<input type="hidden" name="themeId" value="{{.themeId}}" />
 				<input type="file" class="form-control" id="logo2" name="file"
-					onChange='$("#formLogo").submit();' /> 
+					onChange='$("#formLogo").submit();' />
 			</form>
 			<iframe id="logoTarget" name="logoTarget" src="#" style="display: none"></iframe>
 		</footer>
@@ -136,17 +136,17 @@ var theme = {
 			self.renderTpl(filename); // 再渲染
 			$(this).addClass("active");
 		});
-		
+
 		self.renderTpl("header.html");
 		$(".file-list a").eq(0).addClass("active");
-		
-		self.saveBtnO.click(function(){ 
+
+		self.saveBtnO.click(function(){
 			self.saveCurContent($(this));
 		});
-		
+
 		self.removeFile();
 		self.newFile();
-		
+
 		self.initImage();
 	},
 	removeFile: function() {
@@ -174,8 +174,8 @@ var theme = {
 		var self = this;
 		self.newFileO.click(function() {
 			// 文件是否存在?
-			
-			art.prompt(getMsg("Filename"), function(file) { 
+
+			art.prompt(getMsg("Filename"), function(file) {
 				if(!file) {
 					return;
 				}
@@ -185,10 +185,10 @@ var theme = {
 				}
 				var t = $('<a href="#" class="list-group-item " data-file="' + file + '"> <i class="fa fa-remove icon-muted remove-file" title="' + getMsg("Delete file") + '" ></i> <span class="filename" data-filename="' + file + '">' + file + '</span><span class="badge"></span></a>');
 				$(".file-list").append(t);
-				
+
 				self.cache[file] = "";
 				self.inited[file] = true;
-				
+
 				// trigger click, 选中之
 				t.click();
 			});
@@ -218,7 +218,7 @@ var theme = {
 	saveCurContent: function(t) {
 		var self = this;
 		var content = editor.getValue()
-		
+
 		var filename = self.curTpl;
 		if(!filename) {
 			return;
@@ -233,7 +233,7 @@ var theme = {
 			// console.log('not inited');
 			return;
 		}
-		
+
 		if(t) {
 			t.button("loading");
 		}
@@ -294,7 +294,7 @@ var theme = {
 			}
 		});
 	},
-	
+
 	//-----------------
 	// theme images
 	imageListO: $("#imageList"),
@@ -326,7 +326,7 @@ var theme = {
 		for(var i = 0; i < images.length; ++i) {
 			var image = images[i];
 			var path = themeBasePath + "/images/" + image;
-			
+
 			html += '<li><div class="thumb"><img src="' + path + '"></div><div class="op"><span>' + image + '</span><br /><a class="btn btn-xs btn-warning delete-image" data-image="' + image + '"><span class="fa fa-remove"></span></a></div></li>';
 		}
 		self.imageListO.html(html);

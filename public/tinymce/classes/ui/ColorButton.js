@@ -1,22 +1,22 @@
 /**
- * ColorButton.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ColorButton.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a color button control. This is a split button in which the main
- * button has a visual representation of the currently selected color. When clicked
- * the caret button displays a color picker, allowing the user to select a new color.
- *
- * @-x-less ColorButton.less
- * @class tinymce.ui.ColorButton
- * @extends tinymce.ui.PanelButton
- */
+	* This class creates a color button control. This is a split button in which the main
+	* button has a visual representation of the currently selected color. When clicked
+	* the caret button displays a color picker, allowing the user to select a new color.
+	*
+	* @-x-less ColorButton.less
+	* @class tinymce.ui.ColorButton
+	* @extends tinymce.ui.PanelButton
+	*/
 define("tinymce/ui/ColorButton", [
 	"tinymce/ui/PanelButton",
 	"tinymce/dom/DOMUtils"
@@ -27,23 +27,23 @@ define("tinymce/ui/ColorButton", [
 
 	return PanelButton.extend({
 		/**
-		 * Constructs a new ColorButton instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a new ColorButton instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			this._super(settings);
 			this.addClass('colorbutton');
 		},
 
 		/**
-		 * Getter/setter for the current color.
-		 *
-		 * @method color
-		 * @param {String} [color] Color to set.
-		 * @return {String|tinymce.ui.ColorButton} Current color or current instance.
-		 */
+			* Getter/setter for the current color.
+			*
+			* @method color
+			* @param {String} [color] Color to set.
+			* @return {String|tinymce.ui.ColorButton} Current color or current instance.
+			*/
 		color: function(color) {
 			if (color) {
 				this._color = color;
@@ -55,11 +55,11 @@ define("tinymce/ui/ColorButton", [
 		},
 
 		/**
-		 * Resets the current color.
-		 *
-		 * @method resetColor
-		 * @return {tinymce.ui.ColorButton} Current instance.
-		 */
+			* Resets the current color.
+			*
+			* @method resetColor
+			* @return {tinymce.ui.ColorButton} Current instance.
+			*/
 		resetColor: function() {
 			this._color = null;
 			this.getEl('preview').style.backgroundColor = null;
@@ -67,11 +67,11 @@ define("tinymce/ui/ColorButton", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
 			var icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
@@ -92,10 +92,10 @@ define("tinymce/ui/ColorButton", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, onClickHandler = self.settings.onclick;
 

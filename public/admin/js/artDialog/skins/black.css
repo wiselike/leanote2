@@ -7,7 +7,7 @@
  * This is licensed under the GNU LGPL, version 2.1 or later.
  * For details, see: http://creativecommons.org/licenses/LGPL/2.1/
  */
- 
+
 /* common start */
 body { _margin:0; _height:100%; /*IE6 BUG*/ }
 .aui_outer { text-align:left; }
@@ -54,21 +54,21 @@ button.aui_state_highlight:active { border-color:#1c6a9e; filter: progid:DXImage
 .aui_e { background-position: right bottom; _png:black/ie6/e.png; }
 aui_icon, .aui_main { padding-top:3px; }
 @media screen and (min-width:0) {
-	.aui_outer { border-radius:8px; box-shadow:0 5px 15px rgba(0, 0, 0, .4); -moz-transition:-moz-box-shadow linear .2s; -webkit-transition: -webkit-box-shadow linear .2s; transition: -webkit-box-shadow linear .2s; }
-	.aui_state_drag .aui_outer { box-shadow:none; }
-	.aui_state_lock .aui_outer { box-shadow:0 3px 26px rgba(0, 0, 0, .9); }
-	.aui_outer:active { box-shadow:0 0 5px rgba(0, 0, 0, .1)!important; }
-	.aui_state_drag .aui_outer { box-shadow:none!important; }
-	.aui_nw, .aui_ne, .aui_sw, .aui_se, .aui_n, .aui_s, .aui_close { background-image:url(black/bg_css3.png); }
-	.aui_nw { width:5px; height:31px; }
-	.aui_ne { width:5px; height:31px; background-position: -5px 0; _png:black/ie6/ne.png; }
-	.aui_sw { width:5px; height:5px;background-position: 0 -31px; }
-	.aui_se { width:5px; height:5px; background-position: -5px -31px; }
-	.aui_close { background-position:0 -72px; }
-	.aui_close:hover { background-position:0 -92px; }
-	.aui_n { background-position: 0 -36px; }
-	.aui_s { background-position: 0 -67px; }
-	.aui_w, .aui_e { background-image:url(black/bg_css3_2.png); }
+  .aui_outer { border-radius:8px; box-shadow:0 5px 15px rgba(0, 0, 0, .4); -moz-transition:-moz-box-shadow linear .2s; -webkit-transition: -webkit-box-shadow linear .2s; transition: -webkit-box-shadow linear .2s; }
+  .aui_state_drag .aui_outer { box-shadow:none; }
+  .aui_state_lock .aui_outer { box-shadow:0 3px 26px rgba(0, 0, 0, .9); }
+  .aui_outer:active { box-shadow:0 0 5px rgba(0, 0, 0, .1)!important; }
+  .aui_state_drag .aui_outer { box-shadow:none!important; }
+  .aui_nw, .aui_ne, .aui_sw, .aui_se, .aui_n, .aui_s, .aui_close { background-image:url(black/bg_css3.png); }
+  .aui_nw { width:5px; height:31px; }
+  .aui_ne { width:5px; height:31px; background-position: -5px 0; _png:black/ie6/ne.png; }
+  .aui_sw { width:5px; height:5px;background-position: 0 -31px; }
+  .aui_se { width:5px; height:5px; background-position: -5px -31px; }
+  .aui_close { background-position:0 -72px; }
+  .aui_close:hover { background-position:0 -92px; }
+  .aui_n { background-position: 0 -36px; }
+  .aui_s { background-position: 0 -67px; }
+  .aui_w, .aui_e { background-image:url(black/bg_css3_2.png); }
 }
 .aui_state_noTitle .aui_nw, .aui_state_noTitle .aui_ne, .aui_state_noTitle .aui_sw, .aui_state_noTitle .aui_se { width:3px; height:3px; }
 .aui_state_noTitle .aui_inner { border:1px solid #666; background:#FFF; }

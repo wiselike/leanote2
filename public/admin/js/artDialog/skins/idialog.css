@@ -7,7 +7,7 @@
  * This is licensed under the GNU LGPL, version 2.1 or later.
  * For details, see: http://creativecommons.org/licenses/LGPL/2.1/
  */
- 
+
 /* common start */
 body { _margin:0; _height:100%; /*IE6 BUG*/ }
 .aui_outer { text-align:left; }
@@ -53,19 +53,19 @@ button.aui_state_highlight:active { border-color:#1c6a9e; filter: progid:DXImage
 .aui_w { background-position:left top; _png:idialog/ie6/aui_w.png; }
 .aui_e { background-position: right bottom; _png:idialog/ie6/aui_e.png; }
 @media screen and (min-width:0) {/* css3 */
-	.aui_nw, .aui_ne, .aui_sw, .aui_se{ width:5px; height:5px; }
-	.aui_nw, .aui_n, .aui_ne, .aui_w, .aui_e, .aui_sw, .aui_s, .aui_se { background:none; }
-	.aui_sw, .aui_s, .aui_se { background:url(idialog/idialog_s.png) repeat-x 0 -45px; }
-	.aui_sw { border-radius:0 0 0 5px; }
-	.aui_se { border-radius:0 0 5px 0; }
-	.aui_outer { border:1px solid #929292; border-radius:5px; box-shadow:0 3px 8px rgba(0, 0, 0, .2); -moz-transition:-moz-box-shadow linear .2s; -webkit-transition: -webkit-box-shadow linear .2s; transition: -webkit-box-shadow linear .2s; }
-	.aui_border { border-radius:5px; background:#FFF; }
-	.aui_state_drag .aui_outer { box-shadow:none; }
-	.aui_state_lock .aui_outer { box-shadow:0 3px 26px rgba(0, 0, 0, .9); }
-	.aui_outer:active { box-shadow:0 0 5px rgba(0, 0, 0, .1)!important; }
-	.aui_state_drag .aui_outer { box-shadow:none!important; }
-	.aui_close { right:-16px; top:-16px; }
+  .aui_nw, .aui_ne, .aui_sw, .aui_se{ width:5px; height:5px; }
+  .aui_nw, .aui_n, .aui_ne, .aui_w, .aui_e, .aui_sw, .aui_s, .aui_se { background:none; }
+  .aui_sw, .aui_s, .aui_se { background:url(idialog/idialog_s.png) repeat-x 0 -45px; }
+  .aui_sw { border-radius:0 0 0 5px; }
+  .aui_se { border-radius:0 0 5px 0; }
+  .aui_outer { border:1px solid #929292; border-radius:5px; box-shadow:0 3px 8px rgba(0, 0, 0, .2); -moz-transition:-moz-box-shadow linear .2s; -webkit-transition: -webkit-box-shadow linear .2s; transition: -webkit-box-shadow linear .2s; }
+  .aui_border { border-radius:5px; background:#FFF; }
+  .aui_state_drag .aui_outer { box-shadow:none; }
+  .aui_state_lock .aui_outer { box-shadow:0 3px 26px rgba(0, 0, 0, .9); }
+  .aui_outer:active { box-shadow:0 0 5px rgba(0, 0, 0, .1)!important; }
+  .aui_state_drag .aui_outer { box-shadow:none!important; }
+  .aui_close { right:-16px; top:-16px; }
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {/* apple | webkit */
-	.aui_close { right:auto; left:-16px; top:-16px; }
+  .aui_close { right:auto; left:-16px; top:-16px; }
 }

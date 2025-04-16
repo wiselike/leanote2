@@ -1,22 +1,22 @@
 /**
- * Shortcuts.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Shortcuts.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Contains all logic for handling of keyboard shortcuts.
- *
- * @example
- * editor.shortcuts.add('ctrl+a', function() {});
- * editor.shortcuts.add('meta+a', function() {}); // "meta" maps to Command on Mac and Ctrl on PC
- * editor.shortcuts.add('ctrl+alt+a', function() {});
- * editor.shortcuts.add('access+a', function() {}); // "access" maps to ctrl+alt on Mac and shift+alt on PC
- */
+	* Contains all logic for handling of keyboard shortcuts.
+	*
+	* @example
+	* editor.shortcuts.add('ctrl+a', function() {});
+	* editor.shortcuts.add('meta+a', function() {}); // "meta" maps to Command on Mac and Ctrl on PC
+	* editor.shortcuts.add('ctrl+alt+a', function() {});
+	* editor.shortcuts.add('access+a', function() {}); // "access" maps to ctrl+alt on Mac and shift+alt on PC
+	*/
 define("tinymce/Shortcuts", [
 	"tinymce/util/Tools",
 	"tinymce/Env"
@@ -118,15 +118,15 @@ define("tinymce/Shortcuts", [
 		});
 
 		/**
-		 * Adds a keyboard shortcut for some command or function.
-		 *
-		 * @method addShortcut
-		 * @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
-		 * @param {String} desc Text description for the command.
-		 * @param {String/Function} cmdFunc Command name string or function to execute when the key is pressed.
-		 * @param {Object} sc Optional scope to execute the function in.
-		 * @return {Boolean} true/false state if the shortcut was added or not.
-		 */
+			* Adds a keyboard shortcut for some command or function.
+			*
+			* @method addShortcut
+			* @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
+			* @param {String} desc Text description for the command.
+			* @param {String/Function} cmdFunc Command name string or function to execute when the key is pressed.
+			* @param {Object} sc Optional scope to execute the function in.
+			* @return {Boolean} true/false state if the shortcut was added or not.
+			*/
 		self.add = function(pattern, desc, cmdFunc, scope) {
 			var cmd;
 
@@ -151,12 +151,12 @@ define("tinymce/Shortcuts", [
 		};
 
 		/**
-		 * Remove a keyboard shortcut by pattern.
-		 *
-		 * @method remove
-		 * @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
-		 * @return {Boolean} true/false state if the shortcut was removed or not.
-		 */
+			* Remove a keyboard shortcut by pattern.
+			*
+			* @method remove
+			* @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
+			* @return {Boolean} true/false state if the shortcut was removed or not.
+			*/
 		self.remove = function(pattern) {
 			var shortcut = createShortcut(pattern);
 

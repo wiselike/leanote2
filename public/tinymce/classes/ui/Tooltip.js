@@ -1,21 +1,21 @@
 /**
- * Tooltip.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Tooltip.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a tooltip instance.
- *
- * @-x-less ToolTip.less
- * @class tinymce.ui.ToolTip
- * @extends tinymce.ui.Control
- * @mixes tinymce.ui.Movable
- */
+	* Creates a tooltip instance.
+	*
+	* @-x-less ToolTip.less
+	* @class tinymce.ui.ToolTip
+	* @extends tinymce.ui.Control
+	* @mixes tinymce.ui.Movable
+	*/
 define("tinymce/ui/Tooltip", [
 	"tinymce/ui/Control",
 	"tinymce/ui/Movable"
@@ -28,12 +28,12 @@ define("tinymce/ui/Tooltip", [
 		},
 
 		/**
-		 * Sets/gets the current label text.
-		 *
-		 * @method text
-		 * @param {String} [text] New label text.
-		 * @return {String|tinymce.ui.Tooltip} Current text or current label instance.
-		 */
+			* Sets/gets the current label text.
+			*
+			* @method text
+			* @param {String} [text] New label text.
+			* @return {String|tinymce.ui.Tooltip} Current text or current label instance.
+			*/
 		text: function(value) {
 			var self = this;
 
@@ -51,11 +51,11 @@ define("tinymce/ui/Tooltip", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, prefix = self.classPrefix;
 
@@ -68,10 +68,10 @@ define("tinymce/ui/Tooltip", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, style, rect;
 

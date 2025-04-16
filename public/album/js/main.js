@@ -45,7 +45,7 @@ function getImageSize(url, callback) {
 }
 
 var o = {
-	maxSelected: G.maxSelected, 
+	maxSelected: G.maxSelected,
 	selectedZoneO:$("#preview"),
 	previewO: $("#preview"),
 	selectedImages:[], // selected urls
@@ -63,27 +63,27 @@ var o = {
 				self.pageNum = pageNum+1;
 				self.renderImages($("#albumsForList").val(), self.pageNum, false);
 			}
-	    });
-    },
+		});
+	},
 
-    showMsg: function(msg) {
-    	$("#msg").html(msg).css("display", "inline");
-    	setTimeout(function() {
-    		$("#msg").fadeOut();
-    	}, 2000);
-    },
+	showMsg: function(msg) {
+		$("#msg").html(msg).css("display", "inline");
+		setTimeout(function() {
+			$("#msg").fadeOut();
+		}, 2000);
+	},
 
-    pageAddAlbum: function(ret) {
-    	var html = '<option value="' + ret.AlbumId + '">' + ret.Name + '</option>';
-    	$("#albumsForUpload").append(html).val(ret.AlbumId);
-    	$("#albumsForList").append(html);
-    },
-    pageUpdateAlbum: function(albumId, albumName) {
-    	$('option[value="' + albumId + '"]').html(albumName);
-    },
-    // add, delete, update album
-    processAlbum: function() {
-	    var self = this;
+	pageAddAlbum: function(ret) {
+		var html = '<option value="' + ret.AlbumId + '">' + ret.Name + '</option>';
+		$("#albumsForUpload").append(html).val(ret.AlbumId);
+		$("#albumsForList").append(html);
+	},
+	pageUpdateAlbum: function(albumId, albumName) {
+		$('option[value="' + albumId + '"]').html(albumName);
+	},
+	// add, delete, update album
+	processAlbum: function() {
+		var self = this;
 		var isAddAlbum = true;
 		var curAlbum = "";
 		function toggleAddAlbum() {
@@ -96,7 +96,7 @@ var o = {
 			}
 		}
 		// rename
-		$("#renameAlbumBtn").click(function(){ 
+		$("#renameAlbumBtn").click(function(){
 			curAlbum = $("#albumsForUpload").val();
 			if(!curAlbum) {
 				alert(getMsg("Cannot rename default album"));
@@ -108,10 +108,10 @@ var o = {
 			isAddAlbum = false;
 		});
 		// add album
-	    $("#addAlbumBtn").click(function() {
+		$("#addAlbumBtn").click(function() {
 			toggleAddAlbum();
 			$("#addOrUpdateAlbumBtn").html(getMsg("Add Album"));
-    		$("#albumName").val("").focus();
+			$("#albumName").val("").focus();
 			isAddAlbum = true;
 		});
 		$("#cancelAlbumBtn").click(function() {
@@ -119,108 +119,108 @@ var o = {
 		});
 		// add or update album
 		$("#addOrUpdateAlbumBtn").click(function() {
-	    	var albumName = $("#albumName").val();
-	    	if(!albumName) {
-	    		$("#albumName").focus();
-	    		return;
-	    	}
-	    	if(isAddAlbum) {
-		    	$.get("/album/addAlbum", {name: albumName}, function(ret) {
-		    		if(typeof ret == "object" && ret.AlbumId != "") {
-		    			$("#albumName").val("");
-		    			self.showMsg(getMsg("Add Success!"));
-		    			self.pageAddAlbum(ret);
-		    			
+			var albumName = $("#albumName").val();
+			if(!albumName) {
+				$("#albumName").focus();
+				return;
+			}
+			if(isAddAlbum) {
+				$.get("/album/addAlbum", {name: albumName}, function(ret) {
+					if(typeof ret == "object" && ret.AlbumId != "") {
+						$("#albumName").val("");
+						self.showMsg(getMsg("Add Success!"));
+						self.pageAddAlbum(ret);
+
 						setTimeout(function() {
 							toggleAddAlbum();
 						}, 200);
-		    		} else {
-		    			alert(getMsg("error"));
-		    		}
-		    	});
-	    	} else {
-		    	$.get("/album/updateAlbum", {albumId: curAlbum, name: albumName}, function(ret) {
-		    		if(typeof ret == "boolean" && ret) {
-		    			$("#albumName").val("");
-		    			self.showMsg(getMsg("Rename Success!"));
-		    			self.pageUpdateAlbum(curAlbum, albumName);
-		    			
+					} else {
+						alert(getMsg("error"));
+					}
+				});
+			} else {
+				$.get("/album/updateAlbum", {albumId: curAlbum, name: albumName}, function(ret) {
+					if(typeof ret == "boolean" && ret) {
+						$("#albumName").val("");
+						self.showMsg(getMsg("Rename Success!"));
+						self.pageUpdateAlbum(curAlbum, albumName);
+
 						setTimeout(function() {
 							toggleAddAlbum();
 						}, 200);
-		    		} else {
-		    			alert(getMsg("error!"));
-		    		}
-		    	});
-	    	}
-	    })
-	    // delete album
-	    $("#deleteAlbumBtn").click(function() {
-	    	var albumId = $("#albumsForUpload").val();
-	    	if(!albumId) {
-	    		alert(getMsg("Cannot delete default album"));
-	    		return;
-	    	}
-	    	$.get("/album/deleteAlbum", {albumId: albumId}, function(ret) {
-	    		if(typeof ret == "object" && ret.Ok == true) {
-	    			self.showMsg(getMsg("Delete Success!"));
-	    			// delete this album from select
-	    			$("#albumsForUpload option[value='" + albumId + "']").remove();
+					} else {
+						alert(getMsg("error!"));
+					}
+				});
+			}
+		})
+		// delete album
+		$("#deleteAlbumBtn").click(function() {
+			var albumId = $("#albumsForUpload").val();
+			if(!albumId) {
+				alert(getMsg("Cannot delete default album"));
+				return;
+			}
+			$.get("/album/deleteAlbum", {albumId: albumId}, function(ret) {
+				if(typeof ret == "object" && ret.Ok == true) {
+					self.showMsg(getMsg("Delete Success!"));
+					// delete this album from select
+					$("#albumsForUpload option[value='" + albumId + "']").remove();
 
-	    			// if the albumsForList has select this album, it must refresh list after delete it;
-	    			if($("#albumsForList").val() == albumId) {
-		    			self.needRefresh = true;
-	    			}
+					// if the albumsForList has select this album, it must refresh list after delete it;
+					if($("#albumsForList").val() == albumId) {
+						self.needRefresh = true;
+					}
 
-	    			$("#albumsForList option[value='" + albumId + "']").remove();
+					$("#albumsForList option[value='" + albumId + "']").remove();
 
-	    		} else {
-	    			alert(getMsg("This album has images, please delete it's images at first."));
-	    		}
-	    	});
+				} else {
+					alert(getMsg("This album has images, please delete it's images at first."));
+				}
+			});
 
-	    });
+		});
 	},
 
-    renderAlbums: function() {
-    	var self = this;
-    	$.get("/album/getAlbums", function(ret) {
-    		if(!ret) return;
-    		var html = "";
-    		for(var i in ret) {
-    			var each = ret[i];
-		    	var option = '<option value="' + each.AlbumId + '">' + each.Name+ '</option>';
-		    	html += option;
-    		}
+	renderAlbums: function() {
+		var self = this;
+		$.get("/album/getAlbums", function(ret) {
+			if(!ret) return;
+			var html = "";
+			for(var i in ret) {
+				var each = ret[i];
+				var option = '<option value="' + each.AlbumId + '">' + each.Name+ '</option>';
+				html += option;
+			}
 
-	    	$("#albumsForUpload").append(html);
-	    	$("#albumsForList").append(html);
+			$("#albumsForUpload").append(html);
+			$("#albumsForList").append(html);
 
-	    	var albumId = $("#albumsForList").val();
-		    self.renderImages(albumId, 1, true);
-    	});
-    },
+			var albumId = $("#albumsForList").val();
+			self.renderImages(albumId, 1, true);
+		});
+	},
 
-    imageMaskO: $("#imageMask"),
-    noImagesO: $("#noImages"),
-   	loadingO: $("#loading"),
+	imageMaskO: $("#imageMask"),
+	noImagesO: $("#noImages"),
+	loadingO: $("#loading"),
 
-    loadingStart: function() {
-    	if(this.imageMaskO.is(":hidden")) {
-	    	this.imageMaskO.css("opacity", 0.8).show();
-	    }
-    	this.noImagesO.hide();
-    	this.loadingO.show();
-    },
-    loadingEnd: function() {
-    	this.imageMaskO.hide();
-    },
+	loadingStart: function() {
+		if(this.imageMaskO.is(":hidden")) {
+			this.imageMaskO.css("opacity", 0.8).show();
+		}
+		this.noImagesO.hide();
+		this.loadingO.show();
+	},
+	loadingEnd: function() {
+		this.imageMaskO.hide();
+	},
 
-    noImages: function () {
-    	this.imageMaskO.show().css("opacity", 1);
-    	this.noImagesO.show();
-    	this.loadingO.hide();
-    },
+	noImages: function () {
+		this.imageMaskO.show().css("opacity", 1);
+		this.noImagesO.show();
+		this.loadingO.hide();
+	},
 
 
 	search: function() {
@@ -236,22 +236,22 @@ var o = {
 			});
 		});
 	},
-    
+
 	renderImages: function(albumId, page, needRenderPagination, key, needRender) {
 		var self = this;
 
-    	if(!page) {
-    		page = 1;
-    	}
-    	self.loadingStart();
-    	$.get("/file/getImages", {albumId: albumId, page: page, key: key}, function(ret) {
-    		if(!ret || !ret.Count) {
-    			self.noImages();
-    			return;
-    		}
-    		self.loadingEnd();
-    		var datas = ret.List;
-    		var selectedMap = {};
+		if(!page) {
+			page = 1;
+		}
+		self.loadingStart();
+		$.get("/file/getImages", {albumId: albumId, page: page, key: key}, function(ret) {
+			if(!ret || !ret.Count) {
+				self.noImages();
+				return;
+			}
+			self.loadingEnd();
+			var datas = ret.List;
+			var selectedMap = {};
 
 			for(var i in self.selectedImages) {
 				var src = self.selectedImages[i]; // src include G.imageSrcPrefix
@@ -283,18 +283,18 @@ var o = {
 				html += '<div class="tools clearfix" data-id="' + each.FileId + '"><div class="file-title pull-left">' + each.Title + '</div><div class="pull-right"><a href="javascript:;" class="del" data-id="' + each.FileId + '"><span class="fa fa-trash"></span></a></div></div>';
 				html += "</li>";
 			}
-				
-    		// var html = $("#tImage").render(datas);
-    		$("#imageList").html(html);
 
-    		if(needRenderPagination) {
-	    		self.pagination(ret.Count);
-    		}
+			// var html = $("#tImage").render(datas);
+			$("#imageList").html(html);
 
-    		// $("#imageList img").lazyload({effect : "fadeIn"});
-    		// $("#imageList img").lazyload();
-    	});
-    },
+			if(needRenderPagination) {
+				self.pagination(ret.Count);
+			}
+
+			// $("#imageList img").lazyload({effect : "fadeIn"});
+			// $("#imageList img").lazyload();
+		});
+	},
 
 	// 初始化已选择的图片区域
 	initSelectedZones: function() {
@@ -306,7 +306,7 @@ var o = {
 			self.previewO.append("<li>?</li>");
 		}
 	},
-		
+
 	reRenderSelectedImages: function(isRemove, addSrc) {
 		var self = this;
 
@@ -360,7 +360,7 @@ var o = {
 		if(this.maxSelected > 1 && this.maxSelected <= this.selectedImages.length) {
 			return false;
 		}
-		
+
 		// life 为了图片安全
 		if(typeof $li == "object") {
 			var src = $li.find("img").attr('src');
@@ -373,7 +373,7 @@ var o = {
 				src = "/api/file/getImage?fileId=" + $li;
 			}
 		}
-		
+
 		// 如果只允许选1个
 		if(this.maxSelected == 1) {
 			// 先把其它的去掉
@@ -382,9 +382,9 @@ var o = {
 		} else {
 			this.selectedImages.push(src);
 		}
-		
+
 		this.reRenderSelectedImages(false, src);
-	
+
 		return true;
 	},
 	initDataFromTinymce: function() {
@@ -404,25 +404,25 @@ var o = {
 		}
 	},
 
-	init: function() {	
+	init: function() {
 		var self = this;
-		
+
 		self.processAlbum();
 
 		$("#albumsForList").change(function() {
 			var albumId = $(this).val();
 			self.renderImages(albumId, 1, true);
 		});
-		
+
 		$("#imageList").on("click", 'li', function() {
 			if($(this).hasClass("selected")) {
 				$(this).removeClass("selected");
 				self.removeSelectedImage($(this));
 			} else {
-				if(self.addSelectedImage($(this))){ 
+				if(self.addSelectedImage($(this))){
 					$(this).addClass("selected");
 				}
-			}	
+			}
 		});
 
 
@@ -442,7 +442,7 @@ var o = {
 						$(t).closest('li').remove();
 					}
 				});
-			}	
+			}
 		});
 		// edit file title
 		$("#imageList").on("click", '.file-title', function(e) {
@@ -490,14 +490,14 @@ var o = {
 			});
 		});
 
-		// 
+		//
 		$("#goAddImageBtn").click(function() {
 			$("#albumsForUpload").val($("#albumsForList").val());
 			$('#myTab li:eq(1) a').tab('show');
 		});
 
 		// toggle tab
-		// refresh 
+		// refresh
 		$('#myTab a').on('shown.bs.tab', function(e) {
 			e.preventDefault()
 			$(this).tab('show');
@@ -547,13 +547,13 @@ var o = {
 			if($(this).hasClass("selected")) {
 				// $(this).removeClass("selected");
 			} else {
-				if($(this).find("img").length){ 
+				if($(this).find("img").length){
 					$("#preview li").removeClass("selected");
 					$(this).addClass("selected");
 
 					self.initAttr($(this));
 				}
-			}	
+			}
 		});
 
 		$("#attrTitle, #attrWidth, #attrHeight").on("keyup", function(){
@@ -567,7 +567,7 @@ var o = {
 		self.search();
 
 		self.initSelectedZones();
-		
+
 		self.initDataFromTinymce();
 
 		self.renderAlbums();
@@ -602,7 +602,7 @@ var o = {
 		var curAttrs = self.getCurAttrs();
 		var preWidth = curAttrs.preWidth || curAttrs.width;
 		var preHeight = curAttrs.preHeight || curAttrs.height;
-		
+
 		if(autoScale && preWidth && preHeight) {
 			if(isWidth) {
 				height = parseInt((width/preWidth) * preHeight);
@@ -722,133 +722,133 @@ var o = {
 		var self = this;
 		var ul = $('#upload ul');
 
-	    $('#drop a').click(function() {
-	        // trigger to show file select
-	        $(this).parent().find('input').click();
-	    });
-	    // Initialize the jQuery File Upload plugin
-	    $('#upload').fileupload({
-	        dataType: 'json',
-	        pasteZone: '',
-	        acceptFileTypes: /(\.|\/)(gif|jpg|jpeg|png|jpe)$/i,
-	        // maxFileSize: 210000,
+		$('#drop a').click(function() {
+			// trigger to show file select
+			$(this).parent().find('input').click();
+		});
+		// Initialize the jQuery File Upload plugin
+		$('#upload').fileupload({
+			dataType: 'json',
+			pasteZone: '',
+			acceptFileTypes: /(\.|\/)(gif|jpg|jpeg|png|jpe)$/i,
+			// maxFileSize: 210000,
 
-	        // This element will accept file drag/drop uploading
-	        dropZone: $('#drop'),
-	        formData: function(form) {
-	        	return [{name: 'albumId', value: $("#albumsForUpload").val()}]
-	        },
-	        /*
-	        urlFunc: function() {
-	        	return 'server/index.php?action=file:uploadImage&album_id=' + $("#albumsForUpload").val();
-	        },
-	        */
+			// This element will accept file drag/drop uploading
+			dropZone: $('#drop'),
+			formData: function(form) {
+				return [{name: 'albumId', value: $("#albumsForUpload").val()}]
+			},
+			/*
+			urlFunc: function() {
+				return 'server/index.php?action=file:uploadImage&album_id=' + $("#albumsForUpload").val();
+			},
+			*/
 
-	        // This function is called when a file is added to the queue;
-	        // either via the browse button, or via drag/drop:
-	        add: function(e, data) {
-	        	// 文件大小限制
+			// This function is called when a file is added to the queue;
+			// either via the browse button, or via drag/drop:
+			add: function(e, data) {
+				// 文件大小限制
 				var size = data.files[0].size;
-	            var maxFileSize = +parent.GlobalConfigs["uploadImageSize"] || 100;
-	            if(typeof size == 'number' && size > 1024 * 1024 * maxFileSize) {
-	                var tpl = $('<li><div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a></div></li>');
-	                tpl.find('div').append('<b>Warning:</b> ' + data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>] is bigger than ' + maxFileSize + 'M</small> ');
-	                tpl.appendTo(ul);
-	            	return;
-	            }
-	            
-	            var tpl = $('<li><div class="alert alert-info"><img class="loader" src="/public/album/images/ajax-loader.gif"> <a class="close" data-dismiss="alert">×</a></div></li>');
-	            // Append the file name and file size
-	            tpl.find('div').append(data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>]</small>');
+				var maxFileSize = +parent.GlobalConfigs["uploadImageSize"] || 100;
+				if(typeof size == 'number' && size > 1024 * 1024 * maxFileSize) {
+					var tpl = $('<li><div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a></div></li>');
+					tpl.find('div').append('<b>Warning:</b> ' + data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>] is bigger than ' + maxFileSize + 'M</small> ');
+					tpl.appendTo(ul);
+					return;
+				}
 
-	            // Add the HTML to the UL element
-	            data.context = tpl.appendTo(ul);
+				var tpl = $('<li><div class="alert alert-info"><img class="loader" src="/public/album/images/ajax-loader.gif"> <a class="close" data-dismiss="alert">×</a></div></li>');
+				// Append the file name and file size
+				tpl.find('div').append(data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>]</small>');
 
-	            // data.form[0].action += "&album_id=" + $("#albumsForUpload").val();
+				// Add the HTML to the UL element
+				data.context = tpl.appendTo(ul);
 
-	            // Automatically upload the file once it is added to the queue
-	            var jqXHR = data.submit();
-	        },
-	        
+				// data.form[0].action += "&album_id=" + $("#albumsForUpload").val();
 
-	        done: function(e, data) {
-	            if (data.result.Ok == true) {
-	                data.context.remove();
+				// Automatically upload the file once it is added to the queue
+				var jqXHR = data.submit();
+			},
 
-	               	// add image to preview
-	                self.addSelectedImage(data.result.Id);
-	                // reresh image list
-	                self.uploadRefreshImageList();
-	            } else {
-	                data.context.empty();
-	                alert(data.result.Msg);
-	                var tpl = $('<li><div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a></div></li>');
-	                tpl.find('div').append('<b>' + getMsg('Error') + ':</b> ' + data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>]</small> ' + data.result.Msg);
-	                data.context.append(tpl);
-	                setTimeout((function(tpl) {
-	                	return function() {
-		                	tpl.remove();
-	                	}
-	                })(tpl), 3000);
-	            }
-	            $("#upload-msg").scrollTop(1000);
-	        },
-	        fail: function(e, data) {
-	            data.context.empty();
-	            var tpl = $('<li><div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a></div></li>');
-	            tpl.find('div').append('<b>Error:</b> ' + data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>]</small> ' + data.errorThrown);
-	            data.context.append(tpl);
 
-	            $("#upload-msg").scrollTop(1000);
-	        }
-	    });
+			done: function(e, data) {
+				if (data.result.Ok == true) {
+					data.context.remove();
 
-	    // Prevent the default action when a file is dropped on the window
-	    $(document).on('drop dragover', function(e) {
-	        e.preventDefault();
-	    });
+					// add image to preview
+					self.addSelectedImage(data.result.Id);
+					// reresh image list
+					self.uploadRefreshImageList();
+				} else {
+					data.context.empty();
+					alert(data.result.Msg);
+					var tpl = $('<li><div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a></div></li>');
+					tpl.find('div').append('<b>' + getMsg('Error') + ':</b> ' + data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>]</small> ' + data.result.Msg);
+					data.context.append(tpl);
+					setTimeout((function(tpl) {
+						return function() {
+							tpl.remove();
+						}
+					})(tpl), 3000);
+				}
+				$("#upload-msg").scrollTop(1000);
+			},
+			fail: function(e, data) {
+				data.context.empty();
+				var tpl = $('<li><div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a></div></li>');
+				tpl.find('div').append('<b>Error:</b> ' + data.files[0].name + ' <small>[<i>' + formatFileSize(data.files[0].size) + '</i>]</small> ' + data.errorThrown);
+				data.context.append(tpl);
 
-	    // Helper function that formats the file sizes
-	    function formatFileSize(bytes) {
-	        if (typeof bytes !== 'number') {
-	            return '';
-	        }
-	        if (bytes >= 1000000000) {
-	            return (bytes / 1000000000).toFixed(2) + ' GB';
-	        }
-	        if (bytes >= 1000000) {
-	            return (bytes / 1000000).toFixed(2) + ' MB';
-	        }
-	        return (bytes / 1000).toFixed(2) + ' KB';
-	    }
+				$("#upload-msg").scrollTop(1000);
+			}
+		});
 
-	    // drag css
+		// Prevent the default action when a file is dropped on the window
+		$(document).on('drop dragover', function(e) {
+			e.preventDefault();
+		});
+
+		// Helper function that formats the file sizes
+		function formatFileSize(bytes) {
+			if (typeof bytes !== 'number') {
+				return '';
+			}
+			if (bytes >= 1000000000) {
+				return (bytes / 1000000000).toFixed(2) + ' GB';
+			}
+			if (bytes >= 1000000) {
+				return (bytes / 1000000).toFixed(2) + ' MB';
+			}
+			return (bytes / 1000).toFixed(2) + ' KB';
+		}
+
+		// drag css
 		$(document).bind('dragover', function (e) {
-		    var dropZone = $('#drop'),
-		        timeout = window.dropZoneTimeout;
-		    if (!timeout) {
-		        dropZone.addClass('in');
-		    } else {
-		        clearTimeout(timeout);
-		    }
-		    var found = false,
-		        node = e.target;
-		    do {
-		        if (node === dropZone[0]) {
-		            found = true;
-		            break;
-		        }
-		        node = node.parentNode;
-		    } while (node != null);
-		    if (found) {
-		        dropZone.addClass('hover');
-		    } else {
-		        dropZone.removeClass('hover');
-		    }
-		    window.dropZoneTimeout = setTimeout(function () {
-		        window.dropZoneTimeout = null;
-		        dropZone.removeClass('in hover');
-		    }, 100);
+			var dropZone = $('#drop'),
+				timeout = window.dropZoneTimeout;
+			if (!timeout) {
+				dropZone.addClass('in');
+			} else {
+				clearTimeout(timeout);
+			}
+			var found = false,
+				node = e.target;
+			do {
+				if (node === dropZone[0]) {
+					found = true;
+					break;
+				}
+				node = node.parentNode;
+			} while (node != null);
+			if (found) {
+				dropZone.addClass('hover');
+			} else {
+				dropZone.removeClass('hover');
+			}
+			window.dropZoneTimeout = setTimeout(function () {
+				window.dropZoneTimeout = null;
+				dropZone.removeClass('in hover');
+			}, 100);
 		});
 	}
 }

@@ -9,6 +9,8 @@ fmt:
 	else \
 		find ./app -name "*.go" -exec go fmt {} \; ;\
 	fi
+	@simple-formater -dir app
+	@simple-formater -dir public
 
 # only build temporarily
 build:

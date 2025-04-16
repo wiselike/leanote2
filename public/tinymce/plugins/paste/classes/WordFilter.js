@@ -1,19 +1,19 @@
 /**
- * WordFilter.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* WordFilter.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class parses word HTML into proper TinyMCE markup.
- *
- * @class tinymce.pasteplugin.Quirks
- * @private
- */
+	* This class parses word HTML into proper TinyMCE markup.
+	*
+	* @class tinymce.pasteplugin.Quirks
+	* @private
+	*/
 define("tinymce/pasteplugin/WordFilter", [
 	"tinymce/util/Tools",
 	"tinymce/html/DomParser",
@@ -38,10 +38,10 @@ define("tinymce/pasteplugin/WordFilter", [
 			}
 
 			/**
-			 * Converts fake bullet and numbered lists to real semantic OL/UL.
-			 *
-			 * @param {tinymce.html.Node} node Root node to convert children of.
-			 */
+				* Converts fake bullet and numbered lists to real semantic OL/UL.
+				*
+				* @param {tinymce.html.Node} node Root node to convert children of.
+				*/
 			function convertFakeListsToProperLists(node) {
 				var currentListNode, prevListNode, lastLevel = 1;
 

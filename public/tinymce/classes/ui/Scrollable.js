@@ -1,19 +1,19 @@
 /**
- * Scrollable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Scrollable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This mixin makes controls scrollable using custom scrollbars.
- *
- * @-x-less Scrollable.less
- * @mixin tinymce.ui.Scrollable
- */
+	* This mixin makes controls scrollable using custom scrollbars.
+	*
+	* @-x-less Scrollable.less
+	* @mixin tinymce.ui.Scrollable
+	*/
 define("tinymce/ui/Scrollable", [
 	"tinymce/ui/DomUtils",
 	"tinymce/ui/DragHelper"
@@ -111,7 +111,7 @@ define("tinymce/ui/Scrollable", [
 							DomUtils.removeClass(DomUtils.get(axisId), prefix + 'active');
 						}
 					});
-/*
+				/*
 					self.on('click', function(e) {
 						if (e.target.id == self._id + '-scrollv') {
 

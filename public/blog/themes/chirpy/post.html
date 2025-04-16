@@ -2,160 +2,160 @@
 {{template "post-readNum.html" .}}
 
 <div id="main-wrapper">
-  <div id="main">
+	<div id="main">
 <div class="row">
-  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
-      <div class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
-      
-        <h1 id="post-title" data-toc-skip>{{if .post.Title}} {{.post.Title}} {{else}} Untitled {{end}}</h1>
+	<div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+		<div class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
 
-        <div class="post-meta text-muted d-flex flex-column">
-          <!-- Published date and author -->
-          <div>
-            <span>由 </span><span class="semi-bold">{{$.themeInfo.PostAuthor}}</span>
-            <!-- lastmod -->
-            <span class="timeago" data-toggle="tooltip" data-placement="bottom" title="{{.post.CreatedTime | datetime}}">发布于 {{dateFormat .post.CreatedTime "2006-01-02"}}</span>
-            ·
-            <span class="timeago" data-toggle="tooltip" data-placement="bottom" title="{{.post.UpdatedTime | datetime}}">最后更新：{{dateFormat .post.UpdatedTime "2006-01-02"}}</span>
-            <!-- page views -->
-            {{ if $.themeInfo.ReadNumType }}
-              <i class="far fa-eye fa-fw"></i>
-              {{ if eq $.themeInfo.ReadNumType "Leanote"}}
-                <span id="pv_{{.Title}}" class="pageviews">{{$.post.ReadNum}}</span>
-              {{else if eq $.themeInfo.ReadNumType "Leacloud"}}
-                <span id="{{$.postUrl}}/{{.post.UrlTitle}}" class="leancloud_visitors"><span class="leancloud-visitors-count">1</span></span>
-              {{end}}
-            {{end}}
-          </div>
-        </div>
+			<h1 id="post-title" data-toc-skip>{{if .post.Title}} {{.post.Title}} {{else}} Untitled {{end}}</h1>
 
-        <div class="post-content">
+			<div class="post-meta text-muted d-flex flex-column">
+				<!-- Published date and author -->
+				<div>
+					<span>由 </span><span class="semi-bold">{{$.themeInfo.PostAuthor}}</span>
+					<!-- lastmod -->
+					<span class="timeago" data-toggle="tooltip" data-placement="bottom" title="{{.post.CreatedTime | datetime}}">发布于 {{dateFormat .post.CreatedTime "2006-01-02"}}</span>
+					·
+					<span class="timeago" data-toggle="tooltip" data-placement="bottom" title="{{.post.UpdatedTime | datetime}}">最后更新：{{dateFormat .post.UpdatedTime "2006-01-02"}}</span>
+					<!-- page views -->
+					{{ if $.themeInfo.ReadNumType }}
+						<i class="far fa-eye fa-fw"></i>
+						{{ if eq $.themeInfo.ReadNumType "Leanote"}}
+							<span id="pv_{{.Title}}" class="pageviews">{{$.post.ReadNum}}</span>
+						{{else if eq $.themeInfo.ReadNumType "Leacloud"}}
+							<span id="{{$.postUrl}}/{{.post.UrlTitle}}" class="leancloud_visitors"><span class="leancloud-visitors-count">1</span></span>
+						{{end}}
+					{{end}}
+				</div>
+			</div>
 
-          <div class="desc {{if $.post.IsMarkdown }}markdown-content{{end}}" id="content">
-        	{{if $.post.IsMarkdown }}
-        		<div id="markdownContent" style="display: none">
-        			<!-- 用textarea装html, 防止得到的值失真 -->
-        			<textarea>{{$.post.Content | raw}}</textarea>
-        		</div> <!-- markdownContent -->
-        		<div style="padding: 20px; text-align: center">
-        			<img src="{{$.themeBaseUrl}}/images/loading-32.gif" />
-        		</div>
-        	{{else}}
-        			{{$.post.Content | raw}}
-        	{{end}}
-          </div> <!-- #content -->
-        </div> <!-- post-content -->
+			<div class="post-content">
 
-        <div class="post-tail-wrapper text-muted">
-            <!-- categories -->
-            {{ if .post.Cates}}
-              <div class="post-meta mb-3">
-                <i class="far fa-folder-open fa-fw mr-1"></i>
-                {{ range .post.Cates }}
-                  <a href="{{$.cateUrl}}/{{.UrlTitle}}">{{.Title}}</a>
-                {{ end }}
-              </div>
-            {{ end }}
+				<div class="desc {{if $.post.IsMarkdown }}markdown-content{{end}}" id="content">
+					{{if $.post.IsMarkdown }}
+						<div id="markdownContent" style="display: none">
+							<!-- 用textarea装html, 防止得到的值失真 -->
+							<textarea>{{$.post.Content | raw}}</textarea>
+						</div> <!-- markdownContent -->
+						<div style="padding: 20px; text-align: center">
+							<img src="{{$.themeBaseUrl}}/images/loading-32.gif" />
+						</div>
+					{{else}}
+						{{$.post.Content | raw}}
+					{{end}}
+				</div> <!-- #content -->
+			</div> <!-- post-content -->
 
-            <!-- tags -->
-            <div class="post-tags">
-              {{if .post.Tags}}
-                <i class="fa fa-tags fa-fw mr-1"></i>
-                <!-- {{blogTags $ .post.Tags}}&nbsp;&nbsp; -->
-                  {{ range $tag := .post.Tags }}
-                  <a href="{{$.tagPostsUrl}}/{{$tag}}" class="post-tag no-text-decoration">{{ $tag }}</a>
-                  {{ end }}
-              {{end}} <!-- end if -->
-            </div> <!-- post-tags -->
+			<div class="post-tail-wrapper text-muted">
+				<!-- categories -->
+				{{ if .post.Cates}}
+					<div class="post-meta mb-3">
+						<i class="far fa-folder-open fa-fw mr-1"></i>
+						{{ range .post.Cates }}
+							<a href="{{$.cateUrl}}/{{.UrlTitle}}">{{.Title}}</a>
+						{{ end }}
+					</div>
+				{{ end }}
 
-            <!-- license and share -->
-            <div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
-              <div class="license-wrapper">
-                该博客文章由作者通过
-                  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>进行授权。
-              </div>
-              <!-- sharing -->
-              {{ template "post-sharing.html" . }}
-            </div><!-- .post-tail-bottom -->
+				<!-- tags -->
+				<div class="post-tags">
+					{{if .post.Tags}}
+						<i class="fa fa-tags fa-fw mr-1"></i>
+						<!-- {{blogTags $ .post.Tags}}&nbsp;&nbsp; -->
+							{{ range $tag := .post.Tags }}
+							<a href="{{$.tagPostsUrl}}/{{$tag}}" class="post-tag no-text-decoration">{{ $tag }}</a>
+							{{ end }}
+						{{end}} <!-- end if -->
+					</div> <!-- post-tags -->
 
-        </div> <!-- post-tail-wrapper -->
-      </div>
-   </div> <!-- post-wrapper -->
+					<!-- license and share -->
+					<div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+						<div class="license-wrapper">
+							该博客文章由作者通过
+								<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>进行授权。
+							</div>
+							<!-- sharing -->
+							{{ template "post-sharing.html" . }}
+						</div><!-- .post-tail-bottom -->
 
-    <div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
-      {{template "post-update-list-trending-tags.html" .}}
-      {{template "post-toc.html" .}}
-    </div> <!-- panel-wrapper -->
-</div> <!--end row-->
+					</div> <!-- post-tail-wrapper -->
+				</div>
+			</div> <!-- post-wrapper -->
 
-<div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
-      {{ template "post-nav.html" .}}
-      {{ template "share_comment.html" .}}
-    </div>
-  </div>
-</div>
+				<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+					{{template "post-update-list-trending-tags.html" .}}
+					{{template "post-toc.html" .}}
+				</div> <!-- panel-wrapper -->
+			</div> <!--end row-->
 
-{{template "footer.html" .}}
-<!--对应header中的-->
-</div> <!--end main-->
-</div> <!--end main-wrapper-->
-<!--对应header结束-->
+			<div class="row">
+				<div class="col-12 col-lg-11 col-xl-8">
+					<div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+						{{ template "post-nav.html" .}}
+						{{ template "share_comment.html" .}}
+					</div>
+				</div>
+			</div>
 
-{{template "back-to-top.html" .}}
-{{template "mathjax.html" .}}
-<div id="isPost"></div>
+			{{template "footer.html" .}}
+			<!--对应header中的-->
+			</div> <!--end main-->
+			</div> <!--end main-wrapper-->
+			<!--对应header结束-->
 
-<!-- 只有post才需要，从 Header 中移到这里 -->
-<!--clibboard-->
-<script src="//cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<!--Mermaid and ChartJs -->
-<script src="//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
-<!-- Manific Popup -->
-<script src="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
- <!-- Google Code Pretty -->
- <script src="//cdn.jsdelivr.net/npm/code-prettify@0.1.0/src/prettify.min.js"></script>
- <link href="{{$.themeBaseUrl}}/prettify.css" type="text/css" rel="stylesheet"/>
- <!-- <link href="{{$.prettifyCssUrl}}" type="text/css" rel="stylesheet"/> -->
- <!-- <script src="{{$.prettifyJsUrl}}"></script> -->
- 
- <!-- Emoji -->
- <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+			{{template "back-to-top.html" .}}
+			{{template "mathjax.html" .}}
+			<div id="isPost"></div>
 
-<!-- markdown 调用markdown来解析得到html -->
-{{if $.post.IsMarkdown }}
-<script src="{{$.themeBaseUrl}}/md2html_no_escape.js"></script>
-<!-- <script src="/public/libs/md2html/md2html_no_escape.min.js"></script> -->
+			<!-- 只有post才需要，从 Header 中移到这里 -->
+			<!--clibboard-->
+			<script src="//cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+			<!--Mermaid and ChartJs -->
+			<script src="//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script>
+			<script src="//cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
+			<!-- Manific Popup -->
+			<script src="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+				<!-- Google Code Pretty -->
+				<script src="//cdn.jsdelivr.net/npm/code-prettify@0.1.0/src/prettify.min.js"></script>
+				<link href="{{$.themeBaseUrl}}/prettify.css" type="text/css" rel="stylesheet"/>
+				<!-- <link href="{{$.prettifyCssUrl}}" type="text/css" rel="stylesheet"/> -->
+				<!-- <script src="{{$.prettifyJsUrl}}"></script> -->
 
-<script>
-var content = $.trim($("#markdownContent textarea").val());
-md2Html(content, $("#content"), function(html) {
-  blogPostInit();
-    // $(".code-header > button").addClass("clipboard").attr("data-clipboard-target", "pre")
-      // .attr("data-toggle", "tooltip").attr("data-placement", "left");
-    $("pre").addClass("prettyprint linenums");
-    prettyPrint();
-    // weixin();
-});
+				<!-- Emoji -->
+				<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
-// fix issue https://github.com/afeld/bootstrap-toc/issues/{21,34,35}
-$(document).ready(function () {
-  let $toc_ul = $("#toc > ul");
-  if ($toc_ul.length) {
-    $toc_ul.eq(1).remove(); // 移除生成的第二个目录，从0开始计数
-    if ($toc_ul.html().length == 0) { // post没有目录则隐藏
-      $("#toc-wrapper").addClass("unloaded");
-    }
-  }
-});
-</script>
-<!-- 不是markdown -->
-{{else}}
-<script>
-$(function() {
+			<!-- markdown 调用markdown来解析得到html -->
+			{{if $.post.IsMarkdown }}
+			<script src="{{$.themeBaseUrl}}/md2html_no_escape.js"></script>
+			<!-- <script src="/public/libs/md2html/md2html_no_escape.min.js"></script> -->
+
+			<script>
+			var content = $.trim($("#markdownContent textarea").val());
+			md2Html(content, $("#content"), function(html) {
+				blogPostInit();
+					// $(".code-header > button").addClass("clipboard").attr("data-clipboard-target", "pre")
+						// .attr("data-toggle", "tooltip").attr("data-placement", "left");
+					$("pre").addClass("prettyprint linenums");
+					prettyPrint();
+					// weixin();
+				});
+
+				// fix issue https://github.com/afeld/bootstrap-toc/issues/{21,34,35}
+				$(document).ready(function () {
+					let $toc_ul = $("#toc > ul");
+					if ($toc_ul.length) {
+						$toc_ul.eq(1).remove(); // 移除生成的第二个目录，从0开始计数
+						if ($toc_ul.html().length == 0) { // post没有目录则隐藏
+							$("#toc-wrapper").addClass("unloaded");
+						}
+					}
+				});
+				</script>
+				<!-- 不是markdown -->
+				{{else}}
+				<script>
+				$(function() {
 	// weixin();
 });
 </script>

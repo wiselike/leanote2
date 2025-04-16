@@ -1,30 +1,30 @@
 /**
- * Form.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Form.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a form container. A form container has the ability
- * to automatically wrap items in tinymce.ui.FormItem instances.
- *
- * Each FormItem instance is a container for the label and the item.
- *
- * @example
- * tinymce.ui.Factory.create({
- *     type: 'form',
- *     items: [
- *         {type: 'textbox', label: 'My text box'}
- *     ]
- * }).renderTo(document.body);
- *
- * @class tinymce.ui.Form
- * @extends tinymce.ui.Container
- */
+	* This class creates a form container. A form container has the ability
+	* to automatically wrap items in tinymce.ui.FormItem instances.
+	*
+	* Each FormItem instance is a container for the label and the item.
+	*
+	* @example
+	* tinymce.ui.Factory.create({
+	*     type: 'form',
+	*     items: [
+	*         {type: 'textbox', label: 'My text box'}
+	*     ]
+	* }).renderTo(document.body);
+	*
+	* @class tinymce.ui.Form
+	* @extends tinymce.ui.Container
+	*/
 define("tinymce/ui/Form", [
 	"tinymce/ui/Container",
 	"tinymce/ui/FormItem",
@@ -50,10 +50,10 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * This method gets invoked before the control is rendered.
-		 *
-		 * @method preRender
-		 */
+			* This method gets invoked before the control is rendered.
+			*
+			* @method preRender
+			*/
 		preRender: function() {
 			var self = this, items = self.items();
 
@@ -95,10 +95,10 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * Recalcs label widths.
-		 *
-		 * @private
-		 */
+			* Recalcs label widths.
+			*
+			* @private
+			*/
 		recalcLabels: function() {
 			var self = this, maxLabelWidth = 0, labels = [], i, labelGap, items;
 
@@ -128,12 +128,12 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * Getter/setter for the visibility state.
-		 *
-		 * @method visible
-		 * @param {Boolean} [state] True/false state to show/hide.
-		 * @return {tinymce.ui.Form|Boolean} True/false state or current control.
-		 */
+			* Getter/setter for the visibility state.
+			*
+			* @method visible
+			* @param {Boolean} [state] True/false state to show/hide.
+			* @return {tinymce.ui.Form|Boolean} True/false state or current control.
+			*/
 		visible: function(state) {
 			var val = this._super(state);
 
@@ -145,21 +145,21 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * Fires a submit event with the serialized form.
-		 *
-		 * @method submit
-		 * @return {Object} Event arguments object.
-		 */
+			* Fires a submit event with the serialized form.
+			*
+			* @method submit
+			* @return {Object} Event arguments object.
+			*/
 		submit: function() {
 			return this.fire('submit', {data: this.toJSON()});
 		},
 
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.ComboBox} Current combobox instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.ComboBox} Current combobox instance.
+			*/
 		postRender: function() {
 			var self = this;
 

@@ -19,7 +19,7 @@
 					<label>Username</label>
 					<input type="text" class="form-control" name="emailUsername" value="{{.str.emailUsername}}" placeholder="">
 				</div>
-				
+
 				<div class="form-group">
 					<label>Password</label>
 					<input type="text" class="form-control" name="emailPassword" value="{{.str.emailPassword}}" placeholder="">
@@ -29,7 +29,7 @@
 					<input type="checkbox" class="form-control" name="emailSSL" {{if .str.emailSSL}}checked="checked"{{end}} value="1">
 				</div>
 			</div>
-			
+
 			<footer class="panel-footer text-right bg-light lter">
 				<button type="submit" id="submit" class="btn btn-success btn-s-xs">Submit</button>
 			</footer>
@@ -44,7 +44,7 @@
 <script>
 $(function() {
 	init_validator("#add_user_form");
-	
+
 	$("#submit").click(function(e){
 			e.preventDefault();
 			var t = this;

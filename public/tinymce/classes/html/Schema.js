@@ -1,27 +1,27 @@
 /**
- * Schema.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Schema.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Schema validator class.
- *
- * @class tinymce.html.Schema
- * @example
- *  if (tinymce.activeEditor.schema.isValidChild('p', 'span'))
- *    alert('span is valid child of p.');
- *
- *  if (tinymce.activeEditor.schema.getElementRule('p'))
- *    alert('P is a valid element.');
- *
- * @class tinymce.html.Schema
- * @version 3.4
- */
+	* Schema validator class.
+	*
+	* @class tinymce.html.Schema
+	* @example
+	*  if (tinymce.activeEditor.schema.isValidChild('p', 'span'))
+	*    alert('span is valid child of p.');
+	*
+	*  if (tinymce.activeEditor.schema.getElementRule('p'))
+	*    alert('P is a valid element.');
+	*
+	* @class tinymce.html.Schema
+	* @version 3.4
+	*/
 define("tinymce/html/Schema", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -33,12 +33,12 @@ define("tinymce/html/Schema", [
 	}
 
 	/**
-	 * Builds a schema lookup table
-	 *
-	 * @private
-	 * @param {String} type html4, html5 or html5-strict schema type.
-	 * @return {Object} Schema lookup table.
-	 */
+		* Builds a schema lookup table
+		*
+		* @private
+		* @param {String} type html4, html5 or html5-strict schema type.
+		* @return {Object} Schema lookup table.
+		*/
 	function compileSchema(type) {
 		var schema = {}, globalAttributes, blockContent;
 		var phrasingContent, flowContent, html4BlockContent, html4PhrasingContent;
@@ -337,12 +337,12 @@ define("tinymce/html/Schema", [
 	}
 
 	/**
-	 * Constructs a new Schema instance.
-	 *
-	 * @constructor
-	 * @method Schema
-	 * @param {Object} settings Name/value settings object.
-	 */
+		* Constructs a new Schema instance.
+		*
+		* @constructor
+		* @method Schema
+		* @param {Object} settings Name/value settings object.
+		*/
 	return function(settings) {
 		var self = this, elements = {}, children = {}, patternElements = [], validStyles, invalidStyles, schemaItems;
 		var whiteSpaceElementsMap, selfClosingElementsMap, shortEndedElementsMap, boolAttrMap, validClasses;
@@ -741,160 +741,160 @@ define("tinymce/html/Schema", [
 		}
 
 		/**
-		 * Name/value map object with valid parents and children to those parents.
-		 *
-		 * @example
-		 * children = {
-		 *    div:{p:{}, h1:{}}
-		 * };
-		 * @field children
-		 * @type Object
-		 */
+			* Name/value map object with valid parents and children to those parents.
+			*
+			* @example
+			* children = {
+			*    div:{p:{}, h1:{}}
+			* };
+			* @field children
+			* @type Object
+			*/
 		self.children = children;
 
 		/**
-		 * Name/value map object with valid styles for each element.
-		 *
-		 * @method getValidStyles
-		 * @type Object
-		 */
+			* Name/value map object with valid styles for each element.
+			*
+			* @method getValidStyles
+			* @type Object
+			*/
 		self.getValidStyles = function() {
 			return validStyles;
 		};
 
 		/**
-		 * Name/value map object with valid styles for each element.
-		 *
-		 * @method getInvalidStyles
-		 * @type Object
-		 */
+			* Name/value map object with valid styles for each element.
+			*
+			* @method getInvalidStyles
+			* @type Object
+			*/
 		self.getInvalidStyles = function() {
 			return invalidStyles;
 		};
 
 		/**
-		 * Name/value map object with valid classes for each element.
-		 *
-		 * @method getValidClasses
-		 * @type Object
-		 */
+			* Name/value map object with valid classes for each element.
+			*
+			* @method getValidClasses
+			* @type Object
+			*/
 		self.getValidClasses = function() {
 			return validClasses;
 		};
 
 		/**
-		 * Returns a map with boolean attributes.
-		 *
-		 * @method getBoolAttrs
-		 * @return {Object} Name/value lookup map for boolean attributes.
-		 */
+			* Returns a map with boolean attributes.
+			*
+			* @method getBoolAttrs
+			* @return {Object} Name/value lookup map for boolean attributes.
+			*/
 		self.getBoolAttrs = function() {
 			return boolAttrMap;
 		};
 
 		/**
-		 * Returns a map with block elements.
-		 *
-		 * @method getBlockElements
-		 * @return {Object} Name/value lookup map for block elements.
-		 */
+			* Returns a map with block elements.
+			*
+			* @method getBlockElements
+			* @return {Object} Name/value lookup map for block elements.
+			*/
 		self.getBlockElements = function() {
 			return blockElementsMap;
 		};
 
 		/**
-		 * Returns a map with text block elements. Such as: p,h1-h6,div,address
-		 *
-		 * @method getTextBlockElements
-		 * @return {Object} Name/value lookup map for block elements.
-		 */
+			* Returns a map with text block elements. Such as: p,h1-h6,div,address
+			*
+			* @method getTextBlockElements
+			* @return {Object} Name/value lookup map for block elements.
+			*/
 		self.getTextBlockElements = function() {
 			return textBlockElementsMap;
 		};
 
 		/**
-		 * Returns a map of inline text format nodes for example strong/span or ins.
-		 *
-		 * @method getTextInlineElements
-		 * @return {Object} Name/value lookup map for text format elements.
-		 */
+			* Returns a map of inline text format nodes for example strong/span or ins.
+			*
+			* @method getTextInlineElements
+			* @return {Object} Name/value lookup map for text format elements.
+			*/
 		self.getTextInlineElements = function() {
 			return textInlineElementsMap;
 		};
 
 		/**
-		 * Returns a map with short ended elements such as BR or IMG.
-		 *
-		 * @method getShortEndedElements
-		 * @return {Object} Name/value lookup map for short ended elements.
-		 */
+			* Returns a map with short ended elements such as BR or IMG.
+			*
+			* @method getShortEndedElements
+			* @return {Object} Name/value lookup map for short ended elements.
+			*/
 		self.getShortEndedElements = function() {
 			return shortEndedElementsMap;
 		};
 
 		/**
-		 * Returns a map with self closing tags such as <li>.
-		 *
-		 * @method getSelfClosingElements
-		 * @return {Object} Name/value lookup map for self closing tags elements.
-		 */
+			* Returns a map with self closing tags such as <li>.
+			*
+			* @method getSelfClosingElements
+			* @return {Object} Name/value lookup map for self closing tags elements.
+			*/
 		self.getSelfClosingElements = function() {
 			return selfClosingElementsMap;
 		};
 
 		/**
-		 * Returns a map with elements that should be treated as contents regardless if it has text
-		 * content in them or not such as TD, VIDEO or IMG.
-		 *
-		 * @method getNonEmptyElements
-		 * @return {Object} Name/value lookup map for non empty elements.
-		 */
+			* Returns a map with elements that should be treated as contents regardless if it has text
+			* content in them or not such as TD, VIDEO or IMG.
+			*
+			* @method getNonEmptyElements
+			* @return {Object} Name/value lookup map for non empty elements.
+			*/
 		self.getNonEmptyElements = function() {
 			return nonEmptyElementsMap;
 		};
 
 		/**
-		 * Returns a map with elements that the caret should be moved in front of after enter is
-		 * pressed
-		 *
-		 * @method getMoveCaretBeforeOnEnterElements
-		 * @return {Object} Name/value lookup map for elements to place the caret in front of.
-		 */
+			* Returns a map with elements that the caret should be moved in front of after enter is
+			* pressed
+			*
+			* @method getMoveCaretBeforeOnEnterElements
+			* @return {Object} Name/value lookup map for elements to place the caret in front of.
+			*/
 		self.getMoveCaretBeforeOnEnterElements = function() {
 			return moveCaretBeforeOnEnterElementsMap;
 		};
 
 		/**
-		 * Returns a map with elements where white space is to be preserved like PRE or SCRIPT.
-		 *
-		 * @method getWhiteSpaceElements
-		 * @return {Object} Name/value lookup map for white space elements.
-		 */
+			* Returns a map with elements where white space is to be preserved like PRE or SCRIPT.
+			*
+			* @method getWhiteSpaceElements
+			* @return {Object} Name/value lookup map for white space elements.
+			*/
 		self.getWhiteSpaceElements = function() {
 			return whiteSpaceElementsMap;
 		};
 
 		/**
-		 * Returns a map with special elements. These are elements that needs to be parsed
-		 * in a special way such as script, style, textarea etc. The map object values
-		 * are regexps used to find the end of the element.
-		 *
-		 * @method getSpecialElements
-		 * @return {Object} Name/value lookup map for special elements.
-		 */
+			* Returns a map with special elements. These are elements that needs to be parsed
+			* in a special way such as script, style, textarea etc. The map object values
+			* are regexps used to find the end of the element.
+			*
+			* @method getSpecialElements
+			* @return {Object} Name/value lookup map for special elements.
+			*/
 		self.getSpecialElements = function() {
 			return specialElements;
 		};
 
 		/**
-		 * Returns true/false if the specified element and it's child is valid or not
-		 * according to the schema.
-		 *
-		 * @method isValidChild
-		 * @param {String} name Element name to check for.
-		 * @param {String} child Element child to verify.
-		 * @return {Boolean} True/false if the element is a valid child of the specified parent.
-		 */
+			* Returns true/false if the specified element and it's child is valid or not
+			* according to the schema.
+			*
+			* @method isValidChild
+			* @param {String} name Element name to check for.
+			* @param {String} child Element child to verify.
+			* @return {Boolean} True/false if the element is a valid child of the specified parent.
+			*/
 		self.isValidChild = function(name, child) {
 			var parent = children[name];
 
@@ -902,14 +902,14 @@ define("tinymce/html/Schema", [
 		};
 
 		/**
-		 * Returns true/false if the specified element name and optional attribute is
-		 * valid according to the schema.
-		 *
-		 * @method isValid
-		 * @param {String} name Name of element to check.
-		 * @param {String} attr Optional attribute name to check for.
-		 * @return {Boolean} True/false if the element and attribute is valid.
-		 */
+			* Returns true/false if the specified element name and optional attribute is
+			* valid according to the schema.
+			*
+			* @method isValid
+			* @param {String} name Name of element to check.
+			* @param {String} attr Optional attribute name to check for.
+			* @return {Boolean} True/false if the element and attribute is valid.
+			*/
 		self.isValid = function(name, attr) {
 			var attrPatterns, i, rule = getElementRule(name);
 
@@ -941,60 +941,60 @@ define("tinymce/html/Schema", [
 		};
 
 		/**
-		 * Returns true/false if the specified element is valid or not
-		 * according to the schema.
-		 *
-		 * @method getElementRule
-		 * @param {String} name Element name to check for.
-		 * @return {Object} Element object or undefined if the element isn't valid.
-		 */
+			* Returns true/false if the specified element is valid or not
+			* according to the schema.
+			*
+			* @method getElementRule
+			* @param {String} name Element name to check for.
+			* @return {Object} Element object or undefined if the element isn't valid.
+			*/
 		self.getElementRule = getElementRule;
 
 		/**
-		 * Returns an map object of all custom elements.
-		 *
-		 * @method getCustomElements
-		 * @return {Object} Name/value map object of all custom elements.
-		 */
+			* Returns an map object of all custom elements.
+			*
+			* @method getCustomElements
+			* @return {Object} Name/value map object of all custom elements.
+			*/
 		self.getCustomElements = function() {
 			return customElementsMap;
 		};
 
 		/**
-		 * Parses a valid elements string and adds it to the schema. The valid elements
-		 * format is for example "element[attr=default|otherattr]".
-		 * Existing rules will be replaced with the ones specified, so this extends the schema.
-		 *
-		 * @method addValidElements
-		 * @param {String} valid_elements String in the valid elements format to be parsed.
-		 */
+			* Parses a valid elements string and adds it to the schema. The valid elements
+			* format is for example "element[attr=default|otherattr]".
+			* Existing rules will be replaced with the ones specified, so this extends the schema.
+			*
+			* @method addValidElements
+			* @param {String} valid_elements String in the valid elements format to be parsed.
+			*/
 		self.addValidElements = addValidElements;
 
 		/**
-		 * Parses a valid elements string and sets it to the schema. The valid elements
-		 * format is for example "element[attr=default|otherattr]".
-		 * Existing rules will be replaced with the ones specified, so this extends the schema.
-		 *
-		 * @method setValidElements
-		 * @param {String} valid_elements String in the valid elements format to be parsed.
-		 */
+			* Parses a valid elements string and sets it to the schema. The valid elements
+			* format is for example "element[attr=default|otherattr]".
+			* Existing rules will be replaced with the ones specified, so this extends the schema.
+			*
+			* @method setValidElements
+			* @param {String} valid_elements String in the valid elements format to be parsed.
+			*/
 		self.setValidElements = setValidElements;
 
 		/**
-		 * Adds custom non HTML elements to the schema.
-		 *
-		 * @method addCustomElements
-		 * @param {String} custom_elements Comma separated list of custom elements to add.
-		 */
+			* Adds custom non HTML elements to the schema.
+			*
+			* @method addCustomElements
+			* @param {String} custom_elements Comma separated list of custom elements to add.
+			*/
 		self.addCustomElements = addCustomElements;
 
 		/**
-		 * Parses a valid children string and adds them to the schema structure. The valid children
-		 * format is for example: "element[child1|child2]".
-		 *
-		 * @method addValidChildren
-		 * @param {String} valid_children Valid children elements string to parse
-		 */
+			* Parses a valid children string and adds them to the schema structure. The valid children
+			* format is for example: "element[child1|child2]".
+			*
+			* @method addValidChildren
+			* @param {String} valid_children Valid children elements string to parse
+			*/
 		self.addValidChildren = addValidChildren;
 
 		self.elements = elements;

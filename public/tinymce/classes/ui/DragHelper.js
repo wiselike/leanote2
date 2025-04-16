@@ -1,30 +1,30 @@
 /**
- * DragHelper.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DragHelper.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Drag/drop helper class.
- *
- * @example
- * var dragHelper = new tinymce.ui.DragHelper('mydiv', {
- *     start: function(evt) {
- *     },
- *
- *     drag: function(evt) {
- *     },
- *
- *     end: function(evt) {
- *     }
- * });
- *
- * @class tinymce.ui.DragHelper
- */
+	* Drag/drop helper class.
+	*
+	* @example
+	* var dragHelper = new tinymce.ui.DragHelper('mydiv', {
+	*     start: function(evt) {
+	*     },
+	*
+	*     drag: function(evt) {
+	*     },
+	*
+	*     end: function(evt) {
+	*     }
+	* });
+	*
+	* @class tinymce.ui.DragHelper
+	*/
 define("tinymce/ui/DragHelper", [
 	"tinymce/ui/DomUtils"
 ], function(DomUtils) {
@@ -122,10 +122,10 @@ define("tinymce/ui/DragHelper", [
 		};
 
 		/**
-		 * Destroys the drag/drop helper instance.
-		 *
-		 * @method destroy
-		 */
+			* Destroys the drag/drop helper instance.
+			*
+			* @method destroy
+			*/
 		this.destroy = function() {
 			DomUtils.off(getHandleElm());
 		};

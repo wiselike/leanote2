@@ -1,49 +1,49 @@
 /**
- * BookmarkManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* BookmarkManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles selection bookmarks.
- *
- * @class tinymce.dom.BookmarkManager
- */
+	* This class handles selection bookmarks.
+	*
+	* @class tinymce.dom.BookmarkManager
+	*/
 define("tinymce/dom/BookmarkManager", [
 	"tinymce/Env",
 	"tinymce/util/Tools"
 ], function(Env, Tools) {
 	/**
-	 * Constructs a new BookmarkManager instance for a specific selection instance.
-	 *
-	 * @constructor
-	 * @method BookmarkManager
-	 * @param {tinymce.dom.Selection} selection Selection instance to handle bookmarks for.
-	 */
+		* Constructs a new BookmarkManager instance for a specific selection instance.
+		*
+		* @constructor
+		* @method BookmarkManager
+		* @param {tinymce.dom.Selection} selection Selection instance to handle bookmarks for.
+		*/
 	function BookmarkManager(selection) {
 		var dom = selection.dom;
 
 		/**
-		 * Returns a bookmark location for the current selection. This bookmark object
-		 * can then be used to restore the selection after some content modification to the document.
-		 *
-		 * @method getBookmark
-		 * @param {Number} type Optional state if the bookmark should be simple or not. Default is complex.
-		 * @param {Boolean} normalized Optional state that enables you to get a position that it would be after normalization.
-		 * @return {Object} Bookmark object, use moveToBookmark with this object to restore the selection.
-		 * @example
-		 * // Stores a bookmark of the current selection
-		 * var bm = tinymce.activeEditor.selection.getBookmark();
-		 *
-		 * tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
-		 *
-		 * // Restore the selection bookmark
-		 * tinymce.activeEditor.selection.moveToBookmark(bm);
-		 */
+			* Returns a bookmark location for the current selection. This bookmark object
+			* can then be used to restore the selection after some content modification to the document.
+			*
+			* @method getBookmark
+			* @param {Number} type Optional state if the bookmark should be simple or not. Default is complex.
+			* @param {Boolean} normalized Optional state that enables you to get a position that it would be after normalization.
+			* @return {Object} Bookmark object, use moveToBookmark with this object to restore the selection.
+			* @example
+			* // Stores a bookmark of the current selection
+			* var bm = tinymce.activeEditor.selection.getBookmark();
+			*
+			* tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
+			*
+			* // Restore the selection bookmark
+			* tinymce.activeEditor.selection.moveToBookmark(bm);
+			*/
 		this.getBookmark = function(type, normalized) {
 			var rng, rng2, id, collapsed, name, element, chr = '&#xFEFF;', styles;
 
@@ -211,20 +211,20 @@ define("tinymce/dom/BookmarkManager", [
 		};
 
 		/**
-		 * Restores the selection to the specified bookmark.
-		 *
-		 * @method moveToBookmark
-		 * @param {Object} bookmark Bookmark to restore selection from.
-		 * @return {Boolean} true/false if it was successful or not.
-		 * @example
-		 * // Stores a bookmark of the current selection
-		 * var bm = tinymce.activeEditor.selection.getBookmark();
-		 *
-		 * tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
-		 *
-		 * // Restore the selection bookmark
-		 * tinymce.activeEditor.selection.moveToBookmark(bm);
-		 */
+			* Restores the selection to the specified bookmark.
+			*
+			* @method moveToBookmark
+			* @param {Object} bookmark Bookmark to restore selection from.
+			* @return {Boolean} true/false if it was successful or not.
+			* @example
+			* // Stores a bookmark of the current selection
+			* var bm = tinymce.activeEditor.selection.getBookmark();
+			*
+			* tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
+			*
+			* // Restore the selection bookmark
+			* tinymce.activeEditor.selection.moveToBookmark(bm);
+			*/
 		this.moveToBookmark = function(bookmark) {
 			var rng, root, startContainer, endContainer, startOffset, endOffset;
 
@@ -374,13 +374,13 @@ define("tinymce/dom/BookmarkManager", [
 	}
 
 	/**
-	 * Returns true/false if the specified node is a bookmark node or not.
-	 *
-	 * @static
-	 * @method isBookmarkNode
-	 * @param {DOMNode} node DOM Node to check if it's a bookmark node or not.
-	 * @return {Boolean} true/false if the node is a bookmark node or not.
-	 */
+		* Returns true/false if the specified node is a bookmark node or not.
+		*
+		* @static
+		* @method isBookmarkNode
+		* @param {DOMNode} node DOM Node to check if it's a bookmark node or not.
+		* @return {Boolean} true/false if the node is a bookmark node or not.
+		*/
 	BookmarkManager.isBookmarkNode = function(node) {
 		return node && node.tagName === 'SPAN' && node.getAttribute('data-mce-type') === 'bookmark';
 	};

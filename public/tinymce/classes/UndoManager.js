@@ -1,18 +1,18 @@
 /**
- * UndoManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* UndoManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles the undo/redo history levels for the editor. Since the build in undo/redo has major drawbacks a custom one was needed.
- *
- * @class tinymce.UndoManager
- */
+	* This class handles the undo/redo history levels for the editor. Since the build in undo/redo has major drawbacks a custom one was needed.
+	*
+	* @class tinymce.UndoManager
+	*/
 define("tinymce/UndoManager", [
 	"tinymce/util/VK",
 	"tinymce/Env",
@@ -33,15 +33,15 @@ define("tinymce/UndoManager", [
 		var canAdd = true;
 
 		/**
-		 * Returns a trimmed version of the editor contents to be used for the undo level. This
-		 * will remove any data-mce-bogus="all" marked elements since these are used for UI it will also
-		 * remove the data-mce-selected attributes used for selection of objects and caret containers.
-		 * It will keep all data-mce-bogus="1" elements since these can be used to place the caret etc and will
-		 * be removed by the serialization logic when you save.
-		 *
-		 * @private
-		 * @return {String} HTML contents of the editor excluding some internal bogus elements.
-		 */
+			* Returns a trimmed version of the editor contents to be used for the undo level. This
+			* will remove any data-mce-bogus="all" marked elements since these are used for UI it will also
+			* remove the data-mce-selected attributes used for selection of objects and caret containers.
+			* It will keep all data-mce-bogus="1" elements since these can be used to place the caret etc and will
+			* be removed by the serialization logic when you save.
+			*
+			* @private
+			* @return {String} HTML contents of the editor excluding some internal bogus elements.
+			*/
 		function getContent() {
 			// life ace
 			if(window.LeaAce && window.getEditorContent) {
@@ -205,19 +205,19 @@ define("tinymce/UndoManager", [
 			data: data,
 
 			/**
-			 * State if the user is currently typing or not. This will add a typing operation into one undo
-			 * level instead of one new level for each keystroke.
-			 *
-			 * @field {Boolean} typing
-			 */
+				* State if the user is currently typing or not. This will add a typing operation into one undo
+				* level instead of one new level for each keystroke.
+				*
+				* @field {Boolean} typing
+				*/
 			typing: false,
 
 			/**
-			 * Stores away a bookmark to be used when performing an undo action so that the selection is before
-			 * the change has been made.
-			 *
-			 * @method beforeChange
-			 */
+				* Stores away a bookmark to be used when performing an undo action so that the selection is before
+				* the change has been made.
+				*
+				* @method beforeChange
+				*/
 			beforeChange: function() {
 				if (!locks) {
 					beforeBookmark = editor.selection.getBookmark(2, true);
@@ -230,13 +230,13 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Adds a new undo level/snapshot to the undo list.
-			 *
-			 * @method add
-			 * @param {Object} level Optional undo level object to add.
-			 * @param {DOMEvent} Event Optional event responsible for the creation of the undo level.
-			 * @return {Object} Undo level that got added or null it a level wasn't needed.
-			 */
+				* Adds a new undo level/snapshot to the undo list.
+				*
+				* @method add
+				* @param {Object} level Optional undo level object to add.
+				* @param {DOMEvent} Event Optional event responsible for the creation of the undo level.
+				* @return {Object} Undo level that got added or null it a level wasn't needed.
+				*/
 			add: function(level, event) {
 				// life ace
 				if(!canAdd) {
@@ -303,11 +303,11 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Undoes the last action.
-			 *
-			 * @method undo
-			 * @return {Object} Undo level or null if no undo was performed.
-			 */
+				* Undoes the last action.
+				*
+				* @method undo
+				* @return {Object} Undo level or null if no undo was performed.
+				*/
 			undo: function() {
 				var level;
 
@@ -334,11 +334,11 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Redoes the last action.
-			 *
-			 * @method redo
-			 * @return {Object} Redo level or null if no redo was performed.
-			 */
+				* Redoes the last action.
+				*
+				* @method redo
+				* @return {Object} Redo level or null if no redo was performed.
+				*/
 			redo: function() {
 				var level;
 
@@ -355,10 +355,10 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Removes all undo levels.
-			 *
-			 * @method clear
-			 */
+				* Removes all undo levels.
+				*
+				* @method clear
+				*/
 			clear: function() {
 				data = [];
 				index = 0;
@@ -367,35 +367,35 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Returns true/false if the undo manager has any undo levels.
-			 *
-			 * @method hasUndo
-			 * @return {Boolean} true/false if the undo manager has any undo levels.
-			 */
+				* Returns true/false if the undo manager has any undo levels.
+				*
+				* @method hasUndo
+				* @return {Boolean} true/false if the undo manager has any undo levels.
+				*/
 			hasUndo: function() {
 				// Has undo levels or typing and content isn't the same as the initial level
 				return index > 0 || (self.typing && data[0] && getContent() != data[0].content);
 			},
 
 			/**
-			 * Returns true/false if the undo manager has any redo levels.
-			 *
-			 * @method hasRedo
-			 * @return {Boolean} true/false if the undo manager has any redo levels.
-			 */
+				* Returns true/false if the undo manager has any redo levels.
+				*
+				* @method hasRedo
+				* @return {Boolean} true/false if the undo manager has any redo levels.
+				*/
 			hasRedo: function() {
 				return index < data.length - 1 && !this.typing;
 			},
 
 			/**
-			 * Executes the specified function in an undo transation. The selection
-			 * before the modification will be stored to the undo stack and if the DOM changes
-			 * it will add a new undo level. Any methods within the transation that adds undo levels will
-			 * be ignored. So a transation can include calls to execCommand or editor.insertContent.
-			 *
-			 * @method transact
-			 * @param {function} callback Function to execute dom manipulation logic in.
-			 */
+				* Executes the specified function in an undo transation. The selection
+				* before the modification will be stored to the undo stack and if the DOM changes
+				* it will add a new undo level. Any methods within the transation that adds undo levels will
+				* be ignored. So a transation can include calls to execCommand or editor.insertContent.
+				*
+				* @method transact
+				* @param {function} callback Function to execute dom manipulation logic in.
+				*/
 			transact: function(callback) {
 				self.beforeChange();
 

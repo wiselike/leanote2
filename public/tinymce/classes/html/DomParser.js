@@ -1,25 +1,25 @@
 /**
- * DomParser.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DomParser.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class parses HTML code into a DOM like structure of nodes it will remove redundant whitespace and make
- * sure that the node tree is valid according to the specified schema.
- * So for example: <p>a<p>b</p>c</p> will become <p>a</p><p>b</p><p>c</p>
- *
- * @example
- * var parser = new tinymce.html.DomParser({validate: true}, schema);
- * var rootNode = parser.parse('<h1>content</h1>');
- *
- * @class tinymce.html.DomParser
- * @version 3.4
- */
+	* This class parses HTML code into a DOM like structure of nodes it will remove redundant whitespace and make
+	* sure that the node tree is valid according to the specified schema.
+	* So for example: <p>a<p>b</p>c</p> will become <p>a</p><p>b</p><p>c</p>
+	*
+	* @example
+	* var parser = new tinymce.html.DomParser({validate: true}, schema);
+	* var rootNode = parser.parse('<h1>content</h1>');
+	*
+	* @class tinymce.html.DomParser
+	* @version 3.4
+	*/
 define("tinymce/html/DomParser", [
 	"tinymce/html/Node",
 	"tinymce/html/Schema",
@@ -29,13 +29,13 @@ define("tinymce/html/DomParser", [
 	var makeMap = Tools.makeMap, each = Tools.each, explode = Tools.explode, extend = Tools.extend;
 
 	/**
-	 * Constructs a new DomParser instance.
-	 *
-	 * @constructor
-	 * @method DomParser
-	 * @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
-	 * @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
-	 */
+		* Constructs a new DomParser instance.
+		*
+		* @constructor
+		* @method DomParser
+		* @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
+		* @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
+		*/
 	return function(settings, schema) {
 		var self = this, nodeFilters = {}, attributeFilters = [], matchedNodes = {}, matchedAttributes = {};
 
@@ -162,12 +162,12 @@ define("tinymce/html/DomParser", [
 		}
 
 		/**
-		 * Runs the specified node though the element and attributes filters.
-		 *
-		 * @method filterNode
-		 * @param {tinymce.html.Node} Node the node to run filters on.
-		 * @return {tinymce.html.Node} The passed in node.
-		 */
+			* Runs the specified node though the element and attributes filters.
+			*
+			* @method filterNode
+			* @param {tinymce.html.Node} Node the node to run filters on.
+			* @return {tinymce.html.Node} The passed in node.
+			*/
 		self.filterNode = function(node) {
 			var i, name, list;
 
@@ -202,19 +202,19 @@ define("tinymce/html/DomParser", [
 		};
 
 		/**
-		 * Adds a node filter function to the parser, the parser will collect the specified nodes by name
-		 * and then execute the callback ones it has finished parsing the document.
-		 *
-		 * @example
-		 * parser.addNodeFilter('p,h1', function(nodes, name) {
-		 *		for (var i = 0; i < nodes.length; i++) {
-		 *			console.log(nodes[i].name);
-		 *		}
-		 * });
-		 * @method addNodeFilter
-		 * @method {String} name Comma separated list of nodes to collect.
-		 * @param {function} callback Callback function to execute once it has collected nodes.
-		 */
+			* Adds a node filter function to the parser, the parser will collect the specified nodes by name
+			* and then execute the callback ones it has finished parsing the document.
+			*
+			* @example
+			* parser.addNodeFilter('p,h1', function(nodes, name) {
+			*		for (var i = 0; i < nodes.length; i++) {
+			*			console.log(nodes[i].name);
+			*		}
+			* });
+			* @method addNodeFilter
+			* @method {String} name Comma separated list of nodes to collect.
+			* @param {function} callback Callback function to execute once it has collected nodes.
+			*/
 		self.addNodeFilter = function(name, callback) {
 			each(explode(name), function(name) {
 				var list = nodeFilters[name];
@@ -228,19 +228,19 @@ define("tinymce/html/DomParser", [
 		};
 
 		/**
-		 * Adds a attribute filter function to the parser, the parser will collect nodes that has the specified attributes
-		 * and then execute the callback ones it has finished parsing the document.
-		 *
-		 * @example
-		 * parser.addAttributeFilter('src,href', function(nodes, name) {
-		 *		for (var i = 0; i < nodes.length; i++) {
-		 *			console.log(nodes[i].name);
-		 *		}
-		 * });
-		 * @method addAttributeFilter
-		 * @method {String} name Comma separated list of nodes to collect.
-		 * @param {function} callback Callback function to execute once it has collected nodes.
-		 */
+			* Adds a attribute filter function to the parser, the parser will collect nodes that has the specified attributes
+			* and then execute the callback ones it has finished parsing the document.
+			*
+			* @example
+			* parser.addAttributeFilter('src,href', function(nodes, name) {
+			*		for (var i = 0; i < nodes.length; i++) {
+			*			console.log(nodes[i].name);
+			*		}
+			* });
+			* @method addAttributeFilter
+			* @method {String} name Comma separated list of nodes to collect.
+			* @param {function} callback Callback function to execute once it has collected nodes.
+			*/
 		self.addAttributeFilter = function(name, callback) {
 			each(explode(name), function(name) {
 				var i;
@@ -257,15 +257,15 @@ define("tinymce/html/DomParser", [
 		};
 
 		/**
-		 * Parses the specified HTML string into a DOM like node tree and returns the result.
-		 *
-		 * @example
-		 * var rootNode = new DomParser({...}).parse('<b>text</b>');
-		 * @method parse
-		 * @param {String} html Html string to sax parse.
-		 * @param {Object} args Optional args object that gets passed to all filter functions.
-		 * @return {tinymce.html.Node} Root node containing the tree.
-		 */
+			* Parses the specified HTML string into a DOM like node tree and returns the result.
+			*
+			* @example
+			* var rootNode = new DomParser({...}).parse('<b>text</b>');
+			* @method parse
+			* @param {String} html Html string to sax parse.
+			* @param {Object} args Optional args object that gets passed to all filter functions.
+			* @return {tinymce.html.Node} Root node containing the tree.
+			*/
 		self.parse = function(html, args) {
 			var parser, rootNode, node, nodes, i, l, fi, fl, list, name, validate;
 			var blockElements, startWhiteSpaceRegExp, invalidChildren = [], isInWhiteSpacePreservedElement;

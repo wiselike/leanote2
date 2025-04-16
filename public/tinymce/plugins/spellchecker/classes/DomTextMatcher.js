@@ -1,21 +1,21 @@
 /**
- * DomTextMatcher.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DomTextMatcher.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint no-labels:0, no-constant-condition: 0 */
 
 /**
- * This class logic for filtering text and matching words.
- *
- * @class tinymce.spellcheckerplugin.TextFilter
- * @private
- */
+	* This class logic for filtering text and matching words.
+	*
+	* @class tinymce.spellcheckerplugin.TextFilter
+	* @private
+	*/
 define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 	// Based on work developed by: James Padolsey http://james.padolsey.com
 	// released under UNLICENSE that is compatible with LGPL
@@ -257,11 +257,11 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Returns the index of a specific match object or -1 if it isn't found.
-		 *
-		 * @param  {Match} match Text match object.
-		 * @return {Number} Index of match or -1 if it isn't found.
-		 */
+			* Returns the index of a specific match object or -1 if it isn't found.
+			*
+			* @param  {Match} match Text match object.
+			* @return {Number} Index of match or -1 if it isn't found.
+			*/
 		function indexOf(match) {
 			var i = matches.length;
 			while (i--) {
@@ -274,11 +274,11 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Filters the matches. If the callback returns true it stays if not it gets removed.
-		 *
-		 * @param {Function} callback Callback to execute for each match.
-		 * @return {DomTextMatcher} Current DomTextMatcher instance.
-		 */
+			* Filters the matches. If the callback returns true it stays if not it gets removed.
+			*
+			* @param {Function} callback Callback to execute for each match.
+			* @return {DomTextMatcher} Current DomTextMatcher instance.
+			*/
 		function filter(callback) {
 			var filteredMatches = [];
 
@@ -295,11 +295,11 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Executes the specified callback for each match.
-		 *
-		 * @param {Function} callback  Callback to execute for each match.
-		 * @return {DomTextMatcher} Current DomTextMatcher instance.
-		 */
+			* Executes the specified callback for each match.
+			*
+			* @param {Function} callback  Callback to execute for each match.
+			* @return {DomTextMatcher} Current DomTextMatcher instance.
+			*/
 		function each(callback) {
 			for (var i = 0, l = matches.length; i < l; i++) {
 				if (callback(matches[i], i) === false) {
@@ -312,12 +312,12 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Wraps the current matches with nodes created by the specified callback.
-		 * Multiple clones of these matches might occur on matches that are on multiple nodex.
-		 *
-		 * @param {Function} callback Callback to execute in order to create elements for matches.
-		 * @return {DomTextMatcher} Current DomTextMatcher instance.
-		 */
+			* Wraps the current matches with nodes created by the specified callback.
+			* Multiple clones of these matches might occur on matches that are on multiple nodex.
+			*
+			* @param {Function} callback Callback to execute in order to create elements for matches.
+			* @return {DomTextMatcher} Current DomTextMatcher instance.
+			*/
 		function wrap(callback) {
 			if (matches.length) {
 				stepThroughMatches(node, matches, genReplacer(callback));
@@ -328,12 +328,12 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Finds the specified regexp and adds them to the matches collection.
-		 *
-		 * @param {RegExp} regex Global regexp to search the current node by.
-		 * @param {Object} [data] Optional custom data element for the match.
-		 * @return {DomTextMatcher} Current DomTextMatcher instance.
-		 */
+			* Finds the specified regexp and adds them to the matches collection.
+			*
+			* @param {RegExp} regex Global regexp to search the current node by.
+			* @param {Object} [data] Optional custom data element for the match.
+			* @return {DomTextMatcher} Current DomTextMatcher instance.
+			*/
 		function find(regex, data) {
 			if (text && regex.global) {
 				while ((m = regex.exec(text))) {
@@ -345,11 +345,11 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Unwraps the specified match object or all matches if unspecified.
-		 *
-		 * @param {Object} [match] Optional match object.
-		 * @return {DomTextMatcher} Current DomTextMatcher instance.
-		 */
+			* Unwraps the specified match object or all matches if unspecified.
+			*
+			* @param {Object} [match] Optional match object.
+			* @return {DomTextMatcher} Current DomTextMatcher instance.
+			*/
 		function unwrap(match) {
 			var i, elements = getWrappersByIndex(match ? indexOf(match) : null);
 
@@ -362,34 +362,34 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Returns a match object by the specified DOM element.
-		 *
-		 * @param {DOMElement} element Element to return match object for.
-		 * @return {Object} Match object for the specified element.
-		 */
+			* Returns a match object by the specified DOM element.
+			*
+			* @param {DOMElement} element Element to return match object for.
+			* @return {Object} Match object for the specified element.
+			*/
 		function matchFromElement(element) {
 			return matches[element.getAttribute('data-mce-index')];
 		}
 
 		/**
-		 * Returns a DOM element from the specified match element. This will be the first element if it's split
-		 * on multiple nodes.
-		 *
-		 * @param {Object} match Match element to get first element of.
-		 * @return {DOMElement} DOM element for the specified match object.
-		 */
+			* Returns a DOM element from the specified match element. This will be the first element if it's split
+			* on multiple nodes.
+			*
+			* @param {Object} match Match element to get first element of.
+			* @return {DOMElement} DOM element for the specified match object.
+			*/
 		function elementFromMatch(match) {
 			return getWrappersByIndex(indexOf(match))[0];
 		}
 
 		/**
-		 * Adds match the specified range for example a grammar line.
-		 *
-		 * @param {Number} start Start offset.
-		 * @param {Number} length Length of the text.
-		 * @param {Object} data Custom data object for match.
-		 * @return {DomTextMatcher} Current DomTextMatcher instance.
-		 */
+			* Adds match the specified range for example a grammar line.
+			*
+			* @param {Number} start Start offset.
+			* @param {Number} length Length of the text.
+			* @param {Object} data Custom data object for match.
+			* @return {DomTextMatcher} Current DomTextMatcher instance.
+			*/
 		function add(start, length, data) {
 			matches.push({
 				start: start,
@@ -402,11 +402,11 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Returns a DOM range for the specified match.
-		 *
-		 * @param  {Object} match Match object to get range for.
-		 * @return {DOMRange} DOM Range for the specified match.
-		 */
+			* Returns a DOM range for the specified match.
+			*
+			* @param  {Object} match Match object to get range for.
+			* @return {DOMRange} DOM Range for the specified match.
+			*/
 		function rangeFromMatch(match) {
 			var wrappers = getWrappersByIndex(indexOf(match));
 
@@ -418,12 +418,12 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Replaces the specified match with the specified text.
-		 *
-		 * @param {Object} match Match object to replace.
-		 * @param {String} text Text to replace the match with.
-		 * @return {DOMRange} DOM range produced after the replace.
-		 */
+			* Replaces the specified match with the specified text.
+			*
+			* @param {Object} match Match object to replace.
+			* @param {String} text Text to replace the match with.
+			* @return {DOMRange} DOM range produced after the replace.
+			*/
 		function replace(match, text) {
 			var rng = rangeFromMatch(match);
 
@@ -437,10 +437,10 @@ define("tinymce/spellcheckerplugin/DomTextMatcher", [], function() {
 		}
 
 		/**
-		 * Resets the DomTextMatcher instance. This will remove any wrapped nodes and remove any matches.
-		 *
-		 * @return {[type]} [description]
-		 */
+			* Resets the DomTextMatcher instance. This will remove any wrapped nodes and remove any matches.
+			*
+			* @return {[type]} [description]
+			*/
 		function reset() {
 			matches.splice(0, matches.length);
 			unwrap();

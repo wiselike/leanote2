@@ -1,20 +1,20 @@
 /**
- * CellSelection.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* CellSelection.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles table cell selection by faking it using a css class that gets applied
- * to cells when dragging the mouse from one cell to another.
- *
- * @class tinymce.tableplugin.CellSelection
- * @private
- */
+	* This class handles table cell selection by faking it using a css class that gets applied
+	* to cells when dragging the mouse from one cell to another.
+	*
+	* @class tinymce.tableplugin.CellSelection
+	* @private
+	*/
 define("tinymce/tableplugin/CellSelection", [
 	"tinymce/tableplugin/TableGrid",
 	"tinymce/dom/TreeWalker",

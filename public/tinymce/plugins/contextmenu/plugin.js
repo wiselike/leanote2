@@ -1,12 +1,12 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 
@@ -24,9 +24,9 @@ tinymce.PluginManager.add('contextmenu', function(editor) {
 		e.preventDefault();
 
 		/**
-		 * WebKit/Blink on Mac has the odd behavior of selecting the target word or line this causes
-		 * issues when for example inserting images see: #7022
-		 */
+			* WebKit/Blink on Mac has the odd behavior of selecting the target word or line this causes
+			* issues when for example inserting images see: #7022
+			*/
 		if (tinymce.Env.mac && tinymce.Env.webkit) {
 			if (e.button == 2 && doc.caretRangeFromPoint) {
 				editor.selection.setRng(doc.caretRangeFromPoint(e.x, e.y));

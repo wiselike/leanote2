@@ -1,18 +1,18 @@
 /**
- * Layout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Layout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Base layout manager class.
- *
- * @class tinymce.ui.Layout
- */
+	* Base layout manager class.
+	*
+	* @class tinymce.ui.Layout
+	*/
 define("tinymce/ui/Layout", [
 	"tinymce/util/Class",
 	"tinymce/util/Tools"
@@ -26,30 +26,30 @@ define("tinymce/ui/Layout", [
 		},
 
 		/**
-		 * Constructs a layout instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a layout instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			this.settings = Tools.extend({}, this.Defaults, settings);
 		},
 
 		/**
-		 * This method gets invoked before the layout renders the controls.
-		 *
-		 * @method preRender
-		 * @param {tinymce.ui.Container} container Container instance to preRender.
-		 */
+			* This method gets invoked before the layout renders the controls.
+			*
+			* @method preRender
+			* @param {tinymce.ui.Container} container Container instance to preRender.
+			*/
 		preRender: function(container) {
 			container.addClass(this.settings.containerClass, 'body');
 		},
 
 		/**
-		 * Applies layout classes to the container.
-		 *
-		 * @private
-		 */
+			* Applies layout classes to the container.
+			*
+			* @private
+			*/
 		applyClasses: function(container) {
 			var self = this, settings = self.settings, items, firstClass, lastClass;
 
@@ -70,11 +70,11 @@ define("tinymce/ui/Layout", [
 		},
 
 		/**
-		 * Renders the specified container and any layout specific HTML.
-		 *
-		 * @method renderHtml
-		 * @param {tinymce.ui.Container} container Container to render HTML for.
-		 */
+			* Renders the specified container and any layout specific HTML.
+			*
+			* @method renderHtml
+			* @param {tinymce.ui.Container} container Container to render HTML for.
+			*/
 		renderHtml: function(container) {
 			var self = this, settings = self.settings, items, html = '';
 
@@ -94,20 +94,20 @@ define("tinymce/ui/Layout", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function() {
 		},
 
 		/**
-		 * This method gets invoked after the layout renders the controls.
-		 *
-		 * @method postRender
-		 * @param {tinymce.ui.Container} container Container instance to postRender.
-		 */
+			* This method gets invoked after the layout renders the controls.
+			*
+			* @method postRender
+			* @param {tinymce.ui.Container} container Container instance to postRender.
+			*/
 		postRender: function() {
 		}
 	});

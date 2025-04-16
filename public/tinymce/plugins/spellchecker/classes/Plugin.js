@@ -1,21 +1,21 @@
 /**
- * Plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint camelcase:false */
 
 /**
- * This class contains all core logic for the spellchecker plugin.
- *
- * @class tinymce.spellcheckerplugin.Plugin
- * @private
- */
+	* This class contains all core logic for the spellchecker plugin.
+	*
+	* @class tinymce.spellcheckerplugin.Plugin
+	* @private
+	*/
 define("tinymce/spellcheckerplugin/Plugin", [
 	"tinymce/spellcheckerplugin/DomTextMatcher",
 	"tinymce/PluginManager",
@@ -344,17 +344,17 @@ define("tinymce/spellcheckerplugin/Plugin", [
 		}
 
 		/**
-		 * Find the specified words and marks them. It will also show suggestions for those words.
-		 *
-		 * @example
-		 * editor.plugins.spellchecker.markErrors({
-		 *     dictionary: true,
-		 *     words: {
-		 *         "word1": ["suggestion 1", "Suggestion 2"]
-		 *     }
-		 * });
-		 * @param {Object} data Data object containing the words with suggestions.
-		 */
+			* Find the specified words and marks them. It will also show suggestions for those words.
+			*
+			* @example
+			* editor.plugins.spellchecker.markErrors({
+			*     dictionary: true,
+			*     words: {
+			*         "word1": ["suggestion 1", "Suggestion 2"]
+			*     }
+			* });
+			* @param {Object} data Data object containing the words with suggestions.
+			*/
 		function markErrors(data) {
 			var suggestions;
 

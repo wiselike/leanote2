@@ -1,11 +1,11 @@
 /*!
- * jQuery Validation Plugin v1.13.0
- *
- * http://jqueryvalidation.org/
- *
- * Copyright (c) 2014 Jörn Zaefferer
- * Released under the MIT license
- */
+	* jQuery Validation Plugin v1.13.0
+	*
+	* http://jqueryvalidation.org/
+	*
+	* Copyright (c) 2014 Jörn Zaefferer
+	* Released under the MIT license
+	*/
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
 		define( ["jquery"], factory );

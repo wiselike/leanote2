@@ -1,19 +1,19 @@
 /**
- * Quirks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Quirks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class includes fixes for various browser quirks.
- *
- * @class tinymce.tableplugin.Quirks
- * @private
- */
+	* This class includes fixes for various browser quirks.
+	*
+	* @class tinymce.tableplugin.Quirks
+	* @private
+	*/
 define("tinymce/tableplugin/Quirks", [
 	"tinymce/util/VK",
 	"tinymce/Env",
@@ -27,8 +27,8 @@ define("tinymce/tableplugin/Quirks", [
 
 	return function(editor) {
 		/**
-		 * Fixed caret movement around tables on WebKit.
-		 */
+			* Fixed caret movement around tables on WebKit.
+			*/
 		function moveWebKitSelection() {
 			function eventHandler(e) {
 				var key = e.keyCode;
@@ -330,8 +330,8 @@ define("tinymce/tableplugin/Quirks", [
 		}
 
 		/**
-		 * Delete table if all cells are selected.
-		 */
+			* Delete table if all cells are selected.
+			*/
 		function deleteTable() {
 			editor.on('keydown', function(e) {
 				if ((e.keyCode == VK.DELETE || e.keyCode == VK.BACKSPACE) && !e.isDefaultPrevented()) {

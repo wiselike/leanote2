@@ -9,17 +9,17 @@
 		<section class="panel panel-default">
 			<div class="panel-body">
 				<div class="form-group">
-	                <div id="dropAvatar" class="dropzone">
-	                	<div>
+					<div id="dropAvatar" class="dropzone">
+						<div>
 							<img src="{{if .userInfo.Logo}}{{.userInfo.Logo}}{{else}}/images/blog/default_avatar.png{{end}}" id="avatar"/>
 						</div>
-	                    <a class="btn btn-success btn-choose-file">
+						<a class="btn btn-success btn-choose-file">
 							<span class="fa fa-upload"></span> {{msg . "chooseImage"}}
-	                    </a>
-	                    <input type="file" name="file" multiple/>
-	                </div>
-	                <div id="avatarUploadMsg">
-	                </div>
+						</a>
+						<input type="file" name="file" multiple/>
+					</div>
+					<div id="avatarUploadMsg">
+					</div>
 				</div>
 			</div>
 		</section>
@@ -35,10 +35,10 @@ var UrlPrefix = "{{.siteUrl}}"; // 为了发weibo
 var GlobalConfigs = {{.globalConfigs|jsonJs}}; // 2014/11/9 beta2
 require.config({
 	baseUrl: '/public',
-    paths: {
-    	'avatar': 'member/js/avatar',
-        'fileupload': 'js/plugins/libs-min/fileupload',
-    }
+	paths: {
+		'avatar': 'member/js/avatar',
+		'fileupload': 'js/plugins/libs-min/fileupload',
+	}
 });
 $(function() {
 	require(['avatar'], function(avatar) {});

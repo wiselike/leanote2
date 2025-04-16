@@ -1,22 +1,22 @@
 <div id="footerContainer">
 	{{$userId := $.blogInfo.UserId}}
 	<div class="container" id="footer">
-        <div class="col-md-4">
-          <h3>Navigation</h3>
-          <ul>
-          	<li><a href="{{$.indexUrl}}">Home</a></li>
-          	{{range $.cates}}
+		<div class="col-md-4">
+			<h3>Navigation</h3>
+			<ul>
+				<li><a href="{{$.indexUrl}}">Home</a></li>
+				{{range $.cates}}
 			<li>
 				<a href="{{$.cateUrl}}/{{.UrlTitle}}">{{.Title}}</a>
 			</li>
 			{{end}}
 			<!-- 单页 -->
 			{{range $.singles}}
-			    <li class="{{if eq $.curSingleId .SingleId}}active{{end}}">
+				<li class="{{if eq $.curSingleId .SingleId}}active{{end}}">
 					<a href="{{$.singleUrl}}/{{.UrlTitle}}">{{.Title}}</a>
 				</li>
 			{{end}}
-			
+
 			<!-- 归档 -->
 			<li class="{{if $.curIsArchive}}active{{end}}">
 				<a href="{{$.archiveUrl}}">Archives</a>
@@ -24,34 +24,34 @@
 			<li class="{{if $.curIsTags}}active{{end}}">
 				<a href="{{$.tagsUrl}}">Tags</a>
 			</li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h3>Recent Posts</h3>
-          <ul>
-          	{{range .recentPosts}}
-          	<li title="{{.Title}}"><a href="{{$.postUrl}}/{{.UrlTitle}}">
-          	    {{if .Title}}
-          	        {{.Title}}
-          	    {{else}}
-          	        Untitled
-          	    {{end}}
-          	    </a></li>
-          	{{end}}
-          </ul>
-       </div>
-        <div class="col-md-4">
-          <h3>Friend Links</h3>
-          <ul>
-          	{{if $.themeInfo.FriendLinks}}
-          		{{range $.themeInfo.FriendLinks}}
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<h3>Recent Posts</h3>
+		<ul>
+			{{range .recentPosts}}
+			<li title="{{.Title}}"><a href="{{$.postUrl}}/{{.UrlTitle}}">
+				{{if .Title}}
+					{{.Title}}
+				{{else}}
+					Untitled
+				{{end}}
+				</a></li>
+			{{end}}
+		</ul>
+	</div>
+		<div class="col-md-4">
+			<h3>Friend Links</h3>
+			<ul>
+				{{if $.themeInfo.FriendLinks}}
+					{{range $.themeInfo.FriendLinks}}
 					<li><a href="{{.Url}}" target="_blank">{{.Title}}</a></li>
-          		{{end}}
-          	{{end}}
-		 </ul>
-        </div>
-    </div>
-    <div class="footer-leanote">Proudly powered by <a href="https://leanote.com">Leanote</a></div>
+				{{end}}
+			{{end}}
+		</ul>
+	</div>
+</div>
+<div class="footer-leanote">Proudly powered by <a href="https://leanote.com">Leanote</a></div>
 </div>
 <script src="{{$.jQueryUrl}}"></script>
 <script src="{{$.bootstrapJsUrl}}"></script>
@@ -64,12 +64,12 @@ function search(e) {
 		location.href = "{{$.searchUrl}}";
 	} else {
 		var tpl = '<form style="display: none" action="{{$.searchUrl}}" method="get">';
-        tpl += '<input name="keywords" value="' + keywords + '" />';
-        tpl += "</form";
-        var $tpl = $(tpl);
-        $('body').append($tpl)
-        $tpl.submit();
-        $tpl.remove();
+		tpl += '<input name="keywords" value="' + keywords + '" />';
+		tpl += "</form";
+		var $tpl = $(tpl);
+		$('body').append($tpl)
+		$tpl.submit();
+		$tpl.remove();
 	}
 }
 </script>

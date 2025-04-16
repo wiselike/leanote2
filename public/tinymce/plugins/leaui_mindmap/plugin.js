@@ -1,11 +1,11 @@
 /**
- * leaui mind map plugin
- * copyright leaui
- * leaui.com
- */
+	* leaui mind map plugin
+	* copyright leaui
+	* leaui.com
+	*/
 var LEAUI_MIND = {};
 tinymce.PluginManager.add('leaui_mindmap', function(editor, url) {
-	
+
 	function showDialog() {
 		var dom = editor.dom;
 
@@ -69,7 +69,7 @@ tinymce.PluginManager.add('leaui_mindmap', function(editor, url) {
 				}]
 		});
 	}
-	
+
 	editor.addButton('leaui_mindmap', {
 		// image: url + '/icon.png',
 		icon: 'mind',

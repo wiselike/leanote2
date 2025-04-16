@@ -1,21 +1,21 @@
 /**
- * Quirks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Quirks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains various fixes for browsers. These issues can not be feature
- * detected since we have no direct control over the clipboard. However we might be able
- * to remove some of these fixes once the browsers gets updated/fixed.
- *
- * @class tinymce.pasteplugin.Quirks
- * @private
- */
+	* This class contains various fixes for browsers. These issues can not be feature
+	* detected since we have no direct control over the clipboard. However we might be able
+	* to remove some of these fixes once the browsers gets updated/fixed.
+	*
+	* @class tinymce.pasteplugin.Quirks
+	* @private
+	*/
 define("tinymce/pasteplugin/Quirks", [
 	"tinymce/Env",
 	"tinymce/util/Tools",
@@ -32,15 +32,15 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * Removes BR elements after block elements. IE9 has a nasty bug where it puts a BR element after each
-		 * block element when pasting from word. This removes those elements.
-		 *
-		 * This:
-		 *  <p>a</p><br><p>b</p>
-		 *
-		 * Becomes:
-		 *  <p>a</p><p>b</p>
-		 */
+			* Removes BR elements after block elements. IE9 has a nasty bug where it puts a BR element after each
+			* block element when pasting from word. This removes those elements.
+			*
+			* This:
+			*  <p>a</p><br><p>b</p>
+			*
+			* Becomes:
+			*  <p>a</p><p>b</p>
+			*/
 		function removeExplorerBrElementsAfterBlocks(html) {
 			// Only filter word specific content
 			if (!WordFilter.isWordContent(html)) {
@@ -75,17 +75,17 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * WebKit has a nasty bug where the all computed styles gets added to style attributes when copy/pasting contents.
-		 * This fix solves that by simply removing the whole style attribute.
-		 *
-		 * The paste_webkit_styles option can be set to specify what to keep:
-		 *  paste_webkit_styles: "none" // Keep no styles
-		 *  paste_webkit_styles: "all", // Keep all of them
-		 *  paste_webkit_styles: "font-weight color" // Keep specific ones
-		 *
-		 * @param {String} content Content that needs to be processed.
-		 * @return {String} Processed contents.
-		 */
+			* WebKit has a nasty bug where the all computed styles gets added to style attributes when copy/pasting contents.
+			* This fix solves that by simply removing the whole style attribute.
+			*
+			* The paste_webkit_styles option can be set to specify what to keep:
+			*  paste_webkit_styles: "none" // Keep no styles
+			*  paste_webkit_styles: "all", // Keep all of them
+			*  paste_webkit_styles: "font-weight color" // Keep specific ones
+			*
+			* @param {String} content Content that needs to be processed.
+			* @return {String} Processed contents.
+			*/
 		function removeWebKitStyles(content) {
 			// Passthrough all styles from Word and let the WordFilter handle that junk
 			if (WordFilter.isWordContent(content)) {

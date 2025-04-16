@@ -1,6 +1,6 @@
 /**
- * Inline development version. Only to be used while developing since it uses document.write to load scripts.
- */
+	* Inline development version. Only to be used while developing since it uses document.write to load scripts.
+	*/
 
 /*jshint smarttabs:true, undef:true, latedef:true, curly:true, bitwise:true, camelcase:true */
 /*globals $code */

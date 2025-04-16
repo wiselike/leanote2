@@ -1,31 +1,31 @@
 /**
- * Styles.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Styles.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to parse CSS styles it also compresses styles to reduce the output size.
- *
- * @example
- * var Styles = new tinymce.html.Styles({
- *    url_converter: function(url) {
- *       return url;
- *    }
- * });
- *
- * styles = Styles.parse('border: 1px solid red');
- * styles.color = 'red';
- *
- * console.log(new tinymce.html.StyleSerializer().serialize(styles));
- *
- * @class tinymce.html.Styles
- * @version 3.4
- */
+	* This class is used to parse CSS styles it also compresses styles to reduce the output size.
+	*
+	* @example
+	* var Styles = new tinymce.html.Styles({
+	*    url_converter: function(url) {
+	*       return url;
+	*    }
+	* });
+	*
+	* styles = Styles.parse('border: 1px solid red');
+	* styles.color = 'red';
+	*
+	* console.log(new tinymce.html.StyleSerializer().serialize(styles));
+	*
+	* @class tinymce.html.Styles
+	* @version 3.4
+	*/
 define("tinymce/html/Styles", [], function() {
 	return function(settings, schema) {
 		/*jshint maxlen:255 */
@@ -61,25 +61,25 @@ define("tinymce/html/Styles", [], function() {
 
 		return {
 			/**
-			 * Parses the specified RGB color value and returns a hex version of that color.
-			 *
-			 * @method toHex
-			 * @param {String} color RGB string value like rgb(1,2,3)
-			 * @return {String} Hex version of that RGB value like #FF00FF.
-			 */
+				* Parses the specified RGB color value and returns a hex version of that color.
+				*
+				* @method toHex
+				* @param {String} color RGB string value like rgb(1,2,3)
+				* @return {String} Hex version of that RGB value like #FF00FF.
+				*/
 			toHex: function(color) {
 				return color.replace(rgbRegExp, toHex);
 			},
 
 			/**
-			 * Parses the specified style value into an object collection. This parser will also
-			 * merge and remove any redundant items that browsers might have added. It will also convert non hex
-			 * colors to hex values. Urls inside the styles will also be converted to absolute/relative based on settings.
-			 *
-			 * @method parse
-			 * @param {String} css Style value to parse for example: border:1px solid red;.
-			 * @return {Object} Object representation of that style like {border: '1px solid red'}
-			 */
+				* Parses the specified style value into an object collection. This parser will also
+				* merge and remove any redundant items that browsers might have added. It will also convert non hex
+				* colors to hex values. Urls inside the styles will also be converted to absolute/relative based on settings.
+				*
+				* @method parse
+				* @param {String} css Style value to parse for example: border:1px solid red;.
+				* @return {Object} Object representation of that style like {border: '1px solid red'}
+				*/
 			parse: function(css) {
 				var styles = {}, matches, name, value, isEncoded, urlConverter = settings.url_converter;
 				var urlConverterScope = settings.url_converter_scope || this;
@@ -127,8 +127,8 @@ define("tinymce/html/Styles", [], function() {
 				}
 
 				/**
-				 * Checks if the specific style can be compressed in other words if all border-width are equal.
-				 */
+					* Checks if the specific style can be compressed in other words if all border-width are equal.
+					*/
 				function canCompress(key) {
 					var value = styles[key], i;
 
@@ -150,8 +150,8 @@ define("tinymce/html/Styles", [], function() {
 				}
 
 				/**
-				 * Compresses multiple styles into one style.
-				 */
+					* Compresses multiple styles into one style.
+					*/
 				function compress2(target, a, b, c) {
 					if (!canCompress(a)) {
 						return;
@@ -296,13 +296,13 @@ define("tinymce/html/Styles", [], function() {
 			},
 
 			/**
-			 * Serializes the specified style object into a string.
-			 *
-			 * @method serialize
-			 * @param {Object} styles Object to serialize as string for example: {border: '1px solid red'}
-			 * @param {String} elementName Optional element name, if specified only the styles that matches the schema will be serialized.
-			 * @return {String} String representation of the style object for example: border: 1px solid red.
-			 */
+				* Serializes the specified style object into a string.
+				*
+				* @method serialize
+				* @param {Object} styles Object to serialize as string for example: {border: '1px solid red'}
+				* @param {String} elementName Optional element name, if specified only the styles that matches the schema will be serialized.
+				* @return {String} String representation of the style object for example: border: 1px solid red.
+				*/
 			serialize: function(styles, elementName) {
 				var css = '', name, value;
 

@@ -1,56 +1,56 @@
 /**
- * Selector.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Selector.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint no-nested-ternary:0 */
 
 /**
- * Selector engine, enables you to select controls by using CSS like expressions.
- * We currently only support basic CSS expressions to reduce the size of the core
- * and the ones we support should be enough for most cases.
- *
- * @example
- * Supported expressions:
- *  element
- *  element#name
- *  element.class
- *  element[attr]
- *  element[attr*=value]
- *  element[attr~=value]
- *  element[attr!=value]
- *  element[attr^=value]
- *  element[attr$=value]
- *  element:<state>
- *  element:not(<expression>)
- *  element:first
- *  element:last
- *  element:odd
- *  element:even
- *  element element
- *  element > element
- *
- * @class tinymce.ui.Selector
- */
+	* Selector engine, enables you to select controls by using CSS like expressions.
+	* We currently only support basic CSS expressions to reduce the size of the core
+	* and the ones we support should be enough for most cases.
+	*
+	* @example
+	* Supported expressions:
+	*  element
+	*  element#name
+	*  element.class
+	*  element[attr]
+	*  element[attr*=value]
+	*  element[attr~=value]
+	*  element[attr!=value]
+	*  element[attr^=value]
+	*  element[attr$=value]
+	*  element:<state>
+	*  element:not(<expression>)
+	*  element:first
+	*  element:last
+	*  element:odd
+	*  element:even
+	*  element element
+	*  element > element
+	*
+	* @class tinymce.ui.Selector
+	*/
 define("tinymce/ui/Selector", [
 	"tinymce/util/Class"
 ], function(Class) {
 	"use strict";
 
 	/**
-	 * Produces an array with a unique set of objects. It will not compare the values
-	 * but the references of the objects.
-	 *
-	 * @private
-	 * @method unqiue
-	 * @param {Array} array Array to make into an array with unique items.
-	 * @return {Array} Array with unique items.
-	 */
+		* Produces an array with a unique set of objects. It will not compare the values
+		* but the references of the objects.
+		*
+		* @private
+		* @method unqiue
+		* @param {Array} array Array to make into an array with unique items.
+		* @return {Array} Array with unique items.
+		*/
 	function unique(array) {
 		var uniqueItems = [], i = array.length, item;
 
@@ -81,12 +81,12 @@ define("tinymce/ui/Selector", [
 
 	var Selector = Class.extend({
 		/**
-		 * Constructs a new Selector instance.
-		 *
-		 * @constructor
-		 * @method init
-		 * @param {String} selector CSS like selector expression.
-		 */
+			* Constructs a new Selector instance.
+			*
+			* @constructor
+			* @method init
+			* @param {String} selector CSS like selector expression.
+			*/
 		init: function(selector) {
 			var match = this.match;
 
@@ -235,13 +235,13 @@ define("tinymce/ui/Selector", [
 		},
 
 		/**
-		 * Returns true/false if the selector matches the specified control.
-		 *
-		 * @method match
-		 * @param {tinymce.ui.Control} control Control to match agains the selector.
-		 * @param {Array} selectors Optional array of selectors, mostly used internally.
-		 * @return {Boolean} true/false state if the control matches or not.
-		 */
+			* Returns true/false if the selector matches the specified control.
+			*
+			* @method match
+			* @param {tinymce.ui.Control} control Control to match agains the selector.
+			* @param {Array} selectors Optional array of selectors, mostly used internally.
+			* @return {Boolean} true/false state if the control matches or not.
+			*/
 		match: function(control, selectors) {
 			var i, l, si, sl, selector, fi, fl, filters, index, length, siblings, count, item;
 
@@ -299,12 +299,12 @@ define("tinymce/ui/Selector", [
 		},
 
 		/**
-		 * Returns a tinymce.ui.Collection with matches of the specified selector inside the specified container.
-		 *
-		 * @method find
-		 * @param {tinymce.ui.Control} container Container to look for items in.
-		 * @return {tinymce.ui.Collection} Collection with matched elements.
-		 */
+			* Returns a tinymce.ui.Collection with matches of the specified selector inside the specified container.
+			*
+			* @method find
+			* @param {tinymce.ui.Control} container Container to look for items in.
+			* @return {tinymce.ui.Collection} Collection with matched elements.
+			*/
 		find: function(container) {
 			var matches = [], i, l, selectors = this._selectors;
 

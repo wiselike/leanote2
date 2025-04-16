@@ -1,21 +1,21 @@
 /**
- * ColorBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ColorBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This widget lets you enter colors and browse for colors by pressing the color button. It also displays
- * a preview of the current color.
- *
- * @-x-less ColorBox.less
- * @class tinymce.ui.ColorBox
- * @extends tinymce.ui.ComboBox
- */
+	* This widget lets you enter colors and browse for colors by pressing the color button. It also displays
+	* a preview of the current color.
+	*
+	* @-x-less ColorBox.less
+	* @class tinymce.ui.ColorBox
+	* @extends tinymce.ui.ComboBox
+	*/
 define("tinymce/ui/ColorBox", [
 	"tinymce/ui/ComboBox"
 ], function(ComboBox) {
@@ -23,11 +23,11 @@ define("tinymce/ui/ColorBox", [
 
 	return ComboBox.extend({
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 

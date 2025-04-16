@@ -1,20 +1,20 @@
 /**
- * Window.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Window.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new window.
- *
- * @-x-less Window.less
- * @class tinymce.ui.Window
- * @extends tinymce.ui.FloatPanel
- */
+	* Creates a new window.
+	*
+	* @-x-less Window.less
+	* @class tinymce.ui.Window
+	* @extends tinymce.ui.FloatPanel
+	*/
 define("tinymce/ui/Window", [
 	"tinymce/ui/FloatPanel",
 	"tinymce/ui/Panel",
@@ -43,11 +43,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -95,11 +95,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the current container.
-		 * This is invoked by the reflow method and shouldn't be called directly.
-		 *
-		 * @method recalc
-		 */
+			* Recalculates the positions of the controls in the current container.
+			* This is invoked by the reflow method and shouldn't be called directly.
+			*
+			* @method recalc
+			*/
 		recalc: function() {
 			var self = this, statusbar = self.statusbar, layoutRect, width, x, needsRecalc;
 
@@ -141,13 +141,13 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, layoutRect = self._super(), deltaH = 0, headEl;
 
@@ -182,11 +182,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, id = self._id, prefix = self.classPrefix;
 			var settings = self.settings, headerHtml = '', footerHtml = '', html = settings.html;
@@ -230,12 +230,12 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Switches the window fullscreen mode.
-		 *
-		 * @method fullscreen
-		 * @param {Boolean} state True/false state.
-		 * @return {tinymce.ui.Window} Current window instance.
-		 */
+			* Switches the window fullscreen mode.
+			*
+			* @method fullscreen
+			* @param {Boolean} state True/false state.
+			* @return {tinymce.ui.Window} Current window instance.
+			*/
 		fullscreen: function(state) {
 			var self = this, documentElement = document.documentElement, slowRendering, prefix = self.classPrefix, layoutRect;
 
@@ -297,10 +297,10 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, startPos;
 
@@ -337,21 +337,21 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Fires a submit event with the serialized form.
-		 *
-		 * @method submit
-		 * @return {Object} Event arguments object.
-		 */
+			* Fires a submit event with the serialized form.
+			*
+			* @method submit
+			* @return {Object} Event arguments object.
+			*/
 		submit: function() {
 			return this.fire('submit', {data: this.toJSON()});
 		},
 
 		/**
-		 * Removes the current control from DOM and from UI collections.
-		 *
-		 * @method remove
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Removes the current control from DOM and from UI collections.
+			*
+			* @method remove
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		remove: function() {
 			var self = this, prefix = self.classPrefix;
 
@@ -369,11 +369,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Returns the contentWindow object of the iframe if it exists.
-		 *
-		 * @method getContentWindow
-		 * @return {Window} window object or null.
-		 */
+			* Returns the contentWindow object of the iframe if it exists.
+			*
+			* @method getContentWindow
+			* @return {Window} window object or null.
+			*/
 		getContentWindow: function() {
 			var ifr = this.getEl().getElementsByTagName('iframe')[0];
 			return ifr ? ifr.contentWindow : null;

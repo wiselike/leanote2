@@ -1,24 +1,24 @@
 /**
- * EventDispatcher.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EventDispatcher.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class lets you add/remove and fire events by name on the specified scope. This makes
- * it easy to add event listener logic to any class.
- *
- * @class tinymce.util.EventDispatcher
- * @example
- *  var eventDispatcher = new EventDispatcher();
- *
- *  eventDispatcher.on('click', function() {console.log('data');});
- *  eventDispatcher.fire('click', {data: 123});
- */
+	* This class lets you add/remove and fire events by name on the specified scope. This makes
+	* it easy to add event listener logic to any class.
+	*
+	* @class tinymce.util.EventDispatcher
+	* @example
+	*  var eventDispatcher = new EventDispatcher();
+	*
+	*  eventDispatcher.on('click', function() {console.log('data');});
+	*  eventDispatcher.fire('click', {data: 123});
+	*/
 define("tinymce/util/EventDispatcher", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -46,15 +46,15 @@ define("tinymce/util/EventDispatcher", [
 		toggleEvent = settings.toggleEvent || returnFalse;
 
 		/**
-		 * Fires the specified event by name.
-		 *
-		 * @method fire
-		 * @param {String} name Name of the event to fire.
-		 * @param {Object?} args Event arguments.
-		 * @return {Object} Event args instance passed in.
-		 * @example
-		 * instance.fire('event', {...});
-		 */
+			* Fires the specified event by name.
+			*
+			* @method fire
+			* @param {String} name Name of the event to fire.
+			* @param {Object?} args Event arguments.
+			* @return {Object} Event args instance passed in.
+			* @example
+			* instance.fire('event', {...});
+			*/
 		function fire(name, args) {
 			var handlers, i, l, callback;
 
@@ -122,18 +122,18 @@ define("tinymce/util/EventDispatcher", [
 		}
 
 		/**
-		 * Binds an event listener to a specific event by name.
-		 *
-		 * @method on
-		 * @param {String} name Event name or space separated list of events to bind.
-		 * @param {callback} callback Callback to be executed when the event occurs.
-		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * instance.on('event', function(e) {
-		 *     // Callback logic
-		 * });
-		 */
+			* Binds an event listener to a specific event by name.
+			*
+			* @method on
+			* @param {String} name Event name or space separated list of events to bind.
+			* @param {callback} callback Callback to be executed when the event occurs.
+			* @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
+			* @return {Object} Current class instance.
+			* @example
+			* instance.on('event', function(e) {
+			*     // Callback logic
+			* });
+			*/
 		function on(name, callback, prepend, extra) {
 			var handlers, names, i;
 
@@ -172,22 +172,22 @@ define("tinymce/util/EventDispatcher", [
 		}
 
 		/**
-		 * Unbinds an event listener to a specific event by name.
-		 *
-		 * @method off
-		 * @param {String?} name Name of the event to unbind.
-		 * @param {callback?} callback Callback to unbind.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * // Unbind specific callback
-		 * instance.off('event', handler);
-		 *
-		 * // Unbind all listeners by name
-		 * instance.off('event');
-		 *
-		 * // Unbind all events
-		 * instance.off();
-		 */
+			* Unbinds an event listener to a specific event by name.
+			*
+			* @method off
+			* @param {String?} name Name of the event to unbind.
+			* @param {callback?} callback Callback to unbind.
+			* @return {Object} Current class instance.
+			* @example
+			* // Unbind specific callback
+			* instance.off('event', handler);
+			*
+			* // Unbind all listeners by name
+			* instance.off('event');
+			*
+			* // Unbind all events
+			* instance.off();
+			*/
 		function off(name, callback) {
 			var i, handlers, bindingName, names, hi;
 
@@ -241,30 +241,30 @@ define("tinymce/util/EventDispatcher", [
 		}
 
 		/**
-		 * Binds an event listener to a specific event by name
-		 * and automatically unbind the event once the callback fires.
-		 *
-		 * @method once
-		 * @param {String} name Event name or space separated list of events to bind.
-		 * @param {callback} callback Callback to be executed when the event occurs.
-		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * instance.once('event', function(e) {
-		 *     // Callback logic
-		 * });
-		 */
+			* Binds an event listener to a specific event by name
+			* and automatically unbind the event once the callback fires.
+			*
+			* @method once
+			* @param {String} name Event name or space separated list of events to bind.
+			* @param {callback} callback Callback to be executed when the event occurs.
+			* @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
+			* @return {Object} Current class instance.
+			* @example
+			* instance.once('event', function(e) {
+			*     // Callback logic
+			* });
+			*/
 		function once(name, callback, prepend) {
 			return on(name, callback, prepend, {once: true});
 		}
 
 		/**
-		 * Returns true/false if the dispatcher has a event of the specified name.
-		 *
-		 * @method has
-		 * @param {String} name Name of the event to check for.
-		 * @return {Boolean} true/false if the event exists or not.
-		 */
+			* Returns true/false if the dispatcher has a event of the specified name.
+			*
+			* @method has
+			* @param {String} name Name of the event to check for.
+			* @return {Boolean} true/false if the event exists or not.
+			*/
 		function has(name) {
 			name = name.toLowerCase();
 			return !(!bindings[name] || bindings[name].length === 0);
@@ -279,13 +279,13 @@ define("tinymce/util/EventDispatcher", [
 	}
 
 	/**
-	 * Returns true/false if the specified event name is a native browser event or not.
-	 *
-	 * @method isNative
-	 * @param {String} name Name to check if it's native.
-	 * @return {Boolean} true/false if the event is native or not.
-	 * @static
-	 */
+		* Returns true/false if the specified event name is a native browser event or not.
+		*
+		* @method isNative
+		* @param {String} name Name to check if it's native.
+		* @return {Boolean} true/false if the event is native or not.
+		* @static
+		*/
 	Dispatcher.isNative = function(name) {
 		return !!nativeEvents[name.toLowerCase()];
 	};

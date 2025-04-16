@@ -3,7 +3,7 @@
 	<h3 class="m-b-none">
 		{{msg . "theme"}}
 		<small>
-		(<a href="http://blog.leanote.com/post/545f1a5c380782565e000000" target="_blank">{{msg . "needHelp"}}</a> 
+		(<a href="http://blog.leanote.com/post/545f1a5c380782565e000000" target="_blank">{{msg . "needHelp"}}</a>
 		<a target="_blank" href="https://github.com/wiselike/leanote-of-unofficial/wiki/leanote-blog-theme-api">Leanote Blog Theme Api</a>)
 		</small>
 	</h3>
@@ -15,49 +15,49 @@
 		<div class="panel-body">
 			<div>
 			<form id="uploadAvatar" method="post" action="/member/blog/importTheme" enctype="multipart/form-data">
-		    	<div id="dropAvatar" class="dropzone">
-			    	<a class="btn btn-default btn-new" href="/member/blog/newTheme"><span class="fa fa-plus"></span> {{msg . "addTheme"}}</a>
-                    <a class="btn btn-success btn-choose-file">
+				<div id="dropAvatar" class="dropzone">
+					<a class="btn btn-default btn-new" href="/member/blog/newTheme"><span class="fa fa-plus"></span> {{msg . "addTheme"}}</a>
+					<a class="btn btn-success btn-choose-file">
 						<span class="fa fa-upload"></span> {{msg . "importTheme"}}(.zip)
-                    </a>
-                    <input type="file" name="file" multiple/>
-	                <div id="avatarUploadMsg"></div>
-                </div>
-            </form>
+					</a>
+					<input type="file" name="file" multiple/>
+					<div id="avatarUploadMsg"></div>
+				</div>
+			</form>
 			</div>
 			<p>
 			{{msg . "currentTheme"}}:
 			</p>
 			<div class="themes clearfix">
-				<div class="theme pull-left">	
-				    <a class="choose-theme" data-method="put" href="#" rel="nofollow">
-				      <div class="theme-thumb thumb active-theme">
-					      <img src="/{{.activeTheme.Path}}/images/screenshot.png" alt="preview">
-				      </div>
-				      <span class="theme-title">{{.activeTheme.Name}}</span>
+				<div class="theme pull-left">
+					<a class="choose-theme" data-method="put" href="#" rel="nofollow">
+						<div class="theme-thumb thumb active-theme">
+							<img src="/{{.activeTheme.Path}}/images/screenshot.png" alt="preview">
+						</div>
+						<span class="theme-title">{{.activeTheme.Name}}</span>
 					</a>
-				    <span class="theme-author">
-				      By: <a href="{{.activeTheme.AuthorUrl}}" target="_blank">{{.activeTheme.Author}}</a>
-				    </span>
-				    <div class="theme-btns">
-				    	<div class="btn-group" data-id="{{.activeTheme.ThemeId.Hex}}">
-					    	<a class="btn btn-default btn-sm btn-export"><span class="fa fa-download"></span> {{msg $ "export"}}</a>
-					    	<!-- 必须是自己的主题 -->
-					    	{{if .activeTheme.ThemeId}}
-						    	<a class="btn btn-default btn-sm" href="/preview?themeId={{.activeTheme.ThemeId.Hex}}" target="_blank"><span class="fa fa-eye"></span> {{msg $ "preview"}}</a>
-					    	{{end}}
-					    	<a class="btn btn-primary btn-sm" target="_blank" href="/member/blog/updateTheme?themeId={{if .activeTheme.ThemeId}}{{.activeTheme.ThemeId.Hex}}{{end}}"><span class="fa fa-pencil"></span> {{msg $ "edit"}}</a>
-				    	</div>
-				    </div>
-			    </div>
-			    {{if .activeTheme.Info.Desc}}
-			    <!-- 描述 -->
-			    <div class="pull-left theme-desc">
-			    	{{.activeTheme.Info.Desc|raw}}
-			    </div>
-			    {{end}}
+					<span class="theme-author">
+						By: <a href="{{.activeTheme.AuthorUrl}}" target="_blank">{{.activeTheme.Author}}</a>
+					</span>
+					<div class="theme-btns">
+						<div class="btn-group" data-id="{{.activeTheme.ThemeId.Hex}}">
+							<a class="btn btn-default btn-sm btn-export"><span class="fa fa-download"></span> {{msg $ "export"}}</a>
+							<!-- 必须是自己的主题 -->
+							{{if .activeTheme.ThemeId}}
+								<a class="btn btn-default btn-sm" href="/preview?themeId={{.activeTheme.ThemeId.Hex}}" target="_blank"><span class="fa fa-eye"></span> {{msg $ "preview"}}</a>
+							{{end}}
+							<a class="btn btn-primary btn-sm" target="_blank" href="/member/blog/updateTheme?themeId={{if .activeTheme.ThemeId}}{{.activeTheme.ThemeId.Hex}}{{end}}"><span class="fa fa-pencil"></span> {{msg $ "edit"}}</a>
+						</div>
+					</div>
+				</div>
+				{{if .activeTheme.Info.Desc}}
+				<!-- 描述 -->
+				<div class="pull-left theme-desc">
+					{{.activeTheme.Info.Desc|raw}}
+				</div>
+				{{end}}
 			</div>
-			
+
 			<hr />
 			<p>
 			{{msg . "myOtherThemes"}}:
@@ -66,45 +66,45 @@
 				{{range $.otherThemes}}
 				{{if .ThemeId}}
 				<li class="theme">
-				    <a class="choose-theme" data-method="put" href="#" rel="nofollow">
-				      <div class="theme-thumb thumb">
-					      <img src="/{{.Path}}/images/screenshot.png" alt="preview">
-					      {{if .Info.Desc}}
-					      <div class="theme-desc-mask">
-					      	{{.Info.Desc|raw}}
-					      </div>
-					      {{end}}
-				      </div>
-				      <span class="theme-title">{{.Name}}</span>
+					<a class="choose-theme" data-method="put" href="#" rel="nofollow">
+						<div class="theme-thumb thumb">
+							<img src="/{{.Path}}/images/screenshot.png" alt="preview">
+							{{if .Info.Desc}}
+							<div class="theme-desc-mask">
+								{{.Info.Desc|raw}}
+							</div>
+							{{end}}
+						</div>
+						<span class="theme-title">{{.Name}}</span>
 					</a>
-				    <span class="theme-author">
-				      By: <a href="{{.AuthorUrl}}" target="_blank">{{.Author}}</a>
-				    </span>
-				    <div class="theme-btns">
-				    	<div class="btn-group" data-id="{{.ThemeId.Hex}}">
-					    	<a class="btn btn-default btn-sm btn-delete" data-loading-text="..."><span class="fa fa-remove"></span> {{msg $ "delete"}}</a>
-					    	<a class="btn btn-default btn-sm btn-export"><span class="fa fa-download"></span> {{msg $ "export"}}</a>
-					    	<a class="btn btn-default btn-sm" href="/preview?themeId={{.ThemeId.Hex}}" target="_blank"><span class="fa fa-eye"></span> {{msg $ "preview"}}</a>
-					    	<a class="btn btn-default btn-sm"  target="_blank" href="/member/blog/updateTheme?themeId={{.ThemeId.Hex}}"><span class="fa fa-pencil"></span> {{msg $ "edit"}}</a>
-					    	<a class="btn btn-primary btn-sm btn-active" data-loading-text="..."><span class="fa fa-check"></span> {{msg $ "use"}}</a>
-					    	{{if $.isAdmin}}
-						    	<a class="btn btn-default btn-sm btn-public" data-loading-text="...">
-						    	{{if .IsDefault}}
-							    	公开
-						    	{{else}}
-						    		私有
-						    	{{end}}
-						    	</a>
-					    	{{end}}
-				    	</div>
-				    </div>
+					<span class="theme-author">
+						By: <a href="{{.AuthorUrl}}" target="_blank">{{.Author}}</a>
+					</span>
+					<div class="theme-btns">
+						<div class="btn-group" data-id="{{.ThemeId.Hex}}">
+							<a class="btn btn-default btn-sm btn-delete" data-loading-text="..."><span class="fa fa-remove"></span> {{msg $ "delete"}}</a>
+							<a class="btn btn-default btn-sm btn-export"><span class="fa fa-download"></span> {{msg $ "export"}}</a>
+							<a class="btn btn-default btn-sm" href="/preview?themeId={{.ThemeId.Hex}}" target="_blank"><span class="fa fa-eye"></span> {{msg $ "preview"}}</a>
+							<a class="btn btn-default btn-sm"  target="_blank" href="/member/blog/updateTheme?themeId={{.ThemeId.Hex}}"><span class="fa fa-pencil"></span> {{msg $ "edit"}}</a>
+							<a class="btn btn-primary btn-sm btn-active" data-loading-text="..."><span class="fa fa-check"></span> {{msg $ "use"}}</a>
+							{{if $.isAdmin}}
+								<a class="btn btn-default btn-sm btn-public" data-loading-text="...">
+								{{if .IsDefault}}
+									公开
+								{{else}}
+									私有
+								{{end}}
+								</a>
+							{{end}}
+						</div>
+					</div>
 				</li>
 				{{end}}
 				{{else}}
 					{{msg $ "none"}}
 				{{end}}
 			</ul>
-		
+
 			<hr />
 			<p>
 			{{msg . "leanoteThemeMarket"}}:
@@ -112,23 +112,23 @@
 			<ul class="themes">
 				{{range $.optionThemes}}
 				<li class="theme">
-				    <a class="choose-theme" data-method="put" href="#" rel="nofollow">
-				      <div class="theme-thumb thumb">
-					      <img src="/{{.Path}}/images/screenshot.png" alt="preview">
-					      {{if .Info.Desc}}
-					      <div class="theme-desc-mask">
-					      	{{.Info.Desc|raw}}
-					      </div>
-					      {{end}}
-				      </div>
-				      <span class="theme-title">{{.Name}}</span>
+					<a class="choose-theme" data-method="put" href="#" rel="nofollow">
+						<div class="theme-thumb thumb">
+							<img src="/{{.Path}}/images/screenshot.png" alt="preview">
+							{{if .Info.Desc}}
+							<div class="theme-desc-mask">
+								{{.Info.Desc|raw}}
+							</div>
+							{{end}}
+						</div>
+						<span class="theme-title">{{.Name}}</span>
 					</a>
-				    <span class="theme-author">
-				      By: <a href="{{.AuthorUrl}}" target="_blank">{{.Author}}</a>
-				    </span>
-				    <p class="theme-btns" data-id="{{.ThemeId.Hex}}">
-				    	<a class="btn btn-primary btn-sm btn-install"><span class="fa fa-gear"></span> {{msg $ "install"}}</a>
-				    </p>
+					<span class="theme-author">
+						By: <a href="{{.AuthorUrl}}" target="_blank">{{.Author}}</a>
+					</span>
+					<p class="theme-btns" data-id="{{.ThemeId.Hex}}">
+						<a class="btn btn-primary btn-sm btn-install"><span class="fa fa-gear"></span> {{msg $ "install"}}</a>
+					</p>
 				</li>
 				{{end}}
 			</ul>
@@ -229,10 +229,10 @@ $(".btn-public").click(function() {
 // 导入主题
 require.config({
 	baseUrl: '/public',
-    paths: {
-    	'import_theme': 'member/js/import_theme',
-    	'fileupload': 'js/plugins/libs-min/fileupload',
-    },
+	paths: {
+		'import_theme': 'member/js/import_theme',
+		'fileupload': 'js/plugins/libs-min/fileupload',
+	},
 });
 $(function() {
 	require(['import_theme'], function(import_theme) {});

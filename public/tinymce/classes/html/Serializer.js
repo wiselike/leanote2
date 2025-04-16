@@ -1,34 +1,34 @@
 /**
- * Serializer.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Serializer.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to serialize down the DOM tree into a string using a Writer instance.
- *
- *
- * @example
- * new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
- * @class tinymce.html.Serializer
- * @version 3.4
- */
+	* This class is used to serialize down the DOM tree into a string using a Writer instance.
+	*
+	*
+	* @example
+	* new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
+	* @class tinymce.html.Serializer
+	* @version 3.4
+	*/
 define("tinymce/html/Serializer", [
 	"tinymce/html/Writer",
 	"tinymce/html/Schema"
 ], function(Writer, Schema) {
 	/**
-	 * Constructs a new Serializer instance.
-	 *
-	 * @constructor
-	 * @method Serializer
-	 * @param {Object} settings Name/value settings object.
-	 * @param {tinymce.html.Schema} schema Schema instance to use.
-	 */
+		* Constructs a new Serializer instance.
+		*
+		* @constructor
+		* @method Serializer
+		* @param {Object} settings Name/value settings object.
+		* @param {tinymce.html.Schema} schema Schema instance to use.
+		*/
 	return function(settings, schema) {
 		var self = this, writer = new Writer(settings);
 
@@ -39,14 +39,14 @@ define("tinymce/html/Serializer", [
 		self.writer = writer;
 
 		/**
-		 * Serializes the specified node into a string.
-		 *
-		 * @example
-		 * new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
-		 * @method serialize
-		 * @param {tinymce.html.Node} node Node instance to serialize.
-		 * @return {String} String with HTML based on DOM tree.
-		 */
+			* Serializes the specified node into a string.
+			*
+			* @example
+			* new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
+			* @method serialize
+			* @param {tinymce.html.Node} node Node instance to serialize.
+			* @return {String} String with HTML based on DOM tree.
+			*/
 		self.serialize = function(node) {
 			var handlers, validate;
 

@@ -175,65 +175,65 @@
 }
 
 @media screen and (max-width:700px) {
-	#previewAttrs {
-		display: none;
-	}
-	#drop {
-		min-height: initial;
-		padding: 10px 0;
-	}
-	#drop a {
-		position: initial;
-		margin: auto;
-	}
-	#url form {
-		margin: 0 !important;
-		margin: auto;
-	}
-	.form-inline .form-group {
-		display: inline-block;
-		margin-bottom: 0;
-		vertical-align: middle;
-	}
-	.form-inline .form-control {
-		width: auto;
-		display: inline-block;
-	}
-	#preview li:nth-child(3n),
-	#preview li:nth-child(4n),
-	#preview li:nth-child(5),
-	#preview li:nth-child(7),
-	#preview li:nth-child(10)
-	 {
-		display: none;
-	}
-	#imageList li {
-	  width: 90px;
-	}
+  #previewAttrs {
+    display: none;
+  }
+  #drop {
+    min-height: initial;
+    padding: 10px 0;
+  }
+  #drop a {
+    position: initial;
+    margin: auto;
+  }
+  #url form {
+    margin: 0 !important;
+    margin: auto;
+  }
+  .form-inline .form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+  .form-inline .form-control {
+    width: auto;
+    display: inline-block;
+  }
+  #preview li:nth-child(3n),
+  #preview li:nth-child(4n),
+  #preview li:nth-child(5),
+  #preview li:nth-child(7),
+  #preview li:nth-child(10)
+   {
+    display: none;
+  }
+  #imageList li {
+    width: 90px;
+  }
 }
 #imageUrlForm {
-	min-height: 260px;
-	text-align: center;
-	padding-top: 100px;
+  min-height: 260px;
+  text-align: center;
+  padding-top: 100px;
 }
 
 .md {
-	position: relative;
-	height: 350px;
-	overflow: hidden;
+  position: relative;
+  height: 350px;
+  overflow: hidden;
 }
 .md #previewAttrs {
-	display: none;
-	
+  display: none;
+
 }
 .md #preview {
-	border: none;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	z-index: 3;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
 }
 
 .md #drop {
-	min-height: 250px;
+  min-height: 250px;
 }

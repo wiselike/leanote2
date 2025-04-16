@@ -1,19 +1,19 @@
 /**
- * EditorObservable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EditorObservable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This mixin contains the event logic for the tinymce.Editor class.
- *
- * @mixin tinymce.EditorObservable
- * @extends tinymce.util.Observable
- */
+	* This mixin contains the event logic for the tinymce.Editor class.
+	*
+	* @mixin tinymce.EditorObservable
+	* @extends tinymce.util.Observable
+	*/
 define("tinymce/EditorObservable", [
 	"tinymce/util/Observable",
 	"tinymce/dom/DOMUtils",
@@ -22,15 +22,15 @@ define("tinymce/EditorObservable", [
 	var DOM = DOMUtils.DOM, customEventRootDelegates;
 
 	/**
-	 * Returns the event target so for the specified event. Some events fire
-	 * only on document, some fire on documentElement etc. This also handles the
-	 * custom event root setting where it returns that element instead of the body.
-	 *
-	 * @private
-	 * @param {tinymce.Editor} editor Editor instance to get event target from.
-	 * @param {String} eventName Name of the event for example "click".
-	 * @return {Element/Document} HTML Element or document target to bind on.
-	 */
+		* Returns the event target so for the specified event. Some events fire
+		* only on document, some fire on documentElement etc. This also handles the
+		* custom event root setting where it returns that element instead of the body.
+		*
+		* @private
+		* @param {tinymce.Editor} editor Editor instance to get event target from.
+		* @param {String} eventName Name of the event for example "click".
+		* @return {Element/Document} HTML Element or document target to bind on.
+		*/
 	function getEventTarget(editor, eventName) {
 		if (eventName == 'selectionchange') {
 			return editor.getDoc();
@@ -55,13 +55,13 @@ define("tinymce/EditorObservable", [
 	}
 
 	/**
-	 * Binds a event delegate for the specified name this delegate will fire
-	 * the event to the editor dispatcher.
-	 *
-	 * @private
-	 * @param {tinymce.Editor} editor Editor instance to get event target from.
-	 * @param {String} eventName Name of the event for example "click".
-	 */
+		* Binds a event delegate for the specified name this delegate will fire
+		* the event to the editor dispatcher.
+		*
+		* @private
+		* @param {tinymce.Editor} editor Editor instance to get event target from.
+		* @param {String} eventName Name of the event for example "click".
+		*/
 	function bindEventDelegate(editor, eventName) {
 		var eventRootElm = getEventTarget(editor, eventName), delegate;
 
@@ -125,10 +125,10 @@ define("tinymce/EditorObservable", [
 
 	var EditorObservable = {
 		/**
-		 * Bind any pending event delegates. This gets executed after the target body/document is created.
-		 *
-		 * @private
-		 */
+			* Bind any pending event delegates. This gets executed after the target body/document is created.
+			*
+			* @private
+			*/
 		bindPendingEventDelegates: function() {
 			var self = this;
 
@@ -138,11 +138,11 @@ define("tinymce/EditorObservable", [
 		},
 
 		/**
-		 * Toggles a native event on/off this is called by the EventDispatcher when
-		 * the first native event handler is added and when the last native event handler is removed.
-		 *
-		 * @private
-		 */
+			* Toggles a native event on/off this is called by the EventDispatcher when
+			* the first native event handler is added and when the last native event handler is removed.
+			*
+			* @private
+			*/
 		toggleNativeEvent: function(name, state) {
 			var self = this;
 
@@ -172,10 +172,10 @@ define("tinymce/EditorObservable", [
 		},
 
 		/**
-		 * Unbinds all native event handlers that means delegates, custom events bound using the Events API etc.
-		 *
-		 * @private
-		 */
+			* Unbinds all native event handlers that means delegates, custom events bound using the Events API etc.
+			*
+			* @private
+			*/
 		unbindAllNativeEvents: function() {
 			var self = this, name;
 

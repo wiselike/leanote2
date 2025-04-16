@@ -1,27 +1,27 @@
 /**
- * GridLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* GridLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This layout manager places controls in a grid.
- *
- * @setting {Number} spacing Spacing between controls.
- * @setting {Number} spacingH Horizontal spacing between controls.
- * @setting {Number} spacingV Vertical spacing between controls.
- * @setting {Number} columns Number of columns to use.
- * @setting {String/Array} alignH start|end|center|stretch or array of values for each column.
- * @setting {String/Array} alignV start|end|center|stretch or array of values for each column.
- * @setting {String} pack start|end
- *
- * @class tinymce.ui.GridLayout
- * @extends tinymce.ui.AbsoluteLayout
- */
+	* This layout manager places controls in a grid.
+	*
+	* @setting {Number} spacing Spacing between controls.
+	* @setting {Number} spacingH Horizontal spacing between controls.
+	* @setting {Number} spacingV Vertical spacing between controls.
+	* @setting {Number} columns Number of columns to use.
+	* @setting {String/Array} alignH start|end|center|stretch or array of values for each column.
+	* @setting {String/Array} alignV start|end|center|stretch or array of values for each column.
+	* @setting {String} pack start|end
+	*
+	* @class tinymce.ui.GridLayout
+	* @extends tinymce.ui.AbsoluteLayout
+	*/
 define("tinymce/ui/GridLayout", [
 	"tinymce/ui/AbsoluteLayout"
 ], function(AbsoluteLayout) {
@@ -29,11 +29,11 @@ define("tinymce/ui/GridLayout", [
 
 	return AbsoluteLayout.extend({
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function(container) {
 			var settings = container.settings, rows, cols, items, contLayoutRect, width, height, rect,
 				ctrlLayoutRect, ctrl, x, y, posX, posY, ctrlSettings, contPaddingBox, align, spacingH, spacingV, alignH, alignV, maxX, maxY,

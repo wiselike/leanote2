@@ -1,23 +1,23 @@
 /**
- * Node.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Node.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is a minimalistic implementation of a DOM like node used by the DomParser class.
- *
- * @example
- * var node = new tinymce.html.Node('strong', 1);
- * someRoot.append(node);
- *
- * @class tinymce.html.Node
- * @version 3.4
- */
+	* This class is a minimalistic implementation of a DOM like node used by the DomParser class.
+	*
+	* @example
+	* var node = new tinymce.html.Node('strong', 1);
+	* someRoot.append(node);
+	*
+	* @class tinymce.html.Node
+	* @version 3.4
+	*/
 define("tinymce/html/Node", [], function() {
 	var whiteSpaceRegExp = /^[ \t\r\n]*$/, typeLookup = {
 		'#text': 3,
@@ -57,13 +57,13 @@ define("tinymce/html/Node", [], function() {
 	}
 
 	/**
-	 * Constructs a new Node instance.
-	 *
-	 * @constructor
-	 * @method Node
-	 * @param {String} name Name of the node type.
-	 * @param {Number} type Numeric type representing the node.
-	 */
+		* Constructs a new Node instance.
+		*
+		* @constructor
+		* @method Node
+		* @param {String} name Name of the node type.
+		* @param {Number} type Numeric type representing the node.
+		*/
 	function Node(name, type) {
 		this.name = name;
 		this.type = type;
@@ -76,15 +76,15 @@ define("tinymce/html/Node", [], function() {
 
 	Node.prototype = {
 		/**
-		 * Replaces the current node with the specified one.
-		 *
-		 * @example
-		 * someNode.replace(someNewNode);
-		 *
-		 * @method replace
-		 * @param {tinymce.html.Node} node Node to replace the current node with.
-		 * @return {tinymce.html.Node} The old node that got replaced.
-		 */
+			* Replaces the current node with the specified one.
+			*
+			* @example
+			* someNode.replace(someNewNode);
+			*
+			* @method replace
+			* @param {tinymce.html.Node} node Node to replace the current node with.
+			* @return {tinymce.html.Node} The old node that got replaced.
+			*/
 		replace: function(node) {
 			var self = this;
 
@@ -99,18 +99,18 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Gets/sets or removes an attribute by name.
-		 *
-		 * @example
-		 * someNode.attr("name", "value"); // Sets an attribute
-		 * console.log(someNode.attr("name")); // Gets an attribute
-		 * someNode.attr("name", null); // Removes an attribute
-		 *
-		 * @method attr
-		 * @param {String} name Attribute name to set or get.
-		 * @param {String} value Optional value to set.
-		 * @return {String/tinymce.html.Node} String or undefined on a get operation or the current node on a set operation.
-		 */
+			* Gets/sets or removes an attribute by name.
+			*
+			* @example
+			* someNode.attr("name", "value"); // Sets an attribute
+			* console.log(someNode.attr("name")); // Gets an attribute
+			* someNode.attr("name", null); // Removes an attribute
+			*
+			* @method attr
+			* @param {String} name Attribute name to set or get.
+			* @param {String} value Optional value to set.
+			* @return {String/tinymce.html.Node} String or undefined on a get operation or the current node on a set operation.
+			*/
 		attr: function(name, value) {
 			var self = this, attrs, i, undef;
 
@@ -165,15 +165,15 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Does a shallow clones the node into a new node. It will also exclude id attributes since
-		 * there should only be one id per document.
-		 *
-		 * @example
-		 * var clonedNode = node.clone();
-		 *
-		 * @method clone
-		 * @return {tinymce.html.Node} New copy of the original node.
-		 */
+			* Does a shallow clones the node into a new node. It will also exclude id attributes since
+			* there should only be one id per document.
+			*
+			* @example
+			* var clonedNode = node.clone();
+			*
+			* @method clone
+			* @return {tinymce.html.Node} New copy of the original node.
+			*/
 		clone: function() {
 			var self = this, clone = new Node(self.name, self.type), i, l, selfAttrs, selfAttr, cloneAttrs;
 
@@ -202,13 +202,13 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Wraps the node in in another node.
-		 *
-		 * @example
-		 * node.wrap(wrapperNode);
-		 *
-		 * @method wrap
-		 */
+			* Wraps the node in in another node.
+			*
+			* @example
+			* node.wrap(wrapperNode);
+			*
+			* @method wrap
+			*/
 		wrap: function(wrapper) {
 			var self = this;
 
@@ -219,13 +219,13 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Unwraps the node in other words it removes the node but keeps the children.
-		 *
-		 * @example
-		 * node.unwrap();
-		 *
-		 * @method unwrap
-		 */
+			* Unwraps the node in other words it removes the node but keeps the children.
+			*
+			* @example
+			* node.unwrap();
+			*
+			* @method unwrap
+			*/
 		unwrap: function() {
 			var self = this, node, next;
 
@@ -239,14 +239,14 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Removes the node from it's parent.
-		 *
-		 * @example
-		 * node.remove();
-		 *
-		 * @method remove
-		 * @return {tinymce.html.Node} Current node that got removed.
-		 */
+			* Removes the node from it's parent.
+			*
+			* @example
+			* node.remove();
+			*
+			* @method remove
+			* @return {tinymce.html.Node} Current node that got removed.
+			*/
 		remove: function() {
 			var self = this, parent = self.parent, next = self.next, prev = self.prev;
 
@@ -278,15 +278,15 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Appends a new node as a child of the current node.
-		 *
-		 * @example
-		 * node.append(someNode);
-		 *
-		 * @method append
-		 * @param {tinymce.html.Node} node Node to append as a child of the current one.
-		 * @return {tinymce.html.Node} The node that got appended.
-		 */
+			* Appends a new node as a child of the current node.
+			*
+			* @example
+			* node.append(someNode);
+			*
+			* @method append
+			* @param {tinymce.html.Node} node Node to append as a child of the current one.
+			* @return {tinymce.html.Node} The node that got appended.
+			*/
 		append: function(node) {
 			var self = this, last;
 
@@ -309,17 +309,17 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Inserts a node at a specific position as a child of the current node.
-		 *
-		 * @example
-		 * parentNode.insert(newChildNode, oldChildNode);
-		 *
-		 * @method insert
-		 * @param {tinymce.html.Node} node Node to insert as a child of the current node.
-		 * @param {tinymce.html.Node} ref_node Reference node to set node before/after.
-		 * @param {Boolean} before Optional state to insert the node before the reference node.
-		 * @return {tinymce.html.Node} The node that got inserted.
-		 */
+			* Inserts a node at a specific position as a child of the current node.
+			*
+			* @example
+			* parentNode.insert(newChildNode, oldChildNode);
+			*
+			* @method insert
+			* @param {tinymce.html.Node} node Node to insert as a child of the current node.
+			* @param {tinymce.html.Node} ref_node Reference node to set node before/after.
+			* @param {Boolean} before Optional state to insert the node before the reference node.
+			* @return {tinymce.html.Node} The node that got inserted.
+			*/
 		insert: function(node, ref_node, before) {
 			var parent;
 
@@ -357,12 +357,12 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Get all children by name.
-		 *
-		 * @method getAll
-		 * @param {String} name Name of the child nodes to collect.
-		 * @return {Array} Array with child nodes matchin the specified name.
-		 */
+			* Get all children by name.
+			*
+			* @method getAll
+			* @param {String} name Name of the child nodes to collect.
+			* @return {Array} Array with child nodes matchin the specified name.
+			*/
 		getAll: function(name) {
 			var self = this, node, collection = [];
 
@@ -376,11 +376,11 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Removes all children of the current node.
-		 *
-		 * @method empty
-		 * @return {tinymce.html.Node} The current node that got cleared.
-		 */
+			* Removes all children of the current node.
+			*
+			* @method empty
+			* @return {tinymce.html.Node} The current node that got cleared.
+			*/
 		empty: function() {
 			var self = this, nodes, i, node;
 
@@ -407,14 +407,14 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Returns true/false if the node is to be considered empty or not.
-		 *
-		 * @example
-		 * node.isEmpty({img: true});
-		 * @method isEmpty
-		 * @param {Object} elements Name/value object with elements that are automatically treated as non empty elements.
-		 * @return {Boolean} true/false if the node is empty or not.
-		 */
+			* Returns true/false if the node is to be considered empty or not.
+			*
+			* @example
+			* node.isEmpty({img: true});
+			* @method isEmpty
+			* @param {Object} elements Name/value object with elements that are automatically treated as non empty elements.
+			* @return {Boolean} true/false if the node is empty or not.
+			*/
 		isEmpty: function(elements) {
 			var self = this, node = self.firstChild, i, name;
 
@@ -457,25 +457,25 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Walks to the next or previous node and returns that node or null if it wasn't found.
-		 *
-		 * @method walk
-		 * @param {Boolean} prev Optional previous node state defaults to false.
-		 * @return {tinymce.html.Node} Node that is next to or previous of the current node.
-		 */
+			* Walks to the next or previous node and returns that node or null if it wasn't found.
+			*
+			* @method walk
+			* @param {Boolean} prev Optional previous node state defaults to false.
+			* @return {tinymce.html.Node} Node that is next to or previous of the current node.
+			*/
 		walk: function(prev) {
 			return walk(this, null, prev);
 		}
 	};
 
 	/**
-	 * Creates a node of a specific type.
-	 *
-	 * @static
-	 * @method create
-	 * @param {String} name Name of the node type to create for example "b" or "#text".
-	 * @param {Object} attrs Name/value collection of attributes that will be applied to elements.
-	 */
+		* Creates a node of a specific type.
+		*
+		* @static
+		* @method create
+		* @param {String} name Name of the node type to create for example "b" or "#text".
+		* @param {Object} attrs Name/value collection of attributes that will be applied to elements.
+		*/
 	Node.create = function(name, attrs) {
 		var node, attrName;
 

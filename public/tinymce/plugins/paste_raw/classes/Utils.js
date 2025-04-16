@@ -1,18 +1,18 @@
 /**
- * Utils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Utils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contails various utility functions for the paste plugin.
- *
- * @class tinymce.pasteplugin.Utils
- */
+	* This class contails various utility functions for the paste plugin.
+	*
+	* @class tinymce.pasteplugin.Utils
+	*/
 define("tinymce/pasteplugin/Utils", [
 	"tinymce/util/Tools",
 	"tinymce/html/DomParser",
@@ -31,12 +31,12 @@ define("tinymce/pasteplugin/Utils", [
 	}
 
 	/**
-	 * Gets the innerText of the specified element. It will handle edge cases
-	 * and works better than textContent on Gecko.
-	 *
-	 * @param {String} html HTML string to get text from.
-	 * @return {String} String of text with line feeds.
-	 */
+		* Gets the innerText of the specified element. It will handle edge cases
+		* and works better than textContent on Gecko.
+		*
+		* @param {String} html HTML string to get text from.
+		* @return {String} String of text with line feeds.
+		*/
 	function innerText(html) {
 		var schema = new Schema(), domParser = new DomParser({}, schema), text = '';
 		var shortEndedElements = schema.getShortEndedElements();
@@ -95,11 +95,11 @@ define("tinymce/pasteplugin/Utils", [
 	}
 
 	/**
-	 * Trims the specified HTML by removing all WebKit fragments, all elements wrapping the body trailing BR elements etc.
-	 *
-	 * @param {String} html Html string to trim contents on.
-	 * @return {String} Html contents that got trimmed.
-	 */
+		* Trims the specified HTML by removing all WebKit fragments, all elements wrapping the body trailing BR elements etc.
+		*
+		* @param {String} html Html string to trim contents on.
+		* @return {String} Html contents that got trimmed.
+		*/
 	function trimHtml(html) {
 		function trimSpaces(all, s1, s2) {
 			// WebKit &nbsp; meant to preserve multiple spaces but instead inserted around all inline tags,

@@ -1,19 +1,19 @@
 /**
- * Widget.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Widget.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Widget base class a widget is a control that has a tooltip and some basic states.
- *
- * @class tinymce.ui.Widget
- * @extends tinymce.ui.Control
- */
+	* Widget base class a widget is a control that has a tooltip and some basic states.
+	*
+	* @class tinymce.ui.Widget
+	* @extends tinymce.ui.Control
+	*/
 define("tinymce/ui/Widget", [
 	"tinymce/ui/Control",
 	"tinymce/ui/Tooltip"
@@ -24,14 +24,14 @@ define("tinymce/ui/Widget", [
 
 	var Widget = Control.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} tooltip Tooltip text to display when hovering.
-		 * @setting {Boolean} autofocus True if the control should be focused when rendered.
-		 * @setting {String} text Text to display inside widget.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} tooltip Tooltip text to display when hovering.
+			* @setting {Boolean} autofocus True if the control should be focused when rendered.
+			* @setting {String} text Text to display inside widget.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -65,11 +65,11 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Returns the current tooltip instance.
-		 *
-		 * @method tooltip
-		 * @return {tinymce.ui.Tooltip} Tooltip instance.
-		 */
+			* Returns the current tooltip instance.
+			*
+			* @method tooltip
+			* @return {tinymce.ui.Tooltip} Tooltip instance.
+			*/
 		tooltip: function() {
 			if (!tooltip) {
 				tooltip = new Tooltip({type: 'tooltip'});
@@ -80,12 +80,12 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Sets/gets the active state of the widget.
-		 *
-		 * @method active
-		 * @param {Boolean} [state] State if the control is active.
-		 * @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
-		 */
+			* Sets/gets the active state of the widget.
+			*
+			* @method active
+			* @param {Boolean} [state] State if the control is active.
+			* @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
+			*/
 		active: function(state) {
 			var self = this, undef;
 
@@ -98,12 +98,12 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Sets/gets the disabled state of the widget.
-		 *
-		 * @method disabled
-		 * @param {Boolean} [state] State if the control is disabled.
-		 * @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
-		 */
+			* Sets/gets the disabled state of the widget.
+			*
+			* @method disabled
+			* @param {Boolean} [state] State if the control is disabled.
+			* @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
+			*/
 		disabled: function(state) {
 			var self = this, undef;
 
@@ -116,10 +116,10 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, settings = self.settings;
 
@@ -138,11 +138,11 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Removes the current control from DOM and from UI collections.
-		 *
-		 * @method remove
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Removes the current control from DOM and from UI collections.
+			*
+			* @method remove
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		remove: function() {
 			this._super();
 

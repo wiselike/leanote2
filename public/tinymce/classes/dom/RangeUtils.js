@@ -1,18 +1,18 @@
 /**
- * RangeUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* RangeUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains a few utility methods for ranges.
- *
- * @class tinymce.dom.RangeUtils
- */
+	* This class contains a few utility methods for ranges.
+	*
+	* @class tinymce.dom.RangeUtils
+	*/
 define("tinymce/dom/RangeUtils", [
 	"tinymce/util/Tools",
 	"tinymce/dom/TreeWalker"
@@ -35,12 +35,12 @@ define("tinymce/dom/RangeUtils", [
 
 	function RangeUtils(dom) {
 		/**
-		 * Walks the specified range like object and executes the callback for each sibling collection it finds.
-		 *
-		 * @method walk
-		 * @param {Object} rng Range like object.
-		 * @param {function} callback Callback function to execute for each sibling collection.
-		 */
+			* Walks the specified range like object and executes the callback for each sibling collection it finds.
+			*
+			* @method walk
+			* @param {Object} rng Range like object.
+			* @param {function} callback Callback function to execute for each sibling collection.
+			*/
 		this.walk = function(rng, callback) {
 			var startContainer = rng.startContainer,
 				startOffset = rng.startOffset,
@@ -61,12 +61,12 @@ define("tinymce/dom/RangeUtils", [
 			}
 
 			/**
-			 * Excludes start/end text node if they are out side the range
-			 *
-			 * @private
-			 * @param {Array} nodes Nodes to exclude items from.
-			 * @return {Array} Array with nodes excluding the start/end container if needed.
-			 */
+				* Excludes start/end text node if they are out side the range
+				*
+				* @private
+				* @param {Array} nodes Nodes to exclude items from.
+				* @return {Array} Array with nodes excluding the start/end container if needed.
+				*/
 			function exclude(nodes) {
 				var node;
 
@@ -86,13 +86,13 @@ define("tinymce/dom/RangeUtils", [
 			}
 
 			/**
-			 * Collects siblings
-			 *
-			 * @private
-			 * @param {Node} node Node to collect siblings from.
-			 * @param {String} name Name of the sibling to check for.
-			 * @return {Array} Array of collected siblings.
-			 */
+				* Collects siblings
+				*
+				* @private
+				* @param {Node} node Node to collect siblings from.
+				* @param {String} name Name of the sibling to check for.
+				* @return {Array} Array of collected siblings.
+				*/
 			function collectSiblings(node, name, end_node) {
 				var siblings = [];
 
@@ -104,13 +104,13 @@ define("tinymce/dom/RangeUtils", [
 			}
 
 			/**
-			 * Find an end point this is the node just before the common ancestor root.
-			 *
-			 * @private
-			 * @param {Node} node Node to start at.
-			 * @param {Node} root Root/ancestor element to stop just before.
-			 * @return {Node} Node just before the root element.
-			 */
+				* Find an end point this is the node just before the common ancestor root.
+				*
+				* @private
+				* @param {Node} node Node to start at.
+				* @param {Node} root Root/ancestor element to stop just before.
+				* @return {Node} Node just before the root element.
+				*/
 			function findEndPoint(node, root) {
 				do {
 					if (node.parentNode == root) {
@@ -201,12 +201,12 @@ define("tinymce/dom/RangeUtils", [
 		};
 
 		/**
-		 * Splits the specified range at it's start/end points.
-		 *
-		 * @private
-		 * @param {Range/RangeObject} rng Range to split.
-		 * @return {Object} Range position object.
-		 */
+			* Splits the specified range at it's start/end points.
+			*
+			* @private
+			* @param {Range/RangeObject} rng Range to split.
+			* @return {Object} Range position object.
+			*/
 		this.split = function(rng) {
 			var startContainer = rng.startContainer,
 				startOffset = rng.startOffset,
@@ -255,12 +255,12 @@ define("tinymce/dom/RangeUtils", [
 		};
 
 		/**
-		 * Normalizes the specified range by finding the closest best suitable caret location.
-		 *
-		 * @private
-		 * @param {Range} rng Range to normalize.
-		 * @return {Boolean} True/false if the specified range was normalized or not.
-		 */
+			* Normalizes the specified range by finding the closest best suitable caret location.
+			*
+			* @private
+			* @param {Range} rng Range to normalize.
+			* @return {Boolean} True/false if the specified range was normalized or not.
+			*/
 		this.normalize = function(rng) {
 			var normalized, collapsed;
 
@@ -459,14 +459,14 @@ define("tinymce/dom/RangeUtils", [
 	}
 
 	/**
-	 * Compares two ranges and checks if they are equal.
-	 *
-	 * @static
-	 * @method compareRanges
-	 * @param {DOMRange} rng1 First range to compare.
-	 * @param {DOMRange} rng2 First range to compare.
-	 * @return {Boolean} true/false if the ranges are equal.
-	 */
+		* Compares two ranges and checks if they are equal.
+		*
+		* @static
+		* @method compareRanges
+		* @param {DOMRange} rng1 First range to compare.
+		* @param {DOMRange} rng2 First range to compare.
+		* @return {Boolean} true/false if the ranges are equal.
+		*/
 	RangeUtils.compareRanges = function(rng1, rng2) {
 		if (rng1 && rng2) {
 			// Compare native IE ranges
@@ -490,15 +490,15 @@ define("tinymce/dom/RangeUtils", [
 	};
 
 	/**
-	 * Gets the caret range for the given x/y location.
-	 *
-	 * @static
-	 * @method getCaretRangeFromPoint
-	 * @param {Number} x X coordinate for range
-	 * @param {Number} y Y coordinate for range
-	 * @param {Document} doc Document that x/y are relative to
-	 * @returns {Range} caret range
-	 */
+		* Gets the caret range for the given x/y location.
+		*
+		* @static
+		* @method getCaretRangeFromPoint
+		* @param {Number} x X coordinate for range
+		* @param {Number} y Y coordinate for range
+		* @param {Document} doc Document that x/y are relative to
+		* @returns {Range} caret range
+		*/
 	RangeUtils.getCaretRangeFromPoint = function(x, y, doc) {
 		var rng, point;
 

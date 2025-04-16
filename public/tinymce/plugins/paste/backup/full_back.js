@@ -1,6 +1,6 @@
 
- * Compiled inline version. (Library mode)
- */
+	* Compiled inline version. (Library mode)
+	*/
 
 /*jshint smarttabs:true, undef:true, latedef:true, curly:true, bitwise:true, camelcase:true */
 /*globals $code */
@@ -83,21 +83,21 @@
 // Included from: js/tinymce/plugins/paste/classes/Utils.js
 
 /**
- * Utils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Utils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contails various utility functions for the paste plugin.
- *
- * @class tinymce.pasteplugin.Clipboard
- * @private
- */
+	* This class contails various utility functions for the paste plugin.
+	*
+	* @class tinymce.pasteplugin.Clipboard
+	* @private
+	*/
 define("tinymce/pasteplugin/Utils", [
 	"tinymce/util/Tools",
 	"tinymce/html/DomParser",
@@ -116,12 +116,12 @@ define("tinymce/pasteplugin/Utils", [
 	}
 
 	/**
-	 * Gets the innerText of the specified element. It will handle edge cases
-	 * and works better than textContent on Gecko.
-	 *
-	 * @param {String} html HTML string to get text from.
-	 * @return {String} String of text with line feeds.
-	 */
+		* Gets the innerText of the specified element. It will handle edge cases
+		* and works better than textContent on Gecko.
+		*
+		* @param {String} html HTML string to get text from.
+		* @return {String} String of text with line feeds.
+		*/
 	function innerText(html) {
 		var schema = new Schema(), domParser = new DomParser({}, schema), text = '';
 		var shortEndedElements = schema.getShortEndedElements();
@@ -184,32 +184,32 @@ define("tinymce/pasteplugin/Utils", [
 // Included from: js/tinymce/plugins/paste/classes/Clipboard.js
 
 /**
- * Clipboard.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Clipboard.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains logic for getting HTML contents out of the clipboard.
- *
- * We need to make a lot of ugly hacks to get the contents out of the clipboard since
- * the W3C Clipboard API is broken in all browsers: Gecko/WebKit/Blink. We might rewrite
- * this the way those API:s stabilize.
- *
- * Current implementation steps:
- *  1. On keydown with paste keys Ctrl+V or Shift+Insert create
- *     a paste bin element and move focus to that element.
- *  2. Wait for the browser to fire a "paste" event and get the contents out of the paste bin.
- *  3. Check if the paste was successful if true, process the HTML.
- *  (4). If the paste was unsuccessful use IE execCommand, Clipboard API, document.dataTransfer old WebKit API etc.
- * 
- * @class tinymce.pasteplugin.Clipboard
- * @private
- */
+	* This class contains logic for getting HTML contents out of the clipboard.
+	*
+	* We need to make a lot of ugly hacks to get the contents out of the clipboard since
+	* the W3C Clipboard API is broken in all browsers: Gecko/WebKit/Blink. We might rewrite
+	* this the way those API:s stabilize.
+	*
+	* Current implementation steps:
+	*  1. On keydown with paste keys Ctrl+V or Shift+Insert create
+	*     a paste bin element and move focus to that element.
+	*  2. Wait for the browser to fire a "paste" event and get the contents out of the paste bin.
+	*  3. Check if the paste was successful if true, process the HTML.
+	*  (4). If the paste was unsuccessful use IE execCommand, Clipboard API, document.dataTransfer old WebKit API etc.
+	*
+	* @class tinymce.pasteplugin.Clipboard
+	* @private
+	*/
 define("tinymce/pasteplugin/Clipboard", [
 	"tinymce/Env",
 	"tinymce/util/VK",
@@ -220,12 +220,12 @@ define("tinymce/pasteplugin/Clipboard", [
 		var pasteBinDefaultContent = '%MCEPASTEBIN%', keyboardPastePlainTextState;
 
 		/**
-		 * Pastes the specified HTML. This means that the HTML is filtered and then
-		 * inserted at the current selection in the editor. It will also fire paste events
-		 * for custom user filtering.
-		 *
-		 * @param {String} html HTML code to paste into the current selection.
-		 */
+			* Pastes the specified HTML. This means that the HTML is filtered and then
+			* inserted at the current selection in the editor. It will also fire paste events
+			* for custom user filtering.
+			*
+			* @param {String} html HTML code to paste into the current selection.
+			*/
 		// 粘贴HTML
 		// 当在pre下时不能粘贴成HTML
 		// life add text
@@ -277,13 +277,13 @@ define("tinymce/pasteplugin/Clipboard", [
 				}
 			}
 		}
-		
+
 		/**
-		 * Pastes the specified text. This means that the plain text is processed
-		 * and converted into BR and P elements. It will fire paste events for custom filtering.
-		 *
-		 * @param {String} text Text to paste as the current selection location.
-		 */
+			* Pastes the specified text. This means that the plain text is processed
+			* and converted into BR and P elements. It will fire paste events for custom filtering.
+			*
+			* @param {String} text Text to paste as the current selection location.
+			*/
 		function pasteText(text) {
 			var text2 = text;
 			text = editor.dom.encode(text).replace(/\r\n/g, '\n');
@@ -318,9 +318,9 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Creates a paste bin element and moves the selection into that element. It will also move the element offscreen
-		 * so that resize handles doesn't get produced on IE or Drag handles or Firefox.
-		 */
+			* Creates a paste bin element and moves the selection into that element. It will also move the element offscreen
+			* so that resize handles doesn't get produced on IE or Drag handles or Firefox.
+			*/
 		function createPasteBin() {
 			var dom = editor.dom, body = editor.getBody(), viewport = editor.dom.getViewPort(editor.getWin());
 			var scrollY = editor.inline ? body.scrollTop : viewport.y, height = editor.inline ? body.clientHeight : viewport.h;
@@ -350,8 +350,8 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Removes the paste bin if it exists.
-		 */
+			* Removes the paste bin if it exists.
+			*/
 		function removePasteBin() {
 			if (pasteBinElm) {
 				editor.dom.unbind(pasteBinElm);
@@ -367,21 +367,21 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Returns the contents of the paste bin as a HTML string.
-		 *
-		 * @return {String} Get the contents of the paste bin.
-		 */
+			* Returns the contents of the paste bin as a HTML string.
+			*
+			* @return {String} Get the contents of the paste bin.
+			*/
 		function getPasteBinHtml() {
 			return pasteBinElm ? pasteBinElm.innerHTML : pasteBinDefaultContent;
 		}
 
 		/**
-		 * Gets various content types out of the Clipboard API. It will also get the
-		 * plain text using older IE and WebKit API:s.
-		 *
-		 * @param {ClipboardEvent} clipboardEvent Event fired on paste.
-		 * @return {Object} Object with mime types and data for those mime types.
-		 */
+			* Gets various content types out of the Clipboard API. It will also get the
+			* plain text using older IE and WebKit API:s.
+			*
+			* @param {ClipboardEvent} clipboardEvent Event fired on paste.
+			* @return {Object} Object with mime types and data for those mime types.
+			*/
 		function getClipboardContent(clipboardEvent) {
 			var data = {}, clipboardData = clipboardEvent.clipboardData || editor.getDoc().dataTransfer;
 
@@ -425,7 +425,7 @@ define("tinymce/pasteplugin/Clipboard", [
 
 		editor.on('paste', function(e) {
 			var clipboardContent = getClipboardContent(e);
-			
+
 			var isKeyBoardPaste = new Date().getTime() - keyboardPasteTimeStamp < 100;
 			var plainTextMode = self.pasteFormat == "text" || keyboardPastePlainTextState;
 
@@ -488,21 +488,21 @@ define("tinymce/pasteplugin/Clipboard", [
 // Included from: js/tinymce/plugins/paste/classes/WordFilter.js
 
 /**
- * WordFilter.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* WordFilter.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class parses word HTML into proper TinyMCE markup.
- *
- * @class tinymce.pasteplugin.Quirks
- * @private
- */
+	* This class parses word HTML into proper TinyMCE markup.
+	*
+	* @class tinymce.pasteplugin.Quirks
+	* @private
+	*/
 define("tinymce/pasteplugin/WordFilter", [
 	"tinymce/util/Tools",
 	"tinymce/html/DomParser",
@@ -527,10 +527,10 @@ define("tinymce/pasteplugin/WordFilter", [
 			}
 
 			/**
-			 * Converts fake bullet and numbered lists to real semantic OL/UL.
-			 *
-			 * @param {tinymce.html.Node} node Root node to convert children of.
-			 */
+				* Converts fake bullet and numbered lists to real semantic OL/UL.
+				*
+				* @param {tinymce.html.Node} node Root node to convert children of.
+				*/
 			function convertFakeListsToProperLists(node) {
 				var currentListNode, prevListNode, lastLevel = 1;
 
@@ -754,23 +754,23 @@ define("tinymce/pasteplugin/WordFilter", [
 // Included from: js/tinymce/plugins/paste/classes/Quirks.js
 
 /**
- * Quirks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Quirks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains various fixes for browsers. These issues can not be feature
- * detected since we have no direct control over the clipboard. However we might be able
- * to remove some of these fixes once the browsers gets updated/fixed.
- *
- * @class tinymce.pasteplugin.Quirks
- * @private
- */
+	* This class contains various fixes for browsers. These issues can not be feature
+	* detected since we have no direct control over the clipboard. However we might be able
+	* to remove some of these fixes once the browsers gets updated/fixed.
+	*
+	* @class tinymce.pasteplugin.Quirks
+	* @private
+	*/
 define("tinymce/pasteplugin/Quirks", [
 	"tinymce/Env",
 	"tinymce/util/Tools",
@@ -787,14 +787,14 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * Removes WebKit fragment comments and converted-space spans.
-		 *
-		 * This:
-		 *   <!--StartFragment-->a<span class="Apple-converted-space">&nbsp;</span>b<!--EndFragment-->
-		 *
-		 * Becomes:
-		 *   a&nbsp;b
-		 */
+			* Removes WebKit fragment comments and converted-space spans.
+			*
+			* This:
+			*   <!--StartFragment-->a<span class="Apple-converted-space">&nbsp;</span>b<!--EndFragment-->
+			*
+			* Becomes:
+			*   a&nbsp;b
+			*/
 		function removeWebKitFragments(html) {
 			html = Utils.filter(html, [
 				/^[\s\S]*<!--StartFragment-->|<!--EndFragment-->[\s\S]*$/g,        // WebKit fragment
@@ -806,15 +806,15 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * Removes BR elements after block elements. IE9 has a nasty bug where it puts a BR element after each
-		 * block element when pasting from word. This removes those elements.
-		 *
-		 * This:
-		 *  <p>a</p><br><p>b</p>
-		 *
-		 * Becomes:
-		 *  <p>a</p><p>b</p>
-		 */
+			* Removes BR elements after block elements. IE9 has a nasty bug where it puts a BR element after each
+			* block element when pasting from word. This removes those elements.
+			*
+			* This:
+			*  <p>a</p><br><p>b</p>
+			*
+			* Becomes:
+			*  <p>a</p><p>b</p>
+			*/
 		function removeExplorerBrElementsAfterBlocks(html) {
 			// Only filter word specific content
 			if (!WordFilter.isWordContent(html)) {
@@ -849,14 +849,14 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * WebKit has a nasty bug where the all runtime styles gets added to style attributes when copy/pasting contents.
-		 * This fix solves that by simply removing the whole style attribute.
-		 *
-		 * Todo: This can be made smarter. Keeping styles that override existing ones etc.
-		 *
-		 * @param {String} content Content that needs to be processed.
-		 * @return {String} Processed contents.
-		 */
+			* WebKit has a nasty bug where the all runtime styles gets added to style attributes when copy/pasting contents.
+			* This fix solves that by simply removing the whole style attribute.
+			*
+			* Todo: This can be made smarter. Keeping styles that override existing ones etc.
+			*
+			* @param {String} content Content that needs to be processed.
+			* @return {String} Processed contents.
+			*/
 		function removeWebKitStyles(content) {
 			if (editor.settings.paste_remove_styles || editor.settings.paste_remove_styles_if_webkit !== false) {
 				content = content.replace(/ style=\"[^\"]+\"/g, '');
@@ -880,22 +880,22 @@ define("tinymce/pasteplugin/Quirks", [
 // Included from: js/tinymce/plugins/paste/classes/Plugin.js
 
 /**
- * Plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains the tinymce plugin logic for the paste plugin.
- *
- * @class tinymce.pasteplugin.Plugin
- * @private
- * 
- */
+	* This class contains the tinymce plugin logic for the paste plugin.
+	*
+	* @class tinymce.pasteplugin.Plugin
+	* @private
+	*
+	*/
 define("tinymce/pasteplugin/Plugin", [
 	"tinymce/PluginManager",
 	"tinymce/pasteplugin/Clipboard",

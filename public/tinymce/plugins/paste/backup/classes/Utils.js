@@ -1,19 +1,19 @@
 /**
- * Utils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Utils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contails various utility functions for the paste plugin.
- *
- * @class tinymce.pasteplugin.Clipboard
- * @private
- */
+	* This class contails various utility functions for the paste plugin.
+	*
+	* @class tinymce.pasteplugin.Clipboard
+	* @private
+	*/
 define("tinymce/pasteplugin/Utils", [
 	"tinymce/util/Tools",
 	"tinymce/html/DomParser",
@@ -32,12 +32,12 @@ define("tinymce/pasteplugin/Utils", [
 	}
 
 	/**
-	 * Gets the innerText of the specified element. It will handle edge cases
-	 * and works better than textContent on Gecko.
-	 *
-	 * @param {String} html HTML string to get text from.
-	 * @return {String} String of text with line feeds.
-	 */
+		* Gets the innerText of the specified element. It will handle edge cases
+		* and works better than textContent on Gecko.
+		*
+		* @param {String} html HTML string to get text from.
+		* @return {String} String of text with line feeds.
+		*/
 	function innerText(html) {
 		var schema = new Schema(), domParser = new DomParser({}, schema), text = '';
 		var shortEndedElements = schema.getShortEndedElements();

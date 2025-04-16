@@ -1,21 +1,21 @@
 /**
- * Compat.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Compat.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * TinyMCE core class.
- *
- * @static
- * @class tinymce
- * @borrow-members tinymce.EditorManager
- * @borrow-members tinymce.util.Tools
- */
+	* TinyMCE core class.
+	*
+	* @static
+	* @class tinymce
+	* @borrow-members tinymce.EditorManager
+	* @borrow-members tinymce.util.Tools
+	*/
 define("tinymce/Compat", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/dom/EventUtils",
@@ -27,11 +27,11 @@ define("tinymce/Compat", [
 	var tinymce = window.tinymce;
 
 	/**
-	 * @property {tinymce.dom.DOMUtils} DOM Global DOM instance.
-	 * @property {tinymce.dom.ScriptLoader} ScriptLoader Global ScriptLoader instance.
-	 * @property {tinymce.AddOnManager} PluginManager Global PluginManager instance.
-	 * @property {tinymce.AddOnManager} ThemeManager Global ThemeManager instance.
-	 */
+		* @property {tinymce.dom.DOMUtils} DOM Global DOM instance.
+		* @property {tinymce.dom.ScriptLoader} ScriptLoader Global ScriptLoader instance.
+		* @property {tinymce.AddOnManager} PluginManager Global PluginManager instance.
+		* @property {tinymce.AddOnManager} ThemeManager Global ThemeManager instance.
+		*/
 	tinymce.DOM = DOMUtils.DOM;
 	tinymce.ScriptLoader = ScriptLoader.ScriptLoader;
 	tinymce.PluginManager = AddOnManager.PluginManager;
@@ -54,31 +54,31 @@ define("tinymce/Compat", [
 // Describe the different namespaces
 
 /**
- * Root level namespace this contains classes directly releated to the TinyMCE editor.
- *
- * @namespace tinymce
- */
+	* Root level namespace this contains classes directly releated to the TinyMCE editor.
+	*
+	* @namespace tinymce
+	*/
 
 /**
- * Contains classes for handling the browsers DOM.
- *
- * @namespace tinymce.dom
- */
+	* Contains classes for handling the browsers DOM.
+	*
+	* @namespace tinymce.dom
+	*/
 
 /**
- * Contains html parser and serializer logic.
- *
- * @namespace tinymce.html
- */
+	* Contains html parser and serializer logic.
+	*
+	* @namespace tinymce.html
+	*/
 
 /**
- * Contains the different UI types such as buttons, listboxes etc.
- *
- * @namespace tinymce.ui
- */
+	* Contains the different UI types such as buttons, listboxes etc.
+	*
+	* @namespace tinymce.ui
+	*/
 
 /**
- * Contains various utility classes such as json parser, cookies etc.
- *
- * @namespace tinymce.util
- */
+	* Contains various utility classes such as json parser, cookies etc.
+	*
+	* @namespace tinymce.util
+	*/

@@ -1,39 +1,39 @@
 /**
- * WindowManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* WindowManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles the creation of native windows and dialogs. This class can be extended to provide for example inline dialogs.
- *
- * @class tinymce.WindowManager
- * @example
- * // Opens a new dialog with the file.htm file and the size 320x240
- * // It also adds a custom parameter this can be retrieved by using tinyMCEPopup.getWindowArg inside the dialog.
- * tinymce.activeEditor.windowManager.open({
- *    url: 'file.htm',
- *    width: 320,
- *    height: 240
- * }, {
- *    custom_param: 1
- * });
- *
- * // Displays an alert box using the active editors window manager instance
- * tinymce.activeEditor.windowManager.alert('Hello world!');
- *
- * // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
- * tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
- *    if (s)
- *       tinymce.activeEditor.windowManager.alert("Ok");
- *    else
- *       tinymce.activeEditor.windowManager.alert("Cancel");
- * });
- */
+	* This class handles the creation of native windows and dialogs. This class can be extended to provide for example inline dialogs.
+	*
+	* @class tinymce.WindowManager
+	* @example
+	* // Opens a new dialog with the file.htm file and the size 320x240
+	* // It also adds a custom parameter this can be retrieved by using tinyMCEPopup.getWindowArg inside the dialog.
+	* tinymce.activeEditor.windowManager.open({
+	*    url: 'file.htm',
+	*    width: 320,
+	*    height: 240
+	* }, {
+	*    custom_param: 1
+	* });
+	*
+	* // Displays an alert box using the active editors window manager instance
+	* tinymce.activeEditor.windowManager.alert('Hello world!');
+	*
+	* // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
+	* tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
+	*    if (s)
+	*       tinymce.activeEditor.windowManager.alert("Ok");
+	*    else
+	*       tinymce.activeEditor.windowManager.alert("Cancel");
+	* });
+	*/
 define("tinymce/WindowManager", [
 	"tinymce/ui/Window",
 	"tinymce/ui/MessageBox"
@@ -58,17 +58,17 @@ define("tinymce/WindowManager", [
 		});
 
 		/**
-		 * Opens a new window.
-		 *
-		 * @method open
-		 * @param {Object} args Optional name/value settings collection contains things like width/height/url etc.
-		 * @option {String} title Window title.
-		 * @option {String} file URL of the file to open in the window.
-		 * @option {Number} width Width in pixels.
-		 * @option {Number} height Height in pixels.
-		 * @option {Boolean} autoScroll Specifies whether the popup window can have scrollbars if required (i.e. content
-		 * larger than the popup size specified).
-		 */
+			* Opens a new window.
+			*
+			* @method open
+			* @param {Object} args Optional name/value settings collection contains things like width/height/url etc.
+			* @option {String} title Window title.
+			* @option {String} file URL of the file to open in the window.
+			* @option {Number} width Width in pixels.
+			* @option {Number} height Height in pixels.
+			* @option {Boolean} autoScroll Specifies whether the popup window can have scrollbars if required (i.e. content
+			* larger than the popup size specified).
+			*/
 		self.open = function(args, params) {
 			var win;
 
@@ -147,17 +147,17 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Creates a alert dialog. Please don't use the blocking behavior of this
-		 * native version use the callback method instead then it can be extended.
-		 *
-		 * @method alert
-		 * @param {String} message Text to display in the new alert dialog.
-		 * @param {function} callback Callback function to be executed after the user has selected ok.
-		 * @param {Object} scope Optional scope to execute the callback in.
-		 * @example
-		 * // Displays an alert box using the active editors window manager instance
-		 * tinymce.activeEditor.windowManager.alert('Hello world!');
-		 */
+			* Creates a alert dialog. Please don't use the blocking behavior of this
+			* native version use the callback method instead then it can be extended.
+			*
+			* @method alert
+			* @param {String} message Text to display in the new alert dialog.
+			* @param {function} callback Callback function to be executed after the user has selected ok.
+			* @param {Object} scope Optional scope to execute the callback in.
+			* @example
+			* // Displays an alert box using the active editors window manager instance
+			* tinymce.activeEditor.windowManager.alert('Hello world!');
+			*/
 		self.alert = function(message, callback, scope) {
 			MessageBox.alert(message, function() {
 				if (callback) {
@@ -169,22 +169,22 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Creates a confirm dialog. Please don't use the blocking behavior of this
-		 * native version use the callback method instead then it can be extended.
-		 *
-		 * @method confirm
-		 * @param {String} messageText to display in the new confirm dialog.
-		 * @param {function} callback Callback function to be executed after the user has selected ok or cancel.
-		 * @param {Object} scope Optional scope to execute the callback in.
-		 * @example
-		 * // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
-		 * tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
-		 *    if (s)
-		 *       tinymce.activeEditor.windowManager.alert("Ok");
-		 *    else
-		 *       tinymce.activeEditor.windowManager.alert("Cancel");
-		 * });
-		 */
+			* Creates a confirm dialog. Please don't use the blocking behavior of this
+			* native version use the callback method instead then it can be extended.
+			*
+			* @method confirm
+			* @param {String} messageText to display in the new confirm dialog.
+			* @param {function} callback Callback function to be executed after the user has selected ok or cancel.
+			* @param {Object} scope Optional scope to execute the callback in.
+			* @example
+			* // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
+			* tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
+			*    if (s)
+			*       tinymce.activeEditor.windowManager.alert("Ok");
+			*    else
+			*       tinymce.activeEditor.windowManager.alert("Cancel");
+			* });
+			*/
 		self.confirm = function(message, callback, scope) {
 			MessageBox.confirm(message, function(state) {
 				callback.call(scope || this, state);
@@ -192,10 +192,10 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Closes the top most window.
-		 *
-		 * @method close
-		 */
+			* Closes the top most window.
+			*
+			* @method close
+			*/
 		self.close = function() {
 			if (getTopMostWindow()) {
 				getTopMostWindow().close();
@@ -203,25 +203,25 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Returns the params of the last window open call. This can be used in iframe based
-		 * dialog to get params passed from the tinymce plugin.
-		 *
-		 * @example
-		 * var dialogArguments = top.tinymce.activeEditor.windowManager.getParams();
-		 *
-		 * @method getParams
-		 * @return {Object} Name/value object with parameters passed from windowManager.open call.
-		 */
+			* Returns the params of the last window open call. This can be used in iframe based
+			* dialog to get params passed from the tinymce plugin.
+			*
+			* @example
+			* var dialogArguments = top.tinymce.activeEditor.windowManager.getParams();
+			*
+			* @method getParams
+			* @return {Object} Name/value object with parameters passed from windowManager.open call.
+			*/
 		self.getParams = function() {
 			return getTopMostWindow() ? getTopMostWindow().params : null;
 		};
 
 		/**
-		 * Sets the params of the last opened window.
-		 *
-		 * @method setParams
-		 * @param {Object} params Params object to set for the last opened window.
-		 */
+			* Sets the params of the last opened window.
+			*
+			* @method setParams
+			* @param {Object} params Params object to set for the last opened window.
+			*/
 		self.setParams = function(params) {
 			if (getTopMostWindow()) {
 				getTopMostWindow().params = params;
@@ -229,11 +229,11 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Returns the currently opened window objects.
-		 *
-		 * @method getWindows
-		 * @return {Array} Array of the currently opened windows.
-		 */
+			* Returns the currently opened window objects.
+			*
+			* @method getWindows
+			* @return {Array} Array of the currently opened windows.
+			*/
 		self.getWindows = function() {
 			return windows;
 		};

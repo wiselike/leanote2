@@ -31,7 +31,7 @@ editorMode.prototype.toggleAText = function(isWriting) {
 		} else {
 			toggleA.attr("href", "#" + self.writingHash);
 			toggleSpan.text(getMsg("writingMode"));
-		}	
+		}
 	}, 0);
 }
 editorMode.prototype.isWriting = function(hash) {
@@ -50,13 +50,13 @@ editorMode.prototype.init = function() {
 		var $a = $(this).find("a");
 		var isWriting = self.isWriting($a.attr("href"));
 		self.changeMode(isWriting);
-		// 
+		//
 		if(isWriting) {
 			setHash("m", self.writingHash);
 		} else {
 			setHash("m", self.normalHash);
 		}
-		
+
 		restoreBookmark();
 	});
 }
@@ -91,8 +91,8 @@ editorMode.prototype.normalMode = function() {
 	*/
 
 	$("#noteItemListWrap, #notesAndSort").show();
-	$("#noteList").unbind("mouseenter").unbind("mouseleave"); 
-	
+	$("#noteList").unbind("mouseenter").unbind("mouseleave");
+
 	var theme = UserInfo.Theme || "default";
 	theme += ".css";
 	var $themeLink = $("#themeLink");
@@ -100,7 +100,7 @@ editorMode.prototype.normalMode = function() {
 	if(this.$themeLink.attr('href').indexOf('writting-overwrite.css') != -1) {
 		this.$themeLink.attr("href", LEA.sPath + "/css/theme/" + theme);
 	}
-	
+
 	$("#noteList").width(UserInfo.NoteListWidth);
 	$("#note").css("left", UserInfo.NoteListWidth);
 
@@ -122,24 +122,24 @@ editorMode.prototype.writtingMode = function() {
 		$c.contents().find("head").append('<link type="text/css" rel="stylesheet" href="/css/editor/editor-writting-mode.css" id="writtingMode">');
 	}, 0);
 	*/
-		
+
 	$("#noteItemListWrap, #notesAndSort").fadeOut();
 	$("#noteList").hover(function() {
 		$("#noteItemListWrap, #notesAndSort").fadeIn();
 	}, function() {
 		$("#noteItemListWrap, #notesAndSort").fadeOut();
 	});
-	
+
 	// 点击扩展会使html的height生成, 切换后会覆盖css文件的
 	// $("#mceToolbar").css("height", "40px");
-	
+
 	//$("#pageInner").addClass("animated fadeInUp");
 
 	this.resizeEditor();
-	
+
 	$("#noteList").width(250);
 	$("#note").css("left", 0);
-	
+
 	// 切换到写模式
 	Note.toggleWriteable();
 
@@ -161,7 +161,7 @@ var Resize = {
 	lineMove: false,
 	mdLineMove: false,
 	target: null,
-	
+
 	leftNotebook: $("#leftNotebook"),
 	notebookSplitter: $("#notebookSplitter"),
 	noteList: $("#noteList"),
@@ -170,17 +170,17 @@ var Resize = {
 	note: $("#note"),
 	body: $("body"),
 	leftColumn: $("#left-column"),
-	rightColumn: $("#right-column"), // $("#preview-panel"), // 
+	rightColumn: $("#right-column"), // $("#preview-panel"), //
 	mdSplitter: $("#mdSplitter2"),
-	
+
 	init: function() {
 		var self = this;
 		self.initEvent();
 	},
-	
+
 	initEvent: function() {
 		var self = this;
-		
+
 		// 鼠标点下
 		$(".noteSplit").bind("mousedown", function(event) {
 			event.preventDefault(); // 防止选择文本
@@ -190,7 +190,7 @@ var Resize = {
 			// 防止iframe捕获不了事件
 			$("#noteMask").css("z-index", 99999); // .css("background-color", // "#ccc");
 		});
-		
+
 		// 鼠标点下
 		self.mdSplitter.bind("mousedown", function(event) {
 			event.preventDefault(); // 防止选择文本
@@ -199,7 +199,7 @@ var Resize = {
 			}
 			// $(this).css("background-color", "#ccc");
 		});
-		
+
 		// 鼠标移动时
 		self.body.bind("mousemove", function(event) {
 			if(self.lineMove) { // 如果没有这个if会导致不能选择文本
@@ -209,7 +209,7 @@ var Resize = {
 				event.preventDefault();
 				self.resizeMdColumns(event);
 			}
-		});	
+		});
 
 		// 鼠标放开, 结束
 		self.body.bind("mouseup", function(event) {
@@ -217,7 +217,7 @@ var Resize = {
 			// 取消遮罩
 			$("#noteMask").css("z-index", -1);
 		});
-		
+
 		// 瞬间
 		var everLeftWidth;
 		$('.layout-toggler-preview').click(function() {
@@ -231,7 +231,7 @@ var Resize = {
 				everLeftWidth = self.leftColumn.width();
 				self.leftColumn.width(leftWidth);
 				self.rightColumn.css('left', 'auto').width(minRightWidth);
-				
+
 				// 禁止split
 				$t.removeClass('open');//.addClass('close');
 				self.rightColumn.find('.layout-resizer').removeClass('open');
@@ -246,8 +246,8 @@ var Resize = {
 				self.leftColumn.width(everLeftWidth);
 				$('.preview-container').show();
 				self.rightColumn.css('left', everLeftWidth).width('auto');
-				
-				if(MD) { 
+
+				if(MD) {
 					MD.resize();
 				}
 			}
@@ -266,7 +266,7 @@ var Resize = {
 		$(".noteSplit").css("background", "none");
 		self.mdSplitter.css("background", "none");
 	},
-	
+
 	// 最终调用该方法
 	set3ColumnsWidth: function(notebookWidth, noteListWidth) {
 		var self = this;
@@ -277,15 +277,15 @@ var Resize = {
 		if(noteWidth < 400) {
 			return;
 		}
-		
+
 		self.leftNotebook.width(notebookWidth);
 		self.notebookSplitter.css("left", notebookWidth);
-		
+
 		self.noteAndEditor.css("left", notebookWidth);
 		self.noteList.width(noteListWidth);
 		self.noteSplitter.css("left", noteListWidth);
 		self.note.css("left", noteListWidth);
-		
+
 		UserInfo.NotebookWidth = notebookWidth;
 		UserInfo.NoteListWidth = noteListWidth;
 	},
@@ -294,7 +294,7 @@ var Resize = {
 		if (isFromeIfr) {
 			event.clientX += self.body.width() - self.note.width();
 		}
-		
+
 		var notebookWidth, noteListWidth;
 		if(self.lineMove) {
 			if (self.target == "notebookSplitter") {
@@ -306,7 +306,7 @@ var Resize = {
 				noteListWidth = event.clientX - notebookWidth;
 				self.set3ColumnsWidth(notebookWidth, noteListWidth);
 			}
-	
+
 			resizeEditor();
 		}
 	},
@@ -327,7 +327,7 @@ var Resize = {
 		}
 	},
 	// 设置宽度
-	setMdColumnWidth: function(mdEditorWidth) { 
+	setMdColumnWidth: function(mdEditorWidth) {
 		var self = this;
 		var allWidth = $('#note').width();
 		if(mdEditorWidth > 100 && mdEditorWidth < allWidth - 80) {
@@ -393,7 +393,7 @@ Mobile = {
 		LEA.isMobile = /Mobile|Android|iPhone|iPad/i.test(u);
 		LEA.isIpad =  /iPad/i.test(u);
 		LEA.isIphone = /iPhone/i.test(u);
-		if(!LEA.isMobile && $(document).width() <= 700){ 
+		if(!LEA.isMobile && $(document).width() <= 700){
 			LEA.isMobile = true
 		}
 		return LEA.isMobile;
@@ -406,7 +406,7 @@ Mobile = {
 		self.toEditor(true, noteId);
 		return false;
 	},
-	
+
 	toEditor: function(changeHash, noteId) {
 		var self = this;
 		self.bodyO.addClass("full-editor");
@@ -424,7 +424,7 @@ Mobile = {
 		var self = this;
 		self.bodyO.removeClass("full-editor");
 		self.noteO.removeClass("editor-show");
-	
+
 		/*
 		if(changeHash) {
 			location.hash = "notebookAndNote";
@@ -441,7 +441,7 @@ Mobile = {
 		}
 		return false;
 	}
-} 
+}
 
 
 function initSlimScroll() {
@@ -449,22 +449,22 @@ function initSlimScroll() {
 		return;
 	}
 	$("#notebook").slimScroll({
-	    height: "100%", // $("#leftNotebook").height()+"px"
+		height: "100%", // $("#leftNotebook").height()+"px"
 	});
 	$("#noteItemList").slimScroll({
-	    height: "100%", // ($("#leftNotebook").height()-42)+"px"
+		height: "100%", // ($("#leftNotebook").height()-42)+"px"
 	});
 	/*
 	$("#wmd-input").slimScroll({
-	    height: "100%", // $("#wmd-input").height()+"px"
+		height: "100%", // $("#wmd-input").height()+"px"
 	});
 	$("#wmd-input").css("width", "100%");
 	*/
-	
+
 	$("#wmd-panel-preview").slimScroll({
-	    height: "100%", // $("#wmd-panel-preview").height()+"px"
+		height: "100%", // $("#wmd-panel-preview").height()+"px"
 	});
-	
+
 	$("#wmd-panel-preview").css("width", "100%");
 }
 
@@ -493,13 +493,13 @@ function initEditor() {
 		valid_children: "+pre[div|#text|p|span|textarea|i|b|strong]", // ace
 		/*
 		protect: [
-	        /\<\/?(if|endif)\>/g, // Protect <if> & </endif>
-	        /\<xsl\:[^>]+\>/g, // Protect <xsl:...>
-	        // /<pre.*?>.*?<\/pre>/g, // Protect <pre ></pre>
-	        // /<p.*?>.*?<\/p>/g, // Protect <pre ></pre>
-	        // /<\?php.*?\?>/g // Protect php code
-	    ],
-	    */
+			/\<\/?(if|endif)\>/g, // Protect <if> & </endif>
+			/\<xsl\:[^>]+\>/g, // Protect <xsl:...>
+			// /<pre.*?>.*?<\/pre>/g, // Protect <pre ></pre>
+			// /<p.*?>.*?<\/p>/g, // Protect <pre ></pre>
+			// /<\?php.*?\?>/g // Protect php code
+		],
+		*/
 		setup: function(ed) {
 			ed.on('keydown', function(e) {
 				// 如果是readony, 则不能做任何操作
@@ -513,16 +513,16 @@ function initEditor() {
 				// 当输入的时候, 把当前raw删除掉
 				LeaAce.removeCurToggleRaw();
 			});
-			
+
 			// 为了把下拉菜单关闭
 			/*
-	        ed.on("click", function(e) {
-	          // $("body").trigger("click");
-	          // console.log(tinymce.activeEditor.selection.getNode());
-	        });
-	        */
-	        
-	        // electron下有问题, Ace剪切导致行数减少, #16
+			ed.on("click", function(e) {
+				// $("body").trigger("click");
+				// console.log(tinymce.activeEditor.selection.getNode());
+			});
+			*/
+
+			// electron下有问题, Ace剪切导致行数减少, #16
 			ed.on('cut', function(e) {
 				if($(e.target).hasClass('ace_text-input')) {
 					e.preventDefault();
@@ -530,15 +530,15 @@ function initEditor() {
 				}
 			});
 		},
-		
+
 		// fix TinyMCE Removes site base url
 		// http://stackoverflow.com/questions/3360084/tinymce-removes-site-base-urls
 		convert_urls: false, // true会将url变成../api/
 		relative_urls: true,
 		remove_script_host:false,
-		
+
 		selector : "#editorContent",
-		
+
 		// content_css 不再需要
 		// content_css : [LEA.sPath + "/css/editor/editor.css"], // .concat(em.getWritingCss()),
 		skin : "custom",
@@ -553,7 +553,7 @@ function initEditor() {
 		// 使用tab键: http://www.tinymce.com/wiki.php/Plugin3x:nonbreaking
 		// http://stackoverflow.com/questions/13543220/tiny-mce-how-to-allow-people-to-indent
 		// nonbreaking_force_tab : true,
-		
+
 		menubar : false,
 		toolbar_items_size : 'small',
 		statusbar : false,
@@ -569,30 +569,30 @@ function initEditor() {
 		block_formats : "Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Paragraph=p",
 		/*
 		codemirror: {
-		    indentOnInit: true, // Whether or not to indent code on init. 
-		    path: 'CodeMirror', // Path to CodeMirror distribution
-		    config: {           // CodeMirror config object
-		       //mode: 'application/x-httpd-php',
-		       lineNumbers: true
-		    },
-		    jsFiles: [          // Additional JS files to load
-		       // 'mode/clike/clike.js',
-		       //'mode/php/php.js'
-		    ]
-		  },
-		  */
-		  // This option specifies whether data:url images (inline images) should be removed or not from the pasted contents. 
-		  // Setting this to "true" will allow the pasted images, and setting this to "false" will disallow pasted images.  
-		  // For example, Firefox enables you to paste images directly into any contentEditable field. This is normally not something people want, so this option is "false" by default.
-		  paste_data_images: true
+			indentOnInit: true, // Whether or not to indent code on init.
+			path: 'CodeMirror', // Path to CodeMirror distribution
+			config: {           // CodeMirror config object
+				//mode: 'application/x-httpd-php',
+				lineNumbers: true
+			},
+			jsFiles: [          // Additional JS files to load
+				// 'mode/clike/clike.js',
+				//'mode/php/php.js'
+			]
+		},
+		*/
+		// This option specifies whether data:url images (inline images) should be removed or not from the pasted contents.
+		// Setting this to "true" will allow the pasted images, and setting this to "false" will disallow pasted images.
+		// For example, Firefox enables you to paste images directly into any contentEditable field. This is normally not something people want, so this option is "false" by default.
+		paste_data_images: true
 	});
-	
+
 	// 刷新时保存 参考autosave插件
 	window.onbeforeunload = function(e) {
 		if (LEA.isLogout) {
 			return;
 		}
-    	Note.curChangedSaveIt(true, null, {refresh: true});
+		Note.curChangedSaveIt(true, null, {refresh: true});
 	}
 
 	// 全局快捷键
@@ -601,19 +601,19 @@ function initEditor() {
 	$('body').on('keydown', function (e) {
 		var num = e.which ? e.which : e.keyCode;
 		var ctrlOrMetaKey = e.ctrlKey || e.metaKey;
-	    if(ctrlOrMetaKey) {
+		if(ctrlOrMetaKey) {
 			// 保存
-		    if (num == 83 ) { // ctrl + s or command + s
-		    	Note.curChangedSaveIt(true, null, {ctrls: true});
-		    	e.preventDefault();
-		    	return false;
-		    }
-		    else if (num == 69) { // e
-		    	Note.toggleWriteableAndReadOnly();
-		    	e.preventDefault();
-		    	return false;
-		    }
-	    }
+			if (num == 83 ) { // ctrl + s or command + s
+				Note.curChangedSaveIt(true, null, {ctrls: true});
+				e.preventDefault();
+				return false;
+			}
+			else if (num == 69) { // e
+				Note.toggleWriteableAndReadOnly();
+				e.preventDefault();
+				return false;
+			}
+		}
 	});
 }
 
@@ -624,7 +624,7 @@ function scrollTo(self, tagName, text) {
 	var iframe = $("#editorContent"); // .contents();
 	var target = iframe.find(tagName + ":contains(" + text + ")");
 	random++;
-	
+
 	// 找到是第几个
 	// 在nav是第几个
 	var navs = $('#leanoteNavContent [data-a="' + tagName + '-' + encodeURI(text) + '"]');
@@ -635,7 +635,7 @@ function scrollTo(self, tagName, text) {
 			break;
 		}
 	}
-	
+
 	if (target.size() >= i+1) {
 		target = target.eq(i);
 		// 之前插入, 防止多行定位不准
@@ -646,7 +646,7 @@ function scrollTo(self, tagName, text) {
 		// log(top);
 		// iframe.scrollTop(top);
 		iframe.animate({scrollTop: top}, 300); // 有问题
-		
+
 		/*
 		var d = 200; // 时间间隔
 		for(var i = 0; i < d; i++) {
@@ -676,13 +676,13 @@ function hideMask () {
 // $(function() {
 	LEA.s3 = new Date();
 	console.log('initing...');
-	
+
 	// 窗口缩放时
 	$(window).resize(function() {
 		Mobile.isMobile();
 		resizeEditor();
 	});
-	
+
 	// 初始化编辑器
 	initEditor();
 
@@ -692,17 +692,17 @@ function hideMask () {
 		var p = $(this).parent();
 		if (!body.is(":hidden")) {
 			$(".folderNote").removeClass("opened").addClass("closed");
-//					body.hide();
+		//					body.hide();
 			p.removeClass("opened").addClass("closed");
 			$(this).find(".fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-right");
 		} else {
 			$(".folderNote").removeClass("opened").addClass("closed");
-//					body.show();
+		//					body.show();
 			p.removeClass("closed").addClass("opened");
 			$(this).find(".fa-angle-right").removeClass("fa-angle-right").addClass("fa-angle-down");
 		}
 	});
-	
+
 	// 导航隐藏与显示
 	$(".leanoteNav h1").on("click", function(e) {
 		var $leanoteNav = $(this).closest('.leanoteNav');
@@ -712,12 +712,12 @@ function hideMask () {
 			$leanoteNav.removeClass("unfolder");
 		}
 	});
-	
+
 	// 邮箱验证
 	$("#wrongEmail").click(function() {
 		openSetInfoDialog(1);
 	});
-	
+
 	$("#setTheme").click(function() {
 		showDialog2("#setThemeDialog", {title: "主题设置", postShow: function() {
 			if (!UserInfo.Theme) {
@@ -726,7 +726,7 @@ function hideMask () {
 			$("#themeForm input[value='" + UserInfo.Theme + "']").attr("checked", true);
 		}});
 	});
-	
+
 	//---------
 	// 主题
 	$("#themeForm").on("click", "input", function(e) {
@@ -750,7 +750,7 @@ function hideMask () {
 		e.preventDefault();
 		return false;
 	});
-	
+
 	// 左侧隐藏或展示
 	function updateLeftIsMin(is) {
 		ajaxGet("/user/updateLeftIsMin", {leftIsMin: is})
@@ -774,7 +774,7 @@ function hideMask () {
 			updateLeftIsMin(false);
 		}
 	}
-	
+
 	$("#leftSwitcher2").on('click', function() {
 		maxLeft(true);
 	});
@@ -783,7 +783,7 @@ function hideMask () {
 			minLeft(true);
 		}
 	});
-	
+
 	// 得到最大dropdown高度
 	// 废弃
 	function getMaxDropdownHeight(obj) {
@@ -792,12 +792,12 @@ function hideMask () {
 		maxHeight -= 70;
 		if(maxHeight < 0) {
 			maxHeight = 0;
-		}	
-		
+		}
+
 		var preHeight = $(obj).find("ul").height();
 		return preHeight < maxHeight ? preHeight : maxHeight;
 	}
-	
+
 	// mini版
 	// 点击展开
 	$("#notebookMin div.minContainer").click(function() {
@@ -817,16 +817,16 @@ function hideMask () {
 			}
 		}
 	});
-	
+
 	//------------------------
 	// 界面设置, 左侧是否是隐藏的
 	UserInfo.NotebookWidth = UserInfo.NotebookWidth || $("#notebook").width();
 	UserInfo.NoteListWidth = UserInfo.NoteListWidth || $("#noteList").width();
-	
+
 	Resize.init();
 	Resize.set3ColumnsWidth(UserInfo.NotebookWidth, UserInfo.NoteListWidth);
 	Resize.setMdColumnWidth(UserInfo.MdEditorWidth);
-	
+
 	if (!Mobile.isMobile()) {
 		if (UserInfo.LeftIsMin) {
 			minLeft(false);
@@ -838,19 +838,19 @@ function hideMask () {
 	else {
 		maxLeft(false);
 	}
-	
+
 	// end
 	// 开始时显示loading......
 	// 隐藏mask
 	// hideMask();
-	
+
 	// 4/25 防止dropdown太高
 	// dropdown
 	$('.dropdown').on('shown.bs.dropdown', function () {
 		var $ul = $(this).find("ul");
 		// $ul.css("max-height", getMaxDropdownHeight(this));
 	});
-	
+
 	/*
 	//--------
 	// 建议
@@ -877,10 +877,10 @@ function hideMask () {
 		});
 	});
 	*/
-	
+
 	// 编辑器模式
 	em.init();
-	
+
 	// 手机端?
 	Mobile.init();
 //});
@@ -901,7 +901,7 @@ var Pjax = {
 			log("pop");
 			me.changeNotebookAndNote(state.noteId);
 		}, false);
-		
+
 		// ie9
 		if(!history.pushState) {
 			$(window).on("hashchange", function() {
@@ -920,7 +920,7 @@ var Pjax = {
 			return;
 		}
 		var isShare = note.Perm != undefined;
-		
+
 		var notebookId = note.NotebookId;
 		// 如果是在当前notebook下, 就不要转换notebook了
 		if(Notebook.curNotebookId == notebookId) {
@@ -928,7 +928,7 @@ var Pjax = {
 			Note.changeNoteForPjax(noteId, false);
 			return;
 		}
-		
+
 		// 自己的
 		if(!isShare) {
 			// 先切换到notebook下, 得到notes列表, 再changeNote
@@ -946,7 +946,7 @@ var Pjax = {
 			});
 		}
 	},
-		
+
 	// ajax后调用
 	changeNote: function(noteInfo) {
 		var me = this;
@@ -1025,11 +1025,11 @@ LeaAce = {
 		var rawCode = $pre.html(); // 原生code
 		try {
 			me.disableAddHistory();
-			
+
 			// 本身就有格式的, 防止之前有格式的显示为<span>(ace下)
 			var classes = $pre.attr('class') || '';
 			var isHtml = classes.indexOf('brush:html') != -1;
-			if($pre.attr('style') || 
+			if($pre.attr('style') ||
 				(!isHtml && $pre.html().indexOf('<style>') != -1)) { // 如果是html就不用考虑了, 因为html格式的支持有style
 				$pre.html($pre.text());
 			}
@@ -1053,7 +1053,7 @@ LeaAce = {
 			if (!b || b === 'false') {
 				b = 'javascript';
 			}
-			
+
 			aceEditor.session.setMode("ace/mode/" + b);
 			aceEditor.session.setOption("useWorker", false); // 不用语法检查
 			// retina
@@ -1068,23 +1068,23 @@ LeaAce = {
 			aceEditor.setShowInvisibles(false); // OK 不显示空格
 			aceEditor.setOption("wrap", "free");
 			aceEditor.setShowInvisibles(false);
-			
+
 			aceEditor.setReadOnly(Note.readOnly);
-			
+
 			aceEditor.setAutoScrollEditorIntoView(true);
 			aceEditor.setOption("maxLines", 10000);
 			aceEditor.commands.addCommand({
-			    name: "undo",
-			    bindKey: {win: "Ctrl-z", mac: "Command-z"},
-			    exec: function(editor) {
-			    	var undoManager = editor.getSession().getUndoManager();
-			    	if(undoManager.hasUndo()){ 
-			    		undoManager.undo();
-			    	} else {
-			    		undoManager.reset();
-			    		tinymce.activeEditor.undoManager.undo();
-			    	}
-			    }
+				name: "undo",
+				bindKey: {win: "Ctrl-z", mac: "Command-z"},
+				exec: function(editor) {
+					var undoManager = editor.getSession().getUndoManager();
+					if(undoManager.hasUndo()){
+						undoManager.undo();
+					} else {
+						undoManager.reset();
+						tinymce.activeEditor.undoManager.undo();
+					}
+				}
 			});
 			this._aceEditors[id] = aceEditor;
 			if(val) {
@@ -1130,7 +1130,7 @@ LeaAce = {
 			var pres = content.find('pre');
 			for(var i = 0 ; i < pres.length; ++i) {
 				var pre = pres.eq(i);
-				
+
 				var aceAndNode = me.isInAce(pre);
 				if(aceAndNode) {
 					if(isAceError(aceAndNode[0].getValue())) {
@@ -1140,7 +1140,7 @@ LeaAce = {
 						break;
 					}
 				}
-				
+
 				setTimeout((function(pre) {
 					return function() {
 						pre.find('.toggle-raw').remove();
@@ -1260,7 +1260,7 @@ LeaAce = {
 		if(!this.canAce()) {
 			return;
 		}
-		
+
 		var node = tinymce.activeEditor.selection.getNode();
 		// log("now...");
 		// log(node);
@@ -1322,7 +1322,7 @@ LeaAce = {
 		var everBrush = "";
 		if(m && m.length > 0) {
 			everBrush = m[0];
-		}	
+		}
 		return everBrush;
 	},
 	// pre转换成ace
@@ -1546,7 +1546,7 @@ function _initPage(srcNote, isTop) {
 
 	Notebook.renderNotebooks(notebooks);
 	Share.renderShareNotebooks(sharedUserInfos, shareNotebooks);
-	
+
 	// 如果初始打开的是共享的笔记
 	// 那么定位到我的笔记
 	if(curSharedNoteNotebookId) {
@@ -1601,7 +1601,7 @@ function _initPage(srcNote, isTop) {
 			Note.addNoteCache(latestNotes[i]);
 		}
 	}
-	
+
 	Tag.renderTagNav(tagsJson);
 	// init notebook后才调用
 	initSlimScroll();

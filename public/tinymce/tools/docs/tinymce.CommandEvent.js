@@ -1,28 +1,28 @@
 /**
- * This class is the event object send when the BeforeExecCommand and ExecCommand event occurs.
- *
- * @class tinymce.CommandEvent
- * @extends tinymce.Event
- * @example
- * tinymce.activeEditor.on('ExecCommand', function(e) {
- *     console.log(e.command, e.ui, e.value);
- * });
- */
+	* This class is the event object send when the BeforeExecCommand and ExecCommand event occurs.
+	*
+	* @class tinymce.CommandEvent
+	* @extends tinymce.Event
+	* @example
+	* tinymce.activeEditor.on('ExecCommand', function(e) {
+	*     console.log(e.command, e.ui, e.value);
+	* });
+	*/
 
 /**
- * Name of the command to execute.
- *
- * @property {String} command
- */
+	* Name of the command to execute.
+	*
+	* @property {String} command
+	*/
 
 /**
- * User interface state. Normally false.
- *
- * @property {Boolean} ui User interface state.
- */
+	* User interface state. Normally false.
+	*
+	* @property {Boolean} ui User interface state.
+	*/
 
 /**
- * Value object for the execCommand call.
- *
- * @property {Object} value
- */
+	* Value object for the execCommand call.
+	*
+	* @property {Object} value
+	*/

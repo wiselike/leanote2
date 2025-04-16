@@ -1,17 +1,17 @@
 /**
- * URI.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* URI.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles parsing, modification and serialization of URI/URL strings.
- * @class tinymce.util.URI
- */
+	* This class handles parsing, modification and serialization of URI/URL strings.
+	* @class tinymce.util.URI
+	*/
 define("tinymce/util/URI", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -25,13 +25,13 @@ define("tinymce/util/URI", [
 	};
 
 	/**
-	 * Constructs a new URI instance.
-	 *
-	 * @constructor
-	 * @method URI
-	 * @param {String} url URI string to parse.
-	 * @param {Object} settings Optional settings object.
-	 */
+		* Constructs a new URI instance.
+		*
+		* @constructor
+		* @method URI
+		* @param {String} url URI string to parse.
+		* @param {Object} settings Optional settings object.
+		*/
 	function URI(url, settings) {
 		var self = this, baseUri, base_url;
 
@@ -111,11 +111,11 @@ define("tinymce/util/URI", [
 
 	URI.prototype = {
 		/**
-		 * Sets the internal path part of the URI.
-		 *
-		 * @method setPath
-		 * @param {string} path Path string to set.
-		 */
+			* Sets the internal path part of the URI.
+			*
+			* @method setPath
+			* @param {string} path Path string to set.
+			*/
 		setPath: function(path) {
 			var self = this;
 
@@ -132,15 +132,15 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts the specified URI into a relative URI based on the current URI instance location.
-		 *
-		 * @method toRelative
-		 * @param {String} uri URI to convert into a relative path/URI.
-		 * @return {String} Relative URI from the point specified in the current URI instance.
-		 * @example
-		 * // Converts an absolute URL to an relative URL url will be somedir/somefile.htm
-		 * var url = new tinymce.util.URI('http://www.site.com/dir/').toRelative('http://www.site.com/dir/somedir/somefile.htm');
-		 */
+			* Converts the specified URI into a relative URI based on the current URI instance location.
+			*
+			* @method toRelative
+			* @param {String} uri URI to convert into a relative path/URI.
+			* @return {String} Relative URI from the point specified in the current URI instance.
+			* @example
+			* // Converts an absolute URL to an relative URL url will be somedir/somefile.htm
+			* var url = new tinymce.util.URI('http://www.site.com/dir/').toRelative('http://www.site.com/dir/somedir/somefile.htm');
+			*/
 		toRelative: function(uri) {
 			var self = this, output;
 
@@ -179,16 +179,16 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts the specified URI into a absolute URI based on the current URI instance location.
-		 *
-		 * @method toAbsolute
-		 * @param {String} uri URI to convert into a relative path/URI.
-		 * @param {Boolean} noHost No host and protocol prefix.
-		 * @return {String} Absolute URI from the point specified in the current URI instance.
-		 * @example
-		 * // Converts an relative URL to an absolute URL url will be http://www.site.com/dir/somedir/somefile.htm
-		 * var url = new tinymce.util.URI('http://www.site.com/dir/').toAbsolute('somedir/somefile.htm');
-		 */
+			* Converts the specified URI into a absolute URI based on the current URI instance location.
+			*
+			* @method toAbsolute
+			* @param {String} uri URI to convert into a relative path/URI.
+			* @param {Boolean} noHost No host and protocol prefix.
+			* @return {String} Absolute URI from the point specified in the current URI instance.
+			* @example
+			* // Converts an relative URL to an absolute URL url will be http://www.site.com/dir/somedir/somefile.htm
+			* var url = new tinymce.util.URI('http://www.site.com/dir/').toAbsolute('somedir/somefile.htm');
+			*/
 		toAbsolute: function(uri, noHost) {
 			uri = new URI(uri, {base_uri: this});
 
@@ -196,14 +196,14 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Determine whether the given URI has the same origin as this URI.  Based on RFC-6454.
-		 * Supports default ports for protocols listed in DEFAULT_PORTS.  Unsupported protocols will fail safe: they
-		 * won't match, if the port specifications differ.
-		 *
-		 * @method isSameOrigin
-		 * @param {tinymce.util.URI} uri Uri instance to compare.
-		 * @returns {Boolean} True if the origins are the same.
-		 */
+			* Determine whether the given URI has the same origin as this URI.  Based on RFC-6454.
+			* Supports default ports for protocols listed in DEFAULT_PORTS.  Unsupported protocols will fail safe: they
+			* won't match, if the port specifications differ.
+			*
+			* @method isSameOrigin
+			* @param {tinymce.util.URI} uri Uri instance to compare.
+			* @returns {Boolean} True if the origins are the same.
+			*/
 		isSameOrigin: function(uri) {
 			if (this.host == uri.host && this.protocol == uri.protocol) {
 				if (this.port == uri.port) {
@@ -220,12 +220,12 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts a absolute path into a relative path.
-		 *
-		 * @method toRelPath
-		 * @param {String} base Base point to convert the path from.
-		 * @param {String} path Absolute path to convert into a relative path.
-		 */
+			* Converts a absolute path into a relative path.
+			*
+			* @method toRelPath
+			* @param {String} base Base point to convert the path from.
+			* @param {String} path Absolute path to convert into a relative path.
+			*/
 		toRelPath: function(base, path) {
 			var items, breakPoint = 0, out = '', i, l;
 
@@ -272,12 +272,12 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts a relative path into a absolute path.
-		 *
-		 * @method toAbsPath
-		 * @param {String} base Base point to convert the path from.
-		 * @param {String} path Relative path to convert into an absolute path.
-		 */
+			* Converts a relative path into a absolute path.
+			*
+			* @method toAbsPath
+			* @param {String} base Base point to convert the path from.
+			* @param {String} path Relative path to convert into an absolute path.
+			*/
 		toAbsPath: function(base, path) {
 			var i, nb = 0, o = [], tr, outPath;
 
@@ -340,11 +340,11 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Returns the full URI of the internal structure.
-		 *
-		 * @method getURI
-		 * @param {Boolean} noProtoHost Optional no host and protocol part. Defaults to false.
-		 */
+			* Returns the full URI of the internal structure.
+			*
+			* @method getURI
+			* @param {Boolean} noProtoHost Optional no host and protocol part. Defaults to false.
+			*/
 		getURI: function(noProtoHost) {
 			var s, self = this;
 

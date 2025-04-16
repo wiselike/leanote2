@@ -1,35 +1,35 @@
 /**
- * leaui album image manager plugin
- * copyright leaui
- * leaui.com
- */
+	* leaui album image manager plugin
+	* copyright leaui
+	* leaui.com
+	*/
 var LEAUI_DATAS = [];
 tinymce.PluginManager.add('leaui_image', function(editor, url) {
 	//当url改变时, 得到图片的大小
 	function getImageSize(url, callback) {
 		var img = document.createElement('img');
-	
+
 		function done(width, height) {
 			img.parentNode.removeChild(img);
 			callback({width: width, height: height});
 		}
-	
+
 		img.onload = function() {
 			done(img.clientWidth, img.clientHeight);
 		};
-	
+
 		img.onerror = function() {
 			done();
 		};
-	
+
 		img.src = url;
-	
+
 		var style = img.style;
 		style.visibility = 'hidden';
 		style.position = 'fixed';
 		style.bottom = style.left = 0;
 		style.width = style.height = 'auto';
-	
+
 		document.body.appendChild(img);
 	}
 
@@ -87,11 +87,11 @@ tinymce.PluginManager.add('leaui_image', function(editor, url) {
 				onclick: function(e) {
 					var _iframe = document.getElementById('leauiIfr').contentWindow;
 					var _div =_iframe.document.getElementById('preview');
-					var ii = _div.childNodes; 
+					var ii = _div.childNodes;
 					//console.log(ii);
 					var datas = [];
 					for(var i = 0; i < ii.length; ++i) {
-						var e = ii[i]; 
+						var e = ii[i];
 						//console.log(e);
 						// 有些没有image
 						if(e.firstChild && e.firstChild.nodeName == "IMG") {
@@ -112,7 +112,7 @@ tinymce.PluginManager.add('leaui_image', function(editor, url) {
 						// the network image
 						var trueSrc = src;
 						data.src = src;
-						
+
 						var renderImage = function(data) {
 							// 这里, 如果图片宽度过大, 这里设置成500px
 							var back = (function(data2, i) {
@@ -124,7 +124,7 @@ tinymce.PluginManager.add('leaui_image', function(editor, url) {
 								imgElm = dom.createHTML('img', d);
 								editor.insertContent(imgElm);
 								imgElm = dom.get(d.id);
-								
+
 								return function(wh) {
 									if(wh && wh.width) {
 										if(wh.width > 600) {
@@ -135,13 +135,13 @@ tinymce.PluginManager.add('leaui_image', function(editor, url) {
 									dom.setAttrib(imgElm, 'src', data2.src);
 									// dom.setAttrib(imgElm, 'width', data2.width);
 									dom.setAttrib(imgElm, 'title', data2.title);
-									
+
 									dom.setAttrib(imgElm, 'id', null);
 								}
 							})(data, i);
 							getImageSize(data.src, back);
 						}
-						
+
 						// outputImage?fileId=123232323
 						var fileId = "";
 						fileIds = trueSrc.split("fileId=")
@@ -170,9 +170,9 @@ tinymce.PluginManager.add('leaui_image', function(editor, url) {
 						} else {
 							renderImage(data);
 						}
-						
+
 					} // end for
-					
+
 					this.parent().parent().close();
 				}
 				}]
@@ -198,23 +198,23 @@ tinymce.PluginManager.add('leaui_image', function(editor, url) {
 	// 2014/7/8 21:43 浮躁的一天终有收获
 	// 2015/10/16
 	// TODO 如果把编辑器内的图片拖到外面去, 还是会出现drop images to here
-    var dragStart = false;
-    editor.on("dragstart", function(e) {
-    	// readonly时不让drag图片
-    	if (LEA.readOnly) {
-	    	e.preventDefault();
-	    	e.stopPropagation();
-    	}
-    	dragStart = true;
-    });
-    editor.on("dragend", function(e) {
-    	dragStart = false;
-    });
+	var dragStart = false;
+	editor.on("dragstart", function(e) {
+		// readonly时不让drag图片
+		if (LEA.readOnly) {
+			e.preventDefault();
+			e.stopPropagation();
+		}
+		dragStart = true;
+	});
+	editor.on("dragend", function(e) {
+		dragStart = false;
+	});
 	editor.on("dragover", function(e) {
-	    if(dragStart) {
-    		// 表示编辑器内在拖动图片, 则停止冒泡
-    		e.preventDefault();
-	    	e.stopPropagation();
-    	}
-    });
+		if(dragStart) {
+			// 表示编辑器内在拖动图片, 则停止冒泡
+			e.preventDefault();
+			e.stopPropagation();
+		}
+	});
 });

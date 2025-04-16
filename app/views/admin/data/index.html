@@ -8,14 +8,14 @@
 }
 </style>
 <section class="panel panel-default">
-	
+
 	<div class="row wrapper">
 		<div class="col-sm-5 m-b-xs">
 			<button class="btn btn-primary backup-btn">Backup</button>
 		</div>
-		
+
 	</div>
-	
+
 	<div class="table-responsive">
 		<table class="table table-striped b-t b-light">
 			<thead>
@@ -56,12 +56,12 @@
 		</table>
 	</div>
 </section>
-	
+
 {{template "admin/footer.html" .}}
 
 <script>
 $(function() {
-	$(".backup-btn").click(function(){ 
+	$(".backup-btn").click(function(){
 		ajaxGet("/adminData/backup", {}, function(ret) {
 			if(ret.Ok) {
 				art.tips("Success");

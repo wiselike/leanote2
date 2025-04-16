@@ -1,32 +1,32 @@
 /**
- * Clipboard.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Clipboard.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains logic for getting HTML contents out of the clipboard.
- *
- * We need to make a lot of ugly hacks to get the contents out of the clipboard since
- * the W3C Clipboard API is broken in all browsers that have it: Gecko/WebKit/Blink.
- * We might rewrite this the way those API:s stabilize. Browsers doesn't handle pasting
- * from applications like Word the same way as it does when pasting into a contentEditable area
- * so we need to do lots of extra work to try to get to this clipboard data.
- *
- * Current implementation steps:
- *  1. On keydown with paste keys Ctrl+V or Shift+Insert create
- *     a paste bin element and move focus to that element.
- *  2. Wait for the browser to fire a "paste" event and get the contents out of the paste bin.
- *  3. Check if the paste was successful if true, process the HTML.
- *  (4). If the paste was unsuccessful use IE execCommand, Clipboard API, document.dataTransfer old WebKit API etc.
- *
- * @class tinymce.pasteplugin.Clipboard
- * @private
- */
+	* This class contains logic for getting HTML contents out of the clipboard.
+	*
+	* We need to make a lot of ugly hacks to get the contents out of the clipboard since
+	* the W3C Clipboard API is broken in all browsers that have it: Gecko/WebKit/Blink.
+	* We might rewrite this the way those API:s stabilize. Browsers doesn't handle pasting
+	* from applications like Word the same way as it does when pasting into a contentEditable area
+	* so we need to do lots of extra work to try to get to this clipboard data.
+	*
+	* Current implementation steps:
+	*  1. On keydown with paste keys Ctrl+V or Shift+Insert create
+	*     a paste bin element and move focus to that element.
+	*  2. Wait for the browser to fire a "paste" event and get the contents out of the paste bin.
+	*  3. Check if the paste was successful if true, process the HTML.
+	*  (4). If the paste was unsuccessful use IE execCommand, Clipboard API, document.dataTransfer old WebKit API etc.
+	*
+	* @class tinymce.pasteplugin.Clipboard
+	* @private
+	*/
 define("tinymce/pasteplugin/Clipboard", [
 	"tinymce/Env",
 	"tinymce/dom/RangeUtils",
@@ -39,12 +39,12 @@ define("tinymce/pasteplugin/Clipboard", [
 		var mceInternalUrlPrefix = 'data:text/mce-internal,';
 
 		/**
-		 * Pastes the specified HTML. This means that the HTML is filtered and then
-		 * inserted at the current selection in the editor. It will also fire paste events
-		 * for custom user filtering.
-		 *
-		 * @param {String} html HTML code to paste into the current selection.
-		 */
+			* Pastes the specified HTML. This means that the HTML is filtered and then
+			* inserted at the current selection in the editor. It will also fire paste events
+			* for custom user filtering.
+			*
+			* @param {String} html HTML code to paste into the current selection.
+			*/
 		function pasteHtml(html) {
 			var args, dom = editor.dom;
 
@@ -71,11 +71,11 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Pastes the specified text. This means that the plain text is processed
-		 * and converted into BR and P elements. It will fire paste events for custom filtering.
-		 *
-		 * @param {String} text Text to paste as the current selection location.
-		 */
+			* Pastes the specified text. This means that the plain text is processed
+			* and converted into BR and P elements. It will fire paste events for custom filtering.
+			*
+			* @param {String} text Text to paste as the current selection location.
+			*/
 		function pasteText(text) {
 			text = editor.dom.encode(text).replace(/\r\n/g, '\n');
 
@@ -109,10 +109,10 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Creates a paste bin element as close as possible to the current caret location and places the focus inside that element
-		 * so that when the real paste event occurs the contents gets inserted into this element
-		 * instead of the current editor selection element.
-		 */
+			* Creates a paste bin element as close as possible to the current caret location and places the focus inside that element
+			* so that when the real paste event occurs the contents gets inserted into this element
+			* instead of the current editor selection element.
+			*/
 		function createPasteBin() {
 			var dom = editor.dom, body = editor.getBody();
 			var viewport = editor.dom.getViewPort(editor.getWin()), scrollTop = viewport.y, top = 20;
@@ -131,11 +131,11 @@ define("tinymce/pasteplugin/Clipboard", [
 			}
 
 			/**
-			 * Returns the rect of the current caret if the caret is in an empty block before a
-			 * BR we insert a temporary invisible character that we get the rect this way we always get a proper rect.
-			 *
-			 * TODO: This might be useful in core.
-			 */
+				* Returns the rect of the current caret if the caret is in an empty block before a
+				* BR we insert a temporary invisible character that we get the rect this way we always get a proper rect.
+				*
+				* TODO: This might be useful in core.
+				*/
 			function getCaretRect(rng) {
 				var rects, textNode, node, container = rng.startContainer;
 
@@ -228,8 +228,8 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Removes the paste bin if it exists.
-		 */
+			* Removes the paste bin if it exists.
+			*/
 		function removePasteBin() {
 			if (pasteBinElm) {
 				var pasteBinClone;
@@ -251,10 +251,10 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Returns the contents of the paste bin as a HTML string.
-		 *
-		 * @return {String} Get the contents of the paste bin.
-		 */
+			* Returns the contents of the paste bin as a HTML string.
+			*
+			* @return {String} Get the contents of the paste bin.
+			*/
 		function getPasteBinHtml() {
 			var html = '', pasteBinClones, i, clone, cloneHtml;
 
@@ -280,11 +280,11 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Gets various content types out of a datatransfer object.
-		 *
-		 * @param {DataTransfer} dataTransfer Event fired on paste.
-		 * @return {Object} Object with mime types and data for those mime types.
-		 */
+			* Gets various content types out of a datatransfer object.
+			*
+			* @param {DataTransfer} dataTransfer Event fired on paste.
+			* @return {Object} Object with mime types and data for those mime types.
+			*/
 		function getDataTransferItems(dataTransfer) {
 			var data = {};
 
@@ -311,24 +311,24 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Gets various content types out of the Clipboard API. It will also get the
-		 * plain text using older IE and WebKit API:s.
-		 *
-		 * @param {ClipboardEvent} clipboardEvent Event fired on paste.
-		 * @return {Object} Object with mime types and data for those mime types.
-		 */
+			* Gets various content types out of the Clipboard API. It will also get the
+			* plain text using older IE and WebKit API:s.
+			*
+			* @param {ClipboardEvent} clipboardEvent Event fired on paste.
+			* @return {Object} Object with mime types and data for those mime types.
+			*/
 		function getClipboardContent(clipboardEvent) {
 			return getDataTransferItems(clipboardEvent.clipboardData || editor.getDoc().dataTransfer);
 		}
 
 		/**
-		 * Checks if the clipboard contains image data if it does it will take that data
-		 * and convert it into a data url image and paste that image at the caret location.
-		 *
-		 * @param  {ClipboardEvent} e Paste/drop event object.
-		 * @param  {DOMRange} rng Optional rng object to move selection to.
-		 * @return {Boolean} true/false if the image data was found or not.
-		 */
+			* Checks if the clipboard contains image data if it does it will take that data
+			* and convert it into a data url image and paste that image at the caret location.
+			*
+			* @param  {ClipboardEvent} e Paste/drop event object.
+			* @param  {DOMRange} rng Optional rng object to move selection to.
+			* @return {Boolean} true/false if the image data was found or not.
+			*/
 		function pasteImageData(e, rng) {
 			var dataTransfer = e.clipboardData || e.dataTransfer;
 
@@ -368,11 +368,11 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Chrome on Android doesn't support proper clipboard access so we have no choice but to allow the browser default behavior.
-		 *
-		 * @param {Event} e Paste event object to check if it contains any data.
-		 * @return {Boolean} true/false if the clipboard is empty or not.
-		 */
+			* Chrome on Android doesn't support proper clipboard access so we have no choice but to allow the browser default behavior.
+			*
+			* @param {Event} e Paste event object to check if it contains any data.
+			* @return {Boolean} true/false if the clipboard is empty or not.
+			*/
 		function isBrokenAndroidClipboardEvent(e) {
 			var clipboardData = e.clipboardData;
 

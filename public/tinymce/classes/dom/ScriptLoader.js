@@ -1,40 +1,40 @@
 /**
- * ScriptLoader.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ScriptLoader.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*globals console*/
 
 /**
- * This class handles asynchronous/synchronous loading of JavaScript files it will execute callbacks
- * when various items gets loaded. This class is useful to load external JavaScript files.
- *
- * @class tinymce.dom.ScriptLoader
- * @example
- * // Load a script from a specific URL using the global script loader
- * tinymce.ScriptLoader.load('somescript.js');
- *
- * // Load a script using a unique instance of the script loader
- * var scriptLoader = new tinymce.dom.ScriptLoader();
- *
- * scriptLoader.load('somescript.js');
- *
- * // Load multiple scripts
- * var scriptLoader = new tinymce.dom.ScriptLoader();
- *
- * scriptLoader.add('somescript1.js');
- * scriptLoader.add('somescript2.js');
- * scriptLoader.add('somescript3.js');
- *
- * scriptLoader.loadQueue(function() {
- *    alert('All scripts are now loaded.');
- * });
- */
+	* This class handles asynchronous/synchronous loading of JavaScript files it will execute callbacks
+	* when various items gets loaded. This class is useful to load external JavaScript files.
+	*
+	* @class tinymce.dom.ScriptLoader
+	* @example
+	* // Load a script from a specific URL using the global script loader
+	* tinymce.ScriptLoader.load('somescript.js');
+	*
+	* // Load a script using a unique instance of the script loader
+	* var scriptLoader = new tinymce.dom.ScriptLoader();
+	*
+	* scriptLoader.load('somescript.js');
+	*
+	* // Load multiple scripts
+	* var scriptLoader = new tinymce.dom.ScriptLoader();
+	*
+	* scriptLoader.add('somescript1.js');
+	* scriptLoader.add('somescript2.js');
+	* scriptLoader.add('somescript3.js');
+	*
+	* scriptLoader.loadQueue(function() {
+	*    alert('All scripts are now loaded.');
+	* });
+	*/
 define("tinymce/dom/ScriptLoader", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/util/Tools"
@@ -54,13 +54,13 @@ define("tinymce/dom/ScriptLoader", [
 			undef;
 
 		/**
-		 * Loads a specific script directly without adding it to the load queue.
-		 *
-		 * @method load
-		 * @param {String} url Absolute URL to script to add.
-		 * @param {function} callback Optional callback function to execute ones this script gets loaded.
-		 * @param {Object} scope Optional scope to execute callback in.
-		 */
+			* Loads a specific script directly without adding it to the load queue.
+			*
+			* @method load
+			* @param {String} url Absolute URL to script to add.
+			* @param {function} callback Optional callback function to execute ones this script gets loaded.
+			* @param {Object} scope Optional scope to execute callback in.
+			*/
 		function loadScript(url, callback) {
 			var dom = DOM, elm, id;
 
@@ -116,35 +116,35 @@ define("tinymce/dom/ScriptLoader", [
 		}
 
 		/**
-		 * Returns true/false if a script has been loaded or not.
-		 *
-		 * @method isDone
-		 * @param {String} url URL to check for.
-		 * @return {Boolean} true/false if the URL is loaded.
-		 */
+			* Returns true/false if a script has been loaded or not.
+			*
+			* @method isDone
+			* @param {String} url URL to check for.
+			* @return {Boolean} true/false if the URL is loaded.
+			*/
 		this.isDone = function(url) {
 			return states[url] == LOADED;
 		};
 
 		/**
-		 * Marks a specific script to be loaded. This can be useful if a script got loaded outside
-		 * the script loader or to skip it from loading some script.
-		 *
-		 * @method markDone
-		 * @param {string} u Absolute URL to the script to mark as loaded.
-		 */
+			* Marks a specific script to be loaded. This can be useful if a script got loaded outside
+			* the script loader or to skip it from loading some script.
+			*
+			* @method markDone
+			* @param {string} u Absolute URL to the script to mark as loaded.
+			*/
 		this.markDone = function(url) {
 			states[url] = LOADED;
 		};
 
 		/**
-		 * Adds a specific script to the load queue of the script loader.
-		 *
-		 * @method add
-		 * @param {String} url Absolute URL to script to add.
-		 * @param {function} callback Optional callback function to execute ones this script gets loaded.
-		 * @param {Object} scope Optional scope to execute callback in.
-		 */
+			* Adds a specific script to the load queue of the script loader.
+			*
+			* @method add
+			* @param {String} url Absolute URL to script to add.
+			* @param {function} callback Optional callback function to execute ones this script gets loaded.
+			* @param {Object} scope Optional scope to execute callback in.
+			*/
 		this.add = this.load = function(url, callback, scope) {
 			var state = states[url];
 
@@ -168,25 +168,25 @@ define("tinymce/dom/ScriptLoader", [
 		};
 
 		/**
-		 * Starts the loading of the queue.
-		 *
-		 * @method loadQueue
-		 * @param {function} callback Optional callback to execute when all queued items are loaded.
-		 * @param {Object} scope Optional scope to execute the callback in.
-		 */
+			* Starts the loading of the queue.
+			*
+			* @method loadQueue
+			* @param {function} callback Optional callback to execute when all queued items are loaded.
+			* @param {Object} scope Optional scope to execute the callback in.
+			*/
 		this.loadQueue = function(callback, scope) {
 			this.loadScripts(queue, callback, scope);
 		};
 
 		/**
-		 * Loads the specified queue of files and executes the callback ones they are loaded.
-		 * This method is generally not used outside this class but it might be useful in some scenarios.
-		 *
-		 * @method loadScripts
-		 * @param {Array} scripts Array of queue items to load.
-		 * @param {function} callback Optional callback to execute ones all items are loaded.
-		 * @param {Object} scope Optional scope to execute callback in.
-		 */
+			* Loads the specified queue of files and executes the callback ones they are loaded.
+			* This method is generally not used outside this class but it might be useful in some scenarios.
+			*
+			* @method loadScripts
+			* @param {Array} scripts Array of queue items to load.
+			* @param {function} callback Optional callback to execute ones all items are loaded.
+			* @param {Object} scope Optional scope to execute callback in.
+			*/
 		this.loadScripts = function(scripts, callback, scope) {
 			var loadScripts;
 

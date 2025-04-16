@@ -1,23 +1,23 @@
 /**
- * Entities.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Entities.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint bitwise:false */
 /*eslint no-bitwise:0 */
 
 /**
- * Entity encoder class.
- *
- * @class tinymce.html.Entities
- * @static
- * @version 3.4
- */
+	* Entity encoder class.
+	*
+	* @class tinymce.html.Entities
+	* @static
+	* @version 3.4
+	*/
 define("tinymce/html/Entities", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -119,13 +119,13 @@ define("tinymce/html/Entities", [
 
 	var Entities = {
 		/**
-		 * Encodes the specified string using raw entities. This means only the required XML base entities will be endoded.
-		 *
-		 * @method encodeRaw
-		 * @param {String} text Text to encode.
-		 * @param {Boolean} attr Optional flag to specify if the text is attribute contents.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encodes the specified string using raw entities. This means only the required XML base entities will be endoded.
+			*
+			* @method encodeRaw
+			* @param {String} text Text to encode.
+			* @param {Boolean} attr Optional flag to specify if the text is attribute contents.
+			* @return {String} Entity encoded text.
+			*/
 		encodeRaw: function(text, attr) {
 			return text.replace(attr ? attrsCharsRegExp : textCharsRegExp, function(chr) {
 				return baseEntities[chr] || chr;
@@ -133,14 +133,14 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Encoded the specified text with both the attributes and text entities. This function will produce larger text contents
-		 * since it doesn't know if the context is within a attribute or text node. This was added for compatibility
-		 * and is exposed as the DOMUtils.encode function.
-		 *
-		 * @method encodeAllRaw
-		 * @param {String} text Text to encode.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encoded the specified text with both the attributes and text entities. This function will produce larger text contents
+			* since it doesn't know if the context is within a attribute or text node. This was added for compatibility
+			* and is exposed as the DOMUtils.encode function.
+			*
+			* @method encodeAllRaw
+			* @param {String} text Text to encode.
+			* @return {String} Entity encoded text.
+			*/
 		encodeAllRaw: function(text) {
 			return ('' + text).replace(rawCharsRegExp, function(chr) {
 				return baseEntities[chr] || chr;
@@ -148,14 +148,14 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Encodes the specified string using numeric entities. The core entities will be
-		 * encoded as named ones but all non lower ascii characters will be encoded into numeric entities.
-		 *
-		 * @method encodeNumeric
-		 * @param {String} text Text to encode.
-		 * @param {Boolean} attr Optional flag to specify if the text is attribute contents.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encodes the specified string using numeric entities. The core entities will be
+			* encoded as named ones but all non lower ascii characters will be encoded into numeric entities.
+			*
+			* @method encodeNumeric
+			* @param {String} text Text to encode.
+			* @param {Boolean} attr Optional flag to specify if the text is attribute contents.
+			* @return {String} Entity encoded text.
+			*/
 		encodeNumeric: function(text, attr) {
 			return text.replace(attr ? attrsCharsRegExp : textCharsRegExp, function(chr) {
 				// Multi byte sequence convert it to a single entity
@@ -168,15 +168,15 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Encodes the specified string using named entities. The core entities will be encoded
-		 * as named ones but all non lower ascii characters will be encoded into named entities.
-		 *
-		 * @method encodeNamed
-		 * @param {String} text Text to encode.
-		 * @param {Boolean} attr Optional flag to specify if the text is attribute contents.
-		 * @param {Object} entities Optional parameter with entities to use.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encodes the specified string using named entities. The core entities will be encoded
+			* as named ones but all non lower ascii characters will be encoded into named entities.
+			*
+			* @method encodeNamed
+			* @param {String} text Text to encode.
+			* @param {Boolean} attr Optional flag to specify if the text is attribute contents.
+			* @param {Object} entities Optional parameter with entities to use.
+			* @return {String} Entity encoded text.
+			*/
 		encodeNamed: function(text, attr, entities) {
 			entities = entities || namedEntities;
 
@@ -186,13 +186,13 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Returns an encode function based on the name(s) and it's optional entities.
-		 *
-		 * @method getEncodeFunc
-		 * @param {String} name Comma separated list of encoders for example named,numeric.
-		 * @param {String} entities Optional parameter with entities to use instead of the built in set.
-		 * @return {function} Encode function to be used.
-		 */
+			* Returns an encode function based on the name(s) and it's optional entities.
+			*
+			* @method getEncodeFunc
+			* @param {String} name Comma separated list of encoders for example named,numeric.
+			* @param {String} entities Optional parameter with entities to use instead of the built in set.
+			* @return {function} Encode function to be used.
+			*/
 		getEncodeFunc: function(name, entities) {
 			entities = buildEntitiesLookup(entities) || namedEntities;
 
@@ -234,12 +234,12 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Decodes the specified string, this will replace entities with raw UTF characters.
-		 *
-		 * @method decode
-		 * @param {String} text Text to entity decode.
-		 * @return {String} Entity decoded string.
-		 */
+			* Decodes the specified string, this will replace entities with raw UTF characters.
+			*
+			* @method decode
+			* @param {String} text Text to entity decode.
+			* @return {String} Entity decoded string.
+			*/
 		decode: function(text) {
 			return text.replace(entityRegExp, function(all, numeric, value) {
 				if (numeric) {

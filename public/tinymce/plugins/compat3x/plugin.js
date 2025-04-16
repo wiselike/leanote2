@@ -1,24 +1,24 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true, console:true */
 /*eslint no-console:0, new-cap:0 */
 
 /**
- * This plugin adds missing events form the 4.x API back. Not every event is
- * properly supported but most things should work.
- *
- * Unsupported things:
- *  - No editor.onEvent
- *  - Can't cancel execCommands with beforeExecCommand
- */
+	* This plugin adds missing events form the 4.x API back. Not every event is
+	* properly supported but most things should work.
+	*
+	* Unsupported things:
+	*  - No editor.onEvent
+	*  - Can't cancel execCommands with beforeExecCommand
+	*/
 (function(tinymce) {
 	var reported;
 

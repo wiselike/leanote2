@@ -1,20 +1,20 @@
 /**
- * Path.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Path.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new path control.
- *
- * @-x-less Path.less
- * @class tinymce.ui.Path
- * @extends tinymce.ui.Widget
- */
+	* Creates a new path control.
+	*
+	* @-x-less Path.less
+	* @class tinymce.ui.Path
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Path", [
 	"tinymce/ui/Widget"
 ], function(Widget) {
@@ -22,12 +22,12 @@ define("tinymce/ui/Path", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} delimiter Delimiter to display between items in path.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} delimiter Delimiter to display between items in path.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -49,11 +49,11 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Focuses the current control.
-		 *
-		 * @method focus
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Focuses the current control.
+			*
+			* @method focus
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		focus: function() {
 			var self = this;
 
@@ -63,11 +63,11 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Sets/gets the data to be used for the path.
-		 *
-		 * @method data
-		 * @param {Array} data Array with items name is rendered to path.
-		 */
+			* Sets/gets the data to be used for the path.
+			*
+			* @method data
+			* @param {Array} data Array with items name is rendered to path.
+			*/
 		data: function(data) {
 			var self = this;
 
@@ -82,19 +82,19 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Updated the path.
-		 *
-		 * @private
-		 */
+			* Updated the path.
+			*
+			* @private
+			*/
 		update: function() {
 			this.innerHtml(this._getPathHtml());
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -104,11 +104,11 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this;
 

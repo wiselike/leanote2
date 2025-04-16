@@ -12,22 +12,22 @@ body {
 	margin-top: 30px;
 }
 table {
-    margin-bottom: 16px;
+	margin-bottom: 16px;
 }
 table th, table td {
-    padding: 6px 13px;
-    border: 1px solid #ddd;
+	padding: 6px 13px;
+	border: 1px solid #ddd;
 }
 table th {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 table tr {
-    background-color: #fff;
-    border-top: 1px solid #ccc;
+	background-color: #fff;
+	border-top: 1px solid #ccc;
 }
 table tr:nth-child(2n) {
-    background-color: #f8f8f8;
+	background-color: #f8f8f8;
 }
 .mce-item-table, .mce-item-table td, .mce-item-table th, .mce-item-table caption {
 	border: 1px solid #ddd;
@@ -59,7 +59,7 @@ table tr:nth-child(2n) {
 			{{blogTagsForExport $ .blog.Tags}}
 		{{end}}
 	</div>
-	
+
 	<div class="desc">
 		{{if .blog.IsMarkdown }}
 			<div id="markdownContent" style="display: none">
@@ -114,9 +114,9 @@ ok();
 <script>
 var content = $.trim($("#markdownContent textarea").val());
 md2Html(content, $("#parsedContent"), function(html) {
-    $("pre").addClass("prettyprint");
-    prettyPrint();
-    ok();
+	$("pre").addClass("prettyprint");
+	prettyPrint();
+	ok();
 });
 </script>
 {{end}}

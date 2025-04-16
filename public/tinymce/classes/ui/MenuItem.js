@@ -1,20 +1,20 @@
 /**
- * MenuItem.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* MenuItem.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new menu item.
- *
- * @-x-less MenuItem.less
- * @class tinymce.ui.MenuItem
- * @extends tinymce.ui.Widget
- */
+	* Creates a new menu item.
+	*
+	* @-x-less MenuItem.less
+	* @class tinymce.ui.MenuItem
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/MenuItem", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/Factory",
@@ -29,14 +29,14 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Boolean} selectable Selectable menu.
-		 * @setting {Array} menu Submenu array with items.
-		 * @setting {String} shortcut Shortcut to display for menu item. Example: Ctrl+X
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Boolean} selectable Selectable menu.
+			* @setting {Array} menu Submenu array with items.
+			* @setting {String} shortcut Shortcut to display for menu item. Example: Ctrl+X
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -82,20 +82,20 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Returns true/false if the menuitem has sub menu.
-		 *
-		 * @method hasMenus
-		 * @return {Boolean} True/false state if it has submenu.
-		 */
+			* Returns true/false if the menuitem has sub menu.
+			*
+			* @method hasMenus
+			* @return {Boolean} True/false state if it has submenu.
+			*/
 		hasMenus: function() {
 			return !!this.settings.menu;
 		},
 
 		/**
-		 * Shows the menu for the menu item.
-		 *
-		 * @method showMenu
-		 */
+			* Shows the menu for the menu item.
+			*
+			* @method showMenu
+			*/
 		showMenu: function() {
 			var self = this, settings = self.settings, menu, parent = self.parent();
 
@@ -172,10 +172,10 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Hides the menu for the menu item.
-		 *
-		 * @method hideMenu
-		 */
+			* Hides the menu for the menu item.
+			*
+			* @method hideMenu
+			*/
 		hideMenu: function() {
 			var self = this;
 
@@ -194,11 +194,11 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, settings = self.settings, prefix = self.classPrefix, text = self.encode(self._text);
 			var icon = self.settings.icon, image = '', shortcut = settings.shortcut;
@@ -259,10 +259,10 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Gets invoked after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Gets invoked after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, settings = self.settings;
 
@@ -307,10 +307,10 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Removes the control and it's menus.
-		 *
-		 * @method remove
-		 */
+			* Removes the control and it's menus.
+			*
+			* @method remove
+			*/
 		remove: function() {
 			this._super();
 

@@ -1,19 +1,19 @@
 /**
- * WordFilter.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* WordFilter.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class parses word HTML into proper TinyMCE markup.
- *
- * @class tinymce.pasteplugin.WordFilter
- * @private
- */
+	* This class parses word HTML into proper TinyMCE markup.
+	*
+	* @class tinymce.pasteplugin.WordFilter
+	* @private
+	*/
 define("tinymce/pasteplugin/WordFilter", [
 	"tinymce/util/Tools",
 	"tinymce/html/DomParser",
@@ -23,8 +23,8 @@ define("tinymce/pasteplugin/WordFilter", [
 	"tinymce/pasteplugin/Utils"
 ], function(Tools, DomParser, Schema, Serializer, Node, Utils) {
 	/**
-	 * Checks if the specified content is from any of the following sources: MS Word/Office 365/Google docs.
-	 */
+		* Checks if the specified content is from any of the following sources: MS Word/Office 365/Google docs.
+		*/
 	function isWordContent(content) {
 		return (
 			(/<font face="Times New Roman"|class="?Mso|style="[^"]*\bmso-|style='[^'']*\bmso-|w:WordDocument/i).test(content) ||
@@ -34,8 +34,8 @@ define("tinymce/pasteplugin/WordFilter", [
 	}
 
 	/**
-	 * Checks if the specified text starts with "1. " or "a. " etc.
-	 */
+		* Checks if the specified text starts with "1. " or "a. " etc.
+		*/
 	function isNumericList(text) {
 		var found, patterns;
 
@@ -81,10 +81,10 @@ define("tinymce/pasteplugin/WordFilter", [
 			}
 
 			/**
-			 * Converts fake bullet and numbered lists to real semantic OL/UL.
-			 *
-			 * @param {tinymce.html.Node} node Root node to convert children of.
-			 */
+				* Converts fake bullet and numbered lists to real semantic OL/UL.
+				*
+				* @param {tinymce.html.Node} node Root node to convert children of.
+				*/
 			function convertFakeListsToProperLists(node) {
 				var currentListNode, prevListNode, lastLevel = 1;
 

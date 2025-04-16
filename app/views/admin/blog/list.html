@@ -12,7 +12,7 @@
 			</button>
 		</div>
 		<div class="col-sm-4 m-b-xs">
-			
+
 		</div>
 		<div class="col-sm-3">
 			<div class="input-group search-group">
@@ -31,10 +31,10 @@
 						<input type="checkbox">
 					</th>
 					{{$url := urlConcat "/adminBlog/index" "keywords" .keywords}}
-					<th 
+					<th
 					{{sorterTh $url "title" .sorter}}
 					>
-						Title	
+						Title
 						<span class="th-sort">
 							<i class="fa fa-sort-down"></i>
 							<i class="fa fa-sort-up"></i>
@@ -51,7 +51,7 @@
 							<i class="fa fa-sort"></i>
 						</span>
 					</th>
-					
+
 					<th
 					{{sorterTh $url "createdTime" .sorter}}
 					>
@@ -105,7 +105,7 @@
 		</div>
 	</footer>
 </section>
-	
+
 {{template "admin/footer.html" .}}
 
 <script>

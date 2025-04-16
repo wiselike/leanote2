@@ -1,16 +1,16 @@
 /**
- * Task for creating a skin.dev.less files for each of the skin directories located in the path. It will automatically import
- * the used less files based on the JS components found in the importFrom file. It will look for -x-less JSDoc comments and include
- * these into the output less file.
- */
+	* Task for creating a skin.dev.less files for each of the skin directories located in the path. It will automatically import
+	* the used less files based on the JS components found in the importFrom file. It will look for -x-less JSDoc comments and include
+	* these into the output less file.
+	*/
 
 var path = require('path');
 var fs = require('fs');
 
 module.exports = function(grunt) {
 	/**
-	 * Compiles a less file with imports for all the specified paths.
-	 */
+		* Compiles a less file with imports for all the specified paths.
+		*/
 	function compileLessFile(paths, lessFilePath) {
 		var lessImportCode = "";
 
@@ -22,8 +22,8 @@ module.exports = function(grunt) {
 	}
 
 	/**
-	 * Parses the JS doc comments for -x-less items and include returns them as an array.
-	 */
+		* Parses the JS doc comments for -x-less items and include returns them as an array.
+		*/
 	function parseLessDocs(filePath) {
 		var matches, docCommentRegExp = /\/\*\*([\s\S]+?)\*\//g, lessFiles = [];
 		var source = grunt.file.read(filePath).toString();

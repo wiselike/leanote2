@@ -1,16 +1,16 @@
 /**
- * VK.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* VK.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This file exposes a set of the common KeyCodes for use.  Please grow it as needed.
- */
+	* This file exposes a set of the common KeyCodes for use.  Please grow it as needed.
+	*/
 define("tinymce/util/VK", [
 	"tinymce/Env"
 ], function(Env) {

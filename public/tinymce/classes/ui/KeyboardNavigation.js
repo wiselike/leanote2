@@ -1,28 +1,28 @@
 /**
- * KeyboardNavigation.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* KeyboardNavigation.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles keyboard navigation of controls and elements.
- *
- * @class tinymce.ui.KeyboardNavigation
- */
+	* This class handles keyboard navigation of controls and elements.
+	*
+	* @class tinymce.ui.KeyboardNavigation
+	*/
 define("tinymce/ui/KeyboardNavigation", [
 ], function() {
 	"use strict";
 
 	/**
-	 * This class handles all keyboard navigation for WAI-ARIA support. Each root container
-	 * gets an instance of this class.
-	 *
-	 * @constructor
-	 */
+		* This class handles all keyboard navigation for WAI-ARIA support. Each root container
+		* gets an instance of this class.
+		*
+		* @constructor
+		*/
 	return function(settings) {
 		var root = settings.root, focusedElement, focusedControl;
 
@@ -36,13 +36,13 @@ define("tinymce/ui/KeyboardNavigation", [
 		focusedControl = root.getParentCtrl(focusedElement);
 
 		/**
-		 * Returns the currently focused elements wai aria role of the currently
-		 * focused element or specified element.
-		 *
-		 * @private
-		 * @param {Element} elm Optional element to get role from.
-		 * @return {String} Role of specified element.
-		 */
+			* Returns the currently focused elements wai aria role of the currently
+			* focused element or specified element.
+			*
+			* @private
+			* @param {Element} elm Optional element to get role from.
+			* @return {String} Role of specified element.
+			*/
 		function getRole(elm) {
 			elm = elm || focusedElement;
 
@@ -50,13 +50,13 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns the wai role of the parent element of the currently
-		 * focused element or specified element.
-		 *
-		 * @private
-		 * @param {Element} elm Optional element to get parent role from.
-		 * @return {String} Role of the first parent that has a role.
-		 */
+			* Returns the wai role of the parent element of the currently
+			* focused element or specified element.
+			*
+			* @private
+			* @param {Element} elm Optional element to get parent role from.
+			* @return {String} Role of the first parent that has a role.
+			*/
 		function getParentRole(elm) {
 			var role, parent = elm || focusedElement;
 
@@ -68,12 +68,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns a wai aria property by name for example aria-selected.
-		 *
-		 * @private
-		 * @param {String} name Name of the aria property to get for example "disabled".
-		 * @return {String} Aria property value.
-		 */
+			* Returns a wai aria property by name for example aria-selected.
+			*
+			* @private
+			* @param {String} name Name of the aria property to get for example "disabled".
+			* @return {String} Aria property value.
+			*/
 		function getAriaProp(name) {
 			var elm = focusedElement;
 
@@ -83,12 +83,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Is the element a text input element or not.
-		 *
-		 * @private
-		 * @param {Element} elm Element to check if it's an text input element or not.
-		 * @return {Boolean} True/false if the element is a text element or not.
-		 */
+			* Is the element a text input element or not.
+			*
+			* @private
+			* @param {Element} elm Element to check if it's an text input element or not.
+			* @return {Boolean} True/false if the element is a text element or not.
+			*/
 		function isTextInputElement(elm) {
 			var tagName = elm.tagName.toUpperCase();
 
@@ -98,12 +98,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns true/false if the specified element can be focused or not.
-		 *
-		 * @private
-		 * @param {Element} elm DOM element to check if it can be focused or not.
-		 * @return {Boolean} True/false if the element can have focus.
-		 */
+			* Returns true/false if the specified element can be focused or not.
+			*
+			* @private
+			* @param {Element} elm DOM element to check if it can be focused or not.
+			* @return {Boolean} True/false if the element can have focus.
+			*/
 		function canFocus(elm) {
 			if (isTextInputElement(elm) && !elm.hidden) {
 				return true;
@@ -117,12 +117,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns an array of focusable visible elements within the specified container element.
-		 *
-		 * @private
-		 * @param {Element} elm DOM element to find focusable elements within.
-		 * @return {Array} Array of focusable elements.
-		 */
+			* Returns an array of focusable visible elements within the specified container element.
+			*
+			* @private
+			* @param {Element} elm DOM element to find focusable elements within.
+			* @return {Array} Array of focusable elements.
+			*/
 		function getFocusElements(elm) {
 			var elements = [];
 
@@ -146,14 +146,14 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns the navigation root control for the specified control. The navigation root
-		 * is the control that the keyboard navigation gets scoped to for example a menubar or toolbar group.
-		 * It will look for parents of the specified target control or the currently focused control if this option is omitted.
-		 *
-		 * @private
-		 * @param {tinymce.ui.Control} targetControl Optional target control to find root of.
-		 * @return {tinymce.ui.Control} Navigation root control.
-		 */
+			* Returns the navigation root control for the specified control. The navigation root
+			* is the control that the keyboard navigation gets scoped to for example a menubar or toolbar group.
+			* It will look for parents of the specified target control or the currently focused control if this option is omitted.
+			*
+			* @private
+			* @param {tinymce.ui.Control} targetControl Optional target control to find root of.
+			* @return {tinymce.ui.Control} Navigation root control.
+			*/
 		function getNavigationRoot(targetControl) {
 			var navigationRoot, controls;
 
@@ -173,12 +173,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Focuses the first item in the specified targetControl element or the last aria index if the
-		 * navigation root has the ariaRemember option enabled.
-		 *
-		 * @private
-		 * @param {tinymce.ui.Control} targetControl Target control to focus the first item in.
-		 */
+			* Focuses the first item in the specified targetControl element or the last aria index if the
+			* navigation root has the ariaRemember option enabled.
+			*
+			* @private
+			* @param {tinymce.ui.Control} targetControl Target control to focus the first item in.
+			*/
 		function focusFirst(targetControl) {
 			var navigationRoot = getNavigationRoot(targetControl);
 			var focusElements = getFocusElements(navigationRoot.getEl());
@@ -191,14 +191,14 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the specified index within the elements list.
-		 * This will scope the index to the size of the element list if it changed.
-		 *
-		 * @private
-		 * @param {Number} idx Specified index to move to.
-		 * @param {Array} elements Array with dom elements to move focus within.
-		 * @return {Number} Input index or a changed index if it was out of range.
-		 */
+			* Moves the focus to the specified index within the elements list.
+			* This will scope the index to the size of the element list if it changed.
+			*
+			* @private
+			* @param {Number} idx Specified index to move to.
+			* @param {Array} elements Array with dom elements to move focus within.
+			* @return {Number} Input index or a changed index if it was out of range.
+			*/
 		function moveFocusToIndex(idx, elements) {
 			if (idx < 0) {
 				idx = elements.length - 1;
@@ -214,12 +214,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus forwards or backwards.
-		 *
-		 * @private
-		 * @param {Number} dir Direction to move in positive means forward, negative means backwards.
-		 * @param {Array} elements Optional array of elements to move within defaults to the current navigation roots elements.
-		 */
+			* Moves the focus forwards or backwards.
+			*
+			* @private
+			* @param {Number} dir Direction to move in positive means forward, negative means backwards.
+			* @param {Array} elements Optional array of elements to move within defaults to the current navigation roots elements.
+			*/
 		function moveFocus(dir, elements) {
 			var idx = -1, navigationRoot = getNavigationRoot();
 
@@ -236,10 +236,10 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the left this is called by the left key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the left this is called by the left key.
+			*
+			* @private
+			*/
 		function left() {
 			var parentRole = getParentRole();
 
@@ -253,10 +253,10 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the right this is called by the right key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the right this is called by the right key.
+			*
+			* @private
+			*/
 		function right() {
 			var role = getRole(), parentRole = getParentRole();
 
@@ -270,19 +270,19 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the up this is called by the up key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the up this is called by the up key.
+			*
+			* @private
+			*/
 		function up() {
 			moveFocus(-1);
 		}
 
 		/**
-		 * Moves the focus to the up this is called by the down key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the up this is called by the down key.
+			*
+			* @private
+			*/
 		function down() {
 			var role = getRole(), parentRole = getParentRole();
 
@@ -296,11 +296,11 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the next item or previous item depending on shift key.
-		 *
-		 * @private
-		 * @param {DOMEvent} e DOM event object.
-		 */
+			* Moves the focus to the next item or previous item depending on shift key.
+			*
+			* @private
+			* @param {DOMEvent} e DOM event object.
+			*/
 		function tab(e) {
 			var parentRole = getParentRole();
 
@@ -316,20 +316,20 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Calls the cancel event on the currently focused control. This is normally done using the Esc key.
-		 *
-		 * @private
-		 */
+			* Calls the cancel event on the currently focused control. This is normally done using the Esc key.
+			*
+			* @private
+			*/
 		function cancel() {
 			focusedControl.fire('cancel');
 		}
 
 		/**
-		 * Calls the click event on the currently focused control. This is normally done using the Enter/Space keys.
-		 *
-		 * @private
-		 * @param {Object} aria Optional aria data to pass along with the enter event.
-		 */
+			* Calls the click event on the currently focused control. This is normally done using the Enter/Space keys.
+			*
+			* @private
+			* @param {Object} aria Optional aria data to pass along with the enter event.
+			*/
 		function enter(aria) {
 			aria = aria || {};
 			focusedControl.fire('click', {target: focusedElement, aria: aria});

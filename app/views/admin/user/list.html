@@ -9,7 +9,7 @@
 			</button>
 		</div>
 		<div class="col-sm-4 m-b-xs">
-			
+
 		</div>
 		<div class="col-sm-3">
 			<div class="input-group search-group">
@@ -28,7 +28,7 @@
 						<input type="checkbox">
 					</th>
 					{{$url := urlConcat "/adminUser/index" "keywords" .keywords}}
-					<th 
+					<th
 					{{sorterTh $url "email" .sorter}}
 					>
 						Email
@@ -106,7 +106,7 @@
 					Send Email
 				</button>
 			</div>
-			
+
 			<div class="col-sm-8 text-right text-center-xs">
 				{{set . "url" (urlConcat "/adminUser/index" "sorter" .sorter "keywords" .keywords)}}
 				{{template "admin/user/page.html" .}}
@@ -114,7 +114,7 @@
 		</div>
 	</footer>
 </section>
-	
+
 {{template "admin/footer.html" .}}
 
 <script>
@@ -133,7 +133,7 @@ $(function() {
 		}
 		openSendEmailDialog(emails.join(","));
 	});
-	
+
 	// reset password
 	$(".reset-pwd").click(function() {
 		var id = $(this).data("id");

@@ -35,15 +35,15 @@ function ajaxPostP(url, param, callback) {
 function ajaxP(method, url, param, callback) {
 	param = param || {};
 	callback = callback || function() {};
-	$.ajax({ 
-        dataType: "jsonp",//跨域访问 dataType 必须是jsonp 类型。  
-        url: url,  
-        type: method, 
-        data: param,
-        jsonp: "callback",
+	$.ajax({
+		dataType: "jsonp",//跨域访问 dataType 必须是jsonp 类型。
+		url: url,
+		type: method,
+		data: param,
+		jsonp: "callback",
 		jsonpCallback: "jsonpCallback",
-        success: callback
-    });
+		success: callback
+	});
 }
 
 //------------------
@@ -78,12 +78,12 @@ function shareTwitter(noteId, title, pic) {
 	var url = 'https://twitter.com/intent/tweet?text=' + getShareTitle(title) + '&pic=' + pic;
 	window.open(url, 'Share', windowParam);
 }
-// http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&t=<?php the_title(); ?>” 
+// http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&t=<?php the_title(); ?>”
 function shareFacebook(noteId, title, pic) {
 	var url = ' http://www.facebook.com/sharer.php?t=' + getShareTitle(title) + '&pic=' + pic;
 	window.open(url, 'Share', windowParam);
 }
-	
+
 
 // go的datetime转成datetime字符串
 // 2014-01-06T18:29:48.802+08:00 => 2012-12-12 12:12:12 字符串
@@ -124,30 +124,30 @@ var diff = {
 	month : 1000 * 60 * 60 * 24 * 30
 }
 function getDateDiff(dateTimeStamp) {
-    var now = new Date().getTime();
-    var diffValue = now - dateTimeStamp;
-    if (diffValue < 0) {
-        return "";
-    }
-    var monthC = diffValue / diff.month;
-    var weekC = diffValue / (7 * diff.day);
-    var dayC = diffValue / diff.day;
-    var hourC = diffValue / diff.hour;
-    var minC = parseInt(diffValue / diff.minute);
-    if (monthC >= 1) {
-        result = parseInt(monthC) + " month ago";
-    } else if (weekC >= 1) {
-        result = parseInt(weekC) + " weeks ago";
-    } else if (dayC >= 1) {
-        result = parseInt(dayC) + " days ago";
-    } else if (hourC >= 1) {
-        result = parseInt(hourC) + " hours ago";
-    } else if (minC > 1) {
-        result = minC + " minutes ago";
-    } else {
-        result = "Just now";
-    }
-    return result;
+	var now = new Date().getTime();
+	var diffValue = now - dateTimeStamp;
+	if (diffValue < 0) {
+		return "";
+	}
+	var monthC = diffValue / diff.month;
+	var weekC = diffValue / (7 * diff.day);
+	var dayC = diffValue / diff.day;
+	var hourC = diffValue / diff.hour;
+	var minC = parseInt(diffValue / diff.minute);
+	if (monthC >= 1) {
+		result = parseInt(monthC) + " month ago";
+	} else if (weekC >= 1) {
+		result = parseInt(weekC) + " weeks ago";
+	} else if (dayC >= 1) {
+		result = parseInt(dayC) + " days ago";
+	} else if (hourC >= 1) {
+		result = parseInt(hourC) + " hours ago";
+	} else if (minC > 1) {
+		result = minC + " minutes ago";
+	} else {
+		result = "Just now";
+	}
+	return result;
 }
 
 function weixin() {
@@ -155,8 +155,8 @@ function weixin() {
 	var title = $.trim($(".title").text());
 	var desc = $.trim($("#desc").text());
 	var imgUrl = $("#content img").eq(0).attr('src');
-	window.shareData = { 
-	   "imgUrl": imgUrl, 
+	window.shareData = {
+		"imgUrl": imgUrl,
 		"timeLineLink":local,
 		"sendFriendLink": local,
 		"weiboLink":local,
@@ -164,12 +164,12 @@ function weixin() {
 		"tContent": desc,
 		"fTitle": title,
 		"fContent": desc,
-		"wContent": desc 
+		"wContent": desc
 	};
 	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 		// 发送给好友
 		WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-			WeixinJSBridge.invoke('sendAppMessage', { 
+			WeixinJSBridge.invoke('sendAppMessage', {
 				"img_url": window.shareData.imgUrl,
 				"img_width": "200",
 				"link": window.shareData.sendFriendLink,
@@ -180,7 +180,7 @@ function weixin() {
 				_report('send_msg', res.err_msg);
 			})
 		});
-	
+
 		// 分享到朋友圈
 		WeixinJSBridge.on('menu:share:timeline', function (argv) {
 			WeixinJSBridge.invoke('shareTimeline', {
@@ -194,7 +194,7 @@ function weixin() {
 				_report('timeline', res.err_msg);
 			});
 		});
-	
+
 		// 分享到微博
 		WeixinJSBridge.on('menu:share:weibo', function (argv) {
 			WeixinJSBridge.invoke('shareWeibo', {
@@ -212,7 +212,7 @@ function weixin() {
 function scrollTo(self, tagName, text) {
 	var iframe = $("#content");
 	var target = iframe.find(tagName + ":contains(" + text + ")");
-	
+
 	// 找到是第几个
 	// 在nav是第几个
 	var navs = $('#blogNavContent [data-a="' + tagName + '-' + encodeURI(text) + '"]');
@@ -222,7 +222,7 @@ function scrollTo(self, tagName, text) {
 			break;
 		}
 	}
-	
+
 	if (target.size() >= i+1) {
 		target = target.eq(i);
 		// 之前插入, 防止多行定位不准
@@ -245,7 +245,7 @@ function genNav() {
 	var hs = $con.find("h1,h2,h3,h4,h5,h6").toArray();
 	var titles = '<ul>';
 	for(var i = 0; i < hs.length; ++i) {
-		var text = $(hs[i]).text(); 
+		var text = $(hs[i]).text();
 		var tagName = hs[i].tagName.toLowerCase();
 		// scrollTo在page.js中定义
 		titles += '<li class="nav-' + tagName + '"><a data-a="' + tagName + '-' + encodeURI(text)+'" onclick="window.scrollTo(this, \'' + tagName + '\', \'' + text + '\')">' + text + '</a></li>';
@@ -264,12 +264,12 @@ function initNav() {
 	if(!hasNav) {
 		return;
 	}
-	
+
 	var $title = $(".title");
 	var titlePos = $title.offset();
 	var top = titlePos.top + 10;// - $title.height();
 	// 手机下不要与标题在同一高度
-	if(LEA.isMobile){ 
+	if(LEA.isMobile){
 		top += 30;
 	}
 	if(top < 0) {
@@ -279,7 +279,7 @@ function initNav() {
 	var left = $title.width() + titlePos.left - 100;
 	$("#blogNav").css("top", top).css("left", left);
 	$("#blogNav").show();
-	
+
 	$("#blogNavNav").click(function() {
 		var $o = $("#blogNavContent");
 		if($o.is(":hidden")) {
@@ -288,20 +288,20 @@ function initNav() {
 			$o.hide();
 		}
 	});
-	
+
 	var $d = $(document);
 	function reNav() {
-	    var vtop = $d.scrollTop();
-	    if(vtop <= top) {
+		var vtop = $d.scrollTop();
+		if(vtop <= top) {
 			$("#blogNav").css("top", top-vtop);
-	    } else {
-	    	// 差距很磊了
-	    	if(LEA.isMobile) {
+		} else {
+			// 差距很磊了
+			if(LEA.isMobile) {
 				$("#blogNav").css("top", 50);
 			} else {
 				$("#blogNav").css("top", 10);
 			}
-	    }
+		}
 	}
 	reNav();
 	$(window).scroll(reNav);
@@ -311,7 +311,7 @@ function initNav() {
 // 分享与评论
 
 // 得到登录的链接
-function goLogin(){ 
+function goLogin(){
 	var loginUrl = siteUrl + '/login?from=' + encodeURI(location.href);
 	location.href = loginUrl;
 }
@@ -328,15 +328,15 @@ function needLogin() {
 		var registerUrl = siteUrl + '/register?from=' + encodeURI(location.href);
 		try {
 			var modal = BootstrapDialog.show({
-		        title: "Please sign in first",
-		        message: '<div class="needLogin" style="border:none"><a href="' + loginUrl + '">Sign in</a> to to leave a comment.<br />No Leanote account? <a href="' + registerUrl +'">Sign up now</a>',
-		        nl2br: false
-		   });
-	   } catch(e) {}
-	   
-	   return true;
-   }
-   return false;
+				title: "Please sign in first",
+				message: '<div class="needLogin" style="border:none"><a href="' + loginUrl + '">Sign in</a> to to leave a comment.<br />No Leanote account? <a href="' + registerUrl +'">Sign up now</a>',
+				nl2br: false
+			});
+		} catch(e) {}
+
+		return true;
+	}
+	return false;
 }
 
 // 定位评论
@@ -351,7 +351,7 @@ function scrollToTarget(t, fixed) {
 
 // 得到访问者信息, 因为自定义域名的原因, 需要用jsonp来获取
 function getCurVisitUserInfo() {
-	
+
 }
 // 增加阅读次数
 function incReadNum(noteId) {
@@ -410,7 +410,7 @@ function isMobile() {
 	var u = navigator.userAgent;
 	LEA.isMobile = false;
 	LEA.isMobile = /Mobile|Android|iPhone/i.test(u);
-	if(!LEA.isMobile && $(document).width() <= 600){ 
+	if(!LEA.isMobile && $(document).width() <= 600){
 		LEA.isMobile = true
 	}
 }

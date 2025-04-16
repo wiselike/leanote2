@@ -1,19 +1,19 @@
 /**
- * Plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains the tinymce plugin logic for the paste plugin.
- *
- * @class tinymce.pasteplugin.Plugin
- * @private
- */
+	* This class contains the tinymce plugin logic for the paste plugin.
+	*
+	* @class tinymce.pasteplugin.Plugin
+	* @private
+	*/
 define("tinymce/pasteplugin/Plugin", [
 	"tinymce/PluginManager",
 	"tinymce/pasteplugin/Clipboard",
@@ -44,7 +44,7 @@ define("tinymce/pasteplugin/Plugin", [
 				}
 			}
 		}
-		
+
 		function togglePasteCopyImage() {
 			if (clipboard.copyImage) {
 				this.active(false);
@@ -116,7 +116,7 @@ define("tinymce/pasteplugin/Plugin", [
 			onclick: togglePlainTextPaste,
 			active: self.clipboard.pasteFormat == "text"
 		});
-		
+
 		editor.addButton('pasteCopyImage', {
 			icon: 'copy',
 			tooltip: "When Paste other site's image, copy it into my album as public image",

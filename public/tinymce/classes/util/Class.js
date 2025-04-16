@@ -1,20 +1,20 @@
 /**
- * Class.js
- *
- * Copyright 2003-2012, Moxiecode Systems AB, All rights reserved.
- */
+	* Class.js
+	*
+	* Copyright 2003-2012, Moxiecode Systems AB, All rights reserved.
+	*/
 
 /**
- * This utilitiy class is used for easier inheritage.
- *
- * Features:
- * * Exposed super functions: this._super();
- * * Mixins
- * * Dummy functions
- * * Property functions: var value = object.value(); and object.value(newValue);
- * * Static functions
- * * Defaults settings
- */
+	* This utilitiy class is used for easier inheritage.
+	*
+	* Features:
+	* * Exposed super functions: this._super();
+	* * Mixins
+	* * Dummy functions
+	* * Property functions: var value = object.value(); and object.value(newValue);
+	* * Static functions
+	* * Defaults settings
+	*/
 define("tinymce/util/Class", [
 	"tinymce/util/Tools"
 ], function(Tools) {

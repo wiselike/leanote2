@@ -1,58 +1,58 @@
 /*
- *  /MathJax/config/Accessible-full.js
- *  
- *  Copyright (c) 2010-2015 The MathJax Consortium
- *
- *  Part of the MathJax library.
- *  See http://www.mathjax.org for details.
- * 
- *  Licensed under the Apache License, Version 2.0;
- *  you may not use this file except in compliance with the License.
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- */
+	*  /MathJax/config/Accessible-full.js
+	*
+	*  Copyright (c) 2010-2015 The MathJax Consortium
+	*
+	*  Part of the MathJax library.
+	*  See http://www.mathjax.org for details.
+	*
+	*  Licensed under the Apache License, Version 2.0;
+	*  you may not use this file except in compliance with the License.
+	*
+	*      http://www.apache.org/licenses/LICENSE-2.0
+	*/
 
 MathJax.Hub.Config({delayJaxRegistration: true});
 
 MathJax.Ajax.Preloading(
-  "[MathJax]/jax/input/TeX/config.js",
-  "[MathJax]/jax/input/MathML/config.js",
-  "[MathJax]/jax/output/HTML-CSS/config.js",
-  "[MathJax]/jax/output/NativeMML/config.js",
-  "[MathJax]/jax/output/PreviewHTML/config.js",
-  "[MathJax]/config/MMLorHTML.js",
-  "[MathJax]/extensions/tex2jax.js",
-  "[MathJax]/extensions/mml2jax.js",
-  "[MathJax]/extensions/MathEvents.js",
-  "[MathJax]/extensions/MathZoom.js",
-  "[MathJax]/extensions/MathMenu.js",
-  "[MathJax]/jax/element/mml/jax.js",
-  "[MathJax]/extensions/toMathML.js",
-  "[MathJax]/extensions/TeX/noErrors.js",
-  "[MathJax]/extensions/TeX/noUndefined.js",
-  "[MathJax]/jax/input/TeX/jax.js",
-  "[MathJax]/extensions/TeX/AMSmath.js",
-  "[MathJax]/extensions/TeX/AMSsymbols.js",
-  "[MathJax]/jax/input/MathML/jax.js",
-  "[MathJax]/jax/output/NativeMML/jax.js",
-  "[MathJax]/jax/output/HTML-CSS/jax.js",
-  "[MathJax]/jax/output/HTML-CSS/autoload/mtable.js",
-  "[MathJax]/jax/output/PreviewHTML/jax.js",
-  "[MathJax]/extensions/fast-preview.js",
-  "[MathJax]/extensions/AssistiveMML.js"
+	"[MathJax]/jax/input/TeX/config.js",
+	"[MathJax]/jax/input/MathML/config.js",
+	"[MathJax]/jax/output/HTML-CSS/config.js",
+	"[MathJax]/jax/output/NativeMML/config.js",
+	"[MathJax]/jax/output/PreviewHTML/config.js",
+	"[MathJax]/config/MMLorHTML.js",
+	"[MathJax]/extensions/tex2jax.js",
+	"[MathJax]/extensions/mml2jax.js",
+	"[MathJax]/extensions/MathEvents.js",
+	"[MathJax]/extensions/MathZoom.js",
+	"[MathJax]/extensions/MathMenu.js",
+	"[MathJax]/jax/element/mml/jax.js",
+	"[MathJax]/extensions/toMathML.js",
+	"[MathJax]/extensions/TeX/noErrors.js",
+	"[MathJax]/extensions/TeX/noUndefined.js",
+	"[MathJax]/jax/input/TeX/jax.js",
+	"[MathJax]/extensions/TeX/AMSmath.js",
+	"[MathJax]/extensions/TeX/AMSsymbols.js",
+	"[MathJax]/jax/input/MathML/jax.js",
+	"[MathJax]/jax/output/NativeMML/jax.js",
+	"[MathJax]/jax/output/HTML-CSS/jax.js",
+	"[MathJax]/jax/output/HTML-CSS/autoload/mtable.js",
+	"[MathJax]/jax/output/PreviewHTML/jax.js",
+	"[MathJax]/extensions/fast-preview.js",
+	"[MathJax]/extensions/AssistiveMML.js"
 );
 
 MathJax.Hub.Config({"v1.0-compatible":false});
 
 MathJax.Hub.Config({
-  menuSettings: {
-    zoom: "Double-Click",
-    mpContext: true,
-    mpMouse: true
-  },
-  errorSettings: {
-    message: ["[",["MathError","Math Error"],"]"]
-  }
+	menuSettings: {
+		zoom: "Double-Click",
+		mpContext: true,
+		mpMouse: true
+	},
+	errorSettings: {
+		message: ["[",["MathError","Math Error"],"]"]
+	}
 });
 
 MathJax.InputJax.TeX=MathJax.InputJax({id:"TeX",version:"2.6.1",directory:MathJax.InputJax.directory+"/TeX",extensionDir:MathJax.InputJax.extensionDir+"/TeX",config:{TagSide:"right",TagIndent:"0.8em",MultLineWidth:"85%",equationNumbers:{autoNumber:"none",formatNumber:function(a){return a},formatTag:function(a){return"("+a+")"},formatID:function(a){return"mjx-eqn-"+String(a).replace(/[:"'<>&]/g,"")},formatURL:function(a){return"#"+escape(a)},useLabelIds:true}}});MathJax.InputJax.TeX.Register("math/tex");MathJax.InputJax.TeX.loadComplete("config.js");

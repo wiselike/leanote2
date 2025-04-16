@@ -1,18 +1,18 @@
 /**
- * ElementUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ElementUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Utility class for various element specific functions.
- *
- * @private
- */
+	* Utility class for various element specific functions.
+	*
+	* @private
+	*/
 define("tinymce/dom/ElementUtils", [
 	"tinymce/dom/BookmarkManager",
 	"tinymce/util/Tools"
@@ -21,14 +21,14 @@ define("tinymce/dom/ElementUtils", [
 
 	function ElementUtils(dom) {
 		/**
-		 * Compares two nodes and checks if it's attributes and styles matches.
-		 * This doesn't compare classes as items since their order is significant.
-		 *
-		 * @method compare
-		 * @param {Node} node1 First node to compare with.
-		 * @param {Node} node2 Second node to compare with.
-		 * @return {boolean} True/false if the nodes are the same or not.
-		 */
+			* Compares two nodes and checks if it's attributes and styles matches.
+			* This doesn't compare classes as items since their order is significant.
+			*
+			* @method compare
+			* @param {Node} node1 First node to compare with.
+			* @param {Node} node2 Second node to compare with.
+			* @return {boolean} True/false if the nodes are the same or not.
+			*/
 		this.compare = function(node1, node2) {
 			// Not the same name
 			if (node1.nodeName != node2.nodeName) {
@@ -36,12 +36,12 @@ define("tinymce/dom/ElementUtils", [
 			}
 
 			/**
-			 * Returns all the nodes attributes excluding internal ones, styles and classes.
-			 *
-			 * @private
-			 * @param {Node} node Node to get attributes from.
-			 * @return {Object} Name/value object with attributes and attribute values.
-			 */
+				* Returns all the nodes attributes excluding internal ones, styles and classes.
+				*
+				* @private
+				* @param {Node} node Node to get attributes from.
+				* @return {Object} Name/value object with attributes and attribute values.
+				*/
 			function getAttribs(node) {
 				var attribs = {};
 
@@ -58,13 +58,13 @@ define("tinymce/dom/ElementUtils", [
 			}
 
 			/**
-			 * Compares two objects checks if it's key + value exists in the other one.
-			 *
-			 * @private
-			 * @param {Object} obj1 First object to compare.
-			 * @param {Object} obj2 Second object to compare.
-			 * @return {boolean} True/false if the objects matches or not.
-			 */
+				* Compares two objects checks if it's key + value exists in the other one.
+				*
+				* @private
+				* @param {Object} obj1 First object to compare.
+				* @param {Object} obj2 Second object to compare.
+				* @return {boolean} True/false if the objects matches or not.
+				*/
 			function compareObjects(obj1, obj2) {
 				var value, name;
 

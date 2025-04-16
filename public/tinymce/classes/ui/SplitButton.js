@@ -1,20 +1,20 @@
 /**
- * SplitButton.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* SplitButton.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a split button.
- *
- * @-x-less SplitButton.less
- * @class tinymce.ui.SplitButton
- * @extends tinymce.ui.MenuButton
- */
+	* Creates a split button.
+	*
+	* @-x-less SplitButton.less
+	* @class tinymce.ui.SplitButton
+	* @extends tinymce.ui.MenuButton
+	*/
 define("tinymce/ui/SplitButton", [
 	"tinymce/ui/MenuButton",
 	"tinymce/ui/DomUtils"
@@ -26,10 +26,10 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, elm = self.getEl(), rect = self.layoutRect(), mainButtonElm, menuButtonElm;
 
@@ -51,10 +51,10 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Sets the active menu state.
-		 *
-		 * @private
-		 */
+			* Sets the active menu state.
+			*
+			* @private
+			*/
 		activeMenu: function(state) {
 			var self = this;
 
@@ -62,11 +62,11 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix, image;
 			var icon = self.settings.icon;
@@ -103,10 +103,10 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, onClickHandler = self.settings.onclick;
 

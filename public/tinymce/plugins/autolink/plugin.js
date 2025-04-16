@@ -1,12 +1,12 @@
 /**
- * plugin.js
- *
- * Copyright 2011, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright 2011, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 

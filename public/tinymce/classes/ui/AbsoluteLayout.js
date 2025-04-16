@@ -1,21 +1,21 @@
 /**
- * AbsoluteLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* AbsoluteLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * LayoutManager for absolute positioning. This layout manager is more of
- * a base class for other layouts but can be created and used directly.
- *
- * @-x-less AbsoluteLayout.less
- * @class tinymce.ui.AbsoluteLayout
- * @extends tinymce.ui.Layout
- */
+	* LayoutManager for absolute positioning. This layout manager is more of
+	* a base class for other layouts but can be created and used directly.
+	*
+	* @-x-less AbsoluteLayout.less
+	* @class tinymce.ui.AbsoluteLayout
+	* @extends tinymce.ui.Layout
+	*/
 define("tinymce/ui/AbsoluteLayout", [
 	"tinymce/ui/Layout"
 ], function(Layout) {
@@ -28,11 +28,11 @@ define("tinymce/ui/AbsoluteLayout", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function(container) {
 			container.items().filter(':visible').each(function(ctrl) {
 				var settings = ctrl.settings;
@@ -51,11 +51,11 @@ define("tinymce/ui/AbsoluteLayout", [
 		},
 
 		/**
-		 * Renders the specified container and any layout specific HTML.
-		 *
-		 * @method renderHtml
-		 * @param {tinymce.ui.Container} container Container to render HTML for.
-		 */
+			* Renders the specified container and any layout specific HTML.
+			*
+			* @method renderHtml
+			* @param {tinymce.ui.Container} container Container to render HTML for.
+			*/
 		renderHtml: function(container) {
 			return '<div id="' + container._id + '-absend" class="' + container.classPrefix + 'abs-end"></div>' + this._super(container);
 		}

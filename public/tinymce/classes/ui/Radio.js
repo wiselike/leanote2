@@ -1,20 +1,20 @@
 /**
- * Radio.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Radio.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new radio button.
- *
- * @-x-less Radio.less
- * @class tinymce.ui.Radio
- * @extends tinymce.ui.Checkbox
- */
+	* Creates a new radio button.
+	*
+	* @-x-less Radio.less
+	* @class tinymce.ui.Radio
+	* @extends tinymce.ui.Checkbox
+	*/
 define("tinymce/ui/Radio", [
 	"tinymce/ui/Checkbox"
 ], function(Checkbox) {

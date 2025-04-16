@@ -445,7 +445,7 @@ a:hover {
     text-align: left;
     width: 100%;
     border-bottom: 2px dashed #ebeff2;
-    
+
   }
   #headerAndNav #headerContainer {
     width: 100%;
@@ -531,9 +531,9 @@ table tr:nth-child(2n) {
     background-color: #f8f8f8;
 }
 .mce-item-table, .mce-item-table td, .mce-item-table th, .mce-item-table caption {
-	border: 1px solid #ddd;
-	border-collapse: collapse;
-	padding: 6px 13px;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  padding: 6px 13px;
 }
 
 .desc *, #content * {

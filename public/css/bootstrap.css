@@ -7100,11 +7100,11 @@ td.visible-print {
 .btn {
 }
 .label-post {
-	font-weight: normal;
+  font-weight: normal;
 }
 .mce-item-table, .mce-item-table td, .mce-item-table th, .mce-item-table caption {
-	border: 1px solid #9B9898;
-	border-collapse: collapse;
+  border: 1px solid #9B9898;
+  border-collapse: collapse;
 }
 .label-default {
   background-color: #464C5E;
@@ -7113,7 +7113,7 @@ td.visible-print {
   background-color: #d9534f;
 }
 .label-red:hover {
-	background-color: #ba6e6c;
+  background-color: #ba6e6c;
 }
 .label-yellow {
   background-color: #f0ad4e;
@@ -7125,7 +7125,7 @@ td.visible-print {
   background-color: #428bca;
 }
 .label-blue:hover {
-	background-color: #4f7ca3;
+  background-color: #4f7ca3;
 }
 .label-green {
   background-color: #5cb85c;
@@ -7134,8 +7134,8 @@ td.visible-print {
   background-color: #4b764b;
 }
 #posts .each-post .title .label-post {
-	font-size: 14px;
-	padding: .2em .6em .3em;
+  font-size: 14px;
+  padding: .2em .6em .3em;
 }
 /*公式显示问题*/
 #content .MathJax * {

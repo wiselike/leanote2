@@ -89,7 +89,7 @@ Tag.renderReadOnlyTags = function(tags) {
 	if(isEmpty(tags) || (tags.length == 1 && tags[0] == "")) {
 		$("#noteReadTags").html(getMsg("noTag"));
 	}
-	
+
 	var i = true;
 	function getNextDefaultClasses() {
 		if (i) {
@@ -100,7 +100,7 @@ Tag.renderReadOnlyTags = function(tags) {
 			return "label label-info";
 		}
 	}
-	
+
 	for(var i in tags) {
 		var text = tags[i];
 		text = Tag.mapEn2Cn[text] || text;
@@ -109,7 +109,7 @@ Tag.renderReadOnlyTags = function(tags) {
 			classes = getNextDefaultClasses();
 		}
 		tag = tt('<span class="?">?</span>', classes, trimTitle(text));
-		
+
 		$("#noteReadTags").append(tag);
 	}
 }
@@ -120,7 +120,7 @@ Tag.renderReadOnlyTags = function(tags) {
 Tag.appendTag = function(tag, save) {
 	var isColor = false;
 	var classes, text;
-	
+
 	if (typeof tag == "object") {
 		classes = tag.classes;
 		text = tag.text;
@@ -169,7 +169,7 @@ Tag.appendTag = function(tag, save) {
 	if (!isColor) {
 		reRenderTags();
 	}
-	
+
 	// 笔记已污染
 	if(save) {
 		// 如果之前不存, 则添加之
@@ -179,7 +179,7 @@ Tag.appendTag = function(tag, save) {
 					if(reIsOk(ret)) {
 						Tag.addTagNav(ret.Item);
 					}
-				});	
+				});
 			});
 		}
 	}
@@ -199,10 +199,10 @@ function reRenderTags() {
 				i++;
 			}
 		});
-};
+	};
 
-// 删除tag
-Tag.removeTag = function($target) {
+	// 删除tag
+	Tag.removeTag = function($target) {
 	var tag = $target.data('tag');
 	$target.remove();
 	reRenderTags();
@@ -218,7 +218,7 @@ Tag.removeTag = function($target) {
 			}
 		});
 	});
-}; 
+};
 
 //-----------
 // 左侧nav en -> cn
@@ -276,11 +276,11 @@ $(function() {
 		$(this).hide();
 		$("#addTagInput").show().focus().val("");
 	});
-	
+
 	$("#addTagInput").click(function(event) {
 		showTagList(event);
 	});
-	
+
 	$("#addTagInput").blur(function() {
 		var val = $(this).val();
 		if(val) {
@@ -328,7 +328,7 @@ $(function() {
 		// event.stopPropagation();
 	});
 	*/
-	
+
 	$("#tags").on("click", "i", function() {
 		Tag.removeTag($(this).parent());
 	});
@@ -350,27 +350,27 @@ $(function() {
 			});
 		};
 	}
-	
+
 	//-------------
 	// nav 标签搜索
 	function searchTag() {
 		var $li = $(this).closest('li');
 		var tag = $.trim($li.data("tag"));
 		// tag = Tag.mapCn2En[tag] || tag;
-		
+
 		// 学习changeNotebook
-		
+
 		// 1
 		Note.curChangedSaveIt();
-		
+
 		// 2 先清空所有
 		// 也会把curNoteId清空
 		Note.clearAll();
-		
+
 		$("#tagSearch").html($li.html()).show();
 		$("#tagSearch .tag-delete").remove();
 		Note.listIsIn(true, false);
-		
+
 		showLoading();
 		ajaxGet("/note/searchNoteByTags", {tags: [tag]}, function(notes) {
 			hideLoading();
@@ -388,6 +388,6 @@ $(function() {
 	}
 	$("#myTag .folderBody").on("click", "li .label", searchTag);
 	// $("#minTagNav").on("click", "li", searchTag);
-	
+
 	$("#myTag .folderBody").on("click", "li .tag-delete", deleteTag);
 });

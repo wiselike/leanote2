@@ -1,34 +1,34 @@
 /**
- * DomQuery.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DomQuery.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class mimics most of the jQuery API:
- *
- * This is whats currently implemented:
- * - Utility functions
- * - DOM traversial
- * - DOM manipulation
- * - Event binding
- *
- * This is not currently implemented:
- * - Dimension
- * - Ajax
- * - Animation
- * - Advanced chaining
- *
- * @example
- * var $ = tinymce.dom.DomQuery;
- * $('p').attr('attr', 'value').addClass('class');
- *
- * @class tinymce.dom.DomQuery
- */
+	* This class mimics most of the jQuery API:
+	*
+	* This is whats currently implemented:
+	* - Utility functions
+	* - DOM traversial
+	* - DOM manipulation
+	* - Event binding
+	*
+	* This is not currently implemented:
+	* - Dimension
+	* - Ajax
+	* - Animation
+	* - Advanced chaining
+	*
+	* @example
+	* var $ = tinymce.dom.DomQuery;
+	* $('p').attr('attr', 'value').addClass('class');
+	*
+	* @class tinymce.dom.DomQuery
+	*/
 define("tinymce/dom/DomQuery", [
 	"tinymce/dom/EventUtils",
 	"tinymce/dom/Sizzle",
@@ -221,37 +221,37 @@ define("tinymce/dom/DomQuery", [
 		constructor: DomQuery,
 
 		/**
-		 * Selector for the current set.
-		 *
-		 * @property selector
-		 * @type String
-		 */
+			* Selector for the current set.
+			*
+			* @property selector
+			* @type String
+			*/
 		selector: "",
 
 		/**
-		 * Context used to create the set.
-		 *
-		 * @property context
-		 * @type Element
-		 */
+			* Context used to create the set.
+			*
+			* @property context
+			* @type Element
+			*/
 		context: null,
 
 		/**
-		 * Number of items in the current set.
-		 *
-		 * @property length
-		 * @type Number
-		 */
+			* Number of items in the current set.
+			*
+			* @property length
+			* @type Number
+			*/
 		length: 0,
 
 		/**
-		 * Constructs a new DomQuery instance with the specified selector or context.
-		 *
-		 * @constructor
-		 * @method init
-		 * @param {String/Array/DomQuery} selector Optional CSS selector/Array or array like object or HTML string.
-		 * @param {Document/Element} context Optional context to search in.
-		 */
+			* Constructs a new DomQuery instance with the specified selector or context.
+			*
+			* @constructor
+			* @method init
+			* @param {String/Array/DomQuery} selector Optional CSS selector/Array or array like object or HTML string.
+			* @param {Document/Element} context Optional context to search in.
+			*/
 		init: function(selector, context) {
 			var self = this, match, node;
 
@@ -318,22 +318,22 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Converts the current set to an array.
-		 *
-		 * @method toArray
-		 * @param {Array} Array of all nodes in set.
-		 */
+			* Converts the current set to an array.
+			*
+			* @method toArray
+			* @param {Array} Array of all nodes in set.
+			*/
 		toArray: function() {
 			return Tools.toArray(this);
 		},
 
 		/**
-		 * Adds new nodes to the set.
-		 *
-		 * @method add
-		 * @param {Array/tinymce.dom.DomQuery} items Array of all nodes to add to set.
-		 * @return {tinymce.dom.DomQuery} New instance with nodes added.
-		 */
+			* Adds new nodes to the set.
+			*
+			* @method add
+			* @param {Array/tinymce.dom.DomQuery} items Array of all nodes to add to set.
+			* @return {tinymce.dom.DomQuery} New instance with nodes added.
+			*/
 		add: function(items, sort) {
 			var self = this, nodes, i;
 
@@ -355,13 +355,13 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets/gets attributes on the elements in the current set.
-		 *
-		 * @method attr
-		 * @param {String/Object} name Name of attribute to get or an object with attributes to set.
-		 * @param {String} value Optional value to set.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the specified attribute when only the name is specified.
-		 */
+			* Sets/gets attributes on the elements in the current set.
+			*
+			* @method attr
+			* @param {String/Object} name Name of attribute to get or an object with attributes to set.
+			* @param {String} value Optional value to set.
+			* @return {tinymce.dom.DomQuery/String} Current set or the specified attribute when only the name is specified.
+			*/
 		attr: function(name, value) {
 			var self = this, hook;
 
@@ -412,24 +412,24 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Removes attributse on the elements in the current set.
-		 *
-		 * @method removeAttr
-		 * @param {String/Object} name Name of attribute to remove.
-		 * @return {tinymce.dom.DomQuery/String} Current set.
-		 */
+			* Removes attributse on the elements in the current set.
+			*
+			* @method removeAttr
+			* @param {String/Object} name Name of attribute to remove.
+			* @return {tinymce.dom.DomQuery/String} Current set.
+			*/
 		removeAttr: function(name) {
 			return this.attr(name, null);
 		},
 
 		/**
-		 * Sets/gets properties on the elements in the current set.
-		 *
-		 * @method attr
-		 * @param {String/Object} name Name of property to get or an object with properties to set.
-		 * @param {String} value Optional value to set.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the specified property when only the name is specified.
-		 */
+			* Sets/gets properties on the elements in the current set.
+			*
+			* @method attr
+			* @param {String/Object} name Name of property to get or an object with properties to set.
+			* @param {String} value Optional value to set.
+			* @return {tinymce.dom.DomQuery/String} Current set or the specified property when only the name is specified.
+			*/
 		prop: function(name, value) {
 			var self = this;
 
@@ -457,13 +457,13 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets/gets styles on the elements in the current set.
-		 *
-		 * @method css
-		 * @param {String/Object} name Name of style to get or an object with styles to set.
-		 * @param {String} value Optional value to set.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the specified style when only the name is specified.
-		 */
+			* Sets/gets styles on the elements in the current set.
+			*
+			* @method css
+			* @param {String/Object} name Name of style to get or an object with styles to set.
+			* @param {String} value Optional value to set.
+			* @return {tinymce.dom.DomQuery/String} Current set or the specified style when only the name is specified.
+			*/
 		css: function(name, value) {
 			var self = this, elm, hook;
 
@@ -539,11 +539,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Removes all nodes in set from the document.
-		 *
-		 * @method remove
-		 * @return {tinymce.dom.DomQuery} Current set with the removed nodes.
-		 */
+			* Removes all nodes in set from the document.
+			*
+			* @method remove
+			* @return {tinymce.dom.DomQuery} Current set with the removed nodes.
+			*/
 		remove: function() {
 			var self = this, node, i = this.length;
 
@@ -560,11 +560,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Empties all elements in set.
-		 *
-		 * @method empty
-		 * @return {tinymce.dom.DomQuery} Current set with the empty nodes.
-		 */
+			* Empties all elements in set.
+			*
+			* @method empty
+			* @return {tinymce.dom.DomQuery} Current set with the empty nodes.
+			*/
 		empty: function() {
 			var self = this, node, i = this.length;
 
@@ -579,12 +579,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets or gets the HTML of the current set or first set node.
-		 *
-		 * @method html
-		 * @param {String} value Optional innerHTML value to set on each element.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the innerHTML of the first element.
-		 */
+			* Sets or gets the HTML of the current set or first set node.
+			*
+			* @method html
+			* @param {String} value Optional innerHTML value to set on each element.
+			* @return {tinymce.dom.DomQuery/String} Current set or the innerHTML of the first element.
+			*/
 		html: function(value) {
 			var self = this, i;
 
@@ -607,12 +607,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets or gets the text of the current set or first set node.
-		 *
-		 * @method text
-		 * @param {String} value Optional innerText value to set on each element.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the innerText of the first element.
-		 */
+			* Sets or gets the text of the current set or first set node.
+			*
+			* @method text
+			* @param {String} value Optional innerText value to set on each element.
+			* @return {tinymce.dom.DomQuery/String} Current set or the innerText of the first element.
+			*/
 		text: function(value) {
 			var self = this, i;
 
@@ -633,12 +633,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Appends the specified node/html or node set to the current set nodes.
-		 *
-		 * @method append
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to append to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Appends the specified node/html or node set to the current set nodes.
+			*
+			* @method append
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to append to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		append: function() {
 			return domManipulate(this, arguments, function(node) {
 				if (this.nodeType === 1) {
@@ -648,12 +648,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Prepends the specified node/html or node set to the current set nodes.
-		 *
-		 * @method prepend
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to prepend to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Prepends the specified node/html or node set to the current set nodes.
+			*
+			* @method prepend
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to prepend to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		prepend: function() {
 			return domManipulate(this, arguments, function(node) {
 				if (this.nodeType === 1) {
@@ -663,12 +663,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Adds the specified elements before current set nodes.
-		 *
-		 * @method before
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add before to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Adds the specified elements before current set nodes.
+			*
+			* @method before
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add before to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		before: function() {
 			var self = this;
 
@@ -682,12 +682,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Adds the specified elements after current set nodes.
-		 *
-		 * @method after
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add after to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Adds the specified elements after current set nodes.
+			*
+			* @method after
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add after to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		after: function() {
 			var self = this;
 
@@ -701,12 +701,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Appends the specified set nodes to the specified selector/instance.
-		 *
-		 * @method appendTo
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} val Item to append the current set to.
-		 * @return {tinymce.dom.DomQuery} Current set with the appended nodes.
-		 */
+			* Appends the specified set nodes to the specified selector/instance.
+			*
+			* @method appendTo
+			* @param {String/Element/Array/tinymce.dom.DomQuery} val Item to append the current set to.
+			* @return {tinymce.dom.DomQuery} Current set with the appended nodes.
+			*/
 		appendTo: function(val) {
 			DomQuery(val).append(this);
 
@@ -714,12 +714,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Prepends the specified set nodes to the specified selector/instance.
-		 *
-		 * @method prependTo
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} val Item to prepend the current set to.
-		 * @return {tinymce.dom.DomQuery} Current set with the prepended nodes.
-		 */
+			* Prepends the specified set nodes to the specified selector/instance.
+			*
+			* @method prependTo
+			* @param {String/Element/Array/tinymce.dom.DomQuery} val Item to prepend the current set to.
+			* @return {tinymce.dom.DomQuery} Current set with the prepended nodes.
+			*/
 		prependTo: function(val) {
 			DomQuery(val).prepend(this);
 
@@ -727,46 +727,46 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Replaces the nodes in set with the specified content.
-		 *
-		 * @method replaceWith
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to replace nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with replaced nodes.
-		 */
+			* Replaces the nodes in set with the specified content.
+			*
+			* @method replaceWith
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to replace nodes with.
+			* @return {tinymce.dom.DomQuery} Set with replaced nodes.
+			*/
 		replaceWith: function(content) {
 			return this.before(content).remove();
 		},
 
 		/**
-		 * Wraps all elements in set with the specified wrapper.
-		 *
-		 * @method wrap
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with wrapped nodes.
-		 */
+			* Wraps all elements in set with the specified wrapper.
+			*
+			* @method wrap
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
+			* @return {tinymce.dom.DomQuery} Set with wrapped nodes.
+			*/
 		wrap: function(wrapper) {
 			return wrap(this, wrapper);
 		},
 
 		/**
-		 * Wraps all nodes in set with the specified wrapper. If the nodes are siblings all of them
-		 * will be wrapped in the same wrapper.
-		 *
-		 * @method wrapAll
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with wrapped nodes.
-		 */
+			* Wraps all nodes in set with the specified wrapper. If the nodes are siblings all of them
+			* will be wrapped in the same wrapper.
+			*
+			* @method wrapAll
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
+			* @return {tinymce.dom.DomQuery} Set with wrapped nodes.
+			*/
 		wrapAll: function(wrapper) {
 			return wrap(this, wrapper, true);
 		},
 
 		/**
-		 * Wraps all elements inner contents in set with the specified wrapper.
-		 *
-		 * @method wrapInner
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with wrapped nodes.
-		 */
+			* Wraps all elements inner contents in set with the specified wrapper.
+			*
+			* @method wrapInner
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
+			* @return {tinymce.dom.DomQuery} Set with wrapped nodes.
+			*/
 		wrapInner: function(wrapper) {
 			this.each(function() {
 				DomQuery(this).contents().wrapAll(wrapper);
@@ -776,11 +776,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Unwraps all elements by removing the parent element of each item in set.
-		 *
-		 * @method unwrap
-		 * @return {tinymce.dom.DomQuery} Set with unwrapped nodes.
-		 */
+			* Unwraps all elements by removing the parent element of each item in set.
+			*
+			* @method unwrap
+			* @return {tinymce.dom.DomQuery} Set with unwrapped nodes.
+			*/
 		unwrap: function() {
 			return this.parent().each(function() {
 				DomQuery(this).replaceWith(this.childNodes);
@@ -788,11 +788,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Clones all nodes in set.
-		 *
-		 * @method clone
-		 * @return {tinymce.dom.DomQuery} Set with cloned nodes.
-		 */
+			* Clones all nodes in set.
+			*
+			* @method clone
+			* @return {tinymce.dom.DomQuery} Set with cloned nodes.
+			*/
 		clone: function() {
 			var result = [];
 
@@ -804,35 +804,35 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Adds the specified class name to the current set elements.
-		 *
-		 * @method addClass
-		 * @param {String} className Class name to add.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Adds the specified class name to the current set elements.
+			*
+			* @method addClass
+			* @param {String} className Class name to add.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		addClass: function(className) {
 			return this.toggleClass(className, true);
 		},
 
 		/**
-		 * Removes the specified class name to the current set elements.
-		 *
-		 * @method removeClass
-		 * @param {String} className Class name to remove.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Removes the specified class name to the current set elements.
+			*
+			* @method removeClass
+			* @param {String} className Class name to remove.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		removeClass: function(className) {
 			return this.toggleClass(className, false);
 		},
 
 		/**
-		 * Toggles the specified class name on the current set elements.
-		 *
-		 * @method toggleClass
-		 * @param {String} className Class name to add/remove.
-		 * @param {Boolean} state Optional state to toggle on/off.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Toggles the specified class name on the current set elements.
+			*
+			* @method toggleClass
+			* @param {String} className Class name to add/remove.
+			* @param {Boolean} state Optional state to toggle on/off.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		toggleClass: function(className, state) {
 			var self = this;
 
@@ -866,36 +866,36 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns true/false if the first item in set has the specified class.
-		 *
-		 * @method hasClass
-		 * @param {String} className Class name to check for.
-		 * @return {Boolean} True/false if the set has the specified class.
-		 */
+			* Returns true/false if the first item in set has the specified class.
+			*
+			* @method hasClass
+			* @param {String} className Class name to check for.
+			* @return {Boolean} True/false if the set has the specified class.
+			*/
 		hasClass: function(className) {
 			return hasClass(this[0], className);
 		},
 
 		/**
-		 * Executes the callback function for each item DomQuery collection. If you return false in the
-		 * callback it will break the loop.
-		 *
-		 * @method each
-		 * @param {function} callback Callback function to execute for each item.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Executes the callback function for each item DomQuery collection. If you return false in the
+			* callback it will break the loop.
+			*
+			* @method each
+			* @param {function} callback Callback function to execute for each item.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		each: function(callback) {
 			return each(this, callback);
 		},
 
 		/**
-		 * Binds an event with callback function to the elements in set.
-		 *
-		 * @method on
-		 * @param {String} name Name of the event to bind.
-		 * @param {function} callback Callback function to execute when the event occurs.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Binds an event with callback function to the elements in set.
+			*
+			* @method on
+			* @param {String} name Name of the event to bind.
+			* @param {function} callback Callback function to execute when the event occurs.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		on: function(name, callback) {
 			return this.each(function() {
 				Event.bind(this, name, callback);
@@ -903,13 +903,13 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Unbinds an event with callback function to the elements in set.
-		 *
-		 * @method off
-		 * @param {String} name Optional name of the event to bind.
-		 * @param {function} callback Optional callback function to execute when the event occurs.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Unbinds an event with callback function to the elements in set.
+			*
+			* @method off
+			* @param {String} name Optional name of the event to bind.
+			* @param {function} callback Optional callback function to execute when the event occurs.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		off: function(name, callback) {
 			return this.each(function() {
 				Event.unbind(this, name, callback);
@@ -917,12 +917,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Triggers the specified event by name or event object.
-		 *
-		 * @method trigger
-		 * @param {String/Object} name Name of the event to trigger or event object.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Triggers the specified event by name or event object.
+			*
+			* @method trigger
+			* @param {String/Object} name Name of the event to trigger or event object.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		trigger: function(name) {
 			return this.each(function() {
 				if (typeof name == 'object') {
@@ -934,75 +934,75 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Shows all elements in set.
-		 *
-		 * @method show
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Shows all elements in set.
+			*
+			* @method show
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		show: function() {
 			return this.css('display', '');
 		},
 
 		/**
-		 * Hides all elements in set.
-		 *
-		 * @method hide
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Hides all elements in set.
+			*
+			* @method hide
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		hide: function() {
 			return this.css('display', 'none');
 		},
 
 		/**
-		 * Slices the current set.
-		 *
-		 * @method slice
-		 * @param {Number} start Start index to slice at.
-		 * @param {Number} end Optional ened index to end slice at.
-		 * @return {tinymce.dom.DomQuery} Sliced set.
-		 */
+			* Slices the current set.
+			*
+			* @method slice
+			* @param {Number} start Start index to slice at.
+			* @param {Number} end Optional ened index to end slice at.
+			* @return {tinymce.dom.DomQuery} Sliced set.
+			*/
 		slice: function() {
 			return new DomQuery(slice.apply(this, arguments));
 		},
 
 		/**
-		 * Makes the set equal to the specified index.
-		 *
-		 * @method eq
-		 * @param {Number} index Index to set it equal to.
-		 * @return {tinymce.dom.DomQuery} Single item set.
-		 */
+			* Makes the set equal to the specified index.
+			*
+			* @method eq
+			* @param {Number} index Index to set it equal to.
+			* @return {tinymce.dom.DomQuery} Single item set.
+			*/
 		eq: function(index) {
 			return index === -1 ? this.slice(index) : this.slice(index, +index + 1);
 		},
 
 		/**
-		 * Makes the set equal to first element in set.
-		 *
-		 * @method first
-		 * @return {tinymce.dom.DomQuery} Single item set.
-		 */
+			* Makes the set equal to first element in set.
+			*
+			* @method first
+			* @return {tinymce.dom.DomQuery} Single item set.
+			*/
 		first: function() {
 			return this.eq(0);
 		},
 
 		/**
-		 * Makes the set equal to last element in set.
-		 *
-		 * @method last
-		 * @return {tinymce.dom.DomQuery} Single item set.
-		 */
+			* Makes the set equal to last element in set.
+			*
+			* @method last
+			* @return {tinymce.dom.DomQuery} Single item set.
+			*/
 		last: function() {
 			return this.eq(-1);
 		},
 
 		/**
-		 * Finds elements by the specified selector for each element in set.
-		 *
-		 * @method find
-		 * @param {String} selector Selector to find elements by.
-		 * @return {tinymce.dom.DomQuery} Set with matches elements.
-		 */
+			* Finds elements by the specified selector for each element in set.
+			*
+			* @method find
+			* @param {String} selector Selector to find elements by.
+			* @return {tinymce.dom.DomQuery} Set with matches elements.
+			*/
 		find: function(selector) {
 			var i, l, ret = [];
 
@@ -1014,12 +1014,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Filters the current set with the specified selector.
-		 *
-		 * @method filter
-		 * @param {String/function} selector Selector to filter elements by.
-		 * @return {tinymce.dom.DomQuery} Set with filtered elements.
-		 */
+			* Filters the current set with the specified selector.
+			*
+			* @method filter
+			* @param {String/function} selector Selector to filter elements by.
+			* @return {tinymce.dom.DomQuery} Set with filtered elements.
+			*/
 		filter: function(selector) {
 			if (typeof selector == 'function') {
 				return DomQuery(grep(this.toArray(), function(item, i) {
@@ -1031,12 +1031,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Gets the current node or any partent matching the specified selector.
-		 *
-		 * @method closest
-		 * @param {String/Element/tinymce.dom.DomQuery} selector Selector or element to find.
-		 * @return {tinymce.dom.DomQuery} Set with closest elements.
-		 */
+			* Gets the current node or any partent matching the specified selector.
+			*
+			* @method closest
+			* @param {String/Element/tinymce.dom.DomQuery} selector Selector or element to find.
+			* @return {tinymce.dom.DomQuery} Set with closest elements.
+			*/
 		closest: function(selector) {
 			var result = [];
 
@@ -1062,12 +1062,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns the offset of the first element in set or sets the top/left css properties of all elements in set.
-		 *
-		 * @method offset
-		 * @param {Object} offset Optional offset object to set on each item.
-		 * @return {Object/tinymce.dom.DomQuery} Returns the first element offset or the current set if you specified an offset.
-		 */
+			* Returns the offset of the first element in set or sets the top/left css properties of all elements in set.
+			*
+			* @method offset
+			* @param {Object} offset Optional offset object to set on each item.
+			* @return {Object/tinymce.dom.DomQuery} Returns the first element offset or the current set if you specified an offset.
+			*/
 		offset: function(offset) {
 			var elm, doc, docElm;
 			var x = 0, y = 0, pos;
@@ -1103,24 +1103,24 @@ define("tinymce/dom/DomQuery", [
 	// Static members
 	Tools.extend(DomQuery, {
 		/**
-		 * Extends the specified object with one or more objects.
-		 *
-		 * @static
-		 * @method extend
-		 * @param {Object} target Target object to extend with new items.
-		 * @param {Object..} object Object to extend the target with.
-		 * @return {Object} Extended input object.
-		 */
+			* Extends the specified object with one or more objects.
+			*
+			* @static
+			* @method extend
+			* @param {Object} target Target object to extend with new items.
+			* @param {Object..} object Object to extend the target with.
+			* @return {Object} Extended input object.
+			*/
 		extend: Tools.extend,
 
 		/**
-		 * Creates an array out of an array like object.
-		 *
-		 * @static
-		 * @method makeArray
-		 * @param {Object} object Object to convert to array.
-		 * @return {Arrau} Array produced from object.
-		 */
+			* Creates an array out of an array like object.
+			*
+			* @static
+			* @method makeArray
+			* @param {Object} object Object to convert to array.
+			* @return {Arrau} Array produced from object.
+			*/
 		makeArray: function(array) {
 			if (isWindow(array) || array.nodeType) {
 				return [array];
@@ -1130,60 +1130,60 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns the index of the specified item inside the array.
-		 *
-		 * @static
-		 * @method inArray
-		 * @param {Object} item Item to look for.
-		 * @param {Array} array Array to look for item in.
-		 * @return {Number} Index of the item or -1.
-		 */
+			* Returns the index of the specified item inside the array.
+			*
+			* @static
+			* @method inArray
+			* @param {Object} item Item to look for.
+			* @param {Array} array Array to look for item in.
+			* @return {Number} Index of the item or -1.
+			*/
 		inArray: inArray,
 
 		/**
-		 * Returns true/false if the specified object is an array or not.
-		 *
-		 * @static
-		 * @method isArray
-		 * @param {Object} array Object to check if it's an array or not.
-		 * @return {Boolean} True/false if the object is an array.
-		 */
+			* Returns true/false if the specified object is an array or not.
+			*
+			* @static
+			* @method isArray
+			* @param {Object} array Object to check if it's an array or not.
+			* @return {Boolean} True/false if the object is an array.
+			*/
 		isArray: Tools.isArray,
 
 		/**
-		 * Executes the callback function for each item in array/object. If you return false in the
-		 * callback it will break the loop.
-		 *
-		 * @static
-		 * @method each
-		 * @param {Object} obj Object to iterate.
-		 * @param {function} callback Callback function to execute for each item.
-		 */
+			* Executes the callback function for each item in array/object. If you return false in the
+			* callback it will break the loop.
+			*
+			* @static
+			* @method each
+			* @param {Object} obj Object to iterate.
+			* @param {function} callback Callback function to execute for each item.
+			*/
 		each: each,
 
 		/**
-		 * Removes whitespace from the beginning and end of a string.
-		 *
-		 * @static
-		 * @method trim
-		 * @param {String} str String to remove whitespace from.
-		 * @return {String} New string with removed whitespace.
-		 */
+			* Removes whitespace from the beginning and end of a string.
+			*
+			* @static
+			* @method trim
+			* @param {String} str String to remove whitespace from.
+			* @return {String} New string with removed whitespace.
+			*/
 		trim: trim,
 
 		/**
-		 * Filters out items from the input array by calling the specified function for each item.
-		 * If the function returns false the item will be excluded if it returns true it will be included.
-		 *
-		 * @static
-		 * @method grep
-		 * @param {Array} array Array of items to loop though.
-		 * @param {function} callback Function to call for each item. Include/exclude depends on it's return value.
-		 * @return {Array} New array with values imported and filtered based in input.
-		 * @example
-		 * // Filter out some items, this will return an array with 4 and 5
-		 * var items = DomQuery.grep([1, 2, 3, 4, 5], function(v) {return v > 3;});
-		 */
+			* Filters out items from the input array by calling the specified function for each item.
+			* If the function returns false the item will be excluded if it returns true it will be included.
+			*
+			* @static
+			* @method grep
+			* @param {Array} array Array of items to loop though.
+			* @param {function} callback Function to call for each item. Include/exclude depends on it's return value.
+			* @return {Array} New array with values imported and filtered based in input.
+			* @example
+			* // Filter out some items, this will return an array with 4 and 5
+			* var items = DomQuery.grep([1, 2, 3, 4, 5], function(v) {return v > 3;});
+			*/
 		grep: grep,
 
 		// Sizzle
@@ -1283,12 +1283,12 @@ define("tinymce/dom/DomQuery", [
 
 	each({
 		/**
-		 * Returns a new collection with the parent of each item in current collection matching the optional selector.
-		 *
-		 * @method parent
-		 * @param {String} selector Selector to match parents agains.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
-		 */
+			* Returns a new collection with the parent of each item in current collection matching the optional selector.
+			*
+			* @method parent
+			* @param {String} selector Selector to match parents agains.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
+			*/
 		parent: function(node) {
 			var parent = node.parentNode;
 
@@ -1296,55 +1296,55 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns a new collection with the all the parents of each item in current collection matching the optional selector.
-		 *
-		 * @method parents
-		 * @param {String} selector Selector to match parents agains.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
-		 */
+			* Returns a new collection with the all the parents of each item in current collection matching the optional selector.
+			*
+			* @method parents
+			* @param {String} selector Selector to match parents agains.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
+			*/
 		parents: function(node) {
 			return dir(node, "parentNode");
 		},
 
 		/**
-		 * Returns a new collection with next sibling of each item in current collection matching the optional selector.
-		 *
-		 * @method next
-		 * @param {String} selector Selector to match the next element against.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with next sibling of each item in current collection matching the optional selector.
+			*
+			* @method next
+			* @param {String} selector Selector to match the next element against.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		next: function(node) {
 			return firstSibling(node, 'nextSibling', 1);
 		},
 
 		/**
-		 * Returns a new collection with previous sibling of each item in current collection matching the optional selector.
-		 *
-		 * @method prev
-		 * @param {String} selector Selector to match the previous element against.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with previous sibling of each item in current collection matching the optional selector.
+			*
+			* @method prev
+			* @param {String} selector Selector to match the previous element against.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		prev: function(node) {
 			return firstSibling(node, 'previousSibling', 1);
 		},
 
 		/**
-		 * Returns all child elements matching the optional selector.
-		 *
-		 * @method children
-		 * @param {String} selector Selector to match the elements against.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns all child elements matching the optional selector.
+			*
+			* @method children
+			* @param {String} selector Selector to match the elements against.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		children: function(node) {
 			return sibling(node.firstChild, 'nextSibling', 1);
 		},
 
 		/**
-		 * Returns all child nodes matching the optional selector.
-		 *
-		 * @method contents
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns all child nodes matching the optional selector.
+			*
+			* @method contents
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		contents: function(node) {
 			return Tools.toArray((node.nodeName === "iframe" ? node.contentDocument || node.contentWindow.document : node).childNodes);
 		}
@@ -1385,35 +1385,35 @@ define("tinymce/dom/DomQuery", [
 
 	each({
 		/**
-		 * Returns a new collection with the all the parents until the matching selector/element
-		 * of each item in current collection matching the optional selector.
-		 *
-		 * @method parentsUntil
-		 * @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
-		 */
+			* Returns a new collection with the all the parents until the matching selector/element
+			* of each item in current collection matching the optional selector.
+			*
+			* @method parentsUntil
+			* @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
+			*/
 		parentsUntil: function(node, until) {
 			return dir(node, "parentNode", until);
 		},
 
 		/**
-		 * Returns a new collection with all next siblings of each item in current collection matching the optional selector.
-		 *
-		 * @method nextUntil
-		 * @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with all next siblings of each item in current collection matching the optional selector.
+			*
+			* @method nextUntil
+			* @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		nextUntil: function(node, until) {
 			return sibling(node, 'nextSibling', 1, until).slice(1);
 		},
 
 		/**
-		 * Returns a new collection with all previous siblings of each item in current collection matching the optional selector.
-		 *
-		 * @method prevUntil
-		 * @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with all previous siblings of each item in current collection matching the optional selector.
+			*
+			* @method prevUntil
+			* @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		prevUntil: function(node, until) {
 			return sibling(node, 'previousSibling', 1, until).slice(1);
 		}
@@ -1453,12 +1453,12 @@ define("tinymce/dom/DomQuery", [
 	});
 
 	/**
-	 * Returns true/false if the current set items matches the selector.
-	 *
-	 * @method is
-	 * @param {String} selector Selector to match the elements against.
-	 * @return {Boolean} True/false if the current set matches the selector.
-	 */
+		* Returns true/false if the current set items matches the selector.
+		*
+		* @method is
+		* @param {String} selector Selector to match the elements against.
+		* @return {Boolean} True/false if the current set matches the selector.
+		*/
 	DomQuery.fn.is = function(selector) {
 		return !!selector && this.filter(selector).length > 0;
 	};

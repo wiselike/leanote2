@@ -1,11 +1,11 @@
 /**
- * leaui album image manager plugin
- * copyright leaui
- * leaui.com
- */
+	* leaui album image manager plugin
+	* copyright leaui
+	* leaui.com
+	*/
 var LEAUI_MIND = {};
 tinymce.PluginManager.add('leaui_mind', function(editor, url) {
-	
+
 	function showDialog() {
 		var dom = editor.dom;
 
@@ -31,10 +31,10 @@ tinymce.PluginManager.add('leaui_mind', function(editor, url) {
 			var html = '<iframe id="leauiIfr" src="'+ u + '?' + new Date().getTime() + '&lang=' + lang + '" frameborder="0"></iframe>';
 			return html;
 		}
-		
+
 		var w = $(document).width() - 10;
 		var h = $(document).height() - 100;
-		
+
 		win = editor.windowManager.open({
 			title: "Mind Map",
 			width : w,
@@ -59,17 +59,17 @@ tinymce.PluginManager.add('leaui_mind', function(editor, url) {
 						// console.log(json);
 						var img = '<img src="' + data + '" data-mce-src="-" data-mind-json=\'' + json + '\'>';
 						editor.insertContent(img);
-						
+
 						me.parent().parent().close();
 					});
 					return;
-					
+
 					var _div =_iframe.document.getElementById('preview');
-					var ii = _div.childNodes; 
+					var ii = _div.childNodes;
 					//console.log(ii);
 					var datas = [];
 					for(var i = 0; i < ii.length; ++i) {
-						var e = ii[i]; 
+						var e = ii[i];
 						//console.log(e);
 						// 有些没有image
 						if(e.firstChild && e.firstChild.nodeName == "IMG") {
@@ -95,7 +95,7 @@ tinymce.PluginManager.add('leaui_mind', function(editor, url) {
 							trueSrc = url + "/" + src;
 						}
 						data.src = trueSrc;
-						
+
 						var renderImage = function(data) {
 							// 这里, 如果图片宽度过大, 这里设置成500px
 							var back = (function(data2, i) {
@@ -107,7 +107,7 @@ tinymce.PluginManager.add('leaui_mind', function(editor, url) {
 								imgElm = dom.createHTML('img', d);
 								editor.insertContent(imgElm);
 								imgElm = dom.get(d.id);
-								
+
 								return function(wh) {
 									if(wh && wh.width) {
 										if(wh.width > 600) {
@@ -118,13 +118,13 @@ tinymce.PluginManager.add('leaui_mind', function(editor, url) {
 									dom.setAttrib(imgElm, 'src', data2.src);
 									// dom.setAttrib(imgElm, 'width', data2.width);
 									dom.setAttrib(imgElm, 'title', data2.title);
-									
+
 									dom.setAttrib(imgElm, 'id', null);
 								}
 							})(data, i);
 							getImageSize(data.src, back);
 						}
-						
+
 						// outputImage?fileId=123232323
 						var fileId = "";
 						fileIds = trueSrc.split("fileId=")
@@ -153,15 +153,15 @@ tinymce.PluginManager.add('leaui_mind', function(editor, url) {
 						} else {
 							renderImage(data);
 						}
-						
+
 					} // end for
-					
+
 					this.parent().parent().close();
 				}
 				}]
 		});
 	}
-	
+
 	editor.addButton('leaui_mind', {
 		icon: 'mind',
 		tooltip: 'Insert/edit mind map',

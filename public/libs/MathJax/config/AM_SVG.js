@@ -1,30 +1,30 @@
 /*
- *  /MathJax/config/AM_SVG.js
- *  
- *  Copyright (c) 2010-2015 The MathJax Consortium
- *
- *  Part of the MathJax library.
- *  See http://www.mathjax.org for details.
- * 
- *  Licensed under the Apache License, Version 2.0;
- *  you may not use this file except in compliance with the License.
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- */
+	*  /MathJax/config/AM_SVG.js
+	*
+	*  Copyright (c) 2010-2015 The MathJax Consortium
+	*
+	*  Part of the MathJax library.
+	*  See http://www.mathjax.org for details.
+	*
+	*  Licensed under the Apache License, Version 2.0;
+	*  you may not use this file except in compliance with the License.
+	*
+	*      http://www.apache.org/licenses/LICENSE-2.0
+	*/
 
 MathJax.Ajax.Preloading(
-  "[MathJax]/jax/input/AsciiMath/config.js",
-  "[MathJax]/jax/output/SVG/config.js",
-  "[MathJax]/jax/output/PreviewHTML/config.js",
-  "[MathJax]/extensions/asciimath2jax.js",
-  "[MathJax]/extensions/MathEvents.js",
-  "[MathJax]/extensions/MathZoom.js",
-  "[MathJax]/extensions/MathMenu.js",
-  "[MathJax]/jax/element/mml/jax.js",
-  "[MathJax]/extensions/toMathML.js",
-  "[MathJax]/jax/input/AsciiMath/jax.js",
-  "[MathJax]/extensions/fast-preview.js",
-  "[MathJax]/extensions/AssistiveMML.js"
+	"[MathJax]/jax/input/AsciiMath/config.js",
+	"[MathJax]/jax/output/SVG/config.js",
+	"[MathJax]/jax/output/PreviewHTML/config.js",
+	"[MathJax]/extensions/asciimath2jax.js",
+	"[MathJax]/extensions/MathEvents.js",
+	"[MathJax]/extensions/MathZoom.js",
+	"[MathJax]/extensions/MathMenu.js",
+	"[MathJax]/jax/element/mml/jax.js",
+	"[MathJax]/extensions/toMathML.js",
+	"[MathJax]/jax/input/AsciiMath/jax.js",
+	"[MathJax]/extensions/fast-preview.js",
+	"[MathJax]/extensions/AssistiveMML.js"
 );
 
 MathJax.Hub.Config({"v1.0-compatible":false});

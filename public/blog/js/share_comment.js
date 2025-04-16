@@ -10,12 +10,12 @@ var C = {
 	likersO: $("#likers"),
 	tCommentsO: $("#tComments"),
 	commentsO: $("#comments"),
-	
+
 	commentBtnO: $("#commentBtn"),
-	
+
 	commentsLoadingO: $(".comments-loading"),
 	commentsMoreO: $(".comments-more"),
-	
+
 	commentBoxO: $(".comment-box"),
 	init: function() {
 		var self = this;
@@ -27,7 +27,7 @@ var C = {
 		self.initEvent();
 		self.incReadNum();
 	},
-	
+
 	// 博客的统计信息
 	getPostStat: function() {
 	},
@@ -63,7 +63,7 @@ var C = {
 					self.info.commentUserInfo[self.visitUserInfo.UserId] = self.visitUserInfo;
 				}
 				self.renderComments();
-				
+
 				// 之前是隐藏的, 取消之
 				self.commentBoxO.removeClass("hide");
 				self.commentsLoadingO.addClass("hide");
@@ -71,7 +71,7 @@ var C = {
 					self.commentsMoreO.removeClass("hide");
 					self.initMoreComments();
 				}
-				
+
 				// 是否已经登录?
 				if(self.visitUserInfo.UserId) {
 					$("#commentForm").removeClass("hide");
@@ -84,7 +84,7 @@ var C = {
 	},
 	initMoreComments: function() {
 		var self = this;
-		self.commentsMoreO.find("a").click(function(){ 
+		self.commentsMoreO.find("a").click(function(){
 			if(self.info.pageInfo.TotalPage > self.info.pageInfo.CurPage) {
 				self.commentsMoreO.addClass("hide");
 				self.commentsLoadingO.removeClass("hide");
@@ -92,9 +92,9 @@ var C = {
 					var pageInfo = ret.pageInfo;
 					var comments = ret.comments;
 					var commentUserInfo = ret.commentUserInfo;
-					
+
 					$.extend(self.info.commentUserInfo, commentUserInfo);
-					
+
 					// 渲染之
 					for(var i in comments) {
 						var comment = comments[i];
@@ -102,15 +102,15 @@ var C = {
 					}
 					var html = self.tCommentsO.render({comments: comments, visitUserInfo: self.visitUserInfo});
 					self.commentsO.append(html);
-					
+
 					self.info.pageInfo = pageInfo;
-					
+
 					if(self.info.pageInfo.TotalPage > self.info.pageInfo.CurPage) {
 						self.commentsMoreO.removeClass("hide");
 					} else {
 						self.commentsMoreO.addClass("hide");
 					}
-					
+
 					self.commentsLoadingO.addClass("hide");
 				});
 			}
@@ -145,7 +145,7 @@ var C = {
 			comment.IsMyComment = true;
 		}
 		// 不是回复自己
-		if(comment.ToUserId && comment.ToUserId != comment.UserId) { 
+		if(comment.ToUserId && comment.ToUserId != comment.UserId) {
 			comment.ToUserInfo = commentUserInfo[comment.ToUserId];
 			if(comment.ToUserInfo.UserId == authorUserId) {
 				comment.ToUserIsAuthor = true;
@@ -161,7 +161,7 @@ var C = {
 		if(comments.length == 0) {
 			return;
 		}
-		
+
 		// 整理数据
 		// 回复谁, 是否是作者?
 		// 回复日期, 几天前, 刚刚
@@ -172,7 +172,7 @@ var C = {
 		var html = self.tCommentsO.render({comments: comments, visitUserInfo: self.visitUserInfo});
 		self.commentsO.html(html);
 	},
-	
+
 	// 重新渲染likers
 	reRenderLikers: function(addMe) {
 		var self = this;
@@ -212,7 +212,7 @@ var C = {
 	},
 	initEvent: function() {
 		var self = this;
-		
+
 		// like or not
 		self.likeBtnO.click(function() {
 			if(!self.visitUserInfo.UserId) {
@@ -231,14 +231,14 @@ var C = {
 					self.likeNumO.text(self.preLikeNum);
 					self.info.isILikeIt = ret.Item;
 					self.toggleLikeBtnActive();
-					
+
 					// 重新render likers
 					// 我是否在列表中
 					self.reRenderLikers(ret.Item);
 				}
 			});
 		});
-		
+
 		// 显示回复回复
 		$("#comments").on("click", ".comment-reply", function() {
 			var form = $(this).closest("li").find("form");
@@ -252,7 +252,7 @@ var C = {
 		$("#comments").on("click", ".reply-cancel", function() {
 			$(this).closest("form").hide();
 		});
-		
+
 		// 回复
 		$(".comment-box").on("click", ".reply-comment-btn", function(e) {
 			e.preventDefault();
@@ -274,16 +274,16 @@ var C = {
 				if(commentId) {
 					$form.hide();
 				}
-				
+
 				if(commentId) {
 					scrollToTarget("#comments", -200);
 				}
-				
+
 				// 添加一个
 				self.addCommentRender(ret.Item);
 			});
 		});
-		
+
 		// 删除
 		$(".comment-box").on("click", ".comment-trash", function(e) {
 			var commentId = $(this).parent().data("comment-id");
@@ -298,7 +298,7 @@ var C = {
 								setTimeout(function() {
 									li.remove();
 								}, 300);
-								
+
 								self.bindCommentNum(-1);
 							}
 						});
@@ -306,12 +306,12 @@ var C = {
 				});
 			} catch(e) {}
 		});
-		
+
 		// 点zan
 		$(".comment-box").on("click", ".comment-like", function(e) {
 			var commentId = $(this).parent().data("comment-id");
 			var t = this;
-			
+
 			likeComment(commentId, function(re) {
 				if(re.Ok) {
 					var ret = re.Item;
@@ -349,11 +349,11 @@ var C = {
 				self.weixinQRCodeO.qrcode(location.href);
 			}
 			BootstrapDialog.show({
-	            title: "Open Wechat to scan the code",
-	            message: self.weixinQRCodeO
-	        });
+				title: "Open Wechat to scan the code",
+				message: self.weixinQRCodeO
+			});
 		});
-		
+
 		$(".btn-share").click(function() {
 			var $this = $(this);
 			var map = {"btn-weibo": shareSinaWeibo, "tencent-weibo": shareTencentWeibo, "qq": shareQQ, "renren": shareRenRen};
@@ -361,7 +361,7 @@ var C = {
 				if($this.hasClass(i)) {
 					map[i](self.noteId, document.title);
 					break;
-				}	
+				}
 			}
 		});
 	}

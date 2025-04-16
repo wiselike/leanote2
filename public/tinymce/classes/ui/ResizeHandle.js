@@ -1,20 +1,20 @@
 /**
- * ResizeHandle.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ResizeHandle.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Renders a resize handle that fires ResizeStart, Resize and ResizeEnd events.
- *
- * @-x-less ResizeHandle.less
- * @class tinymce.ui.ResizeHandle
- * @extends tinymce.ui.Widget
- */
+	* Renders a resize handle that fires ResizeStart, Resize and ResizeEnd events.
+	*
+	* @-x-less ResizeHandle.less
+	* @class tinymce.ui.ResizeHandle
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/ResizeHandle", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DragHelper"
@@ -23,11 +23,11 @@ define("tinymce/ui/ResizeHandle", [
 
 	return Widget.extend({
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, prefix = self.classPrefix;
 
@@ -47,10 +47,10 @@ define("tinymce/ui/ResizeHandle", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 

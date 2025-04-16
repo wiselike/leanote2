@@ -1,20 +1,20 @@
 /**
- * ColorPicker.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ColorPicker.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Color picker widget lets you select colors.
- *
- * @-x-less ColorPicker.less
- * @class tinymce.ui.ColorPicker
- * @extends tinymce.ui.Widget
- */
+	* Color picker widget lets you select colors.
+	*
+	* @-x-less ColorPicker.less
+	* @class tinymce.ui.ColorPicker
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/ColorPicker", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DragHelper",
@@ -29,12 +29,12 @@ define("tinymce/ui/ColorPicker", [
 		},
 
 		/**
-		 * Constructs a new colorpicker instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} color Initial color value.
-		 */
+			* Constructs a new colorpicker instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} color Initial color value.
+			*/
 		init: function(settings) {
 			this._super(settings);
 		},
@@ -148,11 +148,11 @@ define("tinymce/ui/ColorPicker", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix, hueHtml;
 			var stops = '#ff0000,#ff0080,#ff00ff,#8000ff,#0000ff,#0080ff,#00ffff,#00ff80,#00ff00,#80ff00,#ffff00,#ff8000,#ff0000';

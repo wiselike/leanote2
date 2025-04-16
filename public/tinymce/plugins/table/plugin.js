@@ -1,6 +1,6 @@
 /**
- * Compiled inline version. (Library mode)
- */
+	* Compiled inline version. (Library mode)
+	*/
 
 /*jshint smarttabs:true, undef:true, latedef:true, curly:true, bitwise:true, camelcase:true */
 /*globals $code */
@@ -100,23 +100,23 @@
 // Included from: plugins/table/classes/TableGrid.js
 
 /**
- * TableGrid.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TableGrid.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a grid out of a table element. This
- * makes it a whole lot easier to handle complex tables with
- * col/row spans.
- *
- * @class tinymce.tableplugin.TableGrid
- * @private
- */
+	* This class creates a grid out of a table element. This
+	* makes it a whole lot easier to handle complex tables with
+	* col/row spans.
+	*
+	* @class tinymce.tableplugin.TableGrid
+	* @private
+	*/
 define("tinymce/tableplugin/TableGrid", [
 	"tinymce/util/Tools",
 	"tinymce/Env"
@@ -967,21 +967,21 @@ define("tinymce/tableplugin/TableGrid", [
 // Included from: plugins/table/classes/Quirks.js
 
 /**
- * Quirks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Quirks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class includes fixes for various browser quirks.
- *
- * @class tinymce.tableplugin.Quirks
- * @private
- */
+	* This class includes fixes for various browser quirks.
+	*
+	* @class tinymce.tableplugin.Quirks
+	* @private
+	*/
 define("tinymce/tableplugin/Quirks", [
 	"tinymce/util/VK",
 	"tinymce/Env",
@@ -995,8 +995,8 @@ define("tinymce/tableplugin/Quirks", [
 
 	return function(editor) {
 		/**
-		 * Fixed caret movement around tables on WebKit.
-		 */
+			* Fixed caret movement around tables on WebKit.
+			*/
 		function moveWebKitSelection() {
 			function eventHandler(e) {
 				var key = e.keyCode;
@@ -1298,8 +1298,8 @@ define("tinymce/tableplugin/Quirks", [
 		}
 
 		/**
-		 * Delete table if all cells are selected.
-		 */
+			* Delete table if all cells are selected.
+			*/
 		function deleteTable() {
 			editor.on('keydown', function(e) {
 				if ((e.keyCode == VK.DELETE || e.keyCode == VK.BACKSPACE) && !e.isDefaultPrevented()) {
@@ -1342,22 +1342,22 @@ define("tinymce/tableplugin/Quirks", [
 // Included from: plugins/table/classes/CellSelection.js
 
 /**
- * CellSelection.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* CellSelection.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles table cell selection by faking it using a css class that gets applied
- * to cells when dragging the mouse from one cell to another.
- *
- * @class tinymce.tableplugin.CellSelection
- * @private
- */
+	* This class handles table cell selection by faking it using a css class that gets applied
+	* to cells when dragging the mouse from one cell to another.
+	*
+	* @class tinymce.tableplugin.CellSelection
+	* @private
+	*/
 define("tinymce/tableplugin/CellSelection", [
 	"tinymce/tableplugin/TableGrid",
 	"tinymce/dom/TreeWalker",
@@ -1521,23 +1521,23 @@ define("tinymce/tableplugin/CellSelection", [
 // Included from: plugins/table/classes/Dialogs.js
 
 /**
- * Dialogs.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Dialogs.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint dot-notation:0*/
 
 /**
- * ...
- *
- * @class tinymce.tableplugin.Dialogs
- * @private
- */
+	* ...
+	*
+	* @class tinymce.tableplugin.Dialogs
+	* @private
+	*/
 define("tinymce/tableplugin/Dialogs", [
 	"tinymce/util/Tools",
 	"tinymce/Env"
@@ -2348,21 +2348,21 @@ define("tinymce/tableplugin/Dialogs", [
 // Included from: plugins/table/classes/Plugin.js
 
 /**
- * Plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains all core logic for the table plugin.
- *
- * @class tinymce.tableplugin.Plugin
- * @private
- */
+	* This class contains all core logic for the table plugin.
+	*
+	* @class tinymce.tableplugin.Plugin
+	* @private
+	*/
 define("tinymce/tableplugin/Plugin", [
 	"tinymce/tableplugin/TableGrid",
 	"tinymce/tableplugin/Quirks",

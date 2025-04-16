@@ -1755,7 +1755,7 @@ body.container {
   bottom: 0;
   z-index: 0;
   /*-webkit-transition: left .25s;
-	transition: left .25s;*/
+  transition: left .25s;*/
 }
 .nav-primary ul.nav > li > a {
   padding: 11px 15px;

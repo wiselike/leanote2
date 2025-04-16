@@ -1,24 +1,24 @@
 /**
- * Iframe.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Iframe.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint scripturl:true */
 
 /**
- * This class creates an iframe.
- *
- * @setting {String} url Url to open in the iframe.
- *
- * @-x-less Iframe.less
- * @class tinymce.ui.Iframe
- * @extends tinymce.ui.Widget
- */
+	* This class creates an iframe.
+	*
+	* @setting {String} url Url to open in the iframe.
+	*
+	* @-x-less Iframe.less
+	* @class tinymce.ui.Iframe
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Iframe", [
 	"tinymce/ui/Widget"
 ], function(Widget) {
@@ -26,11 +26,11 @@ define("tinymce/ui/Iframe", [
 
 	return Widget.extend({
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this;
 
@@ -45,23 +45,23 @@ define("tinymce/ui/Iframe", [
 		},
 
 		/**
-		 * Setter for the iframe source.
-		 *
-		 * @method src
-		 * @param {String} src Source URL for iframe.
-		 */
+			* Setter for the iframe source.
+			*
+			* @method src
+			* @param {String} src Source URL for iframe.
+			*/
 		src: function(src) {
 			this.getEl().src = src;
 		},
 
 		/**
-		 * Inner HTML for the iframe.
-		 *
-		 * @method html
-		 * @param {String} html HTML string to set as HTML inside the iframe.
-		 * @param {function} callback Optional callback to execute when the iframe body is filled with contents.
-		 * @return {tinymce.ui.Iframe} Current iframe control.
-		 */
+			* Inner HTML for the iframe.
+			*
+			* @method html
+			* @param {String} html HTML string to set as HTML inside the iframe.
+			* @param {function} callback Optional callback to execute when the iframe body is filled with contents.
+			* @return {tinymce.ui.Iframe} Current iframe control.
+			*/
 		html: function(html, callback) {
 			var self = this, body = this.getEl().contentWindow.document.body;
 

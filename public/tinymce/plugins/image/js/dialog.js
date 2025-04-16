@@ -1,9 +1,9 @@
 /**
- * life
- */
+	* life
+	*/
 
 var tinymce = top.tinymce;
-var editor = tinymce.EditorManager.activeEditor; 
+var editor = tinymce.EditorManager.activeEditor;
 var dom = editor.dom;
 var imgElm = editor.selection.getNode();
 
@@ -11,7 +11,7 @@ var jbImagesDialog = {
 	resized : false,
 	iframeOpened : false,
 	timeoutStore : false,
-	
+
 	inProgress : function() {
 		document.getElementById("upload_infobar").style.display = 'none';
 		document.getElementById("upload_additional_info").innerHTML = '';
@@ -22,7 +22,7 @@ var jbImagesDialog = {
 			// tinyMCEPopup.editor.windowManager.resizeBy(0, 30, tinyMCEPopup.id);
 		}, 20000);
 	},
-	
+
 	showIframe : function() {
 		if (this.iframeOpened == false)
 		{
@@ -31,7 +31,7 @@ var jbImagesDialog = {
 			this.iframeOpened = true;
 		}
 	},
-	
+
 	uploadFinish : function(result) {
 		if (result.resultCode == '0')
 		{
@@ -40,7 +40,7 @@ var jbImagesDialog = {
 			document.getElementById("upload_infobar").style.display = 'block';
 			$("#upload_infobar").html(result.result).show();
 			document.getElementById("upload_form_container").style.display = 'block';
-			
+
 			if (this.resized == false)
 			{
 				// tinyMCEPopup.editor.windowManager.resizeBy(0, 30, tinyMCEPopup.id);
@@ -52,12 +52,12 @@ var jbImagesDialog = {
 			document.getElementById("upload_in_progress").style.display = 'none';
 			document.getElementById("upload_infobar").style.display = 'block';
 			document.getElementById("upload_infobar").innerHTML = 'Upload Complete';
-			
+
 			var w = this.getWin();
 			tinymce = w.tinymce;
-		
+
 			tinymce.EditorManager.activeEditor.insertContent('<img src="' + result.filename +'">');
-			
+
 			this.close();
 
 			// 添加undo
@@ -66,11 +66,11 @@ var jbImagesDialog = {
 			// });
 		}
 	},
-	
+
 	getWin : function() {
 		return (!window.frameElement && window.dialogArguments) || opener || parent || top;
 	},
-	
+
 	close : function() {
 		var t = this;
 
@@ -92,7 +92,7 @@ var jbImagesDialog = {
 
 $(function() {
 	top.hiddenIframeBorder();
-	
+
 	var oldWidth, oldHeihgt;
 	// 是否选择的是image
 	if(imgElm.nodeName == "IMG") {
@@ -102,30 +102,30 @@ $(function() {
 		oldHeight = $node.height();
 		$("#imageWidth").val(oldWidth);
 		$("#imageHeight").val(oldHeight);
-		
+
 		$('#myTab a:last').tab('show');
 	} else {
 		imgElm = null;
 	}
-	
+
 	$("#imageSrc").blur(function(){
 		getImageSize($(this).val(), function(ret) {
 			if(ret.width) {
 				oldWidth = ret.width;
 				oldHeight = ret.Height;
-			
+
 				$("#imageWidth").val(ret.width);
 				$("#imageHeight").val(ret.height);
 			}
 		});
 	});
-	
+
 	// 按比例缩放
 	function scale(isWidth) {
 		var autoScale = $("#autoScale").is(":checked");
 		var width = $("#imageWidth").val();
 		var height = $("#imageHeight").val();
-		
+
 		if(autoScale && oldWidth && oldHeight) {
 			if(isWidth) {
 				height = parseInt((width/oldWidth) * oldHeight);
@@ -135,11 +135,11 @@ $(function() {
 				$("#imageWidth").val(width);
 			}
 		}
-		
+
 		oldWidth = width;
-		oldHeight = height;	
+		oldHeight = height;
 	}
-	
+
 	$("#imageWidth").blur(function() {
 		scale(true);
 	});
@@ -179,9 +179,9 @@ function getImageSize(url, callback) {
 function closeWin() {
 	try {
 		editor.windowManager.close();
-		editor.windowManager.close();	
+		editor.windowManager.close();
 	} catch(e) {
-		
+
 	}
 }
 
@@ -192,7 +192,7 @@ var insertImage = function() {
 		closeWin();
 		return;
 	}
-	
+
 	// 加载图片并插入之
 	function waitLoad(imgElm) {
 		function selectImage() {
@@ -245,6 +245,6 @@ var insertImage = function() {
 
 		waitLoad(imgElm);
 	});
-	
+
 	closeWin();
 }

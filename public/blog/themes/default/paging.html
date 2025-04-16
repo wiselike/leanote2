@@ -2,20 +2,20 @@
 
 <!-- 上一页 -->
 {{if gt $.paging.CurPage 1}}
-    {{set . "prePageClass" ""}}
-    {{set . "prePageUrl" (urlConcat $.pagingBaseUrl "page" (incr $.paging.CurPage -1)) }}
+	{{set . "prePageClass" ""}}
+	{{set . "prePageUrl" (urlConcat $.pagingBaseUrl "page" (incr $.paging.CurPage -1)) }}
 {{else}}
-    {{set . "prePageClass" "disabled"}}
-    {{set . "prePageUrl" "#"}}
+	{{set . "prePageClass" "disabled"}}
+	{{set . "prePageUrl" "#"}}
 {{end}}
 
 <!-- 下一页 -->
 {{if lt $.paging.CurPage $.paging.TotalPage }}
-    {{set . "nextPageClass" ""}}
-    {{set . "nextPageUrl" (urlConcat $.pagingBaseUrl "page" (incr $.paging.CurPage 1)) }}
+	{{set . "nextPageClass" ""}}
+	{{set . "nextPageUrl" (urlConcat $.pagingBaseUrl "page" (incr $.paging.CurPage 1)) }}
 {{else}}
-    {{set . "nextPageClass" "disabled"}}
-    {{set . "nextPageUrl" "#"}}
+	{{set . "nextPageClass" "disabled"}}
+	{{set . "nextPageUrl" "#"}}
 {{end}}
 
 {{$.paging.CurPage}}/{{$.paging.TotalPage}}

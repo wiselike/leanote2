@@ -10,15 +10,15 @@
 
 <title>
 {{if $.curIsIndex}}
-    {{$.blogInfo.Title}}
+	{{$.blogInfo.Title}}
 {{else if $.curIsCate}}
-    Category-{{$.curCateTitle}}
+	Category-{{$.curCateTitle}}
 {{else if $.curIsSearch}}
-    Search-{{$.keywords}}
+	Search-{{$.keywords}}
 {{else if $.curIsTags}}
-    Tags
+	Tags
 {{else if $.curIsTagPosts}}
-    Tag-{{$.curTag}}
+	Tag-{{$.curTag}}
 {{else if $.curIsPost}}
 	{{$.post.Title}}
 {{else if $.curIsSingle}}
@@ -26,7 +26,7 @@
 {{else if $.curIsArchive}}
 	Archives
 {{end}}
-    
+
 </title>
 <!-- Bootstrap core CSS -->
 <link href="{{$.bootstrapCssUrl}}" rel="stylesheet">
@@ -47,7 +47,7 @@ function log(o) {
 	<div id="headerContainer" class="container">
 		<!-- 头部可放博客名, 导航 -->
 		<div id="header">
-		
+
 			{{$username := .userInfo.Username}}
 			<h1>
 				<a href="{{$.indexUrl}}" id="logo">
@@ -63,44 +63,44 @@ function log(o) {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Static navbar -->
 	<div class="navbar navbar-default">
-	  <div class="container">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="{{.indexUrl}}">
-	      	{{if $.blogInfo.Logo}}
-	      	
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{.indexUrl}}">
+					{{if $.blogInfo.Logo}}
+
 			<img src="{{$.blogInfo.Logo}}" title="{{$.blogInfo.Title}}"/>
 			{{else}}
 				{{$.blogInfo.Title | raw}}
 			{{end}}
-	      </a>
-	    </div>
-	    <div class="navbar-collapse collapse">
-	      <ul class="nav navbar-nav">
-	      	
-	    	<li class="{{if $.curIsIndex}}active{{end}}"><a href="{{.indexUrl}}">Home</a></li>
-		    <!-- 分类页 -->
-		   	{{range $.cates}}
+		</a>
+	</div>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+
+			<li class="{{if $.curIsIndex}}active{{end}}"><a href="{{.indexUrl}}">Home</a></li>
+			<!-- 分类页 -->
+			{{range $.cates}}
 				<li class="{{if eq .CateId $.curCateId}}active{{end}}">
-					<a href="{{$.cateUrl}}/{{.UrlTitle}}" 
+					<a href="{{$.cateUrl}}/{{.UrlTitle}}"
 					>{{.Title}}</a>
 				</li>
 			{{end}}
 			<!-- 单页 -->
 			{{range $.singles}}
-			    <li class="{{if eq $.curSingleId .SingleId}}active{{end}}">
+				<li class="{{if eq $.curSingleId .SingleId}}active{{end}}">
 					<a href="{{$.singleUrl}}/{{.UrlTitle}}">{{.Title}}</a>
 				</li>
 			{{end}}
-			
+
 			<!-- 归档 -->
 			<li class="{{if $.curIsArchive}}active{{end}}">
 				<a href="{{$.archiveUrl}}">Archives</a>
@@ -108,15 +108,15 @@ function log(o) {
 			<li class="{{if $.curIsTags}}active{{end}}">
 				<a href="{{$.tagsUrl}}">Tags</a>
 			</li>
-			
-	      </ul>
-	      <form class="navbar-form navbar-right" id="search" onsubmit="search(event);return false;">
-	      	<div class="input-group">
-			  	<span class="input-group-addon" id="searchIcon" onclick="search(event);"><i class="fa fa-search"></i></span>
-		        <input type="text" placeholder="search" id="searchInput" class="form-control" value="{{.keywords}}">
-		  	</div>
-	      </form>
-	    </div><!--/.nav-collapse -->
-	  </div>
+
+		</ul>
+		<form class="navbar-form navbar-right" id="search" onsubmit="search(event);return false;">
+			<div class="input-group">
+				<span class="input-group-addon" id="searchIcon" onclick="search(event);"><i class="fa fa-search"></i></span>
+				<input type="text" placeholder="search" id="searchInput" class="form-control" value="{{.keywords}}">
+			</div>
+		</form>
+	</div><!--/.nav-collapse -->
+</div>
 	</div>
 </div>

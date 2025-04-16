@@ -1,19 +1,19 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint unused:false */
 /*global tinymce:true */
 
 /**
- * Example plugin that adds a toolbar button and menu item.
- */
+	* Example plugin that adds a toolbar button and menu item.
+	*/
 tinymce.PluginManager.add('example', function(editor, url) {
 	// Add a button that opens a window
 	editor.addButton('example', {

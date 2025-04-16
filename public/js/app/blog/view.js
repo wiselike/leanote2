@@ -1,7 +1,7 @@
 function scrollTo(self, tagName, text) {
 	var iframe = $("#content");
 	var target = iframe.find(tagName + ":contains(" + text + ")");
-	
+
 	// 找到是第几个
 	// 在nav是第几个
 	var navs = $('#blogNavContent [data-a="' + tagName + '-' + encodeURI(text) + '"]');
@@ -11,7 +11,7 @@ function scrollTo(self, tagName, text) {
 			break;
 		}
 	}
-	
+
 	if (target.size() >= i+1) {
 		target = target.eq(i);
 		// 之前插入, 防止多行定位不准
@@ -34,7 +34,7 @@ function genNav() {
 	var hs = $con.find("h1,h2,h3,h4,h5,h6").toArray();
 	var titles = '<ul>';
 	for(var i = 0; i < hs.length; ++i) {
-		var text = $(hs[i]).text(); 
+		var text = $(hs[i]).text();
 		var tagName = hs[i].tagName.toLowerCase();
 		// scrollTo在page.js中定义
 		titles += '<li class="nav-' + tagName + '"><a data-a="' + tagName + '-' + encodeURI(text)+'" onclick="scrollTo(this, \'' + tagName + '\', \'' + text + '\')">' + text + '</a></li>';
@@ -53,12 +53,12 @@ function initNav() {
 	if(!hasNav) {
 		return;
 	}
-	
+
 	var $title = $(".title");
 	var titlePos = $title.offset();
 	var top = titlePos.top + 10;// - $title.height();
 	// 手机下不要与标题在同一高度
-	if(LEA.isMobile){ 
+	if(LEA.isMobile){
 		top += 30;
 	}
 	if(top < 0) {
@@ -68,7 +68,7 @@ function initNav() {
 	var left = $title.width() + titlePos.left - 100;
 	$("#blogNav").css("top", top).css("left", left);
 	$("#blogNav").show();
-	
+
 	$("#blogNavNav").click(function() {
 		var $o = $("#blogNavContent");
 		if($o.is(":hidden")) {
@@ -77,20 +77,20 @@ function initNav() {
 			$o.hide();
 		}
 	});
-	
+
 	var $d = $(document);
 	function reNav() {
-	    var vtop = $d.scrollTop();
-	    if(vtop <= top) {
+		var vtop = $d.scrollTop();
+		if(vtop <= top) {
 			$("#blogNav").css("top", top-vtop);
-	    } else {
-	    	// 差距很磊了
-	    	if(LEA.isMobile) {
+		} else {
+			// 差距很磊了
+			if(LEA.isMobile) {
 				$("#blogNav").css("top", 50);
 			} else {
 				$("#blogNav").css("top", 10);
 			}
-	    }
+		}
 	}
 	reNav();
 	$(window).scroll(reNav);
@@ -107,12 +107,12 @@ var C = {
 	likersO: $("#likers"),
 	tCommentsO: $("#tComments"),
 	commentsO: $("#comments"),
-	
+
 	commentBtnO: $("#commentBtn"),
-	
+
 	commentsLoadingO: $(".comments-loading"),
 	commentsMoreO: $(".comments-more"),
-	
+
 	commentBoxO: $(".comment-box"),
 	init: function() {
 		var self = this;
@@ -152,7 +152,7 @@ var C = {
 				self.info.commentUserInfo[visitUserInfo.UserId] = visitUserInfo;
 			}
 			self.renderComments();
-			
+
 			self.commentBoxO.removeClass("hide");
 			self.commentsLoadingO.addClass("hide");
 			if(self.info.pageInfo.TotalPage > self.info.pageInfo.CurPage) {
@@ -163,7 +163,7 @@ var C = {
 	},
 	initMoreComments: function() {
 		var self = this;
-		self.commentsMoreO.find("a").click(function(){ 
+		self.commentsMoreO.find("a").click(function(){
 			if(self.info.pageInfo.TotalPage > self.info.pageInfo.CurPage) {
 				self.commentsMoreO.addClass("hide");
 				self.commentsLoadingO.removeClass("hide");
@@ -171,9 +171,9 @@ var C = {
 					var pageInfo = ret.pageInfo;
 					var comments = ret.comments;
 					var commentUserInfo = ret.commentUserInfo;
-					
+
 					$.extend(self.info.commentUserInfo, commentUserInfo);
-					
+
 					// 渲染之
 					for(var i in comments) {
 						var comment = comments[i];
@@ -181,15 +181,15 @@ var C = {
 					}
 					var html = self.tCommentsO.render({comments: comments, visitUserInfo: visitUserInfo});
 					self.commentsO.append(html);
-					
+
 					self.info.pageInfo = pageInfo;
-					
+
 					if(self.info.pageInfo.TotalPage > self.info.pageInfo.CurPage) {
 						self.commentsMoreO.removeClass("hide");
 					} else {
 						self.commentsMoreO.addClass("hide");
 					}
-					
+
 					self.commentsLoadingO.addClass("hide");
 				});
 			}
@@ -224,7 +224,7 @@ var C = {
 			comment.IsMyComment = true;
 		}
 		// 不是回复自己
-		if(comment.ToUserId && comment.ToUserId != comment.UserId) { 
+		if(comment.ToUserId && comment.ToUserId != comment.UserId) {
 			comment.ToUserInfo = commentUserInfo[comment.ToUserId];
 			if(comment.ToUserInfo.UserId == UserInfo.UserId) {
 				comment.ToUserIsAuthor = true;
@@ -240,7 +240,7 @@ var C = {
 		if(comments.length == 0) {
 			return;
 		}
-		
+
 		// 整理数据
 		// 回复谁, 是否是作者?
 		// 回复日期, 几天前, 刚刚
@@ -251,7 +251,7 @@ var C = {
 		var html = self.tCommentsO.render({blogUrl: blogUrl, comments: comments, visitUserInfo: visitUserInfo});
 		self.commentsO.html(html);
 	},
-	
+
 	// 重新渲染likers
 	reRenderLikers: function(addMe) {
 		var self = this;
@@ -291,7 +291,7 @@ var C = {
 	},
 	initEvent: function() {
 		var self = this;
-		
+
 		// like or not
 		self.likeBtnO.click(function() {
 			if(!visitUserInfo.UserId) {
@@ -310,14 +310,14 @@ var C = {
 					self.likeNumO.text(self.preLikeNum);
 					self.info.isILikeIt = ret.Item;
 					self.toggleLikeBtnActive();
-					
+
 					// 重新render likers
 					// 我是否在列表中
 					self.reRenderLikers(ret.Item);
 				}
 			});
 		});
-		
+
 		// 显示回复回复
 		$("#comments").on("click", ".comment-reply", function() {
 			var form = $(this).closest("li").find("form");
@@ -331,7 +331,7 @@ var C = {
 		$("#comments").on("click", ".reply-cancel", function() {
 			$(this).closest("form").hide();
 		});
-		
+
 		// 回复
 		$(".comment-box").on("click", ".reply-comment-btn", function(e) {
 			e.preventDefault();
@@ -353,16 +353,16 @@ var C = {
 				if(commentId) {
 					$form.hide();
 				}
-				
+
 				if(commentId) {
 					scrollToTarget("#comments", -200);
 				}
-				
+
 				// 添加一个
 				self.addCommentRender(ret.Item);
 			});
 		});
-		
+
 		// 删除
 		$(".comment-box").on("click", ".comment-trash", function(e) {
 			var commentId = $(this).parent().data("comment-id");
@@ -376,19 +376,19 @@ var C = {
 							setTimeout(function() {
 								li.remove();
 							}, 300);
-							
+
 							self.bindCommentNum(-1);
 						}
 					});
 				}
 			});
 		});
-		
+
 		// 点zan
 		$(".comment-box").on("click", ".comment-like", function(e) {
 			var commentId = $(this).parent().data("comment-id");
 			var t = this;
-		
+
 			ajaxPost(staticUrl + "/blog/likeComment", {commentId: commentId}, function(re) {
 				if(re.Ok) {
 					var ret = re.Item;
@@ -406,61 +406,61 @@ var C = {
 				}
 			});
 		});
-		
+
 		// 举报
 		function report(commentId, noteId, title) {
 			var form = $("#reportMsg").html();
 			var body;
-	        var input;
-	        var isOver = false;
+			var input;
+			var isOver = false;
 			var modal = BootstrapDialog.show({
-	            title: title,
-	            message: form,
-	            nl2br: false,
-	            buttons: [{
-                    label: getMsg("cancel"),
-                    action: function(dialog) {
-                        dialog.close();
-                    }
-                }, {
-                    label: getMsg("confirm"),
-                    cssClass: 'btn-primary',
-                    action: function(dialog) {
-                    	if(isOver) {
-                    		dialog.close();
-                    	}
-                    	var val = body.find("input[type='radio']:checked").val();
-                    	if(!val) {
-                    		var val = body.find(".input-container input").val();
-                    	}
-                    	if(!val) {
-                    		body.find(".footnote").html(getMsg("chooseReason"));
-                    		return;
-                    	}
-                    	ajaxPost(staticUrl + "/blog/report", {commentId: commentId, noteId: noteId, reason: val}, function(re) {
-                    		isOver = true;
-                    		if(reIsOk(re)) {
-		                        body.html(getMsg("reportSuccess"));
-                    		} else {
-		                        body.html(getMsg("error"));
-                    		}
-                			setTimeout(function() {
-		                        dialog.close();
-	                        }, 3000);
-                    	});
-                    }
-                }]
-	        });
-	        body = modal.getModalBody();
-	        input = body.find(".input-container");
-	        body.find("input[type='radio']").click(function(){ 
-	        	if(!$(this).val()) {
-	        		input.show();
-	        		input.find("input").focus();
-	        	} else {
-	        		input.hide();
-	        	}
-	        });
+				title: title,
+				message: form,
+				nl2br: false,
+				buttons: [{
+					label: getMsg("cancel"),
+					action: function(dialog) {
+						dialog.close();
+					}
+				}, {
+					label: getMsg("confirm"),
+					cssClass: 'btn-primary',
+					action: function(dialog) {
+						if(isOver) {
+							dialog.close();
+						}
+						var val = body.find("input[type='radio']:checked").val();
+						if(!val) {
+							var val = body.find(".input-container input").val();
+						}
+						if(!val) {
+							body.find(".footnote").html(getMsg("chooseReason"));
+							return;
+						}
+						ajaxPost(staticUrl + "/blog/report", {commentId: commentId, noteId: noteId, reason: val}, function(re) {
+							isOver = true;
+							if(reIsOk(re)) {
+								body.html(getMsg("reportSuccess"));
+							} else {
+								body.html(getMsg("error"));
+							}
+							setTimeout(function() {
+								dialog.close();
+							}, 3000);
+						});
+					}
+				}]
+			});
+			body = modal.getModalBody();
+			input = body.find(".input-container");
+			body.find("input[type='radio']").click(function(){
+				if(!$(this).val()) {
+					input.show();
+					input.find("input").focus();
+				} else {
+					input.hide();
+				}
+			});
 		}
 		$(".comment-box").on("click", ".comment-report", function() {
 			if(needLogin()) {
@@ -475,7 +475,7 @@ var C = {
 			}
 			report("", self.noteId, getMsg("reportBlog?"));
 		});
-		
+
 		self.initShare();
 	},
 	weixinQRCodeO: $("#weixinQRCode"),
@@ -486,11 +486,11 @@ var C = {
 				self.weixinQRCodeO.qrcode(viewUrl + "/" + self.noteId);
 			}
 			BootstrapDialog.show({
-	            title: getMsg('scanQRCode'),
-	            message: self.weixinQRCodeO
-	        });
+				title: getMsg('scanQRCode'),
+				message: self.weixinQRCodeO
+			});
 		});
-		
+
 		$(".btn-share").click(function() {
 			var $this = $(this);
 			var map = {"btn-weibo": shareSinaWeibo, "tencent-weibo": shareTencentWeibo, "qq": shareQQ, "renren": shareRenRen};
@@ -498,7 +498,7 @@ var C = {
 				if($this.hasClass(i)) {
 					map[i](self.noteId, document.title);
 					break;
-				}	
+				}
 			}
 		});
 	}

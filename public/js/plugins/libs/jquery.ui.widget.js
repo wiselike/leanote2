@@ -1,26 +1,26 @@
 /*
- * jQuery UI Widget 1.10.1+amd
- * https://github.com/blueimp/jQuery-File-Upload
- *
- * Copyright 2013 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/jQuery.widget/
- */
+	* jQuery UI Widget 1.10.1+amd
+	* https://github.com/blueimp/jQuery-File-Upload
+	*
+	* Copyright 2013 jQuery Foundation and other contributors
+	* Released under the MIT license.
+	* http://jquery.org/license
+	*
+	* http://api.jqueryui.com/jQuery.widget/
+	*/
 
 (function (factory) {
 	/* 需要jquery, 会重新加载jquery, slimScroll会覆盖
-    if (typeof define === "function" && define.amd) {
-        // Register as an anonymous AMD module:
-        define(["jquery"], factory);
-    } else {
-        // Browser globals:
-        factory(jQuery);
-    }
-    */
-    
-    factory(jQuery);
+	if (typeof define === "function" && define.amd) {
+		// Register as an anonymous AMD module:
+		define(["jquery"], factory);
+	} else {
+		// Browser globals:
+		factory(jQuery);
+	}
+	*/
+
+	factory(jQuery);
 }(function( $, undefined ) {
 
 var uuid = 0,

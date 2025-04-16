@@ -1,22 +1,22 @@
 /**
- * TabPanel.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TabPanel.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a tab panel control.
- *
- * @-x-less TabPanel.less
- * @class tinymce.ui.TabPanel
- * @extends tinymce.ui.Panel
- *
- * @setting {Number} activeTab Active tab index.
- */
+	* Creates a tab panel control.
+	*
+	* @-x-less TabPanel.less
+	* @class tinymce.ui.TabPanel
+	* @extends tinymce.ui.Panel
+	*
+	* @setting {Number} activeTab Active tab index.
+	*/
 define("tinymce/ui/TabPanel", [
 	"tinymce/ui/Panel",
 	"tinymce/ui/DomUtils"
@@ -32,11 +32,11 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Activates the specified tab by index.
-		 *
-		 * @method activateTab
-		 * @param {Number} idx Index of the tab to activate.
-		 */
+			* Activates the specified tab by index.
+			*
+			* @method activateTab
+			* @param {Number} idx Index of the tab to activate.
+			*/
 		activateTab: function(idx) {
 			var activeTabElm;
 
@@ -63,11 +63,11 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, tabsHtml = '', prefix = self.classPrefix;
 
@@ -101,10 +101,10 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -129,13 +129,13 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, rect, minW, minH;
 

@@ -1,18 +1,18 @@
 /**
- * Resizable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Resizable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Resizable mixin. Enables controls to be resized.
- *
- * @mixin tinymce.ui.Resizable
- */
+	* Resizable mixin. Enables controls to be resized.
+	*
+	* @mixin tinymce.ui.Resizable
+	*/
 define("tinymce/ui/Resizable", [
 	"tinymce/ui/DomUtils"
 ], function(DomUtils) {
@@ -20,10 +20,10 @@ define("tinymce/ui/Resizable", [
 
 	return {
 		/**
-		 * Resizes the control to contents.
-		 *
-		 * @method resizeToContent
-		 */
+			* Resizes the control to contents.
+			*
+			* @method resizeToContent
+			*/
 		resizeToContent: function() {
 			this._layoutRect.autoResize = true;
 			this._lastRect = null;
@@ -31,13 +31,13 @@ define("tinymce/ui/Resizable", [
 		},
 
 		/**
-		 * Resizes the control to a specific width/height.
-		 *
-		 * @method resizeTo
-		 * @param {Number} w Control width.
-		 * @param {Number} h Control height.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Resizes the control to a specific width/height.
+			*
+			* @method resizeTo
+			* @param {Number} w Control width.
+			* @param {Number} h Control height.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		resizeTo: function(w, h) {
 			// TODO: Fix hack
 			if (w <= 1 || h <= 1) {
@@ -52,13 +52,13 @@ define("tinymce/ui/Resizable", [
 		},
 
 		/**
-		 * Resizes the control to a specific relative width/height.
-		 *
-		 * @method resizeBy
-		 * @param {Number} dw Relative control width.
-		 * @param {Number} dh Relative control height.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Resizes the control to a specific relative width/height.
+			*
+			* @method resizeBy
+			* @param {Number} dw Relative control width.
+			* @param {Number} dh Relative control height.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		resizeBy: function(dw, dh) {
 			var self = this, rect = self.layoutRect();
 

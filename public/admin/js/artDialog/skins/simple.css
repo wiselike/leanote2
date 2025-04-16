@@ -7,7 +7,7 @@
  * This is licensed under the GNU LGPL, version 2.1 or later.
  * For details, see: http://creativecommons.org/licenses/LGPL/2.1/
  */
- 
+
 /* common start */
 body { _margin:0; _height:100%; /*IE6 BUG*/ }
 .aui_outer { text-align:left; }
@@ -47,9 +47,9 @@ button.aui_state_highlight:active { border-color:#1c6a9e; filter: progid:DXImage
 .aui_content { color:#666; }
 .aui_state_focus .aui_content { color:#000; }
 @media screen and (min-width:0) {
-	.aui_close { width:20px; height:20px; line-height:20px; right:-10px; top:-10px; border-radius:20px; background:#999; color:#FFF; box-shadow:0 1px 3px rgba(0, 0, 0, .3); -moz-transition: linear .06s; -webkit-transition: linear .06s; transition: linear .06s; }
-	.aui_close:hover { width:24px; height:24px; line-height:24px; right:-12px; top:-12px; color:#FFF; box-shadow:0 1px 3px rgba(209, 40, 42, .5); background:#d1282a; border-radius:24px; }
-	.aui_state_lock .aui_dialog { box-shadow:0 3px 26px rgba(0, 0, 0, .9); -moz-transition:-moz-box-shadow linear .2s; -webkit-transition: -webkit-box-shadow linear .2s; transition: -webkit-box-shadow linear .2s; }
-	.aui_dialog:active { box-shadow:0 0 5px rgba(0, 0, 0, .1)!important; }
-	.aui_state_drag .aui_outer { box-shadow:none!important; }
+  .aui_close { width:20px; height:20px; line-height:20px; right:-10px; top:-10px; border-radius:20px; background:#999; color:#FFF; box-shadow:0 1px 3px rgba(0, 0, 0, .3); -moz-transition: linear .06s; -webkit-transition: linear .06s; transition: linear .06s; }
+  .aui_close:hover { width:24px; height:24px; line-height:24px; right:-12px; top:-12px; color:#FFF; box-shadow:0 1px 3px rgba(209, 40, 42, .5); background:#d1282a; border-radius:24px; }
+  .aui_state_lock .aui_dialog { box-shadow:0 3px 26px rgba(0, 0, 0, .9); -moz-transition:-moz-box-shadow linear .2s; -webkit-transition: -webkit-box-shadow linear .2s; transition: -webkit-box-shadow linear .2s; }
+  .aui_dialog:active { box-shadow:0 0 5px rgba(0, 0, 0, .1)!important; }
+  .aui_state_drag .aui_outer { box-shadow:none!important; }
 }

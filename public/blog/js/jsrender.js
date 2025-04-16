@@ -1,13 +1,13 @@
 /*! JsRender v1.0.0-beta: http://github.com/BorisMoore/jsrender and http://jsviews.com/jsviews
 informal pre V1.0 commit counter: 53 */
 /*
- * Optimized version of jQuery Templates, for rendering to string.
- * Does not require jQuery, or HTML DOM
- * Integrates with JsViews (http://jsviews.com/jsviews)
- *
- * Copyright 2014, Boris Moore
- * Released under the MIT License.
- */
+	* Optimized version of jQuery Templates, for rendering to string.
+	* Does not require jQuery, or HTML DOM
+	* Integrates with JsViews (http://jsviews.com/jsviews)
+	*
+	* Copyright 2014, Boris Moore
+	* Released under the MIT License.
+	*/
 //try {
 //	jQuery = jQuery;
 //} catch(e) {
@@ -26,7 +26,7 @@ informal pre V1.0 commit counter: 53 */
 
 		$, jsvStoreName, rTag, rTmplString, indexStr, // nodeJsModule,
 
-//TODO	tmplFnsCache = {},
+	//TODO	tmplFnsCache = {},
 		delimOpenChar0 = "[", delimOpenChar1 = "[", delimCloseChar0 = "]", delimCloseChar1 = "]", linkChar = "^",
 
 		rPath = /^(!*?)(?:null|true|false|\d[\d.]*|([\w$]+|\.|~([\w$]+)|#(view|([\w$]+))?)([\w$.^]*?)(?:[.[^]([\w$]+)\]?)?)$/g,
@@ -450,14 +450,14 @@ informal pre V1.0 commit counter: 53 */
 					// If the tag has not already been instantiated, we will create a new instance.
 					// ~tag will access the tag, even within the rendering of the template content of this tag.
 					// From child/descendant tags, can access using ~tag.parent, or ~parentTags.tagName
-//	TODO provide error handling owned by the tag - using tag.onError
-//				try {
+				//	TODO provide error handling owned by the tag - using tag.onError
+				//				try {
 					tag = new tagDef._ctr();
 					callInit = !!tag.init;
-//				}
-//				catch(e) {
-//					tagDef.onError(e);
-//				}
+				//				}
+				//				catch(e) {
+				//					tagDef.onError(e);
+				//				}
 					// Set attr on linkCtx to ensure outputting to the correct target attribute.
 					tag.attr = tag.attr || tagDef.attr || undefined;
 					// Setting either linkCtx.attr or this.attr in the init() allows per-instance choice of target attrib.
@@ -674,14 +674,14 @@ informal pre V1.0 commit counter: 53 */
 		if (parentTmpl) {
 			tagDef._parentTmpl = parentTmpl;
 		}
-//TODO	tagDef.onError = function(e) {
-//			var error;
-//			if (error = this.prototype.onError) {
-//				error.call(this, e);
-//			} else {
-//				throw e;
-//			}
-//		}
+	//TODO	tagDef.onError = function(e) {
+	//			var error;
+	//			if (error = this.prototype.onError) {
+	//				error.call(this, e);
+	//			} else {
+	//				throw e;
+	//			}
+	//		}
 		return tagDef;
 	}
 
@@ -1099,13 +1099,13 @@ informal pre V1.0 commit counter: 53 */
 			content = astTop,
 			current = [, , , astTop];
 
-//TODO	result = tmplFnsCache[markup]; // Only cache if template is not named and markup length < ...,
-//and there are no bindings or subtemplates?? Consider standard optimization for data-link="a.b.c"
-//		if (result) {
-//			tmpl.fn = result;
-//		} else {
+		//TODO	result = tmplFnsCache[markup]; // Only cache if template is not named and markup length < ...,
+		//and there are no bindings or subtemplates?? Consider standard optimization for data-link="a.b.c"
+		//		if (result) {
+		//			tmpl.fn = result;
+		//		} else {
 
-//		result = markup;
+		//		result = markup;
 
 		blockTagCheck(stack[0] && stack[0][3].pop()[0]);
 		// Build the AST (abstract syntax tree) under astTop
@@ -1116,8 +1116,8 @@ informal pre V1.0 commit counter: 53 */
 		if (loc = astTop[astTop.length - 1]) {
 			blockTagCheck("" + loc !== loc && (+loc[7] === loc[7]) && loc[0]);
 		}
-//			result = tmplFnsCache[markup] = buildCode(astTop, tmpl);
-//		}
+	//			result = tmplFnsCache[markup] = buildCode(astTop, tmpl);
+	//		}
 		return buildCode(astTop, isLinkExpr ? markup : tmpl, isLinkExpr);
 	}
 
@@ -1311,7 +1311,7 @@ informal pre V1.0 commit counter: 53 */
 						}
 						if (!named || boundName) {
 							bindings.push(path.slice(not.length)); // Add path binding for paths on props and args,
-//							list.push(path);
+						//							list.push(path);
 						}
 					}
 					if (object !== ".") {

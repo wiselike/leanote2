@@ -1,21 +1,21 @@
 /**
- * ComboBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ComboBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a combobox control. Select box that you select a value from or
- * type a value into.
- *
- * @-x-less ComboBox.less
- * @class tinymce.ui.ComboBox
- * @extends tinymce.ui.Widget
- */
+	* This class creates a combobox control. Select box that you select a value from or
+	* type a value into.
+	*
+	* @-x-less ComboBox.less
+	* @class tinymce.ui.ComboBox
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/ComboBox", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/Factory",
@@ -25,12 +25,12 @@ define("tinymce/ui/ComboBox", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} placeholder Placeholder text to display.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} placeholder Placeholder text to display.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -158,12 +158,12 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Getter/setter function for the control value.
-		 *
-		 * @method value
-		 * @param {String} [value] Value to be set.
-		 * @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
-		 */
+			* Getter/setter function for the control value.
+			*
+			* @method value
+			* @param {String} [value] Value to be set.
+			* @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
+			*/
 		value: function(value) {
 			var self = this;
 
@@ -192,12 +192,12 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Getter/setter function for the disabled state.
-		 *
-		 * @method value
-		 * @param {Boolean} [state] State to be set.
-		 * @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
-		 */
+			* Getter/setter function for the disabled state.
+			*
+			* @method value
+			* @param {Boolean} [state] State to be set.
+			* @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
+			*/
 		disabled: function(state) {
 			var self = this;
 
@@ -209,19 +209,19 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Focuses the input area of the control.
-		 *
-		 * @method focus
-		 */
+			* Focuses the input area of the control.
+			*
+			* @method focus
+			*/
 		focus: function() {
 			this.getEl('inp').focus();
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, elm = self.getEl(), openElm = self.getEl('open'), rect = self.layoutRect();
 			var width, lineHeight;
@@ -249,11 +249,11 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.ComboBox} Current combobox instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.ComboBox} Current combobox instance.
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -270,11 +270,11 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, settings = self.settings, prefix = self.classPrefix;
 			var value = settings.value || settings.placeholder || '';

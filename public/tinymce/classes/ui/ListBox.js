@@ -1,20 +1,20 @@
 /**
- * ListBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ListBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new list box control.
- *
- * @-x-less ListBox.less
- * @class tinymce.ui.ListBox
- * @extends tinymce.ui.MenuButton
- */
+	* Creates a new list box control.
+	*
+	* @-x-less ListBox.less
+	* @class tinymce.ui.ListBox
+	* @extends tinymce.ui.MenuButton
+	*/
 define("tinymce/ui/ListBox", [
 	"tinymce/ui/MenuButton"
 ], function(MenuButton) {
@@ -22,12 +22,12 @@ define("tinymce/ui/ListBox", [
 
 	return MenuButton.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Array} values Array with values to add to list box.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Array} values Array with values to add to list box.
+			*/
 		init: function(settings) {
 			var self = this, values, selected, selectedText, lastItemCtrl;
 
@@ -85,10 +85,10 @@ define("tinymce/ui/ListBox", [
 		},
 
 		/**
-		 * disable/enable 某一list的item
-		 * leanote ace life ace
-		 * value = convert, state = true | false
-		 */
+			* disable/enable 某一list的item
+			* leanote ace life ace
+			* value = convert, state = true | false
+			*/
 		diableValue: function(value, state) {
 			var self = this;
 			var menu = self.settings.menu;
@@ -110,12 +110,12 @@ define("tinymce/ui/ListBox", [
 		},
 
 		/**
-		 * Getter/setter function for the control value.
-		 *
-		 * @method value
-		 * @param {String} [value] Value to be set.
-		 * @return {Boolean/tinymce.ui.ListBox} Value or self if it's a set operation.
-		 */
+			* Getter/setter function for the control value.
+			*
+			* @method value
+			* @param {String} [value] Value to be set.
+			* @return {Boolean/tinymce.ui.ListBox} Value or self if it's a set operation.
+			*/
 		value: function(value) {
 			var self = this, active, selectedText, menu;
 

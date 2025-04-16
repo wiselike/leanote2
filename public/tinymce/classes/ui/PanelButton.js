@@ -1,19 +1,19 @@
 /**
- * PanelButton.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* PanelButton.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new panel button.
- *
- * @class tinymce.ui.PanelButton
- * @extends tinymce.ui.Button
- */
+	* Creates a new panel button.
+	*
+	* @class tinymce.ui.PanelButton
+	* @extends tinymce.ui.Button
+	*/
 define("tinymce/ui/PanelButton", [
 	"tinymce/ui/Button",
 	"tinymce/ui/FloatPanel"
@@ -22,10 +22,10 @@ define("tinymce/ui/PanelButton", [
 
 	return Button.extend({
 		/**
-		 * Shows the panel for the button.
-		 *
-		 * @method showPanel
-		 */
+			* Shows the panel for the button.
+			*
+			* @method showPanel
+			*/
 		showPanel: function() {
 			var self = this, settings = self.settings;
 
@@ -66,10 +66,10 @@ define("tinymce/ui/PanelButton", [
 		},
 
 		/**
-		 * Hides the panel for the button.
-		 *
-		 * @method hidePanel
-		 */
+			* Hides the panel for the button.
+			*
+			* @method hidePanel
+			*/
 		hidePanel: function() {
 			var self = this;
 
@@ -79,10 +79,10 @@ define("tinymce/ui/PanelButton", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 

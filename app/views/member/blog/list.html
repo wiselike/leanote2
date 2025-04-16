@@ -28,14 +28,14 @@
 					<th style="width: 300px"
 					{{sorterTh $url "title" .sorter}}
 					>
-						Title	
+						Title
 						<span class="th-sort">
 							<i class="fa fa-sort-down"></i>
 							<i class="fa fa-sort-up"></i>
 							<i class="fa fa-sort"></i>
 						</span>
 					</th>
-					
+
 					<th
 					style="width: 300px"
 					{{sorterTh $url "urlTitle" .sorter}}
@@ -57,7 +57,7 @@
 							<i class="fa fa-sort"></i>
 						</span>
 					</th>
-					
+
 					<th
 					{{sorterTh $url "updatedTime" .sorter}}
 					>
@@ -84,7 +84,7 @@
 			</thead>
 			<tbody>
 				{{range .blogs}}
-				
+
 				{{if .UrlTitle}}
 					{{set $ "urlTitle" (decodeUrlValue .UrlTitle)}}
 				{{else}}
@@ -94,16 +94,16 @@
 					<td>
 						<a href="{{$.userAndBlog.PostUrl}}/{{$.urlTitle}}" class="post" target="_blank">{{.Title}}</a>
 					</td>
-					
+
 					<td>
 						/post/
 						<input type="text" data-id="{{.NoteId.Hex}}" class="url-title" value="{{$.urlTitle}}"/>
 					</td>
-						
+
 					<td>
 						{{.PublicTime|datetime}}
 					</td>
-						
+
 					<td>
 						{{.UpdatedTime|datetime}}
 					</td>
@@ -111,8 +111,8 @@
 						{{.CreatedTime|datetime}}
 					</td>
 					<td>
-						
-						<a 
+
+						<a
 						{{if .HasSelfDefined}}
 							title="{{msg $ "hasSelfDefined"}}"
 							class="btn btn-sm btn-success"
@@ -142,7 +142,7 @@
 		</div>
 	</footer>
 </section>
-	
+
 {{template "member/footer.html" .}}
 
 <script>
@@ -156,7 +156,7 @@ $(function() {
 			if(reIsOk(re)) {
 				$t.val(re.Item);
 				var $a = $t.closest("tr").find(".post");
-				
+
 				$a.attr("href", postUrl + "/" + encodeURI(re.Item));
 			} else {
 				art.alert(re.Msg || "error");

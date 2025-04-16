@@ -1,16 +1,16 @@
 
 /*
- * JQuery zTree core v3.5.17-beta.2
- * http://zTree.me/
- *
- * Copyright (c) 2010 Hunter.z
- *
- * Licensed same as jquery - MIT License
- * http://www.opensource.org/licenses/mit-license.php
- *
- * email: hunter.z@263.net
- * Date: 2014-05-08
- */
+	* JQuery zTree core v3.5.17-beta.2
+	* http://zTree.me/
+	*
+	* Copyright (c) 2010 Hunter.z
+	*
+	* Licensed same as jquery - MIT License
+	* http://www.opensource.org/licenses/mit-license.php
+	*
+	* email: hunter.z@263.net
+	* Date: 2014-05-08
+	*/
 (function($){
 	var settings = {}, roots = {}, caches = {},
 	//default consts of core
@@ -839,7 +839,7 @@
 
 				data.addNodesData(setting, parentNode, newNodes);
 				view.createNodes(setting, parentNode.level + 1, newNodes, parentNode, is_new);
-				
+
 				// 之前这个父没有子的, 先添加子, 再展开, 再编辑!
 				if (!isSilent) {
 					if(parentNode.Subs.length == 1) {
@@ -1717,17 +1717,17 @@
 	consts = zt.consts;
 })(jQuery);
 /*
- * JQuery zTree excheck v3.5.17-beta.2
- * http://zTree.me/
- *
- * Copyright (c) 2010 Hunter.z
- *
- * Licensed same as jquery - MIT License
- * http://www.opensource.org/licenses/mit-license.php
- *
- * email: hunter.z@263.net
- * Date: 2014-05-08
- */
+	* JQuery zTree excheck v3.5.17-beta.2
+	* http://zTree.me/
+	*
+	* Copyright (c) 2010 Hunter.z
+	*
+	* Licensed same as jquery - MIT License
+	* http://www.opensource.org/licenses/mit-license.php
+	*
+	* email: hunter.z@263.net
+	* Date: 2014-05-08
+	*/
 (function($){
 	//default consts of excheck
 	var _consts = {
@@ -2223,7 +2223,7 @@
 			} else {
 				obj.show();
 			}
-            obj.attr('class', view.makeChkClass(setting, node));
+			obj.attr('class', view.makeChkClass(setting, node));
 		},
 		setParentNodeCheckBox: function(setting, node, value, srcNode) {
 			var childKey = setting.data.key.children,
@@ -2345,17 +2345,17 @@
 	}
 })(jQuery);
 /*
- * JQuery zTree exedit v3.5.17-beta.2
- * http://zTree.me/
- *
- * Copyright (c) 2010 Hunter.z
- *
- * Licensed same as jquery - MIT License
- * http://www.opensource.org/licenses/mit-license.php
- *
- * email: hunter.z@263.net
- * Date: 2014-05-08
- */
+	* JQuery zTree exedit v3.5.17-beta.2
+	* http://zTree.me/
+	*
+	* Copyright (c) 2010 Hunter.z
+	*
+	* Licensed same as jquery - MIT License
+	* http://www.opensource.org/licenses/mit-license.php
+	*
+	* email: hunter.z@263.net
+	* Date: 2014-05-08
+	*/
 (function($){
 	//default consts of exedit
 	var _consts = {
@@ -2557,7 +2557,7 @@
 			if (node.parentTId) view.expandCollapseParentNode(this.setting, node.getParentNode(), true);
 			view.editNode(this.setting, node)
 		}
-		
+
 		zTreeTools.moveNode = function(targetNode, node, moveType, isSilent) {
 			if (!node) return node;
 			if (targetNode && !targetNode.isParent && this.setting.data.keep.leaf && moveType === consts.move.TYPE_INNER) {
@@ -3416,7 +3416,7 @@
 			if (!isSilent) {
 				view.expandCollapseParentNode(setting, node.getParentNode(), true, animateFlag);
 			}
-			
+
 			// 这里打印一直就好了
 			setTimeout(function() {
 			}, 10);

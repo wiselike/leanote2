@@ -1,55 +1,55 @@
 /**
- * SaxParser.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* SaxParser.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint max-depth:[2, 9] */
 
 /**
- * This class parses HTML code using pure JavaScript and executes various events for each item it finds. It will
- * always execute the events in the right order for tag soup code like <b><p></b></p>. It will also remove elements
- * and attributes that doesn't fit the schema if the validate setting is enabled.
- *
- * @example
- * var parser = new tinymce.html.SaxParser({
- *     validate: true,
- *
- *     comment: function(text) {
- *         console.log('Comment:', text);
- *     },
- *
- *     cdata: function(text) {
- *         console.log('CDATA:', text);
- *     },
- *
- *     text: function(text, raw) {
- *         console.log('Text:', text, 'Raw:', raw);
- *     },
- *
- *     start: function(name, attrs, empty) {
- *         console.log('Start:', name, attrs, empty);
- *     },
- *
- *     end: function(name) {
- *         console.log('End:', name);
- *     },
- *
- *     pi: function(name, text) {
- *         console.log('PI:', name, text);
- *     },
- *
- *     doctype: function(text) {
- *         console.log('DocType:', text);
- *     }
- * }, schema);
- * @class tinymce.html.SaxParser
- * @version 3.4
- */
+	* This class parses HTML code using pure JavaScript and executes various events for each item it finds. It will
+	* always execute the events in the right order for tag soup code like <b><p></b></p>. It will also remove elements
+	* and attributes that doesn't fit the schema if the validate setting is enabled.
+	*
+	* @example
+	* var parser = new tinymce.html.SaxParser({
+	*     validate: true,
+	*
+	*     comment: function(text) {
+	*         console.log('Comment:', text);
+	*     },
+	*
+	*     cdata: function(text) {
+	*         console.log('CDATA:', text);
+	*     },
+	*
+	*     text: function(text, raw) {
+	*         console.log('Text:', text, 'Raw:', raw);
+	*     },
+	*
+	*     start: function(name, attrs, empty) {
+	*         console.log('Start:', name, attrs, empty);
+	*     },
+	*
+	*     end: function(name) {
+	*         console.log('End:', name);
+	*     },
+	*
+	*     pi: function(name, text) {
+	*         console.log('PI:', name, text);
+	*     },
+	*
+	*     doctype: function(text) {
+	*         console.log('DocType:', text);
+	*     }
+	* }, schema);
+	* @class tinymce.html.SaxParser
+	* @version 3.4
+	*/
 define("tinymce/html/SaxParser", [
 	"tinymce/html/Schema",
 	"tinymce/html/Entities",
@@ -58,16 +58,16 @@ define("tinymce/html/SaxParser", [
 	var each = Tools.each;
 
 	/**
-	 * Returns the index of the end tag for a specific start tag. This can be
-	 * used to skip all children of a parent element from being processed.
-	 *
-	 * @private
-	 * @method findEndTag
-	 * @param {tinymce.html.Schema} schema Schema instance to use to match short ended elements.
-	 * @param {String} html HTML string to find the end tag in.
-	 * @param {Number} startIndex Indext to start searching at should be after the start tag.
-	 * @return {Number} Index of the end tag.
-	 */
+		* Returns the index of the end tag for a specific start tag. This can be
+		* used to skip all children of a parent element from being processed.
+		*
+		* @private
+		* @method findEndTag
+		* @param {tinymce.html.Schema} schema Schema instance to use to match short ended elements.
+		* @param {String} html HTML string to find the end tag in.
+		* @param {Number} startIndex Indext to start searching at should be after the start tag.
+		* @return {Number} Index of the end tag.
+		*/
 	function findEndTag(schema, html, startIndex) {
 		var count = 1, index, matches, tokenRegExp, shortEndedElements;
 
@@ -97,13 +97,13 @@ define("tinymce/html/SaxParser", [
 	}
 
 	/**
-	 * Constructs a new SaxParser instance.
-	 *
-	 * @constructor
-	 * @method SaxParser
-	 * @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
-	 * @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
-	 */
+		* Constructs a new SaxParser instance.
+		*
+		* @constructor
+		* @method SaxParser
+		* @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
+		* @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
+		*/
 	function SaxParser(settings, schema) {
 		var self = this;
 
@@ -124,13 +124,13 @@ define("tinymce/html/SaxParser", [
 		});
 
 		/**
-		 * Parses the specified HTML string and executes the callbacks for each item it finds.
-		 *
-		 * @example
-		 * new SaxParser({...}).parse('<b>text</b>');
-		 * @method parse
-		 * @param {String} html Html string to sax parse.
-		 */
+			* Parses the specified HTML string and executes the callbacks for each item it finds.
+			*
+			* @example
+			* new SaxParser({...}).parse('<b>text</b>');
+			* @method parse
+			* @param {String} html Html string to sax parse.
+			*/
 		self.parse = function(html) {
 			var self = this, matches, index = 0, value, endRegExp, stack = [], attrList, i, text, name;
 			var isInternalElement, removeInternalElements, shortEndedElements, fillAttrsMap, isShortEnded;

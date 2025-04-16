@@ -58,10 +58,10 @@ ol#nodeunit-tests li strong {
 }
 ol#nodeunit-tests .pass {
     color: green;
-} 
+}
 ol#nodeunit-tests .fail {
     color: red;
-} 
+}
 
 p#nodeunit-testresult {
     margin-left: 1em;

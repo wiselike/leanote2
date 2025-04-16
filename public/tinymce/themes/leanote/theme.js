@@ -1,12 +1,12 @@
 /**
- * theme.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* theme.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 tinymce.ThemeManager.add('leanote', function(editor) {
@@ -27,10 +27,10 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 		"bullist numlist outdent indent | link image";
 
 	/**
-	 * Creates the toolbars from config and returns a toolbar array.
-	 *
-	 * @return {Array} Array with toolbars.
-	 */
+		* Creates the toolbars from config and returns a toolbar array.
+		*
+		* @return {Array} Array with toolbars.
+		*/
 	function createToolbars() {
 		var toolbars = [];
 
@@ -86,7 +86,7 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 							item.active(state);
 						}, true);
 					}
-					
+
 					// life 4/25
 					// 在pre时都disabled
 					if(itemName != "leanote_code") {// } && itemName != "formatselect") {
@@ -126,7 +126,7 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 							size: "small"
 							tooltip: "Align left"
 							type: "button"
-						 */
+						*/
 						if (editor.buttons[item]) {
 							// TODO: Move control creation to some UI class
 							itemName = item;
@@ -153,7 +153,7 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 								split = false;
 							}
 							$("#popularToolbar").append(html); // ("#mceToolbarMore");
-						
+
 							item.postRender();
 
 							// buttonGroup.items.push(item);
@@ -186,16 +186,16 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 		}
 
 		// 这里面就含有了事件, 牛X
-//		 log(toolbars);
+	//		 log(toolbars);
 
 		return toolbars;
 	}
 
 	/**
-	 * Creates the menu buttons based on config.
-	 *
-	 * @return {Array} Menu buttons array.
-	 */
+		* Creates the menu buttons based on config.
+		*
+		* @return {Array} Menu buttons array.
+		*/
 	function createMenuButtons() {
 		var name, menuButtons = [];
 
@@ -301,10 +301,10 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 	}
 
 	/**
-	 * Adds accessibility shortcut keys to panel.
-	 *
-	 * @param {tinymce.ui.Panel} panel Panel to add focus to.
-	 */
+		* Adds accessibility shortcut keys to panel.
+		*
+		* @param {tinymce.ui.Panel} panel Panel to add focus to.
+		*/
 	function addAccessibilityKeys(panel) {
 		function focus(type) {
 			var item = panel.find(type)[0];
@@ -332,8 +332,8 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 	}
 
 	/**
-	 * Resizes the editor to the specified width, height.
-	 */
+		* Resizes the editor to the specified width, height.
+		*/
 	function resizeTo(width, height) {
 		var containerElm, iframeElm, containerSize, iframeSize;
 
@@ -370,10 +370,10 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 	}
 
 	/**
-	 * Renders the inline editor UI.
-	 *
-	 * @return {Object} Name/value object with theme data.
-	 */
+		* Renders the inline editor UI.
+		*
+		* @return {Object} Name/value object with theme data.
+		*/
 	function renderInlineUI() {
 		var panel, inlineToolbarContainer;
 
@@ -478,11 +478,11 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 	}
 
 	/**
-	 * Renders the iframe editor UI.
-	 *
-	 * @param {Object} args Details about target element etc.
-	 * @return {Object} Name/value object with theme data.
-	 */
+		* Renders the iframe editor UI.
+		*
+		* @param {Object} args Details about target element etc.
+		* @return {Object} Name/value object with theme data.
+		*/
 	function renderIframeUI(args) {
 		var panel, resizeHandleCtrl, startSize;
 
@@ -490,14 +490,14 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 		// iframe的父
 		// life
 		// <div><iframe /></div>
-		var iframeBeforeHtml = '<div id="noteTitleDiv">' + 
-            '<input name="noteTitle" id="noteTitle" placeholder="Title" ></div>';
-        iframeBeforeHtml = "";
+		var iframeBeforeHtml = '<div id="noteTitleDiv">' +
+			'<input name="noteTitle" id="noteTitle" placeholder="Title" ></div>';
+		iframeBeforeHtml = "";
 
-        // 菜单, 这里没有
-        // createMenuButtons();
+		// 菜单, 这里没有
+		// createMenuButtons();
 
-        // toolbar [0, 1]
+		// toolbar [0, 1]
 
 		createToolbars();
 
@@ -572,12 +572,12 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 
 			return self;
 		},
-		 */
-//		log("<renderBefore");
+			*/
+		//		log("<renderBefore");
 		panel.renderBefore(args.targetNode).reflow();
 		// args.targetNode.parentNode.insertBefore(panel.renderHtml(), args.targetNode);
-//		log(panel);
-//		log("renderBefore>");
+	//		log(panel);
+	//		log("renderBefore>");
 
 		if (settings.width) {
 			tinymce.DOM.setStyle(panel.getEl(), 'width', settings.width);
@@ -593,8 +593,8 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 		addAccessibilityKeys(panel);
 
 		// 这里
-//		log("panel.getEl()")
-//		log(panel.getEl());
+	//		log("panel.getEl()")
+	//		log(panel.getEl());
 		// return {}
 		return {
 			iframeContainer: panel.find('#iframe')[0].getEl(),
@@ -603,11 +603,11 @@ tinymce.ThemeManager.add('leanote', function(editor) {
 	}
 
 	/**
-	 * Renders the UI for the theme. This gets called by the editor.
-	 *
-	 * @param {Object} args Details about target element etc.
-	 * @return {Object} Theme UI data items.
-	 */
+		* Renders the UI for the theme. This gets called by the editor.
+		*
+		* @param {Object} args Details about target element etc.
+		* @return {Object} Theme UI data items.
+		*/
 	self.renderUI = function(args) {
 		var skin = settings.skin !== false ? settings.skin || 'lightgray' : false;
 

@@ -1,21 +1,21 @@
 /**
- * Quirks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Quirks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains various fixes for browsers. These issues can not be feature
- * detected since we have no direct control over the clipboard. However we might be able
- * to remove some of these fixes once the browsers gets updated/fixed.
- *
- * @class tinymce.pasteplugin.Quirks
- * @private
- */
+	* This class contains various fixes for browsers. These issues can not be feature
+	* detected since we have no direct control over the clipboard. However we might be able
+	* to remove some of these fixes once the browsers gets updated/fixed.
+	*
+	* @class tinymce.pasteplugin.Quirks
+	* @private
+	*/
 define("tinymce/pasteplugin/Quirks", [
 	"tinymce/Env",
 	"tinymce/util/Tools",
@@ -32,14 +32,14 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * Removes WebKit fragment comments and converted-space spans.
-		 *
-		 * This:
-		 *   <!--StartFragment-->a<span class="Apple-converted-space">&nbsp;</span>b<!--EndFragment-->
-		 *
-		 * Becomes:
-		 *   a&nbsp;b
-		 */
+			* Removes WebKit fragment comments and converted-space spans.
+			*
+			* This:
+			*   <!--StartFragment-->a<span class="Apple-converted-space">&nbsp;</span>b<!--EndFragment-->
+			*
+			* Becomes:
+			*   a&nbsp;b
+			*/
 		function removeWebKitFragments(html) {
 			html = Utils.filter(html, [
 				/^[\s\S]*<!--StartFragment-->|<!--EndFragment-->[\s\S]*$/g,        // WebKit fragment
@@ -51,15 +51,15 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * Removes BR elements after block elements. IE9 has a nasty bug where it puts a BR element after each
-		 * block element when pasting from word. This removes those elements.
-		 *
-		 * This:
-		 *  <p>a</p><br><p>b</p>
-		 *
-		 * Becomes:
-		 *  <p>a</p><p>b</p>
-		 */
+			* Removes BR elements after block elements. IE9 has a nasty bug where it puts a BR element after each
+			* block element when pasting from word. This removes those elements.
+			*
+			* This:
+			*  <p>a</p><br><p>b</p>
+			*
+			* Becomes:
+			*  <p>a</p><p>b</p>
+			*/
 		function removeExplorerBrElementsAfterBlocks(html) {
 			// Only filter word specific content
 			if (!WordFilter.isWordContent(html)) {
@@ -94,14 +94,14 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 		/**
-		 * WebKit has a nasty bug where the all runtime styles gets added to style attributes when copy/pasting contents.
-		 * This fix solves that by simply removing the whole style attribute.
-		 *
-		 * Todo: This can be made smarter. Keeping styles that override existing ones etc.
-		 *
-		 * @param {String} content Content that needs to be processed.
-		 * @return {String} Processed contents.
-		 */
+			* WebKit has a nasty bug where the all runtime styles gets added to style attributes when copy/pasting contents.
+			* This fix solves that by simply removing the whole style attribute.
+			*
+			* Todo: This can be made smarter. Keeping styles that override existing ones etc.
+			*
+			* @param {String} content Content that needs to be processed.
+			* @return {String} Processed contents.
+			*/
 		function removeWebKitStyles(content) {
 			if (editor.settings.paste_remove_styles || editor.settings.paste_remove_styles_if_webkit !== false) {
 				content = content.replace(/ style=\"[^\"]+\"/g, '');

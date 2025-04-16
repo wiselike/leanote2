@@ -1,38 +1,38 @@
 <!--
-  The Footer
+	The Footer
 -->
 <footer class="d-flex w-100 justify-content-center">
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="footer-left">
-      <p class="mb-0">
-        © 2021
-        <a href="">wiselike</a>.
-        <span data-toggle="tooltip" data-placement="top"
-          title="个人博客，禁止任何形式的文字拷贝和转载">保留部分权利。</span>
-      </p>
-    </div>
+	<div class="d-flex justify-content-between align-items-center">
+		<div class="footer-left">
+			<p class="mb-0">
+				© 2021
+				<a href="">wiselike</a>.
+				<span data-toggle="tooltip" data-placement="top"
+					title="个人博客，禁止任何形式的文字拷贝和转载">保留部分权利。</span>
+				</p>
+			</div>
 
-    <div class="footer-right">
-      <p class="mb-0">
-          Powered by <a href="https://wiselike.f3322.net:8088" target="_blank" rel="noopener">me</a> .
-      </p>
-    </div>
-  </div> <!-- div.d-flex -->
-</footer>
+			<div class="footer-right">
+				<p class="mb-0">
+					Powered by <a href="https://wiselike.f3322.net:8088" target="_blank" rel="noopener">me</a> .
+				</p>
+			</div>
+		</div> <!-- div.d-flex -->
+	</footer>
 
-<script>
-function search(e) {
+	<script>
+	function search(e) {
 	var keywords = $("#search-input").val();
 	if(!keywords) {
 		location.href = "{{$.searchUrl}}";
 	} else {
 		var tpl = '<form style="display: none" action="{{$.searchUrl}}" method="get">';
-        tpl += '<input name="keywords" value="' + keywords + '" />';
-        tpl += "</form";
-        var $tpl = $(tpl);
-        $('body').append($tpl)
-        $tpl.submit();
-        $tpl.remove();
+		tpl += '<input name="keywords" value="' + keywords + '" />';
+		tpl += "</form";
+		var $tpl = $(tpl);
+		$('body').append($tpl)
+		$tpl.submit();
+		$tpl.remove();
 	}
 }
 </script>

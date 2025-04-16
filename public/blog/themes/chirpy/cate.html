@@ -7,17 +7,17 @@
 				<div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
 					<div id="page-tag">
 						<h1 class="pl-lg-2" data-toc-skip>
-						  <i class="far fa-folder-open fa-fw text-muted"></i>
-						  {{$.curCateTitle}}
+							<i class="far fa-folder-open fa-fw text-muted"></i>
+							{{$.curCateTitle}}
 						</h1>
 						<ul class="post-content pl-0">
-						  {{ range $.posts }}
-						  <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+							{{ range $.posts }}
+							<li class="d-flex justify-content-between pl-md-3 pr-md-3">
 							<a href="{{$.postUrl}}/{{.UrlTitle}}">{{.Title}}</a>
 							<span class="dash flex-grow-1"></span>
 							<span class="text-muted small">{{dateFormat .CreatedTime "2006-01-02"}}</span>
-						  </li>
-						  {{ end }}
+						</li>
+						{{ end }}
 						</ul>
 					</div> <!-- #page-tag -->
 				</div> <!-- #page -->

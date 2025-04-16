@@ -1,29 +1,29 @@
 /**
- * Sizzle.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- *
- * @ignore-file
- */
+	* Sizzle.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*
+	* @ignore-file
+	*/
 
 /*jshint bitwise:false, expr:true, noempty:false, sub:true, eqnull:true, latedef:false, maxlen:255 */
 /*eslint dot-notation:0, no-empty:0, no-cond-assign:0, no-unused-expressions:0, new-cap:0 */
 /*eslint no-nested-ternary:0, func-style:0, no-bitwise:0, max-len:0, brace-style:0, no-return-assign:0, no-multi-spaces:0 */
 
 /**
- * Sizzle CSS Selector Engine v@VERSION
- * http://sizzlejs.com/
- *
- * Copyright 2008, 2014 jQuery Foundation, Inc. and other contributors
- * Released under the MIT license
- * http://jquery.org/license
- *
- * Date: @DATE
- */
+	* Sizzle CSS Selector Engine v@VERSION
+	* http://sizzlejs.com/
+	*
+	* Copyright 2008, 2014 jQuery Foundation, Inc. and other contributors
+	* Released under the MIT license
+	* http://jquery.org/license
+	*
+	* Date: @DATE
+	*/
 define("tinymce/dom/Sizzle", [], function() {
 var i,
 	support,
@@ -306,11 +306,11 @@ function Sizzle( selector, context, results, seed ) {
 }
 
 /**
- * Create key-value caches of limited size
- * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
- *	deleting the oldest entry
- */
+	* Create key-value caches of limited size
+	* @returns {Function(string, Object)} Returns the Object data after storing it on itself with
+	*	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+	*	deleting the oldest entry
+	*/
 function createCache() {
 	var keys = [];
 
@@ -326,18 +326,18 @@ function createCache() {
 }
 
 /**
- * Mark a function for special use by Sizzle
- * @param {Function} fn The function to mark
- */
+	* Mark a function for special use by Sizzle
+	* @param {Function} fn The function to mark
+	*/
 function markFunction( fn ) {
 	fn[ expando ] = true;
 	return fn;
 }
 
 /**
- * Support testing using an element
- * @param {Function} fn Passed the created div and expects a boolean result
- */
+	* Support testing using an element
+	* @param {Function} fn Passed the created div and expects a boolean result
+	*/
 function assert( fn ) {
 	var div = document.createElement("div");
 
@@ -356,10 +356,10 @@ function assert( fn ) {
 }
 
 /**
- * Adds the same handler for all of the specified attrs
- * @param {String} attrs Pipe-separated list of attributes
- * @param {Function} handler The method that will be applied
- */
+	* Adds the same handler for all of the specified attrs
+	* @param {String} attrs Pipe-separated list of attributes
+	* @param {Function} handler The method that will be applied
+	*/
 function addHandle( attrs, handler ) {
 	var arr = attrs.split("|"),
 		i = attrs.length;
@@ -370,11 +370,11 @@ function addHandle( attrs, handler ) {
 }
 
 /**
- * Checks document order of two siblings
- * @param {Element} a
- * @param {Element} b
- * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
- */
+	* Checks document order of two siblings
+	* @param {Element} a
+	* @param {Element} b
+	* @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+	*/
 function siblingCheck( a, b ) {
 	var cur = b && a,
 		diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
@@ -399,9 +399,9 @@ function siblingCheck( a, b ) {
 }
 
 /**
- * Returns a function to use in pseudos for input types
- * @param {String} type
- */
+	* Returns a function to use in pseudos for input types
+	* @param {String} type
+	*/
 function createInputPseudo( type ) {
 	return function( elem ) {
 		var name = elem.nodeName.toLowerCase();
@@ -410,9 +410,9 @@ function createInputPseudo( type ) {
 }
 
 /**
- * Returns a function to use in pseudos for buttons
- * @param {String} type
- */
+	* Returns a function to use in pseudos for buttons
+	* @param {String} type
+	*/
 function createButtonPseudo( type ) {
 	return function( elem ) {
 		var name = elem.nodeName.toLowerCase();
@@ -421,9 +421,9 @@ function createButtonPseudo( type ) {
 }
 
 /**
- * Returns a function to use in pseudos for positionals
- * @param {Function} fn
- */
+	* Returns a function to use in pseudos for positionals
+	* @param {Function} fn
+	*/
 function createPositionalPseudo( fn ) {
 	return markFunction(function( argument ) {
 		argument = +argument;
@@ -443,10 +443,10 @@ function createPositionalPseudo( fn ) {
 }
 
 /**
- * Checks a node for validity as a Sizzle context
- * @param {Element|Object=} context
- * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
- */
+	* Checks a node for validity as a Sizzle context
+	* @param {Element|Object=} context
+	* @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
+	*/
 function testContext( context ) {
 	return context && typeof context.getElementsByTagName !== strundefined && context;
 }
@@ -455,10 +455,10 @@ function testContext( context ) {
 support = Sizzle.support = {};
 
 /**
- * Detects XML nodes
- * @param {Element|Object} elem An element or a document
- * @returns {Boolean} True iff elem is a non-HTML XML node
- */
+	* Detects XML nodes
+	* @param {Element|Object} elem An element or a document
+	* @returns {Boolean} True iff elem is a non-HTML XML node
+	*/
 isXML = Sizzle.isXML = function( elem ) {
 	// documentElement is verified for cases where it doesn't yet exist
 	// (such as loading iframes in IE - #4833)
@@ -467,10 +467,10 @@ isXML = Sizzle.isXML = function( elem ) {
 };
 
 /**
- * Sets document-related variables once based on the current document
- * @param {Element|Object} [doc] An element or document object to use to set the document
- * @returns {Object} Returns the current document
- */
+	* Sets document-related variables once based on the current document
+	* @param {Element|Object} [doc] An element or document object to use to set the document
+	* @returns {Object} Returns the current document
+	*/
 setDocument = Sizzle.setDocument = function( node ) {
 	var hasCompare,
 		doc = node ? node.ownerDocument || node : preferredDoc,
@@ -884,16 +884,16 @@ Sizzle.attr = function( elem, name ) {
 			(val = elem.getAttributeNode(name)) && val.specified ?
 				val.value :
 				null;
-};
+			};
 
-Sizzle.error = function( msg ) {
+			Sizzle.error = function( msg ) {
 	throw new Error( "Syntax error, unrecognized expression: " + msg );
 };
 
 /**
- * Document sorting and removing duplicates
- * @param {ArrayLike} results
- */
+	* Document sorting and removing duplicates
+	* @param {ArrayLike} results
+	*/
 Sizzle.uniqueSort = function( results ) {
 	var elem,
 		duplicates = [],
@@ -924,9 +924,9 @@ Sizzle.uniqueSort = function( results ) {
 };
 
 /**
- * Utility function for retrieving the text value of an array of DOM nodes
- * @param {Array|Element} elem
- */
+	* Utility function for retrieving the text value of an array of DOM nodes
+	* @param {Array|Element} elem
+	*/
 getText = Sizzle.getText = function( elem ) {
 	var node,
 		ret = "",
@@ -1505,9 +1505,9 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 			Sizzle.error( selector ) :
 			// Cache the tokens
 			tokenCache( selector, groups ).slice( 0 );
-};
+		};
 
-function toSelector( tokens ) {
+		function toSelector( tokens ) {
 	var i = 0,
 		len = tokens.length,
 		selector = "";
@@ -1568,9 +1568,9 @@ function addCombinator( matcher, combinator, base ) {
 				}
 			}
 		};
-}
+	}
 
-function elementMatcher( matchers ) {
+	function elementMatcher( matchers ) {
 	return matchers.length > 1 ?
 		function( elem, context, xml ) {
 			var i = matchers.length;
@@ -1582,9 +1582,9 @@ function elementMatcher( matchers ) {
 			return true;
 		} :
 		matchers[0];
-}
+	}
 
-function multipleContexts( selector, contexts, results ) {
+	function multipleContexts( selector, contexts, results ) {
 	var i = 0,
 		len = contexts.length;
 	for ( ; i < len; i++ ) {
@@ -1859,9 +1859,9 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 	return bySet ?
 		markFunction( superMatcher ) :
 		superMatcher;
-}
+	}
 
-compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
+	compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
 	var i,
 		setMatchers = [],
 		elementMatchers = [],
@@ -1892,14 +1892,14 @@ compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
 };
 
 /**
- * A low-level selection function that works with Sizzle's compiled
- *  selector functions
- * @param {String|Function} selector A selector or a pre-compiled
- *  selector function built with Sizzle.compile
- * @param {Element} context
- * @param {Array} [results]
- * @param {Array} [seed] A set of elements to match against
- */
+	* A low-level selection function that works with Sizzle's compiled
+	*  selector functions
+	* @param {String|Function} selector A selector or a pre-compiled
+	*  selector function built with Sizzle.compile
+	* @param {Element} context
+	* @param {Array} [results]
+	* @param {Array} [seed] A set of elements to match against
+	*/
 select = Sizzle.select = function( selector, context, results, seed ) {
 	var i, tokens, token, type, find,
 		compiled = typeof selector === "function" && selector,

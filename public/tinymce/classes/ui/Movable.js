@@ -1,18 +1,18 @@
 /**
- * Movable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Movable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Movable mixin. Makes controls movable absolute and relative to other elements.
- *
- * @mixin tinymce.ui.Movable
- */
+	* Movable mixin. Makes controls movable absolute and relative to other elements.
+	*
+	* @mixin tinymce.ui.Movable
+	*/
 define("tinymce/ui/Movable", [
 	"tinymce/ui/DomUtils"
 ], function(DomUtils) {
@@ -91,13 +91,13 @@ define("tinymce/ui/Movable", [
 
 	return {
 		/**
-		 * Tests various positions to get the most suitable one.
-		 *
-		 * @method testMoveRel
-		 * @param {DOMElement} elm Element to position against.
-		 * @param {Array} rels Array with relative positions.
-		 * @return {String} Best suitable relative position.
-		 */
+			* Tests various positions to get the most suitable one.
+			*
+			* @method testMoveRel
+			* @param {DOMElement} elm Element to position against.
+			* @param {Array} rels Array with relative positions.
+			* @return {String} Best suitable relative position.
+			*/
 		testMoveRel: function(elm, rels) {
 			var viewPortRect = DomUtils.getViewPort();
 
@@ -120,13 +120,13 @@ define("tinymce/ui/Movable", [
 		},
 
 		/**
-		 * Move relative to the specified element.
-		 *
-		 * @method moveRel
-		 * @param {Element} elm Element to move relative to.
-		 * @param {String} rel Relative mode. For example: br-tl.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Move relative to the specified element.
+			*
+			* @method moveRel
+			* @param {Element} elm Element to move relative to.
+			* @param {String} rel Relative mode. For example: br-tl.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		moveRel: function(elm, rel) {
 			if (typeof rel != 'string') {
 				rel = this.testMoveRel(elm, rel);
@@ -137,13 +137,13 @@ define("tinymce/ui/Movable", [
 		},
 
 		/**
-		 * Move by a relative x, y values.
-		 *
-		 * @method moveBy
-		 * @param {Number} dx Relative x position.
-		 * @param {Number} dy Relative y position.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Move by a relative x, y values.
+			*
+			* @method moveBy
+			* @param {Number} dx Relative x position.
+			* @param {Number} dy Relative y position.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		moveBy: function(dx, dy) {
 			var self = this, rect = self.layoutRect();
 
@@ -153,13 +153,13 @@ define("tinymce/ui/Movable", [
 		},
 
 		/**
-		 * Move to absolute position.
-		 *
-		 * @method moveTo
-		 * @param {Number} x Absolute x position.
-		 * @param {Number} y Absolute y position.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Move to absolute position.
+			*
+			* @method moveTo
+			* @param {Number} x Absolute x position.
+			* @param {Number} y Absolute y position.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		moveTo: function(x, y) {
 			var self = this;
 

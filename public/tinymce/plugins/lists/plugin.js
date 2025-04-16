@@ -1,12 +1,12 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 /*eslint consistent-this:0 */
@@ -34,16 +34,16 @@ tinymce.PluginManager.add('lists', function(editor) {
 		var dom = editor.dom, selection = editor.selection;
 
 		/**
-		 * Returns a range bookmark. This will convert indexed bookmarks into temporary span elements with
-		 * index 0 so that they can be restored properly after the DOM has been modified. Text bookmarks will not have spans
-		 * added to them since they can be restored after a dom operation.
-		 *
-		 * So this: <p><b>|</b><b>|</b></p>
-		 * becomes: <p><b><span data-mce-type="bookmark">|</span></b><b data-mce-type="bookmark">|</span></b></p>
-		 *
-		 * @param  {DOMRange} rng DOM Range to get bookmark on.
-		 * @return {Object} Bookmark object.
-		 */
+			* Returns a range bookmark. This will convert indexed bookmarks into temporary span elements with
+			* index 0 so that they can be restored properly after the DOM has been modified. Text bookmarks will not have spans
+			* added to them since they can be restored after a dom operation.
+			*
+			* So this: <p><b>|</b><b>|</b></p>
+			* becomes: <p><b><span data-mce-type="bookmark">|</span></b><b data-mce-type="bookmark">|</span></b></p>
+			*
+			* @param  {DOMRange} rng DOM Range to get bookmark on.
+			* @return {Object} Bookmark object.
+			*/
 		function createBookmark(rng) {
 			var bookmark = {};
 
@@ -86,10 +86,10 @@ tinymce.PluginManager.add('lists', function(editor) {
 		}
 
 		/**
-		 * Moves the selection to the current bookmark and removes any selection container wrappers.
-		 *
-		 * @param {Object} bookmark Bookmark object to move selection to.
-		 */
+			* Moves the selection to the current bookmark and removes any selection container wrappers.
+			*
+			* @param {Object} bookmark Bookmark object to move selection to.
+			*/
 		function moveToBookmark(bookmark) {
 			function restoreEndPoint(start) {
 				var container, offset, node;
@@ -271,8 +271,8 @@ tinymce.PluginManager.add('lists', function(editor) {
 		}
 
 		/**
-		 * Normalizes the all lists in the specified element.
-		 */
+			* Normalizes the all lists in the specified element.
+			*/
 		function normalizeList(element) {
 			tinymce.each(tinymce.grep(dom.select('ol,ul', element)), function(ul) {
 				var sibling, parentNode = ul.parentNode;

@@ -7,9 +7,9 @@
 				{{.single.Title}}
 			</div>
 			<div class="created-time">
-				<i class="fa fa-clock-o"></i> {{$.single.UpdatedTime | datetime}} 
+				<i class="fa fa-clock-o"></i> {{$.single.UpdatedTime | datetime}}
 			</div>
-			
+
 			<!-- 仅为移动端 -->
 			<div class="mobile-created-time">
 			{{ if $.blogInfo.UserLogo}}
@@ -19,7 +19,7 @@
 			{{end}}
 			{{$.blogInfo.Username}}
 			</div>
-			
+
 			<div class="desc" id="content">
 					{{$.single.Content | raw}}
 			</div>

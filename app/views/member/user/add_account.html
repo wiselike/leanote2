@@ -7,42 +7,42 @@
 	<form id="formData">
 		<section class="panel panel-default">
 			<div class="panel-body">
-  				<div class="alert alert-danger" id="thirdAccountMsg" style="display: none"></div>
+				<div class="alert alert-danger" id="thirdAccountMsg" style="display: none"></div>
 				{{msg . "thirdCreateAcountTips"}}
 				<div class="form-group">
 					<label class="control-label" for="thirdEmail">{{msg . "email"}}</label>
 					<input type="text" class="form-control" id="thirdEmail" name="email"
 						data-rules='[
-					    	{rule: "required", msg: "inputEmail"},
-					    	{rule: "email", msg: "errorEmail"}
-				    	]'
-				    	data-msg_target="#thirdAccountMsg"
-					> 
+							{rule: "required", msg: "inputEmail"},
+							{rule: "email", msg: "errorEmail"}
+						]'
+						data-msg_target="#thirdAccountMsg"
+					>
 				</div>
-				<div class="form-group"> 
+				<div class="form-group">
 					<label class="control-label" for="thirdPwd">{{msg . "password"}}</label>
 					<input type="password" class="form-control" id="thirdPwd" name="pwd"
-					  data-rules='[
-					    	{rule: "required", msg: "inputPassword"},
-					    	{rule: "password", msg: "errorPassword"}
-				    	]'
-				    	data-msg_target="#thirdAccountMsg"
+						data-rules='[
+							{rule: "required", msg: "inputPassword"},
+							{rule: "password", msg: "errorPassword"}
+						]'
+						data-msg_target="#thirdAccountMsg"
 					/>
-					{{msg . "passwordTips"}} 
+					{{msg . "passwordTips"}}
 				</div>
-				<div class="form-group"> 
+				<div class="form-group">
 					<label class="control-label" for="thirdPwd2">{{msg . "password2"}}</label>
-					<input type="password" class="form-control" id="thirdPwd2" name="pwd2" 
-					 	data-rules='[
-					    	{rule: "required", msg: "inputPassword2"},
-					    	{rule: "equalTo", data:"#thirdPwd", msg: "confirmPassword"}
-				    	]'
-				    	data-msg_target="#thirdAccountMsg"
+					<input type="password" class="form-control" id="thirdPwd2" name="pwd2"
+						data-rules='[
+							{rule: "required", msg: "inputPassword2"},
+							{rule: "equalTo", data:"#thirdPwd", msg: "confirmPassword"}
+						]'
+						data-msg_target="#thirdAccountMsg"
 					>
 				</div>
 			</div>
 			<footer class="panel-footer text-right bg-light lter">
-			    <button type="submit" id="accountBtn" class="btn btn-success">{{msg . "submit"}}</button>
+				<button type="submit" id="accountBtn" class="btn btn-success">{{msg . "submit"}}</button>
 			</footer>
 		</section>
 	</form>

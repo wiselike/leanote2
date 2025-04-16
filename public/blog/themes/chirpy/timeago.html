@@ -1,6 +1,6 @@
 <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
+	Date format snippet
+	See: /assets/js/_utils/timeage.js
 -->
 
 {{ $tooltip_df := "%F, %R %z" }}
@@ -8,5 +8,5 @@
 {{ $post_short_df := "%m-%d" }}
 
 <span class="timeago" data-toggle="tooltip" data-placement="bottom" title="{{ $.post.CreatedTime | datetime }}">
-  <i class="unloaded">{{ $.post.CreatedTime | datetime }}</i>
+	<i class="unloaded">{{ $.post.CreatedTime | datetime }}</i>
 </span>

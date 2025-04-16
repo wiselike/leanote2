@@ -1,12 +1,12 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint smarttabs:true, undef:true, unused:true, latedef:true, curly:true, bitwise:true */
 /*eslint no-labels:0, no-constant-condition: 0 */
@@ -364,7 +364,7 @@
 					]
 				}
 			}).renderTo().reflow();
-			
+
 			// 立即到最右
 			win.moveTo($('body').width()-$('.mce-find-replace-ctn').width(), 60)
 		}

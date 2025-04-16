@@ -23,7 +23,7 @@ function ajaxGet(url, param, func) {
 function ajaxPost(url, param, func) {
 	$.post(url, param, func);
 }
-function goLogin(){ 
+function goLogin(){
 	var loginUrl = '/login?from=' + encodeURI(location.href);
 	location.href = loginUrl;
 }
@@ -37,13 +37,13 @@ function needLogin() {
 		var loginUrl = '/login?from=' + encodeURI(location.href);
 		var registerUrl = '/register?from=' + encodeURI(location.href);
 		var modal = BootstrapDialog.show({
-	        title: "你还未登录",
-	        message: '<div class="needLogin" style="border:none"><a href="' + loginUrl + '">立即登录</a>, 发表评论.<br />没有帐号? <a href="' + registerUrl +'">立即注册</a>',
-	        nl2br: false
-	   });
-	   return true;
-   }
-   return false;
+			title: "你还未登录",
+			message: '<div class="needLogin" style="border:none"><a href="' + loginUrl + '">立即登录</a>, 发表评论.<br />没有帐号? <a href="' + registerUrl +'">立即注册</a>',
+			nl2br: false
+		});
+		return true;
+	}
+	return false;
 }
 function scrollToTarget(t, fixed) {
 	if(!fixed) {
@@ -84,12 +84,12 @@ function shareTwitter(noteId, title, pic) {
 	var url = 'https://twitter.com/intent/tweet?text=' + getShareTitle(title) + '&pic=' + pic;
 	window.open(url, 'Share', windowParam);
 }
-// http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&t=<?php the_title(); ?>” 
+// http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&t=<?php the_title(); ?>”
 function shareFacebook(noteId, title, pic) {
 	var url = ' http://www.facebook.com/sharer.php?t=' + getShareTitle(title) + '&pic=' + pic;
 	window.open(url, 'Share', windowParam);
 }
-	
+
 //JavaScript函数：
 var minute = 1000 * 60;
 var hour = minute * 60;
@@ -116,32 +116,32 @@ function getDateDiff(dateTimeStamp){
 	var hourC =diffValue/hour;
 	var minC =diffValue/minute;
 	if(monthC>=1){
-		 result=parseInt(monthC) + getMsg("monthsAgo");
-	 }
-	 else if(weekC>=1){
-		 result=parseInt(weekC) + getMsg("weeksAgo");
-	 }
-	 else if(dayC>=1){
-		 result=parseInt(dayC) + getMsg("daysAgo");
-	 }
-	 else if(hourC>=1){
-		 result=parseInt(hourC) + getMsg("hoursAgo");
-	 }
-	 else if(minC>=1){
-	 result=parseInt(minC) + getMsg("minutesAgo");
-	 }else {
-		 result=getMsg("justNow");
-	 }
+		result=parseInt(monthC) + getMsg("monthsAgo");
+	}
+	else if(weekC>=1){
+		result=parseInt(weekC) + getMsg("weeksAgo");
+	}
+	else if(dayC>=1){
+		result=parseInt(dayC) + getMsg("daysAgo");
+	}
+	else if(hourC>=1){
+		result=parseInt(hourC) + getMsg("hoursAgo");
+	}
+	else if(minC>=1){
+	result=parseInt(minC) + getMsg("minutesAgo");
+	}else {
+		result=getMsg("justNow");
+	}
 	return result;
-} 
+}
 
 function weixin() {
 	var local=window.location.href;
 	var title = $.trim($(".title").text());
 	var desc = $.trim($("#desc").text());
 	var imgUrl = $("#content img").eq(0).attr('src');
-	window.shareData = { 
-	   "imgUrl": imgUrl, 
+	window.shareData = {
+		"imgUrl": imgUrl,
 		"timeLineLink":local,
 		"sendFriendLink": local,
 		"weiboLink":local,
@@ -149,12 +149,12 @@ function weixin() {
 		"tContent": desc,
 		"fTitle": title,
 		"fContent": desc,
-		"wContent": desc 
+		"wContent": desc
 	};
 	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 		// 发送给好友
 		WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-			WeixinJSBridge.invoke('sendAppMessage', { 
+			WeixinJSBridge.invoke('sendAppMessage', {
 				"img_url": window.shareData.imgUrl,
 				"img_width": "200",
 				"link": window.shareData.sendFriendLink,
@@ -165,7 +165,7 @@ function weixin() {
 				_report('send_msg', res.err_msg);
 			})
 		});
-	
+
 		// 分享到朋友圈
 		WeixinJSBridge.on('menu:share:timeline', function (argv) {
 			WeixinJSBridge.invoke('shareTimeline', {
@@ -179,7 +179,7 @@ function weixin() {
 				_report('timeline', res.err_msg);
 			});
 		});
-	
+
 		// 分享到微博
 		WeixinJSBridge.on('menu:share:weibo', function (argv) {
 			WeixinJSBridge.invoke('shareWeibo', {
@@ -198,7 +198,7 @@ function isMobile() {
 	var u = navigator.userAgent;
 	LEA.isMobile = false;
 	LEA.isMobile = /Mobile|Android|iPhone/i.test(u);
-	if(!LEA.isMobile && $(document).width() <= 600){ 
+	if(!LEA.isMobile && $(document).width() <= 600){
 		LEA.isMobile = true
 	}
 }

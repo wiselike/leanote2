@@ -1,12 +1,12 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 
@@ -127,7 +127,7 @@ tinymce.PluginManager.add('image', function(editor, url) {
 			// 这是通过url插入图片
 			// iframe里得到...
 			var data = {};
-			var ifr = $("iframe[src$='v4.htm']").contents().find("body"); 
+			var ifr = $("iframe[src$='v4.htm']").contents().find("body");
 			data.width = $(ifr).find("#imageWidth").val();
 			data.height = $(ifr).find("#imageHeight").val();
 			data.src = $(ifr).find("#imageSrc").val();

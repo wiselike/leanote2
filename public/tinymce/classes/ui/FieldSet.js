@@ -1,20 +1,20 @@
 /**
- * FieldSet.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FieldSet.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates fieldset containers.
- *
- * @-x-less FieldSet.less
- * @class tinymce.ui.FieldSet
- * @extends tinymce.ui.Form
- */
+	* This class creates fieldset containers.
+	*
+	* @-x-less FieldSet.less
+	* @class tinymce.ui.FieldSet
+	* @extends tinymce.ui.Form
+	*/
 define("tinymce/ui/FieldSet", [
 	"tinymce/ui/Form"
 ], function(Form) {
@@ -34,11 +34,11 @@ define("tinymce/ui/FieldSet", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, prefix = self.classPrefix;
 

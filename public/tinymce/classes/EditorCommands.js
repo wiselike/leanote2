@@ -1,19 +1,19 @@
 /**
- * EditorCommands.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EditorCommands.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class enables you to add custom editor commands and it contains
- * overrides for native browser commands to address various bugs and issues.
- *
- * @class tinymce.EditorCommands
- */
+	* This class enables you to add custom editor commands and it contains
+	* overrides for native browser commands to address various bugs and issues.
+	*
+	* @class tinymce.EditorCommands
+	*/
 define("tinymce/EditorCommands", [
 	"tinymce/html/Serializer",
 	"tinymce/Env",
@@ -42,14 +42,14 @@ define("tinymce/EditorCommands", [
 		});
 
 		/**
-		 * Executes the specified command.
-		 *
-		 * @method execCommand
-		 * @param {String} command Command to execute.
-		 * @param {Boolean} ui Optional user interface state.
-		 * @param {Object} value Optional value for command.
-		 * @return {Boolean} true/false if the command was found or not.
-		 */
+			* Executes the specified command.
+			*
+			* @method execCommand
+			* @param {String} command Command to execute.
+			* @param {Boolean} ui Optional user interface state.
+			* @param {Object} value Optional value for command.
+			* @return {Boolean} true/false if the command was found or not.
+			*/
 		function execCommand(command, ui, value, args) {
 			var func, customCommand, state = 0;
 
@@ -107,12 +107,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Queries the current state for a command for example if the current selection is "bold".
-		 *
-		 * @method queryCommandState
-		 * @param {String} command Command to check the state of.
-		 * @return {Boolean/Number} true/false if the selected contents is bold or not, -1 if it's not found.
-		 */
+			* Queries the current state for a command for example if the current selection is "bold".
+			*
+			* @method queryCommandState
+			* @param {String} command Command to check the state of.
+			* @return {Boolean/Number} true/false if the selected contents is bold or not, -1 if it's not found.
+			*/
 		function queryCommandState(command) {
 			var func;
 
@@ -137,12 +137,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Queries the command value for example the current fontsize.
-		 *
-		 * @method queryCommandValue
-		 * @param {String} command Command to check the value of.
-		 * @return {Object} Command value of false if it's not found.
-		 */
+			* Queries the command value for example the current fontsize.
+			*
+			* @method queryCommandValue
+			* @param {String} command Command to check the value of.
+			* @return {Object} Command value of false if it's not found.
+			*/
 		function queryCommandValue(command) {
 			var func;
 
@@ -165,12 +165,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Adds commands to the command collection.
-		 *
-		 * @method addCommands
-		 * @param {Object} command_list Name/value collection with commands to add, the names can also be comma separated.
-		 * @param {String} type Optional type to add, defaults to exec. Can be value or state as well.
-		 */
+			* Adds commands to the command collection.
+			*
+			* @method addCommands
+			* @param {Object} command_list Name/value collection with commands to add, the names can also be comma separated.
+			* @param {String} type Optional type to add, defaults to exec. Can be value or state as well.
+			*/
 		function addCommands(command_list, type) {
 			type = type || 'exec';
 
@@ -189,12 +189,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Returns true/false if the command is supported or not.
-		 *
-		 * @method queryCommandSupported
-		 * @param {String} cmd Command that we check support for.
-		 * @return {Boolean} true/false if the command is supported or not.
-		 */
+			* Returns true/false if the command is supported or not.
+			*
+			* @method queryCommandSupported
+			* @param {String} cmd Command that we check support for.
+			* @return {Boolean} true/false if the command is supported or not.
+			*/
 		function queryCommandSupported(command) {
 			command = command.toLowerCase();
 

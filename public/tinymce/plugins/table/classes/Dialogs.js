@@ -1,21 +1,21 @@
 /**
- * Dialogs.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Dialogs.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint dot-notation:0*/
 
 /**
- * ...
- *
- * @class tinymce.tableplugin.Dialogs
- * @private
- */
+	* ...
+	*
+	* @class tinymce.tableplugin.Dialogs
+	* @private
+	*/
 define("tinymce/tableplugin/Dialogs", [
 	"tinymce/util/Tools",
 	"tinymce/Env"

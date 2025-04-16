@@ -9,29 +9,29 @@
 		<br />
 		{{if .notebooks}}
 		{{msg . "dragAndSort"}}
-        <ul class="list-group gutter list-group-lg list-group-sp sortable">
-        	{{range .notebooks}}
-          <li class="list-group-item" draggable="true" data-id="{{.NotebookId.Hex}}">
-          	<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i></span>
-          	<div class="pull-right" style="margin-right: 10px">
-            	{{msg $ "permanentLink"}}: /cate/<input data-id="{{.NotebookId.Hex}}" class="url-title" type="text" value="{{if .UrlTitle}}{{.UrlTitle|decodeUrlValue}}{{else}}{{.NotebookId.Hex}}{{end}}"/>
-            </div>
-            {{.Title}}
-          </li>
-          {{end}}
-        </ul>
-        {{else}}
-        	{{msg . "noCates"}}
-        {{end}}
-      </div>
-      
-      {{if .notebooks}}
-      <footer class="panel-footer text-right bg-light lter">
-		    <button type="submit" id="baseBtn" class="btn btn-success">{{msg . "saveSort"}}</button>
+		<ul class="list-group gutter list-group-lg list-group-sp sortable">
+			{{range .notebooks}}
+		<li class="list-group-item" draggable="true" data-id="{{.NotebookId.Hex}}">
+			<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i></span>
+			<div class="pull-right" style="margin-right: 10px">
+				{{msg $ "permanentLink"}}: /cate/<input data-id="{{.NotebookId.Hex}}" class="url-title" type="text" value="{{if .UrlTitle}}{{.UrlTitle|decodeUrlValue}}{{else}}{{.NotebookId.Hex}}{{end}}"/>
+			</div>
+			{{.Title}}
+		</li>
+		{{end}}
+	</ul>
+	{{else}}
+		{{msg . "noCates"}}
+	{{end}}
+</div>
+
+{{if .notebooks}}
+<footer class="panel-footer text-right bg-light lter">
+	<button type="submit" id="baseBtn" class="btn btn-success">{{msg . "saveSort"}}</button>
 		</footer>
 		{{end}}
 	</section>
-	
+
 </div>
 
 </div>
@@ -52,7 +52,7 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$(".url-title").change(function(){
 		var $t = $(this);
 		var url = $t.val();

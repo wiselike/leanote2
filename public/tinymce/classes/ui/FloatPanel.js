@@ -1,22 +1,22 @@
 /**
- * FloatPanel.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FloatPanel.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a floating panel.
- *
- * @-x-less FloatPanel.less
- * @class tinymce.ui.FloatPanel
- * @extends tinymce.ui.Panel
- * @mixes tinymce.ui.Movable
- * @mixes tinymce.ui.Resizable
- */
+	* This class creates a floating panel.
+	*
+	* @-x-less FloatPanel.less
+	* @class tinymce.ui.FloatPanel
+	* @extends tinymce.ui.Panel
+	* @mixes tinymce.ui.Movable
+	* @mixes tinymce.ui.Resizable
+	*/
 define("tinymce/ui/FloatPanel", [
 	"tinymce/ui/Panel",
 	"tinymce/ui/Movable",
@@ -104,9 +104,9 @@ define("tinymce/ui/FloatPanel", [
 	}
 
 	/**
-	 * Repositions the panel to the top of page if the panel is outside of the visual viewport. It will
-	 * also reposition all child panels of the current panel.
-	 */
+		* Repositions the panel to the top of page if the panel is outside of the visual viewport. It will
+		* also reposition all child panels of the current panel.
+		*/
 	function repositionPanel(panel) {
 		var scrollY = DomUtils.getViewPort().y;
 
@@ -187,12 +187,12 @@ define("tinymce/ui/FloatPanel", [
 		Mixins: [Movable, Resizable],
 
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Boolean} autohide Automatically hide the panel.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Boolean} autohide Automatically hide the panel.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -276,11 +276,11 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Shows the current float panel.
-		 *
-		 * @method show
-		 * @return {tinymce.ui.FloatPanel} Current floatpanel instance.
-		 */
+			* Shows the current float panel.
+			*
+			* @method show
+			* @return {tinymce.ui.FloatPanel} Current floatpanel instance.
+			*/
 		show: function() {
 			var self = this, i, state = self._super();
 
@@ -299,11 +299,11 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Hides the current float panel.
-		 *
-		 * @method hide
-		 * @return {tinymce.ui.FloatPanel} Current floatpanel instance.
-		 */
+			* Hides the current float panel.
+			*
+			* @method hide
+			* @return {tinymce.ui.FloatPanel} Current floatpanel instance.
+			*/
 		hide: function() {
 			removeVisiblePanel(this);
 			addRemove(false, this);
@@ -312,20 +312,20 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Hide all visible float panels with he autohide setting enabled. This is for
-		 * manually hiding floating menus or panels.
-		 *
-		 * @method hideAll
-		 */
+			* Hide all visible float panels with he autohide setting enabled. This is for
+			* manually hiding floating menus or panels.
+			*
+			* @method hideAll
+			*/
 		hideAll: function() {
 			FloatPanel.hideAll();
 		},
 
 		/**
-		 * Closes the float panel. This will remove the float panel from page and fire the close event.
-		 *
-		 * @method close
-		 */
+			* Closes the float panel. This will remove the float panel from page and fire the close event.
+			*
+			* @method close
+			*/
 		close: function() {
 			var self = this;
 
@@ -338,10 +338,10 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Removes the float panel from page.
-		 *
-		 * @method remove
-		 */
+			* Removes the float panel from page.
+			*
+			* @method remove
+			*/
 		remove: function() {
 			removeVisiblePanel(this);
 			this._super();
@@ -359,12 +359,12 @@ define("tinymce/ui/FloatPanel", [
 	});
 
 	/**
-	 * Hide all visible float panels with he autohide setting enabled. This is for
-	 * manually hiding floating menus or panels.
-	 *
-	 * @static
-	 * @method hideAll
-	 */
+		* Hide all visible float panels with he autohide setting enabled. This is for
+		* manually hiding floating menus or panels.
+		*
+		* @static
+		* @method hideAll
+		*/
 	FloatPanel.hideAll = function() {
 		var i = visiblePanels.length;
 

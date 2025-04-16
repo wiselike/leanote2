@@ -6,9 +6,9 @@
 	<div id="formData">
 		<section class="panel panel-default">
 			<div class="panel-body">
-  				<div class="alert alert-danger" id="baseMsg" style="display: none"></div>
+				<div class="alert alert-danger" id="baseMsg" style="display: none"></div>
 				<div role="form" id="userBlogForm">
-					
+
 					<div class="form-group">
 						<label for="title" >{{msg . "blogName"}}</label>
 						<input type="text" class="form-control" id="Title" name="Title"
@@ -23,9 +23,9 @@
 							<form id="formLogo" action="/file/uploadBlogLogo" method="post"
 								enctype="multipart/form-data" target="logoTarget">
 								<input type="file" class="form-control" id="logo2" name="file"
-									onChange='$("#formLogo").submit();' /> 
+									onChange='$("#formLogo").submit();' />
 								<div id="logoImg"
-									{{if .userBlog.Logo }}	
+									{{if .userBlog.Logo }}
 									{{else}}
 									style="display: none"{{end}}
 									>
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<footer class="panel-footer text-right bg-light lter">
-			    <button type="submit" id="baseBtn" class="btn btn-success">{{msg . "submit"}}</button>
+				<button type="submit" id="baseBtn" class="btn btn-success">{{msg . "submit"}}</button>
 			</footer>
 		</section>
 	</div>

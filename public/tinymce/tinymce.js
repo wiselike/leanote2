@@ -1,8 +1,8 @@
 // 4.1.9 (2015-03-10)
 
 /**
- * Compiled inline version. (Library mode)
- */
+	* Compiled inline version. (Library mode)
+	*/
 
 /*jshint smarttabs:true, undef:true, latedef:true, curly:true, bitwise:true, camelcase:true */
 /*globals $code */
@@ -102,23 +102,23 @@
 // Included from: classes/dom/EventUtils.js
 
 /**
- * EventUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EventUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint loopfunc:true*/
 /*eslint no-loop-func:0 */
 
 /**
- * This class wraps the browsers native event logic with more convenient methods.
- *
- * @class tinymce.dom.EventUtils
- */
+	* This class wraps the browsers native event logic with more convenient methods.
+	*
+	* @class tinymce.dom.EventUtils
+	*/
 define("tinymce/dom/EventUtils", [], function() {
 	"use strict";
 
@@ -127,8 +127,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	var deprecated = {keyLocation: 1, layerX: 1, layerY: 1, returnValue: 1};
 
 	/**
-	 * Binds a native event to a callback on the speified target.
-	 */
+		* Binds a native event to a callback on the speified target.
+		*/
 	function addEvent(target, name, callback, capture) {
 		if (target.addEventListener) {
 			target.addEventListener(name, callback, capture || false);
@@ -138,8 +138,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * Unbinds a native event callback on the specified target.
-	 */
+		* Unbinds a native event callback on the specified target.
+		*/
 	function removeEvent(target, name, callback, capture) {
 		if (target.removeEventListener) {
 			target.removeEventListener(name, callback, capture || false);
@@ -149,8 +149,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * Normalizes a native event object or just adds the event specific methods on a custom event.
-	 */
+		* Normalizes a native event object or just adds the event specific methods on a custom event.
+		*/
 	function fix(originalEvent, data) {
 		var name, event = data || {}, undef;
 
@@ -235,9 +235,9 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * Bind a DOMContentLoaded event across browsers and executes the callback once the page DOM is initialized.
-	 * It will also set/check the domLoaded state of the event_utils instance so ready isn't called multiple times.
-	 */
+		* Bind a DOMContentLoaded event across browsers and executes the callback once the page DOM is initialized.
+		* It will also set/check the domLoaded state of the event_utils instance so ready isn't called multiple times.
+		*/
 	function bindOnReady(win, callback, eventUtils) {
 		var doc = win.document, event = {type: 'ready'};
 
@@ -298,8 +298,8 @@ define("tinymce/dom/EventUtils", [], function() {
 	}
 
 	/**
-	 * This class enables you to bind/unbind native events to elements and normalize it's behavior across browsers.
-	 */
+		* This class enables you to bind/unbind native events to elements and normalize it's behavior across browsers.
+		*/
 	function EventUtils() {
 		var self = this, events = {}, count, expando, hasFocusIn, hasMouseEnterLeave, mouseEnterLeave;
 
@@ -314,12 +314,12 @@ define("tinymce/dom/EventUtils", [], function() {
 		self.events = events;
 
 		/**
-		 * Executes all event handler callbacks for a specific event.
-		 *
-		 * @private
-		 * @param {Event} evt Event object.
-		 * @param {String} id Expando id value to look for.
-		 */
+			* Executes all event handler callbacks for a specific event.
+			*
+			* @private
+			* @param {Event} evt Event object.
+			* @param {String} id Expando id value to look for.
+			*/
 		function executeHandlers(evt, id) {
 			var callbackList, i, l, callback, container = events[id];
 
@@ -342,15 +342,15 @@ define("tinymce/dom/EventUtils", [], function() {
 		}
 
 		/**
-		 * Binds a callback to an event on the specified target.
-		 *
-		 * @method bind
-		 * @param {Object} target Target node/window or custom object.
-		 * @param {String} names Name of the event to bind.
-		 * @param {function} callback Callback function to execute when the event occurs.
-		 * @param {Object} scope Scope to call the callback function on, defaults to target.
-		 * @return {function} Callback function that got bound.
-		 */
+			* Binds a callback to an event on the specified target.
+			*
+			* @method bind
+			* @param {Object} target Target node/window or custom object.
+			* @param {String} names Name of the event to bind.
+			* @param {function} callback Callback function to execute when the event occurs.
+			* @param {Object} scope Scope to call the callback function on, defaults to target.
+			* @return {function} Callback function that got bound.
+			*/
 		self.bind = function(target, names, callback, scope) {
 			var id, callbackList, i, name, fakeName, nativeHandler, capture, win = window;
 
@@ -473,14 +473,14 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Unbinds the specified event by name, name and callback or all events on the target.
-		 *
-		 * @method unbind
-		 * @param {Object} target Target node/window or custom object.
-		 * @param {String} names Optional event name to unbind.
-		 * @param {function} callback Optional callback function to unbind.
-		 * @return {EventUtils} Event utils instance.
-		 */
+			* Unbinds the specified event by name, name and callback or all events on the target.
+			*
+			* @method unbind
+			* @param {Object} target Target node/window or custom object.
+			* @param {String} names Optional event name to unbind.
+			* @param {function} callback Optional callback function to unbind.
+			* @return {EventUtils} Event utils instance.
+			*/
 		self.unbind = function(target, names, callback) {
 			var id, callbackList, i, ci, name, eventMap;
 
@@ -562,14 +562,14 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Fires the specified event on the specified target.
-		 *
-		 * @method fire
-		 * @param {Object} target Target node/window or custom object.
-		 * @param {String} name Event name to fire.
-		 * @param {Object} args Optional arguments to send to the observers.
-		 * @return {EventUtils} Event utils instance.
-		 */
+			* Fires the specified event on the specified target.
+			*
+			* @method fire
+			* @param {Object} target Target node/window or custom object.
+			* @param {String} name Event name to fire.
+			* @param {Object} args Optional arguments to send to the observers.
+			* @return {EventUtils} Event utils instance.
+			*/
 		self.fire = function(target, name, args) {
 			var id;
 
@@ -598,13 +598,13 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Removes all bound event listeners for the specified target. This will also remove any bound
-		 * listeners to child nodes within that target.
-		 *
-		 * @method clean
-		 * @param {Object} target Target node/window object.
-		 * @return {EventUtils} Event utils instance.
-		 */
+			* Removes all bound event listeners for the specified target. This will also remove any bound
+			* listeners to child nodes within that target.
+			*
+			* @method clean
+			* @param {Object} target Target node/window object.
+			* @return {EventUtils} Event utils instance.
+			*/
 		self.clean = function(target) {
 			var i, children, unbind = self.unbind;
 
@@ -642,8 +642,8 @@ define("tinymce/dom/EventUtils", [], function() {
 		};
 
 		/**
-		 * Destroys the event object. Call this on IE to remove memory leaks.
-		 */
+			* Destroys the event object. Call this on IE to remove memory leaks.
+			*/
 		self.destroy = function() {
 			events = {};
 		};
@@ -668,31 +668,31 @@ define("tinymce/dom/EventUtils", [], function() {
 // Included from: classes/dom/Sizzle.js
 
 /**
- * Sizzle.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- *
- * @ignore-file
- */
+	* Sizzle.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*
+	* @ignore-file
+	*/
 
 /*jshint bitwise:false, expr:true, noempty:false, sub:true, eqnull:true, latedef:false, maxlen:255 */
 /*eslint dot-notation:0, no-empty:0, no-cond-assign:0, no-unused-expressions:0, new-cap:0 */
 /*eslint no-nested-ternary:0, func-style:0, no-bitwise:0, max-len:0, brace-style:0, no-return-assign:0, no-multi-spaces:0 */
 
 /**
- * Sizzle CSS Selector Engine v@VERSION
- * http://sizzlejs.com/
- *
- * Copyright 2008, 2014 jQuery Foundation, Inc. and other contributors
- * Released under the MIT license
- * http://jquery.org/license
- *
- * Date: @DATE
- */
+	* Sizzle CSS Selector Engine v@VERSION
+	* http://sizzlejs.com/
+	*
+	* Copyright 2008, 2014 jQuery Foundation, Inc. and other contributors
+	* Released under the MIT license
+	* http://jquery.org/license
+	*
+	* Date: @DATE
+	*/
 define("tinymce/dom/Sizzle", [], function() {
 var i,
 	support,
@@ -975,11 +975,11 @@ function Sizzle( selector, context, results, seed ) {
 }
 
 /**
- * Create key-value caches of limited size
- * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
- *	deleting the oldest entry
- */
+	* Create key-value caches of limited size
+	* @returns {Function(string, Object)} Returns the Object data after storing it on itself with
+	*	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+	*	deleting the oldest entry
+	*/
 function createCache() {
 	var keys = [];
 
@@ -995,18 +995,18 @@ function createCache() {
 }
 
 /**
- * Mark a function for special use by Sizzle
- * @param {Function} fn The function to mark
- */
+	* Mark a function for special use by Sizzle
+	* @param {Function} fn The function to mark
+	*/
 function markFunction( fn ) {
 	fn[ expando ] = true;
 	return fn;
 }
 
 /**
- * Support testing using an element
- * @param {Function} fn Passed the created div and expects a boolean result
- */
+	* Support testing using an element
+	* @param {Function} fn Passed the created div and expects a boolean result
+	*/
 function assert( fn ) {
 	var div = document.createElement("div");
 
@@ -1025,10 +1025,10 @@ function assert( fn ) {
 }
 
 /**
- * Adds the same handler for all of the specified attrs
- * @param {String} attrs Pipe-separated list of attributes
- * @param {Function} handler The method that will be applied
- */
+	* Adds the same handler for all of the specified attrs
+	* @param {String} attrs Pipe-separated list of attributes
+	* @param {Function} handler The method that will be applied
+	*/
 function addHandle( attrs, handler ) {
 	var arr = attrs.split("|"),
 		i = attrs.length;
@@ -1039,11 +1039,11 @@ function addHandle( attrs, handler ) {
 }
 
 /**
- * Checks document order of two siblings
- * @param {Element} a
- * @param {Element} b
- * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
- */
+	* Checks document order of two siblings
+	* @param {Element} a
+	* @param {Element} b
+	* @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+	*/
 function siblingCheck( a, b ) {
 	var cur = b && a,
 		diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
@@ -1068,9 +1068,9 @@ function siblingCheck( a, b ) {
 }
 
 /**
- * Returns a function to use in pseudos for input types
- * @param {String} type
- */
+	* Returns a function to use in pseudos for input types
+	* @param {String} type
+	*/
 function createInputPseudo( type ) {
 	return function( elem ) {
 		var name = elem.nodeName.toLowerCase();
@@ -1079,9 +1079,9 @@ function createInputPseudo( type ) {
 }
 
 /**
- * Returns a function to use in pseudos for buttons
- * @param {String} type
- */
+	* Returns a function to use in pseudos for buttons
+	* @param {String} type
+	*/
 function createButtonPseudo( type ) {
 	return function( elem ) {
 		var name = elem.nodeName.toLowerCase();
@@ -1090,9 +1090,9 @@ function createButtonPseudo( type ) {
 }
 
 /**
- * Returns a function to use in pseudos for positionals
- * @param {Function} fn
- */
+	* Returns a function to use in pseudos for positionals
+	* @param {Function} fn
+	*/
 function createPositionalPseudo( fn ) {
 	return markFunction(function( argument ) {
 		argument = +argument;
@@ -1112,10 +1112,10 @@ function createPositionalPseudo( fn ) {
 }
 
 /**
- * Checks a node for validity as a Sizzle context
- * @param {Element|Object=} context
- * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
- */
+	* Checks a node for validity as a Sizzle context
+	* @param {Element|Object=} context
+	* @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
+	*/
 function testContext( context ) {
 	return context && typeof context.getElementsByTagName !== strundefined && context;
 }
@@ -1124,10 +1124,10 @@ function testContext( context ) {
 support = Sizzle.support = {};
 
 /**
- * Detects XML nodes
- * @param {Element|Object} elem An element or a document
- * @returns {Boolean} True iff elem is a non-HTML XML node
- */
+	* Detects XML nodes
+	* @param {Element|Object} elem An element or a document
+	* @returns {Boolean} True iff elem is a non-HTML XML node
+	*/
 isXML = Sizzle.isXML = function( elem ) {
 	// documentElement is verified for cases where it doesn't yet exist
 	// (such as loading iframes in IE - #4833)
@@ -1136,10 +1136,10 @@ isXML = Sizzle.isXML = function( elem ) {
 };
 
 /**
- * Sets document-related variables once based on the current document
- * @param {Element|Object} [doc] An element or document object to use to set the document
- * @returns {Object} Returns the current document
- */
+	* Sets document-related variables once based on the current document
+	* @param {Element|Object} [doc] An element or document object to use to set the document
+	* @returns {Object} Returns the current document
+	*/
 setDocument = Sizzle.setDocument = function( node ) {
 	var hasCompare,
 		doc = node ? node.ownerDocument || node : preferredDoc,
@@ -1553,16 +1553,16 @@ Sizzle.attr = function( elem, name ) {
 			(val = elem.getAttributeNode(name)) && val.specified ?
 				val.value :
 				null;
-};
+			};
 
-Sizzle.error = function( msg ) {
+			Sizzle.error = function( msg ) {
 	throw new Error( "Syntax error, unrecognized expression: " + msg );
 };
 
 /**
- * Document sorting and removing duplicates
- * @param {ArrayLike} results
- */
+	* Document sorting and removing duplicates
+	* @param {ArrayLike} results
+	*/
 Sizzle.uniqueSort = function( results ) {
 	var elem,
 		duplicates = [],
@@ -1593,9 +1593,9 @@ Sizzle.uniqueSort = function( results ) {
 };
 
 /**
- * Utility function for retrieving the text value of an array of DOM nodes
- * @param {Array|Element} elem
- */
+	* Utility function for retrieving the text value of an array of DOM nodes
+	* @param {Array|Element} elem
+	*/
 getText = Sizzle.getText = function( elem ) {
 	var node,
 		ret = "",
@@ -2174,9 +2174,9 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 			Sizzle.error( selector ) :
 			// Cache the tokens
 			tokenCache( selector, groups ).slice( 0 );
-};
+		};
 
-function toSelector( tokens ) {
+		function toSelector( tokens ) {
 	var i = 0,
 		len = tokens.length,
 		selector = "";
@@ -2237,9 +2237,9 @@ function addCombinator( matcher, combinator, base ) {
 				}
 			}
 		};
-}
+	}
 
-function elementMatcher( matchers ) {
+	function elementMatcher( matchers ) {
 	return matchers.length > 1 ?
 		function( elem, context, xml ) {
 			var i = matchers.length;
@@ -2251,9 +2251,9 @@ function elementMatcher( matchers ) {
 			return true;
 		} :
 		matchers[0];
-}
+	}
 
-function multipleContexts( selector, contexts, results ) {
+	function multipleContexts( selector, contexts, results ) {
 	var i = 0,
 		len = contexts.length;
 	for ( ; i < len; i++ ) {
@@ -2528,9 +2528,9 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 	return bySet ?
 		markFunction( superMatcher ) :
 		superMatcher;
-}
+	}
 
-compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
+	compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
 	var i,
 		setMatchers = [],
 		elementMatchers = [],
@@ -2561,14 +2561,14 @@ compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
 };
 
 /**
- * A low-level selection function that works with Sizzle's compiled
- *  selector functions
- * @param {String|Function} selector A selector or a pre-compiled
- *  selector function built with Sizzle.compile
- * @param {Element} context
- * @param {Array} [results]
- * @param {Array} [seed] A set of elements to match against
- */
+	* A low-level selection function that works with Sizzle's compiled
+	*  selector functions
+	* @param {String|Function} selector A selector or a pre-compiled
+	*  selector function built with Sizzle.compile
+	* @param {Element} context
+	* @param {Array} [results]
+	* @param {Array} [seed] A set of elements to match against
+	*/
 select = Sizzle.select = function( selector, context, results, seed ) {
 	var i, tokens, token, type, find,
 		compiled = typeof selector === "function" && selector,
@@ -2709,23 +2709,23 @@ return Sizzle;
 // Included from: classes/Env.js
 
 /**
- * Env.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Env.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains various environment constants like browser versions etc.
- * Normally you don't want to sniff specific browser versions but sometimes you have
- * to when it's impossible to feature detect. So use this with care.
- *
- * @class tinymce.Env
- * @static
- */
+	* This class contains various environment constants like browser versions etc.
+	* Normally you don't want to sniff specific browser versions but sometimes you have
+	* to when it's impossible to feature detect. So use this with care.
+	*
+	* @class tinymce.Env
+	* @static
+	*/
 define("tinymce/Env", [], function() {
 	var nav = navigator, userAgent = nav.userAgent;
 	var opera, webkit, ie, ie11, gecko, mac, iDevice, android;
@@ -2747,109 +2747,109 @@ define("tinymce/Env", [], function() {
 
 	return {
 		/**
-		 * Constant that is true if the browser is Opera.
-		 *
-		 * @property opera
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is true if the browser is Opera.
+			*
+			* @property opera
+			* @type Boolean
+			* @final
+			*/
 		opera: opera,
 
 		/**
-		 * Constant that is true if the browser is WebKit (Safari/Chrome).
-		 *
-		 * @property webKit
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is true if the browser is WebKit (Safari/Chrome).
+			*
+			* @property webKit
+			* @type Boolean
+			* @final
+			*/
 		webkit: webkit,
 
 		/**
-		 * Constant that is more than zero if the browser is IE.
-		 *
-		 * @property ie
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is more than zero if the browser is IE.
+			*
+			* @property ie
+			* @type Boolean
+			* @final
+			*/
 		ie: ie,
 
 		/**
-		 * Constant that is true if the browser is Gecko.
-		 *
-		 * @property gecko
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is true if the browser is Gecko.
+			*
+			* @property gecko
+			* @type Boolean
+			* @final
+			*/
 		gecko: gecko,
 
 		/**
-		 * Constant that is true if the os is Mac OS.
-		 *
-		 * @property mac
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is true if the os is Mac OS.
+			*
+			* @property mac
+			* @type Boolean
+			* @final
+			*/
 		mac: mac,
 
 		/**
-		 * Constant that is true if the os is iOS.
-		 *
-		 * @property iOS
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is true if the os is iOS.
+			*
+			* @property iOS
+			* @type Boolean
+			* @final
+			*/
 		iOS: iDevice,
 
 		/**
-		 * Constant that is true if the os is android.
-		 *
-		 * @property android
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is true if the os is android.
+			*
+			* @property android
+			* @type Boolean
+			* @final
+			*/
 		android: android,
 
 		/**
-		 * Constant that is true if the browser supports editing.
-		 *
-		 * @property contentEditable
-		 * @type Boolean
-		 * @final
-		 */
+			* Constant that is true if the browser supports editing.
+			*
+			* @property contentEditable
+			* @type Boolean
+			* @final
+			*/
 		contentEditable: contentEditable,
 
 		/**
-		 * Transparent image data url.
-		 *
-		 * @property transparentSrc
-		 * @type Boolean
-		 * @final
-		 */
+			* Transparent image data url.
+			*
+			* @property transparentSrc
+			* @type Boolean
+			* @final
+			*/
 		transparentSrc: "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
 
 		/**
-		 * Returns true/false if the browser can or can't place the caret after a inline block like an image.
-		 *
-		 * @property noCaretAfter
-		 * @type Boolean
-		 * @final
-		 */
+			* Returns true/false if the browser can or can't place the caret after a inline block like an image.
+			*
+			* @property noCaretAfter
+			* @type Boolean
+			* @final
+			*/
 		caretAfter: ie != 8,
 
 		/**
-		 * Constant that is true if the browser supports native DOM Ranges. IE 9+.
-		 *
-		 * @property range
-		 * @type Boolean
-		 */
+			* Constant that is true if the browser supports native DOM Ranges. IE 9+.
+			*
+			* @property range
+			* @type Boolean
+			*/
 		range: window.getSelection && "Range" in window,
 
 		/**
-		 * Returns the IE document mode for non IE browsers this will fake IE 10.
-		 *
-		 * @property documentMode
-		 * @type Number
-		 */
+			* Returns the IE document mode for non IE browsers this will fake IE 10.
+			*
+			* @property documentMode
+			* @type Number
+			*/
 		documentMode: ie ? (document.documentMode || 7) : 10
 	};
 });
@@ -2857,31 +2857,31 @@ define("tinymce/Env", [], function() {
 // Included from: classes/util/Tools.js
 
 /**
- * Tools.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Tools.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains various utlity functions. These are also exposed
- * directly on the tinymce namespace.
- *
- * @class tinymce.util.Tools
- */
+	* This class contains various utlity functions. These are also exposed
+	* directly on the tinymce namespace.
+	*
+	* @class tinymce.util.Tools
+	*/
 define("tinymce/util/Tools", [
 	"tinymce/Env"
 ], function(Env) {
 	/**
-	 * Removes whitespace from the beginning and end of a string.
-	 *
-	 * @method trim
-	 * @param {String} s String to remove whitespace from.
-	 * @return {String} New string with removed whitespace.
-	 */
+		* Removes whitespace from the beginning and end of a string.
+		*
+		* @method trim
+		* @param {String} s String to remove whitespace from.
+		* @return {String} New string with removed whitespace.
+		*/
 	var whiteSpaceRegExp = /^\s*|\s*$/g;
 
 	function trim(str) {
@@ -2889,24 +2889,24 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Returns true/false if the object is an array or not.
-	 *
-	 * @method isArray
-	 * @param {Object} obj Object to check.
-	 * @return {boolean} true/false state if the object is an array or not.
-	 */
+		* Returns true/false if the object is an array or not.
+		*
+		* @method isArray
+		* @param {Object} obj Object to check.
+		* @return {boolean} true/false state if the object is an array or not.
+		*/
 	var isArray = Array.isArray || function(obj) {
 		return Object.prototype.toString.call(obj) === "[object Array]";
 	};
 
 	/**
-	 * Checks if a object is of a specific type for example an array.
-	 *
-	 * @method is
-	 * @param {Object} obj Object to check type of.
-	 * @param {string} type Optional type to check for.
-	 * @return {Boolean} true/false if the object is of the specified type.
-	 */
+		* Checks if a object is of a specific type for example an array.
+		*
+		* @method is
+		* @param {Object} obj Object to check type of.
+		* @param {string} type Optional type to check for.
+		* @return {Boolean} true/false if the object is of the specified type.
+		*/
 	function is(obj, type) {
 		if (!type) {
 			return obj !== undefined;
@@ -2920,12 +2920,12 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Converts the specified object into a real JavaScript array.
-	 *
-	 * @method toArray
-	 * @param {Object} obj Object to convert into array.
-	 * @return {Array} Array object based in input.
-	 */
+		* Converts the specified object into a real JavaScript array.
+		*
+		* @method toArray
+		* @param {Object} obj Object to convert into array.
+		* @return {Array} Array object based in input.
+		*/
 	function toArray(obj) {
 		var array = obj, i, l;
 
@@ -2940,14 +2940,14 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Makes a name/object map out of an array with names.
-	 *
-	 * @method makeMap
-	 * @param {Array/String} items Items to make map out of.
-	 * @param {String} delim Optional delimiter to split string by.
-	 * @param {Object} map Optional map to add items to.
-	 * @return {Object} Name/value map of items.
-	 */
+		* Makes a name/object map out of an array with names.
+		*
+		* @method makeMap
+		* @param {Array/String} items Items to make map out of.
+		* @param {String} delim Optional delimiter to split string by.
+		* @param {Object} map Optional map to add items to.
+		* @return {Object} Name/value map of items.
+		*/
 	function makeMap(items, delim, map) {
 		var i;
 
@@ -2969,25 +2969,25 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Performs an iteration of all items in a collection such as an object or array. This method will execure the
-	 * callback function for each item in the collection, if the callback returns false the iteration will terminate.
-	 * The callback has the following format: cb(value, key_or_index).
-	 *
-	 * @method each
-	 * @param {Object} o Collection to iterate.
-	 * @param {function} cb Callback function to execute for each item.
-	 * @param {Object} s Optional scope to execute the callback in.
-	 * @example
-	 * // Iterate an array
-	 * tinymce.each([1,2,3], function(v, i) {
-	 *     console.debug("Value: " + v + ", Index: " + i);
-	 * });
-	 *
-	 * // Iterate an object
-	 * tinymce.each({a: 1, b: 2, c: 3], function(v, k) {
-	 *     console.debug("Value: " + v + ", Key: " + k);
-	 * });
-	 */
+		* Performs an iteration of all items in a collection such as an object or array. This method will execure the
+		* callback function for each item in the collection, if the callback returns false the iteration will terminate.
+		* The callback has the following format: cb(value, key_or_index).
+		*
+		* @method each
+		* @param {Object} o Collection to iterate.
+		* @param {function} cb Callback function to execute for each item.
+		* @param {Object} s Optional scope to execute the callback in.
+		* @example
+		* // Iterate an array
+		* tinymce.each([1,2,3], function(v, i) {
+		*     console.debug("Value: " + v + ", Index: " + i);
+		* });
+		*
+		* // Iterate an object
+		* tinymce.each({a: 1, b: 2, c: 3], function(v, k) {
+		*     console.debug("Value: " + v + ", Key: " + k);
+		* });
+		*/
 	function each(o, cb, s) {
 		var n, l;
 
@@ -3019,14 +3019,14 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Creates a new array by the return value of each iteration function call. This enables you to convert
-	 * one array list into another.
-	 *
-	 * @method map
-	 * @param {Array} array Array of items to iterate.
-	 * @param {function} callback Function to call for each item. It's return value will be the new value.
-	 * @return {Array} Array with new values based on function return values.
-	 */
+		* Creates a new array by the return value of each iteration function call. This enables you to convert
+		* one array list into another.
+		*
+		* @method map
+		* @param {Array} array Array of items to iterate.
+		* @param {function} callback Function to call for each item. It's return value will be the new value.
+		* @return {Array} Array with new values based on function return values.
+		*/
 	function map(array, callback) {
 		var out = [];
 
@@ -3038,17 +3038,17 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Filters out items from the input array by calling the specified function for each item.
-	 * If the function returns false the item will be excluded if it returns true it will be included.
-	 *
-	 * @method grep
-	 * @param {Array} a Array of items to loop though.
-	 * @param {function} f Function to call for each item. Include/exclude depends on it's return value.
-	 * @return {Array} New array with values imported and filtered based in input.
-	 * @example
-	 * // Filter out some items, this will return an array with 4 and 5
-	 * var items = tinymce.grep([1,2,3,4,5], function(v) {return v > 3;});
-	 */
+		* Filters out items from the input array by calling the specified function for each item.
+		* If the function returns false the item will be excluded if it returns true it will be included.
+		*
+		* @method grep
+		* @param {Array} a Array of items to loop though.
+		* @param {function} f Function to call for each item. Include/exclude depends on it's return value.
+		* @return {Array} New array with values imported and filtered based in input.
+		* @example
+		* // Filter out some items, this will return an array with 4 and 5
+		* var items = tinymce.grep([1,2,3,4,5], function(v) {return v > 3;});
+		*/
 	function grep(a, f) {
 		var o = [];
 
@@ -3062,51 +3062,51 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Creates a class, subclass or static singleton.
-	 * More details on this method can be found in the Wiki.
-	 *
-	 * @method create
-	 * @param {String} s Class name, inheritage and prefix.
-	 * @param {Object} p Collection of methods to add to the class.
-	 * @param {Object} root Optional root object defaults to the global window object.
-	 * @example
-	 * // Creates a basic class
-	 * tinymce.create('tinymce.somepackage.SomeClass', {
-	 *     SomeClass: function() {
-	 *         // Class constructor
-	 *     },
-	 *
-	 *     method: function() {
-	 *         // Some method
-	 *     }
-	 * });
-	 *
-	 * // Creates a basic subclass class
-	 * tinymce.create('tinymce.somepackage.SomeSubClass:tinymce.somepackage.SomeClass', {
-	 *     SomeSubClass: function() {
-	 *         // Class constructor
-	 *         this.parent(); // Call parent constructor
-	 *     },
-	 *
-	 *     method: function() {
-	 *         // Some method
-	 *         this.parent(); // Call parent method
-	 *     },
-	 *
-	 *     'static': {
-	 *         staticMethod: function() {
-	 *             // Static method
-	 *         }
-	 *     }
-	 * });
-	 *
-	 * // Creates a singleton/static class
-	 * tinymce.create('static tinymce.somepackage.SomeSingletonClass', {
-	 *     method: function() {
-	 *         // Some method
-	 *     }
-	 * });
-	 */
+		* Creates a class, subclass or static singleton.
+		* More details on this method can be found in the Wiki.
+		*
+		* @method create
+		* @param {String} s Class name, inheritage and prefix.
+		* @param {Object} p Collection of methods to add to the class.
+		* @param {Object} root Optional root object defaults to the global window object.
+		* @example
+		* // Creates a basic class
+		* tinymce.create('tinymce.somepackage.SomeClass', {
+		*     SomeClass: function() {
+		*         // Class constructor
+		*     },
+		*
+		*     method: function() {
+		*         // Some method
+		*     }
+		* });
+		*
+		* // Creates a basic subclass class
+		* tinymce.create('tinymce.somepackage.SomeSubClass:tinymce.somepackage.SomeClass', {
+		*     SomeSubClass: function() {
+		*         // Class constructor
+		*         this.parent(); // Call parent constructor
+		*     },
+		*
+		*     method: function() {
+		*         // Some method
+		*         this.parent(); // Call parent method
+		*     },
+		*
+		*     'static': {
+		*         staticMethod: function() {
+		*             // Static method
+		*         }
+		*     }
+		* });
+		*
+		* // Creates a singleton/static class
+		* tinymce.create('static tinymce.somepackage.SomeSingletonClass', {
+		*     method: function() {
+		*         // Some method
+		*     }
+		* });
+		*/
 	function create(s, p, root) {
 		var self = this, sp, ns, cn, scn, c, de = 0;
 
@@ -3194,16 +3194,16 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Returns the index of a value in an array, this method will return -1 if the item wasn't found.
-	 *
-	 * @method inArray
-	 * @param {Array} a Array/Object to search for value in.
-	 * @param {Object} v Value to check for inside the array.
-	 * @return {Number/String} Index of item inside the array inside an object. Or -1 if it wasn't found.
-	 * @example
-	 * // Get index of value in array this will alert 1 since 2 is at that index
-	 * alert(tinymce.inArray([1,2,3], 2));
-	 */
+		* Returns the index of a value in an array, this method will return -1 if the item wasn't found.
+		*
+		* @method inArray
+		* @param {Array} a Array/Object to search for value in.
+		* @param {Object} v Value to check for inside the array.
+		* @return {Number/String} Index of item inside the array inside an object. Or -1 if it wasn't found.
+		* @example
+		* // Get index of value in array this will alert 1 since 2 is at that index
+		* alert(tinymce.inArray([1,2,3], 2));
+		*/
 	function inArray(a, v) {
 		var i, l;
 
@@ -3238,14 +3238,14 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Executed the specified function for each item in a object tree.
-	 *
-	 * @method walk
-	 * @param {Object} o Object tree to walk though.
-	 * @param {function} f Function to call for each item.
-	 * @param {String} n Optional name of collection inside the objects to walk for example childNodes.
-	 * @param {String} s Optional scope to execute the function in.
-	 */
+		* Executed the specified function for each item in a object tree.
+		*
+		* @method walk
+		* @param {Object} o Object tree to walk though.
+		* @param {function} f Function to call for each item.
+		* @param {String} n Optional name of collection inside the objects to walk for example childNodes.
+		* @param {String} s Optional scope to execute the function in.
+		*/
 	function walk(o, f, n, s) {
 		s = s || this;
 
@@ -3265,23 +3265,23 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Creates a namespace on a specific object.
-	 *
-	 * @method createNS
-	 * @param {String} n Namespace to create for example a.b.c.d.
-	 * @param {Object} o Optional object to add namespace to, defaults to window.
-	 * @return {Object} New namespace object the last item in path.
-	 * @example
-	 * // Create some namespace
-	 * tinymce.createNS('tinymce.somepackage.subpackage');
-	 *
-	 * // Add a singleton
-	 * var tinymce.somepackage.subpackage.SomeSingleton = {
-	 *     method: function() {
-	 *         // Some method
-	 *     }
-	 * };
-	 */
+		* Creates a namespace on a specific object.
+		*
+		* @method createNS
+		* @param {String} n Namespace to create for example a.b.c.d.
+		* @param {Object} o Optional object to add namespace to, defaults to window.
+		* @return {Object} New namespace object the last item in path.
+		* @example
+		* // Create some namespace
+		* tinymce.createNS('tinymce.somepackage.subpackage');
+		*
+		* // Add a singleton
+		* var tinymce.somepackage.subpackage.SomeSingleton = {
+		*     method: function() {
+		*         // Some method
+		*     }
+		* };
+		*/
 	function createNS(n, o) {
 		var i, v;
 
@@ -3302,16 +3302,16 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Resolves a string and returns the object from a specific structure.
-	 *
-	 * @method resolve
-	 * @param {String} n Path to resolve for example a.b.c.d.
-	 * @param {Object} o Optional object to search though, defaults to window.
-	 * @return {Object} Last object in path or null if it couldn't be resolved.
-	 * @example
-	 * // Resolve a path into an object reference
-	 * var obj = tinymce.resolve('a.b.c.d');
-	 */
+		* Resolves a string and returns the object from a specific structure.
+		*
+		* @method resolve
+		* @param {String} n Path to resolve for example a.b.c.d.
+		* @param {Object} o Optional object to search though, defaults to window.
+		* @return {Object} Last object in path or null if it couldn't be resolved.
+		* @example
+		* // Resolve a path into an object reference
+		* var obj = tinymce.resolve('a.b.c.d');
+		*/
 	function resolve(n, o) {
 		var i, l;
 
@@ -3330,15 +3330,15 @@ define("tinymce/util/Tools", [
 	}
 
 	/**
-	 * Splits a string but removes the whitespace before and after each value.
-	 *
-	 * @method explode
-	 * @param {string} s String to split.
-	 * @param {string} d Delimiter to split by.
-	 * @example
-	 * // Split a string into an array with a,b,c
-	 * var arr = tinymce.explode('a, b,   c');
-	 */
+		* Splits a string but removes the whitespace before and after each value.
+		*
+		* @method explode
+		* @param {string} s String to split.
+		* @param {string} d Delimiter to split by.
+		* @example
+		* // Split a string into an array with a,b,c
+		* var arr = tinymce.explode('a, b,   c');
+		*/
 	function explode(s, d) {
 		if (!s || is(s, 'array')) {
 			return s;
@@ -3380,36 +3380,36 @@ define("tinymce/util/Tools", [
 // Included from: classes/dom/DomQuery.js
 
 /**
- * DomQuery.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DomQuery.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class mimics most of the jQuery API:
- *
- * This is whats currently implemented:
- * - Utility functions
- * - DOM traversial
- * - DOM manipulation
- * - Event binding
- *
- * This is not currently implemented:
- * - Dimension
- * - Ajax
- * - Animation
- * - Advanced chaining
- *
- * @example
- * var $ = tinymce.dom.DomQuery;
- * $('p').attr('attr', 'value').addClass('class');
- *
- * @class tinymce.dom.DomQuery
- */
+	* This class mimics most of the jQuery API:
+	*
+	* This is whats currently implemented:
+	* - Utility functions
+	* - DOM traversial
+	* - DOM manipulation
+	* - Event binding
+	*
+	* This is not currently implemented:
+	* - Dimension
+	* - Ajax
+	* - Animation
+	* - Advanced chaining
+	*
+	* @example
+	* var $ = tinymce.dom.DomQuery;
+	* $('p').attr('attr', 'value').addClass('class');
+	*
+	* @class tinymce.dom.DomQuery
+	*/
 define("tinymce/dom/DomQuery", [
 	"tinymce/dom/EventUtils",
 	"tinymce/dom/Sizzle",
@@ -3602,37 +3602,37 @@ define("tinymce/dom/DomQuery", [
 		constructor: DomQuery,
 
 		/**
-		 * Selector for the current set.
-		 *
-		 * @property selector
-		 * @type String
-		 */
+			* Selector for the current set.
+			*
+			* @property selector
+			* @type String
+			*/
 		selector: "",
 
 		/**
-		 * Context used to create the set.
-		 *
-		 * @property context
-		 * @type Element
-		 */
+			* Context used to create the set.
+			*
+			* @property context
+			* @type Element
+			*/
 		context: null,
 
 		/**
-		 * Number of items in the current set.
-		 *
-		 * @property length
-		 * @type Number
-		 */
+			* Number of items in the current set.
+			*
+			* @property length
+			* @type Number
+			*/
 		length: 0,
 
 		/**
-		 * Constructs a new DomQuery instance with the specified selector or context.
-		 *
-		 * @constructor
-		 * @method init
-		 * @param {String/Array/DomQuery} selector Optional CSS selector/Array or array like object or HTML string.
-		 * @param {Document/Element} context Optional context to search in.
-		 */
+			* Constructs a new DomQuery instance with the specified selector or context.
+			*
+			* @constructor
+			* @method init
+			* @param {String/Array/DomQuery} selector Optional CSS selector/Array or array like object or HTML string.
+			* @param {Document/Element} context Optional context to search in.
+			*/
 		init: function(selector, context) {
 			var self = this, match, node;
 
@@ -3699,22 +3699,22 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Converts the current set to an array.
-		 *
-		 * @method toArray
-		 * @param {Array} Array of all nodes in set.
-		 */
+			* Converts the current set to an array.
+			*
+			* @method toArray
+			* @param {Array} Array of all nodes in set.
+			*/
 		toArray: function() {
 			return Tools.toArray(this);
 		},
 
 		/**
-		 * Adds new nodes to the set.
-		 *
-		 * @method add
-		 * @param {Array/tinymce.dom.DomQuery} items Array of all nodes to add to set.
-		 * @return {tinymce.dom.DomQuery} New instance with nodes added.
-		 */
+			* Adds new nodes to the set.
+			*
+			* @method add
+			* @param {Array/tinymce.dom.DomQuery} items Array of all nodes to add to set.
+			* @return {tinymce.dom.DomQuery} New instance with nodes added.
+			*/
 		add: function(items, sort) {
 			var self = this, nodes, i;
 
@@ -3736,13 +3736,13 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets/gets attributes on the elements in the current set.
-		 *
-		 * @method attr
-		 * @param {String/Object} name Name of attribute to get or an object with attributes to set.
-		 * @param {String} value Optional value to set.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the specified attribute when only the name is specified.
-		 */
+			* Sets/gets attributes on the elements in the current set.
+			*
+			* @method attr
+			* @param {String/Object} name Name of attribute to get or an object with attributes to set.
+			* @param {String} value Optional value to set.
+			* @return {tinymce.dom.DomQuery/String} Current set or the specified attribute when only the name is specified.
+			*/
 		attr: function(name, value) {
 			var self = this, hook;
 
@@ -3793,24 +3793,24 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Removes attributse on the elements in the current set.
-		 *
-		 * @method removeAttr
-		 * @param {String/Object} name Name of attribute to remove.
-		 * @return {tinymce.dom.DomQuery/String} Current set.
-		 */
+			* Removes attributse on the elements in the current set.
+			*
+			* @method removeAttr
+			* @param {String/Object} name Name of attribute to remove.
+			* @return {tinymce.dom.DomQuery/String} Current set.
+			*/
 		removeAttr: function(name) {
 			return this.attr(name, null);
 		},
 
 		/**
-		 * Sets/gets properties on the elements in the current set.
-		 *
-		 * @method attr
-		 * @param {String/Object} name Name of property to get or an object with properties to set.
-		 * @param {String} value Optional value to set.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the specified property when only the name is specified.
-		 */
+			* Sets/gets properties on the elements in the current set.
+			*
+			* @method attr
+			* @param {String/Object} name Name of property to get or an object with properties to set.
+			* @param {String} value Optional value to set.
+			* @return {tinymce.dom.DomQuery/String} Current set or the specified property when only the name is specified.
+			*/
 		prop: function(name, value) {
 			var self = this;
 
@@ -3838,13 +3838,13 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets/gets styles on the elements in the current set.
-		 *
-		 * @method css
-		 * @param {String/Object} name Name of style to get or an object with styles to set.
-		 * @param {String} value Optional value to set.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the specified style when only the name is specified.
-		 */
+			* Sets/gets styles on the elements in the current set.
+			*
+			* @method css
+			* @param {String/Object} name Name of style to get or an object with styles to set.
+			* @param {String} value Optional value to set.
+			* @return {tinymce.dom.DomQuery/String} Current set or the specified style when only the name is specified.
+			*/
 		css: function(name, value) {
 			var self = this, elm, hook;
 
@@ -3920,11 +3920,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Removes all nodes in set from the document.
-		 *
-		 * @method remove
-		 * @return {tinymce.dom.DomQuery} Current set with the removed nodes.
-		 */
+			* Removes all nodes in set from the document.
+			*
+			* @method remove
+			* @return {tinymce.dom.DomQuery} Current set with the removed nodes.
+			*/
 		remove: function() {
 			var self = this, node, i = this.length;
 
@@ -3941,11 +3941,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Empties all elements in set.
-		 *
-		 * @method empty
-		 * @return {tinymce.dom.DomQuery} Current set with the empty nodes.
-		 */
+			* Empties all elements in set.
+			*
+			* @method empty
+			* @return {tinymce.dom.DomQuery} Current set with the empty nodes.
+			*/
 		empty: function() {
 			var self = this, node, i = this.length;
 
@@ -3960,12 +3960,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets or gets the HTML of the current set or first set node.
-		 *
-		 * @method html
-		 * @param {String} value Optional innerHTML value to set on each element.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the innerHTML of the first element.
-		 */
+			* Sets or gets the HTML of the current set or first set node.
+			*
+			* @method html
+			* @param {String} value Optional innerHTML value to set on each element.
+			* @return {tinymce.dom.DomQuery/String} Current set or the innerHTML of the first element.
+			*/
 		html: function(value) {
 			var self = this, i;
 
@@ -3988,12 +3988,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Sets or gets the text of the current set or first set node.
-		 *
-		 * @method text
-		 * @param {String} value Optional innerText value to set on each element.
-		 * @return {tinymce.dom.DomQuery/String} Current set or the innerText of the first element.
-		 */
+			* Sets or gets the text of the current set or first set node.
+			*
+			* @method text
+			* @param {String} value Optional innerText value to set on each element.
+			* @return {tinymce.dom.DomQuery/String} Current set or the innerText of the first element.
+			*/
 		text: function(value) {
 			var self = this, i;
 
@@ -4014,12 +4014,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Appends the specified node/html or node set to the current set nodes.
-		 *
-		 * @method append
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to append to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Appends the specified node/html or node set to the current set nodes.
+			*
+			* @method append
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to append to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		append: function() {
 			return domManipulate(this, arguments, function(node) {
 				if (this.nodeType === 1) {
@@ -4029,12 +4029,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Prepends the specified node/html or node set to the current set nodes.
-		 *
-		 * @method prepend
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to prepend to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Prepends the specified node/html or node set to the current set nodes.
+			*
+			* @method prepend
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to prepend to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		prepend: function() {
 			return domManipulate(this, arguments, function(node) {
 				if (this.nodeType === 1) {
@@ -4044,12 +4044,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Adds the specified elements before current set nodes.
-		 *
-		 * @method before
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add before to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Adds the specified elements before current set nodes.
+			*
+			* @method before
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add before to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		before: function() {
 			var self = this;
 
@@ -4063,12 +4063,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Adds the specified elements after current set nodes.
-		 *
-		 * @method after
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add after to each element in set.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Adds the specified elements after current set nodes.
+			*
+			* @method after
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to add after to each element in set.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		after: function() {
 			var self = this;
 
@@ -4082,12 +4082,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Appends the specified set nodes to the specified selector/instance.
-		 *
-		 * @method appendTo
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} val Item to append the current set to.
-		 * @return {tinymce.dom.DomQuery} Current set with the appended nodes.
-		 */
+			* Appends the specified set nodes to the specified selector/instance.
+			*
+			* @method appendTo
+			* @param {String/Element/Array/tinymce.dom.DomQuery} val Item to append the current set to.
+			* @return {tinymce.dom.DomQuery} Current set with the appended nodes.
+			*/
 		appendTo: function(val) {
 			DomQuery(val).append(this);
 
@@ -4095,12 +4095,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Prepends the specified set nodes to the specified selector/instance.
-		 *
-		 * @method prependTo
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} val Item to prepend the current set to.
-		 * @return {tinymce.dom.DomQuery} Current set with the prepended nodes.
-		 */
+			* Prepends the specified set nodes to the specified selector/instance.
+			*
+			* @method prependTo
+			* @param {String/Element/Array/tinymce.dom.DomQuery} val Item to prepend the current set to.
+			* @return {tinymce.dom.DomQuery} Current set with the prepended nodes.
+			*/
 		prependTo: function(val) {
 			DomQuery(val).prepend(this);
 
@@ -4108,46 +4108,46 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Replaces the nodes in set with the specified content.
-		 *
-		 * @method replaceWith
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to replace nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with replaced nodes.
-		 */
+			* Replaces the nodes in set with the specified content.
+			*
+			* @method replaceWith
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to replace nodes with.
+			* @return {tinymce.dom.DomQuery} Set with replaced nodes.
+			*/
 		replaceWith: function(content) {
 			return this.before(content).remove();
 		},
 
 		/**
-		 * Wraps all elements in set with the specified wrapper.
-		 *
-		 * @method wrap
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with wrapped nodes.
-		 */
+			* Wraps all elements in set with the specified wrapper.
+			*
+			* @method wrap
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
+			* @return {tinymce.dom.DomQuery} Set with wrapped nodes.
+			*/
 		wrap: function(wrapper) {
 			return wrap(this, wrapper);
 		},
 
 		/**
-		 * Wraps all nodes in set with the specified wrapper. If the nodes are siblings all of them
-		 * will be wrapped in the same wrapper.
-		 *
-		 * @method wrapAll
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with wrapped nodes.
-		 */
+			* Wraps all nodes in set with the specified wrapper. If the nodes are siblings all of them
+			* will be wrapped in the same wrapper.
+			*
+			* @method wrapAll
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
+			* @return {tinymce.dom.DomQuery} Set with wrapped nodes.
+			*/
 		wrapAll: function(wrapper) {
 			return wrap(this, wrapper, true);
 		},
 
 		/**
-		 * Wraps all elements inner contents in set with the specified wrapper.
-		 *
-		 * @method wrapInner
-		 * @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
-		 * @return {tinymce.dom.DomQuery} Set with wrapped nodes.
-		 */
+			* Wraps all elements inner contents in set with the specified wrapper.
+			*
+			* @method wrapInner
+			* @param {String/Element/Array/tinymce.dom.DomQuery} content Content to wrap nodes with.
+			* @return {tinymce.dom.DomQuery} Set with wrapped nodes.
+			*/
 		wrapInner: function(wrapper) {
 			this.each(function() {
 				DomQuery(this).contents().wrapAll(wrapper);
@@ -4157,11 +4157,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Unwraps all elements by removing the parent element of each item in set.
-		 *
-		 * @method unwrap
-		 * @return {tinymce.dom.DomQuery} Set with unwrapped nodes.
-		 */
+			* Unwraps all elements by removing the parent element of each item in set.
+			*
+			* @method unwrap
+			* @return {tinymce.dom.DomQuery} Set with unwrapped nodes.
+			*/
 		unwrap: function() {
 			return this.parent().each(function() {
 				DomQuery(this).replaceWith(this.childNodes);
@@ -4169,11 +4169,11 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Clones all nodes in set.
-		 *
-		 * @method clone
-		 * @return {tinymce.dom.DomQuery} Set with cloned nodes.
-		 */
+			* Clones all nodes in set.
+			*
+			* @method clone
+			* @return {tinymce.dom.DomQuery} Set with cloned nodes.
+			*/
 		clone: function() {
 			var result = [];
 
@@ -4185,35 +4185,35 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Adds the specified class name to the current set elements.
-		 *
-		 * @method addClass
-		 * @param {String} className Class name to add.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Adds the specified class name to the current set elements.
+			*
+			* @method addClass
+			* @param {String} className Class name to add.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		addClass: function(className) {
 			return this.toggleClass(className, true);
 		},
 
 		/**
-		 * Removes the specified class name to the current set elements.
-		 *
-		 * @method removeClass
-		 * @param {String} className Class name to remove.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Removes the specified class name to the current set elements.
+			*
+			* @method removeClass
+			* @param {String} className Class name to remove.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		removeClass: function(className) {
 			return this.toggleClass(className, false);
 		},
 
 		/**
-		 * Toggles the specified class name on the current set elements.
-		 *
-		 * @method toggleClass
-		 * @param {String} className Class name to add/remove.
-		 * @param {Boolean} state Optional state to toggle on/off.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Toggles the specified class name on the current set elements.
+			*
+			* @method toggleClass
+			* @param {String} className Class name to add/remove.
+			* @param {Boolean} state Optional state to toggle on/off.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		toggleClass: function(className, state) {
 			var self = this;
 
@@ -4247,36 +4247,36 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns true/false if the first item in set has the specified class.
-		 *
-		 * @method hasClass
-		 * @param {String} className Class name to check for.
-		 * @return {Boolean} True/false if the set has the specified class.
-		 */
+			* Returns true/false if the first item in set has the specified class.
+			*
+			* @method hasClass
+			* @param {String} className Class name to check for.
+			* @return {Boolean} True/false if the set has the specified class.
+			*/
 		hasClass: function(className) {
 			return hasClass(this[0], className);
 		},
 
 		/**
-		 * Executes the callback function for each item DomQuery collection. If you return false in the
-		 * callback it will break the loop.
-		 *
-		 * @method each
-		 * @param {function} callback Callback function to execute for each item.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Executes the callback function for each item DomQuery collection. If you return false in the
+			* callback it will break the loop.
+			*
+			* @method each
+			* @param {function} callback Callback function to execute for each item.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		each: function(callback) {
 			return each(this, callback);
 		},
 
 		/**
-		 * Binds an event with callback function to the elements in set.
-		 *
-		 * @method on
-		 * @param {String} name Name of the event to bind.
-		 * @param {function} callback Callback function to execute when the event occurs.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Binds an event with callback function to the elements in set.
+			*
+			* @method on
+			* @param {String} name Name of the event to bind.
+			* @param {function} callback Callback function to execute when the event occurs.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		on: function(name, callback) {
 			return this.each(function() {
 				Event.bind(this, name, callback);
@@ -4284,13 +4284,13 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Unbinds an event with callback function to the elements in set.
-		 *
-		 * @method off
-		 * @param {String} name Optional name of the event to bind.
-		 * @param {function} callback Optional callback function to execute when the event occurs.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Unbinds an event with callback function to the elements in set.
+			*
+			* @method off
+			* @param {String} name Optional name of the event to bind.
+			* @param {function} callback Optional callback function to execute when the event occurs.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		off: function(name, callback) {
 			return this.each(function() {
 				Event.unbind(this, name, callback);
@@ -4298,12 +4298,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Triggers the specified event by name or event object.
-		 *
-		 * @method trigger
-		 * @param {String/Object} name Name of the event to trigger or event object.
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Triggers the specified event by name or event object.
+			*
+			* @method trigger
+			* @param {String/Object} name Name of the event to trigger or event object.
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		trigger: function(name) {
 			return this.each(function() {
 				if (typeof name == 'object') {
@@ -4315,75 +4315,75 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Shows all elements in set.
-		 *
-		 * @method show
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Shows all elements in set.
+			*
+			* @method show
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		show: function() {
 			return this.css('display', '');
 		},
 
 		/**
-		 * Hides all elements in set.
-		 *
-		 * @method hide
-		 * @return {tinymce.dom.DomQuery} Current set.
-		 */
+			* Hides all elements in set.
+			*
+			* @method hide
+			* @return {tinymce.dom.DomQuery} Current set.
+			*/
 		hide: function() {
 			return this.css('display', 'none');
 		},
 
 		/**
-		 * Slices the current set.
-		 *
-		 * @method slice
-		 * @param {Number} start Start index to slice at.
-		 * @param {Number} end Optional ened index to end slice at.
-		 * @return {tinymce.dom.DomQuery} Sliced set.
-		 */
+			* Slices the current set.
+			*
+			* @method slice
+			* @param {Number} start Start index to slice at.
+			* @param {Number} end Optional ened index to end slice at.
+			* @return {tinymce.dom.DomQuery} Sliced set.
+			*/
 		slice: function() {
 			return new DomQuery(slice.apply(this, arguments));
 		},
 
 		/**
-		 * Makes the set equal to the specified index.
-		 *
-		 * @method eq
-		 * @param {Number} index Index to set it equal to.
-		 * @return {tinymce.dom.DomQuery} Single item set.
-		 */
+			* Makes the set equal to the specified index.
+			*
+			* @method eq
+			* @param {Number} index Index to set it equal to.
+			* @return {tinymce.dom.DomQuery} Single item set.
+			*/
 		eq: function(index) {
 			return index === -1 ? this.slice(index) : this.slice(index, +index + 1);
 		},
 
 		/**
-		 * Makes the set equal to first element in set.
-		 *
-		 * @method first
-		 * @return {tinymce.dom.DomQuery} Single item set.
-		 */
+			* Makes the set equal to first element in set.
+			*
+			* @method first
+			* @return {tinymce.dom.DomQuery} Single item set.
+			*/
 		first: function() {
 			return this.eq(0);
 		},
 
 		/**
-		 * Makes the set equal to last element in set.
-		 *
-		 * @method last
-		 * @return {tinymce.dom.DomQuery} Single item set.
-		 */
+			* Makes the set equal to last element in set.
+			*
+			* @method last
+			* @return {tinymce.dom.DomQuery} Single item set.
+			*/
 		last: function() {
 			return this.eq(-1);
 		},
 
 		/**
-		 * Finds elements by the specified selector for each element in set.
-		 *
-		 * @method find
-		 * @param {String} selector Selector to find elements by.
-		 * @return {tinymce.dom.DomQuery} Set with matches elements.
-		 */
+			* Finds elements by the specified selector for each element in set.
+			*
+			* @method find
+			* @param {String} selector Selector to find elements by.
+			* @return {tinymce.dom.DomQuery} Set with matches elements.
+			*/
 		find: function(selector) {
 			var i, l, ret = [];
 
@@ -4395,12 +4395,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Filters the current set with the specified selector.
-		 *
-		 * @method filter
-		 * @param {String/function} selector Selector to filter elements by.
-		 * @return {tinymce.dom.DomQuery} Set with filtered elements.
-		 */
+			* Filters the current set with the specified selector.
+			*
+			* @method filter
+			* @param {String/function} selector Selector to filter elements by.
+			* @return {tinymce.dom.DomQuery} Set with filtered elements.
+			*/
 		filter: function(selector) {
 			if (typeof selector == 'function') {
 				return DomQuery(grep(this.toArray(), function(item, i) {
@@ -4412,12 +4412,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Gets the current node or any partent matching the specified selector.
-		 *
-		 * @method closest
-		 * @param {String/Element/tinymce.dom.DomQuery} selector Selector or element to find.
-		 * @return {tinymce.dom.DomQuery} Set with closest elements.
-		 */
+			* Gets the current node or any partent matching the specified selector.
+			*
+			* @method closest
+			* @param {String/Element/tinymce.dom.DomQuery} selector Selector or element to find.
+			* @return {tinymce.dom.DomQuery} Set with closest elements.
+			*/
 		closest: function(selector) {
 			var result = [];
 
@@ -4443,12 +4443,12 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns the offset of the first element in set or sets the top/left css properties of all elements in set.
-		 *
-		 * @method offset
-		 * @param {Object} offset Optional offset object to set on each item.
-		 * @return {Object/tinymce.dom.DomQuery} Returns the first element offset or the current set if you specified an offset.
-		 */
+			* Returns the offset of the first element in set or sets the top/left css properties of all elements in set.
+			*
+			* @method offset
+			* @param {Object} offset Optional offset object to set on each item.
+			* @return {Object/tinymce.dom.DomQuery} Returns the first element offset or the current set if you specified an offset.
+			*/
 		offset: function(offset) {
 			var elm, doc, docElm;
 			var x = 0, y = 0, pos;
@@ -4484,24 +4484,24 @@ define("tinymce/dom/DomQuery", [
 	// Static members
 	Tools.extend(DomQuery, {
 		/**
-		 * Extends the specified object with one or more objects.
-		 *
-		 * @static
-		 * @method extend
-		 * @param {Object} target Target object to extend with new items.
-		 * @param {Object..} object Object to extend the target with.
-		 * @return {Object} Extended input object.
-		 */
+			* Extends the specified object with one or more objects.
+			*
+			* @static
+			* @method extend
+			* @param {Object} target Target object to extend with new items.
+			* @param {Object..} object Object to extend the target with.
+			* @return {Object} Extended input object.
+			*/
 		extend: Tools.extend,
 
 		/**
-		 * Creates an array out of an array like object.
-		 *
-		 * @static
-		 * @method makeArray
-		 * @param {Object} object Object to convert to array.
-		 * @return {Arrau} Array produced from object.
-		 */
+			* Creates an array out of an array like object.
+			*
+			* @static
+			* @method makeArray
+			* @param {Object} object Object to convert to array.
+			* @return {Arrau} Array produced from object.
+			*/
 		makeArray: function(array) {
 			if (isWindow(array) || array.nodeType) {
 				return [array];
@@ -4511,60 +4511,60 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns the index of the specified item inside the array.
-		 *
-		 * @static
-		 * @method inArray
-		 * @param {Object} item Item to look for.
-		 * @param {Array} array Array to look for item in.
-		 * @return {Number} Index of the item or -1.
-		 */
+			* Returns the index of the specified item inside the array.
+			*
+			* @static
+			* @method inArray
+			* @param {Object} item Item to look for.
+			* @param {Array} array Array to look for item in.
+			* @return {Number} Index of the item or -1.
+			*/
 		inArray: inArray,
 
 		/**
-		 * Returns true/false if the specified object is an array or not.
-		 *
-		 * @static
-		 * @method isArray
-		 * @param {Object} array Object to check if it's an array or not.
-		 * @return {Boolean} True/false if the object is an array.
-		 */
+			* Returns true/false if the specified object is an array or not.
+			*
+			* @static
+			* @method isArray
+			* @param {Object} array Object to check if it's an array or not.
+			* @return {Boolean} True/false if the object is an array.
+			*/
 		isArray: Tools.isArray,
 
 		/**
-		 * Executes the callback function for each item in array/object. If you return false in the
-		 * callback it will break the loop.
-		 *
-		 * @static
-		 * @method each
-		 * @param {Object} obj Object to iterate.
-		 * @param {function} callback Callback function to execute for each item.
-		 */
+			* Executes the callback function for each item in array/object. If you return false in the
+			* callback it will break the loop.
+			*
+			* @static
+			* @method each
+			* @param {Object} obj Object to iterate.
+			* @param {function} callback Callback function to execute for each item.
+			*/
 		each: each,
 
 		/**
-		 * Removes whitespace from the beginning and end of a string.
-		 *
-		 * @static
-		 * @method trim
-		 * @param {String} str String to remove whitespace from.
-		 * @return {String} New string with removed whitespace.
-		 */
+			* Removes whitespace from the beginning and end of a string.
+			*
+			* @static
+			* @method trim
+			* @param {String} str String to remove whitespace from.
+			* @return {String} New string with removed whitespace.
+			*/
 		trim: trim,
 
 		/**
-		 * Filters out items from the input array by calling the specified function for each item.
-		 * If the function returns false the item will be excluded if it returns true it will be included.
-		 *
-		 * @static
-		 * @method grep
-		 * @param {Array} array Array of items to loop though.
-		 * @param {function} callback Function to call for each item. Include/exclude depends on it's return value.
-		 * @return {Array} New array with values imported and filtered based in input.
-		 * @example
-		 * // Filter out some items, this will return an array with 4 and 5
-		 * var items = DomQuery.grep([1, 2, 3, 4, 5], function(v) {return v > 3;});
-		 */
+			* Filters out items from the input array by calling the specified function for each item.
+			* If the function returns false the item will be excluded if it returns true it will be included.
+			*
+			* @static
+			* @method grep
+			* @param {Array} array Array of items to loop though.
+			* @param {function} callback Function to call for each item. Include/exclude depends on it's return value.
+			* @return {Array} New array with values imported and filtered based in input.
+			* @example
+			* // Filter out some items, this will return an array with 4 and 5
+			* var items = DomQuery.grep([1, 2, 3, 4, 5], function(v) {return v > 3;});
+			*/
 		grep: grep,
 
 		// Sizzle
@@ -4664,12 +4664,12 @@ define("tinymce/dom/DomQuery", [
 
 	each({
 		/**
-		 * Returns a new collection with the parent of each item in current collection matching the optional selector.
-		 *
-		 * @method parent
-		 * @param {String} selector Selector to match parents agains.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
-		 */
+			* Returns a new collection with the parent of each item in current collection matching the optional selector.
+			*
+			* @method parent
+			* @param {String} selector Selector to match parents agains.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
+			*/
 		parent: function(node) {
 			var parent = node.parentNode;
 
@@ -4677,55 +4677,55 @@ define("tinymce/dom/DomQuery", [
 		},
 
 		/**
-		 * Returns a new collection with the all the parents of each item in current collection matching the optional selector.
-		 *
-		 * @method parents
-		 * @param {String} selector Selector to match parents agains.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
-		 */
+			* Returns a new collection with the all the parents of each item in current collection matching the optional selector.
+			*
+			* @method parents
+			* @param {String} selector Selector to match parents agains.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
+			*/
 		parents: function(node) {
 			return dir(node, "parentNode");
 		},
 
 		/**
-		 * Returns a new collection with next sibling of each item in current collection matching the optional selector.
-		 *
-		 * @method next
-		 * @param {String} selector Selector to match the next element against.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with next sibling of each item in current collection matching the optional selector.
+			*
+			* @method next
+			* @param {String} selector Selector to match the next element against.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		next: function(node) {
 			return firstSibling(node, 'nextSibling', 1);
 		},
 
 		/**
-		 * Returns a new collection with previous sibling of each item in current collection matching the optional selector.
-		 *
-		 * @method prev
-		 * @param {String} selector Selector to match the previous element against.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with previous sibling of each item in current collection matching the optional selector.
+			*
+			* @method prev
+			* @param {String} selector Selector to match the previous element against.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		prev: function(node) {
 			return firstSibling(node, 'previousSibling', 1);
 		},
 
 		/**
-		 * Returns all child elements matching the optional selector.
-		 *
-		 * @method children
-		 * @param {String} selector Selector to match the elements against.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns all child elements matching the optional selector.
+			*
+			* @method children
+			* @param {String} selector Selector to match the elements against.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		children: function(node) {
 			return sibling(node.firstChild, 'nextSibling', 1);
 		},
 
 		/**
-		 * Returns all child nodes matching the optional selector.
-		 *
-		 * @method contents
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns all child nodes matching the optional selector.
+			*
+			* @method contents
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		contents: function(node) {
 			return Tools.toArray((node.nodeName === "iframe" ? node.contentDocument || node.contentWindow.document : node).childNodes);
 		}
@@ -4766,35 +4766,35 @@ define("tinymce/dom/DomQuery", [
 
 	each({
 		/**
-		 * Returns a new collection with the all the parents until the matching selector/element
-		 * of each item in current collection matching the optional selector.
-		 *
-		 * @method parentsUntil
-		 * @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
-		 */
+			* Returns a new collection with the all the parents until the matching selector/element
+			* of each item in current collection matching the optional selector.
+			*
+			* @method parentsUntil
+			* @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching parents.
+			*/
 		parentsUntil: function(node, until) {
 			return dir(node, "parentNode", until);
 		},
 
 		/**
-		 * Returns a new collection with all next siblings of each item in current collection matching the optional selector.
-		 *
-		 * @method nextUntil
-		 * @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with all next siblings of each item in current collection matching the optional selector.
+			*
+			* @method nextUntil
+			* @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		nextUntil: function(node, until) {
 			return sibling(node, 'nextSibling', 1, until).slice(1);
 		},
 
 		/**
-		 * Returns a new collection with all previous siblings of each item in current collection matching the optional selector.
-		 *
-		 * @method prevUntil
-		 * @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
-		 * @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
-		 */
+			* Returns a new collection with all previous siblings of each item in current collection matching the optional selector.
+			*
+			* @method prevUntil
+			* @param {String/Element/tinymce.dom.DomQuery} until Until the matching selector or element.
+			* @return {tinymce.dom.DomQuery} New DomQuery instance with all matching elements.
+			*/
 		prevUntil: function(node, until) {
 			return sibling(node, 'previousSibling', 1, until).slice(1);
 		}
@@ -4834,12 +4834,12 @@ define("tinymce/dom/DomQuery", [
 	});
 
 	/**
-	 * Returns true/false if the current set items matches the selector.
-	 *
-	 * @method is
-	 * @param {String} selector Selector to match the elements against.
-	 * @return {Boolean} True/false if the current set matches the selector.
-	 */
+		* Returns true/false if the current set items matches the selector.
+		*
+		* @method is
+		* @param {String} selector Selector to match the elements against.
+		* @return {Boolean} True/false if the current set matches the selector.
+		*/
 	DomQuery.fn.is = function(selector) {
 		return !!selector && this.filter(selector).length > 0;
 	};
@@ -4951,33 +4951,33 @@ define("tinymce/dom/DomQuery", [
 // Included from: classes/html/Styles.js
 
 /**
- * Styles.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Styles.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to parse CSS styles it also compresses styles to reduce the output size.
- *
- * @example
- * var Styles = new tinymce.html.Styles({
- *    url_converter: function(url) {
- *       return url;
- *    }
- * });
- *
- * styles = Styles.parse('border: 1px solid red');
- * styles.color = 'red';
- *
- * console.log(new tinymce.html.StyleSerializer().serialize(styles));
- *
- * @class tinymce.html.Styles
- * @version 3.4
- */
+	* This class is used to parse CSS styles it also compresses styles to reduce the output size.
+	*
+	* @example
+	* var Styles = new tinymce.html.Styles({
+	*    url_converter: function(url) {
+	*       return url;
+	*    }
+	* });
+	*
+	* styles = Styles.parse('border: 1px solid red');
+	* styles.color = 'red';
+	*
+	* console.log(new tinymce.html.StyleSerializer().serialize(styles));
+	*
+	* @class tinymce.html.Styles
+	* @version 3.4
+	*/
 define("tinymce/html/Styles", [], function() {
 	return function(settings, schema) {
 		/*jshint maxlen:255 */
@@ -5013,25 +5013,25 @@ define("tinymce/html/Styles", [], function() {
 
 		return {
 			/**
-			 * Parses the specified RGB color value and returns a hex version of that color.
-			 *
-			 * @method toHex
-			 * @param {String} color RGB string value like rgb(1,2,3)
-			 * @return {String} Hex version of that RGB value like #FF00FF.
-			 */
+				* Parses the specified RGB color value and returns a hex version of that color.
+				*
+				* @method toHex
+				* @param {String} color RGB string value like rgb(1,2,3)
+				* @return {String} Hex version of that RGB value like #FF00FF.
+				*/
 			toHex: function(color) {
 				return color.replace(rgbRegExp, toHex);
 			},
 
 			/**
-			 * Parses the specified style value into an object collection. This parser will also
-			 * merge and remove any redundant items that browsers might have added. It will also convert non hex
-			 * colors to hex values. Urls inside the styles will also be converted to absolute/relative based on settings.
-			 *
-			 * @method parse
-			 * @param {String} css Style value to parse for example: border:1px solid red;.
-			 * @return {Object} Object representation of that style like {border: '1px solid red'}
-			 */
+				* Parses the specified style value into an object collection. This parser will also
+				* merge and remove any redundant items that browsers might have added. It will also convert non hex
+				* colors to hex values. Urls inside the styles will also be converted to absolute/relative based on settings.
+				*
+				* @method parse
+				* @param {String} css Style value to parse for example: border:1px solid red;.
+				* @return {Object} Object representation of that style like {border: '1px solid red'}
+				*/
 			parse: function(css) {
 				var styles = {}, matches, name, value, isEncoded, urlConverter = settings.url_converter;
 				var urlConverterScope = settings.url_converter_scope || this;
@@ -5079,8 +5079,8 @@ define("tinymce/html/Styles", [], function() {
 				}
 
 				/**
-				 * Checks if the specific style can be compressed in other words if all border-width are equal.
-				 */
+					* Checks if the specific style can be compressed in other words if all border-width are equal.
+					*/
 				function canCompress(key) {
 					var value = styles[key], i;
 
@@ -5102,8 +5102,8 @@ define("tinymce/html/Styles", [], function() {
 				}
 
 				/**
-				 * Compresses multiple styles into one style.
-				 */
+					* Compresses multiple styles into one style.
+					*/
 				function compress2(target, a, b, c) {
 					if (!canCompress(a)) {
 						return;
@@ -5248,13 +5248,13 @@ define("tinymce/html/Styles", [], function() {
 			},
 
 			/**
-			 * Serializes the specified style object into a string.
-			 *
-			 * @method serialize
-			 * @param {Object} styles Object to serialize as string for example: {border: '1px solid red'}
-			 * @param {String} elementName Optional element name, if specified only the styles that matches the schema will be serialized.
-			 * @return {String} String representation of the style object for example: border: 1px solid red.
-			 */
+				* Serializes the specified style object into a string.
+				*
+				* @method serialize
+				* @param {Object} styles Object to serialize as string for example: {border: '1px solid red'}
+				* @param {String} elementName Optional element name, if specified only the styles that matches the schema will be serialized.
+				* @return {String} String representation of the style object for example: border: 1px solid red.
+				*/
 			serialize: function(styles, elementName) {
 				var css = '', name, value;
 
@@ -5317,35 +5317,35 @@ define("tinymce/html/Styles", [], function() {
 // Included from: classes/dom/TreeWalker.js
 
 /**
- * TreeWalker.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TreeWalker.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * TreeWalker class enables you to walk the DOM in a linear manner.
- *
- * @class tinymce.dom.TreeWalker
- * @example
- * var walker = new tinymce.dom.TreeWalker(startNode);
- *
- * do {
- *     console.log(walker.current());
- * } while (walker.next());
- */
+	* TreeWalker class enables you to walk the DOM in a linear manner.
+	*
+	* @class tinymce.dom.TreeWalker
+	* @example
+	* var walker = new tinymce.dom.TreeWalker(startNode);
+	*
+	* do {
+	*     console.log(walker.current());
+	* } while (walker.next());
+	*/
 define("tinymce/dom/TreeWalker", [], function() {
 	/**
-	 * Constructs a new TreeWalker instance.
-	 *
-	 * @constructor
-	 * @method TreeWalker
-	 * @param {Node} startNode Node to start walking from.
-	 * @param {node} rootNode Optional root node to never walk out of.
-	 */
+		* Constructs a new TreeWalker instance.
+		*
+		* @constructor
+		* @method TreeWalker
+		* @param {Node} startNode Node to start walking from.
+		* @param {node} rootNode Optional root node to never walk out of.
+		*/
 	return function(startNode, rootNode) {
 		var node = startNode;
 
@@ -5377,32 +5377,32 @@ define("tinymce/dom/TreeWalker", [], function() {
 		}
 
 		/**
-		 * Returns the current node.
-		 *
-		 * @method current
-		 * @return {Node} Current node where the walker is.
-		 */
+			* Returns the current node.
+			*
+			* @method current
+			* @return {Node} Current node where the walker is.
+			*/
 		this.current = function() {
 			return node;
 		};
 
 		/**
-		 * Walks to the next node in tree.
-		 *
-		 * @method next
-		 * @return {Node} Current node where the walker is after moving to the next node.
-		 */
+			* Walks to the next node in tree.
+			*
+			* @method next
+			* @return {Node} Current node where the walker is after moving to the next node.
+			*/
 		this.next = function(shallow) {
 			node = findSibling(node, 'firstChild', 'nextSibling', shallow);
 			return node;
 		};
 
 		/**
-		 * Walks to the previous node in tree.
-		 *
-		 * @method prev
-		 * @return {Node} Current node where the walker is after moving to the previous node.
-		 */
+			* Walks to the previous node in tree.
+			*
+			* @method prev
+			* @return {Node} Current node where the walker is after moving to the previous node.
+			*/
 		this.prev = function(shallow) {
 			node = findSibling(node, 'lastChild', 'previousSibling', shallow);
 			return node;
@@ -5413,14 +5413,14 @@ define("tinymce/dom/TreeWalker", [], function() {
 // Included from: classes/dom/Range.js
 
 /**
- * Range.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Range.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 define("tinymce/dom/Range", [
 	"tinymce/util/Tools"
@@ -6193,25 +6193,25 @@ define("tinymce/dom/Range", [
 // Included from: classes/html/Entities.js
 
 /**
- * Entities.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Entities.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint bitwise:false */
 /*eslint no-bitwise:0 */
 
 /**
- * Entity encoder class.
- *
- * @class tinymce.html.Entities
- * @static
- * @version 3.4
- */
+	* Entity encoder class.
+	*
+	* @class tinymce.html.Entities
+	* @static
+	* @version 3.4
+	*/
 define("tinymce/html/Entities", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -6313,13 +6313,13 @@ define("tinymce/html/Entities", [
 
 	var Entities = {
 		/**
-		 * Encodes the specified string using raw entities. This means only the required XML base entities will be endoded.
-		 *
-		 * @method encodeRaw
-		 * @param {String} text Text to encode.
-		 * @param {Boolean} attr Optional flag to specify if the text is attribute contents.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encodes the specified string using raw entities. This means only the required XML base entities will be endoded.
+			*
+			* @method encodeRaw
+			* @param {String} text Text to encode.
+			* @param {Boolean} attr Optional flag to specify if the text is attribute contents.
+			* @return {String} Entity encoded text.
+			*/
 		encodeRaw: function(text, attr) {
 			return text.replace(attr ? attrsCharsRegExp : textCharsRegExp, function(chr) {
 				return baseEntities[chr] || chr;
@@ -6327,14 +6327,14 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Encoded the specified text with both the attributes and text entities. This function will produce larger text contents
-		 * since it doesn't know if the context is within a attribute or text node. This was added for compatibility
-		 * and is exposed as the DOMUtils.encode function.
-		 *
-		 * @method encodeAllRaw
-		 * @param {String} text Text to encode.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encoded the specified text with both the attributes and text entities. This function will produce larger text contents
+			* since it doesn't know if the context is within a attribute or text node. This was added for compatibility
+			* and is exposed as the DOMUtils.encode function.
+			*
+			* @method encodeAllRaw
+			* @param {String} text Text to encode.
+			* @return {String} Entity encoded text.
+			*/
 		encodeAllRaw: function(text) {
 			return ('' + text).replace(rawCharsRegExp, function(chr) {
 				return baseEntities[chr] || chr;
@@ -6342,14 +6342,14 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Encodes the specified string using numeric entities. The core entities will be
-		 * encoded as named ones but all non lower ascii characters will be encoded into numeric entities.
-		 *
-		 * @method encodeNumeric
-		 * @param {String} text Text to encode.
-		 * @param {Boolean} attr Optional flag to specify if the text is attribute contents.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encodes the specified string using numeric entities. The core entities will be
+			* encoded as named ones but all non lower ascii characters will be encoded into numeric entities.
+			*
+			* @method encodeNumeric
+			* @param {String} text Text to encode.
+			* @param {Boolean} attr Optional flag to specify if the text is attribute contents.
+			* @return {String} Entity encoded text.
+			*/
 		encodeNumeric: function(text, attr) {
 			return text.replace(attr ? attrsCharsRegExp : textCharsRegExp, function(chr) {
 				// Multi byte sequence convert it to a single entity
@@ -6362,15 +6362,15 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Encodes the specified string using named entities. The core entities will be encoded
-		 * as named ones but all non lower ascii characters will be encoded into named entities.
-		 *
-		 * @method encodeNamed
-		 * @param {String} text Text to encode.
-		 * @param {Boolean} attr Optional flag to specify if the text is attribute contents.
-		 * @param {Object} entities Optional parameter with entities to use.
-		 * @return {String} Entity encoded text.
-		 */
+			* Encodes the specified string using named entities. The core entities will be encoded
+			* as named ones but all non lower ascii characters will be encoded into named entities.
+			*
+			* @method encodeNamed
+			* @param {String} text Text to encode.
+			* @param {Boolean} attr Optional flag to specify if the text is attribute contents.
+			* @param {Object} entities Optional parameter with entities to use.
+			* @return {String} Entity encoded text.
+			*/
 		encodeNamed: function(text, attr, entities) {
 			entities = entities || namedEntities;
 
@@ -6380,13 +6380,13 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Returns an encode function based on the name(s) and it's optional entities.
-		 *
-		 * @method getEncodeFunc
-		 * @param {String} name Comma separated list of encoders for example named,numeric.
-		 * @param {String} entities Optional parameter with entities to use instead of the built in set.
-		 * @return {function} Encode function to be used.
-		 */
+			* Returns an encode function based on the name(s) and it's optional entities.
+			*
+			* @method getEncodeFunc
+			* @param {String} name Comma separated list of encoders for example named,numeric.
+			* @param {String} entities Optional parameter with entities to use instead of the built in set.
+			* @return {function} Encode function to be used.
+			*/
 		getEncodeFunc: function(name, entities) {
 			entities = buildEntitiesLookup(entities) || namedEntities;
 
@@ -6428,12 +6428,12 @@ define("tinymce/html/Entities", [
 		},
 
 		/**
-		 * Decodes the specified string, this will replace entities with raw UTF characters.
-		 *
-		 * @method decode
-		 * @param {String} text Text to entity decode.
-		 * @return {String} Entity decoded string.
-		 */
+			* Decodes the specified string, this will replace entities with raw UTF characters.
+			*
+			* @method decode
+			* @param {String} text Text to entity decode.
+			* @return {String} Entity decoded string.
+			*/
 		decode: function(text) {
 			return text.replace(entityRegExp, function(all, numeric, value) {
 				if (numeric) {
@@ -6460,21 +6460,21 @@ define("tinymce/html/Entities", [
 // Included from: classes/dom/StyleSheetLoader.js
 
 /**
- * StyleSheetLoader.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* StyleSheetLoader.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles loading of external stylesheets and fires events when these are loaded.
- *
- * @class tinymce.dom.StyleSheetLoader
- * @private
- */
+	* This class handles loading of external stylesheets and fires events when these are loaded.
+	*
+	* @class tinymce.dom.StyleSheetLoader
+	* @private
+	*/
 define("tinymce/dom/StyleSheetLoader", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -6491,13 +6491,13 @@ define("tinymce/dom/StyleSheetLoader", [
 		}
 
 		/**
-		 * Loads the specified css style sheet file and call the loadedCallback once it's finished loading.
-		 *
-		 * @method load
-		 * @param {String} url Url to be loaded.
-		 * @param {Function} loadedCallback Callback to be executed when loaded.
-		 * @param {Function} errorCallback Callback to be executed when failed loading.
-		 */
+			* Loads the specified css style sheet file and call the loadedCallback once it's finished loading.
+			*
+			* @method load
+			* @param {String} url Url to be loaded.
+			* @param {Function} loadedCallback Callback to be executed when loaded.
+			* @param {Function} errorCallback Callback to be executed when failed loading.
+			*/
 		function load(url, loadedCallback, errorCallback) {
 			var link, style, startTime, state;
 
@@ -6652,26 +6652,26 @@ define("tinymce/dom/StyleSheetLoader", [
 // Included from: classes/dom/DOMUtils.js
 
 /**
- * DOMUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DOMUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Utility class for various DOM manipulation and retrieval functions.
- *
- * @class tinymce.dom.DOMUtils
- * @example
- * // Add a class to an element by id in the page
- * tinymce.DOM.addClass('someid', 'someclass');
- *
- * // Add a class to an element by id inside the editor
- * tinymce.activeEditor.dom.addClass('someid', 'someclass');
- */
+	* Utility class for various DOM manipulation and retrieval functions.
+	*
+	* @class tinymce.dom.DOMUtils
+	* @example
+	* // Add a class to an element by id in the page
+	* tinymce.DOM.addClass('someid', 'someclass');
+	*
+	* // Add a class to an element by id inside the editor
+	* tinymce.activeEditor.dom.addClass('someid', 'someclass');
+	*/
 define("tinymce/dom/DOMUtils", [
 	"tinymce/dom/Sizzle",
 	"tinymce/dom/DomQuery",
@@ -6740,13 +6740,13 @@ define("tinymce/dom/DOMUtils", [
 	}
 
 	/**
-	 * Constructs a new DOMUtils instance. Consult the Wiki for more details on settings etc for this class.
-	 *
-	 * @constructor
-	 * @method DOMUtils
-	 * @param {Document} d Document reference to bind the utility class to.
-	 * @param {settings} s Optional settings collection.
-	 */
+		* Constructs a new DOMUtils instance. Consult the Wiki for more details on settings etc for this class.
+		*
+		* @constructor
+		* @method DOMUtils
+		* @param {Document} d Document reference to bind the utility class to.
+		* @param {settings} s Optional settings collection.
+		*/
 	function DOMUtils(doc, settings) {
 		var self = this, blockElementsMap;
 
@@ -6777,12 +6777,12 @@ define("tinymce/dom/DOMUtils", [
 		});
 
 		/**
-		 * Returns true/false if the specified element is a block element or not.
-		 *
-		 * @method isBlock
-		 * @param {Node/String} node Element/Node to check.
-		 * @return {Boolean} True/False state if the node is a block element or not.
-		 */
+			* Returns true/false if the specified element is a block element or not.
+			*
+			* @method isBlock
+			* @param {Node/String} node Element/Node to check.
+			* @return {Boolean} True/False state if the node is a block element or not.
+			*/
 		self.isBlock = function(node) {
 			// Fix for #5446
 			if (!node) {
@@ -6858,12 +6858,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the root node of the document. This is normally the body but might be a DIV. Parents like getParent will not
-		 * go above the point of this root node.
-		 *
-		 * @method getRoot
-		 * @return {Element} Root element for the utility class.
-		 */
+			* Returns the root node of the document. This is normally the body but might be a DIV. Parents like getParent will not
+			* go above the point of this root node.
+			*
+			* @method getRoot
+			* @return {Element} Root element for the utility class.
+			*/
 		getRoot: function() {
 			var self = this;
 
@@ -6871,12 +6871,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the viewport of the window.
-		 *
-		 * @method getViewPort
-		 * @param {Window} win Optional window to get viewport of.
-		 * @return {Object} Viewport object with fields x, y, w and h.
-		 */
+			* Returns the viewport of the window.
+			*
+			* @method getViewPort
+			* @param {Window} win Optional window to get viewport of.
+			* @return {Object} Viewport object with fields x, y, w and h.
+			*/
 		getViewPort: function(win) {
 			var doc, rootElm;
 
@@ -6894,12 +6894,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the rectangle for a specific element.
-		 *
-		 * @method getRect
-		 * @param {Element/String} elm Element object or element ID to get rectangle from.
-		 * @return {object} Rectangle for specified element object with x, y, w, h fields.
-		 */
+			* Returns the rectangle for a specific element.
+			*
+			* @method getRect
+			* @param {Element/String} elm Element object or element ID to get rectangle from.
+			* @return {object} Rectangle for specified element object with x, y, w, h fields.
+			*/
 		getRect: function(elm) {
 			var self = this, pos, size;
 
@@ -6914,12 +6914,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the size dimensions of the specified element.
-		 *
-		 * @method getSize
-		 * @param {Element/String} elm Element object or element ID to get rectangle from.
-		 * @return {object} Rectangle for specified element object with w, h fields.
-		 */
+			* Returns the size dimensions of the specified element.
+			*
+			* @method getSize
+			* @param {Element/String} elm Element object or element ID to get rectangle from.
+			* @return {object} Rectangle for specified element object with w, h fields.
+			*/
 		getSize: function(elm) {
 			var self = this, w, h;
 
@@ -6944,31 +6944,31 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns a node by the specified selector function. This function will
-		 * loop through all parent nodes and call the specified function for each node.
-		 * If the function then returns true indicating that it has found what it was looking for, the loop execution will then end
-		 * and the node it found will be returned.
-		 *
-		 * @method getParent
-		 * @param {Node/String} node DOM node to search parents on or ID string.
-		 * @param {function} selector Selection function or CSS selector to execute on each node.
-		 * @param {Node} root Optional root element, never go below this point.
-		 * @return {Node} DOM Node or null if it wasn't found.
-		 */
+			* Returns a node by the specified selector function. This function will
+			* loop through all parent nodes and call the specified function for each node.
+			* If the function then returns true indicating that it has found what it was looking for, the loop execution will then end
+			* and the node it found will be returned.
+			*
+			* @method getParent
+			* @param {Node/String} node DOM node to search parents on or ID string.
+			* @param {function} selector Selection function or CSS selector to execute on each node.
+			* @param {Node} root Optional root element, never go below this point.
+			* @return {Node} DOM Node or null if it wasn't found.
+			*/
 		getParent: function(node, selector, root) {
 			return this.getParents(node, selector, root, false);
 		},
 
 		/**
-		 * Returns a node list of all parents matching the specified selector function or pattern.
-		 * If the function then returns true indicating that it has found what it was looking for and that node will be collected.
-		 *
-		 * @method getParents
-		 * @param {Node/String} node DOM node to search parents on or ID string.
-		 * @param {function} selector Selection function to execute on each node or CSS pattern.
-		 * @param {Node} root Optional root element, never go below this point.
-		 * @return {Array} Array of nodes or null if it wasn't found.
-		 */
+			* Returns a node list of all parents matching the specified selector function or pattern.
+			* If the function then returns true indicating that it has found what it was looking for and that node will be collected.
+			*
+			* @method getParents
+			* @param {Node/String} node DOM node to search parents on or ID string.
+			* @param {function} selector Selection function to execute on each node or CSS pattern.
+			* @param {Node} root Optional root element, never go below this point.
+			* @return {Array} Array of nodes or null if it wasn't found.
+			*/
 		getParents: function(node, selector, root, collect) {
 			var self = this, selectorVal, result = [];
 
@@ -7013,12 +7013,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the specified element by ID or the input element if it isn't a string.
-		 *
-		 * @method get
-		 * @param {String/Element} n Element id to look for or element to just pass though.
-		 * @return {Element} Element matching the specified id or null if it wasn't found.
-		 */
+			* Returns the specified element by ID or the input element if it isn't a string.
+			*
+			* @method get
+			* @param {String/Element} n Element id to look for or element to just pass though.
+			* @return {Element} Element matching the specified id or null if it wasn't found.
+			*/
 		get: function(elm) {
 			var name;
 
@@ -7036,25 +7036,25 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the next node that matches selector or function
-		 *
-		 * @method getNext
-		 * @param {Node} node Node to find siblings from.
-		 * @param {String/function} selector Selector CSS expression or function.
-		 * @return {Node} Next node item matching the selector or null if it wasn't found.
-		 */
+			* Returns the next node that matches selector or function
+			*
+			* @method getNext
+			* @param {Node} node Node to find siblings from.
+			* @param {String/function} selector Selector CSS expression or function.
+			* @return {Node} Next node item matching the selector or null if it wasn't found.
+			*/
 		getNext: function(node, selector) {
 			return this._findSib(node, selector, 'nextSibling');
 		},
 
 		/**
-		 * Returns the previous node that matches selector or function
-		 *
-		 * @method getPrev
-		 * @param {Node} node Node to find siblings from.
-		 * @param {String/function} selector Selector CSS expression or function.
-		 * @return {Node} Previous node item matching the selector or null if it wasn't found.
-		 */
+			* Returns the previous node that matches selector or function
+			*
+			* @method getPrev
+			* @param {Node} node Node to find siblings from.
+			* @param {String/function} selector Selector CSS expression or function.
+			* @return {Node} Previous node item matching the selector or null if it wasn't found.
+			*/
 		getPrev: function(node, selector) {
 			return this._findSib(node, selector, 'previousSibling');
 		},
@@ -7062,21 +7062,21 @@ define("tinymce/dom/DOMUtils", [
 		// #ifndef jquery
 
 		/**
-		 * Selects specific elements by a CSS level 3 pattern. For example "div#a1 p.test".
-		 * This function is optimized for the most common patterns needed in TinyMCE but it also performs well enough
-		 * on more complex patterns.
-		 *
-		 * @method select
-		 * @param {String} selector CSS level 3 pattern to select/find elements by.
-		 * @param {Object} scope Optional root element/scope element to search in.
-		 * @return {Array} Array with all matched elements.
-		 * @example
-		 * // Adds a class to all paragraphs in the currently active editor
-		 * tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'someclass');
-		 *
-		 * // Adds a class to all spans that have the test class in the currently active editor
-		 * tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('span.test'), 'someclass')
-		 */
+			* Selects specific elements by a CSS level 3 pattern. For example "div#a1 p.test".
+			* This function is optimized for the most common patterns needed in TinyMCE but it also performs well enough
+			* on more complex patterns.
+			*
+			* @method select
+			* @param {String} selector CSS level 3 pattern to select/find elements by.
+			* @param {Object} scope Optional root element/scope element to search in.
+			* @return {Array} Array with all matched elements.
+			* @example
+			* // Adds a class to all paragraphs in the currently active editor
+			* tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'someclass');
+			*
+			* // Adds a class to all spans that have the test class in the currently active editor
+			* tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('span.test'), 'someclass')
+			*/
 		select: function(selector, scope) {
 			var self = this;
 
@@ -7085,12 +7085,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns true/false if the specified element matches the specified css pattern.
-		 *
-		 * @method is
-		 * @param {Node/NodeList} elm DOM node to match or an array of nodes to match.
-		 * @param {String} selector CSS pattern to match the element against.
-		 */
+			* Returns true/false if the specified element matches the specified css pattern.
+			*
+			* @method is
+			* @param {Node/NodeList} elm DOM node to match or an array of nodes to match.
+			* @param {String} selector CSS pattern to match the element against.
+			*/
 		is: function(elm, selector) {
 			var i;
 
@@ -7130,19 +7130,19 @@ define("tinymce/dom/DOMUtils", [
 		// #endif
 
 		/**
-		 * Adds the specified element to another element or elements.
-		 *
-		 * @method add
-		 * @param {String/Element/Array} parentElm Element id string, DOM node element or array of ids or elements to add to.
-		 * @param {String/Element} name Name of new element to add or existing element to add.
-		 * @param {Object} attrs Optional object collection with arguments to add to the new element(s).
-		 * @param {String} html Optional inner HTML contents to add for each element.
-		 * @return {Element/Array} Element that got created, or an array of created elements if multiple input elements
-		 * were passed in.
-		 * @example
-		 * // Adds a new paragraph to the end of the active editor
-		 * tinymce.activeEditor.dom.add(tinymce.activeEditor.getBody(), 'p', {title: 'my title'}, 'Some content');
-		 */
+			* Adds the specified element to another element or elements.
+			*
+			* @method add
+			* @param {String/Element/Array} parentElm Element id string, DOM node element or array of ids or elements to add to.
+			* @param {String/Element} name Name of new element to add or existing element to add.
+			* @param {Object} attrs Optional object collection with arguments to add to the new element(s).
+			* @param {String} html Optional inner HTML contents to add for each element.
+			* @return {Element/Array} Element that got created, or an array of created elements if multiple input elements
+			* were passed in.
+			* @example
+			* // Adds a new paragraph to the end of the active editor
+			* tinymce.activeEditor.dom.add(tinymce.activeEditor.getBody(), 'p', {title: 'my title'}, 'Some content');
+			*/
 		add: function(parentElm, name, attrs, html, create) {
 			var self = this;
 
@@ -7165,34 +7165,34 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Creates a new element.
-		 *
-		 * @method create
-		 * @param {String} name Name of new element.
-		 * @param {Object} attrs Optional object name/value collection with element attributes.
-		 * @param {String} html Optional HTML string to set as inner HTML of the element.
-		 * @return {Element} HTML DOM node element that got created.
-		 * @example
-		 * // Adds an element where the caret/selection is in the active editor
-		 * var el = tinymce.activeEditor.dom.create('div', {id: 'test', 'class': 'myclass'}, 'some content');
-		 * tinymce.activeEditor.selection.setNode(el);
-		 */
+			* Creates a new element.
+			*
+			* @method create
+			* @param {String} name Name of new element.
+			* @param {Object} attrs Optional object name/value collection with element attributes.
+			* @param {String} html Optional HTML string to set as inner HTML of the element.
+			* @return {Element} HTML DOM node element that got created.
+			* @example
+			* // Adds an element where the caret/selection is in the active editor
+			* var el = tinymce.activeEditor.dom.create('div', {id: 'test', 'class': 'myclass'}, 'some content');
+			* tinymce.activeEditor.selection.setNode(el);
+			*/
 		create: function(name, attrs, html) {
 			return this.add(this.doc.createElement(name), name, attrs, html, 1);
 		},
 
 		/**
-		 * Creates HTML string for element. The element will be closed unless an empty inner HTML string is passed in.
-		 *
-		 * @method createHTML
-		 * @param {String} name Name of new element.
-		 * @param {Object} attrs Optional object name/value collection with element attributes.
-		 * @param {String} html Optional HTML string to set as inner HTML of the element.
-		 * @return {String} String with new HTML element, for example: <a href="#">test</a>.
-		 * @example
-		 * // Creates a html chunk and inserts it at the current selection/caret location
-		 * tinymce.activeEditor.selection.setContent(tinymce.activeEditor.dom.createHTML('a', {href: 'test.html'}, 'some line'));
-		 */
+			* Creates HTML string for element. The element will be closed unless an empty inner HTML string is passed in.
+			*
+			* @method createHTML
+			* @param {String} name Name of new element.
+			* @param {Object} attrs Optional object name/value collection with element attributes.
+			* @param {String} html Optional HTML string to set as inner HTML of the element.
+			* @return {String} String with new HTML element, for example: <a href="#">test</a>.
+			* @example
+			* // Creates a html chunk and inserts it at the current selection/caret location
+			* tinymce.activeEditor.selection.setContent(tinymce.activeEditor.dom.createHTML('a', {href: 'test.html'}, 'some line'));
+			*/
 		createHTML: function(name, attrs, html) {
 			var outHtml = '', key;
 
@@ -7213,12 +7213,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Creates a document fragment out of the specified HTML string.
-		 *
-		 * @method createFragment
-		 * @param {String} html Html string to create fragment from.
-		 * @return {DocumentFragment} Document fragment node.
-		 */
+			* Creates a document fragment out of the specified HTML string.
+			*
+			* @method createFragment
+			* @param {String} html Html string to create fragment from.
+			* @return {DocumentFragment} Document fragment node.
+			*/
 		createFragment: function(html) {
 			var frag, node, doc = this.doc, container;
 
@@ -7237,21 +7237,21 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Removes/deletes the specified element(s) from the DOM.
-		 *
-		 * @method remove
-		 * @param {String/Element/Array} node ID of element or DOM element object or array containing multiple elements/ids.
-		 * @param {Boolean} keepChildren Optional state to keep children or not. If set to true all children will be
-		 * placed at the location of the removed element.
-		 * @return {Element/Array} HTML DOM element that got removed, or an array of removed elements if multiple input elements
-		 * were passed in.
-		 * @example
-		 * // Removes all paragraphs in the active editor
-		 * tinymce.activeEditor.dom.remove(tinymce.activeEditor.dom.select('p'));
-		 *
-		 * // Removes an element by id in the document
-		 * tinymce.DOM.remove('mydiv');
-		 */
+			* Removes/deletes the specified element(s) from the DOM.
+			*
+			* @method remove
+			* @param {String/Element/Array} node ID of element or DOM element object or array containing multiple elements/ids.
+			* @param {Boolean} keepChildren Optional state to keep children or not. If set to true all children will be
+			* placed at the location of the removed element.
+			* @return {Element/Array} HTML DOM element that got removed, or an array of removed elements if multiple input elements
+			* were passed in.
+			* @example
+			* // Removes all paragraphs in the active editor
+			* tinymce.activeEditor.dom.remove(tinymce.activeEditor.dom.select('p'));
+			*
+			* // Removes an element by id in the document
+			* tinymce.DOM.remove('mydiv');
+			*/
 		remove: function(node, keepChildren) {
 			node = this.$$(node);
 
@@ -7275,20 +7275,20 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Sets the CSS style value on a HTML element. The name can be a camelcase string
-		 * or the CSS style name like background-color.
-		 *
-		 * @method setStyle
-		 * @param {String/Element/Array} n HTML element/Element ID or Array of elements/ids to set CSS style value on.
-		 * @param {String} na Name of the style value to set.
-		 * @param {String} v Value to set on the style.
-		 * @example
-		 * // Sets a style value on all paragraphs in the currently active editor
-		 * tinymce.activeEditor.dom.setStyle(tinymce.activeEditor.dom.select('p'), 'background-color', 'red');
-		 *
-		 * // Sets a style value to an element by id in the current document
-		 * tinymce.DOM.setStyle('mydiv', 'background-color', 'red');
-		 */
+			* Sets the CSS style value on a HTML element. The name can be a camelcase string
+			* or the CSS style name like background-color.
+			*
+			* @method setStyle
+			* @param {String/Element/Array} n HTML element/Element ID or Array of elements/ids to set CSS style value on.
+			* @param {String} na Name of the style value to set.
+			* @param {String} v Value to set on the style.
+			* @example
+			* // Sets a style value on all paragraphs in the currently active editor
+			* tinymce.activeEditor.dom.setStyle(tinymce.activeEditor.dom.select('p'), 'background-color', 'red');
+			*
+			* // Sets a style value to an element by id in the current document
+			* tinymce.DOM.setStyle('mydiv', 'background-color', 'red');
+			*/
 		setStyle: function(elm, name, value) {
 			elm = this.$$(elm).css(name, value);
 
@@ -7298,14 +7298,14 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the current style or runtime/computed value of an element.
-		 *
-		 * @method getStyle
-		 * @param {String/Element} elm HTML element or element id string to get style from.
-		 * @param {String} name Style name to return.
-		 * @param {Boolean} computed Computed style.
-		 * @return {String} Current style or computed style value of an element.
-		 */
+			* Returns the current style or runtime/computed value of an element.
+			*
+			* @method getStyle
+			* @param {String/Element} elm HTML element or element id string to get style from.
+			* @param {String} name Style name to return.
+			* @param {Boolean} computed Computed style.
+			* @return {String} Current style or computed style value of an element.
+			*/
 		getStyle: function(elm, name, computed) {
 			elm = this.$$(elm);
 
@@ -7326,18 +7326,18 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Sets multiple styles on the specified element(s).
-		 *
-		 * @method setStyles
-		 * @param {Element/String/Array} e DOM element, element id string or array of elements/ids to set styles on.
-		 * @param {Object} o Name/Value collection of style items to add to the element(s).
-		 * @example
-		 * // Sets styles on all paragraphs in the currently active editor
-		 * tinymce.activeEditor.dom.setStyles(tinymce.activeEditor.dom.select('p'), {'background-color': 'red', 'color': 'green'});
-		 *
-		 * // Sets styles to an element by id in the current document
-		 * tinymce.DOM.setStyles('mydiv', {'background-color': 'red', 'color': 'green'});
-		 */
+			* Sets multiple styles on the specified element(s).
+			*
+			* @method setStyles
+			* @param {Element/String/Array} e DOM element, element id string or array of elements/ids to set styles on.
+			* @param {Object} o Name/Value collection of style items to add to the element(s).
+			* @example
+			* // Sets styles on all paragraphs in the currently active editor
+			* tinymce.activeEditor.dom.setStyles(tinymce.activeEditor.dom.select('p'), {'background-color': 'red', 'color': 'green'});
+			*
+			* // Sets styles to an element by id in the current document
+			* tinymce.DOM.setStyles('mydiv', {'background-color': 'red', 'color': 'green'});
+			*/
 		setStyles: function(elm, styles) {
 			elm = this.$$(elm).css(styles);
 
@@ -7347,11 +7347,11 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Removes all attributes from an element or elements.
-		 *
-		 * @method removeAllAttribs
-		 * @param {Element/String/Array} e DOM element, element id string or array of elements/ids to remove attributes from.
-		 */
+			* Removes all attributes from an element or elements.
+			*
+			* @method removeAllAttribs
+			* @param {Element/String/Array} e DOM element, element id string or array of elements/ids to remove attributes from.
+			*/
 		removeAllAttribs: function(e) {
 			return this.run(e, function(e) {
 				var i, attrs = e.attributes;
@@ -7362,19 +7362,19 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Sets the specified attribute of an element or elements.
-		 *
-		 * @method setAttrib
-		 * @param {Element/String/Array} e DOM element, element id string or array of elements/ids to set attribute on.
-		 * @param {String} n Name of attribute to set.
-		 * @param {String} v Value to set on the attribute - if this value is falsy like null, 0 or '' it will remove the attribute instead.
-		 * @example
-		 * // Sets class attribute on all paragraphs in the active editor
-		 * tinymce.activeEditor.dom.setAttrib(tinymce.activeEditor.dom.select('p'), 'class', 'myclass');
-		 *
-		 * // Sets class attribute on a specific element in the current page
-		 * tinymce.dom.setAttrib('mydiv', 'class', 'myclass');
-		 */
+			* Sets the specified attribute of an element or elements.
+			*
+			* @method setAttrib
+			* @param {Element/String/Array} e DOM element, element id string or array of elements/ids to set attribute on.
+			* @param {String} n Name of attribute to set.
+			* @param {String} v Value to set on the attribute - if this value is falsy like null, 0 or '' it will remove the attribute instead.
+			* @example
+			* // Sets class attribute on all paragraphs in the active editor
+			* tinymce.activeEditor.dom.setAttrib(tinymce.activeEditor.dom.select('p'), 'class', 'myclass');
+			*
+			* // Sets class attribute on a specific element in the current page
+			* tinymce.dom.setAttrib('mydiv', 'class', 'myclass');
+			*/
 		setAttrib: function(elm, name, value) {
 			var self = this, originalValue, hook, settings = self.settings;
 
@@ -7406,18 +7406,18 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Sets two or more specified attributes of an element or elements.
-		 *
-		 * @method setAttribs
-		 * @param {Element/String/Array} elm DOM element, element id string or array of elements/ids to set attributes on.
-		 * @param {Object} attrs Name/Value collection of attribute items to add to the element(s).
-		 * @example
-		 * // Sets class and title attributes on all paragraphs in the active editor
-		 * tinymce.activeEditor.dom.setAttribs(tinymce.activeEditor.dom.select('p'), {'class': 'myclass', title: 'some title'});
-		 *
-		 * // Sets class and title attributes on a specific element in the current page
-		 * tinymce.DOM.setAttribs('mydiv', {'class': 'myclass', title: 'some title'});
-		 */
+			* Sets two or more specified attributes of an element or elements.
+			*
+			* @method setAttribs
+			* @param {Element/String/Array} elm DOM element, element id string or array of elements/ids to set attributes on.
+			* @param {Object} attrs Name/Value collection of attribute items to add to the element(s).
+			* @example
+			* // Sets class and title attributes on all paragraphs in the active editor
+			* tinymce.activeEditor.dom.setAttribs(tinymce.activeEditor.dom.select('p'), {'class': 'myclass', title: 'some title'});
+			*
+			* // Sets class and title attributes on a specific element in the current page
+			* tinymce.DOM.setAttribs('mydiv', {'class': 'myclass', title: 'some title'});
+			*/
 		setAttribs: function(elm, attrs) {
 			var self = this;
 
@@ -7429,14 +7429,14 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the specified attribute by name.
-		 *
-		 * @method getAttrib
-		 * @param {String/Element} elm Element string id or DOM element to get attribute from.
-		 * @param {String} name Name of attribute to get.
-		 * @param {String} defaultVal Optional default value to return if the attribute didn't exist.
-		 * @return {String} Attribute value string, default value or null if the attribute wasn't found.
-		 */
+			* Returns the specified attribute by name.
+			*
+			* @method getAttrib
+			* @param {String/Element} elm Element string id or DOM element to get attribute from.
+			* @param {String} name Name of attribute to get.
+			* @param {String} defaultVal Optional default value to return if the attribute didn't exist.
+			* @return {String} Attribute value string, default value or null if the attribute wasn't found.
+			*/
 		getAttrib: function(elm, name, defaultVal) {
 			var self = this, hook, value;
 
@@ -7460,13 +7460,13 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the absolute x, y position of a node. The position will be returned in an object with x, y fields.
-		 *
-		 * @method getPos
-		 * @param {Element/String} elm HTML element or element id to get x, y position from.
-		 * @param {Element} rootElm Optional root element to stop calculations at.
-		 * @return {object} Absolute position of the specified element object with x, y fields.
-		 */
+			* Returns the absolute x, y position of a node. The position will be returned in an object with x, y fields.
+			*
+			* @method getPos
+			* @param {Element/String} elm HTML element or element id to get x, y position from.
+			* @param {Element} rootElm Optional root element to stop calculations at.
+			* @return {object} Absolute position of the specified element object with x, y fields.
+			*/
 		getPos: function(elm, rootElm) {
 			var self = this, x = 0, y = 0, offsetParent, doc = self.doc, body = doc.body, pos;
 
@@ -7507,36 +7507,36 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Parses the specified style value into an object collection. This parser will also
-		 * merge and remove any redundant items that browsers might have added. It will also convert non-hex
-		 * colors to hex values. Urls inside the styles will also be converted to absolute/relative based on settings.
-		 *
-		 * @method parseStyle
-		 * @param {String} cssText Style value to parse, for example: border:1px solid red;.
-		 * @return {Object} Object representation of that style, for example: {border: '1px solid red'}
-		 */
+			* Parses the specified style value into an object collection. This parser will also
+			* merge and remove any redundant items that browsers might have added. It will also convert non-hex
+			* colors to hex values. Urls inside the styles will also be converted to absolute/relative based on settings.
+			*
+			* @method parseStyle
+			* @param {String} cssText Style value to parse, for example: border:1px solid red;.
+			* @return {Object} Object representation of that style, for example: {border: '1px solid red'}
+			*/
 		parseStyle: function(cssText) {
 			return this.styles.parse(cssText);
 		},
 
 		/**
-		 * Serializes the specified style object into a string.
-		 *
-		 * @method serializeStyle
-		 * @param {Object} styles Object to serialize as string, for example: {border: '1px solid red'}
-		 * @param {String} name Optional element name.
-		 * @return {String} String representation of the style object, for example: border: 1px solid red.
-		 */
+			* Serializes the specified style object into a string.
+			*
+			* @method serializeStyle
+			* @param {Object} styles Object to serialize as string, for example: {border: '1px solid red'}
+			* @param {String} name Optional element name.
+			* @return {String} String representation of the style object, for example: border: 1px solid red.
+			*/
 		serializeStyle: function(styles, name) {
 			return this.styles.serialize(styles, name);
 		},
 
 		/**
-		 * Adds a style element at the top of the document with the specified cssText content.
-		 *
-		 * @method addStyle
-		 * @param {String} cssText CSS Text style to add to top of head of document.
-		 */
+			* Adds a style element at the top of the document with the specified cssText content.
+			*
+			* @method addStyle
+			* @param {String} cssText CSS Text style to add to top of head of document.
+			*/
 		addStyle: function(cssText) {
 			var self = this, doc = self.doc, head, styleElm;
 
@@ -7577,23 +7577,23 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Imports/loads the specified CSS file into the document bound to the class.
-		 *
-		 * @method loadCSS
-		 * @param {String} u URL to CSS file to load.
-		 * @example
-		 * // Loads a CSS file dynamically into the current document
-		 * tinymce.DOM.loadCSS('somepath/some.css');
-		 *
-		 * // Loads a CSS file into the currently active editor instance
-		 * tinymce.activeEditor.dom.loadCSS('somepath/some.css');
-		 *
-		 * // Loads a CSS file into an editor instance by id
-		 * tinymce.get('someid').dom.loadCSS('somepath/some.css');
-		 *
-		 * // Loads multiple CSS files into the current document
-		 * tinymce.DOM.loadCSS('somepath/some.css,somepath/someother.css');
-		 */
+			* Imports/loads the specified CSS file into the document bound to the class.
+			*
+			* @method loadCSS
+			* @param {String} u URL to CSS file to load.
+			* @example
+			* // Loads a CSS file dynamically into the current document
+			* tinymce.DOM.loadCSS('somepath/some.css');
+			*
+			* // Loads a CSS file into the currently active editor instance
+			* tinymce.activeEditor.dom.loadCSS('somepath/some.css');
+			*
+			* // Loads a CSS file into an editor instance by id
+			* tinymce.get('someid').dom.loadCSS('somepath/some.css');
+			*
+			* // Loads multiple CSS files into the current document
+			* tinymce.DOM.loadCSS('somepath/some.css,somepath/someother.css');
+			*/
 		loadCSS: function(url) {
 			var self = this, doc = self.doc, head;
 
@@ -7639,62 +7639,62 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Adds a class to the specified element or elements.
-		 *
-		 * @method addClass
-		 * @param {String/Element/Array} elm Element ID string or DOM element or array with elements or IDs.
-		 * @param {String} cls Class name to add to each element.
-		 * @return {String/Array} String with new class value or array with new class values for all elements.
-		 * @example
-		 * // Adds a class to all paragraphs in the active editor
-		 * tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'myclass');
-		 *
-		 * // Adds a class to a specific element in the current page
-		 * tinymce.DOM.addClass('mydiv', 'myclass');
-		 */
+			* Adds a class to the specified element or elements.
+			*
+			* @method addClass
+			* @param {String/Element/Array} elm Element ID string or DOM element or array with elements or IDs.
+			* @param {String} cls Class name to add to each element.
+			* @return {String/Array} String with new class value or array with new class values for all elements.
+			* @example
+			* // Adds a class to all paragraphs in the active editor
+			* tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'myclass');
+			*
+			* // Adds a class to a specific element in the current page
+			* tinymce.DOM.addClass('mydiv', 'myclass');
+			*/
 		addClass: function(elm, cls) {
 			this.$$(elm).addClass(cls);
 		},
 
 		/**
-		 * Removes a class from the specified element or elements.
-		 *
-		 * @method removeClass
-		 * @param {String/Element/Array} elm Element ID string or DOM element or array with elements or IDs.
-		 * @param {String} cls Class name to remove from each element.
-		 * @return {String/Array} String of remaining class name(s), or an array of strings if multiple input elements
-		 * were passed in.
-		 * @example
-		 * // Removes a class from all paragraphs in the active editor
-		 * tinymce.activeEditor.dom.removeClass(tinymce.activeEditor.dom.select('p'), 'myclass');
-		 *
-		 * // Removes a class from a specific element in the current page
-		 * tinymce.DOM.removeClass('mydiv', 'myclass');
-		 */
+			* Removes a class from the specified element or elements.
+			*
+			* @method removeClass
+			* @param {String/Element/Array} elm Element ID string or DOM element or array with elements or IDs.
+			* @param {String} cls Class name to remove from each element.
+			* @return {String/Array} String of remaining class name(s), or an array of strings if multiple input elements
+			* were passed in.
+			* @example
+			* // Removes a class from all paragraphs in the active editor
+			* tinymce.activeEditor.dom.removeClass(tinymce.activeEditor.dom.select('p'), 'myclass');
+			*
+			* // Removes a class from a specific element in the current page
+			* tinymce.DOM.removeClass('mydiv', 'myclass');
+			*/
 		removeClass: function(elm, cls) {
 			this.toggleClass(elm, cls, false);
 		},
 
 		/**
-		 * Returns true if the specified element has the specified class.
-		 *
-		 * @method hasClass
-		 * @param {String/Element} n HTML element or element id string to check CSS class on.
-		 * @param {String} c CSS class to check for.
-		 * @return {Boolean} true/false if the specified element has the specified class.
-		 */
+			* Returns true if the specified element has the specified class.
+			*
+			* @method hasClass
+			* @param {String/Element} n HTML element or element id string to check CSS class on.
+			* @param {String} c CSS class to check for.
+			* @return {Boolean} true/false if the specified element has the specified class.
+			*/
 		hasClass: function(elm, cls) {
 			return this.$$(elm).hasClass(cls);
 		},
 
 		/**
-		 * Toggles the specified class on/off.
-		 *
-		 * @method toggleClass
-		 * @param {Element} elm Element to toggle class on.
-		 * @param {[type]} cls Class to toggle on/off.
-		 * @param {[type]} state Optional state to set.
-		 */
+			* Toggles the specified class on/off.
+			*
+			* @method toggleClass
+			* @param {Element} elm Element to toggle class on.
+			* @param {[type]} cls Class to toggle on/off.
+			* @param {[type]} state Optional state to set.
+			*/
 		toggleClass: function(elm, cls, state) {
 			this.$$(elm).toggleClass(cls, state).each(function() {
 				if (this.className === '') {
@@ -7704,65 +7704,65 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Shows the specified element(s) by ID by setting the "display" style.
-		 *
-		 * @method show
-		 * @param {String/Element/Array} elm ID of DOM element or DOM element or array with elements or IDs to show.
-		 */
+			* Shows the specified element(s) by ID by setting the "display" style.
+			*
+			* @method show
+			* @param {String/Element/Array} elm ID of DOM element or DOM element or array with elements or IDs to show.
+			*/
 		show: function(elm) {
 			this.$$(elm).show();
 		},
 
 		/**
-		 * Hides the specified element(s) by ID by setting the "display" style.
-		 *
-		 * @method hide
-		 * @param {String/Element/Array} e ID of DOM element or DOM element or array with elements or IDs to hide.
-		 * @example
-		 * // Hides an element by id in the document
-		 * tinymce.DOM.hide('myid');
-		 */
+			* Hides the specified element(s) by ID by setting the "display" style.
+			*
+			* @method hide
+			* @param {String/Element/Array} e ID of DOM element or DOM element or array with elements or IDs to hide.
+			* @example
+			* // Hides an element by id in the document
+			* tinymce.DOM.hide('myid');
+			*/
 		hide: function(elm) {
 			this.$$(elm).hide();
 		},
 
 		/**
-		 * Returns true/false if the element is hidden or not by checking the "display" style.
-		 *
-		 * @method isHidden
-		 * @param {String/Element} e Id or element to check display state on.
-		 * @return {Boolean} true/false if the element is hidden or not.
-		 */
+			* Returns true/false if the element is hidden or not by checking the "display" style.
+			*
+			* @method isHidden
+			* @param {String/Element} e Id or element to check display state on.
+			* @return {Boolean} true/false if the element is hidden or not.
+			*/
 		isHidden: function(elm) {
 			return this.$$(elm).css('display') == 'none';
 		},
 
 		/**
-		 * Returns a unique id. This can be useful when generating elements on the fly.
-		 * This method will not check if the element already exists.
-		 *
-		 * @method uniqueId
-		 * @param {String} prefix Optional prefix to add in front of all ids - defaults to "mce_".
-		 * @return {String} Unique id.
-		 */
+			* Returns a unique id. This can be useful when generating elements on the fly.
+			* This method will not check if the element already exists.
+			*
+			* @method uniqueId
+			* @param {String} prefix Optional prefix to add in front of all ids - defaults to "mce_".
+			* @return {String} Unique id.
+			*/
 		uniqueId: function(prefix) {
 			return (!prefix ? 'mce_' : prefix) + (this.counter++);
 		},
 
 		/**
-		 * Sets the specified HTML content inside the element or elements. The HTML will first be processed. This means
-		 * URLs will get converted, hex color values fixed etc. Check processHTML for details.
-		 *
-		 * @method setHTML
-		 * @param {Element/String/Array} elm DOM element, element id string or array of elements/ids to set HTML inside of.
-		 * @param {String} h HTML content to set as inner HTML of the element.
-		 * @example
-		 * // Sets the inner HTML of all paragraphs in the active editor
-		 * tinymce.activeEditor.dom.setHTML(tinymce.activeEditor.dom.select('p'), 'some inner html');
-		 *
-		 * // Sets the inner HTML of an element by id in the document
-		 * tinymce.DOM.setHTML('mydiv', 'some inner html');
-		 */
+			* Sets the specified HTML content inside the element or elements. The HTML will first be processed. This means
+			* URLs will get converted, hex color values fixed etc. Check processHTML for details.
+			*
+			* @method setHTML
+			* @param {Element/String/Array} elm DOM element, element id string or array of elements/ids to set HTML inside of.
+			* @param {String} h HTML content to set as inner HTML of the element.
+			* @example
+			* // Sets the inner HTML of all paragraphs in the active editor
+			* tinymce.activeEditor.dom.setHTML(tinymce.activeEditor.dom.select('p'), 'some inner html');
+			*
+			* // Sets the inner HTML of an element by id in the document
+			* tinymce.DOM.setHTML('mydiv', 'some inner html');
+			*/
 		setHTML: function(elm, html) {
 			elm = this.$$(elm);
 
@@ -7795,15 +7795,15 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the outer HTML of an element.
-		 *
-		 * @method getOuterHTML
-		 * @param {String/Element} elm Element ID or element object to get outer HTML from.
-		 * @return {String} Outer HTML string.
-		 * @example
-		 * tinymce.DOM.getOuterHTML(editorElement);
-		 * tinymce.activeEditor.getOuterHTML(tinymce.activeEditor.getBody());
-		 */
+			* Returns the outer HTML of an element.
+			*
+			* @method getOuterHTML
+			* @param {String/Element} elm Element ID or element object to get outer HTML from.
+			* @return {String} Outer HTML string.
+			* @example
+			* tinymce.DOM.getOuterHTML(editorElement);
+			* tinymce.activeEditor.getOuterHTML(tinymce.activeEditor.getBody());
+			*/
 		getOuterHTML: function(elm) {
 			elm = this.get(elm);
 
@@ -7812,19 +7812,19 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Sets the specified outer HTML on an element or elements.
-		 *
-		 * @method setOuterHTML
-		 * @param {Element/String/Array} elm DOM element, element id string or array of elements/ids to set outer HTML on.
-		 * @param {Object} html HTML code to set as outer value for the element.
-		 * @param {Document} doc Optional document scope to use in this process - defaults to the document of the DOM class.
-		 * @example
-		 * // Sets the outer HTML of all paragraphs in the active editor
-		 * tinymce.activeEditor.dom.setOuterHTML(tinymce.activeEditor.dom.select('p'), '<div>some html</div>');
-		 *
-		 * // Sets the outer HTML of an element by id in the document
-		 * tinymce.DOM.setOuterHTML('mydiv', '<div>some html</div>');
-		 */
+			* Sets the specified outer HTML on an element or elements.
+			*
+			* @method setOuterHTML
+			* @param {Element/String/Array} elm DOM element, element id string or array of elements/ids to set outer HTML on.
+			* @param {Object} html HTML code to set as outer value for the element.
+			* @param {Document} doc Optional document scope to use in this process - defaults to the document of the DOM class.
+			* @example
+			* // Sets the outer HTML of all paragraphs in the active editor
+			* tinymce.activeEditor.dom.setOuterHTML(tinymce.activeEditor.dom.select('p'), '<div>some html</div>');
+			*
+			* // Sets the outer HTML of an element by id in the document
+			* tinymce.DOM.setOuterHTML('mydiv', '<div>some html</div>');
+			*/
 		setOuterHTML: function(elm, html) {
 			var self = this;
 
@@ -7845,31 +7845,31 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Entity decodes a string. This method decodes any HTML entities, such as &aring;.
-		 *
-		 * @method decode
-		 * @param {String} s String to decode entities on.
-		 * @return {String} Entity decoded string.
-		 */
+			* Entity decodes a string. This method decodes any HTML entities, such as &aring;.
+			*
+			* @method decode
+			* @param {String} s String to decode entities on.
+			* @return {String} Entity decoded string.
+			*/
 		decode: Entities.decode,
 
 		/**
-		 * Entity encodes a string. This method encodes the most common entities, such as <>"&.
-		 *
-		 * @method encode
-		 * @param {String} text String to encode with entities.
-		 * @return {String} Entity encoded string.
-		 */
+			* Entity encodes a string. This method encodes the most common entities, such as <>"&.
+			*
+			* @method encode
+			* @param {String} text String to encode with entities.
+			* @return {String} Entity encoded string.
+			*/
 		encode: Entities.encodeAllRaw,
 
 		/**
-		 * Inserts an element after the reference element.
-		 *
-		 * @method insertAfter
-		 * @param {Element} node Element to insert after the reference.
-		 * @param {Element/String/Array} reference_node Reference element, element id or array of elements to insert after.
-		 * @return {Element/Array} Element that got added or an array with elements.
-		 */
+			* Inserts an element after the reference element.
+			*
+			* @method insertAfter
+			* @param {Element} node Element to insert after the reference.
+			* @param {Element/String/Array} reference_node Reference element, element id or array of elements to insert after.
+			* @return {Element/Array} Element that got added or an array with elements.
+			*/
 		insertAfter: function(node, referenceNode) {
 			referenceNode = this.get(referenceNode);
 
@@ -7890,14 +7890,14 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Replaces the specified element or elements with the new element specified. The new element will
-		 * be cloned if multiple input elements are passed in.
-		 *
-		 * @method replace
-		 * @param {Element} newElm New element to replace old ones with.
-		 * @param {Element/String/Array} oldELm Element DOM node, element id or array of elements or ids to replace.
-		 * @param {Boolean} k Optional keep children state, if set to true child nodes from the old object will be added to new ones.
-		 */
+			* Replaces the specified element or elements with the new element specified. The new element will
+			* be cloned if multiple input elements are passed in.
+			*
+			* @method replace
+			* @param {Element} newElm New element to replace old ones with.
+			* @param {Element/String/Array} oldELm Element DOM node, element id or array of elements or ids to replace.
+			* @param {Boolean} k Optional keep children state, if set to true child nodes from the old object will be added to new ones.
+			*/
 		replace: function(newElm, oldElm, keepChildren) {
 			var self = this;
 
@@ -7917,13 +7917,13 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Renames the specified element and keeps its attributes and children.
-		 *
-		 * @method rename
-		 * @param {Element} elm Element to rename.
-		 * @param {String} name Name of the new element.
-		 * @return {Element} New element or the old element if it needed renaming.
-		 */
+			* Renames the specified element and keeps its attributes and children.
+			*
+			* @method rename
+			* @param {Element} elm Element to rename.
+			* @param {String} name Name of the new element.
+			* @return {Element} New element or the old element if it needed renaming.
+			*/
 		rename: function(elm, name) {
 			var self = this, newElm;
 
@@ -7944,13 +7944,13 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Find the common ancestor of two elements. This is a shorter method than using the DOM Range logic.
-		 *
-		 * @method findCommonAncestor
-		 * @param {Element} a Element to find common ancestor of.
-		 * @param {Element} b Element to find common ancestor of.
-		 * @return {Element} Common ancestor element of the two input elements.
-		 */
+			* Find the common ancestor of two elements. This is a shorter method than using the DOM Range logic.
+			*
+			* @method findCommonAncestor
+			* @param {Element} a Element to find common ancestor of.
+			* @param {Element} b Element to find common ancestor of.
+			* @return {Element} Common ancestor element of the two input elements.
+			*/
 		findCommonAncestor: function(a, b) {
 			var ps = a, pe;
 
@@ -7976,25 +7976,25 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Parses the specified RGB color value and returns a hex version of that color.
-		 *
-		 * @method toHex
-		 * @param {String} rgbVal RGB string value like rgb(1,2,3)
-		 * @return {String} Hex version of that RGB value like #FF00FF.
-		 */
+			* Parses the specified RGB color value and returns a hex version of that color.
+			*
+			* @method toHex
+			* @param {String} rgbVal RGB string value like rgb(1,2,3)
+			* @return {String} Hex version of that RGB value like #FF00FF.
+			*/
 		toHex: function(rgbVal) {
 			return this.styles.toHex(Tools.trim(rgbVal));
 		},
 
 		/**
-		 * Executes the specified function on the element by id or dom element node or array of elements/id.
-		 *
-		 * @method run
-		 * @param {String/Element/Array} Element ID or DOM element object or array with ids or elements.
-		 * @param {function} f Function to execute for each item.
-		 * @param {Object} s Optional scope to execute the function in.
-		 * @return {Object/Array} Single object, or an array of objects if multiple input elements were passed in.
-		 */
+			* Executes the specified function on the element by id or dom element node or array of elements/id.
+			*
+			* @method run
+			* @param {String/Element/Array} Element ID or DOM element object or array with ids or elements.
+			* @param {function} f Function to execute for each item.
+			* @param {Object} s Optional scope to execute the function in.
+			* @return {Object/Array} Single object, or an array of objects if multiple input elements were passed in.
+			*/
 		run: function(elm, func, scope) {
 			var self = this, result;
 
@@ -8027,12 +8027,12 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns a NodeList with attributes for the element.
-		 *
-		 * @method getAttribs
-		 * @param {HTMLElement/string} elm Element node or string id to get attributes from.
-		 * @return {NodeList} NodeList with attributes.
-		 */
+			* Returns a NodeList with attributes for the element.
+			*
+			* @method getAttribs
+			* @param {HTMLElement/string} elm Element node or string id to get attributes from.
+			* @return {NodeList} NodeList with attributes.
+			*/
 		getAttribs: function(elm) {
 			var attrs;
 
@@ -8068,14 +8068,14 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns true/false if the specified node is to be considered empty or not.
-		 *
-		 * @example
-		 * tinymce.DOM.isEmpty(node, {img: true});
-		 * @method isEmpty
-		 * @param {Object} elements Optional name/value object with elements that are automatically treated as non-empty elements.
-		 * @return {Boolean} true/false if the node is empty or not.
-		 */
+			* Returns true/false if the specified node is to be considered empty or not.
+			*
+			* @example
+			* tinymce.DOM.isEmpty(node, {img: true});
+			* @method isEmpty
+			* @param {Object} elements Optional name/value object with elements that are automatically treated as non-empty elements.
+			* @return {Boolean} true/false if the node is empty or not.
+			*/
 		isEmpty: function(node, elements) {
 			var self = this, i, attributes, type, walker, name, brCount = 0;
 
@@ -8132,15 +8132,15 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Creates a new DOM Range object. This will use the native DOM Range API if it's
-		 * available. If it's not, it will fall back to the custom TinyMCE implementation.
-		 *
-		 * @method createRng
-		 * @return {DOMRange} DOM Range object.
-		 * @example
-		 * var rng = tinymce.DOM.createRng();
-		 * alert(rng.startContainer + "," + rng.startOffset);
-		 */
+			* Creates a new DOM Range object. This will use the native DOM Range API if it's
+			* available. If it's not, it will fall back to the custom TinyMCE implementation.
+			*
+			* @method createRng
+			* @return {DOMRange} DOM Range object.
+			* @example
+			* var rng = tinymce.DOM.createRng();
+			* alert(rng.startContainer + "," + rng.startOffset);
+			*/
 		createRng: function() {
 			var doc = this.doc;
 
@@ -8148,13 +8148,13 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Returns the index of the specified node within its parent.
-		 *
-		 * @method nodeIndex
-		 * @param {Node} node Node to look for.
-		 * @param {boolean} normalized Optional true/false state if the index is what it would be after a normalization.
-		 * @return {Number} Index of the specified node.
-		 */
+			* Returns the index of the specified node within its parent.
+			*
+			* @method nodeIndex
+			* @param {Node} node Node to look for.
+			* @param {boolean} normalized Optional true/false state if the index is what it would be after a normalization.
+			* @return {Number} Index of the specified node.
+			*/
 		nodeIndex: function(node, normalized) {
 			var idx = 0, lastNodeType, nodeType;
 
@@ -8177,16 +8177,16 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Splits an element into two new elements and places the specified split
-		 * element or elements between the new ones. For example splitting the paragraph at the bold element in
-		 * this example <p>abc<b>abc</b>123</p> would produce <p>abc</p><b>abc</b><p>123</p>.
-		 *
-		 * @method split
-		 * @param {Element} parentElm Parent element to split.
-		 * @param {Element} splitElm Element to split at.
-		 * @param {Element} replacementElm Optional replacement element to replace the split element with.
-		 * @return {Element} Returns the split element or the replacement element if that is specified.
-		 */
+			* Splits an element into two new elements and places the specified split
+			* element or elements between the new ones. For example splitting the paragraph at the bold element in
+			* this example <p>abc<b>abc</b>123</p> would produce <p>abc</p><b>abc</b><p>123</p>.
+			*
+			* @method split
+			* @param {Element} parentElm Parent element to split.
+			* @param {Element} splitElm Element to split at.
+			* @param {Element} replacementElm Optional replacement element to replace the split element with.
+			* @return {Element} Returns the split element or the replacement element if that is specified.
+			*/
 		split: function(parentElm, splitElm, replacementElm) {
 			var self = this, r = self.createRng(), bef, aft, pa;
 
@@ -8279,16 +8279,16 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Adds an event handler to the specified object.
-		 *
-		 * @method bind
-		 * @param {Element/Document/Window/Array} target Target element to bind events to.
-		 * handler to or an array of elements/ids/documents.
-		 * @param {String} name Name of event handler to add, for example: click.
-		 * @param {function} func Function to execute when the event occurs.
-		 * @param {Object} scope Optional scope to execute the function in.
-		 * @return {function} Function callback handler the same as the one passed in.
-		 */
+			* Adds an event handler to the specified object.
+			*
+			* @method bind
+			* @param {Element/Document/Window/Array} target Target element to bind events to.
+			* handler to or an array of elements/ids/documents.
+			* @param {String} name Name of event handler to add, for example: click.
+			* @param {function} func Function to execute when the event occurs.
+			* @param {Object} scope Optional scope to execute the function in.
+			* @return {function} Function callback handler the same as the one passed in.
+			*/
 		bind: function(target, name, func, scope) {
 			var self = this;
 
@@ -8311,15 +8311,15 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Removes the specified event handler by name and function from an element or collection of elements.
-		 *
-		 * @method unbind
-		 * @param {Element/Document/Window/Array} target Target element to unbind events on.
-		 * @param {String} name Event handler name, for example: "click"
-		 * @param {function} func Function to remove.
-		 * @return {bool/Array} Bool state of true if the handler was removed, or an array of states if multiple input elements
-		 * were passed in.
-		 */
+			* Removes the specified event handler by name and function from an element or collection of elements.
+			*
+			* @method unbind
+			* @param {Element/Document/Window/Array} target Target element to unbind events on.
+			* @param {String} name Event handler name, for example: "click"
+			* @param {function} func Function to remove.
+			* @return {bool/Array} Bool state of true if the handler was removed, or an array of states if multiple input elements
+			* were passed in.
+			*/
 		unbind: function(target, name, func) {
 			var self = this, i;
 
@@ -8350,14 +8350,14 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Fires the specified event name with object on target.
-		 *
-		 * @method fire
-		 * @param {Node/Document/Window} target Target element or object to fire event on.
-		 * @param {String} name Name of the event to fire.
-		 * @param {Object} evt Event object to send.
-		 * @return {Event} Event object.
-		 */
+			* Fires the specified event name with object on target.
+			*
+			* @method fire
+			* @param {Node/Document/Window} target Target element or object to fire event on.
+			* @param {String} name Name of the event to fire.
+			* @param {Object} evt Event object to send.
+			* @return {Event} Event object.
+			*/
 		fire: function(target, name, evt) {
 			return this.events.fire(target, name, evt);
 		},
@@ -8396,10 +8396,10 @@ define("tinymce/dom/DOMUtils", [
 		},
 
 		/**
-		 * Destroys all internal references to the DOM to solve IE leak issues.
-		 *
-		 * @method destroy
-		 */
+			* Destroys all internal references to the DOM to solve IE leak issues.
+			*
+			* @method destroy
+			*/
 		destroy: function() {
 			var self = this;
 
@@ -8473,15 +8473,15 @@ define("tinymce/dom/DOMUtils", [
 	};
 
 	/**
-	 * Instance of DOMUtils for the current document.
-	 *
-	 * @static
-	 * @property DOM
-	 * @type tinymce.dom.DOMUtils
-	 * @example
-	 * // Example of how to add a class to some element by id
-	 * tinymce.DOM.addClass('someid', 'someclass');
-	 */
+		* Instance of DOMUtils for the current document.
+		*
+		* @static
+		* @property DOM
+		* @type tinymce.dom.DOMUtils
+		* @example
+		* // Example of how to add a class to some element by id
+		* tinymce.DOM.addClass('someid', 'someclass');
+		*/
 	DOMUtils.DOM = new DOMUtils(document);
 
 	return DOMUtils;
@@ -8490,42 +8490,42 @@ define("tinymce/dom/DOMUtils", [
 // Included from: classes/dom/ScriptLoader.js
 
 /**
- * ScriptLoader.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ScriptLoader.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*globals console*/
 
 /**
- * This class handles asynchronous/synchronous loading of JavaScript files it will execute callbacks
- * when various items gets loaded. This class is useful to load external JavaScript files.
- *
- * @class tinymce.dom.ScriptLoader
- * @example
- * // Load a script from a specific URL using the global script loader
- * tinymce.ScriptLoader.load('somescript.js');
- *
- * // Load a script using a unique instance of the script loader
- * var scriptLoader = new tinymce.dom.ScriptLoader();
- *
- * scriptLoader.load('somescript.js');
- *
- * // Load multiple scripts
- * var scriptLoader = new tinymce.dom.ScriptLoader();
- *
- * scriptLoader.add('somescript1.js');
- * scriptLoader.add('somescript2.js');
- * scriptLoader.add('somescript3.js');
- *
- * scriptLoader.loadQueue(function() {
- *    alert('All scripts are now loaded.');
- * });
- */
+	* This class handles asynchronous/synchronous loading of JavaScript files it will execute callbacks
+	* when various items gets loaded. This class is useful to load external JavaScript files.
+	*
+	* @class tinymce.dom.ScriptLoader
+	* @example
+	* // Load a script from a specific URL using the global script loader
+	* tinymce.ScriptLoader.load('somescript.js');
+	*
+	* // Load a script using a unique instance of the script loader
+	* var scriptLoader = new tinymce.dom.ScriptLoader();
+	*
+	* scriptLoader.load('somescript.js');
+	*
+	* // Load multiple scripts
+	* var scriptLoader = new tinymce.dom.ScriptLoader();
+	*
+	* scriptLoader.add('somescript1.js');
+	* scriptLoader.add('somescript2.js');
+	* scriptLoader.add('somescript3.js');
+	*
+	* scriptLoader.loadQueue(function() {
+	*    alert('All scripts are now loaded.');
+	* });
+	*/
 define("tinymce/dom/ScriptLoader", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/util/Tools"
@@ -8545,13 +8545,13 @@ define("tinymce/dom/ScriptLoader", [
 			undef;
 
 		/**
-		 * Loads a specific script directly without adding it to the load queue.
-		 *
-		 * @method load
-		 * @param {String} url Absolute URL to script to add.
-		 * @param {function} callback Optional callback function to execute ones this script gets loaded.
-		 * @param {Object} scope Optional scope to execute callback in.
-		 */
+			* Loads a specific script directly without adding it to the load queue.
+			*
+			* @method load
+			* @param {String} url Absolute URL to script to add.
+			* @param {function} callback Optional callback function to execute ones this script gets loaded.
+			* @param {Object} scope Optional scope to execute callback in.
+			*/
 		function loadScript(url, callback) {
 			var dom = DOM, elm, id;
 
@@ -8607,35 +8607,35 @@ define("tinymce/dom/ScriptLoader", [
 		}
 
 		/**
-		 * Returns true/false if a script has been loaded or not.
-		 *
-		 * @method isDone
-		 * @param {String} url URL to check for.
-		 * @return {Boolean} true/false if the URL is loaded.
-		 */
+			* Returns true/false if a script has been loaded or not.
+			*
+			* @method isDone
+			* @param {String} url URL to check for.
+			* @return {Boolean} true/false if the URL is loaded.
+			*/
 		this.isDone = function(url) {
 			return states[url] == LOADED;
 		};
 
 		/**
-		 * Marks a specific script to be loaded. This can be useful if a script got loaded outside
-		 * the script loader or to skip it from loading some script.
-		 *
-		 * @method markDone
-		 * @param {string} u Absolute URL to the script to mark as loaded.
-		 */
+			* Marks a specific script to be loaded. This can be useful if a script got loaded outside
+			* the script loader or to skip it from loading some script.
+			*
+			* @method markDone
+			* @param {string} u Absolute URL to the script to mark as loaded.
+			*/
 		this.markDone = function(url) {
 			states[url] = LOADED;
 		};
 
 		/**
-		 * Adds a specific script to the load queue of the script loader.
-		 *
-		 * @method add
-		 * @param {String} url Absolute URL to script to add.
-		 * @param {function} callback Optional callback function to execute ones this script gets loaded.
-		 * @param {Object} scope Optional scope to execute callback in.
-		 */
+			* Adds a specific script to the load queue of the script loader.
+			*
+			* @method add
+			* @param {String} url Absolute URL to script to add.
+			* @param {function} callback Optional callback function to execute ones this script gets loaded.
+			* @param {Object} scope Optional scope to execute callback in.
+			*/
 		this.add = this.load = function(url, callback, scope) {
 			var state = states[url];
 
@@ -8659,25 +8659,25 @@ define("tinymce/dom/ScriptLoader", [
 		};
 
 		/**
-		 * Starts the loading of the queue.
-		 *
-		 * @method loadQueue
-		 * @param {function} callback Optional callback to execute when all queued items are loaded.
-		 * @param {Object} scope Optional scope to execute the callback in.
-		 */
+			* Starts the loading of the queue.
+			*
+			* @method loadQueue
+			* @param {function} callback Optional callback to execute when all queued items are loaded.
+			* @param {Object} scope Optional scope to execute the callback in.
+			*/
 		this.loadQueue = function(callback, scope) {
 			this.loadScripts(queue, callback, scope);
 		};
 
 		/**
-		 * Loads the specified queue of files and executes the callback ones they are loaded.
-		 * This method is generally not used outside this class but it might be useful in some scenarios.
-		 *
-		 * @method loadScripts
-		 * @param {Array} scripts Array of queue items to load.
-		 * @param {function} callback Optional callback to execute ones all items are loaded.
-		 * @param {Object} scope Optional scope to execute callback in.
-		 */
+			* Loads the specified queue of files and executes the callback ones they are loaded.
+			* This method is generally not used outside this class but it might be useful in some scenarios.
+			*
+			* @method loadScripts
+			* @param {Array} scripts Array of queue items to load.
+			* @param {function} callback Optional callback to execute ones all items are loaded.
+			* @param {Object} scope Optional scope to execute callback in.
+			*/
 		this.loadScripts = function(scripts, callback, scope) {
 			var loadScripts;
 
@@ -8748,20 +8748,20 @@ define("tinymce/dom/ScriptLoader", [
 // Included from: classes/AddOnManager.js
 
 /**
- * AddOnManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* AddOnManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles the loading of themes/plugins or other add-ons and their language packs.
- *
- * @class tinymce.AddOnManager
- */
+	* This class handles the loading of themes/plugins or other add-ons and their language packs.
+	*
+	* @class tinymce.AddOnManager
+	*/
 define("tinymce/AddOnManager", [
 	"tinymce/dom/ScriptLoader",
 	"tinymce/util/Tools"
@@ -8778,12 +8778,12 @@ define("tinymce/AddOnManager", [
 
 	AddOnManager.prototype = {
 		/**
-		 * Returns the specified add on by the short name.
-		 *
-		 * @method get
-		 * @param {String} name Add-on to look for.
-		 * @return {tinymce.Theme/tinymce.Plugin} Theme or plugin add-on instance or undefined.
-		 */
+			* Returns the specified add on by the short name.
+			*
+			* @method get
+			* @param {String} name Add-on to look for.
+			* @return {tinymce.Theme/tinymce.Plugin} Theme or plugin add-on instance or undefined.
+			*/
 		get: function(name) {
 			if (this.lookup[name]) {
 				return this.lookup[name].instance;
@@ -8803,12 +8803,12 @@ define("tinymce/AddOnManager", [
 		},
 
 		/**
-		 * Loads a language pack for the specified add-on.
-		 *
-		 * @method requireLangPack
-		 * @param {String} name Short name of the add-on.
-		 * @param {String} languages Optional comma or space separated list of languages to check if it matches the name.
-		 */
+			* Loads a language pack for the specified add-on.
+			*
+			* @method requireLangPack
+			* @param {String} name Short name of the add-on.
+			* @param {String} languages Optional comma or space separated list of languages to check if it matches the name.
+			*/
 		requireLangPack: function(name, languages) {
 			var language = AddOnManager.language;
 
@@ -8829,31 +8829,31 @@ define("tinymce/AddOnManager", [
 		},
 
 		/**
-		 * Adds a instance of the add-on by it's short name.
-		 *
-		 * @method add
-		 * @param {String} id Short name/id for the add-on.
-		 * @param {tinymce.Theme/tinymce.Plugin} addOn Theme or plugin to add.
-		 * @return {tinymce.Theme/tinymce.Plugin} The same theme or plugin instance that got passed in.
-		 * @example
-		 * // Create a simple plugin
-		 * tinymce.create('tinymce.plugins.TestPlugin', {
-		 *   TestPlugin: function(ed, url) {
-		 *   ed.on('click', function(e) {
-		 *      ed.windowManager.alert('Hello World!');
-		 *   });
-		 *   }
-		 * });
-		 *
-		 * // Register plugin using the add method
-		 * tinymce.PluginManager.add('test', tinymce.plugins.TestPlugin);
-		 *
-		 * // Initialize TinyMCE
-		 * tinymce.init({
-		 *  ...
-		 *  plugins: '-test' // Init the plugin but don't try to load it
-		 * });
-		 */
+			* Adds a instance of the add-on by it's short name.
+			*
+			* @method add
+			* @param {String} id Short name/id for the add-on.
+			* @param {tinymce.Theme/tinymce.Plugin} addOn Theme or plugin to add.
+			* @return {tinymce.Theme/tinymce.Plugin} The same theme or plugin instance that got passed in.
+			* @example
+			* // Create a simple plugin
+			* tinymce.create('tinymce.plugins.TestPlugin', {
+			*   TestPlugin: function(ed, url) {
+			*   ed.on('click', function(e) {
+			*      ed.windowManager.alert('Hello World!');
+			*   });
+			*   }
+			* });
+			*
+			* // Register plugin using the add method
+			* tinymce.PluginManager.add('test', tinymce.plugins.TestPlugin);
+			*
+			* // Initialize TinyMCE
+			* tinymce.init({
+			*  ...
+			*  plugins: '-test' // Init the plugin but don't try to load it
+			* });
+			*/
 		add: function(id, addOn, dependencies) {
 			this.items.push(addOn);
 			this.lookup[id] = {instance: addOn, dependencies: dependencies};
@@ -8870,14 +8870,14 @@ define("tinymce/AddOnManager", [
 		},
 
 		/**
-		 * Add a set of components that will make up the add-on. Using the url of the add-on name as the base url.
-		 * This should be used in development mode.  A new compressor/javascript munger process will ensure that the
-		 * components are put together into the plugin.js file and compressed correctly.
-		 *
-		 * @method addComponents
-		 * @param {String} pluginName name of the plugin to load scripts from (will be used to get the base url for the plugins).
-		 * @param {Array} scripts Array containing the names of the scripts to load.
-		 */
+			* Add a set of components that will make up the add-on. Using the url of the add-on name as the base url.
+			* This should be used in development mode.  A new compressor/javascript munger process will ensure that the
+			* components are put together into the plugin.js file and compressed correctly.
+			*
+			* @method addComponents
+			* @param {String} pluginName name of the plugin to load scripts from (will be used to get the base url for the plugins).
+			* @param {Array} scripts Array containing the names of the scripts to load.
+			*/
 		addComponents: function(pluginName, scripts) {
 			var pluginUrl = this.urls[pluginName];
 
@@ -8887,23 +8887,23 @@ define("tinymce/AddOnManager", [
 		},
 
 		/**
-		 * Loads an add-on from a specific url.
-		 *
-		 * @method load
-		 * @param {String} name Short name of the add-on that gets loaded.
-		 * @param {String} addOnUrl URL to the add-on that will get loaded.
-		 * @param {function} callback Optional callback to execute ones the add-on is loaded.
-		 * @param {Object} scope Optional scope to execute the callback in.
-		 * @example
-		 * // Loads a plugin from an external URL
-		 * tinymce.PluginManager.load('myplugin', '/some/dir/someplugin/plugin.js');
-		 *
-		 * // Initialize TinyMCE
-		 * tinymce.init({
-		 *  ...
-		 *  plugins: '-myplugin' // Don't try to load it again
-		 * });
-		 */
+			* Loads an add-on from a specific url.
+			*
+			* @method load
+			* @param {String} name Short name of the add-on that gets loaded.
+			* @param {String} addOnUrl URL to the add-on that will get loaded.
+			* @param {function} callback Optional callback to execute ones the add-on is loaded.
+			* @param {Object} scope Optional scope to execute the callback in.
+			* @example
+			* // Loads a plugin from an external URL
+			* tinymce.PluginManager.load('myplugin', '/some/dir/someplugin/plugin.js');
+			*
+			* // Initialize TinyMCE
+			* tinymce.init({
+			*  ...
+			*  plugins: '-myplugin' // Don't try to load it again
+			* });
+			*/
 		load: function(name, addOnUrl, callback, scope) {
 			var self = this, url = addOnUrl;
 
@@ -8954,82 +8954,82 @@ define("tinymce/AddOnManager", [
 });
 
 /**
- * TinyMCE theme class.
- *
- * @class tinymce.Theme
- */
+	* TinyMCE theme class.
+	*
+	* @class tinymce.Theme
+	*/
 
 /**
- * This method is responsible for rendering/generating the overall user interface with toolbars, buttons, iframe containers etc.
- *
- * @method renderUI
- * @param {Object} obj Object parameter containing the targetNode DOM node that will be replaced visually with an editor instance.
- * @return {Object} an object with items like iframeContainer, editorContainer, sizeContainer, deltaWidth, deltaHeight.
- */
+	* This method is responsible for rendering/generating the overall user interface with toolbars, buttons, iframe containers etc.
+	*
+	* @method renderUI
+	* @param {Object} obj Object parameter containing the targetNode DOM node that will be replaced visually with an editor instance.
+	* @return {Object} an object with items like iframeContainer, editorContainer, sizeContainer, deltaWidth, deltaHeight.
+	*/
 
 /**
- * Plugin base class, this is a pseudo class that describes how a plugin is to be created for TinyMCE. The methods below are all optional.
- *
- * @class tinymce.Plugin
- * @example
- * tinymce.PluginManager.add('example', function(editor, url) {
- *     // Add a button that opens a window
- *     editor.addButton('example', {
- *         text: 'My button',
- *         icon: false,
- *         onclick: function() {
- *             // Open window
- *             editor.windowManager.open({
- *                 title: 'Example plugin',
- *                 body: [
- *                     {type: 'textbox', name: 'title', label: 'Title'}
- *                 ],
- *                 onsubmit: function(e) {
- *                     // Insert content when the window form is submitted
- *                     editor.insertContent('Title: ' + e.data.title);
- *                 }
- *             });
- *         }
- *     });
- *
- *     // Adds a menu item to the tools menu
- *     editor.addMenuItem('example', {
- *         text: 'Example plugin',
- *         context: 'tools',
- *         onclick: function() {
- *             // Open window with a specific url
- *             editor.windowManager.open({
- *                 title: 'TinyMCE site',
- *                 url: 'http://www.tinymce.com',
- *                 width: 800,
- *                 height: 600,
- *                 buttons: [{
- *                     text: 'Close',
- *                     onclick: 'close'
- *                 }]
- *             });
- *         }
- *     });
- * });
- */
+	* Plugin base class, this is a pseudo class that describes how a plugin is to be created for TinyMCE. The methods below are all optional.
+	*
+	* @class tinymce.Plugin
+	* @example
+	* tinymce.PluginManager.add('example', function(editor, url) {
+	*     // Add a button that opens a window
+	*     editor.addButton('example', {
+	*         text: 'My button',
+	*         icon: false,
+	*         onclick: function() {
+	*             // Open window
+	*             editor.windowManager.open({
+	*                 title: 'Example plugin',
+	*                 body: [
+	*                     {type: 'textbox', name: 'title', label: 'Title'}
+	*                 ],
+	*                 onsubmit: function(e) {
+	*                     // Insert content when the window form is submitted
+	*                     editor.insertContent('Title: ' + e.data.title);
+	*                 }
+	*             });
+	*         }
+	*     });
+	*
+	*     // Adds a menu item to the tools menu
+	*     editor.addMenuItem('example', {
+	*         text: 'Example plugin',
+	*         context: 'tools',
+	*         onclick: function() {
+	*             // Open window with a specific url
+	*             editor.windowManager.open({
+	*                 title: 'TinyMCE site',
+	*                 url: 'http://www.tinymce.com',
+	*                 width: 800,
+	*                 height: 600,
+	*                 buttons: [{
+	*                     text: 'Close',
+	*                     onclick: 'close'
+	*                 }]
+	*             });
+	*         }
+	*     });
+	* });
+	*/
 
 // Included from: classes/dom/RangeUtils.js
 
 /**
- * RangeUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* RangeUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains a few utility methods for ranges.
- *
- * @class tinymce.dom.RangeUtils
- */
+	* This class contains a few utility methods for ranges.
+	*
+	* @class tinymce.dom.RangeUtils
+	*/
 define("tinymce/dom/RangeUtils", [
 	"tinymce/util/Tools",
 	"tinymce/dom/TreeWalker"
@@ -9052,12 +9052,12 @@ define("tinymce/dom/RangeUtils", [
 
 	function RangeUtils(dom) {
 		/**
-		 * Walks the specified range like object and executes the callback for each sibling collection it finds.
-		 *
-		 * @method walk
-		 * @param {Object} rng Range like object.
-		 * @param {function} callback Callback function to execute for each sibling collection.
-		 */
+			* Walks the specified range like object and executes the callback for each sibling collection it finds.
+			*
+			* @method walk
+			* @param {Object} rng Range like object.
+			* @param {function} callback Callback function to execute for each sibling collection.
+			*/
 		this.walk = function(rng, callback) {
 			var startContainer = rng.startContainer,
 				startOffset = rng.startOffset,
@@ -9078,12 +9078,12 @@ define("tinymce/dom/RangeUtils", [
 			}
 
 			/**
-			 * Excludes start/end text node if they are out side the range
-			 *
-			 * @private
-			 * @param {Array} nodes Nodes to exclude items from.
-			 * @return {Array} Array with nodes excluding the start/end container if needed.
-			 */
+				* Excludes start/end text node if they are out side the range
+				*
+				* @private
+				* @param {Array} nodes Nodes to exclude items from.
+				* @return {Array} Array with nodes excluding the start/end container if needed.
+				*/
 			function exclude(nodes) {
 				var node;
 
@@ -9103,13 +9103,13 @@ define("tinymce/dom/RangeUtils", [
 			}
 
 			/**
-			 * Collects siblings
-			 *
-			 * @private
-			 * @param {Node} node Node to collect siblings from.
-			 * @param {String} name Name of the sibling to check for.
-			 * @return {Array} Array of collected siblings.
-			 */
+				* Collects siblings
+				*
+				* @private
+				* @param {Node} node Node to collect siblings from.
+				* @param {String} name Name of the sibling to check for.
+				* @return {Array} Array of collected siblings.
+				*/
 			function collectSiblings(node, name, end_node) {
 				var siblings = [];
 
@@ -9121,13 +9121,13 @@ define("tinymce/dom/RangeUtils", [
 			}
 
 			/**
-			 * Find an end point this is the node just before the common ancestor root.
-			 *
-			 * @private
-			 * @param {Node} node Node to start at.
-			 * @param {Node} root Root/ancestor element to stop just before.
-			 * @return {Node} Node just before the root element.
-			 */
+				* Find an end point this is the node just before the common ancestor root.
+				*
+				* @private
+				* @param {Node} node Node to start at.
+				* @param {Node} root Root/ancestor element to stop just before.
+				* @return {Node} Node just before the root element.
+				*/
 			function findEndPoint(node, root) {
 				do {
 					if (node.parentNode == root) {
@@ -9218,12 +9218,12 @@ define("tinymce/dom/RangeUtils", [
 		};
 
 		/**
-		 * Splits the specified range at it's start/end points.
-		 *
-		 * @private
-		 * @param {Range/RangeObject} rng Range to split.
-		 * @return {Object} Range position object.
-		 */
+			* Splits the specified range at it's start/end points.
+			*
+			* @private
+			* @param {Range/RangeObject} rng Range to split.
+			* @return {Object} Range position object.
+			*/
 		this.split = function(rng) {
 			var startContainer = rng.startContainer,
 				startOffset = rng.startOffset,
@@ -9272,12 +9272,12 @@ define("tinymce/dom/RangeUtils", [
 		};
 
 		/**
-		 * Normalizes the specified range by finding the closest best suitable caret location.
-		 *
-		 * @private
-		 * @param {Range} rng Range to normalize.
-		 * @return {Boolean} True/false if the specified range was normalized or not.
-		 */
+			* Normalizes the specified range by finding the closest best suitable caret location.
+			*
+			* @private
+			* @param {Range} rng Range to normalize.
+			* @return {Boolean} True/false if the specified range was normalized or not.
+			*/
 		this.normalize = function(rng) {
 			var normalized, collapsed;
 
@@ -9476,14 +9476,14 @@ define("tinymce/dom/RangeUtils", [
 	}
 
 	/**
-	 * Compares two ranges and checks if they are equal.
-	 *
-	 * @static
-	 * @method compareRanges
-	 * @param {DOMRange} rng1 First range to compare.
-	 * @param {DOMRange} rng2 First range to compare.
-	 * @return {Boolean} true/false if the ranges are equal.
-	 */
+		* Compares two ranges and checks if they are equal.
+		*
+		* @static
+		* @method compareRanges
+		* @param {DOMRange} rng1 First range to compare.
+		* @param {DOMRange} rng2 First range to compare.
+		* @return {Boolean} true/false if the ranges are equal.
+		*/
 	RangeUtils.compareRanges = function(rng1, rng2) {
 		if (rng1 && rng2) {
 			// Compare native IE ranges
@@ -9507,15 +9507,15 @@ define("tinymce/dom/RangeUtils", [
 	};
 
 	/**
-	 * Gets the caret range for the given x/y location.
-	 *
-	 * @static
-	 * @method getCaretRangeFromPoint
-	 * @param {Number} x X coordinate for range
-	 * @param {Number} y Y coordinate for range
-	 * @param {Document} doc Document that x/y are relative to
-	 * @returns {Range} caret range
-	 */
+		* Gets the caret range for the given x/y location.
+		*
+		* @static
+		* @method getCaretRangeFromPoint
+		* @param {Number} x X coordinate for range
+		* @param {Number} y Y coordinate for range
+		* @param {Document} doc Document that x/y are relative to
+		* @returns {Range} caret range
+		*/
 	RangeUtils.getCaretRangeFromPoint = function(x, y, doc) {
 		var rng, point;
 
@@ -9559,21 +9559,21 @@ define("tinymce/dom/RangeUtils", [
 // Included from: classes/NodeChange.js
 
 /**
- * NodeChange.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* NodeChange.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles the nodechange event dispatching both manual and though selection change events.
- *
- * @class tinymce.NodeChange
- * @private
- */
+	* This class handles the nodechange event dispatching both manual and though selection change events.
+	*
+	* @class tinymce.NodeChange
+	* @private
+	*/
 define("tinymce/NodeChange", [
 	"tinymce/dom/RangeUtils",
 	"tinymce/Env"
@@ -9582,11 +9582,11 @@ define("tinymce/NodeChange", [
 		var lastRng, lastPath = [];
 
 		/**
-		 * Returns true/false if the current element path has been changed or not.
-		 *
-		 * @private
-		 * @return {Boolean} True if the element path is the same false if it's not.
-		 */
+			* Returns true/false if the current element path has been changed or not.
+			*
+			* @private
+			* @return {Boolean} True if the element path is the same false if it's not.
+			*/
 		function isSameElementPath(startElm) {
 			var i, currentPath;
 
@@ -9671,12 +9671,12 @@ define("tinymce/NodeChange", [
 		});
 
 		/**
-		 * Distpaches out a onNodeChange event to all observers. This method should be called when you
-		 * need to update the UI states or element path etc.
-		 *
-		 * @method nodeChanged
-		 * @param {Object} args Optional args to pass to NodeChange event handlers.
-		 */
+			* Distpaches out a onNodeChange event to all observers. This method should be called when you
+			* need to update the UI states or element path etc.
+			*
+			* @method nodeChanged
+			* @param {Object} args Optional args to pass to NodeChange event handlers.
+			*/
 		this.nodeChanged = function(args) {
 			var selection = editor.selection, node, parents, root;
 
@@ -9715,25 +9715,25 @@ define("tinymce/NodeChange", [
 // Included from: classes/html/Node.js
 
 /**
- * Node.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Node.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is a minimalistic implementation of a DOM like node used by the DomParser class.
- *
- * @example
- * var node = new tinymce.html.Node('strong', 1);
- * someRoot.append(node);
- *
- * @class tinymce.html.Node
- * @version 3.4
- */
+	* This class is a minimalistic implementation of a DOM like node used by the DomParser class.
+	*
+	* @example
+	* var node = new tinymce.html.Node('strong', 1);
+	* someRoot.append(node);
+	*
+	* @class tinymce.html.Node
+	* @version 3.4
+	*/
 define("tinymce/html/Node", [], function() {
 	var whiteSpaceRegExp = /^[ \t\r\n]*$/, typeLookup = {
 		'#text': 3,
@@ -9773,13 +9773,13 @@ define("tinymce/html/Node", [], function() {
 	}
 
 	/**
-	 * Constructs a new Node instance.
-	 *
-	 * @constructor
-	 * @method Node
-	 * @param {String} name Name of the node type.
-	 * @param {Number} type Numeric type representing the node.
-	 */
+		* Constructs a new Node instance.
+		*
+		* @constructor
+		* @method Node
+		* @param {String} name Name of the node type.
+		* @param {Number} type Numeric type representing the node.
+		*/
 	function Node(name, type) {
 		this.name = name;
 		this.type = type;
@@ -9792,15 +9792,15 @@ define("tinymce/html/Node", [], function() {
 
 	Node.prototype = {
 		/**
-		 * Replaces the current node with the specified one.
-		 *
-		 * @example
-		 * someNode.replace(someNewNode);
-		 *
-		 * @method replace
-		 * @param {tinymce.html.Node} node Node to replace the current node with.
-		 * @return {tinymce.html.Node} The old node that got replaced.
-		 */
+			* Replaces the current node with the specified one.
+			*
+			* @example
+			* someNode.replace(someNewNode);
+			*
+			* @method replace
+			* @param {tinymce.html.Node} node Node to replace the current node with.
+			* @return {tinymce.html.Node} The old node that got replaced.
+			*/
 		replace: function(node) {
 			var self = this;
 
@@ -9815,18 +9815,18 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Gets/sets or removes an attribute by name.
-		 *
-		 * @example
-		 * someNode.attr("name", "value"); // Sets an attribute
-		 * console.log(someNode.attr("name")); // Gets an attribute
-		 * someNode.attr("name", null); // Removes an attribute
-		 *
-		 * @method attr
-		 * @param {String} name Attribute name to set or get.
-		 * @param {String} value Optional value to set.
-		 * @return {String/tinymce.html.Node} String or undefined on a get operation or the current node on a set operation.
-		 */
+			* Gets/sets or removes an attribute by name.
+			*
+			* @example
+			* someNode.attr("name", "value"); // Sets an attribute
+			* console.log(someNode.attr("name")); // Gets an attribute
+			* someNode.attr("name", null); // Removes an attribute
+			*
+			* @method attr
+			* @param {String} name Attribute name to set or get.
+			* @param {String} value Optional value to set.
+			* @return {String/tinymce.html.Node} String or undefined on a get operation or the current node on a set operation.
+			*/
 		attr: function(name, value) {
 			var self = this, attrs, i, undef;
 
@@ -9881,15 +9881,15 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Does a shallow clones the node into a new node. It will also exclude id attributes since
-		 * there should only be one id per document.
-		 *
-		 * @example
-		 * var clonedNode = node.clone();
-		 *
-		 * @method clone
-		 * @return {tinymce.html.Node} New copy of the original node.
-		 */
+			* Does a shallow clones the node into a new node. It will also exclude id attributes since
+			* there should only be one id per document.
+			*
+			* @example
+			* var clonedNode = node.clone();
+			*
+			* @method clone
+			* @return {tinymce.html.Node} New copy of the original node.
+			*/
 		clone: function() {
 			var self = this, clone = new Node(self.name, self.type), i, l, selfAttrs, selfAttr, cloneAttrs;
 
@@ -9918,13 +9918,13 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Wraps the node in in another node.
-		 *
-		 * @example
-		 * node.wrap(wrapperNode);
-		 *
-		 * @method wrap
-		 */
+			* Wraps the node in in another node.
+			*
+			* @example
+			* node.wrap(wrapperNode);
+			*
+			* @method wrap
+			*/
 		wrap: function(wrapper) {
 			var self = this;
 
@@ -9935,13 +9935,13 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Unwraps the node in other words it removes the node but keeps the children.
-		 *
-		 * @example
-		 * node.unwrap();
-		 *
-		 * @method unwrap
-		 */
+			* Unwraps the node in other words it removes the node but keeps the children.
+			*
+			* @example
+			* node.unwrap();
+			*
+			* @method unwrap
+			*/
 		unwrap: function() {
 			var self = this, node, next;
 
@@ -9955,14 +9955,14 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Removes the node from it's parent.
-		 *
-		 * @example
-		 * node.remove();
-		 *
-		 * @method remove
-		 * @return {tinymce.html.Node} Current node that got removed.
-		 */
+			* Removes the node from it's parent.
+			*
+			* @example
+			* node.remove();
+			*
+			* @method remove
+			* @return {tinymce.html.Node} Current node that got removed.
+			*/
 		remove: function() {
 			var self = this, parent = self.parent, next = self.next, prev = self.prev;
 
@@ -9994,15 +9994,15 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Appends a new node as a child of the current node.
-		 *
-		 * @example
-		 * node.append(someNode);
-		 *
-		 * @method append
-		 * @param {tinymce.html.Node} node Node to append as a child of the current one.
-		 * @return {tinymce.html.Node} The node that got appended.
-		 */
+			* Appends a new node as a child of the current node.
+			*
+			* @example
+			* node.append(someNode);
+			*
+			* @method append
+			* @param {tinymce.html.Node} node Node to append as a child of the current one.
+			* @return {tinymce.html.Node} The node that got appended.
+			*/
 		append: function(node) {
 			var self = this, last;
 
@@ -10025,17 +10025,17 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Inserts a node at a specific position as a child of the current node.
-		 *
-		 * @example
-		 * parentNode.insert(newChildNode, oldChildNode);
-		 *
-		 * @method insert
-		 * @param {tinymce.html.Node} node Node to insert as a child of the current node.
-		 * @param {tinymce.html.Node} ref_node Reference node to set node before/after.
-		 * @param {Boolean} before Optional state to insert the node before the reference node.
-		 * @return {tinymce.html.Node} The node that got inserted.
-		 */
+			* Inserts a node at a specific position as a child of the current node.
+			*
+			* @example
+			* parentNode.insert(newChildNode, oldChildNode);
+			*
+			* @method insert
+			* @param {tinymce.html.Node} node Node to insert as a child of the current node.
+			* @param {tinymce.html.Node} ref_node Reference node to set node before/after.
+			* @param {Boolean} before Optional state to insert the node before the reference node.
+			* @return {tinymce.html.Node} The node that got inserted.
+			*/
 		insert: function(node, ref_node, before) {
 			var parent;
 
@@ -10073,12 +10073,12 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Get all children by name.
-		 *
-		 * @method getAll
-		 * @param {String} name Name of the child nodes to collect.
-		 * @return {Array} Array with child nodes matchin the specified name.
-		 */
+			* Get all children by name.
+			*
+			* @method getAll
+			* @param {String} name Name of the child nodes to collect.
+			* @return {Array} Array with child nodes matchin the specified name.
+			*/
 		getAll: function(name) {
 			var self = this, node, collection = [];
 
@@ -10092,11 +10092,11 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Removes all children of the current node.
-		 *
-		 * @method empty
-		 * @return {tinymce.html.Node} The current node that got cleared.
-		 */
+			* Removes all children of the current node.
+			*
+			* @method empty
+			* @return {tinymce.html.Node} The current node that got cleared.
+			*/
 		empty: function() {
 			var self = this, nodes, i, node;
 
@@ -10123,14 +10123,14 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Returns true/false if the node is to be considered empty or not.
-		 *
-		 * @example
-		 * node.isEmpty({img: true});
-		 * @method isEmpty
-		 * @param {Object} elements Name/value object with elements that are automatically treated as non empty elements.
-		 * @return {Boolean} true/false if the node is empty or not.
-		 */
+			* Returns true/false if the node is to be considered empty or not.
+			*
+			* @example
+			* node.isEmpty({img: true});
+			* @method isEmpty
+			* @param {Object} elements Name/value object with elements that are automatically treated as non empty elements.
+			* @return {Boolean} true/false if the node is empty or not.
+			*/
 		isEmpty: function(elements) {
 			var self = this, node = self.firstChild, i, name;
 
@@ -10173,25 +10173,25 @@ define("tinymce/html/Node", [], function() {
 		},
 
 		/**
-		 * Walks to the next or previous node and returns that node or null if it wasn't found.
-		 *
-		 * @method walk
-		 * @param {Boolean} prev Optional previous node state defaults to false.
-		 * @return {tinymce.html.Node} Node that is next to or previous of the current node.
-		 */
+			* Walks to the next or previous node and returns that node or null if it wasn't found.
+			*
+			* @method walk
+			* @param {Boolean} prev Optional previous node state defaults to false.
+			* @return {tinymce.html.Node} Node that is next to or previous of the current node.
+			*/
 		walk: function(prev) {
 			return walk(this, null, prev);
 		}
 	};
 
 	/**
-	 * Creates a node of a specific type.
-	 *
-	 * @static
-	 * @method create
-	 * @param {String} name Name of the node type to create for example "b" or "#text".
-	 * @param {Object} attrs Name/value collection of attributes that will be applied to elements.
-	 */
+		* Creates a node of a specific type.
+		*
+		* @static
+		* @method create
+		* @param {String} name Name of the node type to create for example "b" or "#text".
+		* @param {Object} attrs Name/value collection of attributes that will be applied to elements.
+		*/
 	Node.create = function(name, attrs) {
 		var node, attrName;
 
@@ -10214,29 +10214,29 @@ define("tinymce/html/Node", [], function() {
 // Included from: classes/html/Schema.js
 
 /**
- * Schema.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Schema.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Schema validator class.
- *
- * @class tinymce.html.Schema
- * @example
- *  if (tinymce.activeEditor.schema.isValidChild('p', 'span'))
- *    alert('span is valid child of p.');
- *
- *  if (tinymce.activeEditor.schema.getElementRule('p'))
- *    alert('P is a valid element.');
- *
- * @class tinymce.html.Schema
- * @version 3.4
- */
+	* Schema validator class.
+	*
+	* @class tinymce.html.Schema
+	* @example
+	*  if (tinymce.activeEditor.schema.isValidChild('p', 'span'))
+	*    alert('span is valid child of p.');
+	*
+	*  if (tinymce.activeEditor.schema.getElementRule('p'))
+	*    alert('P is a valid element.');
+	*
+	* @class tinymce.html.Schema
+	* @version 3.4
+	*/
 define("tinymce/html/Schema", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -10248,12 +10248,12 @@ define("tinymce/html/Schema", [
 	}
 
 	/**
-	 * Builds a schema lookup table
-	 *
-	 * @private
-	 * @param {String} type html4, html5 or html5-strict schema type.
-	 * @return {Object} Schema lookup table.
-	 */
+		* Builds a schema lookup table
+		*
+		* @private
+		* @param {String} type html4, html5 or html5-strict schema type.
+		* @return {Object} Schema lookup table.
+		*/
 	function compileSchema(type) {
 		var schema = {}, globalAttributes, blockContent;
 		var phrasingContent, flowContent, html4BlockContent, html4PhrasingContent;
@@ -10552,12 +10552,12 @@ define("tinymce/html/Schema", [
 	}
 
 	/**
-	 * Constructs a new Schema instance.
-	 *
-	 * @constructor
-	 * @method Schema
-	 * @param {Object} settings Name/value settings object.
-	 */
+		* Constructs a new Schema instance.
+		*
+		* @constructor
+		* @method Schema
+		* @param {Object} settings Name/value settings object.
+		*/
 	return function(settings) {
 		var self = this, elements = {}, children = {}, patternElements = [], validStyles, invalidStyles, schemaItems;
 		var whiteSpaceElementsMap, selfClosingElementsMap, shortEndedElementsMap, boolAttrMap, validClasses;
@@ -10956,160 +10956,160 @@ define("tinymce/html/Schema", [
 		}
 
 		/**
-		 * Name/value map object with valid parents and children to those parents.
-		 *
-		 * @example
-		 * children = {
-		 *    div:{p:{}, h1:{}}
-		 * };
-		 * @field children
-		 * @type Object
-		 */
+			* Name/value map object with valid parents and children to those parents.
+			*
+			* @example
+			* children = {
+			*    div:{p:{}, h1:{}}
+			* };
+			* @field children
+			* @type Object
+			*/
 		self.children = children;
 
 		/**
-		 * Name/value map object with valid styles for each element.
-		 *
-		 * @method getValidStyles
-		 * @type Object
-		 */
+			* Name/value map object with valid styles for each element.
+			*
+			* @method getValidStyles
+			* @type Object
+			*/
 		self.getValidStyles = function() {
 			return validStyles;
 		};
 
 		/**
-		 * Name/value map object with valid styles for each element.
-		 *
-		 * @method getInvalidStyles
-		 * @type Object
-		 */
+			* Name/value map object with valid styles for each element.
+			*
+			* @method getInvalidStyles
+			* @type Object
+			*/
 		self.getInvalidStyles = function() {
 			return invalidStyles;
 		};
 
 		/**
-		 * Name/value map object with valid classes for each element.
-		 *
-		 * @method getValidClasses
-		 * @type Object
-		 */
+			* Name/value map object with valid classes for each element.
+			*
+			* @method getValidClasses
+			* @type Object
+			*/
 		self.getValidClasses = function() {
 			return validClasses;
 		};
 
 		/**
-		 * Returns a map with boolean attributes.
-		 *
-		 * @method getBoolAttrs
-		 * @return {Object} Name/value lookup map for boolean attributes.
-		 */
+			* Returns a map with boolean attributes.
+			*
+			* @method getBoolAttrs
+			* @return {Object} Name/value lookup map for boolean attributes.
+			*/
 		self.getBoolAttrs = function() {
 			return boolAttrMap;
 		};
 
 		/**
-		 * Returns a map with block elements.
-		 *
-		 * @method getBlockElements
-		 * @return {Object} Name/value lookup map for block elements.
-		 */
+			* Returns a map with block elements.
+			*
+			* @method getBlockElements
+			* @return {Object} Name/value lookup map for block elements.
+			*/
 		self.getBlockElements = function() {
 			return blockElementsMap;
 		};
 
 		/**
-		 * Returns a map with text block elements. Such as: p,h1-h6,div,address
-		 *
-		 * @method getTextBlockElements
-		 * @return {Object} Name/value lookup map for block elements.
-		 */
+			* Returns a map with text block elements. Such as: p,h1-h6,div,address
+			*
+			* @method getTextBlockElements
+			* @return {Object} Name/value lookup map for block elements.
+			*/
 		self.getTextBlockElements = function() {
 			return textBlockElementsMap;
 		};
 
 		/**
-		 * Returns a map of inline text format nodes for example strong/span or ins.
-		 *
-		 * @method getTextInlineElements
-		 * @return {Object} Name/value lookup map for text format elements.
-		 */
+			* Returns a map of inline text format nodes for example strong/span or ins.
+			*
+			* @method getTextInlineElements
+			* @return {Object} Name/value lookup map for text format elements.
+			*/
 		self.getTextInlineElements = function() {
 			return textInlineElementsMap;
 		};
 
 		/**
-		 * Returns a map with short ended elements such as BR or IMG.
-		 *
-		 * @method getShortEndedElements
-		 * @return {Object} Name/value lookup map for short ended elements.
-		 */
+			* Returns a map with short ended elements such as BR or IMG.
+			*
+			* @method getShortEndedElements
+			* @return {Object} Name/value lookup map for short ended elements.
+			*/
 		self.getShortEndedElements = function() {
 			return shortEndedElementsMap;
 		};
 
 		/**
-		 * Returns a map with self closing tags such as <li>.
-		 *
-		 * @method getSelfClosingElements
-		 * @return {Object} Name/value lookup map for self closing tags elements.
-		 */
+			* Returns a map with self closing tags such as <li>.
+			*
+			* @method getSelfClosingElements
+			* @return {Object} Name/value lookup map for self closing tags elements.
+			*/
 		self.getSelfClosingElements = function() {
 			return selfClosingElementsMap;
 		};
 
 		/**
-		 * Returns a map with elements that should be treated as contents regardless if it has text
-		 * content in them or not such as TD, VIDEO or IMG.
-		 *
-		 * @method getNonEmptyElements
-		 * @return {Object} Name/value lookup map for non empty elements.
-		 */
+			* Returns a map with elements that should be treated as contents regardless if it has text
+			* content in them or not such as TD, VIDEO or IMG.
+			*
+			* @method getNonEmptyElements
+			* @return {Object} Name/value lookup map for non empty elements.
+			*/
 		self.getNonEmptyElements = function() {
 			return nonEmptyElementsMap;
 		};
 
 		/**
-		 * Returns a map with elements that the caret should be moved in front of after enter is
-		 * pressed
-		 *
-		 * @method getMoveCaretBeforeOnEnterElements
-		 * @return {Object} Name/value lookup map for elements to place the caret in front of.
-		 */
+			* Returns a map with elements that the caret should be moved in front of after enter is
+			* pressed
+			*
+			* @method getMoveCaretBeforeOnEnterElements
+			* @return {Object} Name/value lookup map for elements to place the caret in front of.
+			*/
 		self.getMoveCaretBeforeOnEnterElements = function() {
 			return moveCaretBeforeOnEnterElementsMap;
 		};
 
 		/**
-		 * Returns a map with elements where white space is to be preserved like PRE or SCRIPT.
-		 *
-		 * @method getWhiteSpaceElements
-		 * @return {Object} Name/value lookup map for white space elements.
-		 */
+			* Returns a map with elements where white space is to be preserved like PRE or SCRIPT.
+			*
+			* @method getWhiteSpaceElements
+			* @return {Object} Name/value lookup map for white space elements.
+			*/
 		self.getWhiteSpaceElements = function() {
 			return whiteSpaceElementsMap;
 		};
 
 		/**
-		 * Returns a map with special elements. These are elements that needs to be parsed
-		 * in a special way such as script, style, textarea etc. The map object values
-		 * are regexps used to find the end of the element.
-		 *
-		 * @method getSpecialElements
-		 * @return {Object} Name/value lookup map for special elements.
-		 */
+			* Returns a map with special elements. These are elements that needs to be parsed
+			* in a special way such as script, style, textarea etc. The map object values
+			* are regexps used to find the end of the element.
+			*
+			* @method getSpecialElements
+			* @return {Object} Name/value lookup map for special elements.
+			*/
 		self.getSpecialElements = function() {
 			return specialElements;
 		};
 
 		/**
-		 * Returns true/false if the specified element and it's child is valid or not
-		 * according to the schema.
-		 *
-		 * @method isValidChild
-		 * @param {String} name Element name to check for.
-		 * @param {String} child Element child to verify.
-		 * @return {Boolean} True/false if the element is a valid child of the specified parent.
-		 */
+			* Returns true/false if the specified element and it's child is valid or not
+			* according to the schema.
+			*
+			* @method isValidChild
+			* @param {String} name Element name to check for.
+			* @param {String} child Element child to verify.
+			* @return {Boolean} True/false if the element is a valid child of the specified parent.
+			*/
 		self.isValidChild = function(name, child) {
 			var parent = children[name];
 
@@ -11117,14 +11117,14 @@ define("tinymce/html/Schema", [
 		};
 
 		/**
-		 * Returns true/false if the specified element name and optional attribute is
-		 * valid according to the schema.
-		 *
-		 * @method isValid
-		 * @param {String} name Name of element to check.
-		 * @param {String} attr Optional attribute name to check for.
-		 * @return {Boolean} True/false if the element and attribute is valid.
-		 */
+			* Returns true/false if the specified element name and optional attribute is
+			* valid according to the schema.
+			*
+			* @method isValid
+			* @param {String} name Name of element to check.
+			* @param {String} attr Optional attribute name to check for.
+			* @return {Boolean} True/false if the element and attribute is valid.
+			*/
 		self.isValid = function(name, attr) {
 			var attrPatterns, i, rule = getElementRule(name);
 
@@ -11156,60 +11156,60 @@ define("tinymce/html/Schema", [
 		};
 
 		/**
-		 * Returns true/false if the specified element is valid or not
-		 * according to the schema.
-		 *
-		 * @method getElementRule
-		 * @param {String} name Element name to check for.
-		 * @return {Object} Element object or undefined if the element isn't valid.
-		 */
+			* Returns true/false if the specified element is valid or not
+			* according to the schema.
+			*
+			* @method getElementRule
+			* @param {String} name Element name to check for.
+			* @return {Object} Element object or undefined if the element isn't valid.
+			*/
 		self.getElementRule = getElementRule;
 
 		/**
-		 * Returns an map object of all custom elements.
-		 *
-		 * @method getCustomElements
-		 * @return {Object} Name/value map object of all custom elements.
-		 */
+			* Returns an map object of all custom elements.
+			*
+			* @method getCustomElements
+			* @return {Object} Name/value map object of all custom elements.
+			*/
 		self.getCustomElements = function() {
 			return customElementsMap;
 		};
 
 		/**
-		 * Parses a valid elements string and adds it to the schema. The valid elements
-		 * format is for example "element[attr=default|otherattr]".
-		 * Existing rules will be replaced with the ones specified, so this extends the schema.
-		 *
-		 * @method addValidElements
-		 * @param {String} valid_elements String in the valid elements format to be parsed.
-		 */
+			* Parses a valid elements string and adds it to the schema. The valid elements
+			* format is for example "element[attr=default|otherattr]".
+			* Existing rules will be replaced with the ones specified, so this extends the schema.
+			*
+			* @method addValidElements
+			* @param {String} valid_elements String in the valid elements format to be parsed.
+			*/
 		self.addValidElements = addValidElements;
 
 		/**
-		 * Parses a valid elements string and sets it to the schema. The valid elements
-		 * format is for example "element[attr=default|otherattr]".
-		 * Existing rules will be replaced with the ones specified, so this extends the schema.
-		 *
-		 * @method setValidElements
-		 * @param {String} valid_elements String in the valid elements format to be parsed.
-		 */
+			* Parses a valid elements string and sets it to the schema. The valid elements
+			* format is for example "element[attr=default|otherattr]".
+			* Existing rules will be replaced with the ones specified, so this extends the schema.
+			*
+			* @method setValidElements
+			* @param {String} valid_elements String in the valid elements format to be parsed.
+			*/
 		self.setValidElements = setValidElements;
 
 		/**
-		 * Adds custom non HTML elements to the schema.
-		 *
-		 * @method addCustomElements
-		 * @param {String} custom_elements Comma separated list of custom elements to add.
-		 */
+			* Adds custom non HTML elements to the schema.
+			*
+			* @method addCustomElements
+			* @param {String} custom_elements Comma separated list of custom elements to add.
+			*/
 		self.addCustomElements = addCustomElements;
 
 		/**
-		 * Parses a valid children string and adds them to the schema structure. The valid children
-		 * format is for example: "element[child1|child2]".
-		 *
-		 * @method addValidChildren
-		 * @param {String} valid_children Valid children elements string to parse
-		 */
+			* Parses a valid children string and adds them to the schema structure. The valid children
+			* format is for example: "element[child1|child2]".
+			*
+			* @method addValidChildren
+			* @param {String} valid_children Valid children elements string to parse
+			*/
 		self.addValidChildren = addValidChildren;
 
 		self.elements = elements;
@@ -11219,57 +11219,57 @@ define("tinymce/html/Schema", [
 // Included from: classes/html/SaxParser.js
 
 /**
- * SaxParser.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* SaxParser.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint max-depth:[2, 9] */
 
 /**
- * This class parses HTML code using pure JavaScript and executes various events for each item it finds. It will
- * always execute the events in the right order for tag soup code like <b><p></b></p>. It will also remove elements
- * and attributes that doesn't fit the schema if the validate setting is enabled.
- *
- * @example
- * var parser = new tinymce.html.SaxParser({
- *     validate: true,
- *
- *     comment: function(text) {
- *         console.log('Comment:', text);
- *     },
- *
- *     cdata: function(text) {
- *         console.log('CDATA:', text);
- *     },
- *
- *     text: function(text, raw) {
- *         console.log('Text:', text, 'Raw:', raw);
- *     },
- *
- *     start: function(name, attrs, empty) {
- *         console.log('Start:', name, attrs, empty);
- *     },
- *
- *     end: function(name) {
- *         console.log('End:', name);
- *     },
- *
- *     pi: function(name, text) {
- *         console.log('PI:', name, text);
- *     },
- *
- *     doctype: function(text) {
- *         console.log('DocType:', text);
- *     }
- * }, schema);
- * @class tinymce.html.SaxParser
- * @version 3.4
- */
+	* This class parses HTML code using pure JavaScript and executes various events for each item it finds. It will
+	* always execute the events in the right order for tag soup code like <b><p></b></p>. It will also remove elements
+	* and attributes that doesn't fit the schema if the validate setting is enabled.
+	*
+	* @example
+	* var parser = new tinymce.html.SaxParser({
+	*     validate: true,
+	*
+	*     comment: function(text) {
+	*         console.log('Comment:', text);
+	*     },
+	*
+	*     cdata: function(text) {
+	*         console.log('CDATA:', text);
+	*     },
+	*
+	*     text: function(text, raw) {
+	*         console.log('Text:', text, 'Raw:', raw);
+	*     },
+	*
+	*     start: function(name, attrs, empty) {
+	*         console.log('Start:', name, attrs, empty);
+	*     },
+	*
+	*     end: function(name) {
+	*         console.log('End:', name);
+	*     },
+	*
+	*     pi: function(name, text) {
+	*         console.log('PI:', name, text);
+	*     },
+	*
+	*     doctype: function(text) {
+	*         console.log('DocType:', text);
+	*     }
+	* }, schema);
+	* @class tinymce.html.SaxParser
+	* @version 3.4
+	*/
 define("tinymce/html/SaxParser", [
 	"tinymce/html/Schema",
 	"tinymce/html/Entities",
@@ -11278,16 +11278,16 @@ define("tinymce/html/SaxParser", [
 	var each = Tools.each;
 
 	/**
-	 * Returns the index of the end tag for a specific start tag. This can be
-	 * used to skip all children of a parent element from being processed.
-	 *
-	 * @private
-	 * @method findEndTag
-	 * @param {tinymce.html.Schema} schema Schema instance to use to match short ended elements.
-	 * @param {String} html HTML string to find the end tag in.
-	 * @param {Number} startIndex Indext to start searching at should be after the start tag.
-	 * @return {Number} Index of the end tag.
-	 */
+		* Returns the index of the end tag for a specific start tag. This can be
+		* used to skip all children of a parent element from being processed.
+		*
+		* @private
+		* @method findEndTag
+		* @param {tinymce.html.Schema} schema Schema instance to use to match short ended elements.
+		* @param {String} html HTML string to find the end tag in.
+		* @param {Number} startIndex Indext to start searching at should be after the start tag.
+		* @return {Number} Index of the end tag.
+		*/
 	function findEndTag(schema, html, startIndex) {
 		var count = 1, index, matches, tokenRegExp, shortEndedElements;
 
@@ -11317,13 +11317,13 @@ define("tinymce/html/SaxParser", [
 	}
 
 	/**
-	 * Constructs a new SaxParser instance.
-	 *
-	 * @constructor
-	 * @method SaxParser
-	 * @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
-	 * @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
-	 */
+		* Constructs a new SaxParser instance.
+		*
+		* @constructor
+		* @method SaxParser
+		* @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
+		* @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
+		*/
 	function SaxParser(settings, schema) {
 		var self = this;
 
@@ -11344,13 +11344,13 @@ define("tinymce/html/SaxParser", [
 		});
 
 		/**
-		 * Parses the specified HTML string and executes the callbacks for each item it finds.
-		 *
-		 * @example
-		 * new SaxParser({...}).parse('<b>text</b>');
-		 * @method parse
-		 * @param {String} html Html string to sax parse.
-		 */
+			* Parses the specified HTML string and executes the callbacks for each item it finds.
+			*
+			* @example
+			* new SaxParser({...}).parse('<b>text</b>');
+			* @method parse
+			* @param {String} html Html string to sax parse.
+			*/
 		self.parse = function(html) {
 			var self = this, matches, index = 0, value, endRegExp, stack = [], attrList, i, text, name;
 			var isInternalElement, removeInternalElements, shortEndedElements, fillAttrsMap, isShortEnded;
@@ -11696,27 +11696,27 @@ define("tinymce/html/SaxParser", [
 // Included from: classes/html/DomParser.js
 
 /**
- * DomParser.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DomParser.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class parses HTML code into a DOM like structure of nodes it will remove redundant whitespace and make
- * sure that the node tree is valid according to the specified schema.
- * So for example: <p>a<p>b</p>c</p> will become <p>a</p><p>b</p><p>c</p>
- *
- * @example
- * var parser = new tinymce.html.DomParser({validate: true}, schema);
- * var rootNode = parser.parse('<h1>content</h1>');
- *
- * @class tinymce.html.DomParser
- * @version 3.4
- */
+	* This class parses HTML code into a DOM like structure of nodes it will remove redundant whitespace and make
+	* sure that the node tree is valid according to the specified schema.
+	* So for example: <p>a<p>b</p>c</p> will become <p>a</p><p>b</p><p>c</p>
+	*
+	* @example
+	* var parser = new tinymce.html.DomParser({validate: true}, schema);
+	* var rootNode = parser.parse('<h1>content</h1>');
+	*
+	* @class tinymce.html.DomParser
+	* @version 3.4
+	*/
 define("tinymce/html/DomParser", [
 	"tinymce/html/Node",
 	"tinymce/html/Schema",
@@ -11726,13 +11726,13 @@ define("tinymce/html/DomParser", [
 	var makeMap = Tools.makeMap, each = Tools.each, explode = Tools.explode, extend = Tools.extend;
 
 	/**
-	 * Constructs a new DomParser instance.
-	 *
-	 * @constructor
-	 * @method DomParser
-	 * @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
-	 * @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
-	 */
+		* Constructs a new DomParser instance.
+		*
+		* @constructor
+		* @method DomParser
+		* @param {Object} settings Name/value collection of settings. comment, cdata, text, start and end are callbacks.
+		* @param {tinymce.html.Schema} schema HTML Schema class to use when parsing.
+		*/
 	return function(settings, schema) {
 		var self = this, nodeFilters = {}, attributeFilters = [], matchedNodes = {}, matchedAttributes = {};
 
@@ -11859,12 +11859,12 @@ define("tinymce/html/DomParser", [
 		}
 
 		/**
-		 * Runs the specified node though the element and attributes filters.
-		 *
-		 * @method filterNode
-		 * @param {tinymce.html.Node} Node the node to run filters on.
-		 * @return {tinymce.html.Node} The passed in node.
-		 */
+			* Runs the specified node though the element and attributes filters.
+			*
+			* @method filterNode
+			* @param {tinymce.html.Node} Node the node to run filters on.
+			* @return {tinymce.html.Node} The passed in node.
+			*/
 		self.filterNode = function(node) {
 			var i, name, list;
 
@@ -11899,19 +11899,19 @@ define("tinymce/html/DomParser", [
 		};
 
 		/**
-		 * Adds a node filter function to the parser, the parser will collect the specified nodes by name
-		 * and then execute the callback ones it has finished parsing the document.
-		 *
-		 * @example
-		 * parser.addNodeFilter('p,h1', function(nodes, name) {
-		 *		for (var i = 0; i < nodes.length; i++) {
-		 *			console.log(nodes[i].name);
-		 *		}
-		 * });
-		 * @method addNodeFilter
-		 * @method {String} name Comma separated list of nodes to collect.
-		 * @param {function} callback Callback function to execute once it has collected nodes.
-		 */
+			* Adds a node filter function to the parser, the parser will collect the specified nodes by name
+			* and then execute the callback ones it has finished parsing the document.
+			*
+			* @example
+			* parser.addNodeFilter('p,h1', function(nodes, name) {
+			*		for (var i = 0; i < nodes.length; i++) {
+			*			console.log(nodes[i].name);
+			*		}
+			* });
+			* @method addNodeFilter
+			* @method {String} name Comma separated list of nodes to collect.
+			* @param {function} callback Callback function to execute once it has collected nodes.
+			*/
 		self.addNodeFilter = function(name, callback) {
 			each(explode(name), function(name) {
 				var list = nodeFilters[name];
@@ -11925,19 +11925,19 @@ define("tinymce/html/DomParser", [
 		};
 
 		/**
-		 * Adds a attribute filter function to the parser, the parser will collect nodes that has the specified attributes
-		 * and then execute the callback ones it has finished parsing the document.
-		 *
-		 * @example
-		 * parser.addAttributeFilter('src,href', function(nodes, name) {
-		 *		for (var i = 0; i < nodes.length; i++) {
-		 *			console.log(nodes[i].name);
-		 *		}
-		 * });
-		 * @method addAttributeFilter
-		 * @method {String} name Comma separated list of nodes to collect.
-		 * @param {function} callback Callback function to execute once it has collected nodes.
-		 */
+			* Adds a attribute filter function to the parser, the parser will collect nodes that has the specified attributes
+			* and then execute the callback ones it has finished parsing the document.
+			*
+			* @example
+			* parser.addAttributeFilter('src,href', function(nodes, name) {
+			*		for (var i = 0; i < nodes.length; i++) {
+			*			console.log(nodes[i].name);
+			*		}
+			* });
+			* @method addAttributeFilter
+			* @method {String} name Comma separated list of nodes to collect.
+			* @param {function} callback Callback function to execute once it has collected nodes.
+			*/
 		self.addAttributeFilter = function(name, callback) {
 			each(explode(name), function(name) {
 				var i;
@@ -11954,15 +11954,15 @@ define("tinymce/html/DomParser", [
 		};
 
 		/**
-		 * Parses the specified HTML string into a DOM like node tree and returns the result.
-		 *
-		 * @example
-		 * var rootNode = new DomParser({...}).parse('<b>text</b>');
-		 * @method parse
-		 * @param {String} html Html string to sax parse.
-		 * @param {Object} args Optional args object that gets passed to all filter functions.
-		 * @return {tinymce.html.Node} Root node containing the tree.
-		 */
+			* Parses the specified HTML string into a DOM like node tree and returns the result.
+			*
+			* @example
+			* var rootNode = new DomParser({...}).parse('<b>text</b>');
+			* @method parse
+			* @param {String} html Html string to sax parse.
+			* @param {Object} args Optional args object that gets passed to all filter functions.
+			* @return {tinymce.html.Node} Root node containing the tree.
+			*/
 		self.parse = function(html, args) {
 			var parser, rootNode, node, nodes, i, l, fi, fl, list, name, validate;
 			var blockElements, startWhiteSpaceRegExp, invalidChildren = [], isInWhiteSpacePreservedElement;
@@ -12503,27 +12503,27 @@ define("tinymce/html/DomParser", [
 // Included from: classes/html/Writer.js
 
 /**
- * Writer.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Writer.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to write HTML tags out it can be used with the Serializer or the SaxParser.
- *
- * @class tinymce.html.Writer
- * @example
- * var writer = new tinymce.html.Writer({indent: true});
- * var parser = new tinymce.html.SaxParser(writer).parse('<p><br></p>');
- * console.log(writer.getContent());
- *
- * @class tinymce.html.Writer
- * @version 3.4
- */
+	* This class is used to write HTML tags out it can be used with the Serializer or the SaxParser.
+	*
+	* @class tinymce.html.Writer
+	* @example
+	* var writer = new tinymce.html.Writer({indent: true});
+	* var parser = new tinymce.html.SaxParser(writer).parse('<p><br></p>');
+	* console.log(writer.getContent());
+	*
+	* @class tinymce.html.Writer
+	* @version 3.4
+	*/
 define("tinymce/html/Writer", [
 	"tinymce/html/Entities",
 	"tinymce/util/Tools"
@@ -12531,12 +12531,12 @@ define("tinymce/html/Writer", [
 	var makeMap = Tools.makeMap;
 
 	/**
-	 * Constructs a new Writer instance.
-	 *
-	 * @constructor
-	 * @method Writer
-	 * @param {Object} settings Name/value settings object.
-	 */
+		* Constructs a new Writer instance.
+		*
+		* @constructor
+		* @method Writer
+		* @param {Object} settings Name/value settings object.
+		*/
 	return function(settings) {
 		var html = [], indent, indentBefore, indentAfter, encode, htmlOutput;
 
@@ -12549,13 +12549,13 @@ define("tinymce/html/Writer", [
 
 		return {
 			/**
-			 * Writes the a start element such as <p id="a">.
-			 *
-			 * @method start
-			 * @param {String} name Name of the element.
-			 * @param {Array} attrs Optional attribute array or undefined if it hasn't any.
-			 * @param {Boolean} empty Optional empty state if the tag should end like <br />.
-			 */
+				* Writes the a start element such as <p id="a">.
+				*
+				* @method start
+				* @param {String} name Name of the element.
+				* @param {Array} attrs Optional attribute array or undefined if it hasn't any.
+				* @param {Boolean} empty Optional empty state if the tag should end like <br />.
+				*/
 			start: function(name, attrs, empty) {
 				var i, l, attr, value;
 
@@ -12592,11 +12592,11 @@ define("tinymce/html/Writer", [
 			},
 
 			/**
-			 * Writes the a end element such as </p>.
-			 *
-			 * @method end
-			 * @param {String} name Name of the element.
-			 */
+				* Writes the a end element such as </p>.
+				*
+				* @method end
+				* @param {String} name Name of the element.
+				*/
 			end: function(name) {
 				var value;
 
@@ -12619,12 +12619,12 @@ define("tinymce/html/Writer", [
 			},
 
 			/**
-			 * Writes a text node.
-			 *
-			 * @method text
-			 * @param {String} text String to write out.
-			 * @param {Boolean} raw Optional raw state if true the contents wont get encoded.
-			 */
+				* Writes a text node.
+				*
+				* @method text
+				* @param {String} text String to write out.
+				* @param {Boolean} raw Optional raw state if true the contents wont get encoded.
+				*/
 			text: function(text, raw) {
 				if (text.length > 0) {
 					html[html.length] = raw ? text : encode(text);
@@ -12632,32 +12632,32 @@ define("tinymce/html/Writer", [
 			},
 
 			/**
-			 * Writes a cdata node such as <![CDATA[data]]>.
-			 *
-			 * @method cdata
-			 * @param {String} text String to write out inside the cdata.
-			 */
+				* Writes a cdata node such as <![CDATA[data]]>.
+				*
+				* @method cdata
+				* @param {String} text String to write out inside the cdata.
+				*/
 			cdata: function(text) {
 				html.push('<![CDATA[', text, ']]>');
 			},
 
 			/**
-			 * Writes a comment node such as <!-- Comment -->.
-			 *
-			 * @method cdata
-			 * @param {String} text String to write out inside the comment.
-			 */
+				* Writes a comment node such as <!-- Comment -->.
+				*
+				* @method cdata
+				* @param {String} text String to write out inside the comment.
+				*/
 			comment: function(text) {
 				html.push('<!--', text, '-->');
 			},
 
 			/**
-			 * Writes a PI node such as <?xml attr="value" ?>.
-			 *
-			 * @method pi
-			 * @param {String} name Name of the pi.
-			 * @param {String} text String to write out inside the pi.
-			 */
+				* Writes a PI node such as <?xml attr="value" ?>.
+				*
+				* @method pi
+				* @param {String} name Name of the pi.
+				* @param {String} text String to write out inside the pi.
+				*/
 			pi: function(name, text) {
 				if (text) {
 					html.push('<?', name, ' ', text, '?>');
@@ -12671,30 +12671,30 @@ define("tinymce/html/Writer", [
 			},
 
 			/**
-			 * Writes a doctype node such as <!DOCTYPE data>.
-			 *
-			 * @method doctype
-			 * @param {String} text String to write out inside the doctype.
-			 */
+				* Writes a doctype node such as <!DOCTYPE data>.
+				*
+				* @method doctype
+				* @param {String} text String to write out inside the doctype.
+				*/
 			doctype: function(text) {
 				html.push('<!DOCTYPE', text, '>', indent ? '\n' : '');
 			},
 
 			/**
-			 * Resets the internal buffer if one wants to reuse the writer.
-			 *
-			 * @method reset
-			 */
+				* Resets the internal buffer if one wants to reuse the writer.
+				*
+				* @method reset
+				*/
 			reset: function() {
 				html.length = 0;
 			},
 
 			/**
-			 * Returns the contents that got serialized.
-			 *
-			 * @method getContent
-			 * @return {String} HTML contents that got written down.
-			 */
+				* Returns the contents that got serialized.
+				*
+				* @method getContent
+				* @return {String} HTML contents that got written down.
+				*/
 			getContent: function() {
 				return html.join('').replace(/\n$/, '');
 			}
@@ -12705,36 +12705,36 @@ define("tinymce/html/Writer", [
 // Included from: classes/html/Serializer.js
 
 /**
- * Serializer.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Serializer.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to serialize down the DOM tree into a string using a Writer instance.
- *
- *
- * @example
- * new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
- * @class tinymce.html.Serializer
- * @version 3.4
- */
+	* This class is used to serialize down the DOM tree into a string using a Writer instance.
+	*
+	*
+	* @example
+	* new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
+	* @class tinymce.html.Serializer
+	* @version 3.4
+	*/
 define("tinymce/html/Serializer", [
 	"tinymce/html/Writer",
 	"tinymce/html/Schema"
 ], function(Writer, Schema) {
 	/**
-	 * Constructs a new Serializer instance.
-	 *
-	 * @constructor
-	 * @method Serializer
-	 * @param {Object} settings Name/value settings object.
-	 * @param {tinymce.html.Schema} schema Schema instance to use.
-	 */
+		* Constructs a new Serializer instance.
+		*
+		* @constructor
+		* @method Serializer
+		* @param {Object} settings Name/value settings object.
+		* @param {tinymce.html.Schema} schema Schema instance to use.
+		*/
 	return function(settings, schema) {
 		var self = this, writer = new Writer(settings);
 
@@ -12745,14 +12745,14 @@ define("tinymce/html/Serializer", [
 		self.writer = writer;
 
 		/**
-		 * Serializes the specified node into a string.
-		 *
-		 * @example
-		 * new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
-		 * @method serialize
-		 * @param {tinymce.html.Node} node Node instance to serialize.
-		 * @return {String} String with HTML based on DOM tree.
-		 */
+			* Serializes the specified node into a string.
+			*
+			* @example
+			* new tinymce.html.Serializer().serialize(new tinymce.html.DomParser().parse('<p>text</p>'));
+			* @method serialize
+			* @param {tinymce.html.Node} node Node instance to serialize.
+			* @return {String} String with HTML based on DOM tree.
+			*/
 		self.serialize = function(node) {
 			var handlers, validate;
 
@@ -12864,21 +12864,21 @@ define("tinymce/html/Serializer", [
 // Included from: classes/dom/Serializer.js
 
 /**
- * Serializer.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Serializer.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to serialize DOM trees into a string. Consult the TinyMCE Wiki API for
- * more details and examples on how to use this class.
- *
- * @class tinymce.dom.Serializer
- */
+	* This class is used to serialize DOM trees into a string. Consult the TinyMCE Wiki API for
+	* more details and examples on how to use this class.
+	*
+	* @class tinymce.dom.Serializer
+	*/
 define("tinymce/dom/Serializer", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/html/DomParser",
@@ -12893,13 +12893,13 @@ define("tinymce/dom/Serializer", [
 	var DOM = DOMUtils.DOM;
 
 	/**
-	 * Constructs a new DOM serializer class.
-	 *
-	 * @constructor
-	 * @method Serializer
-	 * @param {Object} settings Serializer settings object.
-	 * @param {tinymce.Editor} editor Optional editor to bind events to and get schema/dom from.
-	 */
+		* Constructs a new DOM serializer class.
+		*
+		* @constructor
+		* @method Serializer
+		* @param {Object} settings Serializer settings object.
+		* @param {tinymce.Editor} editor Optional editor to bind events to and get schema/dom from.
+		*/
 	return function(settings, editor) {
 		var dom, schema, htmlParser;
 
@@ -13102,52 +13102,52 @@ define("tinymce/dom/Serializer", [
 		// Return public methods
 		return {
 			/**
-			 * Schema instance that was used to when the Serializer was constructed.
-			 *
-			 * @field {tinymce.html.Schema} schema
-			 */
+				* Schema instance that was used to when the Serializer was constructed.
+				*
+				* @field {tinymce.html.Schema} schema
+				*/
 			schema: schema,
 
 			/**
-			 * Adds a node filter function to the parser used by the serializer, the parser will collect the specified nodes by name
-			 * and then execute the callback ones it has finished parsing the document.
-			 *
-			 * @example
-			 * parser.addNodeFilter('p,h1', function(nodes, name) {
-			 *		for (var i = 0; i < nodes.length; i++) {
-			 *			console.log(nodes[i].name);
-			 *		}
-			 * });
-			 * @method addNodeFilter
-			 * @method {String} name Comma separated list of nodes to collect.
-			 * @param {function} callback Callback function to execute once it has collected nodes.
-			 */
+				* Adds a node filter function to the parser used by the serializer, the parser will collect the specified nodes by name
+				* and then execute the callback ones it has finished parsing the document.
+				*
+				* @example
+				* parser.addNodeFilter('p,h1', function(nodes, name) {
+				*		for (var i = 0; i < nodes.length; i++) {
+				*			console.log(nodes[i].name);
+				*		}
+				* });
+				* @method addNodeFilter
+				* @method {String} name Comma separated list of nodes to collect.
+				* @param {function} callback Callback function to execute once it has collected nodes.
+				*/
 			addNodeFilter: htmlParser.addNodeFilter,
 
 			/**
-			 * Adds a attribute filter function to the parser used by the serializer, the parser will
-			 * collect nodes that has the specified attributes
-			 * and then execute the callback ones it has finished parsing the document.
-			 *
-			 * @example
-			 * parser.addAttributeFilter('src,href', function(nodes, name) {
-			 *		for (var i = 0; i < nodes.length; i++) {
-			 *			console.log(nodes[i].name);
-			 *		}
-			 * });
-			 * @method addAttributeFilter
-			 * @method {String} name Comma separated list of nodes to collect.
-			 * @param {function} callback Callback function to execute once it has collected nodes.
-			 */
+				* Adds a attribute filter function to the parser used by the serializer, the parser will
+				* collect nodes that has the specified attributes
+				* and then execute the callback ones it has finished parsing the document.
+				*
+				* @example
+				* parser.addAttributeFilter('src,href', function(nodes, name) {
+				*		for (var i = 0; i < nodes.length; i++) {
+				*			console.log(nodes[i].name);
+				*		}
+				* });
+				* @method addAttributeFilter
+				* @method {String} name Comma separated list of nodes to collect.
+				* @param {function} callback Callback function to execute once it has collected nodes.
+				*/
 			addAttributeFilter: htmlParser.addAttributeFilter,
 
 			/**
-			 * Serializes the specified browser DOM node into a HTML string.
-			 *
-			 * @method serialize
-			 * @param {DOMNode} node DOM node to serialize.
-			 * @param {Object} args Arguments option that gets passed to event handlers.
-			 */
+				* Serializes the specified browser DOM node into a HTML string.
+				*
+				* @method serialize
+				* @param {DOMNode} node DOM node to serialize.
+				* @param {Object} args Arguments option that gets passed to event handlers.
+				*/
 			serialize: function(node, args) {
 				var self = this, impl, doc, oldDoc, htmlSerializer, content;
 
@@ -13228,25 +13228,25 @@ define("tinymce/dom/Serializer", [
 			},
 
 			/**
-			 * Adds valid elements rules to the serializers schema instance this enables you to specify things
-			 * like what elements should be outputted and what attributes specific elements might have.
-			 * Consult the Wiki for more details on this format.
-			 *
-			 * @method addRules
-			 * @param {String} rules Valid elements rules string to add to schema.
-			 */
+				* Adds valid elements rules to the serializers schema instance this enables you to specify things
+				* like what elements should be outputted and what attributes specific elements might have.
+				* Consult the Wiki for more details on this format.
+				*
+				* @method addRules
+				* @param {String} rules Valid elements rules string to add to schema.
+				*/
 			addRules: function(rules) {
 				schema.addValidElements(rules);
 			},
 
 			/**
-			 * Sets the valid elements rules to the serializers schema instance this enables you to specify things
-			 * like what elements should be outputted and what attributes specific elements might have.
-			 * Consult the Wiki for more details on this format.
-			 *
-			 * @method setRules
-			 * @param {String} rules Valid elements rules string.
-			 */
+				* Sets the valid elements rules to the serializers schema instance this enables you to specify things
+				* like what elements should be outputted and what attributes specific elements might have.
+				* Consult the Wiki for more details on this format.
+				*
+				* @method setRules
+				* @param {String} rules Valid elements rules string.
+				*/
 			setRules: function(rules) {
 				schema.setValidElements(rules);
 			},
@@ -13269,21 +13269,21 @@ define("tinymce/dom/Serializer", [
 // Included from: classes/dom/TridentSelection.js
 
 /**
- * TridentSelection.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TridentSelection.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Selection class for old explorer versions. This one fakes the
- * native selection object available on modern browsers.
- *
- * @class tinymce.dom.TridentSelection
- */
+	* Selection class for old explorer versions. This one fakes the
+	* native selection object available on modern browsers.
+	*
+	* @class tinymce.dom.TridentSelection
+	*/
 define("tinymce/dom/TridentSelection", [], function() {
 	function Selection(selection) {
 		var self = this, dom = selection.dom, FALSE = false;
@@ -13778,18 +13778,18 @@ define("tinymce/dom/TridentSelection", [], function() {
 // Included from: classes/util/VK.js
 
 /**
- * VK.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* VK.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This file exposes a set of the common KeyCodes for use.  Please grow it as needed.
- */
+	* This file exposes a set of the common KeyCodes for use.  Please grow it as needed.
+	*/
 define("tinymce/util/VK", [
 	"tinymce/Env"
 ], function(Env) {
@@ -13818,22 +13818,22 @@ define("tinymce/util/VK", [
 // Included from: classes/dom/ControlSelection.js
 
 /**
- * ControlSelection.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ControlSelection.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles control selection of elements. Controls are elements
- * that can be resized and needs to be selected as a whole. It adds custom resize handles
- * to all browser engines that support properly disabling the built in resize logic.
- *
- * @class tinymce.dom.ControlSelection
- */
+	* This class handles control selection of elements. Controls are elements
+	* that can be resized and needs to be selected as a whole. It adds custom resize handles
+	* to all browser engines that support properly disabling the built in resize logic.
+	*
+	* @class tinymce.dom.ControlSelection
+	*/
 define("tinymce/dom/ControlSelection", [
 	"tinymce/util/VK",
 	"tinymce/util/Tools",
@@ -14414,51 +14414,51 @@ define("tinymce/dom/ControlSelection", [
 // Included from: classes/dom/BookmarkManager.js
 
 /**
- * BookmarkManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* BookmarkManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles selection bookmarks.
- *
- * @class tinymce.dom.BookmarkManager
- */
+	* This class handles selection bookmarks.
+	*
+	* @class tinymce.dom.BookmarkManager
+	*/
 define("tinymce/dom/BookmarkManager", [
 	"tinymce/Env",
 	"tinymce/util/Tools"
 ], function(Env, Tools) {
 	/**
-	 * Constructs a new BookmarkManager instance for a specific selection instance.
-	 *
-	 * @constructor
-	 * @method BookmarkManager
-	 * @param {tinymce.dom.Selection} selection Selection instance to handle bookmarks for.
-	 */
+		* Constructs a new BookmarkManager instance for a specific selection instance.
+		*
+		* @constructor
+		* @method BookmarkManager
+		* @param {tinymce.dom.Selection} selection Selection instance to handle bookmarks for.
+		*/
 	function BookmarkManager(selection) {
 		var dom = selection.dom;
 
 		/**
-		 * Returns a bookmark location for the current selection. This bookmark object
-		 * can then be used to restore the selection after some content modification to the document.
-		 *
-		 * @method getBookmark
-		 * @param {Number} type Optional state if the bookmark should be simple or not. Default is complex.
-		 * @param {Boolean} normalized Optional state that enables you to get a position that it would be after normalization.
-		 * @return {Object} Bookmark object, use moveToBookmark with this object to restore the selection.
-		 * @example
-		 * // Stores a bookmark of the current selection
-		 * var bm = tinymce.activeEditor.selection.getBookmark();
-		 *
-		 * tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
-		 *
-		 * // Restore the selection bookmark
-		 * tinymce.activeEditor.selection.moveToBookmark(bm);
-		 */
+			* Returns a bookmark location for the current selection. This bookmark object
+			* can then be used to restore the selection after some content modification to the document.
+			*
+			* @method getBookmark
+			* @param {Number} type Optional state if the bookmark should be simple or not. Default is complex.
+			* @param {Boolean} normalized Optional state that enables you to get a position that it would be after normalization.
+			* @return {Object} Bookmark object, use moveToBookmark with this object to restore the selection.
+			* @example
+			* // Stores a bookmark of the current selection
+			* var bm = tinymce.activeEditor.selection.getBookmark();
+			*
+			* tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
+			*
+			* // Restore the selection bookmark
+			* tinymce.activeEditor.selection.moveToBookmark(bm);
+			*/
 		this.getBookmark = function(type, normalized) {
 			var rng, rng2, id, collapsed, name, element, chr = '&#xFEFF;', styles;
 
@@ -14626,20 +14626,20 @@ define("tinymce/dom/BookmarkManager", [
 		};
 
 		/**
-		 * Restores the selection to the specified bookmark.
-		 *
-		 * @method moveToBookmark
-		 * @param {Object} bookmark Bookmark to restore selection from.
-		 * @return {Boolean} true/false if it was successful or not.
-		 * @example
-		 * // Stores a bookmark of the current selection
-		 * var bm = tinymce.activeEditor.selection.getBookmark();
-		 *
-		 * tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
-		 *
-		 * // Restore the selection bookmark
-		 * tinymce.activeEditor.selection.moveToBookmark(bm);
-		 */
+			* Restores the selection to the specified bookmark.
+			*
+			* @method moveToBookmark
+			* @param {Object} bookmark Bookmark to restore selection from.
+			* @return {Boolean} true/false if it was successful or not.
+			* @example
+			* // Stores a bookmark of the current selection
+			* var bm = tinymce.activeEditor.selection.getBookmark();
+			*
+			* tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
+			*
+			* // Restore the selection bookmark
+			* tinymce.activeEditor.selection.moveToBookmark(bm);
+			*/
 		this.moveToBookmark = function(bookmark) {
 			var rng, root, startContainer, endContainer, startOffset, endOffset;
 
@@ -14789,13 +14789,13 @@ define("tinymce/dom/BookmarkManager", [
 	}
 
 	/**
-	 * Returns true/false if the specified node is a bookmark node or not.
-	 *
-	 * @static
-	 * @method isBookmarkNode
-	 * @param {DOMNode} node DOM Node to check if it's a bookmark node or not.
-	 * @return {Boolean} true/false if the node is a bookmark node or not.
-	 */
+		* Returns true/false if the specified node is a bookmark node or not.
+		*
+		* @static
+		* @method isBookmarkNode
+		* @param {DOMNode} node DOM Node to check if it's a bookmark node or not.
+		* @return {Boolean} true/false if the node is a bookmark node or not.
+		*/
 	BookmarkManager.isBookmarkNode = function(node) {
 		return node && node.tagName === 'SPAN' && node.getAttribute('data-mce-type') === 'bookmark';
 	};
@@ -14806,24 +14806,24 @@ define("tinymce/dom/BookmarkManager", [
 // Included from: classes/dom/Selection.js
 
 /**
- * Selection.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Selection.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles text and control selection it's an crossbrowser utility class.
- * Consult the TinyMCE Wiki API for more details and examples on how to use this class.
- *
- * @class tinymce.dom.Selection
- * @example
- * // Getting the currently selected node for the active editor
- * alert(tinymce.activeEditor.selection.getNode().nodeName);
- */
+	* This class handles text and control selection it's an crossbrowser utility class.
+	* Consult the TinyMCE Wiki API for more details and examples on how to use this class.
+	*
+	* @class tinymce.dom.Selection
+	* @example
+	* // Getting the currently selected node for the active editor
+	* alert(tinymce.activeEditor.selection.getNode().nodeName);
+	*/
 define("tinymce/dom/Selection", [
 	"tinymce/dom/TreeWalker",
 	"tinymce/dom/TridentSelection",
@@ -14837,14 +14837,14 @@ define("tinymce/dom/Selection", [
 	var isIE = Env.ie;
 
 	/**
-	 * Constructs a new selection instance.
-	 *
-	 * @constructor
-	 * @method Selection
-	 * @param {tinymce.dom.DOMUtils} dom DOMUtils object reference.
-	 * @param {Window} win Window to bind the selection object to.
-	 * @param {tinymce.dom.Serializer} serializer DOM serialization class to use for getContent.
-	 */
+		* Constructs a new selection instance.
+		*
+		* @constructor
+		* @method Selection
+		* @param {tinymce.dom.DOMUtils} dom DOMUtils object reference.
+		* @param {Window} win Window to bind the selection object to.
+		* @param {tinymce.dom.Serializer} serializer DOM serialization class to use for getContent.
+		*/
 	function Selection(dom, win, serializer, editor) {
 		var self = this;
 
@@ -14863,13 +14863,13 @@ define("tinymce/dom/Selection", [
 
 	Selection.prototype = {
 		/**
-		 * Move the selection cursor range to the specified node and offset.
-		 * If there is no node specified it will move it to the first suitable location within the body.
-		 *
-		 * @method setCursorLocation
-		 * @param {Node} node Optional node to put the cursor in.
-		 * @param {Number} offset Optional offset from the start of the node to put the cursor at.
-		 */
+			* Move the selection cursor range to the specified node and offset.
+			* If there is no node specified it will move it to the first suitable location within the body.
+			*
+			* @method setCursorLocation
+			* @param {Node} node Optional node to put the cursor in.
+			* @param {Number} offset Optional offset from the start of the node to put the cursor at.
+			*/
 		setCursorLocation: function(node, offset) {
 			var self = this, rng = self.dom.createRng();
 
@@ -14885,18 +14885,18 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns the selected contents using the DOM serializer passed in to this class.
-		 *
-		 * @method getContent
-		 * @param {Object} s Optional settings class with for example output format text or html.
-		 * @return {String} Selected contents in for example HTML format.
-		 * @example
-		 * // Alerts the currently selected contents
-		 * alert(tinymce.activeEditor.selection.getContent());
-		 *
-		 * // Alerts the currently selected contents as plain text
-		 * alert(tinymce.activeEditor.selection.getContent({format: 'text'}));
-		 */
+			* Returns the selected contents using the DOM serializer passed in to this class.
+			*
+			* @method getContent
+			* @param {Object} s Optional settings class with for example output format text or html.
+			* @return {String} Selected contents in for example HTML format.
+			* @example
+			* // Alerts the currently selected contents
+			* alert(tinymce.activeEditor.selection.getContent());
+			*
+			* // Alerts the currently selected contents as plain text
+			* alert(tinymce.activeEditor.selection.getContent({format: 'text'}));
+			*/
 		getContent: function(args) {
 			var self = this, rng = self.getRng(), tmpElm = self.dom.create("body");
 			var se = self.getSel(), whiteSpaceBefore, whiteSpaceAfter, fragment;
@@ -14946,17 +14946,17 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Sets the current selection to the specified content. If any contents is selected it will be replaced
-		 * with the contents passed in to this function. If there is no selection the contents will be inserted
-		 * where the caret is placed in the editor/page.
-		 *
-		 * @method setContent
-		 * @param {String} content HTML contents to set could also be other formats depending on settings.
-		 * @param {Object} args Optional settings object with for example data format.
-		 * @example
-		 * // Inserts some HTML contents at the current selection
-		 * tinymce.activeEditor.selection.setContent('<strong>Some contents</strong>');
-		 */
+			* Sets the current selection to the specified content. If any contents is selected it will be replaced
+			* with the contents passed in to this function. If there is no selection the contents will be inserted
+			* where the caret is placed in the editor/page.
+			*
+			* @method setContent
+			* @param {String} content HTML contents to set could also be other formats depending on settings.
+			* @param {Object} args Optional settings object with for example data format.
+			* @example
+			* // Inserts some HTML contents at the current selection
+			* tinymce.activeEditor.selection.setContent('<strong>Some contents</strong>');
+			*/
 		setContent: function(content, args) {
 			var self = this, rng = self.getRng(), caretNode, doc = self.win.document, frag, temp;
 
@@ -15042,13 +15042,13 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns the start element of a selection range. If the start is in a text
-		 * node the parent element will be returned.
-		 *
-		 * @method getStart
-		 * @param {Boolean} real Optional state to get the real parent when the selection is collapsed not the closest element.
-		 * @return {Element} Start element of selection range.
-		 */
+			* Returns the start element of a selection range. If the start is in a text
+			* node the parent element will be returned.
+			*
+			* @method getStart
+			* @param {Boolean} real Optional state to get the real parent when the selection is collapsed not the closest element.
+			* @return {Element} Start element of selection range.
+			*/
 		getStart: function(real) {
 			var self = this, rng = self.getRng(), startElement, parentElement, checkRng, node;
 
@@ -15095,13 +15095,13 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns the end element of a selection range. If the end is in a text
-		 * node the parent element will be returned.
-		 *
-		 * @method getEnd
-		 * @param {Boolean} real Optional state to get the real parent when the selection is collapsed not the closest element.
-		 * @return {Element} End element of selection range.
-		 */
+			* Returns the end element of a selection range. If the end is in a text
+			* node the parent element will be returned.
+			*
+			* @method getEnd
+			* @param {Boolean} real Optional state to get the real parent when the selection is collapsed not the closest element.
+			* @return {Element} End element of selection range.
+			*/
 		getEnd: function(real) {
 			var self = this, rng = self.getRng(), endElement, endOffset;
 
@@ -15141,56 +15141,56 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns a bookmark location for the current selection. This bookmark object
-		 * can then be used to restore the selection after some content modification to the document.
-		 *
-		 * @method getBookmark
-		 * @param {Number} type Optional state if the bookmark should be simple or not. Default is complex.
-		 * @param {Boolean} normalized Optional state that enables you to get a position that it would be after normalization.
-		 * @return {Object} Bookmark object, use moveToBookmark with this object to restore the selection.
-		 * @example
-		 * // Stores a bookmark of the current selection
-		 * var bm = tinymce.activeEditor.selection.getBookmark();
-		 *
-		 * tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
-		 *
-		 * // Restore the selection bookmark
-		 * tinymce.activeEditor.selection.moveToBookmark(bm);
-		 */
+			* Returns a bookmark location for the current selection. This bookmark object
+			* can then be used to restore the selection after some content modification to the document.
+			*
+			* @method getBookmark
+			* @param {Number} type Optional state if the bookmark should be simple or not. Default is complex.
+			* @param {Boolean} normalized Optional state that enables you to get a position that it would be after normalization.
+			* @return {Object} Bookmark object, use moveToBookmark with this object to restore the selection.
+			* @example
+			* // Stores a bookmark of the current selection
+			* var bm = tinymce.activeEditor.selection.getBookmark();
+			*
+			* tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
+			*
+			* // Restore the selection bookmark
+			* tinymce.activeEditor.selection.moveToBookmark(bm);
+			*/
 		getBookmark: function(type, normalized) {
 			return this.bookmarkManager.getBookmark(type, normalized);
 		},
 
 		/**
-		 * Restores the selection to the specified bookmark.
-		 *
-		 * @method moveToBookmark
-		 * @param {Object} bookmark Bookmark to restore selection from.
-		 * @return {Boolean} true/false if it was successful or not.
-		 * @example
-		 * // Stores a bookmark of the current selection
-		 * var bm = tinymce.activeEditor.selection.getBookmark();
-		 *
-		 * tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
-		 *
-		 * // Restore the selection bookmark
-		 * tinymce.activeEditor.selection.moveToBookmark(bm);
-		 */
+			* Restores the selection to the specified bookmark.
+			*
+			* @method moveToBookmark
+			* @param {Object} bookmark Bookmark to restore selection from.
+			* @return {Boolean} true/false if it was successful or not.
+			* @example
+			* // Stores a bookmark of the current selection
+			* var bm = tinymce.activeEditor.selection.getBookmark();
+			*
+			* tinymce.activeEditor.setContent(tinymce.activeEditor.getContent() + 'Some new content');
+			*
+			* // Restore the selection bookmark
+			* tinymce.activeEditor.selection.moveToBookmark(bm);
+			*/
 		moveToBookmark: function(bookmark) {
 			return this.bookmarkManager.moveToBookmark(bookmark);
 		},
 
 		/**
-		 * Selects the specified element. This will place the start and end of the selection range around the element.
-		 *
-		 * @method select
-		 * @param {Element} node HMTL DOM element to select.
-		 * @param {Boolean} content Optional bool state if the contents should be selected or not on non IE browser.
-		 * @return {Element} Selected element the same element as the one that got passed in.
-		 * @example
-		 * // Select the first paragraph in the active editor
-		 * tinymce.activeEditor.selection.select(tinymce.activeEditor.dom.select('p')[0]);
-		 */
+			* Selects the specified element. This will place the start and end of the selection range around the element.
+			*
+			* @method select
+			* @param {Element} node HMTL DOM element to select.
+			* @param {Boolean} content Optional bool state if the contents should be selected or not on non IE browser.
+			* @return {Element} Selected element the same element as the one that got passed in.
+			* @example
+			* // Select the first paragraph in the active editor
+			* tinymce.activeEditor.selection.select(tinymce.activeEditor.dom.select('p')[0]);
+			*/
 		select: function(node, content) {
 			var self = this, dom = self.dom, rng = dom.createRng(), idx;
 
@@ -15219,12 +15219,12 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns true/false if the selection range is collapsed or not. Collapsed means if it's a caret or a larger selection.
-		 *
-		 * @method isCollapsed
-		 * @return {Boolean} true/false state if the selection range is collapsed or not.
-		 * Collapsed means if it's a caret or a larger selection.
-		 */
+			* Returns true/false if the selection range is collapsed or not. Collapsed means if it's a caret or a larger selection.
+			*
+			* @method isCollapsed
+			* @return {Boolean} true/false state if the selection range is collapsed or not.
+			* Collapsed means if it's a caret or a larger selection.
+			*/
 		isCollapsed: function() {
 			var self = this, rng = self.getRng(), sel = self.getSel();
 
@@ -15240,11 +15240,11 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Collapse the selection to start or end of range.
-		 *
-		 * @method collapse
-		 * @param {Boolean} toStart Optional boolean state if to collapse to end or not. Defaults to start.
-		 */
+			* Collapse the selection to start or end of range.
+			*
+			* @method collapse
+			* @param {Boolean} toStart Optional boolean state if to collapse to end or not. Defaults to start.
+			*/
 		collapse: function(toStart) {
 			var self = this, rng = self.getRng(), node;
 
@@ -15260,11 +15260,11 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns the browsers internal selection object.
-		 *
-		 * @method getSel
-		 * @return {Selection} Internal browser selection object.
-		 */
+			* Returns the browsers internal selection object.
+			*
+			* @method getSel
+			* @return {Selection} Internal browser selection object.
+			*/
 		getSel: function() {
 			var win = this.win;
 
@@ -15272,14 +15272,14 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns the browsers internal range object.
-		 *
-		 * @method getRng
-		 * @param {Boolean} w3c Forces a compatible W3C range on IE.
-		 * @return {Range} Internal browser range object.
-		 * @see http://www.quirksmode.org/dom/range_intro.html
-		 * @see http://www.dotvoid.com/2001/03/using-the-range-object-in-mozilla/
-		 */
+			* Returns the browsers internal range object.
+			*
+			* @method getRng
+			* @param {Boolean} w3c Forces a compatible W3C range on IE.
+			* @return {Range} Internal browser range object.
+			* @see http://www.quirksmode.org/dom/range_intro.html
+			* @see http://www.dotvoid.com/2001/03/using-the-range-object-in-mozilla/
+			*/
 		getRng: function(w3c) {
 			var self = this, selection, rng, elm, doc = self.win.document, ieRng;
 
@@ -15383,11 +15383,11 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Changes the selection to the specified DOM range.
-		 *
-		 * @method setRng
-		 * @param {Range} rng Range to select.
-		 */
+			* Changes the selection to the specified DOM range.
+			*
+			* @method setRng
+			* @param {Range} rng Range to select.
+			*/
 		setRng: function(rng, forward) {
 			var self = this, sel;
 
@@ -15496,15 +15496,15 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Sets the current selection to the specified DOM element.
-		 *
-		 * @method setNode
-		 * @param {Element} elm Element to set as the contents of the selection.
-		 * @return {Element} Returns the element that got passed in.
-		 * @example
-		 * // Inserts a DOM node at current selection/caret location
-		 * tinymce.activeEditor.selection.setNode(tinymce.activeEditor.dom.create('img', {src: 'some.gif', title: 'some title'}));
-		 */
+			* Sets the current selection to the specified DOM element.
+			*
+			* @method setNode
+			* @param {Element} elm Element to set as the contents of the selection.
+			* @return {Element} Returns the element that got passed in.
+			* @example
+			* // Inserts a DOM node at current selection/caret location
+			* tinymce.activeEditor.selection.setNode(tinymce.activeEditor.dom.create('img', {src: 'some.gif', title: 'some title'}));
+			*/
 		setNode: function(elm) {
 			var self = this;
 
@@ -15514,14 +15514,14 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Returns the currently selected element or the common ancestor element for both start and end of the selection.
-		 *
-		 * @method getNode
-		 * @return {Element} Currently selected element or common ancestor element.
-		 * @example
-		 * // Alerts the currently selected elements node name
-		 * alert(tinymce.activeEditor.selection.getNode().nodeName);
-		 */
+			* Returns the currently selected element or the common ancestor element for both start and end of the selection.
+			*
+			* @method getNode
+			* @return {Element} Currently selected element or common ancestor element.
+			* @example
+			* // Alerts the currently selected elements node name
+			* alert(tinymce.activeEditor.selection.getNode().nodeName);
+			*/
 		getNode: function() {
 			var self = this, rng = self.getRng(), elm;
 			var startContainer = rng.startContainer, endContainer = rng.endContainer;
@@ -15656,12 +15656,12 @@ define("tinymce/dom/Selection", [
 		},
 
 		/**
-		 * Executes callback of the current selection matches the specified selector or not and passes the state and args to the callback.
-		 *
-		 * @method selectorChanged
-		 * @param {String} selector CSS selector to check for.
-		 * @param {function} callback Callback with state and args when the selector is matches or not.
-		 */
+			* Executes callback of the current selection matches the specified selector or not and passes the state and args to the callback.
+			*
+			* @method selectorChanged
+			* @param {String} selector CSS selector to check for.
+			* @param {function} callback Callback with state and args when the selector is matches or not.
+			*/
 		selectorChanged: function(selector, callback) {
 			var self = this, currentSelectors;
 
@@ -15857,20 +15857,20 @@ define("tinymce/dom/Selection", [
 // Included from: classes/dom/ElementUtils.js
 
 /**
- * ElementUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ElementUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Utility class for various element specific functions.
- *
- * @private
- */
+	* Utility class for various element specific functions.
+	*
+	* @private
+	*/
 define("tinymce/dom/ElementUtils", [
 	"tinymce/dom/BookmarkManager",
 	"tinymce/util/Tools"
@@ -15879,14 +15879,14 @@ define("tinymce/dom/ElementUtils", [
 
 	function ElementUtils(dom) {
 		/**
-		 * Compares two nodes and checks if it's attributes and styles matches.
-		 * This doesn't compare classes as items since their order is significant.
-		 *
-		 * @method compare
-		 * @param {Node} node1 First node to compare with.
-		 * @param {Node} node2 Second node to compare with.
-		 * @return {boolean} True/false if the nodes are the same or not.
-		 */
+			* Compares two nodes and checks if it's attributes and styles matches.
+			* This doesn't compare classes as items since their order is significant.
+			*
+			* @method compare
+			* @param {Node} node1 First node to compare with.
+			* @param {Node} node2 Second node to compare with.
+			* @return {boolean} True/false if the nodes are the same or not.
+			*/
 		this.compare = function(node1, node2) {
 			// Not the same name
 			if (node1.nodeName != node2.nodeName) {
@@ -15894,12 +15894,12 @@ define("tinymce/dom/ElementUtils", [
 			}
 
 			/**
-			 * Returns all the nodes attributes excluding internal ones, styles and classes.
-			 *
-			 * @private
-			 * @param {Node} node Node to get attributes from.
-			 * @return {Object} Name/value object with attributes and attribute values.
-			 */
+				* Returns all the nodes attributes excluding internal ones, styles and classes.
+				*
+				* @private
+				* @param {Node} node Node to get attributes from.
+				* @return {Object} Name/value object with attributes and attribute values.
+				*/
 			function getAttribs(node) {
 				var attribs = {};
 
@@ -15916,13 +15916,13 @@ define("tinymce/dom/ElementUtils", [
 			}
 
 			/**
-			 * Compares two objects checks if it's key + value exists in the other one.
-			 *
-			 * @private
-			 * @param {Object} obj1 First object to compare.
-			 * @param {Object} obj2 Second object to compare.
-			 * @return {boolean} True/false if the objects matches or not.
-			 */
+				* Compares two objects checks if it's key + value exists in the other one.
+				*
+				* @private
+				* @param {Object} obj1 First object to compare.
+				* @param {Object} obj2 Second object to compare.
+				* @return {boolean} True/false if the objects matches or not.
+				*/
 			function compareObjects(obj1, obj2) {
 				var value, name;
 
@@ -15977,24 +15977,24 @@ define("tinymce/dom/ElementUtils", [
 // Included from: classes/fmt/Preview.js
 
 /**
- * Preview.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Preview.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Internal class for generating previews styles for formats.
- *
- * Example:
- *  Preview.getCssText(editor, 'bold');
- *
- * @class tinymce.fmt.Preview
- * @private
- */
+	* Internal class for generating previews styles for formats.
+	*
+	* Example:
+	*  Preview.getCssText(editor, 'bold');
+	*
+	* @class tinymce.fmt.Preview
+	* @private
+	*/
 define("tinymce/fmt/Preview", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -16131,29 +16131,29 @@ define("tinymce/fmt/Preview", [
 // Included from: classes/Formatter.js
 
 /**
- * Formatter.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Formatter.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Text formatter engine class. This class is used to apply formats like bold, italic, font size
- * etc to the current selection or specific nodes. This engine was build to replace the browsers
- * default formatting logic for execCommand due to it's inconsistent and buggy behavior.
- *
- * @class tinymce.Formatter
- * @example
- *  tinymce.activeEditor.formatter.register('mycustomformat', {
- *    inline: 'span',
- *    styles: {color: '#ff0000'}
- *  });
- *
- *  tinymce.activeEditor.formatter.apply('mycustomformat');
- */
+	* Text formatter engine class. This class is used to apply formats like bold, italic, font size
+	* etc to the current selection or specific nodes. This engine was build to replace the browsers
+	* default formatting logic for execCommand due to it's inconsistent and buggy behavior.
+	*
+	* @class tinymce.Formatter
+	* @example
+	*  tinymce.activeEditor.formatter.register('mycustomformat', {
+	*    inline: 'span',
+	*    styles: {color: '#ff0000'}
+	*  });
+	*
+	*  tinymce.activeEditor.formatter.apply('mycustomformat');
+	*/
 define("tinymce/Formatter", [
 	"tinymce/dom/TreeWalker",
 	"tinymce/dom/RangeUtils",
@@ -16163,11 +16163,11 @@ define("tinymce/Formatter", [
 	"tinymce/fmt/Preview"
 ], function(TreeWalker, RangeUtils, BookmarkManager, ElementUtils, Tools, Preview) {
 	/**
-	 * Constructs a new formatter instance.
-	 *
-	 * @constructor Formatter
-	 * @param {tinymce.Editor} ed Editor instance to construct the formatter engine to.
-	 */
+		* Constructs a new formatter instance.
+		*
+		* @constructor Formatter
+		* @param {tinymce.Editor} ed Editor instance to construct the formatter engine to.
+		*/
 	return function(ed) {
 		var formats = {},
 			dom = ed.dom,
@@ -16330,24 +16330,24 @@ define("tinymce/Formatter", [
 		// Public functions
 
 		/**
-		 * Returns the format by name or all formats if no name is specified.
-		 *
-		 * @method get
-		 * @param {String} name Optional name to retrive by.
-		 * @return {Array/Object} Array/Object with all registred formats or a specific format.
-		 */
+			* Returns the format by name or all formats if no name is specified.
+			*
+			* @method get
+			* @param {String} name Optional name to retrive by.
+			* @return {Array/Object} Array/Object with all registred formats or a specific format.
+			*/
 		function get(name) {
 			return name ? formats[name] : formats;
 		}
 
 		/**
-		 * Registers a specific format by name.
-		 *
-		 * @method register
-		 * @param {Object/String} name Name of the format for example "bold".
-		 * @param {Object/Array} format Optional format object or array of format variants
-		 * can only be omitted if the first arg is an object.
-		 */
+			* Registers a specific format by name.
+			*
+			* @method register
+			* @param {Object/String} name Name of the format for example "bold".
+			* @param {Object/Array} format Optional format object or array of format variants
+			* can only be omitted if the first arg is an object.
+			*/
 		function register(name, format) {
 			if (name) {
 				if (typeof name !== 'string') {
@@ -16393,11 +16393,11 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Unregister a specific format by name.
-		 *
-		 * @method unregister
-		 * @param {String} name Name of the format for example "bold".
-		 */
+			* Unregister a specific format by name.
+			*
+			* @method unregister
+			* @param {String} name Name of the format for example "bold".
+			*/
 		function unregister(name) {
 			if (name && formats[name]) {
 				delete formats[name];
@@ -16430,13 +16430,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Applies the specified format to the current selection or specified node.
-		 *
-		 * @method apply
-		 * @param {String} name Name of format to apply.
-		 * @param {Object} vars Optional list of variables to replace within format before applying it.
-		 * @param {Node} node Optional node to apply the format to defaults to current selection.
-		 */
+			* Applies the specified format to the current selection or specified node.
+			*
+			* @method apply
+			* @param {String} name Name of format to apply.
+			* @param {Object} vars Optional list of variables to replace within format before applying it.
+			* @param {Node} node Optional node to apply the format to defaults to current selection.
+			*/
 		function apply(name, vars, node) {
 			var formatList = get(name), format = formatList[0], bookmark, rng, isCollapsed = !node && selection.isCollapsed();
 
@@ -16514,8 +16514,8 @@ define("tinymce/Formatter", [
 					var currentWrapElm;
 
 					/**
-					 * Process a list of nodes wrap them.
-					 */
+						* Process a list of nodes wrap them.
+						*/
 					function process(node) {
 						var nodeName, parentName, found, hasContentEditableState, lastContentEditable;
 
@@ -16771,13 +16771,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Removes the specified format from the current selection or specified node.
-		 *
-		 * @method remove
-		 * @param {String} name Name of format to remove.
-		 * @param {Object} vars Optional list of variables to replace within format before removing it.
-		 * @param {Node/Range} node Optional node or DOM range to remove the format from defaults to current selection.
-		 */
+			* Removes the specified format from the current selection or specified node.
+			*
+			* @method remove
+			* @param {String} name Name of format to remove.
+			* @param {Object} vars Optional list of variables to replace within format before removing it.
+			* @param {Node/Range} node Optional node or DOM range to remove the format from defaults to current selection.
+			*/
 		function remove(name, vars, node, similar) {
 			var formatList = get(name), format = formatList[0], bookmark, rng, contentEditable = true;
 
@@ -17013,13 +17013,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Toggles the specified format on/off.
-		 *
-		 * @method toggle
-		 * @param {String} name Name of format to apply/remove.
-		 * @param {Object} vars Optional list of variables to replace within format before applying/removing it.
-		 * @param {Node} node Optional node to apply the format to or remove from. Defaults to current selection.
-		 */
+			* Toggles the specified format on/off.
+			*
+			* @method toggle
+			* @param {String} name Name of format to apply/remove.
+			* @param {Object} vars Optional list of variables to replace within format before applying/removing it.
+			* @param {Node} node Optional node to apply the format to or remove from. Defaults to current selection.
+			*/
 		function toggle(name, vars, node) {
 			var fmt = get(name);
 
@@ -17031,15 +17031,15 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Return true/false if the specified node has the specified format.
-		 *
-		 * @method matchNode
-		 * @param {Node} node Node to check the format on.
-		 * @param {String} name Format name to check.
-		 * @param {Object} vars Optional list of variables to replace before checking it.
-		 * @param {Boolean} similar Match format that has similar properties.
-		 * @return {Object} Returns the format object it matches or undefined if it doesn't match.
-		 */
+			* Return true/false if the specified node has the specified format.
+			*
+			* @method matchNode
+			* @param {Node} node Node to check the format on.
+			* @param {String} name Format name to check.
+			* @param {Object} vars Optional list of variables to replace before checking it.
+			* @param {Boolean} similar Match format that has similar properties.
+			* @return {Object} Returns the format object it matches or undefined if it doesn't match.
+			*/
 		function matchNode(node, name, vars, similar) {
 			var formatList = get(name), format, i, classes;
 
@@ -17108,14 +17108,14 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Matches the current selection or specified node against the specified format name.
-		 *
-		 * @method match
-		 * @param {String} name Name of format to match.
-		 * @param {Object} vars Optional list of variables to replace before checking it.
-		 * @param {Node} node Optional node to check.
-		 * @return {boolean} true/false if the specified selection/node matches the format.
-		 */
+			* Matches the current selection or specified node against the specified format name.
+			*
+			* @method match
+			* @param {String} name Name of format to match.
+			* @param {Object} vars Optional list of variables to replace before checking it.
+			* @param {Node} node Optional node to check.
+			* @return {boolean} true/false if the specified selection/node matches the format.
+			*/
 		function match(name, vars, node) {
 			var startNode;
 
@@ -17158,13 +17158,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Matches the current selection against the array of formats and returns a new array with matching formats.
-		 *
-		 * @method matchAll
-		 * @param {Array} names Name of format to match.
-		 * @param {Object} vars Optional list of variables to replace before checking it.
-		 * @return {Array} Array with matched formats.
-		 */
+			* Matches the current selection against the array of formats and returns a new array with matching formats.
+			*
+			* @method matchAll
+			* @param {Array} names Name of format to match.
+			* @param {Object} vars Optional list of variables to replace before checking it.
+			* @return {Array} Array with matched formats.
+			*/
 		function matchAll(names, vars) {
 			var startElement, matchedFormatNames = [], checkedMap = {};
 
@@ -17187,13 +17187,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Returns true/false if the specified format can be applied to the current selection or not. It
-		 * will currently only check the state for selector formats, it returns true on all other format types.
-		 *
-		 * @method canApply
-		 * @param {String} name Name of format to check.
-		 * @return {boolean} true/false if the specified format can be applied to the current selection/node.
-		 */
+			* Returns true/false if the specified format can be applied to the current selection or not. It
+			* will currently only check the state for selector formats, it returns true on all other format types.
+			*
+			* @method canApply
+			* @param {String} name Name of format to check.
+			* @return {boolean} true/false if the specified format can be applied to the current selection/node.
+			*/
 		function canApply(name) {
 			var formatList = get(name), startNode, parents, i, x, selector;
 
@@ -17222,13 +17222,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Executes the specified callback when the current selection matches the formats or not.
-		 *
-		 * @method formatChanged
-		 * @param {String} formats Comma separated list of formats to check for.
-		 * @param {function} callback Callback with state and args when the format is changed/toggled on/off.
-		 * @param {Boolean} similar True/false state if the match should handle similar or exact formats.
-		 */
+			* Executes the specified callback when the current selection matches the formats or not.
+			*
+			* @method formatChanged
+			* @param {String} formats Comma separated list of formats to check for.
+			* @param {function} callback Callback with state and args when the format is changed/toggled on/off.
+			* @param {Boolean} similar True/false state if the match should handle similar or exact formats.
+			*/
 		function formatChanged(formats, callback, similar) {
 			var currentFormats;
 
@@ -17291,15 +17291,15 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Returns a preview css text for the specified format.
-		 *
-		 * @method getCssText
-		 * @param {String/Object} format Format to generate preview css text for.
-		 * @return {String} Css text for the specified format.
-		 * @example
-		 * var cssText1 = editor.formatter.getCssText('bold');
-		 * var cssText2 = editor.formatter.getCssText({inline: 'b'});
-		 */
+			* Returns a preview css text for the specified format.
+			*
+			* @method getCssText
+			* @param {String/Object} format Format to generate preview css text for.
+			* @return {String} Css text for the specified format.
+			* @example
+			* var cssText1 = editor.formatter.getCssText('bold');
+			* var cssText2 = editor.formatter.getCssText({inline: 'b'});
+			*/
 		function getCssText(format) {
 			return Preview.getCssText(ed, format);
 		}
@@ -17337,13 +17337,13 @@ define("tinymce/Formatter", [
 		// Private functions
 
 		/**
-		 * Checks if the specified nodes name matches the format inline/block or selector.
-		 *
-		 * @private
-		 * @param {Node} node Node to match against the specified format.
-		 * @param {Object} format Format object o match with.
-		 * @return {boolean} true/false if the format matches.
-		 */
+			* Checks if the specified nodes name matches the format inline/block or selector.
+			*
+			* @private
+			* @param {Node} node Node to match against the specified format.
+			* @param {Object} format Format object o match with.
+			* @return {boolean} true/false if the format matches.
+			*/
 		function matchName(node, format) {
 			// Check for inline match
 			if (isEq(node, format.inline)) {
@@ -17362,13 +17362,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Compares two string/nodes regardless of their case.
-		 *
-		 * @private
-		 * @param {String/Node} Node or string to compare.
-		 * @param {String/Node} Node or string to compare.
-		 * @return {boolean} True/false if they match.
-		 */
+			* Compares two string/nodes regardless of their case.
+			*
+			* @private
+			* @param {String/Node} Node or string to compare.
+			* @param {String/Node} Node or string to compare.
+			* @return {boolean} True/false if they match.
+			*/
 		function isEq(str1, str2) {
 			str1 = str1 || '';
 			str2 = str2 || '';
@@ -17380,27 +17380,27 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Returns the style by name on the specified node. This method modifies the style
-		 * contents to make it more easy to match. This will resolve a few browser issues.
-		 *
-		 * @private
-		 * @param {Node} node to get style from.
-		 * @param {String} name Style name to get.
-		 * @return {String} Style item value.
-		 */
+			* Returns the style by name on the specified node. This method modifies the style
+			* contents to make it more easy to match. This will resolve a few browser issues.
+			*
+			* @private
+			* @param {Node} node to get style from.
+			* @param {String} name Style name to get.
+			* @return {String} Style item value.
+			*/
 		function getStyle(node, name) {
 			return normalizeStyleValue(dom.getStyle(node, name), name);
 		}
 
 		/**
-		 * Normalize style value by name. This method modifies the style contents
-		 * to make it more easy to match. This will resolve a few browser issues.
-		 *
-		 * @private
-		 * @param {Node} node to get style from.
-		 * @param {String} name Style name to get.
-		 * @return {String} Style item value.
-		 */
+			* Normalize style value by name. This method modifies the style contents
+			* to make it more easy to match. This will resolve a few browser issues.
+			*
+			* @private
+			* @param {Node} node to get style from.
+			* @param {String} name Style name to get.
+			* @return {String} Style item value.
+			*/
 		function normalizeStyleValue(value, name) {
 			// Force the format to hex
 			if (name == 'color' || name == 'backgroundColor') {
@@ -17421,13 +17421,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Replaces variables in the value. The variable format is %var.
-		 *
-		 * @private
-		 * @param {String} value Value to replace variables in.
-		 * @param {Object} vars Name/value array with variables to replace.
-		 * @return {String} New value with replaced variables.
-		 */
+			* Replaces variables in the value. The variable format is %var.
+			*
+			* @private
+			* @param {String} value Value to replace variables in.
+			* @param {Object} vars Name/value array with variables to replace.
+			* @return {String} New value with replaced variables.
+			*/
 		function replaceVars(value, vars) {
 			if (typeof value != "string") {
 				value = value(vars);
@@ -17454,16 +17454,16 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Expands the specified range like object to depending on format.
-		 *
-		 * For example on block formats it will move the start/end position
-		 * to the beginning of the current block.
-		 *
-		 * @private
-		 * @param {Object} rng Range like object.
-		 * @param {Array} formats Array with formats to expand by.
-		 * @return {Object} Expanded range like object.
-		 */
+			* Expands the specified range like object to depending on format.
+			*
+			* For example on block formats it will move the start/end position
+			* to the beginning of the current block.
+			*
+			* @private
+			* @param {Object} rng Range like object.
+			* @param {Array} formats Array with formats to expand by.
+			* @return {Object} Expanded range like object.
+			*/
 		function expandRng(rng, format, remove) {
 			var lastIdx, leaf, endPoint,
 				startContainer = rng.startContainer,
@@ -17819,16 +17819,16 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Removes the specified format for the specified node. It will also remove the node if it doesn't have
-		 * any attributes if the format specifies it to do so.
-		 *
-		 * @private
-		 * @param {Object} format Format object with items to remove from node.
-		 * @param {Object} vars Name/value object with variables to apply to format.
-		 * @param {Node} node Node to remove the format styles on.
-		 * @param {Node} compare_node Optional compare node, if specified the styles will be compared to that node.
-		 * @return {Boolean} True/false if the node was removed or not.
-		 */
+			* Removes the specified format for the specified node. It will also remove the node if it doesn't have
+			* any attributes if the format specifies it to do so.
+			*
+			* @private
+			* @param {Object} format Format object with items to remove from node.
+			* @param {Object} vars Name/value object with variables to apply to format.
+			* @param {Node} node Node to remove the format styles on.
+			* @param {Node} compare_node Optional compare node, if specified the styles will be compared to that node.
+			* @return {Boolean} True/false if the node was removed or not.
+			*/
 		function removeFormat(format, vars, node, compare_node) {
 			var i, attrs, stylesModified;
 
@@ -17935,23 +17935,23 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Removes the node and wrap it's children in paragraphs before doing so or
-		 * appends BR elements to the beginning/end of the block element if forcedRootBlocks is disabled.
-		 *
-		 * If the div in the node below gets removed:
-		 *  text<div>text</div>text
-		 *
-		 * Output becomes:
-		 *  text<div><br />text<br /></div>text
-		 *
-		 * So when the div is removed the result is:
-		 *  text<br />text<br />text
-		 *
-		 * @private
-		 * @param {Node} node Node to remove + apply BR/P elements to.
-		 * @param {Object} format Format rule.
-		 * @return {Node} Input node.
-		 */
+			* Removes the node and wrap it's children in paragraphs before doing so or
+			* appends BR elements to the beginning/end of the block element if forcedRootBlocks is disabled.
+			*
+			* If the div in the node below gets removed:
+			*  text<div>text</div>text
+			*
+			* Output becomes:
+			*  text<div><br />text<br /></div>text
+			*
+			* So when the div is removed the result is:
+			*  text<br />text<br />text
+			*
+			* @private
+			* @param {Node} node Node to remove + apply BR/P elements to.
+			* @param {Object} format Format rule.
+			* @return {Node} Input node.
+			*/
 		function removeNode(node, format) {
 			var parentNode = node.parentNode, rootBlockElm;
 
@@ -18003,14 +18003,14 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Returns the next/previous non whitespace node.
-		 *
-		 * @private
-		 * @param {Node} node Node to start at.
-		 * @param {boolean} next (Optional) Include next or previous node defaults to previous.
-		 * @param {boolean} inc (Optional) Include the current node in checking. Defaults to false.
-		 * @return {Node} Next or previous node or undefined if it wasn't found.
-		 */
+			* Returns the next/previous non whitespace node.
+			*
+			* @private
+			* @param {Node} node Node to start at.
+			* @param {boolean} next (Optional) Include next or previous node defaults to previous.
+			* @param {boolean} inc (Optional) Include the current node in checking. Defaults to false.
+			* @return {Node} Next or previous node or undefined if it wasn't found.
+			*/
 		function getNonWhiteSpaceSibling(node, next, inc) {
 			if (node) {
 				next = next ? 'nextSibling' : 'previousSibling';
@@ -18024,13 +18024,13 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Merges the next/previous sibling element if they match.
-		 *
-		 * @private
-		 * @param {Node} prev Previous node to compare/merge.
-		 * @param {Node} next Next node to compare/merge.
-		 * @return {Node} Next node if we didn't merge and prev node if we did.
-		 */
+			* Merges the next/previous sibling element if they match.
+			*
+			* @private
+			* @param {Node} prev Previous node to compare/merge.
+			* @param {Node} next Next node to compare/merge.
+			* @return {Node} Next node if we didn't merge and prev node if we did.
+			*/
 		function mergeSiblings(prev, next) {
 			var sibling, tmpSibling, elementUtils = new ElementUtils(dom);
 
@@ -18405,8 +18405,8 @@ define("tinymce/Formatter", [
 		}
 
 		/**
-		 * Moves the start to the first suitable text node.
-		 */
+			* Moves the start to the first suitable text node.
+			*/
 		function moveStart(rng) {
 			var container = rng.startContainer,
 					offset = rng.startOffset, isAtEndOfText,
@@ -18454,20 +18454,20 @@ define("tinymce/Formatter", [
 // Included from: classes/UndoManager.js
 
 /**
- * UndoManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* UndoManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles the undo/redo history levels for the editor. Since the build in undo/redo has major drawbacks a custom one was needed.
- *
- * @class tinymce.UndoManager
- */
+	* This class handles the undo/redo history levels for the editor. Since the build in undo/redo has major drawbacks a custom one was needed.
+	*
+	* @class tinymce.UndoManager
+	*/
 define("tinymce/UndoManager", [
 	"tinymce/util/VK",
 	"tinymce/Env",
@@ -18488,15 +18488,15 @@ define("tinymce/UndoManager", [
 		var canAdd = true;
 
 		/**
-		 * Returns a trimmed version of the editor contents to be used for the undo level. This
-		 * will remove any data-mce-bogus="all" marked elements since these are used for UI it will also
-		 * remove the data-mce-selected attributes used for selection of objects and caret containers.
-		 * It will keep all data-mce-bogus="1" elements since these can be used to place the caret etc and will
-		 * be removed by the serialization logic when you save.
-		 *
-		 * @private
-		 * @return {String} HTML contents of the editor excluding some internal bogus elements.
-		 */
+			* Returns a trimmed version of the editor contents to be used for the undo level. This
+			* will remove any data-mce-bogus="all" marked elements since these are used for UI it will also
+			* remove the data-mce-selected attributes used for selection of objects and caret containers.
+			* It will keep all data-mce-bogus="1" elements since these can be used to place the caret etc and will
+			* be removed by the serialization logic when you save.
+			*
+			* @private
+			* @return {String} HTML contents of the editor excluding some internal bogus elements.
+			*/
 		function getContent() {
 			// life ace
 			if(window.LeaAce && window.getEditorContent) {
@@ -18660,19 +18660,19 @@ define("tinymce/UndoManager", [
 			data: data,
 
 			/**
-			 * State if the user is currently typing or not. This will add a typing operation into one undo
-			 * level instead of one new level for each keystroke.
-			 *
-			 * @field {Boolean} typing
-			 */
+				* State if the user is currently typing or not. This will add a typing operation into one undo
+				* level instead of one new level for each keystroke.
+				*
+				* @field {Boolean} typing
+				*/
 			typing: false,
 
 			/**
-			 * Stores away a bookmark to be used when performing an undo action so that the selection is before
-			 * the change has been made.
-			 *
-			 * @method beforeChange
-			 */
+				* Stores away a bookmark to be used when performing an undo action so that the selection is before
+				* the change has been made.
+				*
+				* @method beforeChange
+				*/
 			beforeChange: function() {
 				if (!locks) {
 					beforeBookmark = editor.selection.getBookmark(2, true);
@@ -18685,13 +18685,13 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Adds a new undo level/snapshot to the undo list.
-			 *
-			 * @method add
-			 * @param {Object} level Optional undo level object to add.
-			 * @param {DOMEvent} Event Optional event responsible for the creation of the undo level.
-			 * @return {Object} Undo level that got added or null it a level wasn't needed.
-			 */
+				* Adds a new undo level/snapshot to the undo list.
+				*
+				* @method add
+				* @param {Object} level Optional undo level object to add.
+				* @param {DOMEvent} Event Optional event responsible for the creation of the undo level.
+				* @return {Object} Undo level that got added or null it a level wasn't needed.
+				*/
 			add: function(level, event) {
 				// life ace
 				if(!canAdd) {
@@ -18758,11 +18758,11 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Undoes the last action.
-			 *
-			 * @method undo
-			 * @return {Object} Undo level or null if no undo was performed.
-			 */
+				* Undoes the last action.
+				*
+				* @method undo
+				* @return {Object} Undo level or null if no undo was performed.
+				*/
 			undo: function() {
 				var level;
 
@@ -18789,11 +18789,11 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Redoes the last action.
-			 *
-			 * @method redo
-			 * @return {Object} Redo level or null if no redo was performed.
-			 */
+				* Redoes the last action.
+				*
+				* @method redo
+				* @return {Object} Redo level or null if no redo was performed.
+				*/
 			redo: function() {
 				var level;
 
@@ -18810,10 +18810,10 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Removes all undo levels.
-			 *
-			 * @method clear
-			 */
+				* Removes all undo levels.
+				*
+				* @method clear
+				*/
 			clear: function() {
 				data = [];
 				index = 0;
@@ -18822,35 +18822,35 @@ define("tinymce/UndoManager", [
 			},
 
 			/**
-			 * Returns true/false if the undo manager has any undo levels.
-			 *
-			 * @method hasUndo
-			 * @return {Boolean} true/false if the undo manager has any undo levels.
-			 */
+				* Returns true/false if the undo manager has any undo levels.
+				*
+				* @method hasUndo
+				* @return {Boolean} true/false if the undo manager has any undo levels.
+				*/
 			hasUndo: function() {
 				// Has undo levels or typing and content isn't the same as the initial level
 				return index > 0 || (self.typing && data[0] && getContent() != data[0].content);
 			},
 
 			/**
-			 * Returns true/false if the undo manager has any redo levels.
-			 *
-			 * @method hasRedo
-			 * @return {Boolean} true/false if the undo manager has any redo levels.
-			 */
+				* Returns true/false if the undo manager has any redo levels.
+				*
+				* @method hasRedo
+				* @return {Boolean} true/false if the undo manager has any redo levels.
+				*/
 			hasRedo: function() {
 				return index < data.length - 1 && !this.typing;
 			},
 
 			/**
-			 * Executes the specified function in an undo transation. The selection
-			 * before the modification will be stored to the undo stack and if the DOM changes
-			 * it will add a new undo level. Any methods within the transation that adds undo levels will
-			 * be ignored. So a transation can include calls to execCommand or editor.insertContent.
-			 *
-			 * @method transact
-			 * @param {function} callback Function to execute dom manipulation logic in.
-			 */
+				* Executes the specified function in an undo transation. The selection
+				* before the modification will be stored to the undo stack and if the DOM changes
+				* it will add a new undo level. Any methods within the transation that adds undo levels will
+				* be ignored. So a transation can include calls to execCommand or editor.insertContent.
+				*
+				* @method transact
+				* @param {function} callback Function to execute dom manipulation logic in.
+				*/
 			transact: function(callback) {
 				self.beforeChange();
 
@@ -18872,18 +18872,18 @@ define("tinymce/UndoManager", [
 // Included from: classes/EnterKey.js
 
 /**
- * EnterKey.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EnterKey.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Contains logic for handling the enter key to split/generate block elements.
- */
+	* Contains logic for handling the enter key to split/generate block elements.
+	*/
 define("tinymce/EnterKey", [
 	"tinymce/dom/TreeWalker",
 	"tinymce/dom/RangeUtils",
@@ -19556,14 +19556,14 @@ define("tinymce/EnterKey", [
 // Included from: classes/ForceBlocks.js
 
 /**
- * ForceBlocks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ForceBlocks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 define("tinymce/ForceBlocks", [], function() {
 	return function(editor) {
@@ -19691,21 +19691,21 @@ define("tinymce/ForceBlocks", [], function() {
 // Included from: classes/EditorCommands.js
 
 /**
- * EditorCommands.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EditorCommands.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class enables you to add custom editor commands and it contains
- * overrides for native browser commands to address various bugs and issues.
- *
- * @class tinymce.EditorCommands
- */
+	* This class enables you to add custom editor commands and it contains
+	* overrides for native browser commands to address various bugs and issues.
+	*
+	* @class tinymce.EditorCommands
+	*/
 define("tinymce/EditorCommands", [
 	"tinymce/html/Serializer",
 	"tinymce/Env",
@@ -19734,14 +19734,14 @@ define("tinymce/EditorCommands", [
 		});
 
 		/**
-		 * Executes the specified command.
-		 *
-		 * @method execCommand
-		 * @param {String} command Command to execute.
-		 * @param {Boolean} ui Optional user interface state.
-		 * @param {Object} value Optional value for command.
-		 * @return {Boolean} true/false if the command was found or not.
-		 */
+			* Executes the specified command.
+			*
+			* @method execCommand
+			* @param {String} command Command to execute.
+			* @param {Boolean} ui Optional user interface state.
+			* @param {Object} value Optional value for command.
+			* @return {Boolean} true/false if the command was found or not.
+			*/
 		function execCommand(command, ui, value, args) {
 			var func, customCommand, state = 0;
 
@@ -19799,12 +19799,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Queries the current state for a command for example if the current selection is "bold".
-		 *
-		 * @method queryCommandState
-		 * @param {String} command Command to check the state of.
-		 * @return {Boolean/Number} true/false if the selected contents is bold or not, -1 if it's not found.
-		 */
+			* Queries the current state for a command for example if the current selection is "bold".
+			*
+			* @method queryCommandState
+			* @param {String} command Command to check the state of.
+			* @return {Boolean/Number} true/false if the selected contents is bold or not, -1 if it's not found.
+			*/
 		function queryCommandState(command) {
 			var func;
 
@@ -19829,12 +19829,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Queries the command value for example the current fontsize.
-		 *
-		 * @method queryCommandValue
-		 * @param {String} command Command to check the value of.
-		 * @return {Object} Command value of false if it's not found.
-		 */
+			* Queries the command value for example the current fontsize.
+			*
+			* @method queryCommandValue
+			* @param {String} command Command to check the value of.
+			* @return {Object} Command value of false if it's not found.
+			*/
 		function queryCommandValue(command) {
 			var func;
 
@@ -19857,12 +19857,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Adds commands to the command collection.
-		 *
-		 * @method addCommands
-		 * @param {Object} command_list Name/value collection with commands to add, the names can also be comma separated.
-		 * @param {String} type Optional type to add, defaults to exec. Can be value or state as well.
-		 */
+			* Adds commands to the command collection.
+			*
+			* @method addCommands
+			* @param {Object} command_list Name/value collection with commands to add, the names can also be comma separated.
+			* @param {String} type Optional type to add, defaults to exec. Can be value or state as well.
+			*/
 		function addCommands(command_list, type) {
 			type = type || 'exec';
 
@@ -19881,12 +19881,12 @@ define("tinymce/EditorCommands", [
 		}
 
 		/**
-		 * Returns true/false if the command is supported or not.
-		 *
-		 * @method queryCommandSupported
-		 * @param {String} cmd Command that we check support for.
-		 * @return {Boolean} true/false if the command is supported or not.
-		 */
+			* Returns true/false if the command is supported or not.
+			*
+			* @method queryCommandSupported
+			* @param {String} cmd Command that we check support for.
+			* @return {Boolean} true/false if the command is supported or not.
+			*/
 		function queryCommandSupported(command) {
 			command = command.toLowerCase();
 
@@ -20856,19 +20856,19 @@ define("tinymce/EditorCommands", [
 // Included from: classes/util/URI.js
 
 /**
- * URI.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* URI.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles parsing, modification and serialization of URI/URL strings.
- * @class tinymce.util.URI
- */
+	* This class handles parsing, modification and serialization of URI/URL strings.
+	* @class tinymce.util.URI
+	*/
 define("tinymce/util/URI", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -20882,13 +20882,13 @@ define("tinymce/util/URI", [
 	};
 
 	/**
-	 * Constructs a new URI instance.
-	 *
-	 * @constructor
-	 * @method URI
-	 * @param {String} url URI string to parse.
-	 * @param {Object} settings Optional settings object.
-	 */
+		* Constructs a new URI instance.
+		*
+		* @constructor
+		* @method URI
+		* @param {String} url URI string to parse.
+		* @param {Object} settings Optional settings object.
+		*/
 	function URI(url, settings) {
 		var self = this, baseUri, base_url;
 
@@ -20968,11 +20968,11 @@ define("tinymce/util/URI", [
 
 	URI.prototype = {
 		/**
-		 * Sets the internal path part of the URI.
-		 *
-		 * @method setPath
-		 * @param {string} path Path string to set.
-		 */
+			* Sets the internal path part of the URI.
+			*
+			* @method setPath
+			* @param {string} path Path string to set.
+			*/
 		setPath: function(path) {
 			var self = this;
 
@@ -20989,15 +20989,15 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts the specified URI into a relative URI based on the current URI instance location.
-		 *
-		 * @method toRelative
-		 * @param {String} uri URI to convert into a relative path/URI.
-		 * @return {String} Relative URI from the point specified in the current URI instance.
-		 * @example
-		 * // Converts an absolute URL to an relative URL url will be somedir/somefile.htm
-		 * var url = new tinymce.util.URI('http://www.site.com/dir/').toRelative('http://www.site.com/dir/somedir/somefile.htm');
-		 */
+			* Converts the specified URI into a relative URI based on the current URI instance location.
+			*
+			* @method toRelative
+			* @param {String} uri URI to convert into a relative path/URI.
+			* @return {String} Relative URI from the point specified in the current URI instance.
+			* @example
+			* // Converts an absolute URL to an relative URL url will be somedir/somefile.htm
+			* var url = new tinymce.util.URI('http://www.site.com/dir/').toRelative('http://www.site.com/dir/somedir/somefile.htm');
+			*/
 		toRelative: function(uri) {
 			var self = this, output;
 
@@ -21036,16 +21036,16 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts the specified URI into a absolute URI based on the current URI instance location.
-		 *
-		 * @method toAbsolute
-		 * @param {String} uri URI to convert into a relative path/URI.
-		 * @param {Boolean} noHost No host and protocol prefix.
-		 * @return {String} Absolute URI from the point specified in the current URI instance.
-		 * @example
-		 * // Converts an relative URL to an absolute URL url will be http://www.site.com/dir/somedir/somefile.htm
-		 * var url = new tinymce.util.URI('http://www.site.com/dir/').toAbsolute('somedir/somefile.htm');
-		 */
+			* Converts the specified URI into a absolute URI based on the current URI instance location.
+			*
+			* @method toAbsolute
+			* @param {String} uri URI to convert into a relative path/URI.
+			* @param {Boolean} noHost No host and protocol prefix.
+			* @return {String} Absolute URI from the point specified in the current URI instance.
+			* @example
+			* // Converts an relative URL to an absolute URL url will be http://www.site.com/dir/somedir/somefile.htm
+			* var url = new tinymce.util.URI('http://www.site.com/dir/').toAbsolute('somedir/somefile.htm');
+			*/
 		toAbsolute: function(uri, noHost) {
 			uri = new URI(uri, {base_uri: this});
 
@@ -21053,14 +21053,14 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Determine whether the given URI has the same origin as this URI.  Based on RFC-6454.
-		 * Supports default ports for protocols listed in DEFAULT_PORTS.  Unsupported protocols will fail safe: they
-		 * won't match, if the port specifications differ.
-		 *
-		 * @method isSameOrigin
-		 * @param {tinymce.util.URI} uri Uri instance to compare.
-		 * @returns {Boolean} True if the origins are the same.
-		 */
+			* Determine whether the given URI has the same origin as this URI.  Based on RFC-6454.
+			* Supports default ports for protocols listed in DEFAULT_PORTS.  Unsupported protocols will fail safe: they
+			* won't match, if the port specifications differ.
+			*
+			* @method isSameOrigin
+			* @param {tinymce.util.URI} uri Uri instance to compare.
+			* @returns {Boolean} True if the origins are the same.
+			*/
 		isSameOrigin: function(uri) {
 			if (this.host == uri.host && this.protocol == uri.protocol) {
 				if (this.port == uri.port) {
@@ -21077,12 +21077,12 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts a absolute path into a relative path.
-		 *
-		 * @method toRelPath
-		 * @param {String} base Base point to convert the path from.
-		 * @param {String} path Absolute path to convert into a relative path.
-		 */
+			* Converts a absolute path into a relative path.
+			*
+			* @method toRelPath
+			* @param {String} base Base point to convert the path from.
+			* @param {String} path Absolute path to convert into a relative path.
+			*/
 		toRelPath: function(base, path) {
 			var items, breakPoint = 0, out = '', i, l;
 
@@ -21129,12 +21129,12 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Converts a relative path into a absolute path.
-		 *
-		 * @method toAbsPath
-		 * @param {String} base Base point to convert the path from.
-		 * @param {String} path Relative path to convert into an absolute path.
-		 */
+			* Converts a relative path into a absolute path.
+			*
+			* @method toAbsPath
+			* @param {String} base Base point to convert the path from.
+			* @param {String} path Relative path to convert into an absolute path.
+			*/
 		toAbsPath: function(base, path) {
 			var i, nb = 0, o = [], tr, outPath;
 
@@ -21197,11 +21197,11 @@ define("tinymce/util/URI", [
 		},
 
 		/**
-		 * Returns the full URI of the internal structure.
-		 *
-		 * @method getURI
-		 * @param {Boolean} noProtoHost Optional no host and protocol part. Defaults to false.
-		 */
+			* Returns the full URI of the internal structure.
+			*
+			* @method getURI
+			* @param {Boolean} noProtoHost Optional no host and protocol part. Defaults to false.
+			*/
 		getURI: function(noProtoHost) {
 			var s, self = this;
 
@@ -21254,22 +21254,22 @@ define("tinymce/util/URI", [
 // Included from: classes/util/Class.js
 
 /**
- * Class.js
- *
- * Copyright 2003-2012, Moxiecode Systems AB, All rights reserved.
- */
+	* Class.js
+	*
+	* Copyright 2003-2012, Moxiecode Systems AB, All rights reserved.
+	*/
 
 /**
- * This utilitiy class is used for easier inheritage.
- *
- * Features:
- * * Exposed super functions: this._super();
- * * Mixins
- * * Dummy functions
- * * Property functions: var value = object.value(); and object.value(newValue);
- * * Static functions
- * * Defaults settings
- */
+	* This utilitiy class is used for easier inheritage.
+	*
+	* Features:
+	* * Exposed super functions: this._super();
+	* * Mixins
+	* * Dummy functions
+	* * Property functions: var value = object.value(); and object.value(newValue);
+	* * Static functions
+	* * Defaults settings
+	*/
 define("tinymce/util/Class", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -21422,26 +21422,26 @@ define("tinymce/util/Class", [
 // Included from: classes/util/EventDispatcher.js
 
 /**
- * EventDispatcher.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EventDispatcher.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class lets you add/remove and fire events by name on the specified scope. This makes
- * it easy to add event listener logic to any class.
- *
- * @class tinymce.util.EventDispatcher
- * @example
- *  var eventDispatcher = new EventDispatcher();
- *
- *  eventDispatcher.on('click', function() {console.log('data');});
- *  eventDispatcher.fire('click', {data: 123});
- */
+	* This class lets you add/remove and fire events by name on the specified scope. This makes
+	* it easy to add event listener logic to any class.
+	*
+	* @class tinymce.util.EventDispatcher
+	* @example
+	*  var eventDispatcher = new EventDispatcher();
+	*
+	*  eventDispatcher.on('click', function() {console.log('data');});
+	*  eventDispatcher.fire('click', {data: 123});
+	*/
 define("tinymce/util/EventDispatcher", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -21469,15 +21469,15 @@ define("tinymce/util/EventDispatcher", [
 		toggleEvent = settings.toggleEvent || returnFalse;
 
 		/**
-		 * Fires the specified event by name.
-		 *
-		 * @method fire
-		 * @param {String} name Name of the event to fire.
-		 * @param {Object?} args Event arguments.
-		 * @return {Object} Event args instance passed in.
-		 * @example
-		 * instance.fire('event', {...});
-		 */
+			* Fires the specified event by name.
+			*
+			* @method fire
+			* @param {String} name Name of the event to fire.
+			* @param {Object?} args Event arguments.
+			* @return {Object} Event args instance passed in.
+			* @example
+			* instance.fire('event', {...});
+			*/
 		function fire(name, args) {
 			var handlers, i, l, callback;
 
@@ -21545,18 +21545,18 @@ define("tinymce/util/EventDispatcher", [
 		}
 
 		/**
-		 * Binds an event listener to a specific event by name.
-		 *
-		 * @method on
-		 * @param {String} name Event name or space separated list of events to bind.
-		 * @param {callback} callback Callback to be executed when the event occurs.
-		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * instance.on('event', function(e) {
-		 *     // Callback logic
-		 * });
-		 */
+			* Binds an event listener to a specific event by name.
+			*
+			* @method on
+			* @param {String} name Event name or space separated list of events to bind.
+			* @param {callback} callback Callback to be executed when the event occurs.
+			* @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
+			* @return {Object} Current class instance.
+			* @example
+			* instance.on('event', function(e) {
+			*     // Callback logic
+			* });
+			*/
 		function on(name, callback, prepend, extra) {
 			var handlers, names, i;
 
@@ -21595,22 +21595,22 @@ define("tinymce/util/EventDispatcher", [
 		}
 
 		/**
-		 * Unbinds an event listener to a specific event by name.
-		 *
-		 * @method off
-		 * @param {String?} name Name of the event to unbind.
-		 * @param {callback?} callback Callback to unbind.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * // Unbind specific callback
-		 * instance.off('event', handler);
-		 *
-		 * // Unbind all listeners by name
-		 * instance.off('event');
-		 *
-		 * // Unbind all events
-		 * instance.off();
-		 */
+			* Unbinds an event listener to a specific event by name.
+			*
+			* @method off
+			* @param {String?} name Name of the event to unbind.
+			* @param {callback?} callback Callback to unbind.
+			* @return {Object} Current class instance.
+			* @example
+			* // Unbind specific callback
+			* instance.off('event', handler);
+			*
+			* // Unbind all listeners by name
+			* instance.off('event');
+			*
+			* // Unbind all events
+			* instance.off();
+			*/
 		function off(name, callback) {
 			var i, handlers, bindingName, names, hi;
 
@@ -21664,30 +21664,30 @@ define("tinymce/util/EventDispatcher", [
 		}
 
 		/**
-		 * Binds an event listener to a specific event by name
-		 * and automatically unbind the event once the callback fires.
-		 *
-		 * @method once
-		 * @param {String} name Event name or space separated list of events to bind.
-		 * @param {callback} callback Callback to be executed when the event occurs.
-		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * instance.once('event', function(e) {
-		 *     // Callback logic
-		 * });
-		 */
+			* Binds an event listener to a specific event by name
+			* and automatically unbind the event once the callback fires.
+			*
+			* @method once
+			* @param {String} name Event name or space separated list of events to bind.
+			* @param {callback} callback Callback to be executed when the event occurs.
+			* @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
+			* @return {Object} Current class instance.
+			* @example
+			* instance.once('event', function(e) {
+			*     // Callback logic
+			* });
+			*/
 		function once(name, callback, prepend) {
 			return on(name, callback, prepend, {once: true});
 		}
 
 		/**
-		 * Returns true/false if the dispatcher has a event of the specified name.
-		 *
-		 * @method has
-		 * @param {String} name Name of the event to check for.
-		 * @return {Boolean} true/false if the event exists or not.
-		 */
+			* Returns true/false if the dispatcher has a event of the specified name.
+			*
+			* @method has
+			* @param {String} name Name of the event to check for.
+			* @return {Boolean} true/false if the event exists or not.
+			*/
 		function has(name) {
 			name = name.toLowerCase();
 			return !(!bindings[name] || bindings[name].length === 0);
@@ -21702,13 +21702,13 @@ define("tinymce/util/EventDispatcher", [
 	}
 
 	/**
-	 * Returns true/false if the specified event name is a native browser event or not.
-	 *
-	 * @method isNative
-	 * @param {String} name Name to check if it's native.
-	 * @return {Boolean} true/false if the event is native or not.
-	 * @static
-	 */
+		* Returns true/false if the specified event name is a native browser event or not.
+		*
+		* @method isNative
+		* @param {String} name Name to check if it's native.
+		* @return {Boolean} true/false if the event is native or not.
+		* @static
+		*/
 	Dispatcher.isNative = function(name) {
 		return !!nativeEvents[name.toLowerCase()];
 	};
@@ -21719,58 +21719,58 @@ define("tinymce/util/EventDispatcher", [
 // Included from: classes/ui/Selector.js
 
 /**
- * Selector.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Selector.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint no-nested-ternary:0 */
 
 /**
- * Selector engine, enables you to select controls by using CSS like expressions.
- * We currently only support basic CSS expressions to reduce the size of the core
- * and the ones we support should be enough for most cases.
- *
- * @example
- * Supported expressions:
- *  element
- *  element#name
- *  element.class
- *  element[attr]
- *  element[attr*=value]
- *  element[attr~=value]
- *  element[attr!=value]
- *  element[attr^=value]
- *  element[attr$=value]
- *  element:<state>
- *  element:not(<expression>)
- *  element:first
- *  element:last
- *  element:odd
- *  element:even
- *  element element
- *  element > element
- *
- * @class tinymce.ui.Selector
- */
+	* Selector engine, enables you to select controls by using CSS like expressions.
+	* We currently only support basic CSS expressions to reduce the size of the core
+	* and the ones we support should be enough for most cases.
+	*
+	* @example
+	* Supported expressions:
+	*  element
+	*  element#name
+	*  element.class
+	*  element[attr]
+	*  element[attr*=value]
+	*  element[attr~=value]
+	*  element[attr!=value]
+	*  element[attr^=value]
+	*  element[attr$=value]
+	*  element:<state>
+	*  element:not(<expression>)
+	*  element:first
+	*  element:last
+	*  element:odd
+	*  element:even
+	*  element element
+	*  element > element
+	*
+	* @class tinymce.ui.Selector
+	*/
 define("tinymce/ui/Selector", [
 	"tinymce/util/Class"
 ], function(Class) {
 	"use strict";
 
 	/**
-	 * Produces an array with a unique set of objects. It will not compare the values
-	 * but the references of the objects.
-	 *
-	 * @private
-	 * @method unqiue
-	 * @param {Array} array Array to make into an array with unique items.
-	 * @return {Array} Array with unique items.
-	 */
+		* Produces an array with a unique set of objects. It will not compare the values
+		* but the references of the objects.
+		*
+		* @private
+		* @method unqiue
+		* @param {Array} array Array to make into an array with unique items.
+		* @return {Array} Array with unique items.
+		*/
 	function unique(array) {
 		var uniqueItems = [], i = array.length, item;
 
@@ -21801,12 +21801,12 @@ define("tinymce/ui/Selector", [
 
 	var Selector = Class.extend({
 		/**
-		 * Constructs a new Selector instance.
-		 *
-		 * @constructor
-		 * @method init
-		 * @param {String} selector CSS like selector expression.
-		 */
+			* Constructs a new Selector instance.
+			*
+			* @constructor
+			* @method init
+			* @param {String} selector CSS like selector expression.
+			*/
 		init: function(selector) {
 			var match = this.match;
 
@@ -21955,13 +21955,13 @@ define("tinymce/ui/Selector", [
 		},
 
 		/**
-		 * Returns true/false if the selector matches the specified control.
-		 *
-		 * @method match
-		 * @param {tinymce.ui.Control} control Control to match agains the selector.
-		 * @param {Array} selectors Optional array of selectors, mostly used internally.
-		 * @return {Boolean} true/false state if the control matches or not.
-		 */
+			* Returns true/false if the selector matches the specified control.
+			*
+			* @method match
+			* @param {tinymce.ui.Control} control Control to match agains the selector.
+			* @param {Array} selectors Optional array of selectors, mostly used internally.
+			* @return {Boolean} true/false state if the control matches or not.
+			*/
 		match: function(control, selectors) {
 			var i, l, si, sl, selector, fi, fl, filters, index, length, siblings, count, item;
 
@@ -22019,12 +22019,12 @@ define("tinymce/ui/Selector", [
 		},
 
 		/**
-		 * Returns a tinymce.ui.Collection with matches of the specified selector inside the specified container.
-		 *
-		 * @method find
-		 * @param {tinymce.ui.Control} container Container to look for items in.
-		 * @return {tinymce.ui.Collection} Collection with matched elements.
-		 */
+			* Returns a tinymce.ui.Collection with matches of the specified selector inside the specified container.
+			*
+			* @method find
+			* @param {tinymce.ui.Control} container Container to look for items in.
+			* @return {tinymce.ui.Collection} Collection with matched elements.
+			*/
 		find: function(container) {
 			var matches = [], i, l, selectors = this._selectors;
 
@@ -22091,24 +22091,24 @@ define("tinymce/ui/Selector", [
 // Included from: classes/ui/Collection.js
 
 /**
- * Collection.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Collection.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Control collection, this class contains control instances and it enables you to
- * perform actions on all the contained items. This is very similar to how jQuery works.
- *
- * @example
- * someCollection.show().disabled(true);
- *
- * @class tinymce.ui.Collection
- */
+	* Control collection, this class contains control instances and it enables you to
+	* perform actions on all the contained items. This is very similar to how jQuery works.
+	*
+	* @example
+	* someCollection.show().disabled(true);
+	*
+	* @class tinymce.ui.Collection
+	*/
 define("tinymce/ui/Collection", [
 	"tinymce/util/Tools",
 	"tinymce/ui/Selector",
@@ -22120,20 +22120,20 @@ define("tinymce/ui/Collection", [
 
 	proto = {
 		/**
-		 * Current number of contained control instances.
-		 *
-		 * @field length
-		 * @type Number
-		 */
+			* Current number of contained control instances.
+			*
+			* @field length
+			* @type Number
+			*/
 		length: 0,
 
 		/**
-		 * Constructor for the collection.
-		 *
-		 * @constructor
-		 * @method init
-		 * @param {Array} items Optional array with items to add.
-		 */
+			* Constructor for the collection.
+			*
+			* @constructor
+			* @method init
+			* @param {Array} items Optional array with items to add.
+			*/
 		init: function(items) {
 			if (items) {
 				this.add(items);
@@ -22141,12 +22141,12 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Adds new items to the control collection.
-		 *
-		 * @method add
-		 * @param {Array} items Array if items to add to collection.
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Adds new items to the control collection.
+			*
+			* @method add
+			* @param {Array} items Array if items to add to collection.
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		add: function(items) {
 			var self = this;
 
@@ -22165,13 +22165,13 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Sets the contents of the collection. This will remove any existing items
-		 * and replace them with the ones specified in the input array.
-		 *
-		 * @method set
-		 * @param {Array} items Array with items to set into the Collection.
-		 * @return {tinymce.ui.Collection} Collection instance.
-		 */
+			* Sets the contents of the collection. This will remove any existing items
+			* and replace them with the ones specified in the input array.
+			*
+			* @method set
+			* @param {Array} items Array with items to set into the Collection.
+			* @return {tinymce.ui.Collection} Collection instance.
+			*/
 		set: function(items) {
 			var self = this, len = self.length, i;
 
@@ -22187,12 +22187,12 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Filters the collection item based on the specified selector expression or selector function.
-		 *
-		 * @method filter
-		 * @param {String} selector Selector expression to filter items by.
-		 * @return {tinymce.ui.Collection} Collection containing the filtered items.
-		 */
+			* Filters the collection item based on the specified selector expression or selector function.
+			*
+			* @method filter
+			* @param {String} selector Selector expression to filter items by.
+			* @return {tinymce.ui.Collection} Collection containing the filtered items.
+			*/
 		filter: function(selector) {
 			var self = this, i, l, matches = [], item, match;
 
@@ -22220,35 +22220,35 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Slices the items within the collection.
-		 *
-		 * @method slice
-		 * @param {Number} index Index to slice at.
-		 * @param {Number} len Optional length to slice.
-		 * @return {tinymce.ui.Collection} Current collection.
-		 */
+			* Slices the items within the collection.
+			*
+			* @method slice
+			* @param {Number} index Index to slice at.
+			* @param {Number} len Optional length to slice.
+			* @return {tinymce.ui.Collection} Current collection.
+			*/
 		slice: function() {
 			return new Collection(slice.apply(this, arguments));
 		},
 
 		/**
-		 * Makes the current collection equal to the specified index.
-		 *
-		 * @method eq
-		 * @param {Number} index Index of the item to set the collection to.
-		 * @return {tinymce.ui.Collection} Current collection.
-		 */
+			* Makes the current collection equal to the specified index.
+			*
+			* @method eq
+			* @param {Number} index Index of the item to set the collection to.
+			* @return {tinymce.ui.Collection} Current collection.
+			*/
 		eq: function(index) {
 			return index === -1 ? this.slice(index) : this.slice(index, +index + 1);
 		},
 
 		/**
-		 * Executes the specified callback on each item in collection.
-		 *
-		 * @method each
-		 * @param {function} callback Callback to execute for each item in collection.
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Executes the specified callback on each item in collection.
+			*
+			* @method each
+			* @param {function} callback Callback to execute for each item in collection.
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		each: function(callback) {
 			Tools.each(this, callback);
 
@@ -22256,22 +22256,22 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Returns an JavaScript array object of the contents inside the collection.
-		 *
-		 * @method toArray
-		 * @return {Array} Array with all items from collection.
-		 */
+			* Returns an JavaScript array object of the contents inside the collection.
+			*
+			* @method toArray
+			* @return {Array} Array with all items from collection.
+			*/
 		toArray: function() {
 			return Tools.toArray(this);
 		},
 
 		/**
-		 * Finds the index of the specified control or return -1 if it isn't in the collection.
-		 *
-		 * @method indexOf
-		 * @param {Control} ctrl Control instance to look for.
-		 * @return {Number} Index of the specified control or -1.
-		 */
+			* Finds the index of the specified control or return -1 if it isn't in the collection.
+			*
+			* @method indexOf
+			* @param {Control} ctrl Control instance to look for.
+			* @return {Number} Index of the specified control or -1.
+			*/
 		indexOf: function(ctrl) {
 			var self = this, i = self.length;
 
@@ -22285,34 +22285,34 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Returns a new collection of the contents in reverse order.
-		 *
-		 * @method reverse
-		 * @return {tinymce.ui.Collection} Collection instance with reversed items.
-		 */
+			* Returns a new collection of the contents in reverse order.
+			*
+			* @method reverse
+			* @return {tinymce.ui.Collection} Collection instance with reversed items.
+			*/
 		reverse: function() {
 			return new Collection(Tools.toArray(this).reverse());
 		},
 
 		/**
-		 * Returns true/false if the class exists or not.
-		 *
-		 * @method hasClass
-		 * @param {String} cls Class to check for.
-		 * @return {Boolean} true/false state if the class exists or not.
-		 */
+			* Returns true/false if the class exists or not.
+			*
+			* @method hasClass
+			* @param {String} cls Class to check for.
+			* @return {Boolean} true/false state if the class exists or not.
+			*/
 		hasClass: function(cls) {
 			return this[0] ? this[0].hasClass(cls) : false;
 		},
 
 		/**
-		 * Sets/gets the specific property on the items in the collection. The same as executing control.<property>(<value>);
-		 *
-		 * @method prop
-		 * @param {String} name Property name to get/set.
-		 * @param {Object} value Optional object value to set.
-		 * @return {tinymce.ui.Collection} Current collection instance or value of the first item on a get operation.
-		 */
+			* Sets/gets the specific property on the items in the collection. The same as executing control.<property>(<value>);
+			*
+			* @method prop
+			* @param {String} name Property name to get/set.
+			* @param {Object} value Optional object value to set.
+			* @return {tinymce.ui.Collection} Current collection instance or value of the first item on a get operation.
+			*/
 		prop: function(name, value) {
 			var self = this, undef, item;
 
@@ -22334,14 +22334,14 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Executes the specific function name with optional arguments an all items in collection if it exists.
-		 *
-		 * @example collection.exec("myMethod", arg1, arg2, arg3);
-		 * @method exec
-		 * @param {String} name Name of the function to execute.
-		 * @param {Object} ... Multiple arguments to pass to each function.
-		 * @return {tinymce.ui.Collection} Current collection.
-		 */
+			* Executes the specific function name with optional arguments an all items in collection if it exists.
+			*
+			* @example collection.exec("myMethod", arg1, arg2, arg3);
+			* @method exec
+			* @param {String} name Name of the function to execute.
+			* @param {Object} ... Multiple arguments to pass to each function.
+			* @return {tinymce.ui.Collection} Current collection.
+			*/
 		exec: function(name) {
 			var self = this, args = Tools.toArray(arguments).slice(1);
 
@@ -22355,11 +22355,11 @@ define("tinymce/ui/Collection", [
 		},
 
 		/**
-		 * Remove all items from collection and DOM.
-		 *
-		 * @method remove
-		 * @return {tinymce.ui.Collection} Current collection.
-		 */
+			* Remove all items from collection and DOM.
+			*
+			* @method remove
+			* @return {tinymce.ui.Collection} Current collection.
+			*/
 		remove: function() {
 			var i = this.length;
 
@@ -22371,122 +22371,122 @@ define("tinymce/ui/Collection", [
 		}
 
 		/**
-		 * Fires the specified event by name and arguments on the control. This will execute all
-		 * bound event handlers.
-		 *
-		 * @method fire
-		 * @param {String} name Name of the event to fire.
-		 * @param {Object} args Optional arguments to pass to the event.
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Fires the specified event by name and arguments on the control. This will execute all
+			* bound event handlers.
+			*
+			* @method fire
+			* @param {String} name Name of the event to fire.
+			* @param {Object} args Optional arguments to pass to the event.
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		// fire: function(event, args) {}, -- Generated by code below
 
 		/**
-		 * Binds a callback to the specified event. This event can both be
-		 * native browser events like "click" or custom ones like PostRender.
-		 *
-		 * The callback function will have two parameters the first one being the control that received the event
-		 * the second one will be the event object either the browsers native event object or a custom JS object.
-		 *
-		 * @method on
-		 * @param {String} name Name of the event to bind. For example "click".
-		 * @param {String/function} callback Callback function to execute ones the event occurs.
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Binds a callback to the specified event. This event can both be
+			* native browser events like "click" or custom ones like PostRender.
+			*
+			* The callback function will have two parameters the first one being the control that received the event
+			* the second one will be the event object either the browsers native event object or a custom JS object.
+			*
+			* @method on
+			* @param {String} name Name of the event to bind. For example "click".
+			* @param {String/function} callback Callback function to execute ones the event occurs.
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		// on: function(name, callback) {}, -- Generated by code below
 
 		/**
-		 * Unbinds the specified event and optionally a specific callback. If you omit the name
-		 * parameter all event handlers will be removed. If you omit the callback all event handles
-		 * by the specified name will be removed.
-		 *
-		 * @method off
-		 * @param {String} name Optional name for the event to unbind.
-		 * @param {function} callback Optional callback function to unbind.
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Unbinds the specified event and optionally a specific callback. If you omit the name
+			* parameter all event handlers will be removed. If you omit the callback all event handles
+			* by the specified name will be removed.
+			*
+			* @method off
+			* @param {String} name Optional name for the event to unbind.
+			* @param {function} callback Optional callback function to unbind.
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		// off: function(name, callback) {}, -- Generated by code below
 
 		/**
-		 * Shows the items in the current collection.
-		 *
-		 * @method show
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Shows the items in the current collection.
+			*
+			* @method show
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		// show: function() {}, -- Generated by code below
 
 		/**
-		 * Hides the items in the current collection.
-		 *
-		 * @method hide
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Hides the items in the current collection.
+			*
+			* @method hide
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		// hide: function() {}, -- Generated by code below
 
 		/**
-		 * Sets/gets the text contents of the items in the current collection.
-		 *
-		 * @method text
-		 * @return {tinymce.ui.Collection} Current collection instance or text value of the first item on a get operation.
-		 */
+			* Sets/gets the text contents of the items in the current collection.
+			*
+			* @method text
+			* @return {tinymce.ui.Collection} Current collection instance or text value of the first item on a get operation.
+			*/
 		// text: function(value) {}, -- Generated by code below
 
 		/**
-		 * Sets/gets the name contents of the items in the current collection.
-		 *
-		 * @method name
-		 * @return {tinymce.ui.Collection} Current collection instance or name value of the first item on a get operation.
-		 */
+			* Sets/gets the name contents of the items in the current collection.
+			*
+			* @method name
+			* @return {tinymce.ui.Collection} Current collection instance or name value of the first item on a get operation.
+			*/
 		// name: function(value) {}, -- Generated by code below
 
 		/**
-		 * Sets/gets the disabled state on the items in the current collection.
-		 *
-		 * @method disabled
-		 * @return {tinymce.ui.Collection} Current collection instance or disabled state of the first item on a get operation.
-		 */
+			* Sets/gets the disabled state on the items in the current collection.
+			*
+			* @method disabled
+			* @return {tinymce.ui.Collection} Current collection instance or disabled state of the first item on a get operation.
+			*/
 		// disabled: function(state) {}, -- Generated by code below
 
 		/**
-		 * Sets/gets the active state on the items in the current collection.
-		 *
-		 * @method active
-		 * @return {tinymce.ui.Collection} Current collection instance or active state of the first item on a get operation.
-		 */
+			* Sets/gets the active state on the items in the current collection.
+			*
+			* @method active
+			* @return {tinymce.ui.Collection} Current collection instance or active state of the first item on a get operation.
+			*/
 		// active: function(state) {}, -- Generated by code below
 
 		/**
-		 * Sets/gets the selected state on the items in the current collection.
-		 *
-		 * @method selected
-		 * @return {tinymce.ui.Collection} Current collection instance or selected state of the first item on a get operation.
-		 */
+			* Sets/gets the selected state on the items in the current collection.
+			*
+			* @method selected
+			* @return {tinymce.ui.Collection} Current collection instance or selected state of the first item on a get operation.
+			*/
 		// selected: function(state) {}, -- Generated by code below
 
 		/**
-		 * Sets/gets the selected state on the items in the current collection.
-		 *
-		 * @method visible
-		 * @return {tinymce.ui.Collection} Current collection instance or visible state of the first item on a get operation.
-		 */
+			* Sets/gets the selected state on the items in the current collection.
+			*
+			* @method visible
+			* @return {tinymce.ui.Collection} Current collection instance or visible state of the first item on a get operation.
+			*/
 		// visible: function(state) {}, -- Generated by code below
 
 		/**
-		 * Adds a class to all items in the collection.
-		 *
-		 * @method addClass
-		 * @param {String} cls Class to add to each item.
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Adds a class to all items in the collection.
+			*
+			* @method addClass
+			* @param {String} cls Class to add to each item.
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		// addClass: function(cls) {}, -- Generated by code below
 
 		/**
-		 * Removes the specified class from all items in collection.
-		 *
-		 * @method removeClass
-		 * @param {String} cls Class to remove from each item.
-		 * @return {tinymce.ui.Collection} Current collection instance.
-		 */
+			* Removes the specified class from all items in collection.
+			*
+			* @method removeClass
+			* @param {String} cls Class to remove from each item.
+			* @return {tinymce.ui.Collection} Current collection instance.
+			*/
 		// removeClass: function(cls) {}, -- Generated by code below
 	};
 
@@ -22524,14 +22524,14 @@ define("tinymce/ui/Collection", [
 // Included from: classes/ui/DomUtils.js
 
 /**
- * DOMUtils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DOMUtils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 define("tinymce/ui/DomUtils", [
 	"tinymce/util/Tools",
@@ -22628,23 +22628,23 @@ define("tinymce/ui/DomUtils", [
 // Included from: classes/ui/Control.js
 
 /**
- * Control.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Control.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*eslint consistent-this:0 */
 
 /**
- * This is the base class for all controls and containers. All UI control instances inherit
- * from this one as it has the base logic needed by all of them.
- *
- * @class tinymce.ui.Control
- */
+	* This is the base class for all controls and containers. All UI control instances inherit
+	* from this one as it has the base logic needed by all of them.
+	*
+	* @class tinymce.ui.Control
+	*/
 define("tinymce/ui/Control", [
 	"tinymce/util/Class",
 	"tinymce/util/Tools",
@@ -22691,30 +22691,30 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Class/id prefix to use for all controls.
-		 *
-		 * @final
-		 * @field {String} classPrefix
-		 */
+			* Class/id prefix to use for all controls.
+			*
+			* @final
+			* @field {String} classPrefix
+			*/
 		classPrefix: classPrefix,
 
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} style Style CSS properties to add.
-		 * @setting {String} border Border box values example: 1 1 1 1
-		 * @setting {String} padding Padding box values example: 1 1 1 1
-		 * @setting {String} margin Margin box values example: 1 1 1 1
-		 * @setting {Number} minWidth Minimal width for the control.
-		 * @setting {Number} minHeight Minimal height for the control.
-		 * @setting {String} classes Space separated list of classes to add.
-		 * @setting {String} role WAI-ARIA role to use for control.
-		 * @setting {Boolean} hidden Is the control hidden by default.
-		 * @setting {Boolean} disabled Is the control disabled by default.
-		 * @setting {String} name Name of the control instance.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} style Style CSS properties to add.
+			* @setting {String} border Border box values example: 1 1 1 1
+			* @setting {String} padding Padding box values example: 1 1 1 1
+			* @setting {String} margin Margin box values example: 1 1 1 1
+			* @setting {Number} minWidth Minimal width for the control.
+			* @setting {Number} minHeight Minimal height for the control.
+			* @setting {String} classes Space separated list of classes to add.
+			* @setting {String} role WAI-ARIA role to use for control.
+			* @setting {Boolean} hidden Is the control hidden by default.
+			* @setting {Boolean} disabled Is the control disabled by default.
+			* @setting {String} name Name of the control instance.
+			*/
 		init: function(settings) {
 			var self = this, classes, i;
 
@@ -22766,10 +22766,10 @@ define("tinymce/ui/Control", [
 			}
 
 			/**
-			 * Name/value object with settings for the current control.
-			 *
-			 * @field {Object} settings
-			 */
+				* Name/value object with settings for the current control.
+				*
+				* @field {Object} settings
+				*/
 			self.settings = settings;
 
 			self._borderBox = self.parseBox(settings.border);
@@ -22788,22 +22788,22 @@ define("tinymce/ui/Control", [
 		Methods: 'renderHtml',
 
 		/**
-		 * Returns the root element to render controls into.
-		 *
-		 * @method getContainerElm
-		 * @return {Element} HTML DOM element to render into.
-		 */
+			* Returns the root element to render controls into.
+			*
+			* @method getContainerElm
+			* @return {Element} HTML DOM element to render into.
+			*/
 		getContainerElm: function() {
 			return document.body;
 		},
 
 		/**
-		 * Returns a control instance for the current DOM element.
-		 *
-		 * @method getParentCtrl
-		 * @param {Element} elm HTML dom element to get parent control from.
-		 * @return {tinymce.ui.Control} Control instance or undefined.
-		 */
+			* Returns a control instance for the current DOM element.
+			*
+			* @method getParentCtrl
+			* @param {Element} elm HTML dom element to get parent control from.
+			* @return {tinymce.ui.Control} Control instance or undefined.
+			*/
 		getParentCtrl: function(elm) {
 			var ctrl, lookup = this.getRoot().controlIdLookup;
 
@@ -22820,13 +22820,13 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Parses the specified box value. A box value contains 1-4 properties in clockwise order.
-		 *
-		 * @method parseBox
-		 * @param {String/Number} value Box value "0 1 2 3" or "0" etc.
-		 * @return {Object} Object with top/right/bottom/left properties.
-		 * @private
-		 */
+			* Parses the specified box value. A box value contains 1-4 properties in clockwise order.
+			*
+			* @method parseBox
+			* @param {String/Number} value Box value "0 1 2 3" or "0" etc.
+			* @return {Object} Object with top/right/bottom/left properties.
+			* @private
+			*/
 		parseBox: function(value) {
 			var len, radix = 10;
 
@@ -22908,13 +22908,13 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, settings = self.settings, borderBox, layoutRect;
 			var elm = self.getEl(), width, height, minWidth, minHeight, autoResize;
@@ -22973,12 +22973,12 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Getter/setter for the current layout rect.
-		 *
-		 * @method layoutRect
-		 * @param {Object} [newRect] Optional new layout rect.
-		 * @return {tinymce.ui.Control/Object} Current control or rect object.
-		 */
+			* Getter/setter for the current layout rect.
+			*
+			* @method layoutRect
+			* @param {Object} [newRect] Optional new layout rect.
+			* @return {tinymce.ui.Control/Object} Current control or rect object.
+			*/
 		layoutRect: function(newRect) {
 			var self = this, curRect = self._layoutRect, lastLayoutRect, size, deltaWidth, deltaHeight, undef, repaintControls;
 
@@ -23085,10 +23085,10 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, style, bodyStyle, rect, borderBox, borderW = 0, borderH = 0, lastRepaintRect, round;
 
@@ -23143,16 +23143,16 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Binds a callback to the specified event. This event can both be
-		 * native browser events like "click" or custom ones like PostRender.
-		 *
-		 * The callback function will be passed a DOM event like object that enables yout do stop propagation.
-		 *
-		 * @method on
-		 * @param {String} name Name of the event to bind. For example "click".
-		 * @param {String/function} callback Callback function to execute ones the event occurs.
-		 * @return {tinymce.ui.Control} Current control object.
-		 */
+			* Binds a callback to the specified event. This event can both be
+			* native browser events like "click" or custom ones like PostRender.
+			*
+			* The callback function will be passed a DOM event like object that enables yout do stop propagation.
+			*
+			* @method on
+			* @param {String} name Name of the event to bind. For example "click".
+			* @param {String/function} callback Callback function to execute ones the event occurs.
+			* @return {tinymce.ui.Control} Current control object.
+			*/
 		on: function(name, callback) {
 			var self = this;
 
@@ -23185,30 +23185,30 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Unbinds the specified event and optionally a specific callback. If you omit the name
-		 * parameter all event handlers will be removed. If you omit the callback all event handles
-		 * by the specified name will be removed.
-		 *
-		 * @method off
-		 * @param {String} [name] Name for the event to unbind.
-		 * @param {function} [callback] Callback function to unbind.
-		 * @return {mxex.ui.Control} Current control object.
-		 */
+			* Unbinds the specified event and optionally a specific callback. If you omit the name
+			* parameter all event handlers will be removed. If you omit the callback all event handles
+			* by the specified name will be removed.
+			*
+			* @method off
+			* @param {String} [name] Name for the event to unbind.
+			* @param {function} [callback] Callback function to unbind.
+			* @return {mxex.ui.Control} Current control object.
+			*/
 		off: function(name, callback) {
 			getEventDispatcher(this).off(name, callback);
 			return this;
 		},
 
 		/**
-		 * Fires the specified event by name and arguments on the control. This will execute all
-		 * bound event handlers.
-		 *
-		 * @method fire
-		 * @param {String} name Name of the event to fire.
-		 * @param {Object} [args] Arguments to pass to the event.
-		 * @param {Boolean} [bubble] Value to control bubbeling. Defaults to true.
-		 * @return {Object} Current arguments object.
-		 */
+			* Fires the specified event by name and arguments on the control. This will execute all
+			* bound event handlers.
+			*
+			* @method fire
+			* @param {String} name Name of the event to fire.
+			* @param {Object} [args] Arguments to pass to the event.
+			* @param {Boolean} [bubble] Value to control bubbeling. Defaults to true.
+			* @return {Object} Current arguments object.
+			*/
 		fire: function(name, args, bubble) {
 			var self = this;
 
@@ -23233,23 +23233,23 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Returns true/false if the specified event has any listeners.
-		 *
-		 * @method hasEventListeners
-		 * @param {String} name Name of the event to check for.
-		 * @return {Boolean} True/false state if the event has listeners.
-		 */
+			* Returns true/false if the specified event has any listeners.
+			*
+			* @method hasEventListeners
+			* @param {String} name Name of the event to check for.
+			* @return {Boolean} True/false state if the event has listeners.
+			*/
 		hasEventListeners: function(name) {
 			return getEventDispatcher(this).has(name);
 		},
 
 		/**
-		 * Returns a control collection with all parent controls.
-		 *
-		 * @method parents
-		 * @param {String} selector Optional selector expression to find parents.
-		 * @return {tinymce.ui.Collection} Collection with all parent controls.
-		 */
+			* Returns a control collection with all parent controls.
+			*
+			* @method parents
+			* @param {String} selector Optional selector expression to find parents.
+			* @return {tinymce.ui.Collection} Collection with all parent controls.
+			*/
 		parents: function(selector) {
 			var self = this, ctrl, parents = new Collection();
 
@@ -23267,22 +23267,22 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Returns the current control and it's parents.
-		 *
-		 * @method parentsAndSelf
-		 * @param {String} selector Optional selector expression to find parents.
-		 * @return {tinymce.ui.Collection} Collection with all parent controls.
-		 */
+			* Returns the current control and it's parents.
+			*
+			* @method parentsAndSelf
+			* @param {String} selector Optional selector expression to find parents.
+			* @return {tinymce.ui.Collection} Collection with all parent controls.
+			*/
 		parentsAndSelf: function(selector) {
 			return new Collection(this).add(this.parents(selector));
 		},
 
 		/**
-		 * Returns the control next to the current control.
-		 *
-		 * @method next
-		 * @return {tinymce.ui.Control} Next control instance.
-		 */
+			* Returns the control next to the current control.
+			*
+			* @method next
+			* @return {tinymce.ui.Control} Next control instance.
+			*/
 		next: function() {
 			var parentControls = this.parent().items();
 
@@ -23290,11 +23290,11 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Returns the control previous to the current control.
-		 *
-		 * @method prev
-		 * @return {tinymce.ui.Control} Previous control instance.
-		 */
+			* Returns the control previous to the current control.
+			*
+			* @method prev
+			* @return {tinymce.ui.Control} Previous control instance.
+			*/
 		prev: function() {
 			var parentControls = this.parent().items();
 
@@ -23302,13 +23302,13 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Find the common ancestor for two control instances.
-		 *
-		 * @method findCommonAncestor
-		 * @param {tinymce.ui.Control} ctrl1 First control.
-		 * @param {tinymce.ui.Control} ctrl2 Second control.
-		 * @return {tinymce.ui.Control} Ancestor control instance.
-		 */
+			* Find the common ancestor for two control instances.
+			*
+			* @method findCommonAncestor
+			* @param {tinymce.ui.Control} ctrl1 First control.
+			* @param {tinymce.ui.Control} ctrl2 Second control.
+			* @return {tinymce.ui.Control} Ancestor control instance.
+			*/
 		findCommonAncestor: function(ctrl1, ctrl2) {
 			var parentCtrl;
 
@@ -23330,13 +23330,13 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Returns true/false if the specific control has the specific class.
-		 *
-		 * @method hasClass
-		 * @param {String} cls Class to check for.
-		 * @param {String} [group] Sub element group name.
-		 * @return {Boolean} True/false if the control has the specified class.
-		 */
+			* Returns true/false if the specific control has the specific class.
+			*
+			* @method hasClass
+			* @param {String} cls Class to check for.
+			* @param {String} [group] Sub element group name.
+			* @return {Boolean} True/false if the control has the specified class.
+			*/
 		hasClass: function(cls, group) {
 			var classes = this._classes[group || 'control'];
 
@@ -23346,13 +23346,13 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Adds the specified class to the control
-		 *
-		 * @method addClass
-		 * @param {String} cls Class to check for.
-		 * @param {String} [group] Sub element group name.
-		 * @return {tinymce.ui.Control} Current control object.
-		 */
+			* Adds the specified class to the control
+			*
+			* @method addClass
+			* @param {String} cls Class to check for.
+			* @param {String} [group] Sub element group name.
+			* @return {tinymce.ui.Control} Current control object.
+			*/
 		addClass: function(cls, group) {
 			var self = this, classes, elm;
 
@@ -23382,13 +23382,13 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Removes the specified class from the control.
-		 *
-		 * @method removeClass
-		 * @param {String} cls Class to remove.
-		 * @param {String} [group] Sub element group name.
-		 * @return {tinymce.ui.Control} Current control object.
-		 */
+			* Removes the specified class from the control.
+			*
+			* @method removeClass
+			* @param {String} cls Class to remove.
+			* @param {String} [group] Sub element group name.
+			* @return {tinymce.ui.Control} Current control object.
+			*/
 		removeClass: function(cls, group) {
 			var self = this, classes, i, elm;
 
@@ -23417,14 +23417,14 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Toggles the specified class on the control.
-		 *
-		 * @method toggleClass
-		 * @param {String} cls Class to remove.
-		 * @param {Boolean} state True/false state to add/remove class.
-		 * @param {String} [group] Sub element group name.
-		 * @return {tinymce.ui.Control} Current control object.
-		 */
+			* Toggles the specified class on the control.
+			*
+			* @method toggleClass
+			* @param {String} cls Class to remove.
+			* @param {Boolean} state True/false state to add/remove class.
+			* @param {String} [group] Sub element group name.
+			* @return {tinymce.ui.Control} Current control object.
+			*/
 		toggleClass: function(cls, state, group) {
 			var self = this;
 
@@ -23438,12 +23438,12 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Returns the class string for the specified group name.
-		 *
-		 * @method classes
-		 * @param {String} [group] Group to get clases by.
-		 * @return {String} Classes for the specified group.
-		 */
+			* Returns the class string for the specified group name.
+			*
+			* @method classes
+			* @param {String} [group] Group to get clases by.
+			* @return {String} Classes for the specified group.
+			*/
 		classes: function(group) {
 			var classes = this._classes[group || 'control'];
 
@@ -23451,24 +23451,24 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Sets the inner HTML of the control element.
-		 *
-		 * @method innerHtml
-		 * @param {String} html Html string to set as inner html.
-		 * @return {tinymce.ui.Control} Current control object.
-		 */
+			* Sets the inner HTML of the control element.
+			*
+			* @method innerHtml
+			* @param {String} html Html string to set as inner html.
+			* @return {tinymce.ui.Control} Current control object.
+			*/
 		innerHtml: function(html) {
 			DomUtils.innerHtml(this.getEl(), html);
 			return this;
 		},
 
 		/**
-		 * Returns the control DOM element or sub element.
-		 *
-		 * @method getEl
-		 * @param {String} [suffix] Suffix to get element by.
-		 * @return {Element} HTML DOM element for the current control or it's children.
-		 */
+			* Returns the control DOM element or sub element.
+			*
+			* @method getEl
+			* @param {String} [suffix] Suffix to get element by.
+			* @return {Element} HTML DOM element for the current control or it's children.
+			*/
 		getEl: function(suffix) {
 			var id = suffix ? this._id + '-' + suffix : this._id;
 
@@ -23480,12 +23480,12 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Sets/gets the visible for the control.
-		 *
-		 * @method visible
-		 * @param {Boolean} state Value to set to control.
-		 * @return {Boolean/tinymce.ui.Control} Current control on a set operation or current state on a get.
-		 */
+			* Sets/gets the visible for the control.
+			*
+			* @method visible
+			* @param {Boolean} state Value to set to control.
+			* @return {Boolean/tinymce.ui.Control} Current control on a set operation or current state on a get.
+			*/
 		visible: function(state) {
 			var self = this, parentCtrl;
 
@@ -23513,31 +23513,31 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Sets the visible state to true.
-		 *
-		 * @method show
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Sets the visible state to true.
+			*
+			* @method show
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		show: function() {
 			return this.visible(true);
 		},
 
 		/**
-		 * Sets the visible state to false.
-		 *
-		 * @method hide
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Sets the visible state to false.
+			*
+			* @method hide
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		hide: function() {
 			return this.visible(false);
 		},
 
 		/**
-		 * Focuses the current control.
-		 *
-		 * @method focus
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Focuses the current control.
+			*
+			* @method focus
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		focus: function() {
 			try {
 				this.getEl().focus();
@@ -23549,11 +23549,11 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Blurs the current control.
-		 *
-		 * @method blur
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Blurs the current control.
+			*
+			* @method blur
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		blur: function() {
 			this.getEl().blur();
 
@@ -23561,13 +23561,13 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Sets the specified aria property.
-		 *
-		 * @method aria
-		 * @param {String} name Name of the aria property to set.
-		 * @param {String} value Value of the aria property.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Sets the specified aria property.
+			*
+			* @method aria
+			* @param {String} name Name of the aria property to set.
+			* @param {String} value Value of the aria property.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		aria: function(name, value) {
 			var self = this, elm = self.getEl(self.ariaTarget);
 
@@ -23585,14 +23585,14 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Encodes the specified string with HTML entities. It will also
-		 * translate the string to different languages.
-		 *
-		 * @method encode
-		 * @param {String/Object/Array} text Text to entity encode.
-		 * @param {Boolean} [translate=true] False if the contents shouldn't be translated.
-		 * @return {String} Encoded and possible traslated string.
-		 */
+			* Encodes the specified string with HTML entities. It will also
+			* translate the string to different languages.
+			*
+			* @method encode
+			* @param {String/Object/Array} text Text to entity encode.
+			* @param {Boolean} [translate=true] False if the contents shouldn't be translated.
+			* @return {String} Encoded and possible traslated string.
+			*/
 		encode: function(text, translate) {
 			if (translate !== false) {
 				text = this.translate(text);
@@ -23604,23 +23604,23 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Returns the translated string.
-		 *
-		 * @method translate
-		 * @param {String} text Text to translate.
-		 * @return {String} Translated string or the same as the input.
-		 */
+			* Returns the translated string.
+			*
+			* @method translate
+			* @param {String} text Text to translate.
+			* @return {String} Translated string or the same as the input.
+			*/
 		translate: function(text) {
 			return Control.translate ? Control.translate(text) : text;
 		},
 
 		/**
-		 * Adds items before the current control.
-		 *
-		 * @method before
-		 * @param {Array/tinymce.ui.Collection} items Array of items to prepend before this control.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Adds items before the current control.
+			*
+			* @method before
+			* @param {Array/tinymce.ui.Collection} items Array of items to prepend before this control.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		before: function(items) {
 			var self = this, parent = self.parent();
 
@@ -23632,12 +23632,12 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Adds items after the current control.
-		 *
-		 * @method after
-		 * @param {Array/tinymce.ui.Collection} items Array of items to append after this control.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Adds items after the current control.
+			*
+			* @method after
+			* @param {Array/tinymce.ui.Collection} items Array of items to append after this control.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		after: function(items) {
 			var self = this, parent = self.parent();
 
@@ -23649,11 +23649,11 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Removes the current control from DOM and from UI collections.
-		 *
-		 * @method remove
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Removes the current control from DOM and from UI collections.
+			*
+			* @method remove
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		remove: function() {
 			var self = this, elm = self.getEl(), parent = self.parent(), newItems, i;
 
@@ -23697,12 +23697,12 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Renders the control before the specified element.
-		 *
-		 * @method renderBefore
-		 * @param {Element} elm Element to render before.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Renders the control before the specified element.
+			*
+			* @method renderBefore
+			* @param {Element} elm Element to render before.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		renderBefore: function(elm) {
 			var self = this;
 
@@ -23713,12 +23713,12 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Renders the control to the specified element.
-		 *
-		 * @method renderBefore
-		 * @param {Element} elm Element to render to.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Renders the control to the specified element.
+			*
+			* @method renderBefore
+			* @param {Element} elm Element to render to.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		renderTo: function(elm) {
 			var self = this;
 
@@ -23730,11 +23730,11 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		postRender: function() {
 			var self = this, settings = self.settings, elm, box, parent, name, parentEventsRoot;
 
@@ -23797,12 +23797,12 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Scrolls the current control into view.
-		 *
-		 * @method scrollIntoView
-		 * @param {String} align Alignment in view top|center|bottom.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Scrolls the current control into view.
+			*
+			* @method scrollIntoView
+			* @param {String} align Alignment in view top|center|bottom.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		scrollIntoView: function(align) {
 			function getOffset(elm, rootElm) {
 				var x, y, parent = elm;
@@ -23843,10 +23843,10 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Binds pending DOM events.
-		 *
-		 * @private
-		 */
+			* Binds pending DOM events.
+			*
+			* @private
+			*/
 		bindPendingEvents: function() {
 			var self = this, i, l, parents, eventRootCtrl, nativeEvents, name;
 
@@ -24015,16 +24015,16 @@ define("tinymce/ui/Control", [
 		},
 
 		/**
-		 * Reflows the current control and it's parents.
-		 * This should be used after you for example append children to the current control so
-		 * that the layout managers know that they need to reposition everything.
-		 *
-		 * @example
-		 * container.append({type: 'button', text: 'My button'}).reflow();
-		 *
-		 * @method reflow
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Reflows the current control and it's parents.
+			* This should be used after you for example append children to the current control so
+			* that the layout managers know that they need to reposition everything.
+			*
+			* @example
+			* container.append({type: 'button', text: 'My button'}).reflow();
+			*
+			* @method reflow
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		reflow: function() {
 			this.repaint();
 
@@ -24032,75 +24032,75 @@ define("tinymce/ui/Control", [
 		}
 
 		/**
-		 * Sets/gets the parent container for the control.
-		 *
-		 * @method parent
-		 * @param {tinymce.ui.Container} parent Optional parent to set.
-		 * @return {tinymce.ui.Control} Parent control or the current control on a set action.
-		 */
+			* Sets/gets the parent container for the control.
+			*
+			* @method parent
+			* @param {tinymce.ui.Container} parent Optional parent to set.
+			* @return {tinymce.ui.Control} Parent control or the current control on a set action.
+			*/
 		// parent: function(parent) {} -- Generated
 
 		/**
-		 * Sets/gets the text for the control.
-		 *
-		 * @method text
-		 * @param {String} value Value to set to control.
-		 * @return {String/tinymce.ui.Control} Current control on a set operation or current value on a get.
-		 */
+			* Sets/gets the text for the control.
+			*
+			* @method text
+			* @param {String} value Value to set to control.
+			* @return {String/tinymce.ui.Control} Current control on a set operation or current value on a get.
+			*/
 		// text: function(value) {} -- Generated
 
 		/**
-		 * Sets/gets the width for the control.
-		 *
-		 * @method width
-		 * @param {Number} value Value to set to control.
-		 * @return {Number/tinymce.ui.Control} Current control on a set operation or current value on a get.
-		 */
+			* Sets/gets the width for the control.
+			*
+			* @method width
+			* @param {Number} value Value to set to control.
+			* @return {Number/tinymce.ui.Control} Current control on a set operation or current value on a get.
+			*/
 		// width: function(value) {} -- Generated
 
 		/**
-		 * Sets/gets the height for the control.
-		 *
-		 * @method height
-		 * @param {Number} value Value to set to control.
-		 * @return {Number/tinymce.ui.Control} Current control on a set operation or current value on a get.
-		 */
+			* Sets/gets the height for the control.
+			*
+			* @method height
+			* @param {Number} value Value to set to control.
+			* @return {Number/tinymce.ui.Control} Current control on a set operation or current value on a get.
+			*/
 		// height: function(value) {} -- Generated
 
 		/**
-		 * Sets/gets the disabled state on the control.
-		 *
-		 * @method disabled
-		 * @param {Boolean} state Value to set to control.
-		 * @return {Boolean/tinymce.ui.Control} Current control on a set operation or current state on a get.
-		 */
+			* Sets/gets the disabled state on the control.
+			*
+			* @method disabled
+			* @param {Boolean} state Value to set to control.
+			* @return {Boolean/tinymce.ui.Control} Current control on a set operation or current state on a get.
+			*/
 		// disabled: function(state) {} -- Generated
 
 		/**
-		 * Sets/gets the active for the control.
-		 *
-		 * @method active
-		 * @param {Boolean} state Value to set to control.
-		 * @return {Boolean/tinymce.ui.Control} Current control on a set operation or current state on a get.
-		 */
+			* Sets/gets the active for the control.
+			*
+			* @method active
+			* @param {Boolean} state Value to set to control.
+			* @return {Boolean/tinymce.ui.Control} Current control on a set operation or current state on a get.
+			*/
 		// active: function(state) {} -- Generated
 
 		/**
-		 * Sets/gets the name for the control.
-		 *
-		 * @method name
-		 * @param {String} value Value to set to control.
-		 * @return {String/tinymce.ui.Control} Current control on a set operation or current value on a get.
-		 */
+			* Sets/gets the name for the control.
+			*
+			* @method name
+			* @param {String} value Value to set to control.
+			* @return {String/tinymce.ui.Control} Current control on a set operation or current value on a get.
+			*/
 		// name: function(value) {} -- Generated
 
 		/**
-		 * Sets/gets the title for the control.
-		 *
-		 * @method title
-		 * @param {String} value Value to set to control.
-		 * @return {String/tinymce.ui.Control} Current control on a set operation or current value on a get.
-		 */
+			* Sets/gets the title for the control.
+			*
+			* @method title
+			* @param {String} value Value to set to control.
+			* @return {String/tinymce.ui.Control} Current control on a set operation or current value on a get.
+			*/
 		// title: function(value) {} -- Generated
 	});
 
@@ -24110,25 +24110,25 @@ define("tinymce/ui/Control", [
 // Included from: classes/ui/Factory.js
 
 /**
- * Factory.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Factory.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 
 /**
- * This class is a factory for control instances. This enables you
- * to create instances of controls without having to require the UI controls directly.
- *
- * It also allow you to override or add new control types.
- *
- * @class tinymce.ui.Factory
- */
+	* This class is a factory for control instances. This enables you
+	* to create instances of controls without having to require the UI controls directly.
+	*
+	* It also allow you to override or add new control types.
+	*
+	* @class tinymce.ui.Factory
+	*/
 define("tinymce/ui/Factory", [], function() {
 	"use strict";
 
@@ -24136,42 +24136,42 @@ define("tinymce/ui/Factory", [], function() {
 
 	return {
 		/**
-		 * Adds a new control instance type to the factory.
-		 *
-		 * @method add
-		 * @param {String} type Type name for example "button".
-		 * @param {function} typeClass Class type function.
-		 */
+			* Adds a new control instance type to the factory.
+			*
+			* @method add
+			* @param {String} type Type name for example "button".
+			* @param {function} typeClass Class type function.
+			*/
 		add: function(type, typeClass) {
 			types[type.toLowerCase()] = typeClass;
 		},
 
 		/**
-		 * Returns true/false if the specified type exists or not.
-		 *
-		 * @method has
-		 * @param {String} type Type to look for.
-		 * @return {Boolean} true/false if the control by name exists.
-		 */
+			* Returns true/false if the specified type exists or not.
+			*
+			* @method has
+			* @param {String} type Type to look for.
+			* @return {Boolean} true/false if the control by name exists.
+			*/
 		has: function(type) {
 			return !!types[type.toLowerCase()];
 		},
 
 		/**
-		 * Creates a new control instance based on the settings provided. The instance created will be
-		 * based on the specified type property it can also create whole structures of components out of
-		 * the specified JSON object.
-		 *
-		 * @example
-		 * tinymce.ui.Factory.create({
-		 *     type: 'button',
-		 *     text: 'Hello world!'
-		 * });
-		 *
-		 * @method create
-		 * @param {Object/String} settings Name/Value object with items used to create the type.
-		 * @return {tinymce.ui.Control} Control instance based on the specified type.
-		 */
+			* Creates a new control instance based on the settings provided. The instance created will be
+			* based on the specified type property it can also create whole structures of components out of
+			* the specified JSON object.
+			*
+			* @example
+			* tinymce.ui.Factory.create({
+			*     type: 'button',
+			*     text: 'Hello world!'
+			* });
+			*
+			* @method create
+			* @param {Object/String} settings Name/Value object with items used to create the type.
+			* @return {tinymce.ui.Control} Control instance based on the specified type.
+			*/
 		create: function(type, settings) {
 			var ControlType, name, namespace;
 
@@ -24218,30 +24218,30 @@ define("tinymce/ui/Factory", [], function() {
 // Included from: classes/ui/KeyboardNavigation.js
 
 /**
- * KeyboardNavigation.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* KeyboardNavigation.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles keyboard navigation of controls and elements.
- *
- * @class tinymce.ui.KeyboardNavigation
- */
+	* This class handles keyboard navigation of controls and elements.
+	*
+	* @class tinymce.ui.KeyboardNavigation
+	*/
 define("tinymce/ui/KeyboardNavigation", [
 ], function() {
 	"use strict";
 
 	/**
-	 * This class handles all keyboard navigation for WAI-ARIA support. Each root container
-	 * gets an instance of this class.
-	 *
-	 * @constructor
-	 */
+		* This class handles all keyboard navigation for WAI-ARIA support. Each root container
+		* gets an instance of this class.
+		*
+		* @constructor
+		*/
 	return function(settings) {
 		var root = settings.root, focusedElement, focusedControl;
 
@@ -24255,13 +24255,13 @@ define("tinymce/ui/KeyboardNavigation", [
 		focusedControl = root.getParentCtrl(focusedElement);
 
 		/**
-		 * Returns the currently focused elements wai aria role of the currently
-		 * focused element or specified element.
-		 *
-		 * @private
-		 * @param {Element} elm Optional element to get role from.
-		 * @return {String} Role of specified element.
-		 */
+			* Returns the currently focused elements wai aria role of the currently
+			* focused element or specified element.
+			*
+			* @private
+			* @param {Element} elm Optional element to get role from.
+			* @return {String} Role of specified element.
+			*/
 		function getRole(elm) {
 			elm = elm || focusedElement;
 
@@ -24269,13 +24269,13 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns the wai role of the parent element of the currently
-		 * focused element or specified element.
-		 *
-		 * @private
-		 * @param {Element} elm Optional element to get parent role from.
-		 * @return {String} Role of the first parent that has a role.
-		 */
+			* Returns the wai role of the parent element of the currently
+			* focused element or specified element.
+			*
+			* @private
+			* @param {Element} elm Optional element to get parent role from.
+			* @return {String} Role of the first parent that has a role.
+			*/
 		function getParentRole(elm) {
 			var role, parent = elm || focusedElement;
 
@@ -24287,12 +24287,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns a wai aria property by name for example aria-selected.
-		 *
-		 * @private
-		 * @param {String} name Name of the aria property to get for example "disabled".
-		 * @return {String} Aria property value.
-		 */
+			* Returns a wai aria property by name for example aria-selected.
+			*
+			* @private
+			* @param {String} name Name of the aria property to get for example "disabled".
+			* @return {String} Aria property value.
+			*/
 		function getAriaProp(name) {
 			var elm = focusedElement;
 
@@ -24302,12 +24302,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Is the element a text input element or not.
-		 *
-		 * @private
-		 * @param {Element} elm Element to check if it's an text input element or not.
-		 * @return {Boolean} True/false if the element is a text element or not.
-		 */
+			* Is the element a text input element or not.
+			*
+			* @private
+			* @param {Element} elm Element to check if it's an text input element or not.
+			* @return {Boolean} True/false if the element is a text element or not.
+			*/
 		function isTextInputElement(elm) {
 			var tagName = elm.tagName.toUpperCase();
 
@@ -24317,12 +24317,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns true/false if the specified element can be focused or not.
-		 *
-		 * @private
-		 * @param {Element} elm DOM element to check if it can be focused or not.
-		 * @return {Boolean} True/false if the element can have focus.
-		 */
+			* Returns true/false if the specified element can be focused or not.
+			*
+			* @private
+			* @param {Element} elm DOM element to check if it can be focused or not.
+			* @return {Boolean} True/false if the element can have focus.
+			*/
 		function canFocus(elm) {
 			if (isTextInputElement(elm) && !elm.hidden) {
 				return true;
@@ -24336,12 +24336,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns an array of focusable visible elements within the specified container element.
-		 *
-		 * @private
-		 * @param {Element} elm DOM element to find focusable elements within.
-		 * @return {Array} Array of focusable elements.
-		 */
+			* Returns an array of focusable visible elements within the specified container element.
+			*
+			* @private
+			* @param {Element} elm DOM element to find focusable elements within.
+			* @return {Array} Array of focusable elements.
+			*/
 		function getFocusElements(elm) {
 			var elements = [];
 
@@ -24365,14 +24365,14 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Returns the navigation root control for the specified control. The navigation root
-		 * is the control that the keyboard navigation gets scoped to for example a menubar or toolbar group.
-		 * It will look for parents of the specified target control or the currently focused control if this option is omitted.
-		 *
-		 * @private
-		 * @param {tinymce.ui.Control} targetControl Optional target control to find root of.
-		 * @return {tinymce.ui.Control} Navigation root control.
-		 */
+			* Returns the navigation root control for the specified control. The navigation root
+			* is the control that the keyboard navigation gets scoped to for example a menubar or toolbar group.
+			* It will look for parents of the specified target control or the currently focused control if this option is omitted.
+			*
+			* @private
+			* @param {tinymce.ui.Control} targetControl Optional target control to find root of.
+			* @return {tinymce.ui.Control} Navigation root control.
+			*/
 		function getNavigationRoot(targetControl) {
 			var navigationRoot, controls;
 
@@ -24392,12 +24392,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Focuses the first item in the specified targetControl element or the last aria index if the
-		 * navigation root has the ariaRemember option enabled.
-		 *
-		 * @private
-		 * @param {tinymce.ui.Control} targetControl Target control to focus the first item in.
-		 */
+			* Focuses the first item in the specified targetControl element or the last aria index if the
+			* navigation root has the ariaRemember option enabled.
+			*
+			* @private
+			* @param {tinymce.ui.Control} targetControl Target control to focus the first item in.
+			*/
 		function focusFirst(targetControl) {
 			var navigationRoot = getNavigationRoot(targetControl);
 			var focusElements = getFocusElements(navigationRoot.getEl());
@@ -24410,14 +24410,14 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the specified index within the elements list.
-		 * This will scope the index to the size of the element list if it changed.
-		 *
-		 * @private
-		 * @param {Number} idx Specified index to move to.
-		 * @param {Array} elements Array with dom elements to move focus within.
-		 * @return {Number} Input index or a changed index if it was out of range.
-		 */
+			* Moves the focus to the specified index within the elements list.
+			* This will scope the index to the size of the element list if it changed.
+			*
+			* @private
+			* @param {Number} idx Specified index to move to.
+			* @param {Array} elements Array with dom elements to move focus within.
+			* @return {Number} Input index or a changed index if it was out of range.
+			*/
 		function moveFocusToIndex(idx, elements) {
 			if (idx < 0) {
 				idx = elements.length - 1;
@@ -24433,12 +24433,12 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus forwards or backwards.
-		 *
-		 * @private
-		 * @param {Number} dir Direction to move in positive means forward, negative means backwards.
-		 * @param {Array} elements Optional array of elements to move within defaults to the current navigation roots elements.
-		 */
+			* Moves the focus forwards or backwards.
+			*
+			* @private
+			* @param {Number} dir Direction to move in positive means forward, negative means backwards.
+			* @param {Array} elements Optional array of elements to move within defaults to the current navigation roots elements.
+			*/
 		function moveFocus(dir, elements) {
 			var idx = -1, navigationRoot = getNavigationRoot();
 
@@ -24455,10 +24455,10 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the left this is called by the left key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the left this is called by the left key.
+			*
+			* @private
+			*/
 		function left() {
 			var parentRole = getParentRole();
 
@@ -24472,10 +24472,10 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the right this is called by the right key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the right this is called by the right key.
+			*
+			* @private
+			*/
 		function right() {
 			var role = getRole(), parentRole = getParentRole();
 
@@ -24489,19 +24489,19 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the up this is called by the up key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the up this is called by the up key.
+			*
+			* @private
+			*/
 		function up() {
 			moveFocus(-1);
 		}
 
 		/**
-		 * Moves the focus to the up this is called by the down key.
-		 *
-		 * @private
-		 */
+			* Moves the focus to the up this is called by the down key.
+			*
+			* @private
+			*/
 		function down() {
 			var role = getRole(), parentRole = getParentRole();
 
@@ -24515,11 +24515,11 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Moves the focus to the next item or previous item depending on shift key.
-		 *
-		 * @private
-		 * @param {DOMEvent} e DOM event object.
-		 */
+			* Moves the focus to the next item or previous item depending on shift key.
+			*
+			* @private
+			* @param {DOMEvent} e DOM event object.
+			*/
 		function tab(e) {
 			var parentRole = getParentRole();
 
@@ -24535,20 +24535,20 @@ define("tinymce/ui/KeyboardNavigation", [
 		}
 
 		/**
-		 * Calls the cancel event on the currently focused control. This is normally done using the Esc key.
-		 *
-		 * @private
-		 */
+			* Calls the cancel event on the currently focused control. This is normally done using the Esc key.
+			*
+			* @private
+			*/
 		function cancel() {
 			focusedControl.fire('cancel');
 		}
 
 		/**
-		 * Calls the click event on the currently focused control. This is normally done using the Enter/Space keys.
-		 *
-		 * @private
-		 * @param {Object} aria Optional aria data to pass along with the enter event.
-		 */
+			* Calls the click event on the currently focused control. This is normally done using the Enter/Space keys.
+			*
+			* @private
+			* @param {Object} aria Optional aria data to pass along with the enter event.
+			*/
 		function enter(aria) {
 			aria = aria || {};
 			focusedControl.fire('click', {target: focusedElement, aria: aria});
@@ -24619,24 +24619,24 @@ define("tinymce/ui/KeyboardNavigation", [
 // Included from: classes/ui/Container.js
 
 /**
- * Container.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Container.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Container control. This is extended by all controls that can have
- * children such as panels etc. You can also use this class directly as an
- * generic container instance. The container doesn't have any specific role or style.
- *
- * @-x-less Container.less
- * @class tinymce.ui.Container
- * @extends tinymce.ui.Control
- */
+	* Container control. This is extended by all controls that can have
+	* children such as panels etc. You can also use this class directly as an
+	* generic container instance. The container doesn't have any specific role or style.
+	*
+	* @-x-less Container.less
+	* @class tinymce.ui.Container
+	* @extends tinymce.ui.Control
+	*/
 define("tinymce/ui/Container", [
 	"tinymce/ui/Control",
 	"tinymce/ui/Collection",
@@ -24655,14 +24655,14 @@ define("tinymce/ui/Container", [
 		innerClass: 'container-inner',
 
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Array} items Items to add to container in JSON format or control instances.
-		 * @setting {String} layout Layout manager by name to use.
-		 * @setting {Object} defaults Default settings to apply to all items.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Array} items Items to add to container in JSON format or control instances.
+			* @setting {String} layout Layout manager by name to use.
+			* @setting {Object} defaults Default settings to apply to all items.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -24693,22 +24693,22 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Returns a collection of child items that the container currently have.
-		 *
-		 * @method items
-		 * @return {tinymce.ui.Collection} Control collection direct child controls.
-		 */
+			* Returns a collection of child items that the container currently have.
+			*
+			* @method items
+			* @return {tinymce.ui.Collection} Control collection direct child controls.
+			*/
 		items: function() {
 			return this._items;
 		},
 
 		/**
-		 * Find child controls by selector.
-		 *
-		 * @method find
-		 * @param {String} selector Selector CSS pattern to find children by.
-		 * @return {tinymce.ui.Collection} Control collection with child controls.
-		 */
+			* Find child controls by selector.
+			*
+			* @method find
+			* @param {String} selector Selector CSS pattern to find children by.
+			* @return {tinymce.ui.Collection} Control collection with child controls.
+			*/
 		find: function(selector) {
 			selector = selectorCache[selector] = selectorCache[selector] || new Selector(selector);
 
@@ -24716,13 +24716,13 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Adds one or many items to the current container. This will create instances of
-		 * the object representations if needed.
-		 *
-		 * @method add
-		 * @param {Array/Object/tinymce.ui.Control} items Array or item that will be added to the container.
-		 * @return {tinymce.ui.Collection} Current collection control.
-		 */
+			* Adds one or many items to the current container. This will create instances of
+			* the object representations if needed.
+			*
+			* @method add
+			* @param {Array/Object/tinymce.ui.Control} items Array or item that will be added to the container.
+			* @return {tinymce.ui.Collection} Current collection control.
+			*/
 		add: function(items) {
 			var self = this;
 
@@ -24732,13 +24732,13 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Focuses the current container instance. This will look
-		 * for the first control in the container and focus that.
-		 *
-		 * @method focus
-		 * @param {Boolean} keyboard Optional true/false if the focus was a keyboard focus or not.
-		 * @return {tinymce.ui.Collection} Current instance.
-		 */
+			* Focuses the current container instance. This will look
+			* for the first control in the container and focus that.
+			*
+			* @method focus
+			* @param {Boolean} keyboard Optional true/false if the focus was a keyboard focus or not.
+			* @return {tinymce.ui.Collection} Current instance.
+			*/
 		focus: function(keyboard) {
 			var self = this, focusCtrl, keyboardNav, items;
 
@@ -24777,12 +24777,12 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Replaces the specified child control with a new control.
-		 *
-		 * @method replace
-		 * @param {tinymce.ui.Control} oldItem Old item to be replaced.
-		 * @param {tinymce.ui.Control} newItem New item to be inserted.
-		 */
+			* Replaces the specified child control with a new control.
+			*
+			* @method replace
+			* @param {tinymce.ui.Control} oldItem Old item to be replaced.
+			* @param {tinymce.ui.Control} newItem New item to be inserted.
+			*/
 		replace: function(oldItem, newItem) {
 			var ctrlElm, items = this.items(), i = items.length;
 
@@ -24813,13 +24813,13 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Creates the specified items. If any of the items is plain JSON style objects
-		 * it will convert these into real tinymce.ui.Control instances.
-		 *
-		 * @method create
-		 * @param {Array} items Array of items to convert into control instances.
-		 * @return {Array} Array with control instances.
-		 */
+			* Creates the specified items. If any of the items is plain JSON style objects
+			* it will convert these into real tinymce.ui.Control instances.
+			*
+			* @method create
+			* @param {Array} items Array of items to convert into control instances.
+			* @return {Array} Array with control instances.
+			*/
 		create: function(items) {
 			var self = this, settings, ctrlItems = [];
 
@@ -24853,10 +24853,10 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Renders new control instances.
-		 *
-		 * @private
-		 */
+			* Renders new control instances.
+			*
+			* @private
+			*/
 		renderNew: function() {
 			var self = this;
 
@@ -24888,23 +24888,23 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Appends new instances to the current container.
-		 *
-		 * @method append
-		 * @param {Array/tinymce.ui.Collection} items Array if controls to append.
-		 * @return {tinymce.ui.Container} Current container instance.
-		 */
+			* Appends new instances to the current container.
+			*
+			* @method append
+			* @param {Array/tinymce.ui.Collection} items Array if controls to append.
+			* @return {tinymce.ui.Container} Current container instance.
+			*/
 		append: function(items) {
 			return this.add(items).renderNew();
 		},
 
 		/**
-		 * Prepends new instances to the current container.
-		 *
-		 * @method prepend
-		 * @param {Array/tinymce.ui.Collection} items Array if controls to prepend.
-		 * @return {tinymce.ui.Container} Current container instance.
-		 */
+			* Prepends new instances to the current container.
+			*
+			* @method prepend
+			* @param {Array/tinymce.ui.Collection} items Array if controls to prepend.
+			* @return {tinymce.ui.Container} Current container instance.
+			*/
 		prepend: function(items) {
 			var self = this;
 
@@ -24914,13 +24914,13 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Inserts an control at a specific index.
-		 *
-		 * @method insert
-		 * @param {Array/tinymce.ui.Collection} items Array if controls to insert.
-		 * @param {Number} index Index to insert controls at.
-		 * @param {Boolean} [before=false] Inserts controls before the index.
-		 */
+			* Inserts an control at a specific index.
+			*
+			* @method insert
+			* @param {Array/tinymce.ui.Collection} items Array if controls to insert.
+			* @param {Number} index Index to insert controls at.
+			* @param {Boolean} [before=false] Inserts controls before the index.
+			*/
 		insert: function(items, index, before) {
 			var self = this, curItems, beforeItems, afterItems;
 
@@ -24941,14 +24941,14 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Populates the form fields from the specified JSON data object.
-		 *
-		 * Control items in the form that matches the data will have it's value set.
-		 *
-		 * @method fromJSON
-		 * @param {Object} data JSON data object to set control values by.
-		 * @return {tinymce.ui.Container} Current form instance.
-		 */
+			* Populates the form fields from the specified JSON data object.
+			*
+			* Control items in the form that matches the data will have it's value set.
+			*
+			* @method fromJSON
+			* @param {Object} data JSON data object to set control values by.
+			* @return {tinymce.ui.Container} Current form instance.
+			*/
 		fromJSON: function(data) {
 			var self = this;
 
@@ -24960,12 +24960,12 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Serializes the form into a JSON object by getting all items
-		 * that has a name and a value.
-		 *
-		 * @method toJSON
-		 * @return {Object} JSON object with form data.
-		 */
+			* Serializes the form into a JSON object by getting all items
+			* that has a name and a value.
+			*
+			* @method toJSON
+			* @return {Object} JSON object with form data.
+			*/
 		toJSON: function() {
 			var self = this, data = {};
 
@@ -24984,11 +24984,11 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, role = this.settings.role;
 
@@ -25005,11 +25005,11 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.Container} Current combobox instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.Container} Current combobox instance.
+			*/
 		postRender: function() {
 			var self = this, box;
 
@@ -25043,13 +25043,13 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, layoutRect = self._super();
 
@@ -25060,11 +25060,11 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the current container.
-		 * This is invoked by the reflow method and shouldn't be called directly.
-		 *
-		 * @method recalc
-		 */
+			* Recalculates the positions of the controls in the current container.
+			* This is invoked by the reflow method and shouldn't be called directly.
+			*
+			* @method recalc
+			*/
 		recalc: function() {
 			var self = this, rect = self._layoutRect, lastRect = self._lastRect;
 
@@ -25077,16 +25077,16 @@ define("tinymce/ui/Container", [
 		},
 
 		/**
-		 * Reflows the current container and it's children and possible parents.
-		 * This should be used after you for example append children to the current control so
-		 * that the layout managers know that they need to reposition everything.
-		 *
-		 * @example
-		 * container.append({type: 'button', text: 'My button'}).reflow();
-		 *
-		 * @method reflow
-		 * @return {tinymce.ui.Container} Current container instance.
-		 */
+			* Reflows the current container and it's children and possible parents.
+			* This should be used after you for example append children to the current control so
+			* that the layout managers know that they need to reposition everything.
+			*
+			* @example
+			* container.append({type: 'button', text: 'My button'}).reflow();
+			*
+			* @method reflow
+			* @return {tinymce.ui.Container} Current container instance.
+			*/
 		reflow: function() {
 			var i;
 
@@ -25117,32 +25117,32 @@ define("tinymce/ui/Container", [
 // Included from: classes/ui/DragHelper.js
 
 /**
- * DragHelper.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* DragHelper.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Drag/drop helper class.
- *
- * @example
- * var dragHelper = new tinymce.ui.DragHelper('mydiv', {
- *     start: function(evt) {
- *     },
- *
- *     drag: function(evt) {
- *     },
- *
- *     end: function(evt) {
- *     }
- * });
- *
- * @class tinymce.ui.DragHelper
- */
+	* Drag/drop helper class.
+	*
+	* @example
+	* var dragHelper = new tinymce.ui.DragHelper('mydiv', {
+	*     start: function(evt) {
+	*     },
+	*
+	*     drag: function(evt) {
+	*     },
+	*
+	*     end: function(evt) {
+	*     }
+	* });
+	*
+	* @class tinymce.ui.DragHelper
+	*/
 define("tinymce/ui/DragHelper", [
 	"tinymce/ui/DomUtils"
 ], function(DomUtils) {
@@ -25240,10 +25240,10 @@ define("tinymce/ui/DragHelper", [
 		};
 
 		/**
-		 * Destroys the drag/drop helper instance.
-		 *
-		 * @method destroy
-		 */
+			* Destroys the drag/drop helper instance.
+			*
+			* @method destroy
+			*/
 		this.destroy = function() {
 			DomUtils.off(getHandleElm());
 		};
@@ -25255,21 +25255,21 @@ define("tinymce/ui/DragHelper", [
 // Included from: classes/ui/Scrollable.js
 
 /**
- * Scrollable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Scrollable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This mixin makes controls scrollable using custom scrollbars.
- *
- * @-x-less Scrollable.less
- * @mixin tinymce.ui.Scrollable
- */
+	* This mixin makes controls scrollable using custom scrollbars.
+	*
+	* @-x-less Scrollable.less
+	* @mixin tinymce.ui.Scrollable
+	*/
 define("tinymce/ui/Scrollable", [
 	"tinymce/ui/DomUtils",
 	"tinymce/ui/DragHelper"
@@ -25367,7 +25367,7 @@ define("tinymce/ui/Scrollable", [
 							DomUtils.removeClass(DomUtils.get(axisId), prefix + 'active');
 						}
 					});
-/*
+				/*
 					self.on('click', function(e) {
 						if (e.target.id == self._id + '-scrollv') {
 
@@ -25407,23 +25407,23 @@ define("tinymce/ui/Scrollable", [
 // Included from: classes/ui/Panel.js
 
 /**
- * Panel.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Panel.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new panel.
- *
- * @-x-less Panel.less
- * @class tinymce.ui.Panel
- * @extends tinymce.ui.Container
- * @mixes tinymce.ui.Scrollable
- */
+	* Creates a new panel.
+	*
+	* @-x-less Panel.less
+	* @class tinymce.ui.Panel
+	* @extends tinymce.ui.Container
+	* @mixes tinymce.ui.Scrollable
+	*/
 define("tinymce/ui/Panel", [
 	"tinymce/ui/Container",
 	"tinymce/ui/Scrollable"
@@ -25439,11 +25439,11 @@ define("tinymce/ui/Panel", [
 		Mixins: [Scrollable],
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, innerHtml = self.settings.html;
 
@@ -25477,20 +25477,20 @@ define("tinymce/ui/Panel", [
 // Included from: classes/ui/Movable.js
 
 /**
- * Movable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Movable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Movable mixin. Makes controls movable absolute and relative to other elements.
- *
- * @mixin tinymce.ui.Movable
- */
+	* Movable mixin. Makes controls movable absolute and relative to other elements.
+	*
+	* @mixin tinymce.ui.Movable
+	*/
 define("tinymce/ui/Movable", [
 	"tinymce/ui/DomUtils"
 ], function(DomUtils) {
@@ -25569,13 +25569,13 @@ define("tinymce/ui/Movable", [
 
 	return {
 		/**
-		 * Tests various positions to get the most suitable one.
-		 *
-		 * @method testMoveRel
-		 * @param {DOMElement} elm Element to position against.
-		 * @param {Array} rels Array with relative positions.
-		 * @return {String} Best suitable relative position.
-		 */
+			* Tests various positions to get the most suitable one.
+			*
+			* @method testMoveRel
+			* @param {DOMElement} elm Element to position against.
+			* @param {Array} rels Array with relative positions.
+			* @return {String} Best suitable relative position.
+			*/
 		testMoveRel: function(elm, rels) {
 			var viewPortRect = DomUtils.getViewPort();
 
@@ -25598,13 +25598,13 @@ define("tinymce/ui/Movable", [
 		},
 
 		/**
-		 * Move relative to the specified element.
-		 *
-		 * @method moveRel
-		 * @param {Element} elm Element to move relative to.
-		 * @param {String} rel Relative mode. For example: br-tl.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Move relative to the specified element.
+			*
+			* @method moveRel
+			* @param {Element} elm Element to move relative to.
+			* @param {String} rel Relative mode. For example: br-tl.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		moveRel: function(elm, rel) {
 			if (typeof rel != 'string') {
 				rel = this.testMoveRel(elm, rel);
@@ -25615,13 +25615,13 @@ define("tinymce/ui/Movable", [
 		},
 
 		/**
-		 * Move by a relative x, y values.
-		 *
-		 * @method moveBy
-		 * @param {Number} dx Relative x position.
-		 * @param {Number} dy Relative y position.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Move by a relative x, y values.
+			*
+			* @method moveBy
+			* @param {Number} dx Relative x position.
+			* @param {Number} dy Relative y position.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		moveBy: function(dx, dy) {
 			var self = this, rect = self.layoutRect();
 
@@ -25631,13 +25631,13 @@ define("tinymce/ui/Movable", [
 		},
 
 		/**
-		 * Move to absolute position.
-		 *
-		 * @method moveTo
-		 * @param {Number} x Absolute x position.
-		 * @param {Number} y Absolute y position.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Move to absolute position.
+			*
+			* @method moveTo
+			* @param {Number} x Absolute x position.
+			* @param {Number} y Absolute y position.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		moveTo: function(x, y) {
 			var self = this;
 
@@ -25680,20 +25680,20 @@ define("tinymce/ui/Movable", [
 // Included from: classes/ui/Resizable.js
 
 /**
- * Resizable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Resizable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Resizable mixin. Enables controls to be resized.
- *
- * @mixin tinymce.ui.Resizable
- */
+	* Resizable mixin. Enables controls to be resized.
+	*
+	* @mixin tinymce.ui.Resizable
+	*/
 define("tinymce/ui/Resizable", [
 	"tinymce/ui/DomUtils"
 ], function(DomUtils) {
@@ -25701,10 +25701,10 @@ define("tinymce/ui/Resizable", [
 
 	return {
 		/**
-		 * Resizes the control to contents.
-		 *
-		 * @method resizeToContent
-		 */
+			* Resizes the control to contents.
+			*
+			* @method resizeToContent
+			*/
 		resizeToContent: function() {
 			this._layoutRect.autoResize = true;
 			this._lastRect = null;
@@ -25712,13 +25712,13 @@ define("tinymce/ui/Resizable", [
 		},
 
 		/**
-		 * Resizes the control to a specific width/height.
-		 *
-		 * @method resizeTo
-		 * @param {Number} w Control width.
-		 * @param {Number} h Control height.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Resizes the control to a specific width/height.
+			*
+			* @method resizeTo
+			* @param {Number} w Control width.
+			* @param {Number} h Control height.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		resizeTo: function(w, h) {
 			// TODO: Fix hack
 			if (w <= 1 || h <= 1) {
@@ -25733,13 +25733,13 @@ define("tinymce/ui/Resizable", [
 		},
 
 		/**
-		 * Resizes the control to a specific relative width/height.
-		 *
-		 * @method resizeBy
-		 * @param {Number} dw Relative control width.
-		 * @param {Number} dh Relative control height.
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Resizes the control to a specific relative width/height.
+			*
+			* @method resizeBy
+			* @param {Number} dw Relative control width.
+			* @param {Number} dh Relative control height.
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		resizeBy: function(dw, dh) {
 			var self = this, rect = self.layoutRect();
 
@@ -25751,24 +25751,24 @@ define("tinymce/ui/Resizable", [
 // Included from: classes/ui/FloatPanel.js
 
 /**
- * FloatPanel.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FloatPanel.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a floating panel.
- *
- * @-x-less FloatPanel.less
- * @class tinymce.ui.FloatPanel
- * @extends tinymce.ui.Panel
- * @mixes tinymce.ui.Movable
- * @mixes tinymce.ui.Resizable
- */
+	* This class creates a floating panel.
+	*
+	* @-x-less FloatPanel.less
+	* @class tinymce.ui.FloatPanel
+	* @extends tinymce.ui.Panel
+	* @mixes tinymce.ui.Movable
+	* @mixes tinymce.ui.Resizable
+	*/
 define("tinymce/ui/FloatPanel", [
 	"tinymce/ui/Panel",
 	"tinymce/ui/Movable",
@@ -25856,9 +25856,9 @@ define("tinymce/ui/FloatPanel", [
 	}
 
 	/**
-	 * Repositions the panel to the top of page if the panel is outside of the visual viewport. It will
-	 * also reposition all child panels of the current panel.
-	 */
+		* Repositions the panel to the top of page if the panel is outside of the visual viewport. It will
+		* also reposition all child panels of the current panel.
+		*/
 	function repositionPanel(panel) {
 		var scrollY = DomUtils.getViewPort().y;
 
@@ -25939,12 +25939,12 @@ define("tinymce/ui/FloatPanel", [
 		Mixins: [Movable, Resizable],
 
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Boolean} autohide Automatically hide the panel.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Boolean} autohide Automatically hide the panel.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -26028,11 +26028,11 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Shows the current float panel.
-		 *
-		 * @method show
-		 * @return {tinymce.ui.FloatPanel} Current floatpanel instance.
-		 */
+			* Shows the current float panel.
+			*
+			* @method show
+			* @return {tinymce.ui.FloatPanel} Current floatpanel instance.
+			*/
 		show: function() {
 			var self = this, i, state = self._super();
 
@@ -26051,11 +26051,11 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Hides the current float panel.
-		 *
-		 * @method hide
-		 * @return {tinymce.ui.FloatPanel} Current floatpanel instance.
-		 */
+			* Hides the current float panel.
+			*
+			* @method hide
+			* @return {tinymce.ui.FloatPanel} Current floatpanel instance.
+			*/
 		hide: function() {
 			removeVisiblePanel(this);
 			addRemove(false, this);
@@ -26064,20 +26064,20 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Hide all visible float panels with he autohide setting enabled. This is for
-		 * manually hiding floating menus or panels.
-		 *
-		 * @method hideAll
-		 */
+			* Hide all visible float panels with he autohide setting enabled. This is for
+			* manually hiding floating menus or panels.
+			*
+			* @method hideAll
+			*/
 		hideAll: function() {
 			FloatPanel.hideAll();
 		},
 
 		/**
-		 * Closes the float panel. This will remove the float panel from page and fire the close event.
-		 *
-		 * @method close
-		 */
+			* Closes the float panel. This will remove the float panel from page and fire the close event.
+			*
+			* @method close
+			*/
 		close: function() {
 			var self = this;
 
@@ -26090,10 +26090,10 @@ define("tinymce/ui/FloatPanel", [
 		},
 
 		/**
-		 * Removes the float panel from page.
-		 *
-		 * @method remove
-		 */
+			* Removes the float panel from page.
+			*
+			* @method remove
+			*/
 		remove: function() {
 			removeVisiblePanel(this);
 			this._super();
@@ -26111,12 +26111,12 @@ define("tinymce/ui/FloatPanel", [
 	});
 
 	/**
-	 * Hide all visible float panels with he autohide setting enabled. This is for
-	 * manually hiding floating menus or panels.
-	 *
-	 * @static
-	 * @method hideAll
-	 */
+		* Hide all visible float panels with he autohide setting enabled. This is for
+		* manually hiding floating menus or panels.
+		*
+		* @static
+		* @method hideAll
+		*/
 	FloatPanel.hideAll = function() {
 		var i = visiblePanels.length;
 
@@ -26154,22 +26154,22 @@ define("tinymce/ui/FloatPanel", [
 // Included from: classes/ui/Window.js
 
 /**
- * Window.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Window.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new window.
- *
- * @-x-less Window.less
- * @class tinymce.ui.Window
- * @extends tinymce.ui.FloatPanel
- */
+	* Creates a new window.
+	*
+	* @-x-less Window.less
+	* @class tinymce.ui.Window
+	* @extends tinymce.ui.FloatPanel
+	*/
 define("tinymce/ui/Window", [
 	"tinymce/ui/FloatPanel",
 	"tinymce/ui/Panel",
@@ -26198,11 +26198,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -26250,11 +26250,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the current container.
-		 * This is invoked by the reflow method and shouldn't be called directly.
-		 *
-		 * @method recalc
-		 */
+			* Recalculates the positions of the controls in the current container.
+			* This is invoked by the reflow method and shouldn't be called directly.
+			*
+			* @method recalc
+			*/
 		recalc: function() {
 			var self = this, statusbar = self.statusbar, layoutRect, width, x, needsRecalc;
 
@@ -26296,13 +26296,13 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, layoutRect = self._super(), deltaH = 0, headEl;
 
@@ -26337,11 +26337,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, id = self._id, prefix = self.classPrefix;
 			var settings = self.settings, headerHtml = '', footerHtml = '', html = settings.html;
@@ -26385,12 +26385,12 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Switches the window fullscreen mode.
-		 *
-		 * @method fullscreen
-		 * @param {Boolean} state True/false state.
-		 * @return {tinymce.ui.Window} Current window instance.
-		 */
+			* Switches the window fullscreen mode.
+			*
+			* @method fullscreen
+			* @param {Boolean} state True/false state.
+			* @return {tinymce.ui.Window} Current window instance.
+			*/
 		fullscreen: function(state) {
 			var self = this, documentElement = document.documentElement, slowRendering, prefix = self.classPrefix, layoutRect;
 
@@ -26452,10 +26452,10 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, startPos;
 
@@ -26492,21 +26492,21 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Fires a submit event with the serialized form.
-		 *
-		 * @method submit
-		 * @return {Object} Event arguments object.
-		 */
+			* Fires a submit event with the serialized form.
+			*
+			* @method submit
+			* @return {Object} Event arguments object.
+			*/
 		submit: function() {
 			return this.fire('submit', {data: this.toJSON()});
 		},
 
 		/**
-		 * Removes the current control from DOM and from UI collections.
-		 *
-		 * @method remove
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Removes the current control from DOM and from UI collections.
+			*
+			* @method remove
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		remove: function() {
 			var self = this, prefix = self.classPrefix;
 
@@ -26524,11 +26524,11 @@ define("tinymce/ui/Window", [
 		},
 
 		/**
-		 * Returns the contentWindow object of the iframe if it exists.
-		 *
-		 * @method getContentWindow
-		 * @return {Window} window object or null.
-		 */
+			* Returns the contentWindow object of the iframe if it exists.
+			*
+			* @method getContentWindow
+			* @return {Window} window object or null.
+			*/
 		getContentWindow: function() {
 			var ifr = this.getEl().getElementsByTagName('iframe')[0];
 			return ifr ? ifr.contentWindow : null;
@@ -26541,21 +26541,21 @@ define("tinymce/ui/Window", [
 // Included from: classes/ui/MessageBox.js
 
 /**
- * MessageBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* MessageBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to create MessageBoxes like alerts/confirms etc.
- *
- * @class tinymce.ui.MessageBox
- * @extends tinymce.ui.Window
- */
+	* This class is used to create MessageBoxes like alerts/confirms etc.
+	*
+	* @class tinymce.ui.MessageBox
+	* @extends tinymce.ui.Window
+	*/
 define("tinymce/ui/MessageBox", [
 	"tinymce/ui/Window"
 ], function(Window) {
@@ -26563,11 +26563,11 @@ define("tinymce/ui/MessageBox", [
 
 	var MessageBox = Window.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			settings = {
 				border: 1,
@@ -26591,48 +26591,48 @@ define("tinymce/ui/MessageBox", [
 
 		Statics: {
 			/**
-			 * Ok buttons constant.
-			 *
-			 * @static
-			 * @final
-			 * @field {Number} OK
-			 */
+				* Ok buttons constant.
+				*
+				* @static
+				* @final
+				* @field {Number} OK
+				*/
 			OK: 1,
 
 			/**
-			 * Ok/cancel buttons constant.
-			 *
-			 * @static
-			 * @final
-			 * @field {Number} OK_CANCEL
-			 */
+				* Ok/cancel buttons constant.
+				*
+				* @static
+				* @final
+				* @field {Number} OK_CANCEL
+				*/
 			OK_CANCEL: 2,
 
 			/**
-			 * yes/no buttons constant.
-			 *
-			 * @static
-			 * @final
-			 * @field {Number} YES_NO
-			 */
+				* yes/no buttons constant.
+				*
+				* @static
+				* @final
+				* @field {Number} YES_NO
+				*/
 			YES_NO: 3,
 
 			/**
-			 * yes/no/cancel buttons constant.
-			 *
-			 * @static
-			 * @final
-			 * @field {Number} YES_NO_CANCEL
-			 */
+				* yes/no/cancel buttons constant.
+				*
+				* @static
+				* @final
+				* @field {Number} YES_NO_CANCEL
+				*/
 			YES_NO_CANCEL: 4,
 
 			/**
-			 * Constructs a new message box and renders it to the body element.
-			 *
-			 * @static
-			 * @method msgBox
-			 * @param {Object} settings Name/value object with settings.
-			 */
+				* Constructs a new message box and renders it to the body element.
+				*
+				* @static
+				* @method msgBox
+				* @param {Object} settings Name/value object with settings.
+				*/
 			msgBox: function(settings) {
 				var buttons, callback = settings.callback || function() {};
 
@@ -26705,12 +26705,12 @@ define("tinymce/ui/MessageBox", [
 			},
 
 			/**
-			 * Creates a new alert dialog.
-			 *
-			 * @method alert
-			 * @param {Object} settings Settings for the alert dialog.
-			 * @param {function} [callback] Callback to execute when the user makes a choice.
-			 */
+				* Creates a new alert dialog.
+				*
+				* @method alert
+				* @param {Object} settings Settings for the alert dialog.
+				* @param {function} [callback] Callback to execute when the user makes a choice.
+				*/
 			alert: function(settings, callback) {
 				if (typeof settings == "string") {
 					settings = {text: settings};
@@ -26721,12 +26721,12 @@ define("tinymce/ui/MessageBox", [
 			},
 
 			/**
-			 * Creates a new confirm dialog.
-			 *
-			 * @method confirm
-			 * @param {Object} settings Settings for the confirm dialog.
-			 * @param {function} [callback] Callback to execute when the user makes a choice.
-			 */
+				* Creates a new confirm dialog.
+				*
+				* @method confirm
+				* @param {Object} settings Settings for the confirm dialog.
+				* @param {function} [callback] Callback to execute when the user makes a choice.
+				*/
 			confirm: function(settings, callback) {
 				if (typeof settings == "string") {
 					settings = {text: settings};
@@ -26746,41 +26746,41 @@ define("tinymce/ui/MessageBox", [
 // Included from: classes/WindowManager.js
 
 /**
- * WindowManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* WindowManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles the creation of native windows and dialogs. This class can be extended to provide for example inline dialogs.
- *
- * @class tinymce.WindowManager
- * @example
- * // Opens a new dialog with the file.htm file and the size 320x240
- * // It also adds a custom parameter this can be retrieved by using tinyMCEPopup.getWindowArg inside the dialog.
- * tinymce.activeEditor.windowManager.open({
- *    url: 'file.htm',
- *    width: 320,
- *    height: 240
- * }, {
- *    custom_param: 1
- * });
- *
- * // Displays an alert box using the active editors window manager instance
- * tinymce.activeEditor.windowManager.alert('Hello world!');
- *
- * // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
- * tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
- *    if (s)
- *       tinymce.activeEditor.windowManager.alert("Ok");
- *    else
- *       tinymce.activeEditor.windowManager.alert("Cancel");
- * });
- */
+	* This class handles the creation of native windows and dialogs. This class can be extended to provide for example inline dialogs.
+	*
+	* @class tinymce.WindowManager
+	* @example
+	* // Opens a new dialog with the file.htm file and the size 320x240
+	* // It also adds a custom parameter this can be retrieved by using tinyMCEPopup.getWindowArg inside the dialog.
+	* tinymce.activeEditor.windowManager.open({
+	*    url: 'file.htm',
+	*    width: 320,
+	*    height: 240
+	* }, {
+	*    custom_param: 1
+	* });
+	*
+	* // Displays an alert box using the active editors window manager instance
+	* tinymce.activeEditor.windowManager.alert('Hello world!');
+	*
+	* // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
+	* tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
+	*    if (s)
+	*       tinymce.activeEditor.windowManager.alert("Ok");
+	*    else
+	*       tinymce.activeEditor.windowManager.alert("Cancel");
+	* });
+	*/
 define("tinymce/WindowManager", [
 	"tinymce/ui/Window",
 	"tinymce/ui/MessageBox"
@@ -26805,17 +26805,17 @@ define("tinymce/WindowManager", [
 		});
 
 		/**
-		 * Opens a new window.
-		 *
-		 * @method open
-		 * @param {Object} args Optional name/value settings collection contains things like width/height/url etc.
-		 * @option {String} title Window title.
-		 * @option {String} file URL of the file to open in the window.
-		 * @option {Number} width Width in pixels.
-		 * @option {Number} height Height in pixels.
-		 * @option {Boolean} autoScroll Specifies whether the popup window can have scrollbars if required (i.e. content
-		 * larger than the popup size specified).
-		 */
+			* Opens a new window.
+			*
+			* @method open
+			* @param {Object} args Optional name/value settings collection contains things like width/height/url etc.
+			* @option {String} title Window title.
+			* @option {String} file URL of the file to open in the window.
+			* @option {Number} width Width in pixels.
+			* @option {Number} height Height in pixels.
+			* @option {Boolean} autoScroll Specifies whether the popup window can have scrollbars if required (i.e. content
+			* larger than the popup size specified).
+			*/
 		self.open = function(args, params) {
 			var win;
 
@@ -26894,17 +26894,17 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Creates a alert dialog. Please don't use the blocking behavior of this
-		 * native version use the callback method instead then it can be extended.
-		 *
-		 * @method alert
-		 * @param {String} message Text to display in the new alert dialog.
-		 * @param {function} callback Callback function to be executed after the user has selected ok.
-		 * @param {Object} scope Optional scope to execute the callback in.
-		 * @example
-		 * // Displays an alert box using the active editors window manager instance
-		 * tinymce.activeEditor.windowManager.alert('Hello world!');
-		 */
+			* Creates a alert dialog. Please don't use the blocking behavior of this
+			* native version use the callback method instead then it can be extended.
+			*
+			* @method alert
+			* @param {String} message Text to display in the new alert dialog.
+			* @param {function} callback Callback function to be executed after the user has selected ok.
+			* @param {Object} scope Optional scope to execute the callback in.
+			* @example
+			* // Displays an alert box using the active editors window manager instance
+			* tinymce.activeEditor.windowManager.alert('Hello world!');
+			*/
 		self.alert = function(message, callback, scope) {
 			MessageBox.alert(message, function() {
 				if (callback) {
@@ -26916,22 +26916,22 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Creates a confirm dialog. Please don't use the blocking behavior of this
-		 * native version use the callback method instead then it can be extended.
-		 *
-		 * @method confirm
-		 * @param {String} messageText to display in the new confirm dialog.
-		 * @param {function} callback Callback function to be executed after the user has selected ok or cancel.
-		 * @param {Object} scope Optional scope to execute the callback in.
-		 * @example
-		 * // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
-		 * tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
-		 *    if (s)
-		 *       tinymce.activeEditor.windowManager.alert("Ok");
-		 *    else
-		 *       tinymce.activeEditor.windowManager.alert("Cancel");
-		 * });
-		 */
+			* Creates a confirm dialog. Please don't use the blocking behavior of this
+			* native version use the callback method instead then it can be extended.
+			*
+			* @method confirm
+			* @param {String} messageText to display in the new confirm dialog.
+			* @param {function} callback Callback function to be executed after the user has selected ok or cancel.
+			* @param {Object} scope Optional scope to execute the callback in.
+			* @example
+			* // Displays an confirm box and an alert message will be displayed depending on what you choose in the confirm
+			* tinymce.activeEditor.windowManager.confirm("Do you want to do something", function(s) {
+			*    if (s)
+			*       tinymce.activeEditor.windowManager.alert("Ok");
+			*    else
+			*       tinymce.activeEditor.windowManager.alert("Cancel");
+			* });
+			*/
 		self.confirm = function(message, callback, scope) {
 			MessageBox.confirm(message, function(state) {
 				callback.call(scope || this, state);
@@ -26939,10 +26939,10 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Closes the top most window.
-		 *
-		 * @method close
-		 */
+			* Closes the top most window.
+			*
+			* @method close
+			*/
 		self.close = function() {
 			if (getTopMostWindow()) {
 				getTopMostWindow().close();
@@ -26950,25 +26950,25 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Returns the params of the last window open call. This can be used in iframe based
-		 * dialog to get params passed from the tinymce plugin.
-		 *
-		 * @example
-		 * var dialogArguments = top.tinymce.activeEditor.windowManager.getParams();
-		 *
-		 * @method getParams
-		 * @return {Object} Name/value object with parameters passed from windowManager.open call.
-		 */
+			* Returns the params of the last window open call. This can be used in iframe based
+			* dialog to get params passed from the tinymce plugin.
+			*
+			* @example
+			* var dialogArguments = top.tinymce.activeEditor.windowManager.getParams();
+			*
+			* @method getParams
+			* @return {Object} Name/value object with parameters passed from windowManager.open call.
+			*/
 		self.getParams = function() {
 			return getTopMostWindow() ? getTopMostWindow().params : null;
 		};
 
 		/**
-		 * Sets the params of the last opened window.
-		 *
-		 * @method setParams
-		 * @param {Object} params Params object to set for the last opened window.
-		 */
+			* Sets the params of the last opened window.
+			*
+			* @method setParams
+			* @param {Object} params Params object to set for the last opened window.
+			*/
 		self.setParams = function(params) {
 			if (getTopMostWindow()) {
 				getTopMostWindow().params = params;
@@ -26976,11 +26976,11 @@ define("tinymce/WindowManager", [
 		};
 
 		/**
-		 * Returns the currently opened window objects.
-		 *
-		 * @method getWindows
-		 * @return {Array} Array of the currently opened windows.
-		 */
+			* Returns the currently opened window objects.
+			*
+			* @method getWindows
+			* @return {Array} Array of the currently opened windows.
+			*/
 		self.getWindows = function() {
 			return windows;
 		};
@@ -26990,22 +26990,22 @@ define("tinymce/WindowManager", [
 // Included from: classes/util/Quirks.js
 
 /**
- * Quirks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- *
- * @ignore-file
- */
+	* Quirks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*
+	* @ignore-file
+	*/
 
 /**
- * This file includes fixes for various browser quirks it's made to make it easy to add/remove browser specific fixes.
- *
- * @class tinymce.util.Quirks
- */
+	* This file includes fixes for various browser quirks it's made to make it easy to add/remove browser specific fixes.
+	*
+	* @class tinymce.util.Quirks
+	*/
 define("tinymce/util/Quirks", [
 	"tinymce/util/VK",
 	"tinymce/dom/RangeUtils",
@@ -27024,8 +27024,8 @@ define("tinymce/util/Quirks", [
 		var mceInternalDataType = isIE ? 'Text' : 'URL';
 
 		/**
-		 * Executes a command with a specific state this can be to enable/disable browser editing features.
-		 */
+			* Executes a command with a specific state this can be to enable/disable browser editing features.
+			*/
 		function setEditorCommandState(cmd, state) {
 			try {
 				editor.getDoc().execCommand(cmd, false, state);
@@ -27035,8 +27035,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Returns current IE document mode.
-		 */
+			* Returns current IE document mode.
+			*/
 		function getDocumentMode() {
 			var documentMode = editor.getDoc().documentMode;
 
@@ -27044,24 +27044,24 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Returns true/false if the event is prevented or not.
-		 *
-		 * @private
-		 * @param {Event} e Event object.
-		 * @return {Boolean} true/false if the event is prevented or not.
-		 */
+			* Returns true/false if the event is prevented or not.
+			*
+			* @private
+			* @param {Event} e Event object.
+			* @return {Boolean} true/false if the event is prevented or not.
+			*/
 		function isDefaultPrevented(e) {
 			return e.isDefaultPrevented();
 		}
 
 		/**
-		 * Sets Text/URL data on the event's dataTransfer object to a special data:text/mce-internal url.
-		 * This is to workaround the inability to set custom contentType on IE and Safari.
-		 * The editor's selected content is encoded into this url so drag and drop between editors will work.
-		 *
-		 * @private
-		 * @param {DragEvent} e Event object
-		 */
+			* Sets Text/URL data on the event's dataTransfer object to a special data:text/mce-internal url.
+			* This is to workaround the inability to set custom contentType on IE and Safari.
+			* The editor's selected content is encoded into this url so drag and drop between editors will work.
+			*
+			* @private
+			* @param {DragEvent} e Event object
+			*/
 		function setMceInteralContent(e) {
 			var selectionHtml;
 
@@ -27080,14 +27080,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Gets content of special data:text/mce-internal url on the event's dataTransfer object.
-		 * This is to workaround the inability to set custom contentType on IE and Safari.
-		 * The editor's selected content is encoded into this url so drag and drop between editors will work.
-		 *
-		 * @private
-		 * @param {DragEvent} e Event object
-		 * @returns {String} mce-internal content
-		 */
+			* Gets content of special data:text/mce-internal url on the event's dataTransfer object.
+			* This is to workaround the inability to set custom contentType on IE and Safari.
+			* The editor's selected content is encoded into this url so drag and drop between editors will work.
+			*
+			* @private
+			* @param {DragEvent} e Event object
+			* @returns {String} mce-internal content
+			*/
 		function getMceInternalContent(e) {
 			var internalContent, content;
 
@@ -27103,12 +27103,12 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Inserts contents using the paste clipboard command if it's available if it isn't it will fallback
-		 * to the core command.
-		 *
-		 * @private
-		 * @param {String} content Content to insert at selection.
-		 */
+			* Inserts contents using the paste clipboard command if it's available if it isn't it will fallback
+			* to the core command.
+			*
+			* @private
+			* @param {String} content Content to insert at selection.
+			*/
 		function insertClipboardContents(content) {
 			if (editor.queryCommandSupported('mceInsertClipboardContent')) {
 				editor.execCommand('mceInsertClipboardContent', false, {content: content});
@@ -27118,32 +27118,32 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes a WebKit bug when deleting contents using backspace or delete key.
-		 * WebKit will produce a span element if you delete across two block elements.
-		 *
-		 * Example:
-		 * <h1>a</h1><p>|b</p>
-		 *
-		 * Will produce this on backspace:
-		 * <h1>a<span style="<all runtime styles>">b</span></p>
-		 *
-		 * This fixes the backspace to produce:
-		 * <h1>a|b</p>
-		 *
-		 * See bug: https://bugs.webkit.org/show_bug.cgi?id=45784
-		 *
-		 * This fixes the following delete scenarios:
-		 *  1. Delete by pressing backspace key.
-		 *  2. Delete by pressing delete key.
-		 *  3. Delete by pressing backspace key with ctrl/cmd (Word delete).
-		 *  4. Delete by pressing delete key with ctrl/cmd (Word delete).
-		 *  5. Delete by drag/dropping contents inside the editor.
-		 *  6. Delete by using Cut Ctrl+X/Cmd+X.
-		 *  7. Delete by selecting contents and writing a character.
-		 *
-		 * This code is a ugly hack since writing full custom delete logic for just this bug
-		 * fix seemed like a huge task. I hope we can remove this before the year 2030.
-		 */
+			* Fixes a WebKit bug when deleting contents using backspace or delete key.
+			* WebKit will produce a span element if you delete across two block elements.
+			*
+			* Example:
+			* <h1>a</h1><p>|b</p>
+			*
+			* Will produce this on backspace:
+			* <h1>a<span style="<all runtime styles>">b</span></p>
+			*
+			* This fixes the backspace to produce:
+			* <h1>a|b</p>
+			*
+			* See bug: https://bugs.webkit.org/show_bug.cgi?id=45784
+			*
+			* This fixes the following delete scenarios:
+			*  1. Delete by pressing backspace key.
+			*  2. Delete by pressing delete key.
+			*  3. Delete by pressing backspace key with ctrl/cmd (Word delete).
+			*  4. Delete by pressing delete key with ctrl/cmd (Word delete).
+			*  5. Delete by drag/dropping contents inside the editor.
+			*  6. Delete by using Cut Ctrl+X/Cmd+X.
+			*  7. Delete by selecting contents and writing a character.
+			*
+			* This code is a ugly hack since writing full custom delete logic for just this bug
+			* fix seemed like a huge task. I hope we can remove this before the year 2030.
+			*/
 		function cleanupStylesWhenDeleting() {
 			var doc = editor.getDoc(), dom = editor.dom, selection = editor.selection;
 			var MutationObserver = window.MutationObserver, olderWebKit, dragStartRng;
@@ -27578,17 +27578,17 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Makes sure that the editor body becomes empty when backspace or delete is pressed in empty editors.
-		 *
-		 * For example:
-		 * <p><b>|</b></p>
-		 *
-		 * Or:
-		 * <h1>|</h1>
-		 *
-		 * Or:
-		 * [<h1></h1>]
-		 */
+			* Makes sure that the editor body becomes empty when backspace or delete is pressed in empty editors.
+			*
+			* For example:
+			* <p><b>|</b></p>
+			*
+			* Or:
+			* <h1>|</h1>
+			*
+			* Or:
+			* [<h1></h1>]
+			*/
 		function emptyEditorWhenDeleting() {
 			function serializeRng(rng) {
 				var body = dom.create("body");
@@ -27651,25 +27651,25 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit doesn't select all the nodes in the body when you press Ctrl+A.
-		 * IE selects more than the contents <body>[<p>a</p>]</body> instead of <body><p>[a]</p]</body> see bug #6438
-		 * This selects the whole body so that backspace/delete logic will delete everything
-		 */
+			* WebKit doesn't select all the nodes in the body when you press Ctrl+A.
+			* IE selects more than the contents <body>[<p>a</p>]</body> instead of <body><p>[a]</p]</body> see bug #6438
+			* This selects the whole body so that backspace/delete logic will delete everything
+			*/
 		function selectAll() {
 			editor.shortcuts.add('meta+a', null, 'SelectAll');
 		}
 
 		/**
-		 * WebKit has a weird issue where it some times fails to properly convert keypresses to input method keystrokes.
-		 * The IME on Mac doesn't initialize when it doesn't fire a proper focus event.
-		 *
-		 * This seems to happen when the user manages to click the documentElement element then the window doesn't get proper focus until
-		 * you enter a character into the editor.
-		 *
-		 * It also happens when the first focus in made to the body.
-		 *
-		 * See: https://bugs.webkit.org/show_bug.cgi?id=83566
-		 */
+			* WebKit has a weird issue where it some times fails to properly convert keypresses to input method keystrokes.
+			* The IME on Mac doesn't initialize when it doesn't fire a proper focus event.
+			*
+			* This seems to happen when the user manages to click the documentElement element then the window doesn't get proper focus until
+			* you enter a character into the editor.
+			*
+			* It also happens when the first focus in made to the body.
+			*
+			* See: https://bugs.webkit.org/show_bug.cgi?id=83566
+			*/
 		function inputMethodFocus() {
 			if (!editor.settings.content_editable) {
 				// Case 1 IME doesn't initialize if you focus the document
@@ -27695,14 +27695,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Backspacing in FireFox/IE from a paragraph into a horizontal rule results in a floating text node because the
-		 * browser just deletes the paragraph - the browser fails to merge the text node with a horizontal rule so it is
-		 * left there. TinyMCE sees a floating text node and wraps it in a paragraph on the key up event (ForceBlocks.js
-		 * addRootBlocks), meaning the action does nothing. With this code, FireFox/IE matche the behaviour of other
-		 * browsers.
-		 *
-		 * It also fixes a bug on Firefox where it's impossible to delete HR elements.
-		 */
+			* Backspacing in FireFox/IE from a paragraph into a horizontal rule results in a floating text node because the
+			* browser just deletes the paragraph - the browser fails to merge the text node with a horizontal rule so it is
+			* left there. TinyMCE sees a floating text node and wraps it in a paragraph on the key up event (ForceBlocks.js
+			* addRootBlocks), meaning the action does nothing. With this code, FireFox/IE matche the behaviour of other
+			* browsers.
+			*
+			* It also fixes a bug on Firefox where it's impossible to delete HR elements.
+			*/
 		function removeHrOnBackspace() {
 			editor.on('keydown', function(e) {
 				if (!isDefaultPrevented(e) && e.keyCode === BACKSPACE) {
@@ -27731,9 +27731,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Firefox 3.x has an issue where the body element won't get proper focus if you click out
-		 * side it's rectangle.
-		 */
+			* Firefox 3.x has an issue where the body element won't get proper focus if you click out
+			* side it's rectangle.
+			*/
 		function focusBody() {
 			// Fix for a focus bug in FF 3.x where the body element
 			// wouldn't get proper focus if the user clicked on the HTML element
@@ -27755,9 +27755,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit has a bug where it isn't possible to select image, hr or anchor elements
-		 * by clicking on them so we need to fake that.
-		 */
+			* WebKit has a bug where it isn't possible to select image, hr or anchor elements
+			* by clicking on them so we need to fake that.
+			*/
 		function selectControlElements() {
 			editor.on('click', function(e) {
 				var target = e.target;
@@ -27780,17 +27780,17 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes a Gecko bug where the style attribute gets added to the wrong element when deleting between two block elements.
-		 *
-		 * Fixes do backspace/delete on this:
-		 * <p>bla[ck</p><p style="color:red">r]ed</p>
-		 *
-		 * Would become:
-		 * <p>bla|ed</p>
-		 *
-		 * Instead of:
-		 * <p style="color:red">bla|ed</p>
-		 */
+			* Fixes a Gecko bug where the style attribute gets added to the wrong element when deleting between two block elements.
+			*
+			* Fixes do backspace/delete on this:
+			* <p>bla[ck</p><p style="color:red">r]ed</p>
+			*
+			* Would become:
+			* <p>bla|ed</p>
+			*
+			* Instead of:
+			* <p style="color:red">bla|ed</p>
+			*/
 		function removeStylesWhenDeletingAcrossBlockElements() {
 			function getAttributeApplyFunction() {
 				var template = dom.getAttribs(selection.getStart().cloneNode(false));
@@ -27839,16 +27839,16 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Screen readers on IE needs to have the role application set on the body.
-		 */
+			* Screen readers on IE needs to have the role application set on the body.
+			*/
 		function ensureBodyHasRoleApplication() {
 			document.body.setAttribute("role", "application");
 		}
 
 		/**
-		 * Backspacing into a table behaves differently depending upon browser type.
-		 * Therefore, disable Backspace when cursor immediately follows a table.
-		 */
+			* Backspacing into a table behaves differently depending upon browser type.
+			* Therefore, disable Backspace when cursor immediately follows a table.
+			*/
 		function disableBackspaceIntoATable() {
 			editor.on('keydown', function(e) {
 				if (!isDefaultPrevented(e) && e.keyCode === BACKSPACE) {
@@ -27864,9 +27864,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Old IE versions can't properly render BR elements in PRE tags white in contentEditable mode. So this
-		 * logic adds a \n before the BR so that it will get rendered.
-		 */
+			* Old IE versions can't properly render BR elements in PRE tags white in contentEditable mode. So this
+			* logic adds a \n before the BR so that it will get rendered.
+			*/
 		function addNewLinesBeforeBrInPre() {
 			// IE8+ rendering mode does the right thing with BR in PRE
 			if (getDocumentMode() > 7) {
@@ -27919,8 +27919,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Moves style width/height to attribute width/height when the user resizes an image on IE.
-		 */
+			* Moves style width/height to attribute width/height when the user resizes an image on IE.
+			*/
 		function removePreSerializedStylesWhenSelectingControls() {
 			dom.bind(editor.getBody(), 'mouseup', function() {
 				var value, node = selection.getNode();
@@ -27943,14 +27943,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Removes a blockquote when backspace is pressed at the beginning of it.
-		 *
-		 * For example:
-		 * <blockquote><p>|x</p></blockquote>
-		 *
-		 * Becomes:
-		 * <p>|x</p>
-		 */
+			* Removes a blockquote when backspace is pressed at the beginning of it.
+			*
+			* For example:
+			* <blockquote><p>|x</p></blockquote>
+			*
+			* Becomes:
+			* <p>|x</p>
+			*/
 		function removeBlockQuoteOnBackSpace() {
 			// Add block quote deletion handler
 			editor.on('keydown', function(e) {
@@ -27989,8 +27989,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Sets various Gecko editing options on mouse down and before a execCommand to disable inline table editing that is broken etc.
-		 */
+			* Sets various Gecko editing options on mouse down and before a execCommand to disable inline table editing that is broken etc.
+			*/
 		function setGeckoEditingOptions() {
 			function setOpts() {
 				editor._refreshContentEditable();
@@ -28009,15 +28009,15 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes a gecko link bug, when a link is placed at the end of block elements there is
-		 * no way to move the caret behind the link. This fix adds a bogus br element after the link.
-		 *
-		 * For example this:
-		 * <p><b><a href="#">x</a></b></p>
-		 *
-		 * Becomes this:
-		 * <p><b><a href="#">x</a></b><br></p>
-		 */
+			* Fixes a gecko link bug, when a link is placed at the end of block elements there is
+			* no way to move the caret behind the link. This fix adds a bogus br element after the link.
+			*
+			* For example this:
+			* <p><b><a href="#">x</a></b></p>
+			*
+			* Becomes this:
+			* <p><b><a href="#">x</a></b><br></p>
+			*/
 		function addBrAfterLastLinks() {
 			function fixLinks() {
 				each(dom.select('a'), function(node) {
@@ -28045,9 +28045,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit will produce DIV elements here and there by default. But since TinyMCE uses paragraphs by
-		 * default we want to change that behavior.
-		 */
+			* WebKit will produce DIV elements here and there by default. But since TinyMCE uses paragraphs by
+			* default we want to change that behavior.
+			*/
 		function setDefaultBlockType() {
 			if (settings.forced_root_block) {
 				editor.on('init', function() {
@@ -28057,8 +28057,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Removes ghost selections from images/tables on Gecko.
-		 */
+			* Removes ghost selections from images/tables on Gecko.
+			*/
 		function removeGhostSelection() {
 			editor.on('Undo Redo SetContent', function(e) {
 				if (!e.initial) {
@@ -28068,8 +28068,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Deletes the selected image on IE instead of navigating to previous page.
-		 */
+			* Deletes the selected image on IE instead of navigating to previous page.
+			*/
 		function deleteControlItemOnBackSpace() {
 			editor.on('keydown', function(e) {
 				var rng;
@@ -28087,10 +28087,10 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE10 doesn't properly render block elements with the right height until you add contents to them.
-		 * This fixes that by adding a padding-right to all empty text block elements.
-		 * See: https://connect.microsoft.com/IE/feedback/details/743881
-		 */
+			* IE10 doesn't properly render block elements with the right height until you add contents to them.
+			* This fixes that by adding a padding-right to all empty text block elements.
+			* See: https://connect.microsoft.com/IE/feedback/details/743881
+			*/
 		function renderEmptyBlocksFix() {
 			var emptyBlocksCSS;
 
@@ -28106,9 +28106,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Old IE versions can't retain contents within noscript elements so this logic will store the contents
-		 * as a attribute and the insert that value as it's raw text when the DOM is serialized.
-		 */
+			* Old IE versions can't retain contents within noscript elements so this logic will store the contents
+			* as a attribute and the insert that value as it's raw text when the DOM is serialized.
+			*/
 		function keepNoScriptContents() {
 			if (getDocumentMode() < 9) {
 				parser.addNodeFilter('noscript', function(nodes) {
@@ -28150,8 +28150,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE has an issue where you can't select/move the caret by clicking outside the body if the document is in standards mode.
-		 */
+			* IE has an issue where you can't select/move the caret by clicking outside the body if the document is in standards mode.
+			*/
 		function fixCaretSelectionOfDocumentElementOnIe() {
 			var doc = dom.doc, body = doc.body, started, startRng, htmlElm;
 
@@ -28239,9 +28239,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes selection issues where the caret can be placed between two inline elements like <b>a</b>|<b>b</b>
-		 * this fix will lean the caret right into the closest inline element.
-		 */
+			* Fixes selection issues where the caret can be placed between two inline elements like <b>a</b>|<b>b</b>
+			* this fix will lean the caret right into the closest inline element.
+			*/
 		function normalizeSelection() {
 			// Normalize selection for example <b>a</b><i>|a</i> becomes <b>a|</b><i>a</i> except for Ctrl+A since it selects everything
 			editor.on('keyup focusin mouseup', function(e) {
@@ -28252,8 +28252,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Forces Gecko to render a broken image icon if it fails to load an image.
-		 */
+			* Forces Gecko to render a broken image icon if it fails to load an image.
+			*/
 		function showBrokenImageIcon() {
 			editor.contentStyles.push(
 				'img:-moz-broken {' +
@@ -28265,12 +28265,12 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * iOS has a bug where it's impossible to type if the document has a touchstart event
-		 * bound and the user touches the document while having the on screen keyboard visible.
-		 *
-		 * The touch event moves the focus to the parent document while having the caret inside the iframe
-		 * this fix moves the focus back into the iframe document.
-		 */
+			* iOS has a bug where it's impossible to type if the document has a touchstart event
+			* bound and the user touches the document while having the on screen keyboard visible.
+			*
+			* The touch event moves the focus to the parent document while having the caret inside the iframe
+			* this fix moves the focus back into the iframe document.
+			*/
 		function restoreFocusOnKeyDown() {
 			if (!editor.inline) {
 				editor.on('keydown', function() {
@@ -28282,14 +28282,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE 11 has an annoying issue where you can't move focus into the editor
-		 * by clicking on the white area HTML element. We used to be able to to fix this with
-		 * the fixCaretSelectionOfDocumentElementOnIe fix. But since M$ removed the selection
-		 * object it's not possible anymore. So we need to hack in a ungly CSS to force the
-		 * body to be at least 150px. If the user clicks the HTML element out side this 150px region
-		 * we simply move the focus into the first paragraph. Not ideal since you loose the
-		 * positioning of the caret but goot enough for most cases.
-		 */
+			* IE 11 has an annoying issue where you can't move focus into the editor
+			* by clicking on the white area HTML element. We used to be able to to fix this with
+			* the fixCaretSelectionOfDocumentElementOnIe fix. But since M$ removed the selection
+			* object it's not possible anymore. So we need to hack in a ungly CSS to force the
+			* body to be at least 150px. If the user clicks the HTML element out side this 150px region
+			* we simply move the focus into the first paragraph. Not ideal since you loose the
+			* positioning of the caret but goot enough for most cases.
+			*/
 		function bodyHeight() {
 			if (!editor.inline) {
 				editor.contentStyles.push('body {min-height: 150px}');
@@ -28309,9 +28309,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Firefox on Mac OS will move the browser back to the previous page if you press CMD+Left arrow.
-		 * You might then loose all your work so we need to block that behavior and replace it with our own.
-		 */
+			* Firefox on Mac OS will move the browser back to the previous page if you press CMD+Left arrow.
+			* You might then loose all your work so we need to block that behavior and replace it with our own.
+			*/
 		function blockCmdArrowNavigation() {
 			if (Env.mac) {
 				editor.on('keydown', function(e) {
@@ -28324,21 +28324,21 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Disables the autolinking in IE 9+ this is then re-enabled by the autolink plugin.
-		 */
+			* Disables the autolinking in IE 9+ this is then re-enabled by the autolink plugin.
+			*/
 		function disableAutoUrlDetect() {
 			setEditorCommandState("AutoUrlDetect", false);
 		}
 
 		/**
-		 * IE 11 has a fantastic bug where it will produce two trailing BR elements to iframe bodies when
-		 * the iframe is hidden by display: none on a parent container. The DOM is actually out of sync
-		 * with innerHTML in this case. It's like IE adds shadow DOM BR elements that appears on innerHTML
-		 * but not as the lastChild of the body. However is we add a BR element to the body then remove it
-		 * it doesn't seem to add these BR elements makes sence right?!
-		 *
-		 * Example of what happens: <body>text</body> becomes <body>text<br><br></body>
-		 */
+			* IE 11 has a fantastic bug where it will produce two trailing BR elements to iframe bodies when
+			* the iframe is hidden by display: none on a parent container. The DOM is actually out of sync
+			* with innerHTML in this case. It's like IE adds shadow DOM BR elements that appears on innerHTML
+			* but not as the lastChild of the body. However is we add a BR element to the body then remove it
+			* it doesn't seem to add these BR elements makes sence right?!
+			*
+			* Example of what happens: <body>text</body> becomes <body>text<br><br></body>
+			*/
 		function doubleTrailingBrElements() {
 			if (!editor.inline) {
 				editor.on('focus blur beforegetcontent', function() {
@@ -28350,10 +28350,10 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * iOS 7.1 introduced two new bugs:
-		 * 1) It's possible to open links within a contentEditable area by clicking on them.
-		 * 2) If you hold down the finger it will display the link/image touch callout menu.
-		 */
+			* iOS 7.1 introduced two new bugs:
+			* 1) It's possible to open links within a contentEditable area by clicking on them.
+			* 2) If you hold down the finger it will display the link/image touch callout menu.
+			*/
 		function tapLinksAndImages() {
 			editor.on('click', function(e) {
 				var elm = e.target;
@@ -28370,10 +28370,10 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * iOS Safari and possible other browsers have a bug where it won't fire
-		 * a click event when a contentEditable is focused. This function fakes click events
-		 * by using touchstart/touchend and measuring the time and distance travelled.
-		 */
+			* iOS Safari and possible other browsers have a bug where it won't fire
+			* a click event when a contentEditable is focused. This function fakes click events
+			* by using touchstart/touchend and measuring the time and distance travelled.
+			*/
 		function touchClickEvent() {
 			editor.on('touchstart', function(e) {
 				var elm, time, startTouch, changedTouches;
@@ -28425,9 +28425,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit has a bug where it will allow forms to be submitted if they are inside a contentEditable element.
-		 * For example this: <form><button></form>
-		 */
+			* WebKit has a bug where it will allow forms to be submitted if they are inside a contentEditable element.
+			* For example this: <form><button></form>
+			*/
 		function blockFormSubmitInsideEditor() {
 			editor.on('init', function() {
 				editor.dom.bind(editor.getBody(), 'submit', function(e) {
@@ -28437,13 +28437,13 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Sometimes WebKit/Blink generates BR elements with the Apple-interchange-newline class.
-		 *
-		 * Scenario:
-		 *  1) Create a table 2x2.
-		 *  2) Select and copy cells A2-B2.
-		 *  3) Paste and it will add BR element to table cell.
-		 */
+			* Sometimes WebKit/Blink generates BR elements with the Apple-interchange-newline class.
+			*
+			* Scenario:
+			*  1) Create a table 2x2.
+			*  2) Select and copy cells A2-B2.
+			*  3) Paste and it will add BR element to table cell.
+			*/
 		function removeAppleInterchangeBrs() {
 			parser.addNodeFilter('br', function(nodes) {
 				var i = nodes.length;
@@ -28457,9 +28457,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE cannot set custom contentType's on drag events, and also does not properly drag/drop between
-		 * editors. This uses a special data:text/mce-internal URL to pass data when drag/drop between editors.
-		 */
+			* IE cannot set custom contentType's on drag events, and also does not properly drag/drop between
+			* editors. This uses a special data:text/mce-internal URL to pass data when drag/drop between editors.
+			*/
 		function ieInternalDragAndDrop() {
 			editor.on('dragstart', function(e) {
 				setMceInteralContent(e);
@@ -28547,20 +28547,20 @@ define("tinymce/util/Quirks", [
 // Included from: classes/util/Observable.js
 
 /**
- * Observable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Observable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This mixin will add event binding logic to classes.
- *
- * @mixin tinymce.util.Observable
- */
+	* This mixin will add event binding logic to classes.
+	*
+	* @mixin tinymce.util.Observable
+	*/
 define("tinymce/util/Observable", [
 	"tinymce/util/EventDispatcher"
 ], function(EventDispatcher) {
@@ -28581,16 +28581,16 @@ define("tinymce/util/Observable", [
 
 	return {
 		/**
-		 * Fires the specified event by name.
-		 *
-		 * @method fire
-		 * @param {String} name Name of the event to fire.
-		 * @param {Object?} args Event arguments.
-		 * @param {Boolean?} bubble True/false if the event is to be bubbled.
-		 * @return {Object} Event args instance passed in.
-		 * @example
-		 * instance.fire('event', {...});
-		 */
+			* Fires the specified event by name.
+			*
+			* @method fire
+			* @param {String} name Name of the event to fire.
+			* @param {Object?} args Event arguments.
+			* @param {Boolean?} bubble True/false if the event is to be bubbled.
+			* @return {Object} Event args instance passed in.
+			* @example
+			* instance.fire('event', {...});
+			*/
 		fire: function(name, args, bubble) {
 			var self = this;
 
@@ -28614,62 +28614,62 @@ define("tinymce/util/Observable", [
 		},
 
 		/**
-		 * Binds an event listener to a specific event by name.
-		 *
-		 * @method on
-		 * @param {String} name Event name or space separated list of events to bind.
-		 * @param {callback} callback Callback to be executed when the event occurs.
-		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * instance.on('event', function(e) {
-		 *     // Callback logic
-		 * });
-		 */
+			* Binds an event listener to a specific event by name.
+			*
+			* @method on
+			* @param {String} name Event name or space separated list of events to bind.
+			* @param {callback} callback Callback to be executed when the event occurs.
+			* @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
+			* @return {Object} Current class instance.
+			* @example
+			* instance.on('event', function(e) {
+			*     // Callback logic
+			* });
+			*/
 		on: function(name, callback, prepend) {
 			return getEventDispatcher(this).on(name, callback, prepend);
 		},
 
 		/**
-		 * Unbinds an event listener to a specific event by name.
-		 *
-		 * @method off
-		 * @param {String?} name Name of the event to unbind.
-		 * @param {callback?} callback Callback to unbind.
-		 * @return {Object} Current class instance.
-		 * @example
-		 * // Unbind specific callback
-		 * instance.off('event', handler);
-		 *
-		 * // Unbind all listeners by name
-		 * instance.off('event');
-		 *
-		 * // Unbind all events
-		 * instance.off();
-		 */
+			* Unbinds an event listener to a specific event by name.
+			*
+			* @method off
+			* @param {String?} name Name of the event to unbind.
+			* @param {callback?} callback Callback to unbind.
+			* @return {Object} Current class instance.
+			* @example
+			* // Unbind specific callback
+			* instance.off('event', handler);
+			*
+			* // Unbind all listeners by name
+			* instance.off('event');
+			*
+			* // Unbind all events
+			* instance.off();
+			*/
 		off: function(name, callback) {
 			return getEventDispatcher(this).off(name, callback);
 		},
 
 		/**
-		 * Bind the event callback and once it fires the callback is removed.
-		 *
-		 * @method once
-		 * @param {String} name Name of the event to bind.
-		 * @param {callback} callback Callback to bind only once.
-		 * @return {Object} Current class instance.
-		 */
+			* Bind the event callback and once it fires the callback is removed.
+			*
+			* @method once
+			* @param {String} name Name of the event to bind.
+			* @param {callback} callback Callback to bind only once.
+			* @return {Object} Current class instance.
+			*/
 		once: function(name, callback) {
 			return getEventDispatcher(this).once(name, callback);
 		},
 
 		/**
-		 * Returns true/false if the object has a event of the specified name.
-		 *
-		 * @method hasEventListeners
-		 * @param {String} name Name of the event to check for.
-		 * @return {Boolean} true/false if the event exists or not.
-		 */
+			* Returns true/false if the object has a event of the specified name.
+			*
+			* @method hasEventListeners
+			* @param {String} name Name of the event to check for.
+			* @return {Boolean} true/false if the event exists or not.
+			*/
 		hasEventListeners: function(name) {
 			return getEventDispatcher(this).has(name);
 		}
@@ -28679,21 +28679,21 @@ define("tinymce/util/Observable", [
 // Included from: classes/EditorObservable.js
 
 /**
- * EditorObservable.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EditorObservable.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This mixin contains the event logic for the tinymce.Editor class.
- *
- * @mixin tinymce.EditorObservable
- * @extends tinymce.util.Observable
- */
+	* This mixin contains the event logic for the tinymce.Editor class.
+	*
+	* @mixin tinymce.EditorObservable
+	* @extends tinymce.util.Observable
+	*/
 define("tinymce/EditorObservable", [
 	"tinymce/util/Observable",
 	"tinymce/dom/DOMUtils",
@@ -28702,15 +28702,15 @@ define("tinymce/EditorObservable", [
 	var DOM = DOMUtils.DOM, customEventRootDelegates;
 
 	/**
-	 * Returns the event target so for the specified event. Some events fire
-	 * only on document, some fire on documentElement etc. This also handles the
-	 * custom event root setting where it returns that element instead of the body.
-	 *
-	 * @private
-	 * @param {tinymce.Editor} editor Editor instance to get event target from.
-	 * @param {String} eventName Name of the event for example "click".
-	 * @return {Element/Document} HTML Element or document target to bind on.
-	 */
+		* Returns the event target so for the specified event. Some events fire
+		* only on document, some fire on documentElement etc. This also handles the
+		* custom event root setting where it returns that element instead of the body.
+		*
+		* @private
+		* @param {tinymce.Editor} editor Editor instance to get event target from.
+		* @param {String} eventName Name of the event for example "click".
+		* @return {Element/Document} HTML Element or document target to bind on.
+		*/
 	function getEventTarget(editor, eventName) {
 		if (eventName == 'selectionchange') {
 			return editor.getDoc();
@@ -28735,13 +28735,13 @@ define("tinymce/EditorObservable", [
 	}
 
 	/**
-	 * Binds a event delegate for the specified name this delegate will fire
-	 * the event to the editor dispatcher.
-	 *
-	 * @private
-	 * @param {tinymce.Editor} editor Editor instance to get event target from.
-	 * @param {String} eventName Name of the event for example "click".
-	 */
+		* Binds a event delegate for the specified name this delegate will fire
+		* the event to the editor dispatcher.
+		*
+		* @private
+		* @param {tinymce.Editor} editor Editor instance to get event target from.
+		* @param {String} eventName Name of the event for example "click".
+		*/
 	function bindEventDelegate(editor, eventName) {
 		var eventRootElm = getEventTarget(editor, eventName), delegate;
 
@@ -28805,10 +28805,10 @@ define("tinymce/EditorObservable", [
 
 	var EditorObservable = {
 		/**
-		 * Bind any pending event delegates. This gets executed after the target body/document is created.
-		 *
-		 * @private
-		 */
+			* Bind any pending event delegates. This gets executed after the target body/document is created.
+			*
+			* @private
+			*/
 		bindPendingEventDelegates: function() {
 			var self = this;
 
@@ -28818,11 +28818,11 @@ define("tinymce/EditorObservable", [
 		},
 
 		/**
-		 * Toggles a native event on/off this is called by the EventDispatcher when
-		 * the first native event handler is added and when the last native event handler is removed.
-		 *
-		 * @private
-		 */
+			* Toggles a native event on/off this is called by the EventDispatcher when
+			* the first native event handler is added and when the last native event handler is removed.
+			*
+			* @private
+			*/
 		toggleNativeEvent: function(name, state) {
 			var self = this;
 
@@ -28852,10 +28852,10 @@ define("tinymce/EditorObservable", [
 		},
 
 		/**
-		 * Unbinds all native event handlers that means delegates, custom events bound using the Events API etc.
-		 *
-		 * @private
-		 */
+			* Unbinds all native event handlers that means delegates, custom events bound using the Events API etc.
+			*
+			* @private
+			*/
 		unbindAllNativeEvents: function() {
 			var self = this, name;
 
@@ -28886,24 +28886,24 @@ define("tinymce/EditorObservable", [
 // Included from: classes/Shortcuts.js
 
 /**
- * Shortcuts.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Shortcuts.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Contains all logic for handling of keyboard shortcuts.
- *
- * @example
- * editor.shortcuts.add('ctrl+a', function() {});
- * editor.shortcuts.add('meta+a', function() {}); // "meta" maps to Command on Mac and Ctrl on PC
- * editor.shortcuts.add('ctrl+alt+a', function() {});
- * editor.shortcuts.add('access+a', function() {}); // "access" maps to ctrl+alt on Mac and shift+alt on PC
- */
+	* Contains all logic for handling of keyboard shortcuts.
+	*
+	* @example
+	* editor.shortcuts.add('ctrl+a', function() {});
+	* editor.shortcuts.add('meta+a', function() {}); // "meta" maps to Command on Mac and Ctrl on PC
+	* editor.shortcuts.add('ctrl+alt+a', function() {});
+	* editor.shortcuts.add('access+a', function() {}); // "access" maps to ctrl+alt on Mac and shift+alt on PC
+	*/
 define("tinymce/Shortcuts", [
 	"tinymce/util/Tools",
 	"tinymce/Env"
@@ -29005,15 +29005,15 @@ define("tinymce/Shortcuts", [
 		});
 
 		/**
-		 * Adds a keyboard shortcut for some command or function.
-		 *
-		 * @method addShortcut
-		 * @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
-		 * @param {String} desc Text description for the command.
-		 * @param {String/Function} cmdFunc Command name string or function to execute when the key is pressed.
-		 * @param {Object} sc Optional scope to execute the function in.
-		 * @return {Boolean} true/false state if the shortcut was added or not.
-		 */
+			* Adds a keyboard shortcut for some command or function.
+			*
+			* @method addShortcut
+			* @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
+			* @param {String} desc Text description for the command.
+			* @param {String/Function} cmdFunc Command name string or function to execute when the key is pressed.
+			* @param {Object} sc Optional scope to execute the function in.
+			* @return {Boolean} true/false state if the shortcut was added or not.
+			*/
 		self.add = function(pattern, desc, cmdFunc, scope) {
 			var cmd;
 
@@ -29038,12 +29038,12 @@ define("tinymce/Shortcuts", [
 		};
 
 		/**
-		 * Remove a keyboard shortcut by pattern.
-		 *
-		 * @method remove
-		 * @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
-		 * @return {Boolean} true/false state if the shortcut was removed or not.
-		 */
+			* Remove a keyboard shortcut by pattern.
+			*
+			* @method remove
+			* @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
+			* @return {Boolean} true/false state if the shortcut was removed or not.
+			*/
 		self.remove = function(pattern) {
 			var shortcut = createShortcut(pattern);
 
@@ -29060,47 +29060,47 @@ define("tinymce/Shortcuts", [
 // Included from: classes/Editor.js
 
 /**
- * Editor.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Editor.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint scripturl:true */
 
 /**
- * Include the base event class documentation.
- *
- * @include ../../../tools/docs/tinymce.Event.js
- */
+	* Include the base event class documentation.
+	*
+	* @include ../../../tools/docs/tinymce.Event.js
+	*/
 
 /**
- * This class contains the core logic for a TinyMCE editor.
- *
- * @class tinymce.Editor
- * @mixes tinymce.util.Observable
- * @example
- * // Add a class to all paragraphs in the editor.
- * tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'someclass');
- *
- * // Gets the current editors selection as text
- * tinymce.activeEditor.selection.getContent({format: 'text'});
- *
- * // Creates a new editor instance
- * var ed = new tinymce.Editor('textareaid', {
- *     some_setting: 1
- * }, tinymce.EditorManager);
- *
- * // Select each item the user clicks on
- * ed.on('click', function(e) {
- *     ed.selection.select(e.target);
- * });
- *
- * ed.render();
- */
+	* This class contains the core logic for a TinyMCE editor.
+	*
+	* @class tinymce.Editor
+	* @mixes tinymce.util.Observable
+	* @example
+	* // Add a class to all paragraphs in the editor.
+	* tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'someclass');
+	*
+	* // Gets the current editors selection as text
+	* tinymce.activeEditor.selection.getContent({format: 'text'});
+	*
+	* // Creates a new editor instance
+	* var ed = new tinymce.Editor('textareaid', {
+	*     some_setting: 1
+	* }, tinymce.EditorManager);
+	*
+	* // Select each item the user clicks on
+	* ed.on('click', function(e) {
+	*     ed.selection.select(e.target);
+	* });
+	*
+	* ed.render();
+	*/
 define("tinymce/Editor", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/dom/DomQuery",
@@ -29150,21 +29150,21 @@ define("tinymce/Editor", [
 	var isGecko = Env.gecko, ie = Env.ie;
 
 	/**
-	 * Include documentation for all the events.
-	 *
-	 * @include ../../../tools/docs/tinymce.Editor.js
-	 */
+		* Include documentation for all the events.
+		*
+		* @include ../../../tools/docs/tinymce.Editor.js
+		*/
 
 	/**
-	 * Constructs a editor instance by id.
-	 *
-	 * @constructor
-	 * @method Editor
-	 * @param {String} id Unique id for the editor.
-	 * @param {Object} settings Settings for the editor.
-	 * @param {tinymce.EditorManager} editorManager EditorManager instance.
-	 * @author Moxiecode
-	 */
+		* Constructs a editor instance by id.
+		*
+		* @constructor
+		* @method Editor
+		* @param {String} id Unique id for the editor.
+		* @param {Object} settings Settings for the editor.
+		* @param {tinymce.EditorManager} editorManager EditorManager instance.
+		* @author Moxiecode
+		*/
 	function Editor(id, settings, editorManager) {
 		var self = this, documentBaseUrl, baseUri;
 
@@ -29172,14 +29172,14 @@ define("tinymce/Editor", [
 		baseUri = editorManager.baseURI;
 
 		/**
-		 * Name/value collection with editor settings.
-		 *
-		 * @property settings
-		 * @type Object
-		 * @example
-		 * // Get the value of the theme setting
-		 * tinymce.activeEditor.windowManager.alert("You are using the " + tinymce.activeEditor.settings.theme + " theme");
-		 */
+			* Name/value collection with editor settings.
+			*
+			* @property settings
+			* @type Object
+			* @example
+			* // Get the value of the theme setting
+			* tinymce.activeEditor.windowManager.alert("You are using the " + tinymce.activeEditor.settings.theme + " theme");
+			*/
 		self.settings = settings = extend({
 			id: id,
 			theme: 'modern',
@@ -29226,85 +29226,85 @@ define("tinymce/Editor", [
 		AddOnManager.baseURL = editorManager.baseURL;
 
 		/**
-		 * Editor instance id, normally the same as the div/textarea that was replaced.
-		 *
-		 * @property id
-		 * @type String
-		 */
+			* Editor instance id, normally the same as the div/textarea that was replaced.
+			*
+			* @property id
+			* @type String
+			*/
 		self.id = settings.id = id;
 
 		/**
-		 * State to force the editor to return false on a isDirty call.
-		 *
-		 * @property isNotDirty
-		 * @type Boolean
-		 * @example
-		 * function ajaxSave() {
-		 *     var ed = tinymce.get('elm1');
-		 *
-		 *     // Save contents using some XHR call
-		 *     alert(ed.getContent());
-		 *
-		 *     ed.isNotDirty = true; // Force not dirty state
-		 * }
-		 */
+			* State to force the editor to return false on a isDirty call.
+			*
+			* @property isNotDirty
+			* @type Boolean
+			* @example
+			* function ajaxSave() {
+			*     var ed = tinymce.get('elm1');
+			*
+			*     // Save contents using some XHR call
+			*     alert(ed.getContent());
+			*
+			*     ed.isNotDirty = true; // Force not dirty state
+			* }
+			*/
 		self.isNotDirty = true;
 
 		/**
-		 * Name/Value object containting plugin instances.
-		 *
-		 * @property plugins
-		 * @type Object
-		 * @example
-		 * // Execute a method inside a plugin directly
-		 * tinymce.activeEditor.plugins.someplugin.someMethod();
-		 */
+			* Name/Value object containting plugin instances.
+			*
+			* @property plugins
+			* @type Object
+			* @example
+			* // Execute a method inside a plugin directly
+			* tinymce.activeEditor.plugins.someplugin.someMethod();
+			*/
 		self.plugins = {};
 
 		/**
-		 * URI object to document configured for the TinyMCE instance.
-		 *
-		 * @property documentBaseURI
-		 * @type tinymce.util.URI
-		 * @example
-		 * // Get relative URL from the location of document_base_url
-		 * tinymce.activeEditor.documentBaseURI.toRelative('/somedir/somefile.htm');
-		 *
-		 * // Get absolute URL from the location of document_base_url
-		 * tinymce.activeEditor.documentBaseURI.toAbsolute('somefile.htm');
-		 */
+			* URI object to document configured for the TinyMCE instance.
+			*
+			* @property documentBaseURI
+			* @type tinymce.util.URI
+			* @example
+			* // Get relative URL from the location of document_base_url
+			* tinymce.activeEditor.documentBaseURI.toRelative('/somedir/somefile.htm');
+			*
+			* // Get absolute URL from the location of document_base_url
+			* tinymce.activeEditor.documentBaseURI.toAbsolute('somefile.htm');
+			*/
 		self.documentBaseURI = new URI(settings.document_base_url || documentBaseUrl, {
 			base_uri: baseUri
 		});
 
 		/**
-		 * URI object to current document that holds the TinyMCE editor instance.
-		 *
-		 * @property baseURI
-		 * @type tinymce.util.URI
-		 * @example
-		 * // Get relative URL from the location of the API
-		 * tinymce.activeEditor.baseURI.toRelative('/somedir/somefile.htm');
-		 *
-		 * // Get absolute URL from the location of the API
-		 * tinymce.activeEditor.baseURI.toAbsolute('somefile.htm');
-		 */
+			* URI object to current document that holds the TinyMCE editor instance.
+			*
+			* @property baseURI
+			* @type tinymce.util.URI
+			* @example
+			* // Get relative URL from the location of the API
+			* tinymce.activeEditor.baseURI.toRelative('/somedir/somefile.htm');
+			*
+			* // Get absolute URL from the location of the API
+			* tinymce.activeEditor.baseURI.toAbsolute('somefile.htm');
+			*/
 		self.baseURI = baseUri;
 
 		/**
-		 * Array with CSS files to load into the iframe.
-		 *
-		 * @property contentCSS
-		 * @type Array
-		 */
+			* Array with CSS files to load into the iframe.
+			*
+			* @property contentCSS
+			* @type Array
+			*/
 		self.contentCSS = [];
 
 		/**
-		 * Array of CSS styles to add to head of document when the editor loads.
-		 *
-		 * @property contentStyles
-		 * @type Array
-		 */
+			* Array of CSS styles to add to head of document when the editor loads.
+			*
+			* @property contentStyles
+			* @type Array
+			*/
 		self.contentStyles = [];
 
 		// Creates all events like onClick, onSetContent etc see Editor.Events.js for the actual logic
@@ -29329,14 +29329,14 @@ define("tinymce/Editor", [
 		self.execCallback('setup', self);
 
 		/**
-		 * Dom query instance with default scope to the editor document and default element is the body of the editor.
-		 *
-		 * @property $
-		 * @type tinymce.dom.DomQuery
-		 * @example
-		 * tinymce.activeEditor.$('p').css('color', 'red');
-		 * tinymce.activeEditor.$().append('<p>new</p>');
-		 */
+			* Dom query instance with default scope to the editor document and default element is the body of the editor.
+			*
+			* @property $
+			* @type tinymce.dom.DomQuery
+			* @example
+			* tinymce.activeEditor.$('p').css('color', 'red');
+			* tinymce.activeEditor.$().append('<p>new</p>');
+			*/
 		self.$ = DomQuery.overrideDefaults(function() {
 			return {
 				context: self.inline ? self.getBody() : self.getDoc(),
@@ -29347,10 +29347,10 @@ define("tinymce/Editor", [
 
 	Editor.prototype = {
 		/**
-		 * Renderes the editor/adds it to the page.
-		 *
-		 * @method render
-		 */
+			* Renderes the editor/adds it to the page.
+			*
+			* @method render
+			*/
 		render: function() {
 			var self = this, settings = self.settings, id = self.id, suffix = self.suffix;
 
@@ -29418,24 +29418,24 @@ define("tinymce/Editor", [
 			}
 
 			/**
-			 * Window manager reference, use this to open new windows and dialogs.
-			 *
-			 * @property windowManager
-			 * @type tinymce.WindowManager
-			 * @example
-			 * // Shows an alert message
-			 * tinymce.activeEditor.windowManager.alert('Hello world!');
-			 *
-			 * // Opens a new dialog with the file.htm file and the size 320x240
-			 * // It also adds a custom parameter this can be retrieved by using tinyMCEPopup.getWindowArg inside the dialog.
-			 * tinymce.activeEditor.windowManager.open({
-			 *    url: 'file.htm',
-			 *    width: 320,
-			 *    height: 240
-			 * }, {
-			 *    custom_param: 1
-			 * });
-			 */
+				* Window manager reference, use this to open new windows and dialogs.
+				*
+				* @property windowManager
+				* @type tinymce.WindowManager
+				* @example
+				* // Shows an alert message
+				* tinymce.activeEditor.windowManager.alert('Hello world!');
+				*
+				* // Opens a new dialog with the file.htm file and the size 320x240
+				* // It also adds a custom parameter this can be retrieved by using tinyMCEPopup.getWindowArg inside the dialog.
+				* tinymce.activeEditor.windowManager.open({
+				*    url: 'file.htm',
+				*    width: 320,
+				*    height: 240
+				* }, {
+				*    custom_param: 1
+				* });
+				*/
 			self.windowManager = new WindowManager(self);
 
 			if (settings.encoding == 'xml') {
@@ -29538,12 +29538,12 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Initializes the editor this will be called automatically when
-		 * all plugins/themes and language packs are loaded by the rendered method.
-		 * This method will setup the iframe and create the theme and plugin instances.
-		 *
-		 * @method init
-		 */
+			* Initializes the editor this will be called automatically when
+			* all plugins/themes and language packs are loaded by the rendered method.
+			* This method will setup the iframe and create the theme and plugin instances.
+			*
+			* @method init
+			*/
 		init: function() {
 			var self = this, settings = self.settings, elm = self.getElement();
 			var w, h, minHeight, n, o, Theme, url, bodyId, bodyClass, re, i, initializedPlugins = [];
@@ -29555,14 +29555,14 @@ define("tinymce/Editor", [
 			settings.aria_label = settings.aria_label || DOM.getAttrib(elm, 'aria-label', self.getLang('aria.rich_text_area'));
 
 			/**
-			 * Reference to the theme instance that was used to generate the UI.
-			 *
-			 * @property theme
-			 * @type tinymce.Theme
-			 * @example
-			 * // Executes a method on the theme directly
-			 * tinymce.activeEditor.theme.someMethod();
-			 */
+				* Reference to the theme instance that was used to generate the UI.
+				*
+				* @property theme
+				* @type tinymce.Theme
+				* @example
+				* // Executes a method on the theme directly
+				* tinymce.activeEditor.theme.someMethod();
+				*/
 			if (settings.theme) {
 				if (typeof settings.theme != "function") {
 					settings.theme = settings.theme.replace(/-/, '');
@@ -29784,12 +29784,12 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * This method get called by the init method ones the iframe is loaded.
-		 * It will fill the iframe with contents, setups DOM and selection objects for the iframe.
-		 *
-		 * @method initContentBody
-		 * @private
-		 */
+			* This method get called by the init method ones the iframe is loaded.
+			* It will fill the iframe with contents, setups DOM and selection objects for the iframe.
+			*
+			* @method initContentBody
+			* @private
+			*/
 		initContentBody: function(skipWrite) {
 			var self = this, settings = self.settings, targetElm = self.getElement(), doc = self.getDoc(), body, contentCssText;
 
@@ -29841,22 +29841,22 @@ define("tinymce/Editor", [
 			body.disabled = false;
 
 			/**
-			 * Schema instance, enables you to validate elements and it's children.
-			 *
-			 * @property schema
-			 * @type tinymce.html.Schema
-			 */
+				* Schema instance, enables you to validate elements and it's children.
+				*
+				* @property schema
+				* @type tinymce.html.Schema
+				*/
 			self.schema = new Schema(settings);
 
 			/**
-			 * DOM instance for the editor.
-			 *
-			 * @property dom
-			 * @type tinymce.dom.DOMUtils
-			 * @example
-			 * // Adds a class to all paragraphs within the editor
-			 * tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'someclass');
-			 */
+				* DOM instance for the editor.
+				*
+				* @property dom
+				* @type tinymce.dom.DOMUtils
+				* @example
+				* // Adds a class to all paragraphs within the editor
+				* tinymce.activeEditor.dom.addClass(tinymce.activeEditor.dom.select('p'), 'someclass');
+				*/
 			self.dom = new DOMUtils(doc, {
 				keep_values: true,
 				url_converter: self.convertURL,
@@ -29873,11 +29873,11 @@ define("tinymce/Editor", [
 			});
 
 			/**
-			 * HTML parser will be used when contents is inserted into the editor.
-			 *
-			 * @property parser
-			 * @type tinymce.html.DomParser
-			 */
+				* HTML parser will be used when contents is inserted into the editor.
+				*
+				* @property parser
+				* @type tinymce.html.DomParser
+				*/
 			self.parser = new DomParser(settings, self.schema);
 
 			// Convert src and href into data-mce-src, data-mce-href and data-mce-style
@@ -29944,50 +29944,50 @@ define("tinymce/Editor", [
 			});
 
 			/**
-			 * DOM serializer for the editor. Will be used when contents is extracted from the editor.
-			 *
-			 * @property serializer
-			 * @type tinymce.dom.Serializer
-			 * @example
-			 * // Serializes the first paragraph in the editor into a string
-			 * tinymce.activeEditor.serializer.serialize(tinymce.activeEditor.dom.select('p')[0]);
-			 */
+				* DOM serializer for the editor. Will be used when contents is extracted from the editor.
+				*
+				* @property serializer
+				* @type tinymce.dom.Serializer
+				* @example
+				* // Serializes the first paragraph in the editor into a string
+				* tinymce.activeEditor.serializer.serialize(tinymce.activeEditor.dom.select('p')[0]);
+				*/
 			self.serializer = new DomSerializer(settings, self);
 
 			/**
-			 * Selection instance for the editor.
-			 *
-			 * @property selection
-			 * @type tinymce.dom.Selection
-			 * @example
-			 * // Sets some contents to the current selection in the editor
-			 * tinymce.activeEditor.selection.setContent('Some contents');
-			 *
-			 * // Gets the current selection
-			 * alert(tinymce.activeEditor.selection.getContent());
-			 *
-			 * // Selects the first paragraph found
-			 * tinymce.activeEditor.selection.select(tinymce.activeEditor.dom.select('p')[0]);
-			 */
+				* Selection instance for the editor.
+				*
+				* @property selection
+				* @type tinymce.dom.Selection
+				* @example
+				* // Sets some contents to the current selection in the editor
+				* tinymce.activeEditor.selection.setContent('Some contents');
+				*
+				* // Gets the current selection
+				* alert(tinymce.activeEditor.selection.getContent());
+				*
+				* // Selects the first paragraph found
+				* tinymce.activeEditor.selection.select(tinymce.activeEditor.dom.select('p')[0]);
+				*/
 			self.selection = new Selection(self.dom, self.getWin(), self.serializer, self);
 
 			/**
-			 * Formatter instance.
-			 *
-			 * @property formatter
-			 * @type tinymce.Formatter
-			 */
+				* Formatter instance.
+				*
+				* @property formatter
+				* @type tinymce.Formatter
+				*/
 			self.formatter = new Formatter(self);
 
 			/**
-			 * Undo manager instance, responsible for handling undo levels.
-			 *
-			 * @property undoManager
-			 * @type tinymce.UndoManager
-			 * @example
-			 * // Undoes the last modification to the editor
-			 * tinymce.activeEditor.undoManager.undo();
-			 */
+				* Undo manager instance, responsible for handling undo levels.
+				*
+				* @property undoManager
+				* @type tinymce.UndoManager
+				* @example
+				* // Undoes the last modification to the editor
+				* tinymce.activeEditor.undoManager.undo();
+				*/
 			self.undoManager = new UndoManager(self);
 
 			self.forceBlocks = new ForceBlocks(self);
@@ -30038,15 +30038,15 @@ define("tinymce/Editor", [
 			self.startContent = self.getContent({format: 'raw'});
 
 			/**
-			 * Is set to true after the editor instance has been initialized
-			 *
-			 * @property initialized
-			 * @type Boolean
-			 * @example
-			 * function isEditorInitialized(editor) {
-			 *     return editor && editor.initialized;
-			 * }
-			 */
+				* Is set to true after the editor instance has been initialized
+				*
+				* @property initialized
+				* @type Boolean
+				* @example
+				* function isEditorInitialized(editor) {
+				*     return editor && editor.initialized;
+				* }
+				*/
 			self.initialized = true;
 			self.bindPendingEventDelegates();
 
@@ -30094,12 +30094,12 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Focuses/activates the editor. This will set this editor as the activeEditor in the tinymce collection
-		 * it will also place DOM focus inside the editor.
-		 *
-		 * @method focus
-		 * @param {Boolean} skipFocus Skip DOM focus. Just set is as the active editor.
-		 */
+			* Focuses/activates the editor. This will set this editor as the activeEditor in the tinymce collection
+			* it will also place DOM focus inside the editor.
+			*
+			* @method focus
+			* @param {Boolean} skipFocus Skip DOM focus. Just set is as the active editor.
+			*/
 		focus: function(skipFocus) {
 			var self = this, selection = self.selection, contentEditable = self.settings.content_editable, rng;
 			var controlElm, doc = self.getDoc(), body;
@@ -30159,13 +30159,13 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Executes a legacy callback. This method is useful to call old 2.x option callbacks.
-		 * There new event model is a better way to add callback so this method might be removed in the future.
-		 *
-		 * @method execCallback
-		 * @param {String} name Name of the callback to execute.
-		 * @return {Object} Return value passed from callback function.
-		 */
+			* Executes a legacy callback. This method is useful to call old 2.x option callbacks.
+			* There new event model is a better way to add callback so this method might be removed in the future.
+			*
+			* @method execCallback
+			* @param {String} name Name of the callback to execute.
+			* @return {Object} Return value passed from callback function.
+			*/
 		execCallback: function(name) {
 			var self = this, callback = self.settings[name], scope;
 
@@ -30191,13 +30191,13 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Translates the specified string by replacing variables with language pack items it will also check if there is
-		 * a key mathcin the input.
-		 *
-		 * @method translate
-		 * @param {String} text String to translate by the language pack data.
-		 * @return {String} Translated string.
-		 */
+			* Translates the specified string by replacing variables with language pack items it will also check if there is
+			* a key mathcin the input.
+			*
+			* @method translate
+			* @param {String} text String to translate by the language pack data.
+			* @return {String} Translated string.
+			*/
 		translate: function(text) {
 			var lang = this.settings.language || 'en', i18n = this.editorManager.i18n;
 
@@ -30211,12 +30211,12 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns a language pack item by name/key.
-		 *
-		 * @method getLang
-		 * @param {String} name Name/key to get from the language pack.
-		 * @param {String} defaultVal Optional default value to retrive.
-		 */
+			* Returns a language pack item by name/key.
+			*
+			* @method getLang
+			* @param {String} name Name/key to get from the language pack.
+			* @param {String} defaultVal Optional default value to retrive.
+			*/
 		getLang: function(name, defaultVal) {
 			return (
 				this.editorManager.i18n.data[(this.settings.language || 'en') + '.' + name] ||
@@ -30225,20 +30225,20 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns a configuration parameter by name.
-		 *
-		 * @method getParam
-		 * @param {String} name Configruation parameter to retrive.
-		 * @param {String} defaultVal Optional default value to return.
-		 * @param {String} type Optional type parameter.
-		 * @return {String} Configuration parameter value or default value.
-		 * @example
-		 * // Returns a specific config value from the currently active editor
-		 * var someval = tinymce.activeEditor.getParam('myvalue');
-		 *
-		 * // Returns a specific config value from a specific editor instance by id
-		 * var someval2 = tinymce.get('my_editor').getParam('myvalue');
-		 */
+			* Returns a configuration parameter by name.
+			*
+			* @method getParam
+			* @param {String} name Configruation parameter to retrive.
+			* @param {String} defaultVal Optional default value to return.
+			* @param {String} type Optional type parameter.
+			* @return {String} Configuration parameter value or default value.
+			* @example
+			* // Returns a specific config value from the currently active editor
+			* var someval = tinymce.activeEditor.getParam('myvalue');
+			*
+			* // Returns a specific config value from a specific editor instance by id
+			* var someval2 = tinymce.get('my_editor').getParam('myvalue');
+			*/
 		getParam: function(name, defaultVal, type) {
 			var value = name in this.settings ? this.settings[name] : defaultVal, output;
 
@@ -30266,40 +30266,40 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Distpaches out a onNodeChange event to all observers. This method should be called when you
-		 * need to update the UI states or element path etc.
-		 *
-		 * @method nodeChanged
-		 * @param {Object} args Optional args to pass to NodeChange event handlers.
-		 */
+			* Distpaches out a onNodeChange event to all observers. This method should be called when you
+			* need to update the UI states or element path etc.
+			*
+			* @method nodeChanged
+			* @param {Object} args Optional args to pass to NodeChange event handlers.
+			*/
 		nodeChanged: function(args) {
 			this._nodeChangeDispatcher.nodeChanged(args);
 		},
 
 		/**
-		 * Adds a button that later gets created by the theme in the editors toolbars.
-		 *
-		 * @method addButton
-		 * @param {String} name Button name to add.
-		 * @param {Object} settings Settings object with title, cmd etc.
-		 * @example
-		 * // Adds a custom button to the editor that inserts contents when clicked
-		 * tinymce.init({
-		 *    ...
-		 *
-		 *    toolbar: 'example'
-		 *
-		 *    setup: function(ed) {
-		 *       ed.addButton('example', {
-		 *          title: 'My title',
-		 *          image: '../js/tinymce/plugins/example/img/example.gif',
-		 *          onclick: function() {
-		 *             ed.insertContent('Hello world!!');
-		 *          }
-		 *       });
-		 *    }
-		 * });
-		 */
+			* Adds a button that later gets created by the theme in the editors toolbars.
+			*
+			* @method addButton
+			* @param {String} name Button name to add.
+			* @param {Object} settings Settings object with title, cmd etc.
+			* @example
+			* // Adds a custom button to the editor that inserts contents when clicked
+			* tinymce.init({
+			*    ...
+			*
+			*    toolbar: 'example'
+			*
+			*    setup: function(ed) {
+			*       ed.addButton('example', {
+			*          title: 'My title',
+			*          image: '../js/tinymce/plugins/example/img/example.gif',
+			*          onclick: function() {
+			*             ed.insertContent('Hello world!!');
+			*          }
+			*       });
+			*    }
+			* });
+			*/
 		addButton: function(name, settings) {
 			var self = this;
 
@@ -30319,30 +30319,30 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Adds a menu item to be used in the menus of the theme. There might be multiple instances
-		 * of this menu item for example it might be used in the main menus of the theme but also in
-		 * the context menu so make sure that it's self contained and supports multiple instances.
-		 *
-		 * @method addMenuItem
-		 * @param {String} name Menu item name to add.
-		 * @param {Object} settings Settings object with title, cmd etc.
-		 * @example
-		 * // Adds a custom menu item to the editor that inserts contents when clicked
-		 * // The context option allows you to add the menu item to an existing default menu
-		 * tinymce.init({
-		 *    ...
-		 *
-		 *    setup: function(ed) {
-		 *       ed.addMenuItem('example', {
-		 *          text: 'My menu item',
-		 *          context: 'tools',
-		 *          onclick: function() {
-		 *             ed.insertContent('Hello world!!');
-		 *          }
-		 *       });
-		 *    }
-		 * });
-		 */
+			* Adds a menu item to be used in the menus of the theme. There might be multiple instances
+			* of this menu item for example it might be used in the main menus of the theme but also in
+			* the context menu so make sure that it's self contained and supports multiple instances.
+			*
+			* @method addMenuItem
+			* @param {String} name Menu item name to add.
+			* @param {Object} settings Settings object with title, cmd etc.
+			* @example
+			* // Adds a custom menu item to the editor that inserts contents when clicked
+			* // The context option allows you to add the menu item to an existing default menu
+			* tinymce.init({
+			*    ...
+			*
+			*    setup: function(ed) {
+			*       ed.addMenuItem('example', {
+			*          text: 'My menu item',
+			*          context: 'tools',
+			*          onclick: function() {
+			*             ed.insertContent('Hello world!!');
+			*          }
+			*       });
+			*    }
+			* });
+			*/
 		addMenuItem: function(name, settings) {
 			var self = this;
 
@@ -30357,144 +30357,144 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Adds a custom command to the editor, you can also override existing commands with this method.
-		 * The command that you add can be executed with execCommand.
-		 *
-		 * @method addCommand
-		 * @param {String} name Command name to add/override.
-		 * @param {addCommandCallback} callback Function to execute when the command occurs.
-		 * @param {Object} scope Optional scope to execute the function in.
-		 * @example
-		 * // Adds a custom command that later can be executed using execCommand
-		 * tinymce.init({
-		 *    ...
-		 *
-		 *    setup: function(ed) {
-		 *       // Register example command
-		 *       ed.addCommand('mycommand', function(ui, v) {
-		 *          ed.windowManager.alert('Hello world!! Selection: ' + ed.selection.getContent({format: 'text'}));
-		 *       });
-		 *    }
-		 * });
-		 */
+			* Adds a custom command to the editor, you can also override existing commands with this method.
+			* The command that you add can be executed with execCommand.
+			*
+			* @method addCommand
+			* @param {String} name Command name to add/override.
+			* @param {addCommandCallback} callback Function to execute when the command occurs.
+			* @param {Object} scope Optional scope to execute the function in.
+			* @example
+			* // Adds a custom command that later can be executed using execCommand
+			* tinymce.init({
+			*    ...
+			*
+			*    setup: function(ed) {
+			*       // Register example command
+			*       ed.addCommand('mycommand', function(ui, v) {
+			*          ed.windowManager.alert('Hello world!! Selection: ' + ed.selection.getContent({format: 'text'}));
+			*       });
+			*    }
+			* });
+			*/
 		addCommand: function(name, callback, scope) {
 			/**
-			 * Callback function that gets called when a command is executed.
-			 *
-			 * @callback addCommandCallback
-			 * @param {Boolean} ui Display UI state true/false.
-			 * @param {Object} value Optional value for command.
-			 * @return {Boolean} True/false state if the command was handled or not.
-			 */
+				* Callback function that gets called when a command is executed.
+				*
+				* @callback addCommandCallback
+				* @param {Boolean} ui Display UI state true/false.
+				* @param {Object} value Optional value for command.
+				* @return {Boolean} True/false state if the command was handled or not.
+				*/
 			this.editorCommands.addCommand(name, callback, scope);
 		},
 
 		/**
-		 * Adds a custom query state command to the editor, you can also override existing commands with this method.
-		 * The command that you add can be executed with queryCommandState function.
-		 *
-		 * @method addQueryStateHandler
-		 * @param {String} name Command name to add/override.
-		 * @param {addQueryStateHandlerCallback} callback Function to execute when the command state retrival occurs.
-		 * @param {Object} scope Optional scope to execute the function in.
-		 */
+			* Adds a custom query state command to the editor, you can also override existing commands with this method.
+			* The command that you add can be executed with queryCommandState function.
+			*
+			* @method addQueryStateHandler
+			* @param {String} name Command name to add/override.
+			* @param {addQueryStateHandlerCallback} callback Function to execute when the command state retrival occurs.
+			* @param {Object} scope Optional scope to execute the function in.
+			*/
 		addQueryStateHandler: function(name, callback, scope) {
 			/**
-			 * Callback function that gets called when a queryCommandState is executed.
-			 *
-			 * @callback addQueryStateHandlerCallback
-			 * @return {Boolean} True/false state if the command is enabled or not like is it bold.
-			 */
+				* Callback function that gets called when a queryCommandState is executed.
+				*
+				* @callback addQueryStateHandlerCallback
+				* @return {Boolean} True/false state if the command is enabled or not like is it bold.
+				*/
 			this.editorCommands.addQueryStateHandler(name, callback, scope);
 		},
 
 		/**
-		 * Adds a custom query value command to the editor, you can also override existing commands with this method.
-		 * The command that you add can be executed with queryCommandValue function.
-		 *
-		 * @method addQueryValueHandler
-		 * @param {String} name Command name to add/override.
-		 * @param {addQueryValueHandlerCallback} callback Function to execute when the command value retrival occurs.
-		 * @param {Object} scope Optional scope to execute the function in.
-		 */
+			* Adds a custom query value command to the editor, you can also override existing commands with this method.
+			* The command that you add can be executed with queryCommandValue function.
+			*
+			* @method addQueryValueHandler
+			* @param {String} name Command name to add/override.
+			* @param {addQueryValueHandlerCallback} callback Function to execute when the command value retrival occurs.
+			* @param {Object} scope Optional scope to execute the function in.
+			*/
 		addQueryValueHandler: function(name, callback, scope) {
 			/**
-			 * Callback function that gets called when a queryCommandValue is executed.
-			 *
-			 * @callback addQueryValueHandlerCallback
-			 * @return {Object} Value of the command or undefined.
-			 */
+				* Callback function that gets called when a queryCommandValue is executed.
+				*
+				* @callback addQueryValueHandlerCallback
+				* @return {Object} Value of the command or undefined.
+				*/
 			this.editorCommands.addQueryValueHandler(name, callback, scope);
 		},
 
 		/**
-		 * Adds a keyboard shortcut for some command or function.
-		 *
-		 * @method addShortcut
-		 * @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
-		 * @param {String} desc Text description for the command.
-		 * @param {String/Function} cmdFunc Command name string or function to execute when the key is pressed.
-		 * @param {Object} sc Optional scope to execute the function in.
-		 * @return {Boolean} true/false state if the shortcut was added or not.
-		 */
+			* Adds a keyboard shortcut for some command or function.
+			*
+			* @method addShortcut
+			* @param {String} pattern Shortcut pattern. Like for example: ctrl+alt+o.
+			* @param {String} desc Text description for the command.
+			* @param {String/Function} cmdFunc Command name string or function to execute when the key is pressed.
+			* @param {Object} sc Optional scope to execute the function in.
+			* @return {Boolean} true/false state if the shortcut was added or not.
+			*/
 		addShortcut: function(pattern, desc, cmdFunc, scope) {
 			this.shortcuts.add(pattern, desc, cmdFunc, scope);
 		},
 
 		/**
-		 * Executes a command on the current instance. These commands can be TinyMCE internal commands prefixed with "mce" or
-		 * they can be build in browser commands such as "Bold". A compleate list of browser commands is available on MSDN or Mozilla.org.
-		 * This function will dispatch the execCommand function on each plugin, theme or the execcommand_callback option if none of these
-		 * return true it will handle the command as a internal browser command.
-		 *
-		 * @method execCommand
-		 * @param {String} cmd Command name to execute, for example mceLink or Bold.
-		 * @param {Boolean} ui True/false state if a UI (dialog) should be presented or not.
-		 * @param {mixed} value Optional command value, this can be anything.
-		 * @param {Object} args Optional arguments object.
-		 */
+			* Executes a command on the current instance. These commands can be TinyMCE internal commands prefixed with "mce" or
+			* they can be build in browser commands such as "Bold". A compleate list of browser commands is available on MSDN or Mozilla.org.
+			* This function will dispatch the execCommand function on each plugin, theme or the execcommand_callback option if none of these
+			* return true it will handle the command as a internal browser command.
+			*
+			* @method execCommand
+			* @param {String} cmd Command name to execute, for example mceLink or Bold.
+			* @param {Boolean} ui True/false state if a UI (dialog) should be presented or not.
+			* @param {mixed} value Optional command value, this can be anything.
+			* @param {Object} args Optional arguments object.
+			*/
 		execCommand: function(cmd, ui, value, args) {
 			return this.editorCommands.execCommand(cmd, ui, value, args);
 		},
 
 		/**
-		 * Returns a command specific state, for example if bold is enabled or not.
-		 *
-		 * @method queryCommandState
-		 * @param {string} cmd Command to query state from.
-		 * @return {Boolean} Command specific state, for example if bold is enabled or not.
-		 */
+			* Returns a command specific state, for example if bold is enabled or not.
+			*
+			* @method queryCommandState
+			* @param {string} cmd Command to query state from.
+			* @return {Boolean} Command specific state, for example if bold is enabled or not.
+			*/
 		queryCommandState: function(cmd) {
 			return this.editorCommands.queryCommandState(cmd);
 		},
 
 		/**
-		 * Returns a command specific value, for example the current font size.
-		 *
-		 * @method queryCommandValue
-		 * @param {string} cmd Command to query value from.
-		 * @return {Object} Command specific value, for example the current font size.
-		 */
+			* Returns a command specific value, for example the current font size.
+			*
+			* @method queryCommandValue
+			* @param {string} cmd Command to query value from.
+			* @return {Object} Command specific value, for example the current font size.
+			*/
 		queryCommandValue: function(cmd) {
 			return this.editorCommands.queryCommandValue(cmd);
 		},
 
 		/**
-		 * Returns true/false if the command is supported or not.
-		 *
-		 * @method queryCommandSupported
-		 * @param {String} cmd Command that we check support for.
-		 * @return {Boolean} true/false if the command is supported or not.
-		 */
+			* Returns true/false if the command is supported or not.
+			*
+			* @method queryCommandSupported
+			* @param {String} cmd Command that we check support for.
+			* @return {Boolean} true/false if the command is supported or not.
+			*/
 		queryCommandSupported: function(cmd) {
 			return this.editorCommands.queryCommandSupported(cmd);
 		},
 
 		/**
-		 * Shows the editor and hides any textarea/div that the editor is supposed to replace.
-		 *
-		 * @method show
-		 */
+			* Shows the editor and hides any textarea/div that the editor is supposed to replace.
+			*
+			* @method show
+			*/
 		show: function() {
 			var self = this;
 
@@ -30514,10 +30514,10 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Hides the editor and shows any textarea/div that the editor is supposed to replace.
-		 *
-		 * @method hide
-		 */
+			* Hides the editor and shows any textarea/div that the editor is supposed to replace.
+			*
+			* @method hide
+			*/
 		hide: function() {
 			var self = this, doc = self.getDoc();
 
@@ -30548,46 +30548,46 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns true/false if the editor is hidden or not.
-		 *
-		 * @method isHidden
-		 * @return {Boolean} True/false if the editor is hidden or not.
-		 */
+			* Returns true/false if the editor is hidden or not.
+			*
+			* @method isHidden
+			* @return {Boolean} True/false if the editor is hidden or not.
+			*/
 		isHidden: function() {
 			return !!this.hidden;
 		},
 
 		/**
-		 * Sets the progress state, this will display a throbber/progess for the editor.
-		 * This is ideal for asycronous operations like an AJAX save call.
-		 *
-		 * @method setProgressState
-		 * @param {Boolean} state Boolean state if the progress should be shown or hidden.
-		 * @param {Number} time Optional time to wait before the progress gets shown.
-		 * @return {Boolean} Same as the input state.
-		 * @example
-		 * // Show progress for the active editor
-		 * tinymce.activeEditor.setProgressState(true);
-		 *
-		 * // Hide progress for the active editor
-		 * tinymce.activeEditor.setProgressState(false);
-		 *
-		 * // Show progress after 3 seconds
-		 * tinymce.activeEditor.setProgressState(true, 3000);
-		 */
+			* Sets the progress state, this will display a throbber/progess for the editor.
+			* This is ideal for asycronous operations like an AJAX save call.
+			*
+			* @method setProgressState
+			* @param {Boolean} state Boolean state if the progress should be shown or hidden.
+			* @param {Number} time Optional time to wait before the progress gets shown.
+			* @return {Boolean} Same as the input state.
+			* @example
+			* // Show progress for the active editor
+			* tinymce.activeEditor.setProgressState(true);
+			*
+			* // Hide progress for the active editor
+			* tinymce.activeEditor.setProgressState(false);
+			*
+			* // Show progress after 3 seconds
+			* tinymce.activeEditor.setProgressState(true, 3000);
+			*/
 		setProgressState: function(state, time) {
 			this.fire('ProgressState', {state: state, time: time});
 		},
 
 		/**
-		 * Loads contents from the textarea or div element that got converted into an editor instance.
-		 * This method will move the contents from that textarea or div into the editor by using setContent
-		 * so all events etc that method has will get dispatched as well.
-		 *
-		 * @method load
-		 * @param {Object} args Optional content object, this gets passed around through the whole load process.
-		 * @return {String} HTML string that got set into the editor.
-		 */
+			* Loads contents from the textarea or div element that got converted into an editor instance.
+			* This method will move the contents from that textarea or div into the editor by using setContent
+			* so all events etc that method has will get dispatched as well.
+			*
+			* @method load
+			* @param {Object} args Optional content object, this gets passed around through the whole load process.
+			* @return {String} HTML string that got set into the editor.
+			*/
 		load: function(args) {
 			var self = this, elm = self.getElement(), html;
 
@@ -30609,14 +30609,14 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Saves the contents from a editor out to the textarea or div element that got converted into an editor instance.
-		 * This method will move the HTML contents from the editor into that textarea or div by getContent
-		 * so all events etc that method has will get dispatched as well.
-		 *
-		 * @method save
-		 * @param {Object} args Optional content object, this gets passed around through the whole save process.
-		 * @return {String} HTML string that got set into the textarea/div.
-		 */
+			* Saves the contents from a editor out to the textarea or div element that got converted into an editor instance.
+			* This method will move the HTML contents from the editor into that textarea or div by getContent
+			* so all events etc that method has will get dispatched as well.
+			*
+			* @method save
+			* @param {Object} args Optional content object, this gets passed around through the whole save process.
+			* @return {String} HTML string that got set into the textarea/div.
+			*/
 		save: function(args) {
 			var self = this, elm = self.getElement(), html, form;
 
@@ -30665,32 +30665,32 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Sets the specified content to the editor instance, this will cleanup the content before it gets set using
-		 * the different cleanup rules options.
-		 *
-		 * @method setContent
-		 * @param {String} content Content to set to editor, normally HTML contents but can be other formats as well.
-		 * @param {Object} args Optional content object, this gets passed around through the whole set process.
-		 * @return {String} HTML string that got set into the editor.
-		 * @example
-		 * // Sets the HTML contents of the activeEditor editor
-		 * tinymce.activeEditor.setContent('<span>some</span> html');
-		 *
-		 * // Sets the raw contents of the activeEditor editor
-		 * tinymce.activeEditor.setContent('<span>some</span> html', {format: 'raw'});
-		 *
-		 * // Sets the content of a specific editor (my_editor in this example)
-		 * tinymce.get('my_editor').setContent(data);
-		 *
-		 * // Sets the bbcode contents of the activeEditor editor if the bbcode plugin was added
-		 * tinymce.activeEditor.setContent('[b]some[/b] html', {format: 'bbcode'});
-		 */
+			* Sets the specified content to the editor instance, this will cleanup the content before it gets set using
+			* the different cleanup rules options.
+			*
+			* @method setContent
+			* @param {String} content Content to set to editor, normally HTML contents but can be other formats as well.
+			* @param {Object} args Optional content object, this gets passed around through the whole set process.
+			* @return {String} HTML string that got set into the editor.
+			* @example
+			* // Sets the HTML contents of the activeEditor editor
+			* tinymce.activeEditor.setContent('<span>some</span> html');
+			*
+			* // Sets the raw contents of the activeEditor editor
+			* tinymce.activeEditor.setContent('<span>some</span> html', {format: 'raw'});
+			*
+			* // Sets the content of a specific editor (my_editor in this example)
+			* tinymce.get('my_editor').setContent(data);
+			*
+			* // Sets the bbcode contents of the activeEditor editor if the bbcode plugin was added
+			* tinymce.activeEditor.setContent('[b]some[/b] html', {format: 'bbcode'});
+			*/
 		setContent: function(content, args) {
 			var self = this, body = self.getBody(), forcedRootBlockName;
 
 			/**
-			 * life ace
-			 */
+				* life ace
+				*/
 			// 先destroy之前的ace
 			if(window.LeaAce && window.LeaAce.canAce) { // 有些地方不用, 比如单页面
 				var everContent = $(self.getBody());
@@ -30756,8 +30756,8 @@ define("tinymce/Editor", [
 			}
 
 			/**
-			 * life ace
-			 */
+				* life ace
+				*/
 			if(window.LeaAce && window.LeaAce.canAce) {
 				if(LeaAce.canAce() && LeaAce.isAce) {
 					try {
@@ -30776,22 +30776,22 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Gets the content from the editor instance, this will cleanup the content before it gets returned using
-		 * the different cleanup rules options.
-		 *
-		 * @method getContent
-		 * @param {Object} args Optional content object, this gets passed around through the whole get process.
-		 * @return {String} Cleaned content string, normally HTML contents.
-		 * @example
-		 * // Get the HTML contents of the currently active editor
-		 * console.debug(tinymce.activeEditor.getContent());
-		 *
-		 * // Get the raw contents of the currently active editor
-		 * tinymce.activeEditor.getContent({format: 'raw'});
-		 *
-		 * // Get content of a specific editor:
-		 * tinymce.get('content id').getContent()
-		 */
+			* Gets the content from the editor instance, this will cleanup the content before it gets returned using
+			* the different cleanup rules options.
+			*
+			* @method getContent
+			* @param {Object} args Optional content object, this gets passed around through the whole get process.
+			* @return {String} Cleaned content string, normally HTML contents.
+			* @example
+			* // Get the HTML contents of the currently active editor
+			* console.debug(tinymce.activeEditor.getContent());
+			*
+			* // Get the raw contents of the currently active editor
+			* tinymce.activeEditor.getContent({format: 'raw'});
+			*
+			* // Get content of a specific editor:
+			* tinymce.get('content id').getContent()
+			*/
 		getContent: function(args) {
 			var self = this, content, body = self.getBody();
 
@@ -30831,12 +30831,12 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Inserts content at caret position.
-		 *
-		 * @method insertContent
-		 * @param {String} content Content to insert.
-		 * @param {Object} args Optional args to pass to insert call.
-		 */
+			* Inserts content at caret position.
+			*
+			* @method insertContent
+			* @param {String} content Content to insert.
+			* @param {Object} args Optional args to pass to insert call.
+			*/
 		insertContent: function(content, args) {
 			if (args) {
 				content = extend({content: content}, args);
@@ -30851,25 +30851,25 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns true/false if the editor is dirty or not. It will get dirty if the user has made modifications to the contents.
-		 *
-		 * @method isDirty
-		 * @return {Boolean} True/false if the editor is dirty or not. It will get dirty if the user has made modifications to the contents.
-		 * @example
-		 * if (tinymce.activeEditor.isDirty())
-		 *     alert("You must save your contents.");
-		 */
+			* Returns true/false if the editor is dirty or not. It will get dirty if the user has made modifications to the contents.
+			*
+			* @method isDirty
+			* @return {Boolean} True/false if the editor is dirty or not. It will get dirty if the user has made modifications to the contents.
+			* @example
+			* if (tinymce.activeEditor.isDirty())
+			*     alert("You must save your contents.");
+			*/
 		isDirty: function() {
 			return !this.isNotDirty;
 		},
 
 		/**
-		 * Returns the editors container element. The container element wrappes in
-		 * all the elements added to the page for the editor. Such as UI, iframe etc.
-		 *
-		 * @method getContainer
-		 * @return {Element} HTML DOM element for the editor container.
-		 */
+			* Returns the editors container element. The container element wrappes in
+			* all the elements added to the page for the editor. Such as UI, iframe etc.
+			*
+			* @method getContainer
+			* @return {Element} HTML DOM element for the editor container.
+			*/
 		getContainer: function() {
 			var self = this;
 
@@ -30881,22 +30881,22 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns the editors content area container element. The this element is the one who
-		 * holds the iframe or the editable element.
-		 *
-		 * @method getContentAreaContainer
-		 * @return {Element} HTML DOM element for the editor area container.
-		 */
+			* Returns the editors content area container element. The this element is the one who
+			* holds the iframe or the editable element.
+			*
+			* @method getContentAreaContainer
+			* @return {Element} HTML DOM element for the editor area container.
+			*/
 		getContentAreaContainer: function() {
 			return this.contentAreaContainer;
 		},
 
 		/**
-		 * Returns the target element/textarea that got replaced with a TinyMCE editor instance.
-		 *
-		 * @method getElement
-		 * @return {Element} HTML DOM element for the replaced element.
-		 */
+			* Returns the target element/textarea that got replaced with a TinyMCE editor instance.
+			*
+			* @method getElement
+			* @return {Element} HTML DOM element for the replaced element.
+			*/
 		getElement: function() {
 			if (!this.targetElm) {
 				this.targetElm = DOM.get(this.id);
@@ -30906,11 +30906,11 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns the iframes window object.
-		 *
-		 * @method getWin
-		 * @return {Window} Iframe DOM window object.
-		 */
+			* Returns the iframes window object.
+			*
+			* @method getWin
+			* @return {Window} Iframe DOM window object.
+			*/
 		getWin: function() {
 			var self = this, elm;
 
@@ -30926,11 +30926,11 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns the iframes document object.
-		 *
-		 * @method getDoc
-		 * @return {Document} Iframe DOM document object.
-		 */
+			* Returns the iframes document object.
+			*
+			* @method getDoc
+			* @return {Document} Iframe DOM document object.
+			*/
 		getDoc: function() {
 			var self = this, win;
 
@@ -30946,27 +30946,27 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Returns the root element of the editable area.
-		 * For a non-inline iframe-based editor, returns the iframe's body element.
-		 *
-		 * @method getBody
-		 * @return {Element} The root element of the editable area.
-		 */
+			* Returns the root element of the editable area.
+			* For a non-inline iframe-based editor, returns the iframe's body element.
+			*
+			* @method getBody
+			* @return {Element} The root element of the editable area.
+			*/
 		getBody: function() {
 			return this.bodyElement || this.getDoc().body;
 		},
 
 		/**
-		 * URL converter function this gets executed each time a user adds an img, a or
-		 * any other element that has a URL in it. This will be called both by the DOM and HTML
-		 * manipulation functions.
-		 *
-		 * @method convertURL
-		 * @param {string} url URL to convert.
-		 * @param {string} name Attribute name src, href etc.
-		 * @param {string/HTMLElement} elm Tag name or HTML DOM element depending on HTML or DOM insert.
-		 * @return {string} Converted URL string.
-		 */
+			* URL converter function this gets executed each time a user adds an img, a or
+			* any other element that has a URL in it. This will be called both by the DOM and HTML
+			* manipulation functions.
+			*
+			* @method convertURL
+			* @param {string} url URL to convert.
+			* @param {string} name Attribute name src, href etc.
+			* @param {string/HTMLElement} elm Tag name or HTML DOM element depending on HTML or DOM insert.
+			* @return {string} Converted URL string.
+			*/
 		convertURL: function(url, name, elm) {
 			var self = this, settings = self.settings;
 
@@ -30992,11 +30992,11 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Adds visual aid for tables, anchors etc so they can be more easily edited inside the editor.
-		 *
-		 * @method addVisual
-		 * @param {Element} elm Optional root element to loop though to find tables etc that needs the visual aid.
-		 */
+			* Adds visual aid for tables, anchors etc so they can be more easily edited inside the editor.
+			*
+			* @method addVisual
+			* @param {Element} elm Optional root element to loop though to find tables etc that needs the visual aid.
+			*/
 		addVisual: function(elm) {
 			var self = this, settings = self.settings, dom = self.dom, cls;
 
@@ -31042,10 +31042,10 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Removes the editor from the dom and tinymce collection.
-		 *
-		 * @method remove
-		 */
+			* Removes the editor from the dom and tinymce collection.
+			*
+			* @method remove
+			*/
 		remove: function() {
 			var self = this;
 
@@ -31079,13 +31079,13 @@ define("tinymce/Editor", [
 		},
 
 		/**
-		 * Destroys the editor instance by removing all events, element references or other resources
-		 * that could leak memory. This method will be called automatically when the page is unloaded
-		 * but you can also call it directly if you know what you are doing.
-		 *
-		 * @method destroy
-		 * @param {Boolean} automatic Optional state if the destroy is an automatic destroy or user called one.
-		 */
+			* Destroys the editor instance by removing all events, element references or other resources
+			* that could leak memory. This method will be called automatically when the page is unloaded
+			* but you can also call it directly if you know what you are doing.
+			*
+			* @method destroy
+			* @param {Boolean} automatic Optional state if the destroy is an automatic destroy or user called one.
+			*/
 		destroy: function(automatic) {
 			var self = this, form;
 
@@ -31173,21 +31173,21 @@ define("tinymce/Editor", [
 // Included from: classes/util/I18n.js
 
 /**
- * I18n.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* I18n.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * I18n class that handles translation of TinyMCE UI.
- * Uses po style with csharp style parameters.
- *
- * @class tinymce.util.I18n
- */
+	* I18n class that handles translation of TinyMCE UI.
+	* Uses po style with csharp style parameters.
+	*
+	* @class tinymce.util.I18n
+	*/
 define("tinymce/util/I18n", [], function() {
 	"use strict";
 
@@ -31195,11 +31195,11 @@ define("tinymce/util/I18n", [], function() {
 
 	return {
 		/**
-		 * Sets the current language code.
-		 *
-		 * @method setCode
-		 * @param {String} newCode Current language code.
-		 */
+			* Sets the current language code.
+			*
+			* @method setCode
+			* @param {String} newCode Current language code.
+			*/
 		setCode: function(newCode) {
 			if (newCode) {
 				code = newCode;
@@ -31208,29 +31208,29 @@ define("tinymce/util/I18n", [], function() {
 		},
 
 		/**
-		 * Returns the current language code.
-		 *
-		 * @return {String} Current language code.
-		 */
+			* Returns the current language code.
+			*
+			* @return {String} Current language code.
+			*/
 		getCode: function() {
 			return code;
 		},
 
 		/**
-		 * Property gets set to true if a RTL language pack was loaded.
-		 *
-		 * @property rtl
-		 * @type Boolean
-		 */
+			* Property gets set to true if a RTL language pack was loaded.
+			*
+			* @property rtl
+			* @type Boolean
+			*/
 		rtl: false,
 
 		/**
-		 * Adds translations for a specific language code.
-		 *
-		 * @method add
-		 * @param {String} code Language code like sv_SE.
-		 * @param {Array} items Name/value array with English en_US to sv_SE.
-		 */
+			* Adds translations for a specific language code.
+			*
+			* @method add
+			* @param {String} code Language code like sv_SE.
+			* @param {Array} items Name/value array with English en_US to sv_SE.
+			*/
 		add: function(code, items) {
 			var langData = data[code];
 
@@ -31246,17 +31246,17 @@ define("tinymce/util/I18n", [], function() {
 		},
 
 		/**
-		 * Translates the specified text.
-		 *
-		 * It has a few formats:
-		 * I18n.translate("Text");
-		 * I18n.translate(["Text {0}/{1}", 0, 1]);
-		 * I18n.translate({raw: "Raw string"});
-		 *
-		 * @method translate
-		 * @param {String/Object/Array} text Text to translate.
-		 * @return {String} String that got translated.
-		 */
+			* Translates the specified text.
+			*
+			* It has a few formats:
+			* I18n.translate("Text");
+			* I18n.translate(["Text {0}/{1}", 0, 1]);
+			* I18n.translate({raw: "Raw string"});
+			*
+			* @method translate
+			* @param {String/Object/Array} text Text to translate.
+			* @return {String} String that got translated.
+			*/
 		translate: function(text) {
 			var langData;
 
@@ -31291,24 +31291,24 @@ define("tinymce/util/I18n", [], function() {
 // Included from: classes/FocusManager.js
 
 /**
- * FocusManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FocusManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class manages the focus/blur state of the editor. This class is needed since some
- * browsers fire false focus/blur states when the selection is moved to a UI dialog or similar.
- *
- * This class will fire two events focus and blur on the editor instances that got affected.
- * It will also handle the restore of selection when the focus is lost and returned.
- *
- * @class tinymce.FocusManager
- */
+	* This class manages the focus/blur state of the editor. This class is needed since some
+	* browsers fire false focus/blur states when the selection is moved to a UI dialog or similar.
+	*
+	* This class will fire two events focus and blur on the editor instances that got affected.
+	* It will also handle the restore of selection when the focus is lost and returned.
+	*
+	* @class tinymce.FocusManager
+	*/
 define("tinymce/FocusManager", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/Env"
@@ -31316,11 +31316,11 @@ define("tinymce/FocusManager", [
 	var selectionChangeHandler, documentFocusInHandler, documentMouseUpHandler, DOM = DOMUtils.DOM;
 
 	/**
-	 * Constructs a new focus manager instance.
-	 *
-	 * @constructor FocusManager
-	 * @param {tinymce.EditorManager} editorManager Editor manager instance to handle focus for.
-	 */
+		* Constructs a new focus manager instance.
+		*
+		* @constructor FocusManager
+		* @param {tinymce.EditorManager} editorManager Editor manager instance to handle focus for.
+		*/
 	function FocusManager(editorManager) {
 		function getActiveElement() {
 			try {
@@ -31541,12 +31541,12 @@ define("tinymce/FocusManager", [
 	}
 
 	/**
-	 * Returns true if the specified element is part of the UI for example an button or text input.
-	 *
-	 * @method isEditorUIElement
-	 * @param  {Element} elm Element to check if it's part of the UI or not.
-	 * @return {Boolean} True/false state if the element is part of the UI or not.
-	 */
+		* Returns true if the specified element is part of the UI for example an button or text input.
+		*
+		* @method isEditorUIElement
+		* @param  {Element} elm Element to check if it's part of the UI or not.
+		* @return {Boolean} True/false state if the element is part of the UI or not.
+		*/
 	FocusManager.isEditorUIElement = function(elm) {
 		// Needs to be converted to string since svg can have focus: #6776
 		return elm.className.toString().indexOf('mce-') !== -1;
@@ -31558,25 +31558,25 @@ define("tinymce/FocusManager", [
 // Included from: classes/EditorManager.js
 
 /**
- * EditorManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* EditorManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class used as a factory for manager for tinymce.Editor instances.
- *
- * @example
- * tinymce.EditorManager.init({});
- *
- * @class tinymce.EditorManager
- * @mixes tinymce.util.Observable
- * @static
- */
+	* This class used as a factory for manager for tinymce.Editor instances.
+	*
+	* @example
+	* tinymce.EditorManager.init({});
+	*
+	* @class tinymce.EditorManager
+	* @mixes tinymce.util.Observable
+	* @static
+	*/
 define("tinymce/EditorManager", [
 	"tinymce/Editor",
 	"tinymce/dom/DomQuery",
@@ -31632,65 +31632,65 @@ define("tinymce/EditorManager", [
 
 	EditorManager = {
 		/**
-		 * Dom query instance.
-		 *
-		 * @property $
-		 * @type tinymce.dom.DomQuery
-		 */
+			* Dom query instance.
+			*
+			* @property $
+			* @type tinymce.dom.DomQuery
+			*/
 		$: DomQuery,
 
 		/**
-		 * Major version of TinyMCE build.
-		 *
-		 * @property majorVersion
-		 * @type String
-		 */
+			* Major version of TinyMCE build.
+			*
+			* @property majorVersion
+			* @type String
+			*/
 		majorVersion: '4',
 
 		/**
-		 * Minor version of TinyMCE build.
-		 *
-		 * @property minorVersion
-		 * @type String
-		 */
+			* Minor version of TinyMCE build.
+			*
+			* @property minorVersion
+			* @type String
+			*/
 		minorVersion: '1.9',
 
 		/**
-		 * Release date of TinyMCE build.
-		 *
-		 * @property releaseDate
-		 * @type String
-		 */
+			* Release date of TinyMCE build.
+			*
+			* @property releaseDate
+			* @type String
+			*/
 		releaseDate: '2015-03-10',
 
 		/**
-		 * Collection of editor instances.
-		 *
-		 * @property editors
-		 * @type Object
-		 * @example
-		 * for (edId in tinymce.editors)
-		 *     tinymce.editors[edId].save();
-		 */
+			* Collection of editor instances.
+			*
+			* @property editors
+			* @type Object
+			* @example
+			* for (edId in tinymce.editors)
+			*     tinymce.editors[edId].save();
+			*/
 		editors: [],
 
 		/**
-		 * Collection of language pack data.
-		 *
-		 * @property i18n
-		 * @type Object
-		 */
+			* Collection of language pack data.
+			*
+			* @property i18n
+			* @type Object
+			*/
 		i18n: I18n,
 
 		/**
-		 * Currently active editor instance.
-		 *
-		 * @property activeEditor
-		 * @type tinymce.Editor
-		 * @example
-		 * tinyMCE.activeEditor.selection.getContent();
-		 * tinymce.EditorManager.activeEditor.selection.getContent();
-		 */
+			* Currently active editor instance.
+			*
+			* @property activeEditor
+			* @type tinymce.Editor
+			* @example
+			* tinyMCE.activeEditor.selection.getContent();
+			* tinymce.EditorManager.activeEditor.selection.getContent();
+			*/
 		activeEditor: null,
 
 		setup: function() {
@@ -31748,56 +31748,56 @@ define("tinymce/EditorManager", [
 			}
 
 			/**
-			 * Base URL where the root directory if TinyMCE is located.
-			 *
-			 * @property baseURL
-			 * @type String
-			 */
+				* Base URL where the root directory if TinyMCE is located.
+				*
+				* @property baseURL
+				* @type String
+				*/
 			self.baseURL = new URI(documentBaseURL).toAbsolute(baseURL);
 
 			/**
-			 * Document base URL where the current document is located.
-			 *
-			 * @property documentBaseURL
-			 * @type String
-			 */
+				* Document base URL where the current document is located.
+				*
+				* @property documentBaseURL
+				* @type String
+				*/
 			self.documentBaseURL = documentBaseURL;
 
 			/**
-			 * Absolute baseURI for the installation path of TinyMCE.
-			 *
-			 * @property baseURI
-			 * @type tinymce.util.URI
-			 */
+				* Absolute baseURI for the installation path of TinyMCE.
+				*
+				* @property baseURI
+				* @type tinymce.util.URI
+				*/
 			self.baseURI = new URI(self.baseURL);
 
 			/**
-			 * Current suffix to add to each plugin/theme that gets loaded for example ".min".
-			 *
-			 * @property suffix
-			 * @type String
-			 */
+				* Current suffix to add to each plugin/theme that gets loaded for example ".min".
+				*
+				* @property suffix
+				* @type String
+				*/
 			self.suffix = suffix;
 
 			self.focusManager = new FocusManager(self);
 		},
 
 		/**
-		 * Initializes a set of editors. This method will create editors based on various settings.
-		 *
-		 * @method init
-		 * @param {Object} settings Settings object to be passed to each editor instance.
-		 * @example
-		 * // Initializes a editor using the longer method
-		 * tinymce.EditorManager.init({
-		 *    some_settings : 'some value'
-		 * });
-		 *
-		 * // Initializes a editor instance using the shorter version
-		 * tinyMCE.init({
-		 *    some_settings : 'some value'
-		 * });
-		 */
+			* Initializes a set of editors. This method will create editors based on various settings.
+			*
+			* @method init
+			* @param {Object} settings Settings object to be passed to each editor instance.
+			* @example
+			* // Initializes a editor using the longer method
+			* tinymce.EditorManager.init({
+			*    some_settings : 'some value'
+			* });
+			*
+			* // Initializes a editor instance using the shorter version
+			* tinyMCE.init({
+			*    some_settings : 'some value'
+			* });
+			*/
 		init: function(settings) {
 			var self = this, editors = [];
 
@@ -31947,22 +31947,22 @@ define("tinymce/EditorManager", [
 		},
 
 		/**
-		 * Returns a editor instance by id.
-		 *
-		 * @method get
-		 * @param {String/Number} id Editor instance id or index to return.
-		 * @return {tinymce.Editor} Editor instance to return.
-		 * @example
-		 * // Adds an onclick event to an editor by id (shorter version)
-		 * tinymce.get('mytextbox').on('click', function(e) {
-		 *    ed.windowManager.alert('Hello world!');
-		 * });
-		 *
-		 * // Adds an onclick event to an editor by id (longer version)
-		 * tinymce.EditorManager.get('mytextbox').on('click', function(e) {
-		 *    ed.windowManager.alert('Hello world!');
-		 * });
-		 */
+			* Returns a editor instance by id.
+			*
+			* @method get
+			* @param {String/Number} id Editor instance id or index to return.
+			* @return {tinymce.Editor} Editor instance to return.
+			* @example
+			* // Adds an onclick event to an editor by id (shorter version)
+			* tinymce.get('mytextbox').on('click', function(e) {
+			*    ed.windowManager.alert('Hello world!');
+			* });
+			*
+			* // Adds an onclick event to an editor by id (longer version)
+			* tinymce.EditorManager.get('mytextbox').on('click', function(e) {
+			*    ed.windowManager.alert('Hello world!');
+			* });
+			*/
 		get: function(id) {
 			if (!arguments.length) {
 				return this.editors;
@@ -31972,12 +31972,12 @@ define("tinymce/EditorManager", [
 		},
 
 		/**
-		 * Adds an editor instance to the editor collection. This will also set it as the active editor.
-		 *
-		 * @method add
-		 * @param {tinymce.Editor} editor Editor instance to add to the collection.
-		 * @return {tinymce.Editor} The same instance that got passed in.
-		 */
+			* Adds an editor instance to the editor collection. This will also set it as the active editor.
+			*
+			* @method add
+			* @param {tinymce.Editor} editor Editor instance to add to the collection.
+			* @return {tinymce.Editor} The same instance that got passed in.
+			*/
 		add: function(editor) {
 			var self = this, editors = self.editors;
 
@@ -31990,11 +31990,11 @@ define("tinymce/EditorManager", [
 			self.activeEditor = editor;
 
 			/**
-			 * Fires when an editor is added to the EditorManager collection.
-			 *
-			 * @event AddEditor
-			 * @param {Object} e Event arguments.
-			 */
+				* Fires when an editor is added to the EditorManager collection.
+				*
+				* @event AddEditor
+				* @param {Object} e Event arguments.
+				*/
 			self.fire('AddEditor', {editor: editor});
 
 			if (!beforeUnloadDelegate) {
@@ -32009,37 +32009,37 @@ define("tinymce/EditorManager", [
 		},
 
 		/**
-		 * Creates an editor instance and adds it to the EditorManager collection.
-		 *
-		 * @method createEditor
-		 * @param {String} id Instance id to use for editor.
-		 * @param {Object} settings Editor instance settings.
-		 * @return {tinymce.Editor} Editor instance that got created.
-		 */
+			* Creates an editor instance and adds it to the EditorManager collection.
+			*
+			* @method createEditor
+			* @param {String} id Instance id to use for editor.
+			* @param {Object} settings Editor instance settings.
+			* @return {tinymce.Editor} Editor instance that got created.
+			*/
 		createEditor: function(id, settings) {
 			return this.add(new Editor(id, settings, this));
 		},
 
 		/**
-		 * Removes a editor or editors form page.
-		 *
-		 * @example
-		 * // Remove all editors bound to divs
-		 * tinymce.remove('div');
-		 *
-		 * // Remove all editors bound to textareas
-		 * tinymce.remove('textarea');
-		 *
-		 * // Remove all editors
-		 * tinymce.remove();
-		 *
-		 * // Remove specific instance by id
-		 * tinymce.remove('#id');
-		 *
-		 * @method remove
-		 * @param {tinymce.Editor/String/Object} [selector] CSS selector or editor instance to remove.
-		 * @return {tinymce.Editor} The editor that got passed in will be return if it was found otherwise null.
-		 */
+			* Removes a editor or editors form page.
+			*
+			* @example
+			* // Remove all editors bound to divs
+			* tinymce.remove('div');
+			*
+			* // Remove all editors bound to textareas
+			* tinymce.remove('textarea');
+			*
+			* // Remove all editors
+			* tinymce.remove();
+			*
+			* // Remove specific instance by id
+			* tinymce.remove('#id');
+			*
+			* @method remove
+			* @param {tinymce.Editor/String/Object} [selector] CSS selector or editor instance to remove.
+			* @return {tinymce.Editor} The editor that got passed in will be return if it was found otherwise null.
+			*/
 		remove: function(selector) {
 			var self = this, i, editors = self.editors, editor;
 
@@ -32076,11 +32076,11 @@ define("tinymce/EditorManager", [
 			}
 
 			/**
-			 * Fires when an editor is removed from EditorManager collection.
-			 *
-			 * @event RemoveEditor
-			 * @param {Object} e Event arguments.
-			 */
+				* Fires when an editor is removed from EditorManager collection.
+				*
+				* @event RemoveEditor
+				* @param {Object} e Event arguments.
+				*/
 			if (removeEditorFromList(editor)) {
 				self.fire('RemoveEditor', {editor: editor});
 			}
@@ -32095,14 +32095,14 @@ define("tinymce/EditorManager", [
 		},
 
 		/**
-		 * Executes a specific command on the currently active editor.
-		 *
-		 * @method execCommand
-		 * @param {String} c Command to perform for example Bold.
-		 * @param {Boolean} u Optional boolean state if a UI should be presented for the command or not.
-		 * @param {String} v Optional value parameter like for example an URL to a link.
-		 * @return {Boolean} true/false if the command was executed or not.
-		 */
+			* Executes a specific command on the currently active editor.
+			*
+			* @method execCommand
+			* @param {String} c Command to perform for example Bold.
+			* @param {Boolean} u Optional boolean state if a UI should be presented for the command or not.
+			* @param {String} v Optional value parameter like for example an URL to a link.
+			* @return {Boolean} true/false if the command was executed or not.
+			*/
 		execCommand: function(cmd, ui, value) {
 			var self = this, editor = self.get(value);
 
@@ -32146,13 +32146,13 @@ define("tinymce/EditorManager", [
 		},
 
 		/**
-		 * Calls the save method on all editor instances in the collection. This can be useful when a form is to be submitted.
-		 *
-		 * @method triggerSave
-		 * @example
-		 * // Saves all contents
-		 * tinyMCE.triggerSave();
-		 */
+			* Calls the save method on all editor instances in the collection. This can be useful when a form is to be submitted.
+			*
+			* @method triggerSave
+			* @example
+			* // Saves all contents
+			* tinyMCE.triggerSave();
+			*/
 		triggerSave: function() {
 			each(this.editors, function(editor) {
 				editor.save();
@@ -32160,33 +32160,33 @@ define("tinymce/EditorManager", [
 		},
 
 		/**
-		 * Adds a language pack, this gets called by the loaded language files like en.js.
-		 *
-		 * @method addI18n
-		 * @param {String} code Optional language code.
-		 * @param {Object} items Name/value object with translations.
-		 */
+			* Adds a language pack, this gets called by the loaded language files like en.js.
+			*
+			* @method addI18n
+			* @param {String} code Optional language code.
+			* @param {Object} items Name/value object with translations.
+			*/
 		addI18n: function(code, items) {
 			I18n.add(code, items);
 		},
 
 		/**
-		 * Translates the specified string using the language pack items.
-		 *
-		 * @method translate
-		 * @param {String/Array/Object} text String to translate
-		 * @return {String} Translated string.
-		 */
+			* Translates the specified string using the language pack items.
+			*
+			* @method translate
+			* @param {String/Array/Object} text String to translate
+			* @return {String} Translated string.
+			*/
 		translate: function(text) {
 			return I18n.translate(text);
 		},
 
 		/**
-		 * Sets the active editor instance and fires the deactivate/activate events.
-		 *
-		 * @method setActive
-		 * @param {tinymce.Editor} editor Editor instance to set as the active instance.
-		 */
+			* Sets the active editor instance and fires the deactivate/activate events.
+			*
+			* @method setActive
+			* @param {tinymce.Editor} editor Editor instance to set as the active instance.
+			*/
 		setActive: function(editor) {
 			var activeEditor = this.activeEditor;
 
@@ -32215,14 +32215,14 @@ define("tinymce/EditorManager", [
 // Included from: classes/LegacyInput.js
 
 /**
- * LegacyInput.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* LegacyInput.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 define("tinymce/LegacyInput", [
 	"tinymce/EditorManager",
@@ -32294,46 +32294,46 @@ define("tinymce/LegacyInput", [
 // Included from: classes/util/XHR.js
 
 /**
- * XHR.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* XHR.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class enables you to send XMLHTTPRequests cross browser.
- * @class tinymce.util.XHR
- * @mixes tinymce.util.Observable
- * @static
- * @example
- * // Sends a low level Ajax request
- * tinymce.util.XHR.send({
- *    url: 'someurl',
- *    success: function(text) {
- *       console.debug(text);
- *    }
- * });
- *
- * // Add custom header to XHR request
- * tinymce.util.XHR.on('beforeSend', function(e) {
- *     e.xhr.setRequestHeader('X-Requested-With', 'Something');
- * });
- */
+	* This class enables you to send XMLHTTPRequests cross browser.
+	* @class tinymce.util.XHR
+	* @mixes tinymce.util.Observable
+	* @static
+	* @example
+	* // Sends a low level Ajax request
+	* tinymce.util.XHR.send({
+	*    url: 'someurl',
+	*    success: function(text) {
+	*       console.debug(text);
+	*    }
+	* });
+	*
+	* // Add custom header to XHR request
+	* tinymce.util.XHR.on('beforeSend', function(e) {
+	*     e.xhr.setRequestHeader('X-Requested-With', 'Something');
+	* });
+	*/
 define("tinymce/util/XHR", [
 	"tinymce/util/Observable",
 	"tinymce/util/Tools"
 ], function(Observable, Tools) {
 	var XHR = {
 		/**
-		 * Sends a XMLHTTPRequest.
-		 * Consult the Wiki for details on what settings this method takes.
-		 *
-		 * @method send
-		 * @param {Object} settings Object will target URL, callbacks and other info needed to make the request.
-		 */
+			* Sends a XMLHTTPRequest.
+			* Consult the Wiki for details on what settings this method takes.
+			*
+			* @method send
+			* @param {Object} settings Object will target URL, callbacks and other info needed to make the request.
+			*/
 		send: function(settings) {
 			var xhr, count = 0;
 
@@ -32399,27 +32399,27 @@ define("tinymce/util/XHR", [
 // Included from: classes/util/JSON.js
 
 /**
- * JSON.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* JSON.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * JSON parser and serializer class.
- *
- * @class tinymce.util.JSON
- * @static
- * @example
- * // JSON parse a string into an object
- * var obj = tinymce.util.JSON.parse(somestring);
- *
- * // JSON serialize a object into an string
- * var str = tinymce.util.JSON.serialize(obj);
- */
+	* JSON parser and serializer class.
+	*
+	* @class tinymce.util.JSON
+	* @static
+	* @example
+	* // JSON parse a string into an object
+	* var obj = tinymce.util.JSON.parse(somestring);
+	*
+	* // JSON serialize a object into an string
+	* var str = tinymce.util.JSON.serialize(obj);
+	*/
 define("tinymce/util/JSON", [], function() {
 	function serialize(o, quote) {
 		var i, v, t, name;
@@ -32479,22 +32479,22 @@ define("tinymce/util/JSON", [], function() {
 
 	return {
 		/**
-		 * Serializes the specified object as a JSON string.
-		 *
-		 * @method serialize
-		 * @param {Object} obj Object to serialize as a JSON string.
-		 * @param {String} quote Optional quote string defaults to ".
-		 * @return {string} JSON string serialized from input.
-		 */
+			* Serializes the specified object as a JSON string.
+			*
+			* @method serialize
+			* @param {Object} obj Object to serialize as a JSON string.
+			* @param {String} quote Optional quote string defaults to ".
+			* @return {string} JSON string serialized from input.
+			*/
 		serialize: serialize,
 
 		/**
-		 * Unserializes/parses the specified JSON string into a object.
-		 *
-		 * @method parse
-		 * @param {string} s JSON String to parse into a JavaScript object.
-		 * @return {Object} Object from input JSON string or undefined if it failed.
-		 */
+			* Unserializes/parses the specified JSON string into a object.
+			*
+			* @method parse
+			* @param {string} s JSON String to parse into a JavaScript object.
+			* @return {Object} Object from input JSON string or undefined if it failed.
+			*/
 		parse: function(text) {
 			try {
 				// Trick uglify JS
@@ -32511,42 +32511,42 @@ define("tinymce/util/JSON", [], function() {
 // Included from: classes/util/JSONRequest.js
 
 /**
- * JSONRequest.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* JSONRequest.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class enables you to use JSON-RPC to call backend methods.
- *
- * @class tinymce.util.JSONRequest
- * @example
- * var json = new tinymce.util.JSONRequest({
- *     url: 'somebackend.php'
- * });
- *
- * // Send RPC call 1
- * json.send({
- *     method: 'someMethod1',
- *     params: ['a', 'b'],
- *     success: function(result) {
- *         console.dir(result);
- *     }
- * });
- *
- * // Send RPC call 2
- * json.send({
- *     method: 'someMethod2',
- *     params: ['a', 'b'],
- *     success: function(result) {
- *         console.dir(result);
- *     }
- * });
- */
+	* This class enables you to use JSON-RPC to call backend methods.
+	*
+	* @class tinymce.util.JSONRequest
+	* @example
+	* var json = new tinymce.util.JSONRequest({
+	*     url: 'somebackend.php'
+	* });
+	*
+	* // Send RPC call 1
+	* json.send({
+	*     method: 'someMethod1',
+	*     params: ['a', 'b'],
+	*     success: function(result) {
+	*         console.dir(result);
+	*     }
+	* });
+	*
+	* // Send RPC call 2
+	* json.send({
+	*     method: 'someMethod2',
+	*     params: ['a', 'b'],
+	*     success: function(result) {
+	*         console.dir(result);
+	*     }
+	* });
+	*/
 define("tinymce/util/JSONRequest", [
 	"tinymce/util/JSON",
 	"tinymce/util/XHR",
@@ -32560,24 +32560,24 @@ define("tinymce/util/JSONRequest", [
 	}
 
 	/**
-	 * Simple helper function to send a JSON-RPC request without the need to initialize an object.
-	 * Consult the Wiki API documentation for more details on what you can pass to this function.
-	 *
-	 * @method sendRPC
-	 * @static
-	 * @param {Object} o Call object where there are three field id, method and params this object should also contain callbacks etc.
-	 */
+		* Simple helper function to send a JSON-RPC request without the need to initialize an object.
+		* Consult the Wiki API documentation for more details on what you can pass to this function.
+		*
+		* @method sendRPC
+		* @static
+		* @param {Object} o Call object where there are three field id, method and params this object should also contain callbacks etc.
+		*/
 	JSONRequest.sendRPC = function(o) {
 		return new JSONRequest().send(o);
 	};
 
 	JSONRequest.prototype = {
 		/**
-		 * Sends a JSON-RPC call. Consult the Wiki API documentation for more details on what you can pass to this function.
-		 *
-		 * @method send
-		 * @param {Object} args Call object where there are three field id, method and params this object should also contain callbacks etc.
-		 */
+			* Sends a JSON-RPC call. Consult the Wiki API documentation for more details on what you can pass to this function.
+			*
+			* @method send
+			* @param {Object} args Call object where there are three field id, method and params this object should also contain callbacks etc.
+			*/
 		send: function(args) {
 			var ecb = args.error, scb = args.success;
 
@@ -32624,14 +32624,14 @@ define("tinymce/util/JSONRequest", [
 // Included from: classes/util/JSONP.js
 
 /**
- * JSONP.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* JSONP.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 define("tinymce/util/JSONP", [
 	"tinymce/dom/DOMUtils"
@@ -32665,34 +32665,34 @@ define("tinymce/util/JSONP", [
 // Included from: classes/util/LocalStorage.js
 
 /**
- * LocalStorage.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* LocalStorage.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class will simulate LocalStorage on IE 7 and return the native version on modern browsers.
- * Storage is done using userData on IE 7 and a special serialization format. The format is designed
- * to be as small as possible by making sure that the keys and values doesn't need to be encoded. This
- * makes it possible to store for example HTML data.
- *
- * Storage format for userData:
- * <base 32 key length>,<key string>,<base 32 value length>,<value>,...
- *
- * For example this data key1=value1,key2=value2 would be:
- * 4,key1,6,value1,4,key2,6,value2
- *
- * @class tinymce.util.LocalStorage
- * @static
- * @version 4.0
- * @example
- * tinymce.util.LocalStorage.setItem('key', 'value');
- * var value = tinymce.util.LocalStorage.getItem('key');
- */
+	* This class will simulate LocalStorage on IE 7 and return the native version on modern browsers.
+	* Storage is done using userData on IE 7 and a special serialization format. The format is designed
+	* to be as small as possible by making sure that the keys and values doesn't need to be encoded. This
+	* makes it possible to store for example HTML data.
+	*
+	* Storage format for userData:
+	* <base 32 key length>,<key string>,<base 32 value length>,<value>,...
+	*
+	* For example this data key1=value1,key2=value2 would be:
+	* 4,key1,6,value1,4,key2,6,value2
+	*
+	* @class tinymce.util.LocalStorage
+	* @static
+	* @version 4.0
+	* @example
+	* tinymce.util.LocalStorage.setItem('key', 'value');
+	* var value = tinymce.util.LocalStorage.getItem('key');
+	*/
 define("tinymce/util/LocalStorage", [], function() {
 	var LocalStorage, storageElm, items, keys, userDataKey, hasOldIEDataSupport;
 
@@ -32714,8 +32714,8 @@ define("tinymce/util/LocalStorage", [], function() {
 	}
 
 	/**
-	 * Gets the keys names and updates LocalStorage.length property. Since IE7 doesn't have any getters/setters.
-	 */
+		* Gets the keys names and updates LocalStorage.length property. Since IE7 doesn't have any getters/setters.
+		*/
 	function updateKeys() {
 		keys = [];
 
@@ -32727,8 +32727,8 @@ define("tinymce/util/LocalStorage", [], function() {
 	}
 
 	/**
-	 * Loads the userData string and parses it into the items structure.
-	 */
+		* Loads the userData string and parses it into the items structure.
+		*/
 	function load() {
 		var key, data, value, pos = 0;
 
@@ -32781,8 +32781,8 @@ define("tinymce/util/LocalStorage", [], function() {
 	}
 
 	/**
-	 * Saves the items structure into a the userData format.
-	 */
+		* Saves the items structure into a the userData format.
+		*/
 	function save() {
 		var value, data = '';
 
@@ -32809,64 +32809,64 @@ define("tinymce/util/LocalStorage", [], function() {
 
 	LocalStorage = {
 		/**
-		 * Length of the number of items in storage.
-		 *
-		 * @property length
-		 * @type Number
-		 * @return {Number} Number of items in storage.
-		 */
+			* Length of the number of items in storage.
+			*
+			* @property length
+			* @type Number
+			* @return {Number} Number of items in storage.
+			*/
 		//length:0,
 
 		/**
-		 * Returns the key name by index.
-		 *
-		 * @method key
-		 * @param {Number} index Index of key to return.
-		 * @return {String} Key value or null if it wasn't found.
-		 */
+			* Returns the key name by index.
+			*
+			* @method key
+			* @param {Number} index Index of key to return.
+			* @return {String} Key value or null if it wasn't found.
+			*/
 		key: function(index) {
 			return keys[index];
 		},
 
 		/**
-		 * Returns the value if the specified key or null if it wasn't found.
-		 *
-		 * @method getItem
-		 * @param {String} key Key of item to retrive.
-		 * @return {String} Value of the specified item or null if it wasn't found.
-		 */
+			* Returns the value if the specified key or null if it wasn't found.
+			*
+			* @method getItem
+			* @param {String} key Key of item to retrive.
+			* @return {String} Value of the specified item or null if it wasn't found.
+			*/
 		getItem: function(key) {
 			return key in items ? items[key] : null;
 		},
 
 		/**
-		 * Sets the value of the specified item by it's key.
-		 *
-		 * @method setItem
-		 * @param {String} key Key of the item to set.
-		 * @param {String} value Value of the item to set.
-		 */
+			* Sets the value of the specified item by it's key.
+			*
+			* @method setItem
+			* @param {String} key Key of the item to set.
+			* @param {String} value Value of the item to set.
+			*/
 		setItem: function(key, value) {
 			items[key] = "" + value;
 			save();
 		},
 
 		/**
-		 * Removes the specified item by key.
-		 *
-		 * @method removeItem
-		 * @param {String} key Key of item to remove.
-		 */
+			* Removes the specified item by key.
+			*
+			* @method removeItem
+			* @param {String} key Key of item to remove.
+			*/
 		removeItem: function(key) {
 			delete items[key];
 			save();
 		},
 
 		/**
-		 * Removes all items.
-		 *
-		 * @method clear
-		 */
+			* Removes all items.
+			*
+			* @method clear
+			*/
 		clear: function() {
 			items = {};
 			save();
@@ -32881,23 +32881,23 @@ define("tinymce/util/LocalStorage", [], function() {
 // Included from: classes/Compat.js
 
 /**
- * Compat.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Compat.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * TinyMCE core class.
- *
- * @static
- * @class tinymce
- * @borrow-members tinymce.EditorManager
- * @borrow-members tinymce.util.Tools
- */
+	* TinyMCE core class.
+	*
+	* @static
+	* @class tinymce
+	* @borrow-members tinymce.EditorManager
+	* @borrow-members tinymce.util.Tools
+	*/
 define("tinymce/Compat", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/dom/EventUtils",
@@ -32909,11 +32909,11 @@ define("tinymce/Compat", [
 	var tinymce = window.tinymce;
 
 	/**
-	 * @property {tinymce.dom.DOMUtils} DOM Global DOM instance.
-	 * @property {tinymce.dom.ScriptLoader} ScriptLoader Global ScriptLoader instance.
-	 * @property {tinymce.AddOnManager} PluginManager Global PluginManager instance.
-	 * @property {tinymce.AddOnManager} ThemeManager Global ThemeManager instance.
-	 */
+		* @property {tinymce.dom.DOMUtils} DOM Global DOM instance.
+		* @property {tinymce.dom.ScriptLoader} ScriptLoader Global ScriptLoader instance.
+		* @property {tinymce.AddOnManager} PluginManager Global PluginManager instance.
+		* @property {tinymce.AddOnManager} ThemeManager Global ThemeManager instance.
+		*/
 	tinymce.DOM = DOMUtils.DOM;
 	tinymce.ScriptLoader = ScriptLoader.ScriptLoader;
 	tinymce.PluginManager = AddOnManager.PluginManager;
@@ -32936,52 +32936,52 @@ define("tinymce/Compat", [
 // Describe the different namespaces
 
 /**
- * Root level namespace this contains classes directly releated to the TinyMCE editor.
- *
- * @namespace tinymce
- */
+	* Root level namespace this contains classes directly releated to the TinyMCE editor.
+	*
+	* @namespace tinymce
+	*/
 
 /**
- * Contains classes for handling the browsers DOM.
- *
- * @namespace tinymce.dom
- */
+	* Contains classes for handling the browsers DOM.
+	*
+	* @namespace tinymce.dom
+	*/
 
 /**
- * Contains html parser and serializer logic.
- *
- * @namespace tinymce.html
- */
+	* Contains html parser and serializer logic.
+	*
+	* @namespace tinymce.html
+	*/
 
 /**
- * Contains the different UI types such as buttons, listboxes etc.
- *
- * @namespace tinymce.ui
- */
+	* Contains the different UI types such as buttons, listboxes etc.
+	*
+	* @namespace tinymce.ui
+	*/
 
 /**
- * Contains various utility classes such as json parser, cookies etc.
- *
- * @namespace tinymce.util
- */
+	* Contains various utility classes such as json parser, cookies etc.
+	*
+	* @namespace tinymce.util
+	*/
 
 // Included from: classes/ui/Layout.js
 
 /**
- * Layout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Layout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Base layout manager class.
- *
- * @class tinymce.ui.Layout
- */
+	* Base layout manager class.
+	*
+	* @class tinymce.ui.Layout
+	*/
 define("tinymce/ui/Layout", [
 	"tinymce/util/Class",
 	"tinymce/util/Tools"
@@ -32995,30 +32995,30 @@ define("tinymce/ui/Layout", [
 		},
 
 		/**
-		 * Constructs a layout instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a layout instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			this.settings = Tools.extend({}, this.Defaults, settings);
 		},
 
 		/**
-		 * This method gets invoked before the layout renders the controls.
-		 *
-		 * @method preRender
-		 * @param {tinymce.ui.Container} container Container instance to preRender.
-		 */
+			* This method gets invoked before the layout renders the controls.
+			*
+			* @method preRender
+			* @param {tinymce.ui.Container} container Container instance to preRender.
+			*/
 		preRender: function(container) {
 			container.addClass(this.settings.containerClass, 'body');
 		},
 
 		/**
-		 * Applies layout classes to the container.
-		 *
-		 * @private
-		 */
+			* Applies layout classes to the container.
+			*
+			* @private
+			*/
 		applyClasses: function(container) {
 			var self = this, settings = self.settings, items, firstClass, lastClass;
 
@@ -33039,11 +33039,11 @@ define("tinymce/ui/Layout", [
 		},
 
 		/**
-		 * Renders the specified container and any layout specific HTML.
-		 *
-		 * @method renderHtml
-		 * @param {tinymce.ui.Container} container Container to render HTML for.
-		 */
+			* Renders the specified container and any layout specific HTML.
+			*
+			* @method renderHtml
+			* @param {tinymce.ui.Container} container Container to render HTML for.
+			*/
 		renderHtml: function(container) {
 			var self = this, settings = self.settings, items, html = '';
 
@@ -33063,20 +33063,20 @@ define("tinymce/ui/Layout", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function() {
 		},
 
 		/**
-		 * This method gets invoked after the layout renders the controls.
-		 *
-		 * @method postRender
-		 * @param {tinymce.ui.Container} container Container instance to postRender.
-		 */
+			* This method gets invoked after the layout renders the controls.
+			*
+			* @method postRender
+			* @param {tinymce.ui.Container} container Container instance to postRender.
+			*/
 		postRender: function() {
 		}
 	});
@@ -33085,23 +33085,23 @@ define("tinymce/ui/Layout", [
 // Included from: classes/ui/AbsoluteLayout.js
 
 /**
- * AbsoluteLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* AbsoluteLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * LayoutManager for absolute positioning. This layout manager is more of
- * a base class for other layouts but can be created and used directly.
- *
- * @-x-less AbsoluteLayout.less
- * @class tinymce.ui.AbsoluteLayout
- * @extends tinymce.ui.Layout
- */
+	* LayoutManager for absolute positioning. This layout manager is more of
+	* a base class for other layouts but can be created and used directly.
+	*
+	* @-x-less AbsoluteLayout.less
+	* @class tinymce.ui.AbsoluteLayout
+	* @extends tinymce.ui.Layout
+	*/
 define("tinymce/ui/AbsoluteLayout", [
 	"tinymce/ui/Layout"
 ], function(Layout) {
@@ -33114,11 +33114,11 @@ define("tinymce/ui/AbsoluteLayout", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function(container) {
 			container.items().filter(':visible').each(function(ctrl) {
 				var settings = ctrl.settings;
@@ -33137,11 +33137,11 @@ define("tinymce/ui/AbsoluteLayout", [
 		},
 
 		/**
-		 * Renders the specified container and any layout specific HTML.
-		 *
-		 * @method renderHtml
-		 * @param {tinymce.ui.Container} container Container to render HTML for.
-		 */
+			* Renders the specified container and any layout specific HTML.
+			*
+			* @method renderHtml
+			* @param {tinymce.ui.Container} container Container to render HTML for.
+			*/
 		renderHtml: function(container) {
 			return '<div id="' + container._id + '-absend" class="' + container.classPrefix + 'abs-end"></div>' + this._super(container);
 		}
@@ -33151,23 +33151,23 @@ define("tinymce/ui/AbsoluteLayout", [
 // Included from: classes/ui/Tooltip.js
 
 /**
- * Tooltip.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Tooltip.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a tooltip instance.
- *
- * @-x-less ToolTip.less
- * @class tinymce.ui.ToolTip
- * @extends tinymce.ui.Control
- * @mixes tinymce.ui.Movable
- */
+	* Creates a tooltip instance.
+	*
+	* @-x-less ToolTip.less
+	* @class tinymce.ui.ToolTip
+	* @extends tinymce.ui.Control
+	* @mixes tinymce.ui.Movable
+	*/
 define("tinymce/ui/Tooltip", [
 	"tinymce/ui/Control",
 	"tinymce/ui/Movable"
@@ -33180,12 +33180,12 @@ define("tinymce/ui/Tooltip", [
 		},
 
 		/**
-		 * Sets/gets the current label text.
-		 *
-		 * @method text
-		 * @param {String} [text] New label text.
-		 * @return {String|tinymce.ui.Tooltip} Current text or current label instance.
-		 */
+			* Sets/gets the current label text.
+			*
+			* @method text
+			* @param {String} [text] New label text.
+			* @return {String|tinymce.ui.Tooltip} Current text or current label instance.
+			*/
 		text: function(value) {
 			var self = this;
 
@@ -33203,11 +33203,11 @@ define("tinymce/ui/Tooltip", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, prefix = self.classPrefix;
 
@@ -33220,10 +33220,10 @@ define("tinymce/ui/Tooltip", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, style, rect;
 
@@ -33240,21 +33240,21 @@ define("tinymce/ui/Tooltip", [
 // Included from: classes/ui/Widget.js
 
 /**
- * Widget.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Widget.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Widget base class a widget is a control that has a tooltip and some basic states.
- *
- * @class tinymce.ui.Widget
- * @extends tinymce.ui.Control
- */
+	* Widget base class a widget is a control that has a tooltip and some basic states.
+	*
+	* @class tinymce.ui.Widget
+	* @extends tinymce.ui.Control
+	*/
 define("tinymce/ui/Widget", [
 	"tinymce/ui/Control",
 	"tinymce/ui/Tooltip"
@@ -33265,14 +33265,14 @@ define("tinymce/ui/Widget", [
 
 	var Widget = Control.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} tooltip Tooltip text to display when hovering.
-		 * @setting {Boolean} autofocus True if the control should be focused when rendered.
-		 * @setting {String} text Text to display inside widget.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} tooltip Tooltip text to display when hovering.
+			* @setting {Boolean} autofocus True if the control should be focused when rendered.
+			* @setting {String} text Text to display inside widget.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -33306,11 +33306,11 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Returns the current tooltip instance.
-		 *
-		 * @method tooltip
-		 * @return {tinymce.ui.Tooltip} Tooltip instance.
-		 */
+			* Returns the current tooltip instance.
+			*
+			* @method tooltip
+			* @return {tinymce.ui.Tooltip} Tooltip instance.
+			*/
 		tooltip: function() {
 			if (!tooltip) {
 				tooltip = new Tooltip({type: 'tooltip'});
@@ -33321,12 +33321,12 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Sets/gets the active state of the widget.
-		 *
-		 * @method active
-		 * @param {Boolean} [state] State if the control is active.
-		 * @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
-		 */
+			* Sets/gets the active state of the widget.
+			*
+			* @method active
+			* @param {Boolean} [state] State if the control is active.
+			* @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
+			*/
 		active: function(state) {
 			var self = this, undef;
 
@@ -33339,12 +33339,12 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Sets/gets the disabled state of the widget.
-		 *
-		 * @method disabled
-		 * @param {Boolean} [state] State if the control is disabled.
-		 * @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
-		 */
+			* Sets/gets the disabled state of the widget.
+			*
+			* @method disabled
+			* @param {Boolean} [state] State if the control is disabled.
+			* @return {Boolean|tinymce.ui.Widget} True/false or current widget instance.
+			*/
 		disabled: function(state) {
 			var self = this, undef;
 
@@ -33357,10 +33357,10 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, settings = self.settings;
 
@@ -33379,11 +33379,11 @@ define("tinymce/ui/Widget", [
 		},
 
 		/**
-		 * Removes the current control from DOM and from UI collections.
-		 *
-		 * @method remove
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Removes the current control from DOM and from UI collections.
+			*
+			* @method remove
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		remove: function() {
 			this._super();
 
@@ -33400,29 +33400,29 @@ define("tinymce/ui/Widget", [
 // Included from: classes/ui/Button.js
 
 /**
- * Button.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Button.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to create buttons. You can create them directly or through the Factory.
- *
- * @example
- * // Create and render a button to the body element
- * tinymce.ui.Factory.create({
- *     type: 'button',
- *     text: 'My button'
- * }).renderTo(document.body);
- *
- * @-x-less Button.less
- * @class tinymce.ui.Button
- * @extends tinymce.ui.Widget
- */
+	* This class is used to create buttons. You can create them directly or through the Factory.
+	*
+	* @example
+	* // Create and render a button to the body element
+	* tinymce.ui.Factory.create({
+	*     type: 'button',
+	*     text: 'My button'
+	* }).renderTo(document.body);
+	*
+	* @-x-less Button.less
+	* @class tinymce.ui.Button
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Button", [
 	"tinymce/ui/Widget"
 ], function(Widget) {
@@ -33435,14 +33435,14 @@ define("tinymce/ui/Button", [
 		},
 
 		/**
-		 * Constructs a new button instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} size Size of the button small|medium|large.
-		 * @setting {String} image Image to use for icon.
-		 * @setting {String} icon Icon to use for button.
-		 */
+			* Constructs a new button instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} size Size of the button small|medium|large.
+			* @setting {String} image Image to use for icon.
+			* @setting {String} icon Icon to use for button.
+			*/
 		init: function(settings) {
 			var self = this, size;
 
@@ -33463,12 +33463,12 @@ define("tinymce/ui/Button", [
 		},
 
 		/**
-		 * Sets/gets the current button icon.
-		 *
-		 * @method icon
-		 * @param {String} [icon] New icon identifier.
-		 * @return {String|tinymce.ui.MenuButton} Current icon or current MenuButton instance.
-		 */
+			* Sets/gets the current button icon.
+			*
+			* @method icon
+			* @param {String} [icon] New icon identifier.
+			* @return {String|tinymce.ui.MenuButton} Current icon or current MenuButton instance.
+			*/
 		icon: function(icon) {
 			var self = this, prefix = self.classPrefix;
 
@@ -33500,10 +33500,10 @@ define("tinymce/ui/Button", [
 		},
 
 		/**
-		 * Repaints the button for example after it's been resizes by a layout engine.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the button for example after it's been resizes by a layout engine.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var btnStyle = this.getEl().firstChild.style;
 
@@ -33513,12 +33513,12 @@ define("tinymce/ui/Button", [
 		},
 
 		/**
-		 * Sets/gets the current button text.
-		 *
-		 * @method text
-		 * @param {String} [text] New button text.
-		 * @return {String|tinymce.ui.Button} Current text or current Button instance.
-		 */
+			* Sets/gets the current button text.
+			*
+			* @method text
+			* @param {String} [text] New button text.
+			* @return {String|tinymce.ui.Button} Current text or current Button instance.
+			*/
 		text: function(text) {
 			var self = this;
 
@@ -33533,11 +33533,11 @@ define("tinymce/ui/Button", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
 			var icon = self.settings.icon, image;
@@ -33573,33 +33573,33 @@ define("tinymce/ui/Button", [
 // Included from: classes/ui/ButtonGroup.js
 
 /**
- * ButtonGroup.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ButtonGroup.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This control enables you to put multiple buttons into a group. This is
- * useful when you want to combine similar toolbar buttons into a group.
- *
- * @example
- * // Create and render a buttongroup with two buttons to the body element
- * tinymce.ui.Factory.create({
- *     type: 'buttongroup',
- *     items: [
- *         {text: 'Button A'},
- *         {text: 'Button B'}
- *     ]
- * }).renderTo(document.body);
- *
- * @-x-less ButtonGroup.less
- * @class tinymce.ui.ButtonGroup
- * @extends tinymce.ui.Container
- */
+	* This control enables you to put multiple buttons into a group. This is
+	* useful when you want to combine similar toolbar buttons into a group.
+	*
+	* @example
+	* // Create and render a buttongroup with two buttons to the body element
+	* tinymce.ui.Factory.create({
+	*     type: 'buttongroup',
+	*     items: [
+	*         {text: 'Button A'},
+	*         {text: 'Button B'}
+	*     ]
+	* }).renderTo(document.body);
+	*
+	* @-x-less ButtonGroup.less
+	* @class tinymce.ui.ButtonGroup
+	* @extends tinymce.ui.Container
+	*/
 define("tinymce/ui/ButtonGroup", [
 	"tinymce/ui/Container"
 ], function(Container) {
@@ -33612,11 +33612,11 @@ define("tinymce/ui/ButtonGroup", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout;
 
@@ -33638,30 +33638,30 @@ define("tinymce/ui/ButtonGroup", [
 // Included from: classes/ui/Checkbox.js
 
 /**
- * Checkbox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Checkbox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This control creates a custom checkbox.
- *
- * @example
- * // Create and render a checkbox to the body element
- * tinymce.ui.Factory.create({
- *     type: 'checkbox',
- *     checked: true,
- *     text: 'My checkbox'
- * }).renderTo(document.body);
- *
- * @-x-less Checkbox.less
- * @class tinymce.ui.Checkbox
- * @extends tinymce.ui.Widget
- */
+	* This control creates a custom checkbox.
+	*
+	* @example
+	* // Create and render a checkbox to the body element
+	* tinymce.ui.Factory.create({
+	*     type: 'checkbox',
+	*     checked: true,
+	*     text: 'My checkbox'
+	* }).renderTo(document.body);
+	*
+	* @-x-less Checkbox.less
+	* @class tinymce.ui.Checkbox
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Checkbox", [
 	"tinymce/ui/Widget"
 ], function(Widget) {
@@ -33675,12 +33675,12 @@ define("tinymce/ui/Checkbox", [
 		},
 
 		/**
-		 * Constructs a new Checkbox instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Boolean} checked True if the checkbox should be checked by default.
-		 */
+			* Constructs a new Checkbox instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Boolean} checked True if the checkbox should be checked by default.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -33702,12 +33702,12 @@ define("tinymce/ui/Checkbox", [
 		},
 
 		/**
-		 * Getter/setter function for the checked state.
-		 *
-		 * @method checked
-		 * @param {Boolean} [state] State to be set.
-		 * @return {Boolean|tinymce.ui.Checkbox} True/false or checkbox if it's a set operation.
-		 */
+			* Getter/setter function for the checked state.
+			*
+			* @method checked
+			* @param {Boolean} [state] State to be set.
+			* @return {Boolean|tinymce.ui.Checkbox} True/false or checkbox if it's a set operation.
+			*/
 		checked: function(state) {
 			var self = this;
 
@@ -33728,22 +33728,22 @@ define("tinymce/ui/Checkbox", [
 		},
 
 		/**
-		 * Getter/setter function for the value state.
-		 *
-		 * @method value
-		 * @param {Boolean} [state] State to be set.
-		 * @return {Boolean|tinymce.ui.Checkbox} True/false or checkbox if it's a set operation.
-		 */
+			* Getter/setter function for the value state.
+			*
+			* @method value
+			* @param {Boolean} [state] State to be set.
+			* @return {Boolean|tinymce.ui.Checkbox} True/false or checkbox if it's a set operation.
+			*/
 		value: function(state) {
 			return this.checked(state);
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
 
@@ -33760,23 +33760,23 @@ define("tinymce/ui/Checkbox", [
 // Included from: classes/ui/ComboBox.js
 
 /**
- * ComboBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ComboBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a combobox control. Select box that you select a value from or
- * type a value into.
- *
- * @-x-less ComboBox.less
- * @class tinymce.ui.ComboBox
- * @extends tinymce.ui.Widget
- */
+	* This class creates a combobox control. Select box that you select a value from or
+	* type a value into.
+	*
+	* @-x-less ComboBox.less
+	* @class tinymce.ui.ComboBox
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/ComboBox", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/Factory",
@@ -33786,12 +33786,12 @@ define("tinymce/ui/ComboBox", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} placeholder Placeholder text to display.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} placeholder Placeholder text to display.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -33919,12 +33919,12 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Getter/setter function for the control value.
-		 *
-		 * @method value
-		 * @param {String} [value] Value to be set.
-		 * @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
-		 */
+			* Getter/setter function for the control value.
+			*
+			* @method value
+			* @param {String} [value] Value to be set.
+			* @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
+			*/
 		value: function(value) {
 			var self = this;
 
@@ -33953,12 +33953,12 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Getter/setter function for the disabled state.
-		 *
-		 * @method value
-		 * @param {Boolean} [state] State to be set.
-		 * @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
-		 */
+			* Getter/setter function for the disabled state.
+			*
+			* @method value
+			* @param {Boolean} [state] State to be set.
+			* @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
+			*/
 		disabled: function(state) {
 			var self = this;
 
@@ -33970,19 +33970,19 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Focuses the input area of the control.
-		 *
-		 * @method focus
-		 */
+			* Focuses the input area of the control.
+			*
+			* @method focus
+			*/
 		focus: function() {
 			this.getEl('inp').focus();
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, elm = self.getEl(), openElm = self.getEl('open'), rect = self.layoutRect();
 			var width, lineHeight;
@@ -34010,11 +34010,11 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.ComboBox} Current combobox instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.ComboBox} Current combobox instance.
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -34031,11 +34031,11 @@ define("tinymce/ui/ComboBox", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, settings = self.settings, prefix = self.classPrefix;
 			var value = settings.value || settings.placeholder || '';
@@ -34095,23 +34095,23 @@ define("tinymce/ui/ComboBox", [
 // Included from: classes/ui/ColorBox.js
 
 /**
- * ColorBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ColorBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This widget lets you enter colors and browse for colors by pressing the color button. It also displays
- * a preview of the current color.
- *
- * @-x-less ColorBox.less
- * @class tinymce.ui.ColorBox
- * @extends tinymce.ui.ComboBox
- */
+	* This widget lets you enter colors and browse for colors by pressing the color button. It also displays
+	* a preview of the current color.
+	*
+	* @-x-less ColorBox.less
+	* @class tinymce.ui.ColorBox
+	* @extends tinymce.ui.ComboBox
+	*/
 define("tinymce/ui/ColorBox", [
 	"tinymce/ui/ComboBox"
 ], function(ComboBox) {
@@ -34119,11 +34119,11 @@ define("tinymce/ui/ColorBox", [
 
 	return ComboBox.extend({
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -34170,21 +34170,21 @@ define("tinymce/ui/ColorBox", [
 // Included from: classes/ui/PanelButton.js
 
 /**
- * PanelButton.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* PanelButton.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new panel button.
- *
- * @class tinymce.ui.PanelButton
- * @extends tinymce.ui.Button
- */
+	* Creates a new panel button.
+	*
+	* @class tinymce.ui.PanelButton
+	* @extends tinymce.ui.Button
+	*/
 define("tinymce/ui/PanelButton", [
 	"tinymce/ui/Button",
 	"tinymce/ui/FloatPanel"
@@ -34193,10 +34193,10 @@ define("tinymce/ui/PanelButton", [
 
 	return Button.extend({
 		/**
-		 * Shows the panel for the button.
-		 *
-		 * @method showPanel
-		 */
+			* Shows the panel for the button.
+			*
+			* @method showPanel
+			*/
 		showPanel: function() {
 			var self = this, settings = self.settings;
 
@@ -34237,10 +34237,10 @@ define("tinymce/ui/PanelButton", [
 		},
 
 		/**
-		 * Hides the panel for the button.
-		 *
-		 * @method hidePanel
-		 */
+			* Hides the panel for the button.
+			*
+			* @method hidePanel
+			*/
 		hidePanel: function() {
 			var self = this;
 
@@ -34250,10 +34250,10 @@ define("tinymce/ui/PanelButton", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -34287,24 +34287,24 @@ define("tinymce/ui/PanelButton", [
 // Included from: classes/ui/ColorButton.js
 
 /**
- * ColorButton.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ColorButton.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a color button control. This is a split button in which the main
- * button has a visual representation of the currently selected color. When clicked
- * the caret button displays a color picker, allowing the user to select a new color.
- *
- * @-x-less ColorButton.less
- * @class tinymce.ui.ColorButton
- * @extends tinymce.ui.PanelButton
- */
+	* This class creates a color button control. This is a split button in which the main
+	* button has a visual representation of the currently selected color. When clicked
+	* the caret button displays a color picker, allowing the user to select a new color.
+	*
+	* @-x-less ColorButton.less
+	* @class tinymce.ui.ColorButton
+	* @extends tinymce.ui.PanelButton
+	*/
 define("tinymce/ui/ColorButton", [
 	"tinymce/ui/PanelButton",
 	"tinymce/dom/DOMUtils"
@@ -34315,23 +34315,23 @@ define("tinymce/ui/ColorButton", [
 
 	return PanelButton.extend({
 		/**
-		 * Constructs a new ColorButton instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a new ColorButton instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			this._super(settings);
 			this.addClass('colorbutton');
 		},
 
 		/**
-		 * Getter/setter for the current color.
-		 *
-		 * @method color
-		 * @param {String} [color] Color to set.
-		 * @return {String|tinymce.ui.ColorButton} Current color or current instance.
-		 */
+			* Getter/setter for the current color.
+			*
+			* @method color
+			* @param {String} [color] Color to set.
+			* @return {String|tinymce.ui.ColorButton} Current color or current instance.
+			*/
 		color: function(color) {
 			if (color) {
 				this._color = color;
@@ -34343,11 +34343,11 @@ define("tinymce/ui/ColorButton", [
 		},
 
 		/**
-		 * Resets the current color.
-		 *
-		 * @method resetColor
-		 * @return {tinymce.ui.ColorButton} Current instance.
-		 */
+			* Resets the current color.
+			*
+			* @method resetColor
+			* @return {tinymce.ui.ColorButton} Current instance.
+			*/
 		resetColor: function() {
 			this._color = null;
 			this.getEl('preview').style.backgroundColor = null;
@@ -34355,11 +34355,11 @@ define("tinymce/ui/ColorButton", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
 			var icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
@@ -34380,10 +34380,10 @@ define("tinymce/ui/ColorButton", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, onClickHandler = self.settings.onclick;
 
@@ -34408,35 +34408,35 @@ define("tinymce/ui/ColorButton", [
 // Included from: classes/util/Color.js
 
 /**
- * Color.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Color.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class lets you parse/serialize colors and convert rgb/hsb.
- *
- * @class tinymce.util.Color
- * @example
- * var white = new tinymce.util.Color({r: 255, g: 255, b: 255});
- * var red = new tinymce.util.Color('#FF0000');
- *
- * console.log(white.toHex(), red.toHsv());
- */
+	* This class lets you parse/serialize colors and convert rgb/hsb.
+	*
+	* @class tinymce.util.Color
+	* @example
+	* var white = new tinymce.util.Color({r: 255, g: 255, b: 255});
+	* var red = new tinymce.util.Color('#FF0000');
+	*
+	* console.log(white.toHex(), red.toHsv());
+	*/
 define("tinymce/util/Color", [], function() {
 	var min = Math.min, max = Math.max, round = Math.round;
 
 	/**
-	 * Constructs a new color instance.
-	 *
-	 * @constructor
-	 * @method Color
-	 * @param {String} value Optional initial value to parse.
-	 */
+		* Constructs a new color instance.
+		*
+		* @constructor
+		* @method Color
+		* @param {String} value Optional initial value to parse.
+		*/
 	function Color(value) {
 		var self = this, r = 0, g = 0, b = 0;
 
@@ -34543,11 +34543,11 @@ define("tinymce/util/Color", [], function() {
 		}
 
 		/**
-		 * Returns the hex string of the current color. For example: #ff00ff
-		 *
-		 * @method toHex
-		 * @return {String} Hex string of current color.
-		 */
+			* Returns the hex string of the current color. For example: #ff00ff
+			*
+			* @method toHex
+			* @return {String} Hex string of current color.
+			*/
 		function toHex() {
 			function hex(val) {
 				val = parseInt(val, 10).toString(16);
@@ -34559,11 +34559,11 @@ define("tinymce/util/Color", [], function() {
 		}
 
 		/**
-		 * Returns the r, g, b values of the color. Each channel has a range from 0-255.
-		 *
-		 * @method toRgb
-		 * @return {Object} Object with r, g, b fields.
-		 */
+			* Returns the r, g, b values of the color. Each channel has a range from 0-255.
+			*
+			* @method toRgb
+			* @return {Object} Object with r, g, b fields.
+			*/
 		function toRgb() {
 			return {
 				r: r,
@@ -34573,29 +34573,29 @@ define("tinymce/util/Color", [], function() {
 		}
 
 		/**
-		 * Returns the h, s, v values of the color. Ranges: h=0-360, s=0-100, v=0-100.
-		 *
-		 * @method toHsv
-		 * @return {Object} Object with h, s, v fields.
-		 */
+			* Returns the h, s, v values of the color. Ranges: h=0-360, s=0-100, v=0-100.
+			*
+			* @method toHsv
+			* @return {Object} Object with h, s, v fields.
+			*/
 		function toHsv() {
 			return rgb2hsv(r, g, b);
 		}
 
 		/**
-		 * Parses the specified value and populates the color instance.
-		 *
-		 * Supported format examples:
-		 *  * rbg(255,0,0)
-		 *  * #ff0000
-		 *  * #fff
-		 *  * {r: 255, g: 0, b: 0}
-		 *  * {h: 360, s: 100, v: 100}
-		 *
-		 * @method parse
-		 * @param {Object/String} value Color value to parse.
-		 * @return {tinymce.util.Color} Current color instance.
-		 */
+			* Parses the specified value and populates the color instance.
+			*
+			* Supported format examples:
+			*  * rbg(255,0,0)
+			*  * #ff0000
+			*  * #fff
+			*  * {r: 255, g: 0, b: 0}
+			*  * {h: 360, s: 100, v: 100}
+			*
+			* @method parse
+			* @param {Object/String} value Color value to parse.
+			* @return {tinymce.util.Color} Current color instance.
+			*/
 		function parse(value) {
 			var matches;
 
@@ -34646,22 +34646,22 @@ define("tinymce/util/Color", [], function() {
 // Included from: classes/ui/ColorPicker.js
 
 /**
- * ColorPicker.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ColorPicker.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Color picker widget lets you select colors.
- *
- * @-x-less ColorPicker.less
- * @class tinymce.ui.ColorPicker
- * @extends tinymce.ui.Widget
- */
+	* Color picker widget lets you select colors.
+	*
+	* @-x-less ColorPicker.less
+	* @class tinymce.ui.ColorPicker
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/ColorPicker", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DragHelper",
@@ -34676,12 +34676,12 @@ define("tinymce/ui/ColorPicker", [
 		},
 
 		/**
-		 * Constructs a new colorpicker instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} color Initial color value.
-		 */
+			* Constructs a new colorpicker instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} color Initial color value.
+			*/
 		init: function(settings) {
 			this._super(settings);
 		},
@@ -34795,11 +34795,11 @@ define("tinymce/ui/ColorPicker", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix, hueHtml;
 			var stops = '#ff0000,#ff0080,#ff00ff,#8000ff,#0000ff,#0080ff,#00ffff,#00ff80,#00ff00,#80ff00,#ffff00,#ff8000,#ff0000';
@@ -34855,22 +34855,22 @@ define("tinymce/ui/ColorPicker", [
 // Included from: classes/ui/Path.js
 
 /**
- * Path.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Path.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new path control.
- *
- * @-x-less Path.less
- * @class tinymce.ui.Path
- * @extends tinymce.ui.Widget
- */
+	* Creates a new path control.
+	*
+	* @-x-less Path.less
+	* @class tinymce.ui.Path
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Path", [
 	"tinymce/ui/Widget"
 ], function(Widget) {
@@ -34878,12 +34878,12 @@ define("tinymce/ui/Path", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {String} delimiter Delimiter to display between items in path.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {String} delimiter Delimiter to display between items in path.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -34905,11 +34905,11 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Focuses the current control.
-		 *
-		 * @method focus
-		 * @return {tinymce.ui.Control} Current control instance.
-		 */
+			* Focuses the current control.
+			*
+			* @method focus
+			* @return {tinymce.ui.Control} Current control instance.
+			*/
 		focus: function() {
 			var self = this;
 
@@ -34919,11 +34919,11 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Sets/gets the data to be used for the path.
-		 *
-		 * @method data
-		 * @param {Array} data Array with items name is rendered to path.
-		 */
+			* Sets/gets the data to be used for the path.
+			*
+			* @method data
+			* @param {Array} data Array with items name is rendered to path.
+			*/
 		data: function(data) {
 			var self = this;
 
@@ -34938,19 +34938,19 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Updated the path.
-		 *
-		 * @private
-		 */
+			* Updated the path.
+			*
+			* @private
+			*/
 		update: function() {
 			this.innerHtml(this._getPathHtml());
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -34960,11 +34960,11 @@ define("tinymce/ui/Path", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this;
 
@@ -34998,32 +34998,32 @@ define("tinymce/ui/Path", [
 // Included from: classes/ui/ElementPath.js
 
 /**
- * ElementPath.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ElementPath.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This control creates an path for the current selections parent elements in TinyMCE.
- *
- * @class tinymce.ui.ElementPath
- * @extends tinymce.ui.Path
- */
+	* This control creates an path for the current selections parent elements in TinyMCE.
+	*
+	* @class tinymce.ui.ElementPath
+	* @extends tinymce.ui.Path
+	*/
 define("tinymce/ui/ElementPath", [
 	"tinymce/ui/Path",
 	"tinymce/EditorManager"
 ], function(Path, EditorManager) {
 	return Path.extend({
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.ElementPath} Current combobox instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.ElementPath} Current combobox instance.
+			*/
 		postRender: function() {
 			var self = this, editor = EditorManager.activeEditor;
 
@@ -35080,23 +35080,23 @@ define("tinymce/ui/ElementPath", [
 // Included from: classes/ui/FormItem.js
 
 /**
- * FormItem.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FormItem.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is a container created by the form element with
- * a label and control item.
- *
- * @class tinymce.ui.FormItem
- * @extends tinymce.ui.Container
- * @setting {String} label Label to display for the form item.
- */
+	* This class is a container created by the form element with
+	* a label and control item.
+	*
+	* @class tinymce.ui.FormItem
+	* @extends tinymce.ui.Container
+	* @setting {String} label Label to display for the form item.
+	*/
 define("tinymce/ui/FormItem", [
 	"tinymce/ui/Container"
 ], function(Container) {
@@ -35112,11 +35112,11 @@ define("tinymce/ui/FormItem", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, prefix = self.classPrefix;
 
@@ -35139,32 +35139,32 @@ define("tinymce/ui/FormItem", [
 // Included from: classes/ui/Form.js
 
 /**
- * Form.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Form.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a form container. A form container has the ability
- * to automatically wrap items in tinymce.ui.FormItem instances.
- *
- * Each FormItem instance is a container for the label and the item.
- *
- * @example
- * tinymce.ui.Factory.create({
- *     type: 'form',
- *     items: [
- *         {type: 'textbox', label: 'My text box'}
- *     ]
- * }).renderTo(document.body);
- *
- * @class tinymce.ui.Form
- * @extends tinymce.ui.Container
- */
+	* This class creates a form container. A form container has the ability
+	* to automatically wrap items in tinymce.ui.FormItem instances.
+	*
+	* Each FormItem instance is a container for the label and the item.
+	*
+	* @example
+	* tinymce.ui.Factory.create({
+	*     type: 'form',
+	*     items: [
+	*         {type: 'textbox', label: 'My text box'}
+	*     ]
+	* }).renderTo(document.body);
+	*
+	* @class tinymce.ui.Form
+	* @extends tinymce.ui.Container
+	*/
 define("tinymce/ui/Form", [
 	"tinymce/ui/Container",
 	"tinymce/ui/FormItem",
@@ -35190,10 +35190,10 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * This method gets invoked before the control is rendered.
-		 *
-		 * @method preRender
-		 */
+			* This method gets invoked before the control is rendered.
+			*
+			* @method preRender
+			*/
 		preRender: function() {
 			var self = this, items = self.items();
 
@@ -35235,10 +35235,10 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * Recalcs label widths.
-		 *
-		 * @private
-		 */
+			* Recalcs label widths.
+			*
+			* @private
+			*/
 		recalcLabels: function() {
 			var self = this, maxLabelWidth = 0, labels = [], i, labelGap, items;
 
@@ -35268,12 +35268,12 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * Getter/setter for the visibility state.
-		 *
-		 * @method visible
-		 * @param {Boolean} [state] True/false state to show/hide.
-		 * @return {tinymce.ui.Form|Boolean} True/false state or current control.
-		 */
+			* Getter/setter for the visibility state.
+			*
+			* @method visible
+			* @param {Boolean} [state] True/false state to show/hide.
+			* @return {tinymce.ui.Form|Boolean} True/false state or current control.
+			*/
 		visible: function(state) {
 			var val = this._super(state);
 
@@ -35285,21 +35285,21 @@ define("tinymce/ui/Form", [
 		},
 
 		/**
-		 * Fires a submit event with the serialized form.
-		 *
-		 * @method submit
-		 * @return {Object} Event arguments object.
-		 */
+			* Fires a submit event with the serialized form.
+			*
+			* @method submit
+			* @return {Object} Event arguments object.
+			*/
 		submit: function() {
 			return this.fire('submit', {data: this.toJSON()});
 		},
 
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.ComboBox} Current combobox instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.ComboBox} Current combobox instance.
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -35313,22 +35313,22 @@ define("tinymce/ui/Form", [
 // Included from: classes/ui/FieldSet.js
 
 /**
- * FieldSet.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FieldSet.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates fieldset containers.
- *
- * @-x-less FieldSet.less
- * @class tinymce.ui.FieldSet
- * @extends tinymce.ui.Form
- */
+	* This class creates fieldset containers.
+	*
+	* @-x-less FieldSet.less
+	* @class tinymce.ui.FieldSet
+	* @extends tinymce.ui.Form
+	*/
 define("tinymce/ui/FieldSet", [
 	"tinymce/ui/Form"
 ], function(Form) {
@@ -35348,11 +35348,11 @@ define("tinymce/ui/FieldSet", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, prefix = self.classPrefix;
 
@@ -35375,23 +35375,23 @@ define("tinymce/ui/FieldSet", [
 // Included from: classes/ui/FilePicker.js
 
 /**
- * FilePicker.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FilePicker.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 
 /**
- * This class creates a file picker control.
- *
- * @class tinymce.ui.FilePicker
- * @extends tinymce.ui.ComboBox
- */
+	* This class creates a file picker control.
+	*
+	* @class tinymce.ui.FilePicker
+	* @extends tinymce.ui.ComboBox
+	*/
 define("tinymce/ui/FilePicker", [
 	"tinymce/ui/ComboBox",
 	"tinymce/util/Tools"
@@ -35400,11 +35400,11 @@ define("tinymce/ui/FilePicker", [
 
 	return ComboBox.extend({
 		/**
-		 * Constructs a new control instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a new control instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this, editor = tinymce.activeEditor, editorSettings = editor.settings;
 			var actionCallback, fileBrowserCallback, fileBrowserCallbackTypes;
@@ -35463,23 +35463,23 @@ define("tinymce/ui/FilePicker", [
 // Included from: classes/ui/FitLayout.js
 
 /**
- * FitLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FitLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This layout manager will resize the control to be the size of it's parent container.
- * In other words width: 100% and height: 100%.
- *
- * @-x-less FitLayout.less
- * @class tinymce.ui.FitLayout
- * @extends tinymce.ui.AbsoluteLayout
- */
+	* This layout manager will resize the control to be the size of it's parent container.
+	* In other words width: 100% and height: 100%.
+	*
+	* @-x-less FitLayout.less
+	* @class tinymce.ui.FitLayout
+	* @extends tinymce.ui.AbsoluteLayout
+	*/
 define("tinymce/ui/FitLayout", [
 	"tinymce/ui/AbsoluteLayout"
 ], function(AbsoluteLayout) {
@@ -35487,11 +35487,11 @@ define("tinymce/ui/FitLayout", [
 
 	return AbsoluteLayout.extend({
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function(container) {
 			var contLayoutRect = container.layoutRect(), paddingBox = container.paddingBox();
 
@@ -35514,26 +35514,26 @@ define("tinymce/ui/FitLayout", [
 // Included from: classes/ui/FlexLayout.js
 
 /**
- * FlexLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FlexLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This layout manager works similar to the CSS flex box.
- *
- * @setting {String} direction row|row-reverse|column|column-reverse
- * @setting {Number} flex A positive-number to flex by.
- * @setting {String} align start|end|center|stretch
- * @setting {String} pack start|end|justify
- *
- * @class tinymce.ui.FlexLayout
- * @extends tinymce.ui.AbsoluteLayout
- */
+	* This layout manager works similar to the CSS flex box.
+	*
+	* @setting {String} direction row|row-reverse|column|column-reverse
+	* @setting {Number} flex A positive-number to flex by.
+	* @setting {String} align start|end|center|stretch
+	* @setting {String} pack start|end|justify
+	*
+	* @class tinymce.ui.FlexLayout
+	* @extends tinymce.ui.AbsoluteLayout
+	*/
 define("tinymce/ui/FlexLayout", [
 	"tinymce/ui/AbsoluteLayout"
 ], function(AbsoluteLayout) {
@@ -35541,11 +35541,11 @@ define("tinymce/ui/FlexLayout", [
 
 	return AbsoluteLayout.extend({
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function(container) {
 			// A ton of variables, needs to be in the same scope for performance
 			var i, l, items, contLayoutRect, contPaddingBox, contSettings, align, pack, spacing, totalFlex, availableSpace, direction;
@@ -35763,22 +35763,22 @@ define("tinymce/ui/FlexLayout", [
 // Included from: classes/ui/FlowLayout.js
 
 /**
- * FlowLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FlowLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This layout manager will place the controls by using the browsers native layout.
- *
- * @-x-less FlowLayout.less
- * @class tinymce.ui.FlowLayout
- * @extends tinymce.ui.Layout
- */
+	* This layout manager will place the controls by using the browsers native layout.
+	*
+	* @-x-less FlowLayout.less
+	* @class tinymce.ui.FlowLayout
+	* @extends tinymce.ui.Layout
+	*/
 define("tinymce/ui/FlowLayout", [
 	"tinymce/ui/Layout"
 ], function(Layout) {
@@ -35790,11 +35790,11 @@ define("tinymce/ui/FlowLayout", [
 		},
 
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function(container) {
 			container.items().filter(':visible').each(function(ctrl) {
 				if (ctrl.recalc) {
@@ -35808,21 +35808,21 @@ define("tinymce/ui/FlowLayout", [
 // Included from: classes/ui/FormatControls.js
 
 /**
- * FormatControls.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FormatControls.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Internal class containing all TinyMCE specific control types such as
- * format listboxes, fontlist boxes, toolbar buttons etc.
- *
- * @class tinymce.ui.FormatControls
- */
+	* Internal class containing all TinyMCE specific control types such as
+	* format listboxes, fontlist boxes, toolbar buttons etc.
+	*
+	* @class tinymce.ui.FormatControls
+	*/
 define("tinymce/ui/FormatControls", [
 	"tinymce/ui/Control",
 	"tinymce/ui/Widget",
@@ -36350,29 +36350,29 @@ define("tinymce/ui/FormatControls", [
 // Included from: classes/ui/GridLayout.js
 
 /**
- * GridLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* GridLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This layout manager places controls in a grid.
- *
- * @setting {Number} spacing Spacing between controls.
- * @setting {Number} spacingH Horizontal spacing between controls.
- * @setting {Number} spacingV Vertical spacing between controls.
- * @setting {Number} columns Number of columns to use.
- * @setting {String/Array} alignH start|end|center|stretch or array of values for each column.
- * @setting {String/Array} alignV start|end|center|stretch or array of values for each column.
- * @setting {String} pack start|end
- *
- * @class tinymce.ui.GridLayout
- * @extends tinymce.ui.AbsoluteLayout
- */
+	* This layout manager places controls in a grid.
+	*
+	* @setting {Number} spacing Spacing between controls.
+	* @setting {Number} spacingH Horizontal spacing between controls.
+	* @setting {Number} spacingV Vertical spacing between controls.
+	* @setting {Number} columns Number of columns to use.
+	* @setting {String/Array} alignH start|end|center|stretch or array of values for each column.
+	* @setting {String/Array} alignV start|end|center|stretch or array of values for each column.
+	* @setting {String} pack start|end
+	*
+	* @class tinymce.ui.GridLayout
+	* @extends tinymce.ui.AbsoluteLayout
+	*/
 define("tinymce/ui/GridLayout", [
 	"tinymce/ui/AbsoluteLayout"
 ], function(AbsoluteLayout) {
@@ -36380,11 +36380,11 @@ define("tinymce/ui/GridLayout", [
 
 	return AbsoluteLayout.extend({
 		/**
-		 * Recalculates the positions of the controls in the specified container.
-		 *
-		 * @method recalc
-		 * @param {tinymce.ui.Container} container Container instance to recalc.
-		 */
+			* Recalculates the positions of the controls in the specified container.
+			*
+			* @method recalc
+			* @param {tinymce.ui.Container} container Container instance to recalc.
+			*/
 		recalc: function(container) {
 			var settings = container.settings, rows, cols, items, contLayoutRect, width, height, rect,
 				ctrlLayoutRect, ctrl, x, y, posX, posY, ctrlSettings, contPaddingBox, align, spacingH, spacingV, alignH, alignV, maxX, maxY,
@@ -36586,26 +36586,26 @@ define("tinymce/ui/GridLayout", [
 // Included from: classes/ui/Iframe.js
 
 /**
- * Iframe.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Iframe.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*jshint scripturl:true */
 
 /**
- * This class creates an iframe.
- *
- * @setting {String} url Url to open in the iframe.
- *
- * @-x-less Iframe.less
- * @class tinymce.ui.Iframe
- * @extends tinymce.ui.Widget
- */
+	* This class creates an iframe.
+	*
+	* @setting {String} url Url to open in the iframe.
+	*
+	* @-x-less Iframe.less
+	* @class tinymce.ui.Iframe
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Iframe", [
 	"tinymce/ui/Widget"
 ], function(Widget) {
@@ -36613,11 +36613,11 @@ define("tinymce/ui/Iframe", [
 
 	return Widget.extend({
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this;
 
@@ -36632,23 +36632,23 @@ define("tinymce/ui/Iframe", [
 		},
 
 		/**
-		 * Setter for the iframe source.
-		 *
-		 * @method src
-		 * @param {String} src Source URL for iframe.
-		 */
+			* Setter for the iframe source.
+			*
+			* @method src
+			* @param {String} src Source URL for iframe.
+			*/
 		src: function(src) {
 			this.getEl().src = src;
 		},
 
 		/**
-		 * Inner HTML for the iframe.
-		 *
-		 * @method html
-		 * @param {String} html HTML string to set as HTML inside the iframe.
-		 * @param {function} callback Optional callback to execute when the iframe body is filled with contents.
-		 * @return {tinymce.ui.Iframe} Current iframe control.
-		 */
+			* Inner HTML for the iframe.
+			*
+			* @method html
+			* @param {String} html HTML string to set as HTML inside the iframe.
+			* @param {function} callback Optional callback to execute when the iframe body is filled with contents.
+			* @return {tinymce.ui.Iframe} Current iframe control.
+			*/
 		html: function(html, callback) {
 			var self = this, body = this.getEl().contentWindow.document.body;
 
@@ -36673,23 +36673,23 @@ define("tinymce/ui/Iframe", [
 // Included from: classes/ui/Label.js
 
 /**
- * Label.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Label.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a label element. A label is a simple text control
- * that can be bound to other controls.
- *
- * @-x-less Label.less
- * @class tinymce.ui.Label
- * @extends tinymce.ui.Widget
- */
+	* This class creates a label element. A label is a simple text control
+	* that can be bound to other controls.
+	*
+	* @-x-less Label.less
+	* @class tinymce.ui.Label
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Label", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DomUtils"
@@ -36698,12 +36698,12 @@ define("tinymce/ui/Label", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @param {Boolean} multiline Multiline label.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @param {Boolean} multiline Multiline label.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -36722,13 +36722,13 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, layoutRect = self._super();
 
@@ -36749,10 +36749,10 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this;
 
@@ -36764,12 +36764,12 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Sets/gets the current label text.
-		 *
-		 * @method text
-		 * @param {String} [text] New label text.
-		 * @return {String|tinymce.ui.Label} Current text or current label instance.
-		 */
+			* Sets/gets the current label text.
+			*
+			* @method text
+			* @param {String} [text] New label text.
+			* @return {String|tinymce.ui.Label} Current text or current label instance.
+			*/
 		text: function(text) {
 			var self = this;
 
@@ -36781,11 +36781,11 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, forId = self.settings.forId;
 
@@ -36801,21 +36801,21 @@ define("tinymce/ui/Label", [
 // Included from: classes/ui/Toolbar.js
 
 /**
- * Toolbar.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Toolbar.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new toolbar.
- *
- * @class tinymce.ui.Toolbar
- * @extends tinymce.ui.Container
- */
+	* Creates a new toolbar.
+	*
+	* @class tinymce.ui.Toolbar
+	* @extends tinymce.ui.Container
+	*/
 define("tinymce/ui/Toolbar", [
 	"tinymce/ui/Container"
 ], function(Container) {
@@ -36828,11 +36828,11 @@ define("tinymce/ui/Toolbar", [
 		},
 
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -36841,10 +36841,10 @@ define("tinymce/ui/Toolbar", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -36858,22 +36858,22 @@ define("tinymce/ui/Toolbar", [
 // Included from: classes/ui/MenuBar.js
 
 /**
- * MenuBar.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* MenuBar.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new menubar.
- *
- * @-x-less MenuBar.less
- * @class tinymce.ui.MenuBar
- * @extends tinymce.ui.Toolbar
- */
+	* Creates a new menubar.
+	*
+	* @-x-less MenuBar.less
+	* @class tinymce.ui.MenuBar
+	* @extends tinymce.ui.Toolbar
+	*/
 define("tinymce/ui/MenuBar", [
 	"tinymce/ui/Toolbar"
 ], function(Toolbar) {
@@ -36894,22 +36894,22 @@ define("tinymce/ui/MenuBar", [
 // Included from: classes/ui/MenuButton.js
 
 /**
- * MenuButton.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* MenuButton.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new menu button.
- *
- * @-x-less MenuButton.less
- * @class tinymce.ui.MenuButton
- * @extends tinymce.ui.Button
- */
+	* Creates a new menu button.
+	*
+	* @-x-less MenuButton.less
+	* @class tinymce.ui.MenuButton
+	* @extends tinymce.ui.Button
+	*/
 define("tinymce/ui/MenuButton", [
 	"tinymce/ui/Button",
 	"tinymce/ui/Factory",
@@ -36932,11 +36932,11 @@ define("tinymce/ui/MenuButton", [
 
 	var MenuButton = Button.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -36954,10 +36954,10 @@ define("tinymce/ui/MenuButton", [
 		},
 
 		/**
-		 * Shows the menu for the button.
-		 *
-		 * @method showMenu
-		 */
+			* Shows the menu for the button.
+			*
+			* @method showMenu
+			*/
 		showMenu: function() {
 			var self = this, settings = self.settings, menu;
 
@@ -37009,10 +37009,10 @@ define("tinymce/ui/MenuButton", [
 		},
 
 		/**
-		 * Hides the menu for the button.
-		 *
-		 * @method hideMenu
-		 */
+			* Hides the menu for the button.
+			*
+			* @method hideMenu
+			*/
 		hideMenu: function() {
 			var self = this;
 
@@ -37028,20 +37028,20 @@ define("tinymce/ui/MenuButton", [
 		},
 
 		/**
-		 * Sets the active menu state.
-		 *
-		 * @private
-		 */
+			* Sets the active menu state.
+			*
+			* @private
+			*/
 		activeMenu: function(state) {
 			this.toggleClass('active', state);
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
 			var icon = self.settings.icon, image;
@@ -37076,10 +37076,10 @@ define("tinymce/ui/MenuButton", [
 		},
 
 		/**
-		 * Gets invoked after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Gets invoked after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -37118,12 +37118,12 @@ define("tinymce/ui/MenuButton", [
 		},
 
 		/**
-		 * Sets/gets the current button text.
-		 *
-		 * @method text
-		 * @param {String} [text] New button text.
-		 * @return {String|tinymce.ui.MenuButton} Current text or current MenuButton instance.
-		 */
+			* Sets/gets the current button text.
+			*
+			* @method text
+			* @param {String} [text] New button text.
+			* @return {String|tinymce.ui.MenuButton} Current text or current MenuButton instance.
+			*/
 		text: function(text) {
 			var self = this, i, children;
 
@@ -37138,10 +37138,10 @@ define("tinymce/ui/MenuButton", [
 		},
 
 		/**
-		 * Removes the control and it's menus.
-		 *
-		 * @method remove
-		 */
+			* Removes the control and it's menus.
+			*
+			* @method remove
+			*/
 		remove: function() {
 			this._super();
 
@@ -37157,22 +37157,22 @@ define("tinymce/ui/MenuButton", [
 // Included from: classes/ui/ListBox.js
 
 /**
- * ListBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ListBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new list box control.
- *
- * @-x-less ListBox.less
- * @class tinymce.ui.ListBox
- * @extends tinymce.ui.MenuButton
- */
+	* Creates a new list box control.
+	*
+	* @-x-less ListBox.less
+	* @class tinymce.ui.ListBox
+	* @extends tinymce.ui.MenuButton
+	*/
 define("tinymce/ui/ListBox", [
 	"tinymce/ui/MenuButton"
 ], function(MenuButton) {
@@ -37180,12 +37180,12 @@ define("tinymce/ui/ListBox", [
 
 	return MenuButton.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Array} values Array with values to add to list box.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Array} values Array with values to add to list box.
+			*/
 		init: function(settings) {
 			var self = this, values, selected, selectedText, lastItemCtrl;
 
@@ -37243,10 +37243,10 @@ define("tinymce/ui/ListBox", [
 		},
 
 		/**
-		 * disable/enable 某一list的item
-		 * leanote ace life ace
-		 * value = convert, state = true | false
-		 */
+			* disable/enable 某一list的item
+			* leanote ace life ace
+			* value = convert, state = true | false
+			*/
 		diableValue: function(value, state) {
 			var self = this;
 			var menu = self.settings.menu;
@@ -37268,12 +37268,12 @@ define("tinymce/ui/ListBox", [
 		},
 
 		/**
-		 * Getter/setter function for the control value.
-		 *
-		 * @method value
-		 * @param {String} [value] Value to be set.
-		 * @return {Boolean/tinymce.ui.ListBox} Value or self if it's a set operation.
-		 */
+			* Getter/setter function for the control value.
+			*
+			* @method value
+			* @param {String} [value] Value to be set.
+			* @return {Boolean/tinymce.ui.ListBox} Value or self if it's a set operation.
+			*/
 		value: function(value) {
 			var self = this, active, selectedText, menu;
 
@@ -37328,22 +37328,22 @@ define("tinymce/ui/ListBox", [
 // Included from: classes/ui/MenuItem.js
 
 /**
- * MenuItem.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* MenuItem.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new menu item.
- *
- * @-x-less MenuItem.less
- * @class tinymce.ui.MenuItem
- * @extends tinymce.ui.Widget
- */
+	* Creates a new menu item.
+	*
+	* @-x-less MenuItem.less
+	* @class tinymce.ui.MenuItem
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/MenuItem", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/Factory",
@@ -37358,14 +37358,14 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Boolean} selectable Selectable menu.
-		 * @setting {Array} menu Submenu array with items.
-		 * @setting {String} shortcut Shortcut to display for menu item. Example: Ctrl+X
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Boolean} selectable Selectable menu.
+			* @setting {Array} menu Submenu array with items.
+			* @setting {String} shortcut Shortcut to display for menu item. Example: Ctrl+X
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -37411,20 +37411,20 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Returns true/false if the menuitem has sub menu.
-		 *
-		 * @method hasMenus
-		 * @return {Boolean} True/false state if it has submenu.
-		 */
+			* Returns true/false if the menuitem has sub menu.
+			*
+			* @method hasMenus
+			* @return {Boolean} True/false state if it has submenu.
+			*/
 		hasMenus: function() {
 			return !!this.settings.menu;
 		},
 
 		/**
-		 * Shows the menu for the menu item.
-		 *
-		 * @method showMenu
-		 */
+			* Shows the menu for the menu item.
+			*
+			* @method showMenu
+			*/
 		showMenu: function() {
 			var self = this, settings = self.settings, menu, parent = self.parent();
 
@@ -37501,10 +37501,10 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Hides the menu for the menu item.
-		 *
-		 * @method hideMenu
-		 */
+			* Hides the menu for the menu item.
+			*
+			* @method hideMenu
+			*/
 		hideMenu: function() {
 			var self = this;
 
@@ -37523,11 +37523,11 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, settings = self.settings, prefix = self.classPrefix, text = self.encode(self._text);
 			var icon = self.settings.icon, image = '', shortcut = settings.shortcut;
@@ -37588,10 +37588,10 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Gets invoked after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Gets invoked after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, settings = self.settings;
 
@@ -37636,10 +37636,10 @@ define("tinymce/ui/MenuItem", [
 		},
 
 		/**
-		 * Removes the control and it's menus.
-		 *
-		 * @method remove
-		 */
+			* Removes the control and it's menus.
+			*
+			* @method remove
+			*/
 		remove: function() {
 			this._super();
 
@@ -37653,22 +37653,22 @@ define("tinymce/ui/MenuItem", [
 // Included from: classes/ui/Menu.js
 
 /**
- * Menu.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Menu.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new menu.
- *
- * @-x-less Menu.less
- * @class tinymce.ui.Menu
- * @extends tinymce.ui.FloatPanel
- */
+	* Creates a new menu.
+	*
+	* @-x-less Menu.less
+	* @class tinymce.ui.Menu
+	* @extends tinymce.ui.FloatPanel
+	*/
 define("tinymce/ui/Menu", [
 	"tinymce/ui/FloatPanel",
 	"tinymce/ui/MenuItem",
@@ -37687,11 +37687,11 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -37711,10 +37711,10 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			this.toggleClass('menu-align', true);
 
@@ -37727,10 +37727,10 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Hides/closes the menu.
-		 *
-		 * @method cancel
-		 */
+			* Hides/closes the menu.
+			*
+			* @method cancel
+			*/
 		cancel: function() {
 			var self = this;
 
@@ -37739,10 +37739,10 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Hide menu and all sub menus.
-		 *
-		 * @method hideAll
-		 */
+			* Hide menu and all sub menus.
+			*
+			* @method hideAll
+			*/
 		hideAll: function() {
 			var self = this;
 
@@ -37750,7 +37750,7 @@ define("tinymce/ui/Menu", [
 
 			return self._super();
 		},
-/*
+	/*
 		getContainerElm: function() {
 			var doc = document, id = this.classPrefix + 'menucontainer';
 
@@ -37768,12 +37768,12 @@ define("tinymce/ui/Menu", [
 
 			return elm;
 		},
-*/
+	*/
 		/**
-		 * Invoked before the menu is rendered.
-		 *
-		 * @method preRender
-		 */
+			* Invoked before the menu is rendered.
+			*
+			* @method preRender
+			*/
 		preRender: function() {
 			var self = this;
 
@@ -37796,22 +37796,22 @@ define("tinymce/ui/Menu", [
 // Included from: classes/ui/Radio.js
 
 /**
- * Radio.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Radio.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new radio button.
- *
- * @-x-less Radio.less
- * @class tinymce.ui.Radio
- * @extends tinymce.ui.Checkbox
- */
+	* Creates a new radio button.
+	*
+	* @-x-less Radio.less
+	* @class tinymce.ui.Radio
+	* @extends tinymce.ui.Checkbox
+	*/
 define("tinymce/ui/Radio", [
 	"tinymce/ui/Checkbox"
 ], function(Checkbox) {
@@ -37828,22 +37828,22 @@ define("tinymce/ui/Radio", [
 // Included from: classes/ui/ResizeHandle.js
 
 /**
- * ResizeHandle.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ResizeHandle.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Renders a resize handle that fires ResizeStart, Resize and ResizeEnd events.
- *
- * @-x-less ResizeHandle.less
- * @class tinymce.ui.ResizeHandle
- * @extends tinymce.ui.Widget
- */
+	* Renders a resize handle that fires ResizeStart, Resize and ResizeEnd events.
+	*
+	* @-x-less ResizeHandle.less
+	* @class tinymce.ui.ResizeHandle
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/ResizeHandle", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DragHelper"
@@ -37852,11 +37852,11 @@ define("tinymce/ui/ResizeHandle", [
 
 	return Widget.extend({
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, prefix = self.classPrefix;
 
@@ -37876,10 +37876,10 @@ define("tinymce/ui/ResizeHandle", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -37917,22 +37917,22 @@ define("tinymce/ui/ResizeHandle", [
 // Included from: classes/ui/Spacer.js
 
 /**
- * Spacer.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Spacer.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a spacer. This control is used in flex layouts for example.
- *
- * @-x-less Spacer.less
- * @class tinymce.ui.Spacer
- * @extends tinymce.ui.Widget
- */
+	* Creates a spacer. This control is used in flex layouts for example.
+	*
+	* @-x-less Spacer.less
+	* @class tinymce.ui.Spacer
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Spacer", [
 	"tinymce/ui/Widget"
 ], function(Widget) {
@@ -37940,11 +37940,11 @@ define("tinymce/ui/Spacer", [
 
 	return Widget.extend({
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this;
 
@@ -37959,22 +37959,22 @@ define("tinymce/ui/Spacer", [
 // Included from: classes/ui/SplitButton.js
 
 /**
- * SplitButton.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* SplitButton.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a split button.
- *
- * @-x-less SplitButton.less
- * @class tinymce.ui.SplitButton
- * @extends tinymce.ui.MenuButton
- */
+	* Creates a split button.
+	*
+	* @-x-less SplitButton.less
+	* @class tinymce.ui.SplitButton
+	* @extends tinymce.ui.MenuButton
+	*/
 define("tinymce/ui/SplitButton", [
 	"tinymce/ui/MenuButton",
 	"tinymce/ui/DomUtils"
@@ -37986,10 +37986,10 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, elm = self.getEl(), rect = self.layoutRect(), mainButtonElm, menuButtonElm;
 
@@ -38011,10 +38011,10 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Sets the active menu state.
-		 *
-		 * @private
-		 */
+			* Sets the active menu state.
+			*
+			* @private
+			*/
 		activeMenu: function(state) {
 			var self = this;
 
@@ -38022,11 +38022,11 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix, image;
 			var icon = self.settings.icon;
@@ -38063,10 +38063,10 @@ define("tinymce/ui/SplitButton", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this, onClickHandler = self.settings.onclick;
 
@@ -38097,22 +38097,22 @@ define("tinymce/ui/SplitButton", [
 // Included from: classes/ui/StackLayout.js
 
 /**
- * StackLayout.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* StackLayout.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This layout uses the browsers layout when the items are blocks.
- *
- * @-x-less StackLayout.less
- * @class tinymce.ui.StackLayout
- * @extends tinymce.ui.FlowLayout
- */
+	* This layout uses the browsers layout when the items are blocks.
+	*
+	* @-x-less StackLayout.less
+	* @class tinymce.ui.StackLayout
+	* @extends tinymce.ui.FlowLayout
+	*/
 define("tinymce/ui/StackLayout", [
 	"tinymce/ui/FlowLayout"
 ], function(FlowLayout) {
@@ -38130,24 +38130,24 @@ define("tinymce/ui/StackLayout", [
 // Included from: classes/ui/TabPanel.js
 
 /**
- * TabPanel.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TabPanel.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a tab panel control.
- *
- * @-x-less TabPanel.less
- * @class tinymce.ui.TabPanel
- * @extends tinymce.ui.Panel
- *
- * @setting {Number} activeTab Active tab index.
- */
+	* Creates a tab panel control.
+	*
+	* @-x-less TabPanel.less
+	* @class tinymce.ui.TabPanel
+	* @extends tinymce.ui.Panel
+	*
+	* @setting {Number} activeTab Active tab index.
+	*/
 define("tinymce/ui/TabPanel", [
 	"tinymce/ui/Panel",
 	"tinymce/ui/DomUtils"
@@ -38163,11 +38163,11 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Activates the specified tab by index.
-		 *
-		 * @method activateTab
-		 * @param {Number} idx Index of the tab to activate.
-		 */
+			* Activates the specified tab by index.
+			*
+			* @method activateTab
+			* @param {Number} idx Index of the tab to activate.
+			*/
 		activateTab: function(idx) {
 			var activeTabElm;
 
@@ -38194,11 +38194,11 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, tabsHtml = '', prefix = self.classPrefix;
 
@@ -38232,10 +38232,10 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -38260,13 +38260,13 @@ define("tinymce/ui/TabPanel", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, rect, minW, minH;
 
@@ -38310,22 +38310,22 @@ define("tinymce/ui/TabPanel", [
 // Included from: classes/ui/TextBox.js
 
 /**
- * TextBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TextBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new textbox.
- *
- * @-x-less TextBox.less
- * @class tinymce.ui.TextBox
- * @extends tinymce.ui.Widget
- */
+	* Creates a new textbox.
+	*
+	* @-x-less TextBox.less
+	* @class tinymce.ui.TextBox
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/TextBox", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DomUtils"
@@ -38334,14 +38334,14 @@ define("tinymce/ui/TextBox", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Boolean} multiline True if the textbox is a multiline control.
-		 * @setting {Number} maxLength Max length for the textbox.
-		 * @setting {Number} size Size of the textbox in characters.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Boolean} multiline True if the textbox is a multiline control.
+			* @setting {Number} maxLength Max length for the textbox.
+			* @setting {Number} size Size of the textbox in characters.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -38370,12 +38370,12 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Getter/setter function for the disabled state.
-		 *
-		 * @method value
-		 * @param {Boolean} [state] State to be set.
-		 * @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
-		 */
+			* Getter/setter function for the disabled state.
+			*
+			* @method value
+			* @param {Boolean} [state] State to be set.
+			* @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
+			*/
 		disabled: function(state) {
 			var self = this;
 
@@ -38387,12 +38387,12 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Getter/setter function for the control value.
-		 *
-		 * @method value
-		 * @param {String} [value] Value to be set.
-		 * @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
-		 */
+			* Getter/setter function for the control value.
+			*
+			* @method value
+			* @param {String} [value] Value to be set.
+			* @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
+			*/
 		value: function(value) {
 			var self = this;
 
@@ -38414,10 +38414,10 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, style, rect, borderBox, borderW = 0, borderH = 0, lastRepaintRect;
 
@@ -38462,11 +38462,11 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, settings = self.settings, value = self.encode(self._value, false), extraAttrs = '';
 
@@ -38503,10 +38503,10 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 
@@ -38527,21 +38527,21 @@ define("tinymce/ui/TextBox", [
 // Included from: classes/ui/Throbber.js
 
 /**
- * Throbber.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Throbber.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class enables you to display a Throbber for any element.
- *
- * @-x-less Throbber.less
- * @class tinymce.ui.Throbber
- */
+	* This class enables you to display a Throbber for any element.
+	*
+	* @-x-less Throbber.less
+	* @class tinymce.ui.Throbber
+	*/
 define("tinymce/ui/Throbber", [
 	"tinymce/ui/DomUtils",
 	"tinymce/ui/Control"
@@ -38549,22 +38549,22 @@ define("tinymce/ui/Throbber", [
 	"use strict";
 
 	/**
-	 * Constructs a new throbber.
-	 *
-	 * @constructor
-	 * @param {Element} elm DOM Html element to display throbber in.
-	 * @param {Boolean} inline Optional true/false state if the throbber should be appended to end of element for infinite scroll.
-	 */
+		* Constructs a new throbber.
+		*
+		* @constructor
+		* @param {Element} elm DOM Html element to display throbber in.
+		* @param {Boolean} inline Optional true/false state if the throbber should be appended to end of element for infinite scroll.
+		*/
 	return function(elm, inline) {
 		var self = this, state, classPrefix = Control.classPrefix;
 
 		/**
-		 * Shows the throbber.
-		 *
-		 * @method show
-		 * @param {Number} [time] Time to wait before showing.
-		 * @return {tinymce.ui.Throbber} Current throbber instance.
-		 */
+			* Shows the throbber.
+			*
+			* @method show
+			* @param {Number} [time] Time to wait before showing.
+			* @return {tinymce.ui.Throbber} Current throbber instance.
+			*/
 		self.show = function(time) {
 			self.hide();
 
@@ -38582,11 +38582,11 @@ define("tinymce/ui/Throbber", [
 		};
 
 		/**
-		 * Hides the throbber.
-		 *
-		 * @method hide
-		 * @return {tinymce.ui.Throbber} Current throbber instance.
-		 */
+			* Hides the throbber.
+			*
+			* @method hide
+			* @return {tinymce.ui.Throbber} Current throbber instance.
+			*/
 		self.hide = function() {
 			var child = elm.lastChild;
 

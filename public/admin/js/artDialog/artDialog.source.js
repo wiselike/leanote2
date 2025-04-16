@@ -1,218 +1,218 @@
 /*!
- * artDialog 4.1.7
- * Date: 2013-03-03 08:04
- * http://code.google.com/p/artdialog/
- * (c) 2009-2012 TangBin, http://www.planeArt.cn
- *
- * This is licensed under the GNU LGPL, version 2.1 or later.
- * For details, see: http://creativecommons.org/licenses/LGPL/2.1/
- */
- 
+	* artDialog 4.1.7
+	* Date: 2013-03-03 08:04
+	* http://code.google.com/p/artdialog/
+	* (c) 2009-2012 TangBin, http://www.planeArt.cn
+	*
+	* This is licensed under the GNU LGPL, version 2.1 or later.
+	* For details, see: http://creativecommons.org/licenses/LGPL/2.1/
+	*/
+
 ;(function (window, undefined) {
 //if (window.jQuery) return jQuery;
 
 var $ = window.art = function (selector, context) {
-    	return new $.fn.init(selector, context);
+	return new $.fn.init(selector, context);
 	},
-    readyBound = false,
-    readyList = [],
-    DOMContentLoaded,
+	readyBound = false,
+	readyList = [],
+	DOMContentLoaded,
 	isOpacity = 'opacity' in document.documentElement.style,
 	quickExpr = /^(?:[^<]*(<[\w\W]+>)[^>]*$|#([\w\-]+)$)/,
 	rclass = /[\n\t]/g,
 	ralpha = /alpha\([^)]*\)/i,
 	ropacity = /opacity=([^)]*)/,
-    rfxnum = /^([+-]=)?([\d+-.]+)(.*)$/;
+	rfxnum = /^([+-]=)?([\d+-.]+)(.*)$/;
 
 if (window.$ === undefined) window.$ = $;
 $.fn = $.prototype = {
 	constructor: $,
-	
-    /**
-	 * DOM 就绪
-	 * @param	{Function}	回调函数
-	 */
-    ready: function (callback) {
-        $.bindReady();
 
-        if ($.isReady) {
-            callback.call(document, $);
-        } else if (readyList) {
-            readyList.push(callback);
-        };
+	/**
+		* DOM 就绪
+		* @param	{Function}	回调函数
+		*/
+	ready: function (callback) {
+		$.bindReady();
 
-        return this;
-    },
+		if ($.isReady) {
+			callback.call(document, $);
+		} else if (readyList) {
+			readyList.push(callback);
+		};
 
-    /**
-	 * 判断样式类是否存在
-	 * @param	{String}	名称
-	 * @return	{Boolean}
-	 */
-    hasClass: function (name) {		
+		return this;
+	},
+
+	/**
+		* 判断样式类是否存在
+		* @param	{String}	名称
+		* @return	{Boolean}
+		*/
+	hasClass: function (name) {
 		var className = ' ' + name + ' ';
 		if ((' ' + this[0].className + ' ').replace(rclass, ' ')
 		.indexOf(className) > -1) return true;
 
 		return false;
-    },
+	},
 
-    /**
-	 * 添加样式类
-	 * @param	{String}	名称
-	 */
-    addClass: function (name) {
-        if (!this.hasClass(name)) this[0].className += ' ' + name;
+	/**
+		* 添加样式类
+		* @param	{String}	名称
+		*/
+	addClass: function (name) {
+		if (!this.hasClass(name)) this[0].className += ' ' + name;
 
-        return this;
-    },
+		return this;
+	},
 
-    /**
-	 * 移除样式类
-	 * @param	{String}	名称
-	 */
-    removeClass: function (name) {
-        var elem = this[0];
+	/**
+		* 移除样式类
+		* @param	{String}	名称
+		*/
+	removeClass: function (name) {
+		var elem = this[0];
 
-        if (!name) {
-            elem.className = '';
-        } else
+		if (!name) {
+			elem.className = '';
+		} else
 		if (this.hasClass(name)) {
-            elem.className = elem.className.replace(name, ' ');
-        };
+			elem.className = elem.className.replace(name, ' ');
+		};
 
-        return this;
-    },
+		return this;
+	},
 
-    /**
-	 * 读写样式<br />
-     * css(name) 访问第一个匹配元素的样式属性<br />
-     * css(properties) 把一个"名/值对"对象设置为所有匹配元素的样式属性<br />
-     * css(name, value) 在所有匹配的元素中，设置一个样式属性的值<br />
-	 */
-    css: function (name, value) {
-        var i, elem = this[0], obj = arguments[0];
+	/**
+		* 读写样式<br />
+		* css(name) 访问第一个匹配元素的样式属性<br />
+		* css(properties) 把一个"名/值对"对象设置为所有匹配元素的样式属性<br />
+		* css(name, value) 在所有匹配的元素中，设置一个样式属性的值<br />
+		*/
+	css: function (name, value) {
+		var i, elem = this[0], obj = arguments[0];
 
-        if (typeof name === 'string') {
-            if (value === undefined) {
-                return $.css(elem, name);
-            } else {
-                name === 'opacity' ?
+		if (typeof name === 'string') {
+			if (value === undefined) {
+				return $.css(elem, name);
+			} else {
+				name === 'opacity' ?
 					$.opacity.set(elem, value) :
 					elem.style[name] = value;
-            };
-        } else {
-            for (i in obj) {
+				};
+			} else {
+				for (i in obj) {
 				i === 'opacity' ?
 					$.opacity.set(elem, obj[i]) :
 					elem.style[i] = obj[i];
 			};
-        };
+		};
 
-        return this;
-    },
-	
+		return this;
+	},
+
 	/** 显示元素 */
 	show: function () {
 		return this.css('display', 'block');
 	},
-	
+
 	/** 隐藏元素 */
 	hide: function () {
 		return this.css('display', 'none');
 	},
 
-    /**
-	 * 获取相对文档的坐标
-	 * @return	{Object}	返回left、top的数值
-	 */
-    offset: function () {
-        var elem = this[0],
-            box = elem.getBoundingClientRect(),
-            doc = elem.ownerDocument,
-            body = doc.body,
-            docElem = doc.documentElement,
-            clientTop = docElem.clientTop || body.clientTop || 0,
-            clientLeft = docElem.clientLeft || body.clientLeft || 0,
-            top = box.top + (self.pageYOffset || docElem.scrollTop) - clientTop,
-            left = box.left + (self.pageXOffset || docElem.scrollLeft) - clientLeft;
-
-        return {
-            left: left,
-            top: top
-        };
-    },
-	
 	/**
-	 * 读写HTML - (不支持文本框)
-	 * @param	{String}	内容
-	 */
+		* 获取相对文档的坐标
+		* @return	{Object}	返回left、top的数值
+		*/
+	offset: function () {
+		var elem = this[0],
+			box = elem.getBoundingClientRect(),
+			doc = elem.ownerDocument,
+			body = doc.body,
+			docElem = doc.documentElement,
+			clientTop = docElem.clientTop || body.clientTop || 0,
+			clientLeft = docElem.clientLeft || body.clientLeft || 0,
+			top = box.top + (self.pageYOffset || docElem.scrollTop) - clientTop,
+			left = box.left + (self.pageXOffset || docElem.scrollLeft) - clientLeft;
+
+		return {
+			left: left,
+			top: top
+		};
+	},
+
+	/**
+		* 读写HTML - (不支持文本框)
+		* @param	{String}	内容
+		*/
 	html: function (content) {
 		var elem = this[0];
-		
+
 		if (content === undefined) return elem.innerHTML;
 		$.cleanData(elem.getElementsByTagName('*'));
 		elem.innerHTML = content;
-		
+
 		return this;
 	},
-	
+
 	/**
-	 * 移除节点
-	 */
+		* 移除节点
+		*/
 	remove: function () {
 		var elem = this[0];
 
 		$.cleanData(elem.getElementsByTagName('*'));
 		$.cleanData([elem]);
 		elem.parentNode.removeChild(elem);
-		
+
 		return this;
 	},
 
 	/**
-	 * 事件绑定
-	 * @param	{String}	类型
-	 * @param	{Function}	要绑定的函数
-	 */
+		* 事件绑定
+		* @param	{String}	类型
+		* @param	{Function}	要绑定的函数
+		*/
 	bind: function (type, callback) {
 		$.event.add(this[0], type, callback);
 		return this;
 	},
 
 	/**
-	 * 移除事件
-	 * @param	{String}	类型
-	 * @param	{Function}	要卸载的函数
-	 */
+		* 移除事件
+		* @param	{String}	类型
+		* @param	{Function}	要卸载的函数
+		*/
 	unbind: function(type, callback) {
 		$.event.remove(this[0], type, callback);
 		return this;
 	}
-	
+
 };
 
 $.fn.init = function (selector, context) {
 	var match, elem;
 	context = context || document;
-	
+
 	if (!selector) return this;
-	
+
 	if (selector.nodeType) {
 		this[0] = selector;
 		return this;
 	};
-	
+
 	if (selector === 'body' && context.body) {
 		this[0] = context.body;
 		return this;
 	};
-	
+
 	if (selector === 'head' || selector === 'html') {
 		this[0] = context.getElementsByTagName(selector)[0];
 		return this;
 	};
-		
+
 	if (typeof selector === 'string') {
 		match = quickExpr.exec(selector);
 
@@ -222,11 +222,11 @@ $.fn.init = function (selector, context) {
 			return this;
 		};
 	};
-	
+
 	if (typeof selector === 'function') return $(document).ready(selector);
-	
+
 	this[0] = selector;
-	
+
 	return this;
 };
 $.fn.init.prototype = $.fn;
@@ -241,14 +241,14 @@ $.isWindow = function (obj) {
 
 /** 数组判定 */
 $.isArray = function (obj) {
-    return Object.prototype.toString.call(obj) === '[object Array]';
+	return Object.prototype.toString.call(obj) === '[object Array]';
 };
 
 /**
- * 搜索子元素
- * 注意：只支持nodeName或.className的形式，并且只返回第一个元素
- * @param	{String}
- */
+	* 搜索子元素
+	* 注意：只支持nodeName或.className的形式，并且只返回第一个元素
+	* @param	{String}
+	*/
 $.fn.find = function (expr) {
 	var value, elem = this[0],
 		className = expr.split('.')[1];
@@ -262,7 +262,7 @@ $.fn.find = function (expr) {
 	} else {
 		value = elem.getElementsByTagName(expr);
 	};
-	
+
 	return $(value[0]);
 };
 function getElementsByClassName (className, node, tag) {
@@ -274,7 +274,7 @@ function getElementsByClassName (className, node, tag) {
 		els = node.getElementsByTagName(tag),
 		elsLen = els.length,
 		pattern = new RegExp("(^|\\s)" + className + "(\\s|$)");
-		
+
 	for (; i < elsLen; i ++) {
 		if (pattern.test(els[i].className)) {
 			classElements[j] = els[i];
@@ -285,51 +285,51 @@ function getElementsByClassName (className, node, tag) {
 };
 
 /**
- * 遍历
- * @param {Object}
- * @param {Function}
- */
+	* 遍历
+	* @param {Object}
+	* @param {Function}
+	*/
 $.each = function (obj, callback) {
-    var name, i = 0,
-        length = obj.length,
-        isObj = length === undefined;
+	var name, i = 0,
+		length = obj.length,
+		isObj = length === undefined;
 
-    if (isObj) {
-        for (name in obj) {
-            if (callback.call(obj[name], name, obj[name]) === false) break;
-        };
-    } else {
-        for (var value = obj[0];
+	if (isObj) {
+		for (name in obj) {
+			if (callback.call(obj[name], name, obj[name]) === false) break;
+		};
+	} else {
+		for (var value = obj[0];
 		i < length && callback.call(value, i, value) !== false;
 		value = obj[++i]) {};
-    };
-	
+	};
+
 	return obj;
 };
 
 /**
- * 读写缓存
- * @param		{HTMLElement}	元素
- * @param		{String}		缓存名称
- * @param		{Any}			数据
- * @return		{Any}			如果无参数data则返回缓存数据
- */
+	* 读写缓存
+	* @param		{HTMLElement}	元素
+	* @param		{String}		缓存名称
+	* @param		{Any}			数据
+	* @return		{Any}			如果无参数data则返回缓存数据
+	*/
 $.data = function (elem, name, data) {
 	var cache = $.cache,
 		id = uuid(elem);
-	
+
 	if (name === undefined) return cache[id];
 	if (!cache[id]) cache[id] = {};
 	if (data !== undefined) cache[id][name] = data;
-	
+
 	return cache[id][name];
 };
 
 /**
- * 删除缓存
- * @param		{HTMLElement}	元素
- * @param		{String}		缓存名称
- */
+	* 删除缓存
+	* @param		{HTMLElement}	元素
+	* @param		{String}		缓存名称
+	*/
 $.removeData = function (elem, name) {
 	var empty = true,
 		expando = $.expando,
@@ -366,58 +366,58 @@ function uuid (elem) {
 
 
 /**
- * 事件机制
- * @namespace
- * @requires	[$.data, $.removeData]
- */
+	* 事件机制
+	* @namespace
+	* @requires	[$.data, $.removeData]
+	*/
 $.event = {
-	
+
 	/**
-	 * 添加事件
-	 * @param		{HTMLElement}	元素
-	 * @param		{String}		事件类型
-	 * @param		{Function}		要添加的函数
-	 */
+		* 添加事件
+		* @param		{HTMLElement}	元素
+		* @param		{String}		事件类型
+		* @param		{Function}		要添加的函数
+		*/
 	add: function (elem, type, callback) {
 		var cache, listeners,
 			that = $.event,
 			data = $.data(elem, '@events') || $.data(elem, '@events', {});
-		
+
 		cache = data[type] = data[type] || {};
 		listeners = cache.listeners = cache.listeners || [];
 		listeners.push(callback);
-		
+
 		if (!cache.handler) {
 			cache.elem = elem;
 			cache.handler = that.handler(cache);
-			
+
 			elem.addEventListener
 			? elem.addEventListener(type, cache.handler, false)
 			: elem.attachEvent('on' + type, cache.handler);
 		};
 	},
-	
+
 	/**
-	 * 卸载事件
-	 * @param		{HTMLElement}	元素
-	 * @param		{String}		事件类型
-	 * @param		{Function}		要卸载的函数
-	 */
+		* 卸载事件
+		* @param		{HTMLElement}	元素
+		* @param		{String}		事件类型
+		* @param		{Function}		要卸载的函数
+		*/
 	remove: function (elem, type, callback) {
 		var i, cache, listeners,
 			that = $.event,
 			empty = true,
 			data = $.data(elem, '@events');
-		
+
 		if (!data) return;
 		if (!type) {
 			for (i in data) that.remove(elem, i);
 			return;
 		};
-		
+
 		cache = data[type];
 		if (!cache) return;
-		
+
 		listeners = cache.listeners;
 		if (callback) {
 			for (i = 0; i < listeners.length; i ++) {
@@ -426,19 +426,19 @@ $.event = {
 		} else {
 			cache.listeners = [];
 		};
-		
+
 		if (cache.listeners.length === 0) {
 			elem.removeEventListener
 			? elem.removeEventListener(type, cache.handler, false)
 			: elem.detachEvent('on' + type, cache.handler);
-			
+
 			delete data[type];
 			cache = $.data(elem, '@events');
 			for (var n in cache) empty = false;
 			if (empty) $.removeData(elem, '@events');
 		};
 	},
-	
+
 	/** @inner 事件句柄 */
 	handler: function (cache) {
 		return function (event) {
@@ -451,11 +451,11 @@ $.event = {
 			};
 		};
 	},
-	
+
 	/** @inner Event对象兼容处理 */
 	fix: function (event) {
 		if (event.target) return event;
-		
+
 		var event2 = {
 			target: event.srcElement || document,
 			preventDefault: function () {event.returnValue = false},
@@ -465,20 +465,20 @@ $.event = {
 		for (var i in event) event2[i] = event[i];
 		return event2;
 	}
-	
+
 };
 
 /**
- * 清理元素集的事件与缓存
- * @requires	[$.removeData, $.event]
- * @param		{HTMLCollection}	元素集
- */
+	* 清理元素集的事件与缓存
+	* @requires	[$.removeData, $.event]
+	* @param		{HTMLCollection}	元素集
+	*/
 $.cleanData = function (elems) {
 	var i = 0, elem,
 		len = elems.length,
 		removeEvent = $.event.remove,
 		removeData = $.removeData;
-	
+
 	for (; i < len; i ++) {
 		elem = elems[i];
 		removeEvent(elem);
@@ -489,83 +489,83 @@ $.cleanData = function (elems) {
 // DOM就绪事件
 $.isReady = false;
 $.ready = function () {
-    if (!$.isReady) {
-        if (!document.body) return setTimeout($.ready, 13);
-        $.isReady = true;
+	if (!$.isReady) {
+		if (!document.body) return setTimeout($.ready, 13);
+		$.isReady = true;
 
-        if (readyList) {
-            var fn, i = 0;
-            while ((fn = readyList[i++])) {
-                fn.call(document, $);
-            };
-            readyList = null;
-        };
-    };
+		if (readyList) {
+			var fn, i = 0;
+			while ((fn = readyList[i++])) {
+				fn.call(document, $);
+			};
+			readyList = null;
+		};
+	};
 };
 $.bindReady = function () {
-    if (readyBound) return;
+	if (readyBound) return;
 
-    readyBound = true;
+	readyBound = true;
 
-    if (document.readyState === 'complete') {
-        return $.ready();
-    };
+	if (document.readyState === 'complete') {
+		return $.ready();
+	};
 
-    if (document.addEventListener) {
-        document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
-        window.addEventListener('load', $.ready, false);
-    } else if (document.attachEvent) {
-        document.attachEvent('onreadystatechange', DOMContentLoaded);
-        window.attachEvent('onload', $.ready);
-        var toplevel = false;
-        try {
-            toplevel = window.frameElement == null;
-        } catch (e) {};
+	if (document.addEventListener) {
+		document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
+		window.addEventListener('load', $.ready, false);
+	} else if (document.attachEvent) {
+		document.attachEvent('onreadystatechange', DOMContentLoaded);
+		window.attachEvent('onload', $.ready);
+		var toplevel = false;
+		try {
+			toplevel = window.frameElement == null;
+		} catch (e) {};
 
-        if (document.documentElement.doScroll && toplevel) {
-            doScrollCheck();
-        };
-    };
+		if (document.documentElement.doScroll && toplevel) {
+			doScrollCheck();
+		};
+	};
 };
 
 if (document.addEventListener) {
-    DOMContentLoaded = function () {
-        document.removeEventListener('DOMContentLoaded', DOMContentLoaded, false);
-        $.ready();
-    };
+	DOMContentLoaded = function () {
+		document.removeEventListener('DOMContentLoaded', DOMContentLoaded, false);
+		$.ready();
+	};
 } else if (document.attachEvent) {
-    DOMContentLoaded = function () {
-        if (document.readyState === 'complete') {
-            document.detachEvent('onreadystatechange', DOMContentLoaded);
-            $.ready();
-        };
-    };
+	DOMContentLoaded = function () {
+		if (document.readyState === 'complete') {
+			document.detachEvent('onreadystatechange', DOMContentLoaded);
+			$.ready();
+		};
+	};
 };
 
 function doScrollCheck () {
-    if ($.isReady) return;
+	if ($.isReady) return;
 
-    try {
-        document.documentElement.doScroll('left');
-    } catch (e) {
-        setTimeout(doScrollCheck, 1);
-        return;
-    };
-    $.ready();
+	try {
+		document.documentElement.doScroll('left');
+	} catch (e) {
+		setTimeout(doScrollCheck, 1);
+		return;
+	};
+	$.ready();
 };
 
 // 获取css
 $.css = 'defaultView' in document && 'getComputedStyle' in document.defaultView ?
 	function (elem, name) {
 		return document.defaultView.getComputedStyle(elem, false)[name];
-} :
+	} :
 	function (elem, name) {
 		var ret = name === 'opacity' ? $.opacity.get(elem) : elem.currentStyle[name];
 		return ret || '';
-};
+	};
 
-// 跨浏览器处理opacity
-$.opacity = {
+	// 跨浏览器处理opacity
+	$.opacity = {
 	get: function (elem) {
 		return isOpacity ?
 			document.defaultView.getComputedStyle(elem, false).opacity :
@@ -590,16 +590,16 @@ $.opacity = {
 };
 
 /**
- * 获取滚动条位置 - [不支持写入]
- * $.fn.scrollLeft, $.fn.scrollTop
- * @example		获取文档垂直滚动条：$(document).scrollTop()
- * @return		{Number}	返回滚动条位置
- */
+	* 获取滚动条位置 - [不支持写入]
+	* $.fn.scrollLeft, $.fn.scrollTop
+	* @example		获取文档垂直滚动条：$(document).scrollTop()
+	* @return		{Number}	返回滚动条位置
+	*/
 $.each(['Left', 'Top'], function (i, name) {
-    var method = 'scroll' + name;
+	var method = 'scroll' + name;
 
-    $.fn[method] = function () {
-        var elem = this[0], win;
+	$.fn[method] = function () {
+		var elem = this[0], win;
 
 		win = getWindow(elem);
 		return win ?
@@ -607,32 +607,32 @@ $.each(['Left', 'Top'], function (i, name) {
 				win[i ? 'pageYOffset' : 'pageXOffset'] :
 				win.document.documentElement[method] || win.document.body[method] :
 			elem[method];
-    };
-});
+		};
+	});
 
-function getWindow (elem) {
+	function getWindow (elem) {
 	return $.isWindow(elem) ?
 		elem :
 		elem.nodeType === 9 ?
 			elem.defaultView || elem.parentWindow :
 			false;
-};
+		};
 
-/**
- * 获取窗口或文档尺寸 - [只支持window与document读取]
- * @example 
-   获取文档宽度：$(document).width()
-   获取可视范围：$(window).width()
- * @return	{Number}
- */
-$.each(['Height', 'Width'], function (i, name) {
-    var type = name.toLowerCase();
+		/**
+			* 获取窗口或文档尺寸 - [只支持window与document读取]
+			* @example
+				获取文档宽度：$(document).width()
+				获取可视范围：$(window).width()
+			* @return	{Number}
+			*/
+		$.each(['Height', 'Width'], function (i, name) {
+			var type = name.toLowerCase();
 
-    $.fn[type] = function (size) {
-        var elem = this[0];
-        if (!elem) {
-            return size == null ? null : this;
-        };
+			$.fn[type] = function (size) {
+				var elem = this[0];
+				if (!elem) {
+					return size == null ? null : this;
+				};
 
 		return $.isWindow(elem) ?
 			elem.document.documentElement['client' + name] || elem.document.body['client' + name] :
@@ -642,31 +642,31 @@ $.each(['Height', 'Width'], function (i, name) {
 					elem.body['scroll' + name], elem.documentElement['scroll' + name],
 					elem.body['offset' + name], elem.documentElement['offset' + name]
 				) : null;
-    };
+			};
 
-});
+		});
 
-/**
- * 简单ajax支持
- * @example
- * $.ajax({
- * 		url: url,
- * 		success: callback,
- * 		cache: cache
- * });
- */
-$.ajax = function (config) {
+		/**
+			* 简单ajax支持
+			* @example
+			* $.ajax({
+			* 		url: url,
+			* 		success: callback,
+			* 		cache: cache
+			* });
+			*/
+		$.ajax = function (config) {
 	var ajax = window.XMLHttpRequest ?
 			new XMLHttpRequest() :
 			new ActiveXObject('Microsoft.XMLHTTP'),
 		url = config.url;
-	
+
 	if (config.cache === false) {
 		var ts = + new Date,
 			ret = url.replace(/([?&])_=[^&]*/, "$1_=" + ts );
 		url = ret + ((ret === url) ? (/\?/.test(url) ? "&" : "?") + "_=" + ts : "");
 	};
-	
+
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState === 4 && ajax.status === 200) {
 			config.success && config.success(ajax.responseText);
@@ -679,13 +679,13 @@ $.ajax = function (config) {
 
 /** 动画引擎 - [不支持链式列队操作] */
 $.fn.animate = function (prop, speed, easing, callback) {
-	
+
 	speed = speed || 400;
 	if (typeof easing === 'function') callback = easing;
 	easing = easing && $.easing[easing] ? easing : 'swing';
-	
-    var elem = this[0], overflow,
-        fx, parts, start, end, unit,
+
+	var elem = this[0], overflow,
+		fx, parts, start, end, unit,
 		opt = {
 			speed: speed,
 			easing: easing,
@@ -694,88 +694,88 @@ $.fn.animate = function (prop, speed, easing, callback) {
 				callback && callback();
 			}
 		};
-	
+
 	opt.curAnim = {};
 	$.each(prop, function (name, val) {
 		opt.curAnim[name] = val;
 	});
-	
-    $.each(prop, function (name, val) {
-        fx = new $.fx(elem, opt, name);
-        parts = rfxnum.exec(val);
-        start = parseFloat(name === 'opacity'
+
+	$.each(prop, function (name, val) {
+		fx = new $.fx(elem, opt, name);
+		parts = rfxnum.exec(val);
+		start = parseFloat(name === 'opacity'
 			|| (elem.style && elem.style[name] != null) ?
 			$.css(elem, name) :
 			elem[name]);
-        end = parseFloat(parts[2]);
-        unit = parts[3];
+		end = parseFloat(parts[2]);
+		unit = parts[3];
 		if (name === 'height' || name === 'width') {
 			end = Math.max(0, end);
 			overflow = [elem.style.overflow,
 			elem.style.overflowX, elem.style.overflowY];
 		};
-		
-        fx.custom(start, end, unit);
-    });
-	
+
+		fx.custom(start, end, unit);
+	});
+
 	if (overflow != null) elem.style.overflow = 'hidden';
 
-    return this;
+	return this;
 };
 
 $.timers = [];
 $.fx = function (elem, options, prop) {
-    this.elem = elem;
-    this.options = options;
-    this.prop = prop;
+	this.elem = elem;
+	this.options = options;
+	this.prop = prop;
 };
 
 $.fx.prototype = {
-    custom: function (from, to, unit) {
+	custom: function (from, to, unit) {
 		var that = this;
-        that.startTime = $.fx.now();
-        that.start = from;
-        that.end = to;
-        that.unit = unit;
-        that.now = that.start;
-        that.state = that.pos = 0;
+		that.startTime = $.fx.now();
+		that.start = from;
+		that.end = to;
+		that.unit = unit;
+		that.now = that.start;
+		that.state = that.pos = 0;
 
-        function t() {
-            return that.step();
-        };
-        t.elem = that.elem;
+		function t() {
+			return that.step();
+		};
+		t.elem = that.elem;
 		t();
-        $.timers.push(t);
-        if (!$.timerId) $.timerId = setInterval($.fx.tick, 13);
-    },
-    step: function () {
-        var that = this, t = $.fx.now(), done = true;
-		
-        if (t >= that.options.speed + that.startTime) {
-            that.now = that.end;
-            that.state = that.pos = 1;
-            that.update();
-			
+		$.timers.push(t);
+		if (!$.timerId) $.timerId = setInterval($.fx.tick, 13);
+	},
+	step: function () {
+		var that = this, t = $.fx.now(), done = true;
+
+		if (t >= that.options.speed + that.startTime) {
+			that.now = that.end;
+			that.state = that.pos = 1;
+			that.update();
+
 			that.options.curAnim[that.prop] = true;
 			for (var i in that.options.curAnim) {
 				if (that.options.curAnim[i] !== true) {
 					done = false;
 				};
 			};
-			
+
 			if (done) that.options.callback.call(that.elem);
-			
-            return false;
-        } else {
-            var n = t - that.startTime;
-            that.state = n / that.options.speed;
-            that.pos = $.easing[that.options.easing](that.state, n, 0, 1, that.options.speed);
-            that.now = that.start + ((that.end - that.start) * that.pos);
-            that.update();
-            return true;
-        };
-    },
-    update: function () {
+
+			return false;
+		} else {
+			var n = t - that.startTime;
+			that.state = n / that.options.speed;
+			that.pos = $.easing[that.options.easing](that.state, n, 0, 1, that.options.speed);
+			that.now = that.start + ((that.end - that.start) * that.pos);
+			that.update();
+			return true;
+		};
+	},
+	update: function () {
 		var that = this;
 		if (that.prop === 'opacity') {
 			$.opacity.set(that.elem, that.now);
@@ -785,41 +785,41 @@ $.fx.prototype = {
 		} else {
 			that.elem[that.prop] = that.now;
 		};
-    }
+	}
 };
 
 $.fx.now = function () {
-    return + new Date;
+	return + new Date;
 };
 
 $.easing = {
-    linear: function (p, n, firstNum, diff) {
-        return firstNum + diff * p;
-    },
-    swing: function (p, n, firstNum, diff) {
-        return ((-Math.cos(p * Math.PI) / 2) + 0.5) * diff + firstNum;
-    }
+	linear: function (p, n, firstNum, diff) {
+		return firstNum + diff * p;
+	},
+	swing: function (p, n, firstNum, diff) {
+		return ((-Math.cos(p * Math.PI) / 2) + 0.5) * diff + firstNum;
+	}
 };
 
 $.fx.tick = function () {
 	var timers = $.timers;
-    for (var i = 0; i < timers.length; i++) {
-        !timers[i]() && timers.splice(i--, 1);
-    };
-    !timers.length && $.fx.stop();
+	for (var i = 0; i < timers.length; i++) {
+		!timers[i]() && timers.splice(i--, 1);
+	};
+	!timers.length && $.fx.stop();
 };
 
 $.fx.stop = function () {
-    clearInterval($.timerId);
-    $.timerId = null;
+	clearInterval($.timerId);
+	$.timerId = null;
 };
 
 $.fn.stop = function () {
 	var timers = $.timers;
-    for (var i = timers.length - 1; i >= 0; i--) {
-    	if (timers[i].elem === this[0]) timers.splice(i, 1);
+	for (var i = timers.length - 1; i >= 0; i--) {
+		if (timers[i].elem === this[0]) timers.splice(i, 1);
 	};
-    return this;
+	return this;
 };
 
 //-------------end
@@ -847,34 +847,34 @@ var _box, _thisScript, _skin, _path,
 
 var artDialog = function (config, ok, cancel) {
 	config = config || {};
-	
+
 	if (typeof config === 'string' || config.nodeType === 1) {
 		config = {content: config, fixed: !_isMobile};
 	};
-	
+
 	var api,
 		defaults = artDialog.defaults,
 		elem = config.follow = this.nodeType === 1 && this || config.follow;
-		
+
 	// 合并默认配置
 	for (var i in defaults) {
-		if (config[i] === undefined) config[i] = defaults[i];		
+		if (config[i] === undefined) config[i] = defaults[i];
 	};
-	
+
 	// 兼容v4.1.0之前的参数，未来版本将删除此
 	$.each({ok:"yesFn",cancel:"noFn",close:"closeFn",init:"initFn",okVal:"yesText",cancelVal:"noText"},
 	function(i,o){config[i]=config[i]!==undefined?config[i]:config[o]});
-	
+
 	// 返回跟随模式或重复定义的ID
 	if (typeof elem === 'string') elem = $(elem)[0];
 	config.id = elem && elem[_expando + 'follow'] || config.id || _expando + _count;
 	api = artDialog.list[config.id];
 	if (elem && api) return api.follow(elem).zIndex().focus();
 	if (api) return api.zIndex().focus();
-	
+
 	// 目前主流移动设备对fixed支持不好
 	if (_isMobile) config.fixed = false;
-	
+
 	// 按钮队列
 	if (!$.isArray(config.button)) {
 		config.button = config.button ? [config.button] : [];
@@ -890,32 +890,32 @@ var artDialog = function (config, ok, cancel) {
 		name: config.cancelVal,
 		callback: config.cancel
 	});
-	
+
 	// zIndex全局配置
 	artDialog.defaults.zIndex = config.zIndex;
-	
+
 	_count ++;
-	
+
 	return artDialog.list[config.id] = _box ?
 		_box._init(config) : new artDialog.fn._init(config);
-};
+	};
 
-artDialog.fn = artDialog.prototype = {
+	artDialog.fn = artDialog.prototype = {
 
 	version: '4.1.7',
-	
+
 	closed: true,
-	
+
 	_init: function (config) {
 		var that = this, DOM,
 			icon = config.icon,
 			iconBg = icon && (_isIE6 ? {png: 'icons/' + icon + '.png'}
 			: {backgroundImage: 'url(\'' + config.path + '/skins/icons/' + icon + '.png\')'});
-		
-        that.closed = false;
+
+		that.closed = false;
 		that.config = config;
 		that.DOM = DOM = that.DOM || that._getDOM();
-		
+
 		DOM.wrap.addClass(config.skin);
 		DOM.close[config.cancel === false ? 'hide' : 'show']();
 		DOM.icon[0].style.display = icon ? '' : 'none';
@@ -923,34 +923,34 @@ artDialog.fn = artDialog.prototype = {
 		DOM.se.css('cursor', config.resize ? 'se-resize' : 'auto');
 		DOM.title.css('cursor', config.drag ? 'move' : 'auto');
 		DOM.content.css('padding', config.padding);
-		
+
 		that[config.show ? 'show' : 'hide'](true)
 		that.button(config.button)
 		.title(config.title)
 		.content(config.content, true)
 		.size(config.width, config.height)
 		.time(config.time);
-		
+
 		config.follow
 		? that.follow(config.follow)
 		: that.position(config.left, config.top);
-		
+
 		that.zIndex().focus();
 		config.lock && that.lock();
-		
+
 		that._addEvent();
 		that._ie6PngFix();
 		_box = null;
-		
+
 		config.init && config.init.call(that, window);
 		return that;
 	},
-	
+
 	/**
-	 * 设置内容
-	 * @param	{String, HTMLElement}	内容 (可选)
-	 * @return	{this, HTMLElement}		如果无参数则返回内容容器DOM对象
-	 */
+		* 设置内容
+		* @param	{String, HTMLElement}	内容 (可选)
+		* @return	{this, HTMLElement}		如果无参数则返回内容容器DOM对象
+		*/
 	content: function (msg) {
 		var prev, next, parent, display,
 			that = this,
@@ -963,15 +963,15 @@ artDialog.fn = artDialog.prototype = {
 			cssWidth = wrap.style.width,
 			$content = DOM.content,
 			content = $content[0];
-		
+
 		that._elemBack && that._elemBack();
 		wrap.style.width = 'auto';
-		
+
 		if (msg === undefined) return content;
 		if (typeof msg === 'string') {
 			$content.html(msg);
 		} else if (msg && msg.nodeType === 1) {
-		
+
 			// 让传入的元素在对话框关闭后可以返回到原来的地方
 			display = msg.style.display;
 			prev = msg.previousSibling;
@@ -988,13 +988,13 @@ artDialog.fn = artDialog.prototype = {
 				msg.style.display = display;
 				that._elemBack = null;
 			};
-			
+
 			$content.html('');
 			content.appendChild(msg);
 			msg.style.display = 'block';
-			
+
 		};
-		
+
 		// 新增内容后调整位置
 		if (!arguments[1]) {
 			if (that.config.follow) {
@@ -1012,24 +1012,24 @@ artDialog.fn = artDialog.prototype = {
 			};
 			that._autoPositionType();
 		};
-		
+
 		that._ie6SelectFix();
 		that._runScript(content);
-		
+
 		return that;
 	},
-	
+
 	/**
-	 * 设置标题
-	 * @param	{String, Boolean}	标题内容. 为false则隐藏标题栏
-	 * @return	{this, HTMLElement}	如果无参数则返回内容器DOM对象
-	 */
+		* 设置标题
+		* @param	{String, Boolean}	标题内容. 为false则隐藏标题栏
+		* @return	{this, HTMLElement}	如果无参数则返回内容器DOM对象
+		*/
 	title: function (text) {
 		var DOM = this.DOM,
 			wrap = DOM.wrap,
 			title = DOM.title,
 			className = 'aui_state_noTitle';
-			
+
 		if (text === undefined) return title[0];
 		if (text === false) {
 			title.hide().html('');
@@ -1038,15 +1038,15 @@ artDialog.fn = artDialog.prototype = {
 			title.show().html(text || '');
 			wrap.removeClass(className);
 		};
-		
+
 		return this;
 	},
-	
+
 	/**
-	 * 位置(相对于可视区域)
-	 * @param	{Number, String}
-	 * @param	{Number, String}
-	 */
+		* 位置(相对于可视区域)
+		* @param	{Number, String}
+		* @param	{Number, String}
+		*/
 	position: function (left, top) {
 		var that = this,
 			config = that.config,
@@ -1062,11 +1062,11 @@ artDialog.fn = artDialog.prototype = {
 			ow = wrap.offsetWidth,
 			oh = wrap.offsetHeight,
 			style = wrap.style;
-		
+
 		if (left || left === 0) {
 			that._left = left.toString().indexOf('%') !== -1 ? left : null;
 			left = that._toNumber(left, ww - ow);
-			
+
 			if (typeof left === 'number') {
 				left = ie6Fixed ? (left += docLeft) : left + dl;
 				style.left = Math.max(left, dl) + 'px';
@@ -1074,11 +1074,11 @@ artDialog.fn = artDialog.prototype = {
 				style.left = left;
 			};
 		};
-		
+
 		if (top || top === 0) {
 			that._top = top.toString().indexOf('%') !== -1 ? top : null;
 			top = that._toNumber(top, wh - oh);
-			
+
 			if (typeof top === 'number') {
 				top = ie6Fixed ? (top += docTop) : top + dt;
 				style.top = Math.max(top, dt) + 'px';
@@ -1086,20 +1086,20 @@ artDialog.fn = artDialog.prototype = {
 				style.top = top;
 			};
 		};
-		
+
 		if (left !== undefined && top !== undefined) {
 			that._follow = null;
 			that._autoPositionType();
 		};
-		
+
 		return that;
 	},
 
 	/**
-	 *	尺寸
-	 *	@param	{Number, String}	宽度
-	 *	@param	{Number, String}	高度
-	 */
+		*	尺寸
+		*	@param	{Number, String}	宽度
+		*	@param	{Number, String}	高度
+		*/
 	size: function (width, height) {
 		var maxWidth, maxHeight, scaleWidth, scaleHeight,
 			that = this,
@@ -1109,13 +1109,13 @@ artDialog.fn = artDialog.prototype = {
 			main = DOM.main,
 			wrapStyle = wrap[0].style,
 			style = main[0].style;
-			
+
 		if (width) {
 			that._width = width.toString().indexOf('%') !== -1 ? width : null;
 			maxWidth = _$window.width() - wrap[0].offsetWidth + main[0].offsetWidth;
 			scaleWidth = that._toNumber(width, maxWidth);
 			width = scaleWidth;
-			
+
 			if (typeof width === 'number') {
 				wrapStyle.width = 'auto';
 				style.width = Math.max(that.config.minWidth, width) + 'px';
@@ -1125,42 +1125,42 @@ artDialog.fn = artDialog.prototype = {
 				width === 'auto' && wrap.css('width', 'auto');
 			};
 		};
-		
+
 		if (height) {
 			that._height = height.toString().indexOf('%') !== -1 ? height : null;
 			maxHeight = _$window.height() - wrap[0].offsetHeight + main[0].offsetHeight;
 			scaleHeight = that._toNumber(height, maxHeight);
 			height = scaleHeight;
-			
+
 			if (typeof height === 'number') {
 				style.height = Math.max(that.config.minHeight, height) + 'px';
 			} else if (typeof height === 'string') {
 				style.height = height;
 			};
 		};
-		
+
 		that._ie6SelectFix();
-		
+
 		return that;
 	},
-	
+
 	/**
-	 * 跟随元素
-	 * @param	{HTMLElement, String}
-	 */
+		* 跟随元素
+		* @param	{HTMLElement, String}
+		*/
 	follow: function (elem) {
 		var $elem, that = this, config = that.config;
-		
+
 		if (typeof elem === 'string' || elem && elem.nodeType === 1) {
 			$elem = $(elem);
 			elem = $elem[0];
 		};
-		
+
 		// 隐藏元素不可用
 		if (!elem || !elem.offsetWidth && !elem.offsetHeight) {
 			return that.position(that._left, that._top);
 		};
-		
+
 		var expando = _expando + 'follow',
 			winWidth = _$window.width(),
 			winHeight = _$window.height(),
@@ -1180,7 +1180,7 @@ artDialog.fn = artDialog.prototype = {
 			setTop = top + height,
 			dl = isFixed ? 0 : docLeft,
 			dt = isFixed ? 0 : docTop;
-		
+
 		setLeft = setLeft < dl ? left :
 		(setLeft + wrapWidth > winWidth) && (left - wrapWidth > dl)
 		? left - wrapWidth + width
@@ -1190,27 +1190,27 @@ artDialog.fn = artDialog.prototype = {
 		&& (top - wrapHeight > dt)
 		? top - wrapHeight
 		: setTop;
-		
+
 		style.left = setLeft + 'px';
 		style.top = setTop + 'px';
-		
+
 		that._follow && that._follow.removeAttribute(expando);
 		that._follow = elem;
 		elem[expando] = config.id;
 		that._autoPositionType();
 		return that;
 	},
-	
+
 	/**
-	 * 自定义按钮
-	 * @example
+		* 自定义按钮
+		* @example
 		button({
 			name: 'login',
 			callback: function () {},
 			disabled: false,
 			focus: true
 		}, .., ..)
-	 */
+	*/
 	button: function () {
 		var that = this,
 			ags = arguments,
@@ -1220,7 +1220,7 @@ artDialog.fn = artDialog.prototype = {
 			strongButton = 'aui_state_highlight',
 			listeners = that._listeners = that._listeners || {},
 			list = $.isArray(ags[0]) ? ags[0] : [].slice.call(ags);
-		
+
 		if (ags[0] === undefined) return elem;
 		$.each(list, function (i, val) {
 			var name = val.name,
@@ -1228,7 +1228,7 @@ artDialog.fn = artDialog.prototype = {
 				button = !isNewButton ?
 					listeners[name].elem :
 					document.createElement('button');
-					
+
 			if (!listeners[name]) listeners[name] = {};
 			if (val.callback) listeners[name].callback = val.callback;
 			if (val.className) button.className = val.className;
@@ -1237,12 +1237,12 @@ artDialog.fn = artDialog.prototype = {
 				that._focus = $(button).addClass(strongButton);
 				that.focus();
 			};
-			
+
 			// Internet Explorer 的默认类型是 "button"，
 			// 而其他浏览器中（包括 W3C 规范）的默认值是 "submit"
 			// @see http://www.w3school.com.cn/tags/att_button_type.asp
 			button.setAttribute('type', 'button');
-			
+
 			button[_expando + 'callback'] = name;
 			button.disabled = !!val.disabled;
 
@@ -1252,89 +1252,89 @@ artDialog.fn = artDialog.prototype = {
 				elem.appendChild(button);
 			};
 		});
-		
+
 		buttons[0].style.display = list.length ? '' : 'none';
-		
+
 		that._ie6SelectFix();
 		return that;
 	},
-	
+
 	/** 显示对话框 */
 	show: function () {
 		this.DOM.wrap.show();
 		!arguments[0] && this._lockMaskWrap && this._lockMaskWrap.show();
 		return this;
 	},
-	
+
 	/** 隐藏对话框 */
 	hide: function () {
 		this.DOM.wrap.hide();
 		!arguments[0] && this._lockMaskWrap && this._lockMaskWrap.hide();
 		return this;
 	},
-	
+
 	/** 关闭对话框 */
 	close: function () {
 		if (this.closed) return this;
-		
+
 		var that = this,
 			DOM = that.DOM,
 			wrap = DOM.wrap,
 			list = artDialog.list,
 			fn = that.config.close,
 			follow = that.config.follow;
-		
+
 		that.time();
 		if (typeof fn === 'function' && fn.call(that, window) === false) {
 			return that;
 		};
-		
+
 		that.unlock();
-		
+
 		// 置空内容
 		that._elemBack && that._elemBack();
 		wrap[0].className = wrap[0].style.cssText = '';
 		DOM.title.html('');
 		DOM.content.html('');
 		DOM.buttons.html('');
-		
+
 		if (artDialog.focus === that) artDialog.focus = null;
 		if (follow) follow.removeAttribute(_expando + 'follow');
 		delete list[that.config.id];
 		that._removeEvent();
 		that.hide(true)._setAbsolute();
-		
+
 		// 清空除this.DOM之外临时对象，恢复到初始状态，以便使用单例模式
 		for (var i in that) {
 			if (that.hasOwnProperty(i) && i !== 'DOM') delete that[i];
 		};
-		
+
 		// 移除HTMLElement或重用
 		_box ? wrap.remove() : _box = that;
-		
+
 		return that;
 	},
-	
+
 	/**
-	 * 定时关闭
-	 * @param	{Number}	单位为秒, 无参数则停止计时器
-	 */
+		* 定时关闭
+		* @param	{Number}	单位为秒, 无参数则停止计时器
+		*/
 	time: function (second) {
 		var that = this,
 			cancel = that.config.cancelVal,
 			timer = that._timer;
-			
+
 		timer && clearTimeout(timer);
-		
+
 		if (second) {
 			that._timer = setTimeout(function(){
 				that._click(cancel);
 			}, 1000 * second);
 		};
-		
+
 		return that;
 	},
-	
+
 	/** 设置焦点 */
 	focus: function () {
 		try {
@@ -1345,7 +1345,7 @@ artDialog.fn = artDialog.prototype = {
 		} catch (e) {}; // IE对不可见元素设置焦点会报错
 		return this;
 	},
-	
+
 	/** 置顶对话框 */
 	zIndex: function () {
 		var that = this,
@@ -1353,23 +1353,23 @@ artDialog.fn = artDialog.prototype = {
 			wrap = DOM.wrap,
 			top = artDialog.focus,
 			index = artDialog.defaults.zIndex ++;
-		
+
 		// 设置叠加高度
 		wrap.css('zIndex', index);
 		that._lockMask && that._lockMask.css('zIndex', index - 1);
-		
+
 		// 设置最高层的样式
 		top && top.DOM.wrap.removeClass('aui_state_focus');
 		artDialog.focus = that;
 		wrap.addClass('aui_state_focus');
-		
+
 		return that;
 	},
-	
+
 	/** 设置屏锁 */
 	lock: function () {
 		if (this._lock) return this;
-		
+
 		var that = this,
 			index = artDialog.defaults.zIndex - 1,
 			wrap = that.DOM.wrap,
@@ -1386,46 +1386,46 @@ artDialog.fn = artDialog.prototype = {
 				+ domTxt + '.scrollTop);width:expression(' + domTxt
 				+ '.clientWidth);height:expression(' + domTxt + '.clientHeight)'
 			: '';
-		
+
 		that.zIndex();
 		wrap.addClass('aui_state_lock');
-		
+
 		lockMaskWrap[0].style.cssText = sizeCss + ';position:fixed;z-index:'
 			+ index + ';top:0;left:0;overflow:hidden;' + ie6Css;
 		lockMask[0].style.cssText = 'height:100%;background:' + config.background
 			+ ';filter:alpha(opacity=0);opacity:0';
-		
+
 		// 让IE6锁屏遮罩能够盖住下拉控件
 		if (_isIE6) lockMask.html(
 			'<iframe src="about:blank" style="width:100%;height:100%;position:absolute;' +
 			'top:0;left:0;z-index:-1;filter:alpha(opacity=0)"></iframe>');
-			
+
 		lockMask.stop();
 		lockMask.bind('click', function () {
 			that._reset();
 		}).bind('dblclick', function () {
 			that._click(that.config.cancelVal);
 		});
-		
+
 		if (config.duration === 0) {
 			lockMask.css({opacity: config.opacity});
 		} else {
 			lockMask.animate({opacity: config.opacity}, config.duration);
 		};
-		
+
 		that._lockMaskWrap = lockMaskWrap;
 		that._lockMask = lockMask;
-		
+
 		that._lock = true;
 		return that;
 	},
-	
+
 	/** 解开屏锁 */
 	unlock: function () {
 		var that = this,
 			lockMaskWrap = that._lockMaskWrap,
 			lockMask = that._lockMask;
-		
+
 		if (!that._lock) return that;
 		var style = lockMaskWrap[0].style;
 		var un = function () {
@@ -1436,10 +1436,10 @@ artDialog.fn = artDialog.prototype = {
 				style.removeExpression('top');
 			};
 			style.cssText = 'display:none';
-			
+
 			_box && lockMaskWrap.remove();
 		};
-		
+
 		lockMask.stop().unbind();
 		that.DOM.wrap.removeClass('aui_state_lock');
 		if (!that.config.duration) {// 取消动画，快速关闭
@@ -1447,55 +1447,55 @@ artDialog.fn = artDialog.prototype = {
 		} else {
 			lockMask.animate({opacity: 0}, that.config.duration, un);
 		};
-		
+
 		that._lock = false;
 		return that;
 	},
-	
+
 	// 获取元素
-	_getDOM: function () {	
+	_getDOM: function () {
 		var wrap = document.createElement('div'),
 			body = document.body;
 		wrap.style.cssText = 'position:absolute;left:0;top:0';
 		wrap.innerHTML = artDialog._templates;
 		body.insertBefore(wrap, body.firstChild);
-		
+
 		var name, i = 0,
 			DOM = {wrap: $(wrap)},
 			els = wrap.getElementsByTagName('*'),
 			elsLen = els.length;
-			
+
 		for (; i < elsLen; i ++) {
 			name = els[i].className.split('aui_')[1];
 			if (name) DOM[name] = $(els[i]);
 		};
-		
+
 		return DOM;
 	},
-	
+
 	// px与%单位转换成数值 (百分比单位按照最大值换算)
 	// 其他的单位返回原值
 	_toNumber: function (thisValue, maxValue) {
 		if (!thisValue && thisValue !== 0 || typeof thisValue === 'number') {
 			return thisValue;
 		};
-		
+
 		var last = thisValue.length - 1;
 		if (thisValue.lastIndexOf('px') === last) {
 			thisValue = parseInt(thisValue);
 		} else if (thisValue.lastIndexOf('%') === last) {
 			thisValue = parseInt(maxValue * thisValue.split('%')[0] / 100);
 		};
-		
+
 		return thisValue;
 	},
-	
+
 	// 让IE6 CSS支持PNG背景
 	_ie6PngFix: _isIE6 ? function () {
 		var i = 0, elem, png, pngPath, runtimeStyle,
 			path = artDialog.defaults.path + '/skins/',
 			list = this.DOM.wrap[0].getElementsByTagName('*');
-		
+
 		for (; i < list.length; i ++) {
 			elem = list[i];
 			png = elem.currentStyle['png'];
@@ -1508,7 +1508,7 @@ artDialog.fn = artDialog.prototype = {
 			};
 		};
 	} : $.noop,
-	
+
 	// 强制覆盖IE6下拉控件
 	_ie6SelectFix: _isIE6 ? function () {
 		var $wrap = this.DOM.wrap,
@@ -1531,7 +1531,7 @@ artDialog.fn = artDialog.prototype = {
 			+ 'filter:alpha(opacity=0);width:' + width + ';height:' + height;
 		};
 	} : $.noop,
-	
+
 	// 解析HTML片段中自定义类型脚本，其this指向artDialog内部
 	// <script type="text/dialog">/* [code] */</script>
 	_runScript: function (elem) {
@@ -1539,27 +1539,27 @@ artDialog.fn = artDialog.prototype = {
 			tags = elem.getElementsByTagName('script'),
 			length = tags.length,
 			script = [];
-			
+
 		for (; i < length; i ++) {
 			if (tags[i].type === 'text/dialog') {
 				script[n] = tags[i].innerHTML;
 				n ++;
 			};
 		};
-		
+
 		if (script.length) {
 			script = script.join('');
 			fun = new Function(script);
 			fun.call(this);
 		};
 	},
-	
+
 	// 自动切换定位类型
 	_autoPositionType: function () {
 		this[this.config.fixed ? '_setFixed' : '_setAbsolute']();/////////////
 	},
-	
-	
+
+
 	// 设置静止定位
 	// IE6 Fixed @see: http://www.planeart.cn/?p=877
 	_setFixed: (function () {
@@ -1573,18 +1573,18 @@ artDialog.fn = artDialog.prototype = {
 				});
 			};
 		});
-		
+
 		return function () {
 			var $elem = this.DOM.wrap,
 				style = $elem[0].style;
-			
+
 			if (_isIE6) {
 				var left = parseInt($elem.css('left')),
 					top = parseInt($elem.css('top')),
 					sLeft = _$document.scrollLeft(),
 					sTop = _$document.scrollTop(),
 					txt = '(document.documentElement)';
-				
+
 				this._setAbsolute();
 				style.setExpression('left', 'eval(' + txt + '.scrollLeft + '
 					+ (left - sLeft) + ') + "px"');
@@ -1595,11 +1595,11 @@ artDialog.fn = artDialog.prototype = {
 			};
 		};
 	}()),
-	
+
 	// 设置绝对定位
 	_setAbsolute: function () {
 		var style = this.DOM.wrap[0].style;
-			
+
 		if (_isIE6) {
 			style.removeExpression('left');
 			style.removeExpression('top');
@@ -1607,7 +1607,7 @@ artDialog.fn = artDialog.prototype = {
 
 		style.position = 'absolute';
 	},
-	
+
 	// 按钮回调函数触发
 	_click: function (name) {
 		var that = this,
@@ -1615,7 +1615,7 @@ artDialog.fn = artDialog.prototype = {
 		return typeof fn !== 'function' || fn.call(that, window) !== false ?
 			that.close() : that;
 	},
-	
+
 	// 重置位置与尺寸
 	_reset: function (test) {
 		var newSize,
@@ -1626,22 +1626,22 @@ artDialog.fn = artDialog.prototype = {
 			height = that._height,
 			left = that._left,
 			top = that._top;
-		
+
 		if (test) {
 			// IE6~7 window.onresize bug
 			newSize = that._winSize =  _$window.width() * _$window.height();
 			if (oldSize === newSize) return;
 		};
-		
+
 		if (width || height) that.size(width, height);
-		
+
 		if (elem) {
 			that.follow(elem);
 		} else if (left || top) {
 			that.position(left, top);
 		};
 	},
-	
+
 	// 事件代理
 	_addEvent: function () {
 		var resizeTimer,
@@ -1649,7 +1649,7 @@ artDialog.fn = artDialog.prototype = {
 			config = that.config,
 			isIE = 'CollectGarbage' in window,
 			DOM = that.DOM;
-		
+
 		// 窗口调节事件
 		that._winResize = function () {
 			resizeTimer && clearTimeout(resizeTimer);
@@ -1658,14 +1658,14 @@ artDialog.fn = artDialog.prototype = {
 			}, 40);
 		};
 		_$window.bind('resize', that._winResize);
-		
+
 		// 监听点击
 		DOM.wrap
 		.bind('click', function (event) {
 			var target = event.target, callbackID;
-			
+
 			if (target.disabled) return false; // IE BUG
-			
+
 			if (target === DOM.close[0]) {
 				that._click(config.cancelVal);
 				return false;
@@ -1673,23 +1673,23 @@ artDialog.fn = artDialog.prototype = {
 				callbackID = target[_expando + 'callback'];
 				callbackID && that._click(callbackID);
 			};
-			
+
 			that._ie6SelectFix();
 		})
 		.bind('mousedown', function () {
 			that.zIndex();
 		});
 	},
-	
+
 	// 卸载事件代理
 	_removeEvent: function () {
 		var that = this,
 			DOM = that.DOM;
-		
+
 		DOM.wrap.unbind();
 		_$window.unbind('resize', that._winResize);
 	}
-	
+
 };
 
 artDialog.fn._init.prototype = artDialog.fn;
@@ -1728,7 +1728,7 @@ _$document.bind('keydown', function (event) {
 		keyCode = event.keyCode;
 
 	if (!api || !api.config.esc || rinput.test(nodeName)) return;
-		
+
 	keyCode === 27 && api._click(api.config.cancelVal);
 });
 
@@ -1740,7 +1740,7 @@ _path = window['_artDialog_path'] || (function (script, i, me) {
 		// 如果通过第三方脚本加载器加载本文件，请保证文件名含有"artDialog"字符
 		if (script[i].src && script[i].src.indexOf('artDialog') !== -1) me = script[i];
 	};
-	
+
 	_thisScript = me || script[script.length - 1];
 	me = _thisScript.src.replace(/\\/g, '/');
 	return me.lastIndexOf('/') < 0 ? '.' : me.substring(0, me.lastIndexOf('/'));
@@ -1835,8 +1835,8 @@ artDialog._templates =
 
 
 /**
- * 默认配置
- */
+	* 默认配置
+	*/
 artDialog.defaults = {
 								// 消息内容
 	content: '<div class="aui_loading"><span>loading..</span></div>',
@@ -1871,7 +1871,7 @@ artDialog.defaults = {
 	zIndex: 1987,				// 对话框叠加高度值(重要：此值不能超过浏览器最大限制)
 	resize: true,				// 是否允许用户调节尺寸
 	drag: true					// 是否允许用户拖动位置
-	
+
 };
 
 window.artDialog = $.dialog = $.artDialog = artDialog;
@@ -1904,7 +1904,7 @@ artDialog.dragEvent = function () {
 				return fn.apply(that, arguments);
 			};
 		};
-		
+
 	proxy('start');
 	proxy('move');
 	proxy('end');
@@ -1918,38 +1918,38 @@ artDialog.dragEvent.prototype = {
 		_$document
 		.bind('mousemove', this.move)
 		.bind('mouseup', this.end);
-			
+
 		this._sClientX = event.clientX;
 		this._sClientY = event.clientY;
 		this.onstart(event.clientX, event.clientY);
 
 		return false;
 	},
-	
+
 	// 正在拖拽
 	onmove: $.noop,
-	move: function (event) {		
+	move: function (event) {
 		this._mClientX = event.clientX;
 		this._mClientY = event.clientY;
 		this.onmove(
 			event.clientX - this._sClientX,
 			event.clientY - this._sClientY
 		);
-		
+
 		return false;
 	},
-	
+
 	// 结束拖拽
 	onend: $.noop,
 	end: function (event) {
 		_$document
 		.unbind('mousemove', this.move)
 		.unbind('mouseup', this.end);
-		
+
 		this.onend(event.clientX, event.clientY);
 		return false;
 	}
-	
+
 };
 
 _use = function (event) {
@@ -1969,7 +1969,7 @@ _use = function (event) {
 			document.selection.empty();
 		} catch (e) {};
 	};
-	
+
 	// 对话框准备拖动
 	_dragEvent.onstart = function (x, y) {
 		if (isResize) {
@@ -1979,17 +1979,17 @@ _use = function (event) {
 			startLeft = wrap[0].offsetLeft;
 			startTop = wrap[0].offsetTop;
 		};
-		
+
 		_$document.bind('dblclick', _dragEvent.end);
 		!_isIE6 && _isLosecapture ?
 			title.bind('losecapture', _dragEvent.end) :
 			_$window.bind('blur', _dragEvent.end);
 		_isSetCapture && title[0].setCapture();
-		
+
 		wrap.addClass('aui_state_drag');
 		api.focus();
 	};
-	
+
 	// 对话框拖动进行中
 	_dragEvent.onmove = function (x, y) {
 		if (isResize) {
@@ -1997,13 +1997,13 @@ _use = function (event) {
 				style = main[0].style,
 				width = x + startWidth,
 				height = y + startHeight;
-			
+
 			wrapStyle.width = 'auto';
 			style.width = Math.max(0, width) + 'px';
 			wrapStyle.width = wrap[0].offsetWidth + 'px';
-			
+
 			style.height = Math.max(0, height) + 'px';
-			
+
 		} else {
 			var style = wrap[0].style,
 				left = Math.max(limit.minX, Math.min(limit.maxX, x + startLeft)),
@@ -2012,11 +2012,11 @@ _use = function (event) {
 			style.left = left  + 'px';
 			style.top = top + 'px';
 		};
-			
+
 		clsSelect();
 		api._ie6SelectFix();
 	};
-	
+
 	// 对话框拖动结束
 	_dragEvent.onend = function (x, y) {
 		_$document.unbind('dblclick', _dragEvent.end);
@@ -2024,12 +2024,12 @@ _use = function (event) {
 			title.unbind('losecapture', _dragEvent.end) :
 			_$window.unbind('blur', _dragEvent.end);
 		_isSetCapture && title[0].releaseCapture();
-		
+
 		_isIE6 && !api.closed && api._autoPositionType();
-		
+
 		wrap.removeClass('aui_state_drag');
 	};
-	
+
 	isResize = event.target === DOM.se[0] ? true : false;
 	limit = (function () {
 		var maxX, maxY,
@@ -2041,11 +2041,11 @@ _use = function (event) {
 			wh = _$window.height(),
 			dl = fixed ? 0 : _$document.scrollLeft(),
 			dt = fixed ? 0 : _$document.scrollTop(),
-			
+
 		// 坐标最大值限制
 		maxX = ww - ow + dl;
 		maxY = wh - oh + dt;
-		
+
 		return {
 			minX: dl,
 			minY: dt,
@@ -2053,7 +2053,7 @@ _use = function (event) {
 			maxY: maxY
 		};
 	})();
-	
+
 	_dragEvent.start(event);
 };
 
@@ -2065,7 +2065,7 @@ _$document.bind('mousedown', function (event) {
 	var target = event.target,
 		config = api.config,
 		DOM = api.DOM;
-	
+
 	if (config.drag !== false && target === DOM.title[0]
 	|| config.resize !== false && target === DOM.se[0]) {
 		_dragEvent = _dragEvent || new artDialog.dragEvent();

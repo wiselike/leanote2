@@ -13,20 +13,20 @@
 <script src="/public/js/common.js"></script>
 <script src="/public/member/js/member.js"></script>
 <script>
-$(function() { 
+$(function() {
 	var pathname = location.pathname; // admin/t
 	var search = location.search; // ?t=xxx, 如果有?page呢
 	var fullPath = pathname;
 	if(search.indexOf("?t=") >= 0) {
 		var fullPath = pathname + search; // /admin/t?t=xxx
 	}
-	
+
 	if(fullPath == "/member/index") {
 		fullPath = "/member";
 	} else if (fullPath == '/member/blog/updateTheme') {
 		fullPath = '/member/blog/theme';
 	}
-	
+
 	$("#nav > li").removeClass("active");
 	// 自己
 	var $thisLi = $('#nav a[href="' + fullPath + '"]').parent();

@@ -1,6 +1,6 @@
 /**
- * leanote code plugin
- */
+	* leanote code plugin
+	*/
 
 // tinymce.PluginManager.requireLangPack('leanote_code');
 
@@ -79,7 +79,7 @@ tinymce.PluginManager.add('leanote_code', function(editor, url) {
 		// s = ed.selection;
 		// log(s);
 		// log($pre.get(0));
-		
+
 		if(brush && brush != "convert") {
 			if(aceEditor) {
 				aceEditor.session.setMode("ace/mode/" + brush);
@@ -152,8 +152,8 @@ tinymce.PluginManager.add('leanote_code', function(editor, url) {
 
 		// 支持ace情况
 
-		// 如果是用户选择了某内容, 其父<pre>不会包含进来, 此时还是要判断node的父是否是PRE, 
-		var id = LeaAce.getAceId(); 
+		// 如果是用户选择了某内容, 其父<pre>不会包含进来, 此时还是要判断node的父是否是PRE,
+		var id = LeaAce.getAceId();
 
 		// 防止ace处理时添加额外的历史
 		// tinymce.activeEditor.undoManager.add();
@@ -209,10 +209,10 @@ tinymce.PluginManager.add('leanote_code', function(editor, url) {
 		// ed.selection.moveToBookmark(everBookmark);
 		LeaAce.resetAddHistory();
 	};
-		
+
 	// 切换代码
 	// 用户选择了/用户光标所在行
-	
+
 	//----------------
 	function createListBoxChangeHandler() {
 		return function() {
@@ -253,34 +253,34 @@ tinymce.PluginManager.add('leanote_code', function(editor, url) {
 			});
 		};
 	}
-	    
-    editor.addButton('leanote_code', function() {
-    	var langs = [
-    		"Convert Code:convert",
-			"CSS:css", 
-            "HTML:html",
-            "Javascript:javascript", 
-            "C/C++:c_cpp", 
-            "C#:csharp",
-            "Java:java", 
-            "Objective-c:objectivec", 
-            "PHP:php",
-            "Python:python",
-            "Ruby:ruby",
-            "Shell:sh", 
-            "Delphi:delphi",
-            "Golang:golang",
-            "Erlang:erlang",
-            "Groovy:groovy",
-            "Latex:latex",
-            "Xml:xml",
-            "ActionScript:actionScript",
-         ];
+
+	editor.addButton('leanote_code', function() {
+		var langs = [
+			"Convert Code:convert",
+			"CSS:css",
+			"HTML:html",
+			"Javascript:javascript",
+			"C/C++:c_cpp",
+			"C#:csharp",
+			"Java:java",
+			"Objective-c:objectivec",
+			"PHP:php",
+			"Python:python",
+			"Ruby:ruby",
+			"Shell:sh",
+			"Delphi:delphi",
+			"Golang:golang",
+			"Erlang:erlang",
+			"Groovy:groovy",
+			"Latex:latex",
+			"Xml:xml",
+			"ActionScript:actionScript",
+		];
 		var items = [];
-    	for(var i in langs) {
-    		var each = langs[i].split(":");
-    		items.push({text:each[0], value:each[1]});
-    	}
+		for(var i in langs) {
+			var each = langs[i].split(":");
+			items.push({text:each[0], value:each[1]});
+		}
 		return {
 			type: 'listbox',
 			text: "Language",
@@ -328,12 +328,12 @@ tinymce.PluginManager.add('leanote_code', function(editor, url) {
 		});
 	}
 
-    //----------------
+	//----------------
 	// 切换代码
 	// 用户选择了/用户光标所在行
 	ed.addCommand('toggleCode', toggleCode);
-    
-    ed.addShortcut('ctrl+shift+c', '', 'toggleCode');
+
+	ed.addShortcut('ctrl+shift+c', '', 'toggleCode');
 	ed.addShortcut('meta+shift+c', '', 'toggleCode');
 
 	// life
@@ -366,12 +366,12 @@ tinymce.PluginManager.add('leanote_code', function(editor, url) {
 	// indent outdent
 	ed.on('keydown', function(e) {
 		var num = e.which ? e.which : e.keyCode;
-    	if (num == 9) { // tab pressed
-    		if(!e.shiftKey) {
-	    		// var node = ed.selection.getNode();
-	    		/*
+		if (num == 9) { // tab pressed
+			if(!e.shiftKey) {
+				// var node = ed.selection.getNode();
+				/*
 				if(node.nodeName == "PRE") {
-                    ed.execCommand('mceInsertHTML', false, '\x09'); // inserts tab
+					ed.execCommand('mceInsertHTML', false, '\x09'); // inserts tab
 				} else {
 				*/
 				// 如果是在li下的, 就不要控制
@@ -380,15 +380,15 @@ tinymce.PluginManager.add('leanote_code', function(editor, url) {
 					return true;
 				}
 				ed.insertContent("&nbsp;&nbsp;&nbsp;&nbsp;");
-	            e.preventDefault();
-	            e.stopPropagation();   			
-	            return false;
-                // ed.execCommand('mceInsertHTML', false, "&nbsp;&nbsp;&nbsp;&nbsp;"); // inserts 空格
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+				// ed.execCommand('mceInsertHTML', false, "&nbsp;&nbsp;&nbsp;&nbsp;"); // inserts 空格
 				// }
-    		} else {
-    			// delete 4 个空格
+			} else {
+				// delete 4 个空格
 				// ed.execCommand('Outdent');
-    		}
-       }
+			}
+		}
 	});
 });

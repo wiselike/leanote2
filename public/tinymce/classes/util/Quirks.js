@@ -1,20 +1,20 @@
 /**
- * Quirks.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- *
- * @ignore-file
- */
+	* Quirks.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*
+	* @ignore-file
+	*/
 
 /**
- * This file includes fixes for various browser quirks it's made to make it easy to add/remove browser specific fixes.
- *
- * @class tinymce.util.Quirks
- */
+	* This file includes fixes for various browser quirks it's made to make it easy to add/remove browser specific fixes.
+	*
+	* @class tinymce.util.Quirks
+	*/
 define("tinymce/util/Quirks", [
 	"tinymce/util/VK",
 	"tinymce/dom/RangeUtils",
@@ -33,8 +33,8 @@ define("tinymce/util/Quirks", [
 		var mceInternalDataType = isIE ? 'Text' : 'URL';
 
 		/**
-		 * Executes a command with a specific state this can be to enable/disable browser editing features.
-		 */
+			* Executes a command with a specific state this can be to enable/disable browser editing features.
+			*/
 		function setEditorCommandState(cmd, state) {
 			try {
 				editor.getDoc().execCommand(cmd, false, state);
@@ -44,8 +44,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Returns current IE document mode.
-		 */
+			* Returns current IE document mode.
+			*/
 		function getDocumentMode() {
 			var documentMode = editor.getDoc().documentMode;
 
@@ -53,24 +53,24 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Returns true/false if the event is prevented or not.
-		 *
-		 * @private
-		 * @param {Event} e Event object.
-		 * @return {Boolean} true/false if the event is prevented or not.
-		 */
+			* Returns true/false if the event is prevented or not.
+			*
+			* @private
+			* @param {Event} e Event object.
+			* @return {Boolean} true/false if the event is prevented or not.
+			*/
 		function isDefaultPrevented(e) {
 			return e.isDefaultPrevented();
 		}
 
 		/**
-		 * Sets Text/URL data on the event's dataTransfer object to a special data:text/mce-internal url.
-		 * This is to workaround the inability to set custom contentType on IE and Safari.
-		 * The editor's selected content is encoded into this url so drag and drop between editors will work.
-		 *
-		 * @private
-		 * @param {DragEvent} e Event object
-		 */
+			* Sets Text/URL data on the event's dataTransfer object to a special data:text/mce-internal url.
+			* This is to workaround the inability to set custom contentType on IE and Safari.
+			* The editor's selected content is encoded into this url so drag and drop between editors will work.
+			*
+			* @private
+			* @param {DragEvent} e Event object
+			*/
 		function setMceInteralContent(e) {
 			var selectionHtml;
 
@@ -89,14 +89,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Gets content of special data:text/mce-internal url on the event's dataTransfer object.
-		 * This is to workaround the inability to set custom contentType on IE and Safari.
-		 * The editor's selected content is encoded into this url so drag and drop between editors will work.
-		 *
-		 * @private
-		 * @param {DragEvent} e Event object
-		 * @returns {String} mce-internal content
-		 */
+			* Gets content of special data:text/mce-internal url on the event's dataTransfer object.
+			* This is to workaround the inability to set custom contentType on IE and Safari.
+			* The editor's selected content is encoded into this url so drag and drop between editors will work.
+			*
+			* @private
+			* @param {DragEvent} e Event object
+			* @returns {String} mce-internal content
+			*/
 		function getMceInternalContent(e) {
 			var internalContent, content;
 
@@ -112,12 +112,12 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Inserts contents using the paste clipboard command if it's available if it isn't it will fallback
-		 * to the core command.
-		 *
-		 * @private
-		 * @param {String} content Content to insert at selection.
-		 */
+			* Inserts contents using the paste clipboard command if it's available if it isn't it will fallback
+			* to the core command.
+			*
+			* @private
+			* @param {String} content Content to insert at selection.
+			*/
 		function insertClipboardContents(content) {
 			if (editor.queryCommandSupported('mceInsertClipboardContent')) {
 				editor.execCommand('mceInsertClipboardContent', false, {content: content});
@@ -127,32 +127,32 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes a WebKit bug when deleting contents using backspace or delete key.
-		 * WebKit will produce a span element if you delete across two block elements.
-		 *
-		 * Example:
-		 * <h1>a</h1><p>|b</p>
-		 *
-		 * Will produce this on backspace:
-		 * <h1>a<span style="<all runtime styles>">b</span></p>
-		 *
-		 * This fixes the backspace to produce:
-		 * <h1>a|b</p>
-		 *
-		 * See bug: https://bugs.webkit.org/show_bug.cgi?id=45784
-		 *
-		 * This fixes the following delete scenarios:
-		 *  1. Delete by pressing backspace key.
-		 *  2. Delete by pressing delete key.
-		 *  3. Delete by pressing backspace key with ctrl/cmd (Word delete).
-		 *  4. Delete by pressing delete key with ctrl/cmd (Word delete).
-		 *  5. Delete by drag/dropping contents inside the editor.
-		 *  6. Delete by using Cut Ctrl+X/Cmd+X.
-		 *  7. Delete by selecting contents and writing a character.
-		 *
-		 * This code is a ugly hack since writing full custom delete logic for just this bug
-		 * fix seemed like a huge task. I hope we can remove this before the year 2030.
-		 */
+			* Fixes a WebKit bug when deleting contents using backspace or delete key.
+			* WebKit will produce a span element if you delete across two block elements.
+			*
+			* Example:
+			* <h1>a</h1><p>|b</p>
+			*
+			* Will produce this on backspace:
+			* <h1>a<span style="<all runtime styles>">b</span></p>
+			*
+			* This fixes the backspace to produce:
+			* <h1>a|b</p>
+			*
+			* See bug: https://bugs.webkit.org/show_bug.cgi?id=45784
+			*
+			* This fixes the following delete scenarios:
+			*  1. Delete by pressing backspace key.
+			*  2. Delete by pressing delete key.
+			*  3. Delete by pressing backspace key with ctrl/cmd (Word delete).
+			*  4. Delete by pressing delete key with ctrl/cmd (Word delete).
+			*  5. Delete by drag/dropping contents inside the editor.
+			*  6. Delete by using Cut Ctrl+X/Cmd+X.
+			*  7. Delete by selecting contents and writing a character.
+			*
+			* This code is a ugly hack since writing full custom delete logic for just this bug
+			* fix seemed like a huge task. I hope we can remove this before the year 2030.
+			*/
 		function cleanupStylesWhenDeleting() {
 			var doc = editor.getDoc(), dom = editor.dom, selection = editor.selection;
 			var MutationObserver = window.MutationObserver, olderWebKit, dragStartRng;
@@ -587,17 +587,17 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Makes sure that the editor body becomes empty when backspace or delete is pressed in empty editors.
-		 *
-		 * For example:
-		 * <p><b>|</b></p>
-		 *
-		 * Or:
-		 * <h1>|</h1>
-		 *
-		 * Or:
-		 * [<h1></h1>]
-		 */
+			* Makes sure that the editor body becomes empty when backspace or delete is pressed in empty editors.
+			*
+			* For example:
+			* <p><b>|</b></p>
+			*
+			* Or:
+			* <h1>|</h1>
+			*
+			* Or:
+			* [<h1></h1>]
+			*/
 		function emptyEditorWhenDeleting() {
 			function serializeRng(rng) {
 				var body = dom.create("body");
@@ -660,25 +660,25 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit doesn't select all the nodes in the body when you press Ctrl+A.
-		 * IE selects more than the contents <body>[<p>a</p>]</body> instead of <body><p>[a]</p]</body> see bug #6438
-		 * This selects the whole body so that backspace/delete logic will delete everything
-		 */
+			* WebKit doesn't select all the nodes in the body when you press Ctrl+A.
+			* IE selects more than the contents <body>[<p>a</p>]</body> instead of <body><p>[a]</p]</body> see bug #6438
+			* This selects the whole body so that backspace/delete logic will delete everything
+			*/
 		function selectAll() {
 			editor.shortcuts.add('meta+a', null, 'SelectAll');
 		}
 
 		/**
-		 * WebKit has a weird issue where it some times fails to properly convert keypresses to input method keystrokes.
-		 * The IME on Mac doesn't initialize when it doesn't fire a proper focus event.
-		 *
-		 * This seems to happen when the user manages to click the documentElement element then the window doesn't get proper focus until
-		 * you enter a character into the editor.
-		 *
-		 * It also happens when the first focus in made to the body.
-		 *
-		 * See: https://bugs.webkit.org/show_bug.cgi?id=83566
-		 */
+			* WebKit has a weird issue where it some times fails to properly convert keypresses to input method keystrokes.
+			* The IME on Mac doesn't initialize when it doesn't fire a proper focus event.
+			*
+			* This seems to happen when the user manages to click the documentElement element then the window doesn't get proper focus until
+			* you enter a character into the editor.
+			*
+			* It also happens when the first focus in made to the body.
+			*
+			* See: https://bugs.webkit.org/show_bug.cgi?id=83566
+			*/
 		function inputMethodFocus() {
 			if (!editor.settings.content_editable) {
 				// Case 1 IME doesn't initialize if you focus the document
@@ -704,14 +704,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Backspacing in FireFox/IE from a paragraph into a horizontal rule results in a floating text node because the
-		 * browser just deletes the paragraph - the browser fails to merge the text node with a horizontal rule so it is
-		 * left there. TinyMCE sees a floating text node and wraps it in a paragraph on the key up event (ForceBlocks.js
-		 * addRootBlocks), meaning the action does nothing. With this code, FireFox/IE matche the behaviour of other
-		 * browsers.
-		 *
-		 * It also fixes a bug on Firefox where it's impossible to delete HR elements.
-		 */
+			* Backspacing in FireFox/IE from a paragraph into a horizontal rule results in a floating text node because the
+			* browser just deletes the paragraph - the browser fails to merge the text node with a horizontal rule so it is
+			* left there. TinyMCE sees a floating text node and wraps it in a paragraph on the key up event (ForceBlocks.js
+			* addRootBlocks), meaning the action does nothing. With this code, FireFox/IE matche the behaviour of other
+			* browsers.
+			*
+			* It also fixes a bug on Firefox where it's impossible to delete HR elements.
+			*/
 		function removeHrOnBackspace() {
 			editor.on('keydown', function(e) {
 				if (!isDefaultPrevented(e) && e.keyCode === BACKSPACE) {
@@ -740,9 +740,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Firefox 3.x has an issue where the body element won't get proper focus if you click out
-		 * side it's rectangle.
-		 */
+			* Firefox 3.x has an issue where the body element won't get proper focus if you click out
+			* side it's rectangle.
+			*/
 		function focusBody() {
 			// Fix for a focus bug in FF 3.x where the body element
 			// wouldn't get proper focus if the user clicked on the HTML element
@@ -764,9 +764,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit has a bug where it isn't possible to select image, hr or anchor elements
-		 * by clicking on them so we need to fake that.
-		 */
+			* WebKit has a bug where it isn't possible to select image, hr or anchor elements
+			* by clicking on them so we need to fake that.
+			*/
 		function selectControlElements() {
 			editor.on('click', function(e) {
 				var target = e.target;
@@ -789,17 +789,17 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes a Gecko bug where the style attribute gets added to the wrong element when deleting between two block elements.
-		 *
-		 * Fixes do backspace/delete on this:
-		 * <p>bla[ck</p><p style="color:red">r]ed</p>
-		 *
-		 * Would become:
-		 * <p>bla|ed</p>
-		 *
-		 * Instead of:
-		 * <p style="color:red">bla|ed</p>
-		 */
+			* Fixes a Gecko bug where the style attribute gets added to the wrong element when deleting between two block elements.
+			*
+			* Fixes do backspace/delete on this:
+			* <p>bla[ck</p><p style="color:red">r]ed</p>
+			*
+			* Would become:
+			* <p>bla|ed</p>
+			*
+			* Instead of:
+			* <p style="color:red">bla|ed</p>
+			*/
 		function removeStylesWhenDeletingAcrossBlockElements() {
 			function getAttributeApplyFunction() {
 				var template = dom.getAttribs(selection.getStart().cloneNode(false));
@@ -848,16 +848,16 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Screen readers on IE needs to have the role application set on the body.
-		 */
+			* Screen readers on IE needs to have the role application set on the body.
+			*/
 		function ensureBodyHasRoleApplication() {
 			document.body.setAttribute("role", "application");
 		}
 
 		/**
-		 * Backspacing into a table behaves differently depending upon browser type.
-		 * Therefore, disable Backspace when cursor immediately follows a table.
-		 */
+			* Backspacing into a table behaves differently depending upon browser type.
+			* Therefore, disable Backspace when cursor immediately follows a table.
+			*/
 		function disableBackspaceIntoATable() {
 			editor.on('keydown', function(e) {
 				if (!isDefaultPrevented(e) && e.keyCode === BACKSPACE) {
@@ -873,9 +873,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Old IE versions can't properly render BR elements in PRE tags white in contentEditable mode. So this
-		 * logic adds a \n before the BR so that it will get rendered.
-		 */
+			* Old IE versions can't properly render BR elements in PRE tags white in contentEditable mode. So this
+			* logic adds a \n before the BR so that it will get rendered.
+			*/
 		function addNewLinesBeforeBrInPre() {
 			// IE8+ rendering mode does the right thing with BR in PRE
 			if (getDocumentMode() > 7) {
@@ -928,8 +928,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Moves style width/height to attribute width/height when the user resizes an image on IE.
-		 */
+			* Moves style width/height to attribute width/height when the user resizes an image on IE.
+			*/
 		function removePreSerializedStylesWhenSelectingControls() {
 			dom.bind(editor.getBody(), 'mouseup', function() {
 				var value, node = selection.getNode();
@@ -952,14 +952,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Removes a blockquote when backspace is pressed at the beginning of it.
-		 *
-		 * For example:
-		 * <blockquote><p>|x</p></blockquote>
-		 *
-		 * Becomes:
-		 * <p>|x</p>
-		 */
+			* Removes a blockquote when backspace is pressed at the beginning of it.
+			*
+			* For example:
+			* <blockquote><p>|x</p></blockquote>
+			*
+			* Becomes:
+			* <p>|x</p>
+			*/
 		function removeBlockQuoteOnBackSpace() {
 			// Add block quote deletion handler
 			editor.on('keydown', function(e) {
@@ -998,8 +998,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Sets various Gecko editing options on mouse down and before a execCommand to disable inline table editing that is broken etc.
-		 */
+			* Sets various Gecko editing options on mouse down and before a execCommand to disable inline table editing that is broken etc.
+			*/
 		function setGeckoEditingOptions() {
 			function setOpts() {
 				editor._refreshContentEditable();
@@ -1018,15 +1018,15 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes a gecko link bug, when a link is placed at the end of block elements there is
-		 * no way to move the caret behind the link. This fix adds a bogus br element after the link.
-		 *
-		 * For example this:
-		 * <p><b><a href="#">x</a></b></p>
-		 *
-		 * Becomes this:
-		 * <p><b><a href="#">x</a></b><br></p>
-		 */
+			* Fixes a gecko link bug, when a link is placed at the end of block elements there is
+			* no way to move the caret behind the link. This fix adds a bogus br element after the link.
+			*
+			* For example this:
+			* <p><b><a href="#">x</a></b></p>
+			*
+			* Becomes this:
+			* <p><b><a href="#">x</a></b><br></p>
+			*/
 		function addBrAfterLastLinks() {
 			function fixLinks() {
 				each(dom.select('a'), function(node) {
@@ -1054,9 +1054,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit will produce DIV elements here and there by default. But since TinyMCE uses paragraphs by
-		 * default we want to change that behavior.
-		 */
+			* WebKit will produce DIV elements here and there by default. But since TinyMCE uses paragraphs by
+			* default we want to change that behavior.
+			*/
 		function setDefaultBlockType() {
 			if (settings.forced_root_block) {
 				editor.on('init', function() {
@@ -1066,8 +1066,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Removes ghost selections from images/tables on Gecko.
-		 */
+			* Removes ghost selections from images/tables on Gecko.
+			*/
 		function removeGhostSelection() {
 			editor.on('Undo Redo SetContent', function(e) {
 				if (!e.initial) {
@@ -1077,8 +1077,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Deletes the selected image on IE instead of navigating to previous page.
-		 */
+			* Deletes the selected image on IE instead of navigating to previous page.
+			*/
 		function deleteControlItemOnBackSpace() {
 			editor.on('keydown', function(e) {
 				var rng;
@@ -1096,10 +1096,10 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE10 doesn't properly render block elements with the right height until you add contents to them.
-		 * This fixes that by adding a padding-right to all empty text block elements.
-		 * See: https://connect.microsoft.com/IE/feedback/details/743881
-		 */
+			* IE10 doesn't properly render block elements with the right height until you add contents to them.
+			* This fixes that by adding a padding-right to all empty text block elements.
+			* See: https://connect.microsoft.com/IE/feedback/details/743881
+			*/
 		function renderEmptyBlocksFix() {
 			var emptyBlocksCSS;
 
@@ -1115,9 +1115,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Old IE versions can't retain contents within noscript elements so this logic will store the contents
-		 * as a attribute and the insert that value as it's raw text when the DOM is serialized.
-		 */
+			* Old IE versions can't retain contents within noscript elements so this logic will store the contents
+			* as a attribute and the insert that value as it's raw text when the DOM is serialized.
+			*/
 		function keepNoScriptContents() {
 			if (getDocumentMode() < 9) {
 				parser.addNodeFilter('noscript', function(nodes) {
@@ -1159,8 +1159,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE has an issue where you can't select/move the caret by clicking outside the body if the document is in standards mode.
-		 */
+			* IE has an issue where you can't select/move the caret by clicking outside the body if the document is in standards mode.
+			*/
 		function fixCaretSelectionOfDocumentElementOnIe() {
 			var doc = dom.doc, body = doc.body, started, startRng, htmlElm;
 
@@ -1248,9 +1248,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Fixes selection issues where the caret can be placed between two inline elements like <b>a</b>|<b>b</b>
-		 * this fix will lean the caret right into the closest inline element.
-		 */
+			* Fixes selection issues where the caret can be placed between two inline elements like <b>a</b>|<b>b</b>
+			* this fix will lean the caret right into the closest inline element.
+			*/
 		function normalizeSelection() {
 			// Normalize selection for example <b>a</b><i>|a</i> becomes <b>a|</b><i>a</i> except for Ctrl+A since it selects everything
 			editor.on('keyup focusin mouseup', function(e) {
@@ -1261,8 +1261,8 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Forces Gecko to render a broken image icon if it fails to load an image.
-		 */
+			* Forces Gecko to render a broken image icon if it fails to load an image.
+			*/
 		function showBrokenImageIcon() {
 			editor.contentStyles.push(
 				'img:-moz-broken {' +
@@ -1274,12 +1274,12 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * iOS has a bug where it's impossible to type if the document has a touchstart event
-		 * bound and the user touches the document while having the on screen keyboard visible.
-		 *
-		 * The touch event moves the focus to the parent document while having the caret inside the iframe
-		 * this fix moves the focus back into the iframe document.
-		 */
+			* iOS has a bug where it's impossible to type if the document has a touchstart event
+			* bound and the user touches the document while having the on screen keyboard visible.
+			*
+			* The touch event moves the focus to the parent document while having the caret inside the iframe
+			* this fix moves the focus back into the iframe document.
+			*/
 		function restoreFocusOnKeyDown() {
 			if (!editor.inline) {
 				editor.on('keydown', function() {
@@ -1291,14 +1291,14 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE 11 has an annoying issue where you can't move focus into the editor
-		 * by clicking on the white area HTML element. We used to be able to to fix this with
-		 * the fixCaretSelectionOfDocumentElementOnIe fix. But since M$ removed the selection
-		 * object it's not possible anymore. So we need to hack in a ungly CSS to force the
-		 * body to be at least 150px. If the user clicks the HTML element out side this 150px region
-		 * we simply move the focus into the first paragraph. Not ideal since you loose the
-		 * positioning of the caret but goot enough for most cases.
-		 */
+			* IE 11 has an annoying issue where you can't move focus into the editor
+			* by clicking on the white area HTML element. We used to be able to to fix this with
+			* the fixCaretSelectionOfDocumentElementOnIe fix. But since M$ removed the selection
+			* object it's not possible anymore. So we need to hack in a ungly CSS to force the
+			* body to be at least 150px. If the user clicks the HTML element out side this 150px region
+			* we simply move the focus into the first paragraph. Not ideal since you loose the
+			* positioning of the caret but goot enough for most cases.
+			*/
 		function bodyHeight() {
 			if (!editor.inline) {
 				editor.contentStyles.push('body {min-height: 150px}');
@@ -1318,9 +1318,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Firefox on Mac OS will move the browser back to the previous page if you press CMD+Left arrow.
-		 * You might then loose all your work so we need to block that behavior and replace it with our own.
-		 */
+			* Firefox on Mac OS will move the browser back to the previous page if you press CMD+Left arrow.
+			* You might then loose all your work so we need to block that behavior and replace it with our own.
+			*/
 		function blockCmdArrowNavigation() {
 			if (Env.mac) {
 				editor.on('keydown', function(e) {
@@ -1333,21 +1333,21 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Disables the autolinking in IE 9+ this is then re-enabled by the autolink plugin.
-		 */
+			* Disables the autolinking in IE 9+ this is then re-enabled by the autolink plugin.
+			*/
 		function disableAutoUrlDetect() {
 			setEditorCommandState("AutoUrlDetect", false);
 		}
 
 		/**
-		 * IE 11 has a fantastic bug where it will produce two trailing BR elements to iframe bodies when
-		 * the iframe is hidden by display: none on a parent container. The DOM is actually out of sync
-		 * with innerHTML in this case. It's like IE adds shadow DOM BR elements that appears on innerHTML
-		 * but not as the lastChild of the body. However is we add a BR element to the body then remove it
-		 * it doesn't seem to add these BR elements makes sence right?!
-		 *
-		 * Example of what happens: <body>text</body> becomes <body>text<br><br></body>
-		 */
+			* IE 11 has a fantastic bug where it will produce two trailing BR elements to iframe bodies when
+			* the iframe is hidden by display: none on a parent container. The DOM is actually out of sync
+			* with innerHTML in this case. It's like IE adds shadow DOM BR elements that appears on innerHTML
+			* but not as the lastChild of the body. However is we add a BR element to the body then remove it
+			* it doesn't seem to add these BR elements makes sence right?!
+			*
+			* Example of what happens: <body>text</body> becomes <body>text<br><br></body>
+			*/
 		function doubleTrailingBrElements() {
 			if (!editor.inline) {
 				editor.on('focus blur beforegetcontent', function() {
@@ -1359,10 +1359,10 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * iOS 7.1 introduced two new bugs:
-		 * 1) It's possible to open links within a contentEditable area by clicking on them.
-		 * 2) If you hold down the finger it will display the link/image touch callout menu.
-		 */
+			* iOS 7.1 introduced two new bugs:
+			* 1) It's possible to open links within a contentEditable area by clicking on them.
+			* 2) If you hold down the finger it will display the link/image touch callout menu.
+			*/
 		function tapLinksAndImages() {
 			editor.on('click', function(e) {
 				var elm = e.target;
@@ -1379,10 +1379,10 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * iOS Safari and possible other browsers have a bug where it won't fire
-		 * a click event when a contentEditable is focused. This function fakes click events
-		 * by using touchstart/touchend and measuring the time and distance travelled.
-		 */
+			* iOS Safari and possible other browsers have a bug where it won't fire
+			* a click event when a contentEditable is focused. This function fakes click events
+			* by using touchstart/touchend and measuring the time and distance travelled.
+			*/
 		function touchClickEvent() {
 			editor.on('touchstart', function(e) {
 				var elm, time, startTouch, changedTouches;
@@ -1434,9 +1434,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * WebKit has a bug where it will allow forms to be submitted if they are inside a contentEditable element.
-		 * For example this: <form><button></form>
-		 */
+			* WebKit has a bug where it will allow forms to be submitted if they are inside a contentEditable element.
+			* For example this: <form><button></form>
+			*/
 		function blockFormSubmitInsideEditor() {
 			editor.on('init', function() {
 				editor.dom.bind(editor.getBody(), 'submit', function(e) {
@@ -1446,13 +1446,13 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * Sometimes WebKit/Blink generates BR elements with the Apple-interchange-newline class.
-		 *
-		 * Scenario:
-		 *  1) Create a table 2x2.
-		 *  2) Select and copy cells A2-B2.
-		 *  3) Paste and it will add BR element to table cell.
-		 */
+			* Sometimes WebKit/Blink generates BR elements with the Apple-interchange-newline class.
+			*
+			* Scenario:
+			*  1) Create a table 2x2.
+			*  2) Select and copy cells A2-B2.
+			*  3) Paste and it will add BR element to table cell.
+			*/
 		function removeAppleInterchangeBrs() {
 			parser.addNodeFilter('br', function(nodes) {
 				var i = nodes.length;
@@ -1466,9 +1466,9 @@ define("tinymce/util/Quirks", [
 		}
 
 		/**
-		 * IE cannot set custom contentType's on drag events, and also does not properly drag/drop between
-		 * editors. This uses a special data:text/mce-internal URL to pass data when drag/drop between editors.
-		 */
+			* IE cannot set custom contentType's on drag events, and also does not properly drag/drop between
+			* editors. This uses a special data:text/mce-internal URL to pass data when drag/drop between editors.
+			*/
 		function ieInternalDragAndDrop() {
 			editor.on('dragstart', function(e) {
 				setMceInteralContent(e);

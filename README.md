@@ -77,7 +77,7 @@
 		4. 从相册控件里删除相册里的图片，也不会影响到笔记里的图片显示。  
 		5. 附件按笔记标题存放，复制笔记会同步复制附件，删除笔记也会同步删除附件。  
 43. 自研：在Makefile中，新增github-release的发布方法
-
+44. 自研：使用[simple-formater](https://github.com/wiselike/simple-formater)格式化所有js/css/html代码，不对源码做任何手动改动
 
 
 

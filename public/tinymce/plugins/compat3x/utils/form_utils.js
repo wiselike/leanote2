@@ -1,12 +1,12 @@
 /**
- * form_utils.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* form_utils.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 var themeBaseURL = tinyMCEPopup.editor.baseURI.toAbsolute('themes/' + tinyMCEPopup.getParam("theme"));
 
@@ -65,9 +65,9 @@ function openBrowser(img_id, target_form_element, type, option) {
 
 	if (img.className != "mceButtonDisabled")
 		tinyMCEPopup.openBrowser(target_form_element, type, option);
-}
+	}
 
-function selectByValue(form_obj, field_name, value, add_custom, ignore_case) {
+	function selectByValue(form_obj, field_name, value, add_custom, ignore_case) {
 	if (!form_obj || !form_obj.elements[field_name])
 		return;
 

@@ -1,20 +1,20 @@
 /**
- * TextBox.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* TextBox.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new textbox.
- *
- * @-x-less TextBox.less
- * @class tinymce.ui.TextBox
- * @extends tinymce.ui.Widget
- */
+	* Creates a new textbox.
+	*
+	* @-x-less TextBox.less
+	* @class tinymce.ui.TextBox
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/TextBox", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DomUtils"
@@ -23,14 +23,14 @@ define("tinymce/ui/TextBox", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @setting {Boolean} multiline True if the textbox is a multiline control.
-		 * @setting {Number} maxLength Max length for the textbox.
-		 * @setting {Number} size Size of the textbox in characters.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @setting {Boolean} multiline True if the textbox is a multiline control.
+			* @setting {Number} maxLength Max length for the textbox.
+			* @setting {Number} size Size of the textbox in characters.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -59,12 +59,12 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Getter/setter function for the disabled state.
-		 *
-		 * @method value
-		 * @param {Boolean} [state] State to be set.
-		 * @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
-		 */
+			* Getter/setter function for the disabled state.
+			*
+			* @method value
+			* @param {Boolean} [state] State to be set.
+			* @return {Boolean|tinymce.ui.ComboBox} True/false or self if it's a set operation.
+			*/
 		disabled: function(state) {
 			var self = this;
 
@@ -76,12 +76,12 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Getter/setter function for the control value.
-		 *
-		 * @method value
-		 * @param {String} [value] Value to be set.
-		 * @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
-		 */
+			* Getter/setter function for the control value.
+			*
+			* @method value
+			* @param {String} [value] Value to be set.
+			* @return {String|tinymce.ui.ComboBox} Value or self if it's a set operation.
+			*/
 		value: function(value) {
 			var self = this;
 
@@ -103,10 +103,10 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this, style, rect, borderBox, borderW = 0, borderH = 0, lastRepaintRect;
 
@@ -151,11 +151,11 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, id = self._id, settings = self.settings, value = self.encode(self._value, false), extraAttrs = '';
 
@@ -192,10 +192,10 @@ define("tinymce/ui/TextBox", [
 		},
 
 		/**
-		 * Called after the control has been rendered.
-		 *
-		 * @method postRender
-		 */
+			* Called after the control has been rendered.
+			*
+			* @method postRender
+			*/
 		postRender: function() {
 			var self = this;
 

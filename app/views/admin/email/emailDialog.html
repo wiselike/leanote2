@@ -12,7 +12,7 @@ overflow-y: scroll;">
 					<textarea type="text" rows="10" class="form-control" name="emails">{{.emailsNl}}</textarea>
 					input email line by line
 				</div>
-				
+
 				<div class="form-group">
 					<label>Select Old Email</label>
 					<select class="form-control old-emails">
@@ -24,19 +24,19 @@ overflow-y: scroll;">
 						{{end}}
 					</select>
 				</div>
-				
+
 				<div class="form-group">
 					<label>Subject</label>
 					<input type="text" class="form-control" id="latestEmailSubject" name="latestEmailSubject" value="{{$.str.latestEmailSubject}}">
 				</div>
-				
+
 				<div class="form-group">
 					<label>Body</label>
 					<textarea type="text" rows="10" id="latestEmailBody" class="form-control" name="latestEmailBody">{{$.str.latestEmailBody}}</textarea>
 				</div>
 				<label class="checkbox-inline"> <input type="checkbox" id="saveAsOldEmail" name="saveAsOldEmail" value="1"> Save As Old Email </label>
 			</div>
-			
+
 			<footer class="panel-footer text-right bg-light lter">
 				<button type="submit" id="submitEmail" class="btn btn-success btn-s-xs">Submit</button>
 			</footer>
@@ -58,7 +58,7 @@ $(function() {
 			$("#saveAsOldEmail").prop("checked", false);
 		}
 	});
-	
+
 	$("#submitEmail").click(function(e){
 		e.preventDefault();
 		var t = this;

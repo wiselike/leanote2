@@ -6,12 +6,12 @@
 	<div id="formData">
 		<section class="panel panel-default">
 			<div class="panel-body">
-  				<div class="alert alert-danger" id="domainMsg" style="display: none"></div>
-  				
+				<div class="alert alert-danger" id="domainMsg" style="display: none"></div>
+
 				<form  role="form" id="dataFrom">
 					<div class="form-group">
 						<label for="perPageSize">{{msg . "perPageSize"}}</label>
-						  <input type="text" class="form-control"
+							<input type="text" class="form-control"
 								placeholder="10"
 								id="perPageSize"
 								name="perPageSize"
@@ -19,7 +19,7 @@
 					</div>
 					<div class="form-group">
 						<label for="perPageSize" >{{msg . "sortField"}}</label>
-						  <select class="form-control"
+							<select class="form-control"
 							id="sortField"
 							name="sortField"
 							value="">
@@ -27,7 +27,7 @@
 							<option value="CreatedTime" {{if eq $.userBlog.SortField "CreatedTime"}}selected{{end}}>{{msg $ "createdTime"}}</option>
 							<option value="UpdatedTime" {{if eq $.userBlog.SortField "UpdatedTime"}}selected{{end}}>{{msg $ "updatedTime"}}</option>
 							<option value="Title" {{if eq $.userBlog.SortField "Title"}}selected{{end}}>{{msg . "title"}}</option>
-						  </select>
+						</select>
 					</div>
 					<div class="form-group">
 						<label>{{msg $ "sortType"}}</label>
@@ -39,7 +39,7 @@
 				</form>
 			</div>
 			<footer class="panel-footer text-right bg-light lter">
-			    <button type="submit" id="baseBtn" class="btn btn-success">{{msg . "submit"}}</button>
+				<button type="submit" id="baseBtn" class="btn btn-success">{{msg . "submit"}}</button>
 			</footer>
 		</section>
 	</div>

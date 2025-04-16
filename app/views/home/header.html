@@ -33,7 +33,7 @@ function log(o) {
 				<img src="/images/logo/leanote_black.png" class="hide" title="leanote, {{msg $ "moto"}}"/>
 			</a>
 		</div>
-		
+
 		<div id="navbar" class="navbar-collapse collapse">
 			<div id="lang">
 				<a data-lang="en-us">English</a>
@@ -80,7 +80,7 @@ function log(o) {
 				</a>
 			</h1>
 		</div>
-	
+
 		<div class="pull-right" id="loginBtns">
 			{{if .userInfo.Email}}
 				{{msg . "hi"}}, {{.userInfo.Username}}
@@ -93,13 +93,13 @@ function log(o) {
 				{{end}}
 			{{end}}
 		</div>
-			
+
 		<ul id="blogNav" class="pull-right">
 			<li><a href="#" target="body" class="smooth-scroll">{{msg . "home"}}</a></li>
 			<li><a href="#download" target="#download" class="smooth-scroll">{{msg . "download"}}</a> </li>
 			<li><a href="#donate" target="#donate" class="smooth-scroll">{{msg . "donate"}}</a> </li>
 			<li><a id="leanoteBlog" href="{{.leaUrl}}/index" target="_blank" title="lea++, leanote博客平台" class="">lea++</a></li>
-			
+
 			<li style="position: relative; margin-right: 3px;">
 				<a href="http://bbs.leanote.com" target="_blank" class="">{{msg . "discussion"}}</a>
 				<div style="position: absolute;

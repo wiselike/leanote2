@@ -31,10 +31,10 @@
 			<div class="clearfix">
 				<div class="clear">
 					<div class="h3 m-t-xs m-b-xs text-white">
-						 <input type="text" data-ever="[[:Title]]" value="[[:Title]]" class="group-title" />
-						 <a title="{{msg . "deleteGroup"}}" class="delete-group">
-							 <i class="fa fa-remove text-white pull-right text-xs m-t-sm"></i>
-						 </a>
+						<input type="text" data-ever="[[:Title]]" value="[[:Title]]" class="group-title" />
+						<a title="{{msg . "deleteGroup"}}" class="delete-group">
+							<i class="fa fa-remove text-white pull-right text-xs m-t-sm"></i>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -58,15 +58,15 @@
 			<div class="clearfix">
 				<div class="clear">
 					<div class="h3 m-t-xs m-b-xs text-white">
-						 <input type="text" data-ever="{{.Title}}" value="{{.Title}}" class="group-title" />
-						 <a title="{{msg $ "deleteGroup"}}" class="delete-group">
-							 <i class="fa fa-remove text-white pull-right text-xs m-t-sm"></i>
-						 </a>
+						<input type="text" data-ever="{{.Title}}" value="{{.Title}}" class="group-title" />
+						<a title="{{msg $ "deleteGroup"}}" class="delete-group">
+							<i class="fa fa-remove text-white pull-right text-xs m-t-sm"></i>
+						</a>
 					</div>
 				</div>
 			</div>
 		</header>
-		
+
 		<ul class="list-group no-radius group-users">
 			{{range .Users}}
 			<li class="list-group-item" data-id="{{.UserId.Hex}}">
@@ -83,9 +83,9 @@
 		</section>
 	</div>
 	{{end}}
-	
+
 </div>
-	
+
 {{template "member/footer.html" .}}
 <script src="/public/blog/js/jsrender.js"></script>
 <script>
@@ -100,7 +100,7 @@ var group = {
 		self.deleteGroupEvent();
 		self.addUserEvent();
 		self.deleteUserEvent();
-		
+
 		var classes = ["bg-warning", "bg-danger", "bg-success", "bg-dark", "bg-primary"];
 		var i = 0;
 		var len = classes.length;
@@ -172,7 +172,7 @@ var group = {
 					t.focus();
 					return;
 				}
-				
+
 				// 检查是否是合法的email
 				if(!isEmail(email)) {
 					// art.tips("非法的email");
@@ -215,7 +215,7 @@ var group = {
 }
 $(function() {
 	group.init();
-	
+
 });
 
 </script>

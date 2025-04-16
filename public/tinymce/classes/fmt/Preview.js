@@ -1,22 +1,22 @@
 /**
- * Preview.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Preview.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Internal class for generating previews styles for formats.
- *
- * Example:
- *  Preview.getCssText(editor, 'bold');
- *
- * @class tinymce.fmt.Preview
- * @private
- */
+	* Internal class for generating previews styles for formats.
+	*
+	* Example:
+	*  Preview.getCssText(editor, 'bold');
+	*
+	* @class tinymce.fmt.Preview
+	* @private
+	*/
 define("tinymce/fmt/Preview", [
 	"tinymce/util/Tools"
 ], function(Tools) {

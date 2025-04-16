@@ -1,20 +1,20 @@
 /**
- * Menu.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Menu.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * Creates a new menu.
- *
- * @-x-less Menu.less
- * @class tinymce.ui.Menu
- * @extends tinymce.ui.FloatPanel
- */
+	* Creates a new menu.
+	*
+	* @-x-less Menu.less
+	* @class tinymce.ui.Menu
+	* @extends tinymce.ui.FloatPanel
+	*/
 define("tinymce/ui/Menu", [
 	"tinymce/ui/FloatPanel",
 	"tinymce/ui/MenuItem",
@@ -33,11 +33,11 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -57,10 +57,10 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			this.toggleClass('menu-align', true);
 
@@ -73,10 +73,10 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Hides/closes the menu.
-		 *
-		 * @method cancel
-		 */
+			* Hides/closes the menu.
+			*
+			* @method cancel
+			*/
 		cancel: function() {
 			var self = this;
 
@@ -85,10 +85,10 @@ define("tinymce/ui/Menu", [
 		},
 
 		/**
-		 * Hide menu and all sub menus.
-		 *
-		 * @method hideAll
-		 */
+			* Hide menu and all sub menus.
+			*
+			* @method hideAll
+			*/
 		hideAll: function() {
 			var self = this;
 
@@ -96,7 +96,7 @@ define("tinymce/ui/Menu", [
 
 			return self._super();
 		},
-/*
+	/*
 		getContainerElm: function() {
 			var doc = document, id = this.classPrefix + 'menucontainer';
 
@@ -114,12 +114,12 @@ define("tinymce/ui/Menu", [
 
 			return elm;
 		},
-*/
+	*/
 		/**
-		 * Invoked before the menu is rendered.
-		 *
-		 * @method preRender
-		 */
+			* Invoked before the menu is rendered.
+			*
+			* @method preRender
+			*/
 		preRender: function() {
 			var self = this;
 

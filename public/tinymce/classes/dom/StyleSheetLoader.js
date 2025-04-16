@@ -1,19 +1,19 @@
 /**
- * StyleSheetLoader.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* StyleSheetLoader.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles loading of external stylesheets and fires events when these are loaded.
- *
- * @class tinymce.dom.StyleSheetLoader
- * @private
- */
+	* This class handles loading of external stylesheets and fires events when these are loaded.
+	*
+	* @class tinymce.dom.StyleSheetLoader
+	* @private
+	*/
 define("tinymce/dom/StyleSheetLoader", [
 	"tinymce/util/Tools"
 ], function(Tools) {
@@ -30,13 +30,13 @@ define("tinymce/dom/StyleSheetLoader", [
 		}
 
 		/**
-		 * Loads the specified css style sheet file and call the loadedCallback once it's finished loading.
-		 *
-		 * @method load
-		 * @param {String} url Url to be loaded.
-		 * @param {Function} loadedCallback Callback to be executed when loaded.
-		 * @param {Function} errorCallback Callback to be executed when failed loading.
-		 */
+			* Loads the specified css style sheet file and call the loadedCallback once it's finished loading.
+			*
+			* @method load
+			* @param {String} url Url to be loaded.
+			* @param {Function} loadedCallback Callback to be executed when loaded.
+			* @param {Function} errorCallback Callback to be executed when failed loading.
+			*/
 		function load(url, loadedCallback, errorCallback) {
 			var link, style, startTime, state;
 

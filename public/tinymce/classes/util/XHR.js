@@ -1,44 +1,44 @@
 /**
- * XHR.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* XHR.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class enables you to send XMLHTTPRequests cross browser.
- * @class tinymce.util.XHR
- * @mixes tinymce.util.Observable
- * @static
- * @example
- * // Sends a low level Ajax request
- * tinymce.util.XHR.send({
- *    url: 'someurl',
- *    success: function(text) {
- *       console.debug(text);
- *    }
- * });
- *
- * // Add custom header to XHR request
- * tinymce.util.XHR.on('beforeSend', function(e) {
- *     e.xhr.setRequestHeader('X-Requested-With', 'Something');
- * });
- */
+	* This class enables you to send XMLHTTPRequests cross browser.
+	* @class tinymce.util.XHR
+	* @mixes tinymce.util.Observable
+	* @static
+	* @example
+	* // Sends a low level Ajax request
+	* tinymce.util.XHR.send({
+	*    url: 'someurl',
+	*    success: function(text) {
+	*       console.debug(text);
+	*    }
+	* });
+	*
+	* // Add custom header to XHR request
+	* tinymce.util.XHR.on('beforeSend', function(e) {
+	*     e.xhr.setRequestHeader('X-Requested-With', 'Something');
+	* });
+	*/
 define("tinymce/util/XHR", [
 	"tinymce/util/Observable",
 	"tinymce/util/Tools"
 ], function(Observable, Tools) {
 	var XHR = {
 		/**
-		 * Sends a XMLHTTPRequest.
-		 * Consult the Wiki for details on what settings this method takes.
-		 *
-		 * @method send
-		 * @param {Object} settings Object will target URL, callbacks and other info needed to make the request.
-		 */
+			* Sends a XMLHTTPRequest.
+			* Consult the Wiki for details on what settings this method takes.
+			*
+			* @method send
+			* @param {Object} settings Object will target URL, callbacks and other info needed to make the request.
+			*/
 		send: function(settings) {
 			var xhr, count = 0;
 

@@ -1,19 +1,19 @@
 /**
- * Serializer.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Serializer.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is used to serialize DOM trees into a string. Consult the TinyMCE Wiki API for
- * more details and examples on how to use this class.
- *
- * @class tinymce.dom.Serializer
- */
+	* This class is used to serialize DOM trees into a string. Consult the TinyMCE Wiki API for
+	* more details and examples on how to use this class.
+	*
+	* @class tinymce.dom.Serializer
+	*/
 define("tinymce/dom/Serializer", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/html/DomParser",
@@ -28,13 +28,13 @@ define("tinymce/dom/Serializer", [
 	var DOM = DOMUtils.DOM;
 
 	/**
-	 * Constructs a new DOM serializer class.
-	 *
-	 * @constructor
-	 * @method Serializer
-	 * @param {Object} settings Serializer settings object.
-	 * @param {tinymce.Editor} editor Optional editor to bind events to and get schema/dom from.
-	 */
+		* Constructs a new DOM serializer class.
+		*
+		* @constructor
+		* @method Serializer
+		* @param {Object} settings Serializer settings object.
+		* @param {tinymce.Editor} editor Optional editor to bind events to and get schema/dom from.
+		*/
 	return function(settings, editor) {
 		var dom, schema, htmlParser;
 
@@ -237,52 +237,52 @@ define("tinymce/dom/Serializer", [
 		// Return public methods
 		return {
 			/**
-			 * Schema instance that was used to when the Serializer was constructed.
-			 *
-			 * @field {tinymce.html.Schema} schema
-			 */
+				* Schema instance that was used to when the Serializer was constructed.
+				*
+				* @field {tinymce.html.Schema} schema
+				*/
 			schema: schema,
 
 			/**
-			 * Adds a node filter function to the parser used by the serializer, the parser will collect the specified nodes by name
-			 * and then execute the callback ones it has finished parsing the document.
-			 *
-			 * @example
-			 * parser.addNodeFilter('p,h1', function(nodes, name) {
-			 *		for (var i = 0; i < nodes.length; i++) {
-			 *			console.log(nodes[i].name);
-			 *		}
-			 * });
-			 * @method addNodeFilter
-			 * @method {String} name Comma separated list of nodes to collect.
-			 * @param {function} callback Callback function to execute once it has collected nodes.
-			 */
+				* Adds a node filter function to the parser used by the serializer, the parser will collect the specified nodes by name
+				* and then execute the callback ones it has finished parsing the document.
+				*
+				* @example
+				* parser.addNodeFilter('p,h1', function(nodes, name) {
+				*		for (var i = 0; i < nodes.length; i++) {
+				*			console.log(nodes[i].name);
+				*		}
+				* });
+				* @method addNodeFilter
+				* @method {String} name Comma separated list of nodes to collect.
+				* @param {function} callback Callback function to execute once it has collected nodes.
+				*/
 			addNodeFilter: htmlParser.addNodeFilter,
 
 			/**
-			 * Adds a attribute filter function to the parser used by the serializer, the parser will
-			 * collect nodes that has the specified attributes
-			 * and then execute the callback ones it has finished parsing the document.
-			 *
-			 * @example
-			 * parser.addAttributeFilter('src,href', function(nodes, name) {
-			 *		for (var i = 0; i < nodes.length; i++) {
-			 *			console.log(nodes[i].name);
-			 *		}
-			 * });
-			 * @method addAttributeFilter
-			 * @method {String} name Comma separated list of nodes to collect.
-			 * @param {function} callback Callback function to execute once it has collected nodes.
-			 */
+				* Adds a attribute filter function to the parser used by the serializer, the parser will
+				* collect nodes that has the specified attributes
+				* and then execute the callback ones it has finished parsing the document.
+				*
+				* @example
+				* parser.addAttributeFilter('src,href', function(nodes, name) {
+				*		for (var i = 0; i < nodes.length; i++) {
+				*			console.log(nodes[i].name);
+				*		}
+				* });
+				* @method addAttributeFilter
+				* @method {String} name Comma separated list of nodes to collect.
+				* @param {function} callback Callback function to execute once it has collected nodes.
+				*/
 			addAttributeFilter: htmlParser.addAttributeFilter,
 
 			/**
-			 * Serializes the specified browser DOM node into a HTML string.
-			 *
-			 * @method serialize
-			 * @param {DOMNode} node DOM node to serialize.
-			 * @param {Object} args Arguments option that gets passed to event handlers.
-			 */
+				* Serializes the specified browser DOM node into a HTML string.
+				*
+				* @method serialize
+				* @param {DOMNode} node DOM node to serialize.
+				* @param {Object} args Arguments option that gets passed to event handlers.
+				*/
 			serialize: function(node, args) {
 				var self = this, impl, doc, oldDoc, htmlSerializer, content;
 
@@ -363,25 +363,25 @@ define("tinymce/dom/Serializer", [
 			},
 
 			/**
-			 * Adds valid elements rules to the serializers schema instance this enables you to specify things
-			 * like what elements should be outputted and what attributes specific elements might have.
-			 * Consult the Wiki for more details on this format.
-			 *
-			 * @method addRules
-			 * @param {String} rules Valid elements rules string to add to schema.
-			 */
+				* Adds valid elements rules to the serializers schema instance this enables you to specify things
+				* like what elements should be outputted and what attributes specific elements might have.
+				* Consult the Wiki for more details on this format.
+				*
+				* @method addRules
+				* @param {String} rules Valid elements rules string to add to schema.
+				*/
 			addRules: function(rules) {
 				schema.addValidElements(rules);
 			},
 
 			/**
-			 * Sets the valid elements rules to the serializers schema instance this enables you to specify things
-			 * like what elements should be outputted and what attributes specific elements might have.
-			 * Consult the Wiki for more details on this format.
-			 *
-			 * @method setRules
-			 * @param {String} rules Valid elements rules string.
-			 */
+				* Sets the valid elements rules to the serializers schema instance this enables you to specify things
+				* like what elements should be outputted and what attributes specific elements might have.
+				* Consult the Wiki for more details on this format.
+				*
+				* @method setRules
+				* @param {String} rules Valid elements rules string.
+				*/
 			setRules: function(rules) {
 				schema.setValidElements(rules);
 			},

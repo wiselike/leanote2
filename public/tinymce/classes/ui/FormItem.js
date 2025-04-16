@@ -1,21 +1,21 @@
 /**
- * FormItem.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FormItem.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class is a container created by the form element with
- * a label and control item.
- *
- * @class tinymce.ui.FormItem
- * @extends tinymce.ui.Container
- * @setting {String} label Label to display for the form item.
- */
+	* This class is a container created by the form element with
+	* a label and control item.
+	*
+	* @class tinymce.ui.FormItem
+	* @extends tinymce.ui.Container
+	* @setting {String} label Label to display for the form item.
+	*/
 define("tinymce/ui/FormItem", [
 	"tinymce/ui/Container"
 ], function(Container) {
@@ -31,11 +31,11 @@ define("tinymce/ui/FormItem", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, layout = self._layout, prefix = self.classPrefix;
 

@@ -22,8 +22,8 @@
 				{{leaMsg . "Once the abstract has been updated, it will not set the abstract automatically other than you cancel it."}}
 
 				<hr />
-  				<div class="alert alert-danger" id="baseMsg" style="display: none"></div>
-  				
+				<div class="alert alert-danger" id="baseMsg" style="display: none"></div>
+
 				<div class="form-group" id="mainImg">
 					<label>
 						{{leaMsg $ "Main Image"}}
@@ -35,12 +35,12 @@
 						<img src="{{.note.ImgSrc}}" class="img-src" id="imgSrc"/>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label>{{leaMsg $ "Description" }}</label>
 					<textarea type="text" rows="6" class="form-control" id="desc" name="desc">{{.note.Desc}}</textarea>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="content1">{{leaMsg $ "Abstract"}}</label>
 					<div class="toolbar-content">
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 			<footer class="panel-footer text-right bg-light lter">
-			    <button type="submit" id="submitBtn" class="btn btn-success">{{msg . "submit"}}</button>
+				<button type="submit" id="submitBtn" class="btn btn-success">{{msg . "submit"}}</button>
 			</footer>
 
 			<div class="panel-body">
@@ -99,7 +99,7 @@ $(function() {
 				+ "微软雅黑=Microsoft YaHei",
 		block_formats : "Header 1=h1;Header 2=h2;Header 3=h3; Header 4=h4;Pre=pre;Paragraph=p"
 	});
-	
+
 	// 提交
 	$("#submitBtn").click(function(e) {
 		e.preventDefault();
@@ -118,9 +118,9 @@ $(function() {
 			}
 		});
 	});
-	
+
 	var isMarkdown = {{$.note.IsMarkdown}};
-	
+
 	var images = [];
 	if (isMarkdown) {
 		var content = $('#rawContent').html();
@@ -141,7 +141,7 @@ $(function() {
 	var imgLen = images.length;
 	var imgSeq = 0;
 	$imgSrc = $('#imgSrc');
-	
+
 	if (imgLen) {
 		$(".btn-select-img").click(function() {
 			imgSeq++;

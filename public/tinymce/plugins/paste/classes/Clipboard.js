@@ -1,32 +1,32 @@
 // Included from: js/tinymce/plugins/paste/classes/Clipboard.js
 
 /**
- * Clipboard.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Clipboard.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class contains logic for getting HTML contents out of the clipboard.
- *
- * We need to make a lot of ugly hacks to get the contents out of the clipboard since
- * the W3C Clipboard API is broken in all browsers: Gecko/WebKit/Blink. We might rewrite
- * this the way those API:s stabilize.
- *
- * Current implementation steps:
- *  1. On keydown with paste keys Ctrl+V or Shift+Insert create
- *     a paste bin element and move focus to that element.
- *  2. Wait for the browser to fire a "paste" event and get the contents out of the paste bin.
- *  3. Check if the paste was successful if true, process the HTML.
- *  (4). If the paste was unsuccessful use IE execCommand, Clipboard API, document.dataTransfer old WebKit API etc.
- * 
- * @class tinymce.pasteplugin.Clipboard
- * @private
- */
+	* This class contains logic for getting HTML contents out of the clipboard.
+	*
+	* We need to make a lot of ugly hacks to get the contents out of the clipboard since
+	* the W3C Clipboard API is broken in all browsers: Gecko/WebKit/Blink. We might rewrite
+	* this the way those API:s stabilize.
+	*
+	* Current implementation steps:
+	*  1. On keydown with paste keys Ctrl+V or Shift+Insert create
+	*     a paste bin element and move focus to that element.
+	*  2. Wait for the browser to fire a "paste" event and get the contents out of the paste bin.
+	*  3. Check if the paste was successful if true, process the HTML.
+	*  (4). If the paste was unsuccessful use IE execCommand, Clipboard API, document.dataTransfer old WebKit API etc.
+	*
+	* @class tinymce.pasteplugin.Clipboard
+	* @private
+	*/
 define("tinymce/pasteplugin/Clipboard", [
 	"tinymce/Env",
 	"tinymce/util/VK",
@@ -37,13 +37,13 @@ define("tinymce/pasteplugin/Clipboard", [
 		var pasteBinDefaultContent = '%MCEPASTEBIN%', keyboardPastePlainTextState;
 
 		/**
-		 * Pastes the specified HTML. This means that the HTML is filtered and then
-		 * inserted at the current selection in the editor. It will also fire paste events
-		 * for custom user filtering.
-		 *
-		 * @param {String} html HTML code to paste into the current selection.
-		 */
-		 function copyImage(src, ids) {
+			* Pastes the specified HTML. This means that the HTML is filtered and then
+			* inserted at the current selection in the editor. It will also fire paste events
+			* for custom user filtering.
+			*
+			* @param {String} html HTML code to paste into the current selection.
+			*/
+			function copyImage(src, ids) {
 			ajaxPost("/file/copyHttpImage", {src: src}, function(ret) {
 				if(reIsOk(ret)) {
 					// 将图片替换之
@@ -84,7 +84,7 @@ define("tinymce/pasteplugin/Clipboard", [
 					dom.remove(tempBody);
 					html = args.node.innerHTML;
 				}
-				
+
 				if (!args.isDefaultPrevented()) {
 					// life
 					var node = editor.selection.getNode();
@@ -133,7 +133,7 @@ define("tinymce/pasteplugin/Clipboard", [
 									}
 								}
 								editor.insertContent($html.html());
-								
+
 								for(var src in needCopyImages) {
 									var ids = needCopyImages[src];
 									copyImage(src, ids);
@@ -148,11 +148,11 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Pastes the specified text. This means that the plain text is processed
-		 * and converted into BR and P elements. It will fire paste events for custom filtering.
-		 *
-		 * @param {String} text Text to paste as the current selection location.
-		 */
+			* Pastes the specified text. This means that the plain text is processed
+			* and converted into BR and P elements. It will fire paste events for custom filtering.
+			*
+			* @param {String} text Text to paste as the current selection location.
+			*/
 		// life text2
 		function pasteText(text) {
 			var text2 = text;
@@ -186,11 +186,11 @@ define("tinymce/pasteplugin/Clipboard", [
 
 			pasteHtml(text, text2);
 		}
-		
+
 		/**
-		 * Creates a paste bin element and moves the selection into that element. It will also move the element offscreen
-		 * so that resize handles doesn't get produced on IE or Drag handles or Firefox.
-		 */
+			* Creates a paste bin element and moves the selection into that element. It will also move the element offscreen
+			* so that resize handles doesn't get produced on IE or Drag handles or Firefox.
+			*/
 		function createPasteBin() {
 			var dom = editor.dom, body = editor.getBody(), viewport = editor.dom.getViewPort(editor.getWin());
 			var scrollY = editor.inline ? body.scrollTop : viewport.y, height = editor.inline ? body.clientHeight : viewport.h;
@@ -220,8 +220,8 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Removes the paste bin if it exists.
-		 */
+			* Removes the paste bin if it exists.
+			*/
 		function removePasteBin() {
 			if (pasteBinElm) {
 				editor.dom.unbind(pasteBinElm);
@@ -237,21 +237,21 @@ define("tinymce/pasteplugin/Clipboard", [
 		}
 
 		/**
-		 * Returns the contents of the paste bin as a HTML string.
-		 *
-		 * @return {String} Get the contents of the paste bin.
-		 */
+			* Returns the contents of the paste bin as a HTML string.
+			*
+			* @return {String} Get the contents of the paste bin.
+			*/
 		function getPasteBinHtml() {
 			return pasteBinElm ? pasteBinElm.innerHTML : pasteBinDefaultContent;
 		}
 
 		/**
-		 * Gets various content types out of the Clipboard API. It will also get the
-		 * plain text using older IE and WebKit API:s.
-		 *
-		 * @param {ClipboardEvent} clipboardEvent Event fired on paste.
-		 * @return {Object} Object with mime types and data for those mime types.
-		 */
+			* Gets various content types out of the Clipboard API. It will also get the
+			* plain text using older IE and WebKit API:s.
+			*
+			* @param {ClipboardEvent} clipboardEvent Event fired on paste.
+			* @return {Object} Object with mime types and data for those mime types.
+			*/
 		function getClipboardContent(clipboardEvent) {
 			var data = {}, clipboardData = clipboardEvent.clipboardData || editor.getDoc().dataTransfer;
 
@@ -312,35 +312,35 @@ define("tinymce/pasteplugin/Clipboard", [
 				createPasteBin();
 			}
 		});
-		
+
 		// 当url改变时, 得到图片的大小 copy from leanote_image
 		function getImageSize(url, callback) {
 			var img = document.createElement('img');
-		
+
 			function done(width, height) {
 				img.parentNode.removeChild(img);
 				callback({width: width, height: height});
 			}
-		
+
 			img.onload = function() {
 				done(img.clientWidth, img.clientHeight);
 			};
-		
+
 			img.onerror = function() {
 				done();
 			};
-		
+
 			img.src = url;
-		
+
 			var style = img.style;
 			style.visibility = 'hidden';
 			style.position = 'fixed';
 			style.bottom = style.left = 0;
 			style.width = style.height = 'auto';
-		
+
 			document.body.appendChild(img);
 		}
-		
+
 		// 是否有图片的粘贴, 有则删除paste bin
 		// 因为paste bin隐藏不见了, 如果不删除, 则editor_drop_paste的图片就会在这个bin下
 		// 而且, paste bin最后会删除, 导致图片不能显示
@@ -359,53 +359,53 @@ define("tinymce/pasteplugin/Clipboard", [
 			for (var i = 0; i < items.length; i++) {
 				if (items[i].type.indexOf("image") === 0) {
 					return true;
-			    }
+				}
 			}
 			return false;
 		}
-		
+
 		// 上传图片
 		// 已过时, 不用, pasteImage在editor_drop_paste.js中用
 		function pasteImage(event) {
 			// use event.originalEvent.clipboard for newer chrome versions
-			  var items = (event.clipboardData  || event.originalEvent.clipboardData).items; // 可能有多个file, 找到属于图片的file
-			  log(JSON.stringify(items)); // will give you the mime types
-			  // find pasted image among pasted items
-			  var blob;
-			  for (var i = 0; i < items.length; i++) {
-			    if (items[i].type.indexOf("image") === 0) {
-			      blob = items[i].getAsFile();
-			    }
-			  }
-			  // load image if there is a pasted image
-			  if (blob) {
-			    var reader = new FileReader();
-			    reader.onload = function(event) {
-			      	// 上传之
-			      	var c = new FormData;
-				    c.append("from", "pasteImage");
-				    c.append("file", blob);
-				    c.append("noteId", Note.curNoteId); // life
-				    // var d;
-				    // d = $.ajaxSettings.xhr();
-				    // d.withCredentials = i;var d = {};
-				    
+				var items = (event.clipboardData  || event.originalEvent.clipboardData).items; // 可能有多个file, 找到属于图片的file
+				log(JSON.stringify(items)); // will give you the mime types
+				// find pasted image among pasted items
+				var blob;
+				for (var i = 0; i < items.length; i++) {
+					if (items[i].type.indexOf("image") === 0) {
+						blob = items[i].getAsFile();
+					}
+				}
+				// load image if there is a pasted image
+				if (blob) {
+					var reader = new FileReader();
+					reader.onload = function(event) {
+						// 上传之
+						var c = new FormData;
+						c.append("from", "pasteImage");
+						c.append("file", blob);
+						c.append("noteId", Note.curNoteId); // life
+						// var d;
+						// d = $.ajaxSettings.xhr();
+						// d.withCredentials = i;var d = {};
+
 					// 先显示loading...
-					var editor = tinymce.EditorManager.activeEditor; 
+					var editor = tinymce.EditorManager.activeEditor;
 					var dom = editor.dom;
-					var d = {};						
+					var d = {};
 					d.id = '__mcenew';
 					d.src = "http://leanote.com/images/loading-24.gif"; // 写死了
 					editor.insertContent(dom.createHTML('img', d));
 					var imgElm = dom.get('__mcenew');
-				    $.ajax({url: "/file/pasteImage", contentType:false, processData:false , data: c, type: "POST"}
-				    	).done(function(re) {
-				    		if(!re || typeof re != "object" || !re.Ok) {
-				    			// 删除
-				    			dom.remove(imgElm);
-				    			return;
-				    		}
-				    		// 这里, 如果图片宽度过大, 这里设置成500px
+					$.ajax({url: "/file/pasteImage", contentType:false, processData:false , data: c, type: "POST"}
+						).done(function(re) {
+							if(!re || typeof re != "object" || !re.Ok) {
+								// 删除
+								dom.remove(imgElm);
+								return;
+							}
+							// 这里, 如果图片宽度过大, 这里设置成500px
 							var urlPrefix = UrlPrefix; // window.location.protocol + "//" + window.location.host;
 							var src = "/file/outputImage?fileId=" + re.Id;
 							getImageSize(src, function(wh) {
@@ -420,12 +420,12 @@ define("tinymce/pasteplugin/Clipboard", [
 								dom.setAttrib(imgElm, 'src', src);
 							});
 							dom.setAttrib(imgElm, 'id', null);
-				    	});
-			    };
-			    reader.readAsDataURL(blob);
-			    return true;
-			  }
-			  return false;
+						});
+					};
+					reader.readAsDataURL(blob);
+					return true;
+				}
+				return false;
 		}
 
 		editor.on('paste', function(e) {
@@ -433,7 +433,7 @@ define("tinymce/pasteplugin/Clipboard", [
 				removePasteBin();
 				return;
 			}
-			
+
 			if (hasImage(e)) {
 				removePasteBin();
 				// 不然会在内容中插入一个图片,

@@ -1,33 +1,33 @@
 <div class="access">
 
-  {{ if $.recentPosts }}
-    <div id="access-lastmod" class="post">
-      <h4 data-toc-skip class="panel-heading">最近更新</h4>
-      <ul class="post-content pl-0 pb-1 ml-1 mt-2">
-        {{ range $.recentPosts }}
-        <li><a href="{{$.postUrl}}/{{.UrlTitle}}">{{.Title}}</a></li>
-        {{ end }}
-      </ul>
-    </div> <!-- #access-lastmod -->
-  {{ end }}
-  
-  <!-- trending tags -->
-  {{ set . "MAX"  10 }}
-  
-  <!-- tag 已经排好序 -->
-  {{ if $.tags }}
-    <div id="access-tags">
-      <h4 data-toc-skip class="panel-heading">热门标签</h4>
-      <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
-  
-      {{ range $i, $tag := $.tags }}
-        {{ if lt $i $.MAX }}
-          <a class="post-tag" href="{{$.tagPostsUrl}}/{{ $tag.Tag }}">{{ $tag.Tag }}</a>
-        {{end}}
-      {{ end }}
-  
-      </div>
-    </div>
-  {{ end }}
-  
-  </div> <!-- .access -->
+	{{ if $.recentPosts }}
+		<div id="access-lastmod" class="post">
+			<h4 data-toc-skip class="panel-heading">最近更新</h4>
+			<ul class="post-content pl-0 pb-1 ml-1 mt-2">
+				{{ range $.recentPosts }}
+				<li><a href="{{$.postUrl}}/{{.UrlTitle}}">{{.Title}}</a></li>
+				{{ end }}
+			</ul>
+		</div> <!-- #access-lastmod -->
+	{{ end }}
+
+	<!-- trending tags -->
+	{{ set . "MAX"  10 }}
+
+	<!-- tag 已经排好序 -->
+	{{ if $.tags }}
+		<div id="access-tags">
+			<h4 data-toc-skip class="panel-heading">热门标签</h4>
+			<div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+
+			{{ range $i, $tag := $.tags }}
+				{{ if lt $i $.MAX }}
+					<a class="post-tag" href="{{$.tagPostsUrl}}/{{ $tag.Tag }}">{{ $tag.Tag }}</a>
+				{{end}}
+			{{ end }}
+
+			</div>
+		</div>
+	{{ end }}
+
+	</div> <!-- .access -->

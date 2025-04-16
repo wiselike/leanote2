@@ -1,144 +1,144 @@
 <!--
-  Switch the mode between dark and light.
+	Switch the mode between dark and light.
 -->
 
 <script type="text/javascript">
-  class ModeToggle {
-    static get MODE_KEY() { return "mode"; }
-    static get DARK_MODE() { return "dark"; }
-    static get LIGHT_MODE() { return "light"; }
+	class ModeToggle {
+		static get MODE_KEY() { return "mode"; }
+		static get DARK_MODE() { return "dark"; }
+		static get LIGHT_MODE() { return "light"; }
 
-    constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
+		constructor() {
+			if (this.hasMode) {
+				if (this.isDarkMode) {
+					if (!this.isSysDarkPrefer) {
+						this.setDark();
+					}
+				} else {
+					if (this.isSysDarkPrefer) {
+						this.setLight();
+					}
+				}
+			}
 
-      let self = this;
+			let self = this;
 
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener("change", () => {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
+			/* always follow the system prefers */
+			this.sysDarkPrefers.addEventListener("change", () => {
+				if (self.hasMode) {
+					if (self.isDarkMode) {
+						if (!self.isSysDarkPrefer) {
+							self.setDark();
+						}
 
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
+					} else {
+						if (self.isSysDarkPrefer) {
+							self.setLight();
+						}
+					}
 
-          self.clearMode();
-        }
+					self.clearMode();
+				}
 
-        self.updateMermaid();
-      });
+				self.updateMermaid();
+			});
 
-    } /* constructor() */
+		} /* constructor() */
 
-    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+		get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
 
-    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+		get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
 
-    get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; }
+		get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; }
 
-    get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; }
+		get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; }
 
-    get hasMode() { return this.mode != null; }
+		get hasMode() { return this.mode != null; }
 
-    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+		get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
 
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode
-        || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
+		/* get the current mode on screen */
+		get modeStatus() {
+			if (this.isDarkMode
+				|| (!this.hasMode && this.isSysDarkPrefer)) {
+				return ModeToggle.DARK_MODE;
+			} else {
+				return ModeToggle.LIGHT_MODE;
+			}
+		}
 
-    setDark() {
-      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-    }
+		setDark() {
+			$('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+			sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+		}
 
-    setLight() {
-      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-    }
+		setLight() {
+			$('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+			sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+		}
 
-    clearMode() {
-      $('html').removeAttr(ModeToggle.MODE_KEY);
-      sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
+		clearMode() {
+			$('html').removeAttr(ModeToggle.MODE_KEY);
+			sessionStorage.removeItem(ModeToggle.MODE_KEY);
+		}
 
-    updateMermaid() {
-      if (typeof mermaid !== "undefined") {
-        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE ? "dark" : "default");
-        let config = { theme: expectedTheme };
+		updateMermaid() {
+			if (typeof mermaid !== "undefined") {
+				let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE ? "dark" : "default");
+				let config = { theme: expectedTheme };
 
-        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
-        // [].forEach.call(document.getElementsByClassName("mermaid"), function (el) {
-        //   let svgCode = el.previousElementSibling.textContent;
-        //   console.log(svgCode);
-        //   el.removeAttribute("data-processed");
-        //   el.innerHTML = svgCode;
-        // });
-        $(".mermaid").each(function() {
-          // let svgCode = $(this).prev().children().html();  // 这里已经添加行号等信息
-          let svgCode = "";
-          $(this).prev().children("ol").children("li").each(function () {
-            svgCode = svgCode + $(this).text() + "\n";
-          });
-          $(this).removeAttr("data-processed");
-          $(this).html(svgCode);
-        });
-        mermaid.initialize(config);
-        mermaid.init({noteMargin: 10}, ".mermaid");
-      }
-    }
+				/* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+				// [].forEach.call(document.getElementsByClassName("mermaid"), function (el) {
+				//   let svgCode = el.previousElementSibling.textContent;
+				//   console.log(svgCode);
+				//   el.removeAttribute("data-processed");
+				//   el.innerHTML = svgCode;
+				// });
+				$(".mermaid").each(function() {
+					// let svgCode = $(this).prev().children().html();  // 这里已经添加行号等信息
+					let svgCode = "";
+					$(this).prev().children("ol").children("li").each(function () {
+						svgCode = svgCode + $(this).text() + "\n";
+					});
+					$(this).removeAttr("data-processed");
+					$(this).html(svgCode);
+				});
+				mermaid.initialize(config);
+				mermaid.init({noteMargin: 10}, ".mermaid");
+			}
+		}
 
-  } /* ModeToggle */
+	} /* ModeToggle */
 
-  const toggle = new ModeToggle();
+	const toggle = new ModeToggle();
 
-  function flipMode() {
-    if (toggle.hasMode) {
-      if (toggle.isSysDarkPrefer) {
-        if (toggle.isLightMode) {
-          toggle.clearMode();
-        } else {
-          toggle.setLight();
-        }
+	function flipMode() {
+		if (toggle.hasMode) {
+			if (toggle.isSysDarkPrefer) {
+				if (toggle.isLightMode) {
+					toggle.clearMode();
+				} else {
+					toggle.setLight();
+				}
 
-      } else {
-        if (toggle.isDarkMode) {
-          toggle.clearMode();
-        } else {
-          toggle.setDark();
-        }
-      }
+			} else {
+				if (toggle.isDarkMode) {
+					toggle.clearMode();
+				} else {
+					toggle.setDark();
+				}
+			}
 
-    } else {
-      if (toggle.isSysDarkPrefer) {
-        toggle.setLight();
-      } else {
-        toggle.setDark();
-      }
-    }
+		} else {
+			if (toggle.isSysDarkPrefer) {
+				toggle.setLight();
+			} else {
+				toggle.setDark();
+			}
+		}
 
-    toggle.updateMermaid();
+		toggle.updateMermaid();
 
-  } /* flipMode() */
+	} /* flipMode() */
 
 </script>

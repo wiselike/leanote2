@@ -1,23 +1,23 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 /*eslint no-nested-ternary:0 */
 
 /**
- * Auto Resize
- *
- * This plugin automatically resizes the content area to fit its content height.
- * It will retain a minimum height, which is the height of the content area when
- * it's initialized.
- */
+	* Auto Resize
+	*
+	* This plugin automatically resizes the content area to fit its content height.
+	* It will retain a minimum height, which is the height of the content area when
+	* it's initialized.
+	*/
 tinymce.PluginManager.add('autoresize', function(editor) {
 	var settings = editor.settings, oldSize = 0;
 
@@ -30,8 +30,8 @@ tinymce.PluginManager.add('autoresize', function(editor) {
 	}
 
 	/**
-	 * This method gets executed each time the editor needs to resize.
-	 */
+		* This method gets executed each time the editor needs to resize.
+		*/
 	function resize(e) {
 		var deltaSize, doc, body, docElm, DOM = tinymce.DOM, resizeHeight, myHeight,
 			marginTop, marginBottom, paddingTop, paddingBottom, borderTop, borderBottom;
@@ -102,9 +102,9 @@ tinymce.PluginManager.add('autoresize', function(editor) {
 	}
 
 	/**
-	 * Calls the resize x times in 100ms intervals. We can't wait for load events since
-	 * the CSS files might load async.
-	 */
+		* Calls the resize x times in 100ms intervals. We can't wait for load events since
+		* the CSS files might load async.
+		*/
 	function wait(times, interval, callback) {
 		setTimeout(function() {
 			resize({});

@@ -11,13 +11,13 @@
 					<label><a href="/blog" target="_blank">Admin's Blog Page</a></label>
 					<input type="radio" class="form-control" name="homePage" {{if not .str.homePage}}checked="checked"{{end}} value="0">
 				</div>
-				
+
 				<div class="form-group">
 					<label><a href="/index" target="_blank">Index Page</a></label>
 					<input type="radio" class="form-control" name="homePage" {{if .str.homePage}}checked="checked"{{end}} value="1">
 				</div>
 			</div>
-			
+
 			<footer class="panel-footer text-right bg-light lter">
 				<button type="submit" id="submit" class="btn btn-success btn-s-xs">Submit</button>
 			</footer>

@@ -14,16 +14,16 @@
 	<form id="formData">
 		<section class="panel panel-default">
 			<div class="panel-body">
-	  				<div class="alert alert-danger" id="baseMsg" style="display: none"></div>
+				<div class="alert alert-danger" id="baseMsg" style="display: none"></div>
 					<input type="hidden" id="singleId" value="{{.single.SingleId.Hex}}" />
 					<div class="form-group">
 						<label>{{msg . "title"}}</label>
 						<input type="text" class="form-control" id="title" name="title"
-								value="{{.single.Title}}" 
+								value="{{.single.Title}}"
 								data-rules='[
-							    	{rule: "required", msg: "{{msg . "inputSingleTitle"}}"},
-						    	]'
-						    	data-msg_target="#baseMsg"
+									{rule: "required", msg: "{{msg . "inputSingleTitle"}}"},
+								]'
+								data-msg_target="#baseMsg"
 								/>
 					</div>
 
@@ -36,7 +36,7 @@
 					</div>
 			</div>
 			<footer class="panel-footer text-right bg-light lter">
-			    <button type="submit" id="baseBtn" class="btn btn-success">{{msg . "submit"}}</button>
+				<button type="submit" id="baseBtn" class="btn btn-success">{{msg . "submit"}}</button>
 			</footer>
 		</section>
 	</form>
@@ -71,7 +71,7 @@ $(function() {
 				+ "微软雅黑=Microsoft YaHei",
 		block_formats : "Header 1=h1;Header 2=h2;Header 3=h3; Header 4=h4;Pre=pre;Paragraph=p"
 	});
-	
+
 	// 基本设置
 	var vdPage = new vd.init("#formData");
 	$("#baseBtn").click(function(e) {

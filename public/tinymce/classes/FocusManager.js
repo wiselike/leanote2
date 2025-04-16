@@ -1,22 +1,22 @@
 /**
- * FocusManager.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* FocusManager.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class manages the focus/blur state of the editor. This class is needed since some
- * browsers fire false focus/blur states when the selection is moved to a UI dialog or similar.
- *
- * This class will fire two events focus and blur on the editor instances that got affected.
- * It will also handle the restore of selection when the focus is lost and returned.
- *
- * @class tinymce.FocusManager
- */
+	* This class manages the focus/blur state of the editor. This class is needed since some
+	* browsers fire false focus/blur states when the selection is moved to a UI dialog or similar.
+	*
+	* This class will fire two events focus and blur on the editor instances that got affected.
+	* It will also handle the restore of selection when the focus is lost and returned.
+	*
+	* @class tinymce.FocusManager
+	*/
 define("tinymce/FocusManager", [
 	"tinymce/dom/DOMUtils",
 	"tinymce/Env"
@@ -24,11 +24,11 @@ define("tinymce/FocusManager", [
 	var selectionChangeHandler, documentFocusInHandler, documentMouseUpHandler, DOM = DOMUtils.DOM;
 
 	/**
-	 * Constructs a new focus manager instance.
-	 *
-	 * @constructor FocusManager
-	 * @param {tinymce.EditorManager} editorManager Editor manager instance to handle focus for.
-	 */
+		* Constructs a new focus manager instance.
+		*
+		* @constructor FocusManager
+		* @param {tinymce.EditorManager} editorManager Editor manager instance to handle focus for.
+		*/
 	function FocusManager(editorManager) {
 		function getActiveElement() {
 			try {
@@ -249,12 +249,12 @@ define("tinymce/FocusManager", [
 	}
 
 	/**
-	 * Returns true if the specified element is part of the UI for example an button or text input.
-	 *
-	 * @method isEditorUIElement
-	 * @param  {Element} elm Element to check if it's part of the UI or not.
-	 * @return {Boolean} True/false state if the element is part of the UI or not.
-	 */
+		* Returns true if the specified element is part of the UI for example an button or text input.
+		*
+		* @method isEditorUIElement
+		* @param  {Element} elm Element to check if it's part of the UI or not.
+		* @return {Boolean} True/false state if the element is part of the UI or not.
+		*/
 	FocusManager.isEditorUIElement = function(elm) {
 		// Needs to be converted to string since svg can have focus: #6776
 		return elm.className.toString().indexOf('mce-') !== -1;

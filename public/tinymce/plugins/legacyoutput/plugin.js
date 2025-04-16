@@ -1,18 +1,18 @@
 /**
- * plugin.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- *
- * This plugin will force TinyMCE to produce deprecated legacy output such as font elements, u elements, align
- * attributes and so forth. There are a few cases where these old items might be needed for example in email applications or with Flash
- *
- * However you should NOT use this plugin if you are building some system that produces web contents such as a CMS. All these elements are
- * not apart of the newer specifications for HTML and XHTML.
- */
+	* plugin.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*
+	* This plugin will force TinyMCE to produce deprecated legacy output such as font elements, u elements, align
+	* attributes and so forth. There are a few cases where these old items might be needed for example in email applications or with Flash
+	*
+	* However you should NOT use this plugin if you are building some system that produces web contents such as a CMS. All these elements are
+	* not apart of the newer specifications for HTML and XHTML.
+	*/
 
 /*global tinymce:true */
 

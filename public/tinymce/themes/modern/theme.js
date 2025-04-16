@@ -1,12 +1,12 @@
 /**
- * theme.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* theme.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /*global tinymce:true */
 
@@ -28,10 +28,10 @@ tinymce.ThemeManager.add('modern', function(editor) {
 		"bullist numlist outdent indent | link image";
 
 	/**
-	 * Creates the toolbars from config and returns a toolbar array.
-	 *
-	 * @return {Array} Array with toolbars.
-	 */
+		* Creates the toolbars from config and returns a toolbar array.
+		*
+		* @return {Array} Array with toolbars.
+		*/
 	function createToolbars() {
 		var toolbars = [];
 
@@ -181,10 +181,10 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	}
 
 	/**
-	 * Creates the menu buttons based on config.
-	 *
-	 * @return {Array} Menu buttons array.
-	 */
+		* Creates the menu buttons based on config.
+		*
+		* @return {Array} Menu buttons array.
+		*/
 	function createMenuButtons() {
 		var name, menuButtons = [];
 
@@ -290,10 +290,10 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	}
 
 	/**
-	 * Adds accessibility shortcut keys to panel.
-	 *
-	 * @param {tinymce.ui.Panel} panel Panel to add focus to.
-	 */
+		* Adds accessibility shortcut keys to panel.
+		*
+		* @param {tinymce.ui.Panel} panel Panel to add focus to.
+		*/
 	function addAccessibilityKeys(panel) {
 		function focus(type) {
 			var item = panel.find(type)[0];
@@ -321,8 +321,8 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	}
 
 	/**
-	 * Resizes the editor to the specified width, height.
-	 */
+		* Resizes the editor to the specified width, height.
+		*/
 	function resizeTo(width, height) {
 		var containerElm, iframeElm, containerSize, iframeSize;
 
@@ -359,10 +359,10 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	}
 
 	/**
-	 * Renders the inline editor UI.
-	 *
-	 * @return {Object} Name/value object with theme data.
-	 */
+		* Renders the inline editor UI.
+		*
+		* @return {Object} Name/value object with theme data.
+		*/
 	function renderInlineUI(args) {
 		var panel, inlineToolbarContainer;
 
@@ -479,11 +479,11 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	}
 
 	/**
-	 * Renders the iframe editor UI.
-	 *
-	 * @param {Object} args Details about target element etc.
-	 * @return {Object} Name/value object with theme data.
-	 */
+		* Renders the iframe editor UI.
+		*
+		* @param {Object} args Details about target element etc.
+		* @return {Object} Name/value object with theme data.
+		*/
 	function renderIframeUI(args) {
 		var panel, resizeHandleCtrl, startSize;
 
@@ -565,11 +565,11 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	}
 
 	/**
-	 * Renders the UI for the theme. This gets called by the editor.
-	 *
-	 * @param {Object} args Details about target element etc.
-	 * @return {Object} Theme UI data items.
-	 */
+		* Renders the UI for the theme. This gets called by the editor.
+		*
+		* @param {Object} args Details about target element etc.
+		* @return {Object} Theme UI data items.
+		*/
 	self.renderUI = function(args) {
 		var skin = settings.skin !== false ? settings.skin || 'lightgray' : false;
 

@@ -1,19 +1,19 @@
 /**
- * NodeChange.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* NodeChange.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class handles the nodechange event dispatching both manual and though selection change events.
- *
- * @class tinymce.NodeChange
- * @private
- */
+	* This class handles the nodechange event dispatching both manual and though selection change events.
+	*
+	* @class tinymce.NodeChange
+	* @private
+	*/
 define("tinymce/NodeChange", [
 	"tinymce/dom/RangeUtils",
 	"tinymce/Env"
@@ -22,11 +22,11 @@ define("tinymce/NodeChange", [
 		var lastRng, lastPath = [];
 
 		/**
-		 * Returns true/false if the current element path has been changed or not.
-		 *
-		 * @private
-		 * @return {Boolean} True if the element path is the same false if it's not.
-		 */
+			* Returns true/false if the current element path has been changed or not.
+			*
+			* @private
+			* @return {Boolean} True if the element path is the same false if it's not.
+			*/
 		function isSameElementPath(startElm) {
 			var i, currentPath;
 
@@ -111,12 +111,12 @@ define("tinymce/NodeChange", [
 		});
 
 		/**
-		 * Distpaches out a onNodeChange event to all observers. This method should be called when you
-		 * need to update the UI states or element path etc.
-		 *
-		 * @method nodeChanged
-		 * @param {Object} args Optional args to pass to NodeChange event handlers.
-		 */
+			* Distpaches out a onNodeChange event to all observers. This method should be called when you
+			* need to update the UI states or element path etc.
+			*
+			* @method nodeChanged
+			* @param {Object} args Optional args to pass to NodeChange event handlers.
+			*/
 		this.nodeChanged = function(args) {
 			var selection = editor.selection, node, parents, root;
 

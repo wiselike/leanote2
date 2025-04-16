@@ -1,12 +1,12 @@
 /**
- * validate.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* validate.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
 	// String validation:
@@ -20,9 +20,9 @@
 
 	if (!Validator.isEmail(f.myemail))
 		alert('Invalid email.');
-*/
+	*/
 
-var Validator = {
+	var Validator = {
 	isEmail : function(s) {
 		return this.test(s, '^[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+@[-!#$%&\'*+\\/0-9=?A-Z^_`a-z{|}~]+\.[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+$');
 	},
@@ -111,7 +111,7 @@ var AutoValidator = {
 	invalidate : function(n) {
 		this.mark(n.form, n);
 	},
-	
+
 	getErrorMessages : function(f) {
 		var nl, i, s = this.settings, field, msg, values, messages = [], ed = tinyMCEPopup.editor;
 		nl = this.tags(f, "label");
@@ -129,7 +129,7 @@ var AutoValidator = {
 				} else {
 					message = ed.getLang('invalid_data');
 				}
-				
+
 				message = message.replace(/{\#([^}]+)\}/g, function(a, b) {
 					return values[b] || '{#' + b + '}';
 				});

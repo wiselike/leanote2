@@ -1,21 +1,21 @@
 /**
- * Label.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* Label.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This class creates a label element. A label is a simple text control
- * that can be bound to other controls.
- *
- * @-x-less Label.less
- * @class tinymce.ui.Label
- * @extends tinymce.ui.Widget
- */
+	* This class creates a label element. A label is a simple text control
+	* that can be bound to other controls.
+	*
+	* @-x-less Label.less
+	* @class tinymce.ui.Label
+	* @extends tinymce.ui.Widget
+	*/
 define("tinymce/ui/Label", [
 	"tinymce/ui/Widget",
 	"tinymce/ui/DomUtils"
@@ -24,12 +24,12 @@ define("tinymce/ui/Label", [
 
 	return Widget.extend({
 		/**
-		 * Constructs a instance with the specified settings.
-		 *
-		 * @constructor
-		 * @param {Object} settings Name/value object with settings.
-		 * @param {Boolean} multiline Multiline label.
-		 */
+			* Constructs a instance with the specified settings.
+			*
+			* @constructor
+			* @param {Object} settings Name/value object with settings.
+			* @param {Boolean} multiline Multiline label.
+			*/
 		init: function(settings) {
 			var self = this;
 
@@ -48,13 +48,13 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Initializes the current controls layout rect.
-		 * This will be executed by the layout managers to determine the
-		 * default minWidth/minHeight etc.
-		 *
-		 * @method initLayoutRect
-		 * @return {Object} Layout rect instance.
-		 */
+			* Initializes the current controls layout rect.
+			* This will be executed by the layout managers to determine the
+			* default minWidth/minHeight etc.
+			*
+			* @method initLayoutRect
+			* @return {Object} Layout rect instance.
+			*/
 		initLayoutRect: function() {
 			var self = this, layoutRect = self._super();
 
@@ -75,10 +75,10 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Repaints the control after a layout operation.
-		 *
-		 * @method repaint
-		 */
+			* Repaints the control after a layout operation.
+			*
+			* @method repaint
+			*/
 		repaint: function() {
 			var self = this;
 
@@ -90,12 +90,12 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Sets/gets the current label text.
-		 *
-		 * @method text
-		 * @param {String} [text] New label text.
-		 * @return {String|tinymce.ui.Label} Current text or current label instance.
-		 */
+			* Sets/gets the current label text.
+			*
+			* @method text
+			* @param {String} [text] New label text.
+			* @return {String|tinymce.ui.Label} Current text or current label instance.
+			*/
 		text: function(text) {
 			var self = this;
 
@@ -107,11 +107,11 @@ define("tinymce/ui/Label", [
 		},
 
 		/**
-		 * Renders the control as a HTML string.
-		 *
-		 * @method renderHtml
-		 * @return {String} HTML representing the control.
-		 */
+			* Renders the control as a HTML string.
+			*
+			* @method renderHtml
+			* @return {String} HTML representing the control.
+			*/
 		renderHtml: function() {
 			var self = this, forId = self.settings.forId;
 

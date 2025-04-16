@@ -1,30 +1,30 @@
 /**
- * ElementPath.js
- *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	* ElementPath.js
+	*
+	* Copyright, Moxiecode Systems AB
+	* Released under LGPL License.
+	*
+	* License: http://www.tinymce.com/license
+	* Contributing: http://www.tinymce.com/contributing
+	*/
 
 /**
- * This control creates an path for the current selections parent elements in TinyMCE.
- *
- * @class tinymce.ui.ElementPath
- * @extends tinymce.ui.Path
- */
+	* This control creates an path for the current selections parent elements in TinyMCE.
+	*
+	* @class tinymce.ui.ElementPath
+	* @extends tinymce.ui.Path
+	*/
 define("tinymce/ui/ElementPath", [
 	"tinymce/ui/Path",
 	"tinymce/EditorManager"
 ], function(Path, EditorManager) {
 	return Path.extend({
 		/**
-		 * Post render method. Called after the control has been rendered to the target.
-		 *
-		 * @method postRender
-		 * @return {tinymce.ui.ElementPath} Current combobox instance.
-		 */
+			* Post render method. Called after the control has been rendered to the target.
+			*
+			* @method postRender
+			* @return {tinymce.ui.ElementPath} Current combobox instance.
+			*/
 		postRender: function() {
 			var self = this, editor = EditorManager.activeEditor;
 

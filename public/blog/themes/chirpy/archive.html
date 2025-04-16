@@ -10,8 +10,8 @@
 					<div class="post-content">
 						<div id="archives" class="pl-xl-2">
 							{{ range $.archives }}
-							  <span class="lead">{{.Year}}</span>
-							  <ul class="list-unstyled">
+								<span class="lead">{{.Year}}</span>
+								<ul class="list-unstyled">
 								{{ range .Posts }}
 									<li>
 									<div>
@@ -22,7 +22,7 @@
 									</div>
 									</li>
 								{{ end }}
-							  </ul>
+							</ul>
 							{{ end }}
 						</div> <!-- #archives -->
 					</div> <!-- .post-content -->
