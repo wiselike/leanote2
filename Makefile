@@ -15,7 +15,7 @@ fmt:
 # only build temporarily
 build:
 	@rm -rf tmp/
-	GOPATH=`go env GOPATH` revel build . tmp/
+	revel build . tmp/
 
 # build js
 gulp:
@@ -27,7 +27,7 @@ gulp:
 # build all and rerun leanote
 release: gulp
 	@rm -rf release/
-	GOPATH=`go env GOPATH` revel build . release/
+	revel build . release/
 	rsync -azr --delete --delete-before --exclude github.com/wiselike/leanote-of-unofficial/conf/app.conf --exclude github.com/wiselike/leanote-of-unofficial/public/upload --exclude github.com/wiselike/leanote-of-unofficial/mongodb_backup -e 'ssh -p 22' release/src/ root@192.168.0.12:/root/dockers/leanote/leanote/src
 	rsync -azr release/leanote-of-unofficial  -e 'ssh -p 22' root@192.168.0.12:/root/dockers/leanote/leanote/leanote-of-unofficial
 	rm -rf release/

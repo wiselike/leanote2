@@ -19,9 +19,9 @@ import (
 	"bytes"
 
 	"github.com/agtorre/gocolorize"
-	"github.com/wiselike/revel-cmd/logger"
 	"github.com/wiselike/revel-cmd/model"
 	"github.com/wiselike/revel-cmd/utils"
+	"github.com/wiselike/revel/logger"
 )
 
 const (
