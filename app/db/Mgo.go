@@ -384,7 +384,7 @@ func Err(err error) bool {
 		if err.Error() == "not found" {
 			return true
 		}
-		LogE2(3, err.Error())
+		LeanoteDBLog.Error(err.Error())
 		return false
 	}
 	return true

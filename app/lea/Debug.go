@@ -3,70 +3,41 @@ package lea
 import (
 	"encoding/json"
 	"fmt"
-	"sync"
 
 	"github.com/wiselike/revel"
 )
 
-const defautDepth = 1
+var leanoteLog = revel.AppLog.New("module", "leanote")
 
-var logMutex sync.Mutex
+var LeanoteDBLog = revel.AppLog.New("module", "leanote-db")
+var LeanoteFileLog = revel.AppLog.New("module", "leanote-file")
 
 func init() {
-	revel.AppLog.SetStackDepth(defautDepth)
+	leanoteLog.SetStackDepth(2)
+
+	LeanoteDBLog.SetStackDepth(3)   // 多回溯一层，显示执行db的行
+	LeanoteFileLog.SetStackDepth(3) // 多回溯一层，显示执行文件操作的行
 }
 
 func Log(msg string, i ...interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
-	revel.AppLog.Info(msg, i...)
+	leanoteLog.Info(msg, i...)
 }
 
 func Logf(msg string, i ...interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
-	revel.AppLog.Info(fmt.Sprintf(msg, i...))
-}
-func Logf2(depth int, msg string, i ...interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
-	revel.AppLog.SetStackDepth(depth)
-	defer revel.AppLog.SetStackDepth(defautDepth)
-	revel.AppLog.Info(fmt.Sprintf(msg, i...))
+	leanoteLog.Infof(msg, i...)
 }
 
 func LogW(msg string, i ...interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
-	revel.AppLog.Warn(msg, i...)
-}
-func LogW2(depth int, msg string, i ...interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
-	revel.AppLog.SetStackDepth(depth)
-	defer revel.AppLog.SetStackDepth(defautDepth)
-	revel.AppLog.Warn(msg, i...)
+	leanoteLog.Warn(msg, i...)
 }
 
 func LogE(msg string, i ...interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
-	revel.AppLog.Error(msg, i...)
-}
-
-func LogE2(depth int, msg string, i ...interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
-	revel.AppLog.SetStackDepth(depth)
-	defer revel.AppLog.SetStackDepth(defautDepth)
-	revel.AppLog.Error(msg, i...)
+	leanoteLog.Error(msg, i...)
 }
 
 func LogJ(i interface{}) {
-	logMutex.Lock()
-	defer logMutex.Unlock()
 	b, _ := json.MarshalIndent(i, "", " ")
-	revel.AppLog.Info(string(b))
+	leanoteLog.Info(string(b))
 }
 
 // 为test用

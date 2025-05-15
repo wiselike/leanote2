@@ -146,7 +146,7 @@ func CopyDir(source string, dest string) (err error) {
 func DeleteFile(path string) bool {
 	err := os.Remove(path)
 	if err != nil {
-		Logf2(2, "DeleteFile file(%s): %s", path, err.Error())
+		LeanoteFileLog.Infof("DeleteFile file(%s): %s", path, err.Error())
 		return false
 	}
 	return true

@@ -39,7 +39,7 @@ func (this *FileService) AddImage(image info.File, albumId, userId string, needC
 				msg = "Internel Server Error"
 			}
 			ok = false
-			LogW2(4, "", r)
+			LogW("AddImage", "recover", r)
 			return
 		}
 	}()
