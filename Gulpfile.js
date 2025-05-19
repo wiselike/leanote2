@@ -95,7 +95,7 @@ gulp.task('plugins', function() {
 // 合并requirejs和markdown为一个文件
 gulp.task('concatMarkdownJs', function() {
     var jss = [
-        'js/require.js',
+        'libs/require.js',
         'md/main.min.js',
     ];
 
@@ -113,7 +113,7 @@ gulp.task('concatMarkdownJs', function() {
 // / 合并requirejs和markdown为一个文件
 gulp.task('concatMarkdownJsV2', function() {
     var jss = [
-        'js/require.js',
+        'libs/require.js',
         'md/main-v2.js',
     ];
 
