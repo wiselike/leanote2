@@ -25,7 +25,7 @@ LEA.cmroot = 1;
 				this.disable = obj.disable;
 				this.className = "b-m-idisable";
 			}
-			$(this).width(obj.width).click(function(){}).mousedown(returnfalse).appendTo($body);
+			$(this).width(obj.width).on('click', function(){}).on('mousedown', returnfalse).appendTo($body);
 
 			obj = null;
 			return this;
@@ -108,7 +108,7 @@ LEA.cmroot = 1;
 						// 点击item
 						// 用闭包来存储变量
 						(function(thisItem, tmp) {
-							$(tmp).click(function(e) {
+							$(tmp).on('click', function(e) {
 								if (!this.disable) {
 									// console.log(target);
 									// 调用...
@@ -126,7 +126,7 @@ LEA.cmroot = 1;
 						}(thisItem, tmp));
 
 					} //end if
-					$(tmp).bind("contextmenu", returnfalse).hover(overItem, outItem);
+					$(tmp).on('contextmenu', returnfalse).on('mouseenter', overItem).on('mouseleave', outItem);
 				}
 				groups[gidx].appendChild(tmp);
 				tmp = item = item.items = null;
@@ -291,7 +291,7 @@ LEA.cmroot = 1;
 
 		var out = {
 			destroy: function() {
-				me.unbind("contextmenu");
+				me.off("contextmenu");
 			},
 			showMenu: function(e, target) {
 				onShowMenu.call(target, e);

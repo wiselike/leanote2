@@ -40,21 +40,21 @@ var view = {
 
 	bind: function () {
 		var me = this;
-		$('#noteInfoDropdown').click(function () {
+		$('#noteInfoDropdown').on('click', function () {
 			me.render();
 		});
 
-		$tpl.find('.post-url-pencil').click(function () {
+		$tpl.find('.post-url-pencil').on('click', function () {
 			$postUrlWrap.addClass('post-url-edit');
 			$input.val(decodeURI(me.note.UrlTitle));
 			$input.focus();
 		});
-		$input.keydown(function (e) {
+		$input.on('keydown', function (e) {
 			if(e.keyCode === 13) {
 				$input.blur();
 			}
 		});
-		$input.blur(function () {
+		$input.on('blur', function () {
 			$postUrlWrap.removeClass('post-url-edit');
 
 			var val = $input.val();

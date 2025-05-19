@@ -2012,12 +2012,12 @@ var Attach = {
 	init: function() {
 		var self = this;
 		// 显示attachs
-		$("#showAttach").click(function() {
+		$("#showAttach").on('click', function() {
 			// self._bookmark = tinymce.activeEditor.selection.getBookmark();
 			self.renderAttachs(Note.curNoteId);
 		});
 		// 防止点击隐藏
-		self.attachListO.click(function(e) {
+		self.attachListO.on('click', function(e) {
 			e.stopPropagation();
 		});
 		// 删除
@@ -2451,7 +2451,7 @@ Note.batch = {
 		});
 
 		// ctrl + all
-		$body.keydown(function (e) {
+		$body.on('keydown', function (e) {
 			if (e.target && e.target.nodeName === 'BODY') {
 				if ((e.ctrlKey || e.metaKey) && e.which === 65) {
 					e.preventDefault();
@@ -2649,14 +2649,14 @@ $(function() {
 			Note.newNote(notebookId);
 		}
 	});
-	$("#searchNotebookForAdd").click(function(e) {
+	$("#searchNotebookForAdd").on('click', function(e) {
 		e.stopPropagation();
 	});
-	$("#searchNotebookForAdd").keyup(function() {
+	$("#searchNotebookForAdd").on('keyup', function() {
 		var key = $(this).val();
 		Notebook.searchNotebookForAddNote(key);
 	});
-	$("#searchNotebookForList").keyup(function() {
+	$("#searchNotebookForList").on('keyup', function() {
 		var key = $(this).val();
 		Notebook.searchNotebookForList(key);
 	});
@@ -2688,7 +2688,7 @@ $(function() {
 		}
 	});
 
-	$("#saveBtn").click(function() {
+	$("#saveBtn").on('click', function() {
 		// 只有在这里, 才会force
 		Note.curChangedSaveIt(true);
 	});
@@ -2724,10 +2724,10 @@ $(function() {
 
 	// readony
 	// 修改
-	$('.toolbar-update').click(function() {
+	$('.toolbar-update').on('click', function() {
 		Note.toggleWriteable();
 	});
-	$("#editBtn").click(function() {
+	$("#editBtn").on('click', function() {
 		Note.toggleWriteableAndReadOnly();
 	});
 
@@ -2757,10 +2757,10 @@ $(function() {
 	var view = localStorage.getItem('viewStyle');
 	Note.toggleView(view);
 	// view 切换
-	$('.view-style').click(function (e) {
+	$('.view-style').on('click', function (e) {
 		Note.toggleView(e);
 	});
-	$('.sorter-style').click(function (e) {
+	$('.sorter-style').on('click', function (e) {
 		Note.setNotesSorter(e);
 	});
 });

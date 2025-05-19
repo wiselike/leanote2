@@ -280,11 +280,11 @@ Notebook.renderNotebooks = function(notebooks) {
 
 	// 展开/折叠图标
 	var $notebookList = $("#notebookList");
-	$notebookList.hover(function () {
+	$notebookList.on('mouseenter', function () {
 		if(!$(this).hasClass("showIcon")) {
 			$(this).addClass("showIcon");
 		}
-	}, function() {
+	}).on('mouseleave', function() {
 		$(this).removeClass("showIcon");
 	});
 
@@ -982,19 +982,19 @@ $(function() {
 	Notebook.contextmenuSearch = $("#notebookListForSearch li a").contextmenu(notebookListMenu2);
 
 	// 添加笔记本
-	$("#addNotebookPlus").click(function(e) {
+	$("#addNotebookPlus").on('click', function(e) {
 		e.stopPropagation();
 		Notebook.addNotebook();
 	});
 
 	// notebook setting
-	$("#notebookList").on("click", ".notebook-setting", function(e) {
+	$("#notebookList").on('click', ".notebook-setting", function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		var $p = $(this).parent();
 		Notebook.contextmenu.showMenu(e, $p);
 	});
-	$("#notebookListForSearch").on("click", ".notebook-setting", function(e) {
+	$("#notebookListForSearch").on('click', ".notebook-setting", function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		var $p = $(this).parent();

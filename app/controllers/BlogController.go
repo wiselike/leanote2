@@ -177,7 +177,7 @@ func (c Blog) setUrl(userBlog info.UserBlog, userInfo info.User) {
 	c.ViewArgs["themeBaseUrl"] = "/" + userBlog.ThemePath
 
 	// 其它static js
-	c.ViewArgs["jQueryUrl"] = "/js/jquery-1.9.0.min.js"
+	c.ViewArgs["jQueryUrl"] = "/js/jquery.min.js"
 
 	c.ViewArgs["prettifyJsUrl"] = "/js/google-code-prettify/prettify.js"
 	c.ViewArgs["prettifyCssUrl"] = "/js/google-code-prettify/prettify.css"

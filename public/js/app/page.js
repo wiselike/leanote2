@@ -44,7 +44,7 @@ editorMode.prototype.init = function() {
 	this.$themeLink = $("#themeLink");
 	this.changeMode(this.isWritingMode);
 	var self = this;
-	$(".toggle-editor-mode").click(function(e) {
+	$(".toggle-editor-mode").on('click', function(e) {
 		e.preventDefault();
 		saveBookmark();
 		var $a = $(this).find("a");
@@ -91,7 +91,7 @@ editorMode.prototype.normalMode = function() {
 	*/
 
 	$("#noteItemListWrap, #notesAndSort").show();
-	$("#noteList").unbind("mouseenter").unbind("mouseleave");
+	$("#noteList").off("mouseenter").off("mouseleave");
 
 	var theme = UserInfo.Theme || "default";
 	theme += ".css";
@@ -182,7 +182,7 @@ var Resize = {
 		var self = this;
 
 		// 鼠标点下
-		$(".noteSplit").bind("mousedown", function(event) {
+		$(".noteSplit").on("mousedown", function(event) {
 			event.preventDefault(); // 防止选择文本
 			self.lineMove = true;
 			$(this).css("background-color", "#ccc");
@@ -192,7 +192,7 @@ var Resize = {
 		});
 
 		// 鼠标点下
-		self.mdSplitter.bind("mousedown", function(event) {
+		self.mdSplitter.on("mousedown", function(event) {
 			event.preventDefault(); // 防止选择文本
 			if($(this).hasClass('open')) {
 				self.mdLineMove = true;
@@ -201,7 +201,7 @@ var Resize = {
 		});
 
 		// 鼠标移动时
-		self.body.bind("mousemove", function(event) {
+		self.body.on("mousemove", function(event) {
 			if(self.lineMove) { // 如果没有这个if会导致不能选择文本
 				event.preventDefault();
 				self.resize3Columns(event);
@@ -212,7 +212,7 @@ var Resize = {
 		});
 
 		// 鼠标放开, 结束
-		self.body.bind("mouseup", function(event) {
+		self.body.on("mouseup", function(event) {
 			self.stopResize();
 			// 取消遮罩
 			$("#noteMask").css("z-index", -1);
@@ -220,7 +220,7 @@ var Resize = {
 
 		// 瞬间
 		var everLeftWidth;
-		$('.layout-toggler-preview').click(function() {
+		$('.layout-toggler-preview').on('click', function() {
 			var $t = $(this);
 			var $p = self.leftColumn.parent();
 			// 是开的
@@ -474,7 +474,7 @@ function initEditor() {
 	// editor
 	// toolbar 下拉扩展, 也要resizeEditor
 	var mceToobarEverHeight = 0;
-	$("#moreBtn").click(function() {
+	$("#moreBtn").on('click', function() {
 		saveBookmark();
 		var $editor = $('#editor');
 		if($editor.hasClass('all-tool')) {
@@ -678,7 +678,7 @@ function hideMask () {
 	console.log('initing...');
 
 	// 窗口缩放时
-	$(window).resize(function() {
+	$(window).on('resize', function() {
 		Mobile.isMobile();
 		resizeEditor();
 	});
@@ -687,7 +687,7 @@ function hideMask () {
 	initEditor();
 
 	// 左侧, folder 展开与关闭
-	$(".folderHeader").click(function() {
+	$(".folderHeader").on('click', function() {
 		var body = $(this).next();
 		var p = $(this).parent();
 		if (!body.is(":hidden")) {
@@ -704,7 +704,7 @@ function hideMask () {
 	});
 
 	// 导航隐藏与显示
-	$(".leanoteNav h1").on("click", function(e) {
+	$(".leanoteNav h1").on('click', function(e) {
 		var $leanoteNav = $(this).closest('.leanoteNav');
 		if (!$leanoteNav.hasClass("unfolder")) {
 			$leanoteNav.addClass("unfolder");
@@ -714,11 +714,11 @@ function hideMask () {
 	});
 
 	// 邮箱验证
-	$("#wrongEmail").click(function() {
+	$("#wrongEmail").on('click', function() {
 		openSetInfoDialog(1);
 	});
 
-	$("#setTheme").click(function() {
+	$("#setTheme").on('click', function() {
 		showDialog2("#setThemeDialog", {title: "主题设置", postShow: function() {
 			if (!UserInfo.Theme) {
 				UserInfo.Theme = "default";
@@ -746,7 +746,7 @@ function hideMask () {
 	});
 
 	// 禁止双击选中文字
-	$("#notebook, #newMyNote, #myProfile, #topNav, #notesAndSort", "#leanoteNavTrigger").bind("selectstart", function(e) {
+	$("#notebook, #newMyNote, #myProfile, #topNav, #notesAndSort", "#leanoteNavTrigger").on("selectstart", function(e) {
 		e.preventDefault();
 		return false;
 	});
@@ -778,7 +778,7 @@ function hideMask () {
 	$("#leftSwitcher2").on('click', function() {
 		maxLeft(true);
 	});
-	$("#leftSwitcher").click('click', function() {
+	$("#leftSwitcher").on('click', function() {
 		if(Mobile.switchPage()) {
 			minLeft(true);
 		}
@@ -800,7 +800,7 @@ function hideMask () {
 
 	// mini版
 	// 点击展开
-	$("#notebookMin div.minContainer").click(function() {
+	$("#notebookMin div.minContainer").on('click', function() {
 		var target = $(this).attr("target");
 		maxLeft(true);
 		if(target == "#notebookList") {

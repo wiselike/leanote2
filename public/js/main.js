@@ -1,7 +1,7 @@
 require.config({
 	baseUrl: '/public',
 	paths: {
-		// 'jquery': 'js/jquery-1.9.0.min',
+		// 'jquery': 'js/jquery.min',
 		// base editor
 		'tinymce': 'tinymce/tinymce',
 		'jquery.slimscroll': 'js/jQuery-slimScroll-1.3.0/jquery.slimscroll',

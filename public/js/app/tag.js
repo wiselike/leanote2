@@ -128,7 +128,7 @@ Tag.appendTag = function(tag, save) {
 			return;
 		}
 	} else {
-		tag = $.trim(tag);
+		tag = tag.trim();
 		text = tag;
 		if(!text) {
 			return;
@@ -272,16 +272,16 @@ Tag.addTagNav = function(newTag) {
 // 事件
 $(function() {
 	// tag
-	$("#addTagTrigger").click(function() {
+	$("#addTagTrigger").on('click', function() {
 		$(this).hide();
 		$("#addTagInput").show().focus().val("");
 	});
 
-	$("#addTagInput").click(function(event) {
+	$("#addTagInput").on('click', function(event) {
 		showTagList(event);
 	});
 
-	$("#addTagInput").blur(function() {
+	$("#addTagInput").on('blur', function() {
 		var val = $(this).val();
 		if(val) {
 			Tag.appendTag(val, true);
@@ -292,7 +292,7 @@ $(function() {
 		$("#addTagInput").hide();
 		// revertTagStatus();
 	});
-	$('#addTagInput').keydown(function(e) {
+	$('#addTagInput').on('keydown', function(e) {
 		if (e.keyCode == 13) {
 			hideTagList();
 			// 如果有值, 再生成, 没值直接隐藏
