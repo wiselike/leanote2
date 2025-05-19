@@ -27,7 +27,7 @@ gulp.task('concatDepJs', function() {
         // 'libs/ace/ace.js',
         'libs/jquery/jQuery-slimScroll-1.3.0/jquery.slimscroll-min.js',
         'js/contextmenu/jquery.contextmenu.js',
-        'js/bootstrap-min.js',
+        'js/bootstrap.min.js',
         'js/object_id.js',
     ];
 
@@ -311,7 +311,7 @@ gulp.task('concatAlbumJs', function() {
 
     var jss = [
         'libs/jquery/jquery.min.js',
-        'js/bootstrap-min.js',
+        'js/bootstrap.min.js',
         'js/plugins/fileupload.min.js',
         'libs/jquery/jquery.pagination.js',
         'album/js/main.js',
@@ -369,7 +369,7 @@ gulp.task('concatCss', function() {
 var minifycss = require('gulp-minify-css');
 gulp.task('minifycss', function() {
     gulp.src(base + '/css/bootstrap.css')
-        .pipe(rename({suffix: '-min'}))
+        .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
         .pipe(gulp.dest(base + '/css'));
 

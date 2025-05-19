@@ -14,7 +14,7 @@ require.config({
 		'share': 'js/app/share-min',
 		'objectId': 'js/object_id-min',
 		'ZeroClipboard': 'js/ZeroClipboard/ZeroClipboard-min',
-		'bootstrap': 'js/bootstrap-min',
+		'bootstrap': 'js/bootstrap.min',
 		'leanote': 'js/main',
 
 		// ajax upload image/attach

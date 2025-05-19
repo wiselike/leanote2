@@ -189,8 +189,8 @@ func (c Blog) setUrl(userBlog info.UserBlog, userInfo info.User) {
 
 	c.ViewArgs["fontAwesomeUrl"] = "/css/font-awesome-4.2.0/css/font-awesome.css"
 
-	c.ViewArgs["bootstrapCssUrl"] = "/css/bootstrap.css"
-	c.ViewArgs["bootstrapJsUrl"] = "/js/bootstrap-min.js"
+	c.ViewArgs["bootstrapCssUrl"] = "/css/bootstrap.min.css"
+	c.ViewArgs["bootstrapJsUrl"] = "/js/bootstrap.min.js"
 }
 
 // 笔记本分类 只列出两级 Notebook
