@@ -9,9 +9,9 @@ requirejs.config({
 		'editor_drop_paste': 'js/plugins/editor_drop_paste',
 		'attachment_upload': 'js/plugins/attachment_upload',
 
-		// 'jquery.ui.widget': 'js/plugins/libs-min/jquery.ui.widget',
-		'fileupload': 'js/plugins/libs-min/fileupload',
-		// 'iframe-transport': 'js/plugins/libs-min/jquery.iframe-transport',
+		// 'jquery.ui.widget': 'js/plugins/fileupload/jquery.ui.widget',
+		// 'iframe-transport': 'js/plugins/fileupload/jquery.iframe-transport',
+		'fileupload': 'js/plugins/fileupload.min',
 
 		'note_info': 'js/plugins/note_info',
 		'tips': 'js/plugins/tips',

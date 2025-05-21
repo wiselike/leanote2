@@ -1,12 +1,12 @@
 require.config({
 	baseUrl: '/public',
 	paths: {
-		// 'jquery': 'js/jquery.min',
+		// 'jquery': 'libs/jquery/jquery.min',
 		// base editor
 		'tinymce': 'tinymce/tinymce',
-		'jquery.slimscroll': 'js/jQuery-slimScroll-1.3.0/jquery.slimscroll',
+		'jquery.slimscroll': 'libs/jquery/jQuery-slimScroll-1.3.0/jquery.slimscroll',
 		'contextmenu': 'js/contextmenu/jquery.contextmenu-min',
-		'jquery.cookie': 'js/jquery-cookie',
+		'jquery.cookie': 'libs/jquery/jquery-cookie',
 		'page': 'js/app/page-min',
 		'note': 'js/app/note-min',
 		'notebook': 'js/app/notebook-min',

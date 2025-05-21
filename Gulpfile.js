@@ -21,11 +21,11 @@ var messagesPath = leanoteBase + 'messages';
 // 840kb, 非常耗时!!
 gulp.task('concatDepJs', function() {
     var jss = [
-        'js/jquery.min.js',
-        'js/jquery.ztree.all-3.5-min.js',
+        'libs/jquery/jquery.min.js',
+        'libs/jquery/jquery.ztree.all-3.5-min.js',
         // 'tinymce/tinymce.full.min.js', // 使用打成的包, 加载速度快
         // 'libs/ace/ace.js',
-        'js/jQuery-slimScroll-1.3.0/jquery.slimscroll-min.js',
+        'libs/jquery/jQuery-slimScroll-1.3.0/jquery.slimscroll-min.js',
         'js/contextmenu/jquery.contextmenu.js',
         'js/bootstrap-min.js',
         'js/object_id.js',
@@ -66,10 +66,10 @@ gulp.task('concatAppJs', function() {
 
 // plugins压缩
 gulp.task('plugins', function() {
-    // gulp.src(base + '/js/plugins/libs/*.js')
-    //     .pipe(uglify()) // 压缩
-    //     // .pipe(concat('main.min.js'))
-    //     .pipe(gulp.dest(base + '/js/plugins/libs-min'));
+    // gulp.src(base + '/js/plugins/fileupload/*.min.js')
+    //    // .pipe(uglify()) // 压缩
+    //    .pipe(concat('fileupload.min.js'))
+    //    .pipe(gulp.dest(base + '/js/plugins'));
 
     // 所有js合并成一个
      var jss = [
@@ -84,7 +84,7 @@ gulp.task('plugins', function() {
     for(var i in jss) {
         jss[i] = base + '/js/plugins/' + jss[i] + '.js';
     }
-    jss.push(base + '/js/plugins/libs-min/fileupload.js');
+    jss.push(base + '/js/plugins/fileupload.min.js');
 
     return gulp.src(jss)
         .pipe(uglify()) // 压缩
@@ -310,10 +310,10 @@ gulp.task('concatAlbumJs', function() {
         .pipe(gulp.dest(base + '/album/css'));
 
     var jss = [
-        'js/jquery.min.js',
+        'libs/jquery/jquery.min.js',
         'js/bootstrap-min.js',
-        'js/plugins/libs-min/fileupload.js',
-        'js/jquery.pagination.js',
+        'js/plugins/fileupload.min.js',
+        'libs/jquery/jquery.pagination.js',
         'album/js/main.js',
     ];
 
