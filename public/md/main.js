@@ -34812,7 +34812,7 @@ rangy.createModule("CssClassApplier", function(api, module) {
 		mathjax: 'libs/MathJax/MathJax.js?config=TeX-AMS_HTML',
 		// bootstrap: 'bower-libs/bootstrap/dist/js/bootstrap',
 		requirejs: 'bower-libs/requirejs/require',
-		'google-code-prettify': 'bower-libs/google-code-prettify/src/prettify',
+		'google-code-prettify': '../libs/google-code-prettify/src/prettify',
 		// highlightjs: 'libs/highlight/highlight.pack',
 		'jquery-waitforimages': 'bower-libs/waitForImages/src/jquery.waitforimages',
 		// FileSaver: 'bower-libs/FileSaver/FileSaver',

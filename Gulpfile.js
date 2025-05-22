@@ -373,10 +373,10 @@ gulp.task('minifycss', function() {
         .pipe(minifycss())
         .pipe(gulp.dest(base + '/libs/bootstrap'));
 
-    gulp.src(base + '/css/font-awesome-4.2.0/css/font-awesome.css')
+    gulp.src(base + '/fonts/font-awesome-4.2.0/css/font-awesome.css')
         .pipe(rename({suffix: '-min'}))
         .pipe(minifycss())
-        .pipe(gulp.dest(base + '/css/font-awesome-4.2.0/css'));
+        .pipe(gulp.dest(base + '/fonts/font-awesome-4.2.0/css'));
 
     gulp.src(base + '/css/zTreeStyle/zTreeStyle.css')
         .pipe(rename({suffix: '-min'}))

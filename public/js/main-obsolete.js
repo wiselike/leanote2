@@ -35,7 +35,7 @@ require.config({
 		'scrollLink': 'mdeditor/editor/scrollLink-min',
 		'mathJax': 'mdeditor/editor/mathJax-min',
 		'jquery.waitforimages': 'mdeditor/editor/jquery.waitforimages-min',
-		'pretty': 'mdeditor/editor/google-code-prettify/prettify',
+		'pretty': 'libs/google-code-prettify/prettify',
 		'mdeditor': 'mdeditor/editor/mdeditor',
 
 		'jquery.mobile': 'js/jquery.mobile-1.4.4.min',

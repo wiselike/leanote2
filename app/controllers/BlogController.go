@@ -179,15 +179,15 @@ func (c Blog) setUrl(userBlog info.UserBlog, userInfo info.User) {
 	// 其它static js
 	c.ViewArgs["jQueryUrl"] = "/libs/jquery/jquery.min.js"
 
-	c.ViewArgs["prettifyJsUrl"] = "/js/google-code-prettify/prettify.js"
-	c.ViewArgs["prettifyCssUrl"] = "/js/google-code-prettify/prettify.css"
+	c.ViewArgs["prettifyJsUrl"] = "/libs/google-code-prettify/prettify.js"
+	c.ViewArgs["prettifyCssUrl"] = "/libs/google-code-prettify/prettify.css"
 
 	c.ViewArgs["blogCommonJsUrl"] = "/public/blog/js/common.js"
 
 	c.ViewArgs["shareCommentCssUrl"] = "/public/blog/css/share_comment.css"
 	c.ViewArgs["shareCommentJsUrl"] = "/public/blog/js/share_comment.js"
 
-	c.ViewArgs["fontAwesomeUrl"] = "/css/font-awesome-4.2.0/css/font-awesome.css"
+	c.ViewArgs["fontAwesomeUrl"] = "/fonts/font-awesome-4.2.0/css/font-awesome.css"
 
 	c.ViewArgs["bootstrapCssUrl"] = "/libs/bootstrap/bootstrap.min.css"
 	c.ViewArgs["bootstrapJsUrl"] = "/libs/bootstrap/bootstrap.min.js"
