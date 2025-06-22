@@ -3560,6 +3560,9 @@ body {
   height: 100%;
   left: 0;
   right: 0;
+  @media (min-width: 1120px) {
+    width: 62.5%;
+  }
 }
 #editor,
 #mdEditor {
