@@ -79,7 +79,7 @@
 43. 自研：在Makefile中，新增github-release的发布方法
 44. 自研：使用[simple-formater](https://github.com/wiselike/simple-formater)格式化所有js/css/html代码，不对源码做任何手动改动
 44. 自研：更新第三方revel组件版本至v1.3.0
-44. 自研：更新js组件版本：jquery-1.9.0->3.6.0，require-2.1.14->2.3.7，bootstrap-3.0.2->3.4.1，ace-1.2.3->1.4.14
+44. 自研：更新js组件版本：jquery-1.9.0->3.6.0，require-2.1.14->2.3.7，bootstrap-3.0.2->3.4.1，ace-1.2.3->1.2.9
 
 
 

@@ -1033,6 +1033,9 @@ LeaAce = {
 				(!isHtml && $pre.html().indexOf('<style>') != -1)) { // 如果是html就不用考虑了, 因为html格式的支持有style
 				$pre.html($pre.text());
 			}
+			if (!$pre.attr('tabindex')) {
+				$pre.attr("tabindex", -1);
+			}
 			$pre.find('.toggle-raw').remove();
 			var preHtml = $pre.html();
 
@@ -1098,6 +1101,29 @@ LeaAce = {
 				// 全不选
 				// aceEditor.selection.clearSelection();
 			}
+
+			//ace1.4.x版本重构了focus为非阻塞函数，需要用以下代码才能focus。
+			//ace1.4.x之前版本不需要用下面的代码，故注释掉。
+			//setTimeout(function () {
+			//	var inputEl;
+			//	// Ace ≥1.4 推荐写法
+			//	if (aceEditor.textInput && aceEditor.textInput.getElement) {
+			//		inputEl = aceEditor.textInput.getElement();
+			//	}
+			//	// Ace 1.2–1.3 兼容
+			//	if (!inputEl && aceEditor.textInput && aceEditor.textInput.$textInput) {
+			//		inputEl = aceEditor.textInput.$textInput;
+			//	}
+			//
+			//	if (inputEl) {
+			//		inputEl.focus({ preventScroll: true });
+			//	} else {
+			//		// 极老版本兜底
+			//		aceEditor.focus();
+			//	}
+			//
+			//	aceEditor.moveCursorTo(0, 0);
+			//}, 0);
 
 			// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 			// "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
@@ -1454,6 +1480,23 @@ LeaAce = {
 				// console.log($(this));
 			}
 		});
+
+		$("#editorContent").on("mousedown", "pre", function (e) {
+			// 判断这个 <pre> 是否已经是 Ace
+			var aceAndNode = me.isInAce($(this));
+			if (!aceAndNode) {          // 普通 <pre> 直接返回
+				return;
+			}
+
+			var aceEditor = aceAndNode[0];
+
+			// TinyMCE 会把第一次点击拦截下来，手动把焦点给 Ace
+			aceEditor.focus();
+
+			// 阻止 TinyMCE 把这次点击当作“选中整个 <pre>”
+			e.preventDefault();
+			e.stopPropagation();
+		});
 	}
 };
 
@@ -1628,3 +1671,4 @@ function _initPage(srcNote, isTop) {
 
 	hideMask();
 }
+
