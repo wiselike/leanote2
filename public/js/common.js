@@ -245,7 +245,11 @@ function _ajax(type, url, param, successFunc, failureFunc, async) {
 			_ajaxCallback(ret, successFunc, failureFunc);
 		},
 		error: function(ret) {
-			_ajaxCallback(ret, successFunc, failureFunc);
+			if(typeof failureFunc == "function") {
+				failureFunc(ret);
+			} else {
+				console.error("error: undefined failureFunc!");
+			}
 		}
 	});
 }

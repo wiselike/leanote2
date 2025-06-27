@@ -428,6 +428,11 @@ Note.curChangedSaveIt = function(force, callback, isRefreshOrCtrls) {
 				}
 				callback && callback();
 				showMsg(getMsg("saveSuccess"), 1000);
+			}, function(error) {
+				// 添加失败处理
+				me.saveInProcess[hasChanged.NoteId] = false;
+				showMsg(getMsg("saveFailure"), 3000);
+				console.error("updateNoteContent失败", error);
 			});
 	}
 
