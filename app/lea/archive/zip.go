@@ -148,7 +148,7 @@ func Unzip(srcFilePath string, destDirPath string) (ok bool, msg string) {
 	}
 	for _, f := range r.File {
 		// 包含恶意目录
-		if strings.Contains(f.Name, "../") {
+		if strings.Contains(f.Name, "..") {
 			lea.LogW("恶意文件", f.Name)
 			continue
 		}
