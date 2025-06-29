@@ -628,40 +628,13 @@ function scrollTo(self, tagName, text) {
 	// 找到是第几个
 	// 在nav是第几个
 	var navs = $('#leanoteNavContent [data-a="' + tagName + '-' + encodeURI(text) + '"]');
-//	alert('#leanoteNavContent [data-a="' + tagName + '-' + encodeURI(text) + '"]')
-	var len = navs.size();
-	for(var i = 0; i < len; ++i) {
-		if(navs[i] == self) {
-			break;
-		}
-	}
+	var i = navs.index(self);
 
-	if (target.size() >= i+1) {
+	if (target.length > i) {
 		target = target.eq(i);
 		// 之前插入, 防止多行定位不准
-		// log(target.scrollTop());
 		var top = iframe.scrollTop() - iframe.offset().top + target.offset().top; // 相对于iframe的位置
-		// var nowTop = iframe.scrollTop();
-		// log(nowTop);
-		// log(top);
-		// iframe.scrollTop(top);
 		iframe.animate({scrollTop: top}, 300); // 有问题
-
-		/*
-		var d = 200; // 时间间隔
-		for(var i = 0; i < d; i++) {
-			setTimeout(
-			(function(top) {
-				return function() {
-					iframe.scrollTop(top);
-				}
-			})(nowTop + 1.0*i*(top-nowTop)/d), i);
-		}
-		// 最后必然执行
-		setTimeout(function() {
-			iframe.scrollTop(top);
-		}, d+5);
-		*/
 		return;
 	}
 }
