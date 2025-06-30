@@ -1,268 +1,1374 @@
 /**
-	* plugin.js
-	*
-	* Copyright, Moxiecode Systems AB
-	* Released under LGPL License.
-	*
-	* License: http://www.tinymce.com/license
-	* Contributing: http://www.tinymce.com/contributing
-	*/
+ * Copyright (c) Tiny Technologies, Inc. All rights reserved.
+ * Licensed under the LGPL or a commercial license.
+ * For LGPL see License.txt in the project root for license information.
+ * For commercial licenses see https://www.tiny.cloud/
+ *
+ * Version: 5.10.0 (2021-10-11)
+ */
+(function () {
+    'use strict';
 
-/*global tinymce:true */
+    var Cell = function (initial) {
+      var value = initial;
+      var get = function () {
+        return value;
+      };
+      var set = function (v) {
+        value = v;
+      };
+      return {
+        get: get,
+        set: set
+      };
+    };
 
-tinymce.PluginManager.add('textpattern', function(editor) {
-	var isPatternsDirty = true, patterns;
+    var global$5 = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-	patterns = editor.settings.textpattern_patterns || [
-		{start: '*', end: '*', format: 'italic'},
-		{start: '**', end: '**', format: 'bold'},
-		{start: '#', format: 'h1'},
-		{start: '##', format: 'h2'},
-		{start: '###', format: 'h3'},
-		{start: '####', format: 'h4'},
-		{start: '#####', format: 'h5'},
-		{start: '######', format: 'h6'},
-		{start: '1. ', cmd: 'InsertOrderedList'},
-		{start: '* ', cmd: 'InsertUnorderedList'},
-		{start: '- ', cmd: 'InsertUnorderedList'}
-	];
+    var __assign = function () {
+      __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+          s = arguments[i];
+          for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p))
+              t[p] = s[p];
+        }
+        return t;
+      };
+      return __assign.apply(this, arguments);
+    };
+    function __spreadArray(to, from, pack) {
+      if (pack || arguments.length === 2)
+        for (var i = 0, l = from.length, ar; i < l; i++) {
+          if (ar || !(i in from)) {
+            if (!ar)
+              ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+          }
+        }
+      return to.concat(ar || Array.prototype.slice.call(from));
+    }
 
-	// Returns a sorted patterns list, ordered descending by start length
-	function getPatterns() {
-		if (isPatternsDirty) {
-			patterns.sort(function(a, b) {
-				if (a.start.length > b.start.length) {
-					return -1;
-				}
+    var typeOf = function (x) {
+      var t = typeof x;
+      if (x === null) {
+        return 'null';
+      } else if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array')) {
+        return 'array';
+      } else if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String')) {
+        return 'string';
+      } else {
+        return t;
+      }
+    };
+    var isType = function (type) {
+      return function (value) {
+        return typeOf(value) === type;
+      };
+    };
+    var isString = isType('string');
+    var isObject = isType('object');
+    var isArray = isType('array');
 
-				if (a.start.length < b.start.length) {
-					return 1;
-				}
+    var noop = function () {
+    };
+    var constant = function (value) {
+      return function () {
+        return value;
+      };
+    };
+    var identity = function (x) {
+      return x;
+    };
+    var die = function (msg) {
+      return function () {
+        throw new Error(msg);
+      };
+    };
+    var never = constant(false);
+    var always = constant(true);
 
-				return 0;
-			});
+    var none = function () {
+      return NONE;
+    };
+    var NONE = function () {
+      var call = function (thunk) {
+        return thunk();
+      };
+      var id = identity;
+      var me = {
+        fold: function (n, _s) {
+          return n();
+        },
+        isSome: never,
+        isNone: always,
+        getOr: id,
+        getOrThunk: call,
+        getOrDie: function (msg) {
+          throw new Error(msg || 'error: getOrDie called on none.');
+        },
+        getOrNull: constant(null),
+        getOrUndefined: constant(undefined),
+        or: id,
+        orThunk: call,
+        map: none,
+        each: noop,
+        bind: none,
+        exists: never,
+        forall: always,
+        filter: function () {
+          return none();
+        },
+        toArray: function () {
+          return [];
+        },
+        toString: constant('none()')
+      };
+      return me;
+    }();
+    var some = function (a) {
+      var constant_a = constant(a);
+      var self = function () {
+        return me;
+      };
+      var bind = function (f) {
+        return f(a);
+      };
+      var me = {
+        fold: function (n, s) {
+          return s(a);
+        },
+        isSome: always,
+        isNone: never,
+        getOr: constant_a,
+        getOrThunk: constant_a,
+        getOrDie: constant_a,
+        getOrNull: constant_a,
+        getOrUndefined: constant_a,
+        or: self,
+        orThunk: self,
+        map: function (f) {
+          return some(f(a));
+        },
+        each: function (f) {
+          f(a);
+        },
+        bind: bind,
+        exists: bind,
+        forall: bind,
+        filter: function (f) {
+          return f(a) ? me : NONE;
+        },
+        toArray: function () {
+          return [a];
+        },
+        toString: function () {
+          return 'some(' + a + ')';
+        }
+      };
+      return me;
+    };
+    var from = function (value) {
+      return value === null || value === undefined ? NONE : some(value);
+    };
+    var Optional = {
+      some: some,
+      none: none,
+      from: from
+    };
 
-			isPatternsDirty = false;
-		}
+    var nativeSlice = Array.prototype.slice;
+    var nativeIndexOf = Array.prototype.indexOf;
+    var rawIndexOf = function (ts, t) {
+      return nativeIndexOf.call(ts, t);
+    };
+    var contains = function (xs, x) {
+      return rawIndexOf(xs, x) > -1;
+    };
+    var map = function (xs, f) {
+      var len = xs.length;
+      var r = new Array(len);
+      for (var i = 0; i < len; i++) {
+        var x = xs[i];
+        r[i] = f(x, i);
+      }
+      return r;
+    };
+    var each = function (xs, f) {
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        f(x, i);
+      }
+    };
+    var eachr = function (xs, f) {
+      for (var i = xs.length - 1; i >= 0; i--) {
+        var x = xs[i];
+        f(x, i);
+      }
+    };
+    var filter = function (xs, pred) {
+      var r = [];
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        if (pred(x, i)) {
+          r.push(x);
+        }
+      }
+      return r;
+    };
+    var foldr = function (xs, f, acc) {
+      eachr(xs, function (x, i) {
+        acc = f(acc, x, i);
+      });
+      return acc;
+    };
+    var foldl = function (xs, f, acc) {
+      each(xs, function (x, i) {
+        acc = f(acc, x, i);
+      });
+      return acc;
+    };
+    var findUntil = function (xs, pred, until) {
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        if (pred(x, i)) {
+          return Optional.some(x);
+        } else if (until(x, i)) {
+          break;
+        }
+      }
+      return Optional.none();
+    };
+    var find = function (xs, pred) {
+      return findUntil(xs, pred, never);
+    };
+    var forall = function (xs, pred) {
+      for (var i = 0, len = xs.length; i < len; ++i) {
+        var x = xs[i];
+        if (pred(x, i) !== true) {
+          return false;
+        }
+      }
+      return true;
+    };
+    var sort = function (xs, comparator) {
+      var copy = nativeSlice.call(xs, 0);
+      copy.sort(comparator);
+      return copy;
+    };
+    var get$1 = function (xs, i) {
+      return i >= 0 && i < xs.length ? Optional.some(xs[i]) : Optional.none();
+    };
+    var head = function (xs) {
+      return get$1(xs, 0);
+    };
 
-		return patterns;
-	}
+    var keys = Object.keys;
+    var hasOwnProperty = Object.hasOwnProperty;
+    var has = function (obj, key) {
+      return hasOwnProperty.call(obj, key);
+    };
 
-	// Finds a matching pattern to the specified text
-	function findPattern(text) {
-		var patterns = getPatterns();
+    var generate$1 = function (cases) {
+      if (!isArray(cases)) {
+        throw new Error('cases must be an array');
+      }
+      if (cases.length === 0) {
+        throw new Error('there must be at least one case');
+      }
+      var constructors = [];
+      var adt = {};
+      each(cases, function (acase, count) {
+        var keys$1 = keys(acase);
+        if (keys$1.length !== 1) {
+          throw new Error('one and only one name per case');
+        }
+        var key = keys$1[0];
+        var value = acase[key];
+        if (adt[key] !== undefined) {
+          throw new Error('duplicate key detected:' + key);
+        } else if (key === 'cata') {
+          throw new Error('cannot have a case named cata (sorry)');
+        } else if (!isArray(value)) {
+          throw new Error('case arguments must be an array');
+        }
+        constructors.push(key);
+        adt[key] = function () {
+          var args = [];
+          for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+          }
+          var argLength = args.length;
+          if (argLength !== value.length) {
+            throw new Error('Wrong number of arguments to case ' + key + '. Expected ' + value.length + ' (' + value + '), got ' + argLength);
+          }
+          var match = function (branches) {
+            var branchKeys = keys(branches);
+            if (constructors.length !== branchKeys.length) {
+              throw new Error('Wrong number of arguments to match. Expected: ' + constructors.join(',') + '\nActual: ' + branchKeys.join(','));
+            }
+            var allReqd = forall(constructors, function (reqKey) {
+              return contains(branchKeys, reqKey);
+            });
+            if (!allReqd) {
+              throw new Error('Not all branches were specified when using match. Specified: ' + branchKeys.join(', ') + '\nRequired: ' + constructors.join(', '));
+            }
+            return branches[key].apply(null, args);
+          };
+          return {
+            fold: function () {
+              var foldArgs = [];
+              for (var _i = 0; _i < arguments.length; _i++) {
+                foldArgs[_i] = arguments[_i];
+              }
+              if (foldArgs.length !== cases.length) {
+                throw new Error('Wrong number of arguments to fold. Expected ' + cases.length + ', got ' + foldArgs.length);
+              }
+              var target = foldArgs[count];
+              return target.apply(null, args);
+            },
+            match: match,
+            log: function (label) {
+              console.log(label, {
+                constructors: constructors,
+                constructor: key,
+                params: args
+              });
+            }
+          };
+        };
+      });
+      return adt;
+    };
+    var Adt = { generate: generate$1 };
 
-		for (var i = 0; i < patterns.length; i++) {
-			if (text.indexOf(patterns[i].start) !== 0) {
-				continue;
-			}
+    Adt.generate([
+      {
+        bothErrors: [
+          'error1',
+          'error2'
+        ]
+      },
+      {
+        firstError: [
+          'error1',
+          'value2'
+        ]
+      },
+      {
+        secondError: [
+          'value1',
+          'error2'
+        ]
+      },
+      {
+        bothValues: [
+          'value1',
+          'value2'
+        ]
+      }
+    ]);
+    var partition = function (results) {
+      var errors = [];
+      var values = [];
+      each(results, function (result) {
+        result.fold(function (err) {
+          errors.push(err);
+        }, function (value) {
+          values.push(value);
+        });
+      });
+      return {
+        errors: errors,
+        values: values
+      };
+    };
 
-			if (patterns[i].end && text.lastIndexOf(patterns[i].end) != text.length - patterns[i].end.length) {
-				continue;
-			}
+    var value = function (o) {
+      var or = function (_opt) {
+        return value(o);
+      };
+      var orThunk = function (_f) {
+        return value(o);
+      };
+      var map = function (f) {
+        return value(f(o));
+      };
+      var mapError = function (_f) {
+        return value(o);
+      };
+      var each = function (f) {
+        f(o);
+      };
+      var bind = function (f) {
+        return f(o);
+      };
+      var fold = function (_, onValue) {
+        return onValue(o);
+      };
+      var exists = function (f) {
+        return f(o);
+      };
+      var forall = function (f) {
+        return f(o);
+      };
+      var toOptional = function () {
+        return Optional.some(o);
+      };
+      return {
+        isValue: always,
+        isError: never,
+        getOr: constant(o),
+        getOrThunk: constant(o),
+        getOrDie: constant(o),
+        or: or,
+        orThunk: orThunk,
+        fold: fold,
+        map: map,
+        mapError: mapError,
+        each: each,
+        bind: bind,
+        exists: exists,
+        forall: forall,
+        toOptional: toOptional
+      };
+    };
+    var error$1 = function (message) {
+      var getOrThunk = function (f) {
+        return f();
+      };
+      var getOrDie = function () {
+        return die(String(message))();
+      };
+      var or = identity;
+      var orThunk = function (f) {
+        return f();
+      };
+      var map = function (_f) {
+        return error$1(message);
+      };
+      var mapError = function (f) {
+        return error$1(f(message));
+      };
+      var bind = function (_f) {
+        return error$1(message);
+      };
+      var fold = function (onError, _) {
+        return onError(message);
+      };
+      return {
+        isValue: never,
+        isError: always,
+        getOr: identity,
+        getOrThunk: getOrThunk,
+        getOrDie: getOrDie,
+        or: or,
+        orThunk: orThunk,
+        fold: fold,
+        map: map,
+        mapError: mapError,
+        each: noop,
+        bind: bind,
+        exists: never,
+        forall: always,
+        toOptional: Optional.none
+      };
+    };
+    var fromOption = function (opt, err) {
+      return opt.fold(function () {
+        return error$1(err);
+      }, value);
+    };
+    var Result = {
+      value: value,
+      error: error$1,
+      fromOption: fromOption
+    };
 
-			return patterns[i];
-		}
-	}
+    var isInlinePattern = function (pattern) {
+      return pattern.type === 'inline-command' || pattern.type === 'inline-format';
+    };
+    var isBlockPattern = function (pattern) {
+      return pattern.type === 'block-command' || pattern.type === 'block-format';
+    };
+    var sortPatterns = function (patterns) {
+      return sort(patterns, function (a, b) {
+        if (a.start.length === b.start.length) {
+          return 0;
+        }
+        return a.start.length > b.start.length ? -1 : 1;
+      });
+    };
+    var normalizePattern = function (pattern) {
+      var err = function (message) {
+        return Result.error({
+          message: message,
+          pattern: pattern
+        });
+      };
+      var formatOrCmd = function (name, onFormat, onCommand) {
+        if (pattern.format !== undefined) {
+          var formats = void 0;
+          if (isArray(pattern.format)) {
+            if (!forall(pattern.format, isString)) {
+              return err(name + ' pattern has non-string items in the `format` array');
+            }
+            formats = pattern.format;
+          } else if (isString(pattern.format)) {
+            formats = [pattern.format];
+          } else {
+            return err(name + ' pattern has non-string `format` parameter');
+          }
+          return Result.value(onFormat(formats));
+        } else if (pattern.cmd !== undefined) {
+          if (!isString(pattern.cmd)) {
+            return err(name + ' pattern has non-string `cmd` parameter');
+          }
+          return Result.value(onCommand(pattern.cmd, pattern.value));
+        } else {
+          return err(name + ' pattern is missing both `format` and `cmd` parameters');
+        }
+      };
+      if (!isObject(pattern)) {
+        return err('Raw pattern is not an object');
+      }
+      if (!isString(pattern.start)) {
+        return err('Raw pattern is missing `start` parameter');
+      }
+      if (pattern.end !== undefined) {
+        if (!isString(pattern.end)) {
+          return err('Inline pattern has non-string `end` parameter');
+        }
+        if (pattern.start.length === 0 && pattern.end.length === 0) {
+          return err('Inline pattern has empty `start` and `end` parameters');
+        }
+        var start_1 = pattern.start;
+        var end_1 = pattern.end;
+        if (end_1.length === 0) {
+          end_1 = start_1;
+          start_1 = '';
+        }
+        return formatOrCmd('Inline', function (format) {
+          return {
+            type: 'inline-format',
+            start: start_1,
+            end: end_1,
+            format: format
+          };
+        }, function (cmd, value) {
+          return {
+            type: 'inline-command',
+            start: start_1,
+            end: end_1,
+            cmd: cmd,
+            value: value
+          };
+        });
+      } else if (pattern.replacement !== undefined) {
+        if (!isString(pattern.replacement)) {
+          return err('Replacement pattern has non-string `replacement` parameter');
+        }
+        if (pattern.start.length === 0) {
+          return err('Replacement pattern has empty `start` parameter');
+        }
+        return Result.value({
+          type: 'inline-command',
+          start: '',
+          end: pattern.start,
+          cmd: 'mceInsertContent',
+          value: pattern.replacement
+        });
+      } else {
+        if (pattern.start.length === 0) {
+          return err('Block pattern has empty `start` parameter');
+        }
+        return formatOrCmd('Block', function (formats) {
+          return {
+            type: 'block-format',
+            start: pattern.start,
+            format: formats[0]
+          };
+        }, function (command, commandValue) {
+          return {
+            type: 'block-command',
+            start: pattern.start,
+            cmd: command,
+            value: commandValue
+          };
+        });
+      }
+    };
+    var denormalizePattern = function (pattern) {
+      if (pattern.type === 'block-command') {
+        return {
+          start: pattern.start,
+          cmd: pattern.cmd,
+          value: pattern.value
+        };
+      } else if (pattern.type === 'block-format') {
+        return {
+          start: pattern.start,
+          format: pattern.format
+        };
+      } else if (pattern.type === 'inline-command') {
+        if (pattern.cmd === 'mceInsertContent' && pattern.start === '') {
+          return {
+            start: pattern.end,
+            replacement: pattern.value
+          };
+        } else {
+          return {
+            start: pattern.start,
+            end: pattern.end,
+            cmd: pattern.cmd,
+            value: pattern.value
+          };
+        }
+      } else if (pattern.type === 'inline-format') {
+        return {
+          start: pattern.start,
+          end: pattern.end,
+          format: pattern.format.length === 1 ? pattern.format[0] : pattern.format
+        };
+      }
+    };
+    var createPatternSet = function (patterns) {
+      return {
+        inlinePatterns: filter(patterns, isInlinePattern),
+        blockPatterns: sortPatterns(filter(patterns, isBlockPattern))
+      };
+    };
 
-	// Finds the best matching end pattern
-	function findEndPattern(text, offset, delta) {
-		var patterns, pattern, i;
+    var get = function (patternsState) {
+      var setPatterns = function (newPatterns) {
+        var normalized = partition(map(newPatterns, normalizePattern));
+        if (normalized.errors.length > 0) {
+          var firstError = normalized.errors[0];
+          throw new Error(firstError.message + ':\n' + JSON.stringify(firstError.pattern, null, 2));
+        }
+        patternsState.set(createPatternSet(normalized.values));
+      };
+      var getPatterns = function () {
+        return __spreadArray(__spreadArray([], map(patternsState.get().inlinePatterns, denormalizePattern), true), map(patternsState.get().blockPatterns, denormalizePattern), true);
+      };
+      return {
+        setPatterns: setPatterns,
+        getPatterns: getPatterns
+      };
+    };
 
-		// Find best matching end
-		patterns = getPatterns();
-		for (i = 0; i < patterns.length; i++) {
-			pattern = patterns[i];
-			if (pattern.end && text.substr(offset - pattern.end.length - delta, pattern.end.length) == pattern.end) {
-				return pattern;
-			}
-		}
-	}
+    var Global = typeof window !== 'undefined' ? window : Function('return this;')();
 
-	// Handles inline formats like *abc* and **abc**
-	function applyInlineFormat(space) {
-		var selection, dom, rng, container, offset, startOffset, text, patternRng, pattern, delta, format;
+    var error = function () {
+      var args = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
+      var console = Global.console;
+      if (console) {
+        if (console.error) {
+          console.error.apply(console, args);
+        } else {
+          console.log.apply(console, args);
+        }
+      }
+    };
+    var defaultPatterns = [
+      {
+        start: '*',
+        end: '*',
+        format: 'italic'
+      },
+      {
+        start: '**',
+        end: '**',
+        format: 'bold'
+      },
+      {
+        start: '#',
+        format: 'h1'
+      },
+      {
+        start: '##',
+        format: 'h2'
+      },
+      {
+        start: '###',
+        format: 'h3'
+      },
+      {
+        start: '####',
+        format: 'h4'
+      },
+      {
+        start: '#####',
+        format: 'h5'
+      },
+      {
+        start: '######',
+        format: 'h6'
+      },
+      {
+        start: '1. ',
+        cmd: 'InsertOrderedList'
+      },
+      {
+        start: '* ',
+        cmd: 'InsertUnorderedList'
+      },
+      {
+        start: '- ',
+        cmd: 'InsertUnorderedList'
+      }
+    ];
+    var getPatternSet = function (editor) {
+      var patterns = editor.getParam('textpattern_patterns', defaultPatterns, 'array');
+      if (!isArray(patterns)) {
+        error('The setting textpattern_patterns should be an array');
+        return {
+          inlinePatterns: [],
+          blockPatterns: []
+        };
+      }
+      var normalized = partition(map(patterns, normalizePattern));
+      each(normalized.errors, function (err) {
+        return error(err.message, err.pattern);
+      });
+      return createPatternSet(normalized.values);
+    };
+    var getForcedRootBlock = function (editor) {
+      var block = editor.getParam('forced_root_block', 'p');
+      if (block === false) {
+        return '';
+      } else if (block === true) {
+        return 'p';
+      } else {
+        return block;
+      }
+    };
 
-		function splitContainer() {
-			// Split text node and remove start/end from text node
-			container = container.splitText(startOffset);
-			container.splitText(offset - startOffset - delta);
-			container.deleteData(0, pattern.start.length);
-			container.deleteData(container.data.length - pattern.end.length, pattern.end.length);
-		}
+    var global$4 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
-		selection = editor.selection;
-		dom = editor.dom;
+    var global$3 = tinymce.util.Tools.resolve('tinymce.util.VK');
 
-		if (!selection.isCollapsed()) {
-			return;
-		}
+    var zeroWidth = '\uFEFF';
+    var nbsp = '\xA0';
 
-		rng = selection.getRng(true);
-		container = rng.startContainer;
-		offset = rng.startOffset;
-		text = container.data;
-		delta = space ? 1 : 0;
+    var global$2 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
-		if (container.nodeType != 3) {
-			return;
-		}
+    var global$1 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
-		// Find best matching end
-		pattern = findEndPattern(text, offset, delta);
-		if (!pattern) {
-			return;
-		}
+    var global = tinymce.util.Tools.resolve('tinymce.dom.TextSeeker');
 
-		// Find start of matched pattern
-		// TODO: Might need to improve this if there is nested formats
-		startOffset = Math.max(0, offset - delta);
-		startOffset = text.lastIndexOf(pattern.start, startOffset - pattern.end.length - 1);
+    var point = function (container, offset) {
+      return {
+        container: container,
+        offset: offset
+      };
+    };
 
-		if (startOffset === -1) {
-			return;
-		}
+    var isText = function (node) {
+      return node.nodeType === Node.TEXT_NODE;
+    };
+    var cleanEmptyNodes = function (dom, node, isRoot) {
+      if (node && dom.isEmpty(node) && !isRoot(node)) {
+        var parent_1 = node.parentNode;
+        dom.remove(node);
+        cleanEmptyNodes(dom, parent_1, isRoot);
+      }
+    };
+    var deleteRng = function (dom, rng, isRoot, clean) {
+      if (clean === void 0) {
+        clean = true;
+      }
+      var startParent = rng.startContainer.parentNode;
+      var endParent = rng.endContainer.parentNode;
+      rng.deleteContents();
+      if (clean && !isRoot(rng.startContainer)) {
+        if (isText(rng.startContainer) && rng.startContainer.data.length === 0) {
+          dom.remove(rng.startContainer);
+        }
+        if (isText(rng.endContainer) && rng.endContainer.data.length === 0) {
+          dom.remove(rng.endContainer);
+        }
+        cleanEmptyNodes(dom, startParent, isRoot);
+        if (startParent !== endParent) {
+          cleanEmptyNodes(dom, endParent, isRoot);
+        }
+      }
+    };
+    var isBlockFormatName = function (name, formatter) {
+      var formatSet = formatter.get(name);
+      return isArray(formatSet) && head(formatSet).exists(function (format) {
+        return has(format, 'block');
+      });
+    };
+    var isReplacementPattern = function (pattern) {
+      return pattern.start.length === 0;
+    };
+    var getParentBlock = function (editor, rng) {
+      var parentBlockOpt = Optional.from(editor.dom.getParent(rng.startContainer, editor.dom.isBlock));
+      if (getForcedRootBlock(editor) === '') {
+        return parentBlockOpt.orThunk(function () {
+          return Optional.some(editor.getBody());
+        });
+      } else {
+        return parentBlockOpt;
+      }
+    };
 
-		// Setup a range for the matching word
-		patternRng = dom.createRng();
-		patternRng.setStart(container, startOffset);
-		patternRng.setEnd(container, offset - delta);
-		pattern = findPattern(patternRng.toString());
+    var DOM = global$1.DOM;
+    var alwaysNext = function (startNode) {
+      return function (node) {
+        return startNode === node ? -1 : 0;
+      };
+    };
+    var isBoundary = function (dom) {
+      return function (node) {
+        return dom.isBlock(node) || contains([
+          'BR',
+          'IMG',
+          'HR',
+          'INPUT'
+        ], node.nodeName) || dom.getContentEditable(node) === 'false';
+      };
+    };
+    var textBefore = function (node, offset, rootNode) {
+      if (isText(node) && offset >= 0) {
+        return Optional.some(point(node, offset));
+      } else {
+        var textSeeker = global(DOM);
+        return Optional.from(textSeeker.backwards(node, offset, alwaysNext(node), rootNode)).map(function (prev) {
+          return point(prev.container, prev.container.data.length);
+        });
+      }
+    };
+    var textAfter = function (node, offset, rootNode) {
+      if (isText(node) && offset >= node.length) {
+        return Optional.some(point(node, offset));
+      } else {
+        var textSeeker = global(DOM);
+        return Optional.from(textSeeker.forwards(node, offset, alwaysNext(node), rootNode)).map(function (prev) {
+          return point(prev.container, 0);
+        });
+      }
+    };
+    var scanLeft = function (node, offset, rootNode) {
+      if (!isText(node)) {
+        return Optional.none();
+      }
+      var text = node.textContent;
+      if (offset >= 0 && offset <= text.length) {
+        return Optional.some(point(node, offset));
+      } else {
+        var textSeeker = global(DOM);
+        return Optional.from(textSeeker.backwards(node, offset, alwaysNext(node), rootNode)).bind(function (prev) {
+          var prevText = prev.container.data;
+          return scanLeft(prev.container, offset + prevText.length, rootNode);
+        });
+      }
+    };
+    var scanRight = function (node, offset, rootNode) {
+      if (!isText(node)) {
+        return Optional.none();
+      }
+      var text = node.textContent;
+      if (offset <= text.length) {
+        return Optional.some(point(node, offset));
+      } else {
+        var textSeeker = global(DOM);
+        return Optional.from(textSeeker.forwards(node, offset, alwaysNext(node), rootNode)).bind(function (next) {
+          return scanRight(next.container, offset - text.length, rootNode);
+        });
+      }
+    };
+    var repeatLeft = function (dom, node, offset, process, rootNode) {
+      var search = global(dom, isBoundary(dom));
+      return Optional.from(search.backwards(node, offset, process, rootNode));
+    };
 
-		if (!pattern || !pattern.end) {
-			return;
-		}
+    var generatePath = function (root, node, offset) {
+      if (isText(node) && (offset < 0 || offset > node.data.length)) {
+        return [];
+      }
+      var p = [offset];
+      var current = node;
+      while (current !== root && current.parentNode) {
+        var parent_1 = current.parentNode;
+        for (var i = 0; i < parent_1.childNodes.length; i++) {
+          if (parent_1.childNodes[i] === current) {
+            p.push(i);
+            break;
+          }
+        }
+        current = parent_1;
+      }
+      return current === root ? p.reverse() : [];
+    };
+    var generatePathRange = function (root, startNode, startOffset, endNode, endOffset) {
+      var start = generatePath(root, startNode, startOffset);
+      var end = generatePath(root, endNode, endOffset);
+      return {
+        start: start,
+        end: end
+      };
+    };
+    var resolvePath = function (root, path) {
+      var nodePath = path.slice();
+      var offset = nodePath.pop();
+      var resolvedNode = foldl(nodePath, function (optNode, index) {
+        return optNode.bind(function (node) {
+          return Optional.from(node.childNodes[index]);
+        });
+      }, Optional.some(root));
+      return resolvedNode.bind(function (node) {
+        if (isText(node) && (offset < 0 || offset > node.data.length)) {
+          return Optional.none();
+        } else {
+          return Optional.some({
+            node: node,
+            offset: offset
+          });
+        }
+      });
+    };
+    var resolvePathRange = function (root, range) {
+      return resolvePath(root, range.start).bind(function (_a) {
+        var startNode = _a.node, startOffset = _a.offset;
+        return resolvePath(root, range.end).map(function (_a) {
+          var endNode = _a.node, endOffset = _a.offset;
+          var rng = document.createRange();
+          rng.setStart(startNode, startOffset);
+          rng.setEnd(endNode, endOffset);
+          return rng;
+        });
+      });
+    };
+    var generatePathRangeFromRange = function (root, range) {
+      return generatePathRange(root, range.startContainer, range.startOffset, range.endContainer, range.endOffset);
+    };
 
-		// If container match doesn't have anything between start/end then do nothing
-		if (container.data.length <= pattern.start.length + pattern.end.length) {
-			return;
-		}
+    var stripPattern = function (dom, block, pattern) {
+      var firstTextNode = textAfter(block, 0, block);
+      firstTextNode.each(function (spot) {
+        var node = spot.container;
+        scanRight(node, pattern.start.length, block).each(function (end) {
+          var rng = dom.createRng();
+          rng.setStart(node, 0);
+          rng.setEnd(end.container, end.offset);
+          deleteRng(dom, rng, function (e) {
+            return e === block;
+          });
+        });
+      });
+    };
+    var applyPattern$1 = function (editor, match) {
+      var dom = editor.dom;
+      var pattern = match.pattern;
+      var rng = resolvePathRange(dom.getRoot(), match.range).getOrDie('Unable to resolve path range');
+      getParentBlock(editor, rng).each(function (block) {
+        if (pattern.type === 'block-format') {
+          if (isBlockFormatName(pattern.format, editor.formatter)) {
+            editor.undoManager.transact(function () {
+              stripPattern(editor.dom, block, pattern);
+              editor.formatter.apply(pattern.format);
+            });
+          }
+        } else if (pattern.type === 'block-command') {
+          editor.undoManager.transact(function () {
+            stripPattern(editor.dom, block, pattern);
+            editor.execCommand(pattern.cmd, false, pattern.value);
+          });
+        }
+      });
+      return true;
+    };
+    var findPattern$1 = function (patterns, text) {
+      var nuText = text.replace(nbsp, ' ');
+      return find(patterns, function (pattern) {
+        return text.indexOf(pattern.start) === 0 || nuText.indexOf(pattern.start) === 0;
+      });
+    };
+    var findPatterns$1 = function (editor, patterns) {
+      var dom = editor.dom;
+      var rng = editor.selection.getRng();
+      return getParentBlock(editor, rng).filter(function (block) {
+        var forcedRootBlock = getForcedRootBlock(editor);
+        var matchesForcedRootBlock = forcedRootBlock === '' && dom.is(block, 'body') || dom.is(block, forcedRootBlock);
+        return block !== null && matchesForcedRootBlock;
+      }).bind(function (block) {
+        var blockText = block.textContent;
+        var matchedPattern = findPattern$1(patterns, blockText);
+        return matchedPattern.map(function (pattern) {
+          if (global$2.trim(blockText).length === pattern.start.length) {
+            return [];
+          }
+          return [{
+              pattern: pattern,
+              range: generatePathRange(dom.getRoot(), block, 0, block, 0)
+            }];
+        });
+      }).getOr([]);
+    };
+    var applyMatches$1 = function (editor, matches) {
+      if (matches.length === 0) {
+        return;
+      }
+      var bookmark = editor.selection.getBookmark();
+      each(matches, function (match) {
+        return applyPattern$1(editor, match);
+      });
+      editor.selection.moveToBookmark(bookmark);
+    };
 
-		format = editor.formatter.get(pattern.format);
-		if (format && format[0].inline) {
-			splitContainer();
-			editor.formatter.apply(pattern.format, {}, container);
-			return container;
-		}
-	}
+    var unique = 0;
+    var generate = function (prefix) {
+      var date = new Date();
+      var time = date.getTime();
+      var random = Math.floor(Math.random() * 1000000000);
+      unique++;
+      return prefix + '_' + random + unique + String(time);
+    };
 
-	// Handles block formats like ##abc or 1. abc
-	function applyBlockFormat() {
-		var selection, dom, container, firstTextNode, node, format, textBlockElm, pattern, walker, rng, offset;
+    var checkRange = function (str, substr, start) {
+      return substr === '' || str.length >= substr.length && str.substr(start, start + substr.length) === substr;
+    };
+    var endsWith = function (str, suffix) {
+      return checkRange(str, suffix, str.length - suffix.length);
+    };
 
-		selection = editor.selection;
-		dom = editor.dom;
+    var newMarker = function (dom, id) {
+      return dom.create('span', {
+        'data-mce-type': 'bookmark',
+        id: id
+      });
+    };
+    var rangeFromMarker = function (dom, marker) {
+      var rng = dom.createRng();
+      rng.setStartAfter(marker.start);
+      rng.setEndBefore(marker.end);
+      return rng;
+    };
+    var createMarker = function (dom, markerPrefix, pathRange) {
+      var rng = resolvePathRange(dom.getRoot(), pathRange).getOrDie('Unable to resolve path range');
+      var startNode = rng.startContainer;
+      var endNode = rng.endContainer;
+      var textEnd = rng.endOffset === 0 ? endNode : endNode.splitText(rng.endOffset);
+      var textStart = rng.startOffset === 0 ? startNode : startNode.splitText(rng.startOffset);
+      return {
+        prefix: markerPrefix,
+        end: textEnd.parentNode.insertBefore(newMarker(dom, markerPrefix + '-end'), textEnd),
+        start: textStart.parentNode.insertBefore(newMarker(dom, markerPrefix + '-start'), textStart)
+      };
+    };
+    var removeMarker = function (dom, marker, isRoot) {
+      cleanEmptyNodes(dom, dom.get(marker.prefix + '-end'), isRoot);
+      cleanEmptyNodes(dom, dom.get(marker.prefix + '-start'), isRoot);
+    };
 
-		if (!selection.isCollapsed()) {
-			return;
-		}
+    var matchesPattern = function (dom, block, patternContent) {
+      return function (element, offset) {
+        var text = element.data;
+        var searchText = text.substring(0, offset);
+        var startEndIndex = searchText.lastIndexOf(patternContent.charAt(patternContent.length - 1));
+        var startIndex = searchText.lastIndexOf(patternContent);
+        if (startIndex !== -1) {
+          return startIndex + patternContent.length;
+        } else if (startEndIndex !== -1) {
+          return startEndIndex + 1;
+        } else {
+          return -1;
+        }
+      };
+    };
+    var findPatternStartFromSpot = function (dom, pattern, block, spot) {
+      var startPattern = pattern.start;
+      var startSpot = repeatLeft(dom, spot.container, spot.offset, matchesPattern(dom, block, startPattern), block);
+      return startSpot.bind(function (spot) {
+        if (spot.offset >= startPattern.length) {
+          var rng = dom.createRng();
+          rng.setStart(spot.container, spot.offset - startPattern.length);
+          rng.setEnd(spot.container, spot.offset);
+          return Optional.some(rng);
+        } else {
+          var offset = spot.offset - startPattern.length;
+          return scanLeft(spot.container, offset, block).map(function (nextSpot) {
+            var rng = dom.createRng();
+            rng.setStart(nextSpot.container, nextSpot.offset);
+            rng.setEnd(spot.container, spot.offset);
+            return rng;
+          }).filter(function (rng) {
+            return rng.toString() === startPattern;
+          }).orThunk(function () {
+            return findPatternStartFromSpot(dom, pattern, block, point(spot.container, 0));
+          });
+        }
+      });
+    };
+    var findPatternStart = function (dom, pattern, node, offset, block, requireGap) {
+      if (requireGap === void 0) {
+        requireGap = false;
+      }
+      if (pattern.start.length === 0 && !requireGap) {
+        var rng = dom.createRng();
+        rng.setStart(node, offset);
+        rng.setEnd(node, offset);
+        return Optional.some(rng);
+      }
+      return textBefore(node, offset, block).bind(function (spot) {
+        var start = findPatternStartFromSpot(dom, pattern, block, spot);
+        return start.bind(function (startRange) {
+          if (requireGap) {
+            if (startRange.endContainer === spot.container && startRange.endOffset === spot.offset) {
+              return Optional.none();
+            } else if (spot.offset === 0 && startRange.endContainer.textContent.length === startRange.endOffset) {
+              return Optional.none();
+            }
+          }
+          return Optional.some(startRange);
+        });
+      });
+    };
+    var findPattern = function (editor, block, details) {
+      var dom = editor.dom;
+      var root = dom.getRoot();
+      var pattern = details.pattern;
+      var endNode = details.position.container;
+      var endOffset = details.position.offset;
+      return scanLeft(endNode, endOffset - details.pattern.end.length, block).bind(function (spot) {
+        var endPathRng = generatePathRange(root, spot.container, spot.offset, endNode, endOffset);
+        if (isReplacementPattern(pattern)) {
+          return Optional.some({
+            matches: [{
+                pattern: pattern,
+                startRng: endPathRng,
+                endRng: endPathRng
+              }],
+            position: spot
+          });
+        } else {
+          var resultsOpt = findPatternsRec(editor, details.remainingPatterns, spot.container, spot.offset, block);
+          var results_1 = resultsOpt.getOr({
+            matches: [],
+            position: spot
+          });
+          var pos = results_1.position;
+          var start = findPatternStart(dom, pattern, pos.container, pos.offset, block, resultsOpt.isNone());
+          return start.map(function (startRng) {
+            var startPathRng = generatePathRangeFromRange(root, startRng);
+            return {
+              matches: results_1.matches.concat([{
+                  pattern: pattern,
+                  startRng: startPathRng,
+                  endRng: endPathRng
+                }]),
+              position: point(startRng.startContainer, startRng.startOffset)
+            };
+          });
+        }
+      });
+    };
+    var findPatternsRec = function (editor, patterns, node, offset, block) {
+      var dom = editor.dom;
+      return textBefore(node, offset, dom.getRoot()).bind(function (endSpot) {
+        var rng = dom.createRng();
+        rng.setStart(block, 0);
+        rng.setEnd(node, offset);
+        var text = rng.toString();
+        for (var i = 0; i < patterns.length; i++) {
+          var pattern = patterns[i];
+          if (!endsWith(text, pattern.end)) {
+            continue;
+          }
+          var patternsWithoutCurrent = patterns.slice();
+          patternsWithoutCurrent.splice(i, 1);
+          var result = findPattern(editor, block, {
+            pattern: pattern,
+            remainingPatterns: patternsWithoutCurrent,
+            position: endSpot
+          });
+          if (result.isSome()) {
+            return result;
+          }
+        }
+        return Optional.none();
+      });
+    };
+    var applyPattern = function (editor, pattern, patternRange) {
+      editor.selection.setRng(patternRange);
+      if (pattern.type === 'inline-format') {
+        each(pattern.format, function (format) {
+          editor.formatter.apply(format);
+        });
+      } else {
+        editor.execCommand(pattern.cmd, false, pattern.value);
+      }
+    };
+    var applyReplacementPattern = function (editor, pattern, marker, isRoot) {
+      var markerRange = rangeFromMarker(editor.dom, marker);
+      deleteRng(editor.dom, markerRange, isRoot);
+      applyPattern(editor, pattern, markerRange);
+    };
+    var applyPatternWithContent = function (editor, pattern, startMarker, endMarker, isRoot) {
+      var dom = editor.dom;
+      var markerEndRange = rangeFromMarker(dom, endMarker);
+      var markerStartRange = rangeFromMarker(dom, startMarker);
+      deleteRng(dom, markerStartRange, isRoot);
+      deleteRng(dom, markerEndRange, isRoot);
+      var patternMarker = {
+        prefix: startMarker.prefix,
+        start: startMarker.end,
+        end: endMarker.start
+      };
+      var patternRange = rangeFromMarker(dom, patternMarker);
+      applyPattern(editor, pattern, patternRange);
+    };
+    var addMarkers = function (dom, matches) {
+      var markerPrefix = generate('mce_textpattern');
+      var matchesWithEnds = foldr(matches, function (acc, match) {
+        var endMarker = createMarker(dom, markerPrefix + ('_end' + acc.length), match.endRng);
+        return acc.concat([__assign(__assign({}, match), { endMarker: endMarker })]);
+      }, []);
+      return foldr(matchesWithEnds, function (acc, match) {
+        var idx = matchesWithEnds.length - acc.length - 1;
+        var startMarker = isReplacementPattern(match.pattern) ? match.endMarker : createMarker(dom, markerPrefix + ('_start' + idx), match.startRng);
+        return acc.concat([__assign(__assign({}, match), { startMarker: startMarker })]);
+      }, []);
+    };
+    var findPatterns = function (editor, patterns, space) {
+      var rng = editor.selection.getRng();
+      if (rng.collapsed === false) {
+        return [];
+      }
+      return getParentBlock(editor, rng).bind(function (block) {
+        var offset = rng.startOffset - (space ? 1 : 0);
+        return findPatternsRec(editor, patterns, rng.startContainer, offset, block);
+      }).fold(function () {
+        return [];
+      }, function (result) {
+        return result.matches;
+      });
+    };
+    var applyMatches = function (editor, matches) {
+      if (matches.length === 0) {
+        return;
+      }
+      var dom = editor.dom;
+      var bookmark = editor.selection.getBookmark();
+      var matchesWithMarkers = addMarkers(dom, matches);
+      each(matchesWithMarkers, function (match) {
+        var block = dom.getParent(match.startMarker.start, dom.isBlock);
+        var isRoot = function (node) {
+          return node === block;
+        };
+        if (isReplacementPattern(match.pattern)) {
+          applyReplacementPattern(editor, match.pattern, match.endMarker, isRoot);
+        } else {
+          applyPatternWithContent(editor, match.pattern, match.startMarker, match.endMarker, isRoot);
+        }
+        removeMarker(dom, match.endMarker, isRoot);
+        removeMarker(dom, match.startMarker, isRoot);
+      });
+      editor.selection.moveToBookmark(bookmark);
+    };
 
-		textBlockElm = dom.getParent(selection.getStart(), 'p');
-		if (textBlockElm) {
-			walker = new tinymce.dom.TreeWalker(textBlockElm, textBlockElm);
-			while ((node = walker.next())) {
-				if (node.nodeType == 3) {
-					firstTextNode = node;
-					break;
-				}
-			}
+    var handleEnter = function (editor, patternSet) {
+      if (!editor.selection.isCollapsed()) {
+        return false;
+      }
+      var inlineMatches = findPatterns(editor, patternSet.inlinePatterns, false);
+      var blockMatches = findPatterns$1(editor, patternSet.blockPatterns);
+      if (blockMatches.length > 0 || inlineMatches.length > 0) {
+        editor.undoManager.add();
+        editor.undoManager.extra(function () {
+          editor.execCommand('mceInsertNewLine');
+        }, function () {
+          editor.insertContent(zeroWidth);
+          applyMatches(editor, inlineMatches);
+          applyMatches$1(editor, blockMatches);
+          var range = editor.selection.getRng();
+          var spot = textBefore(range.startContainer, range.startOffset, editor.dom.getRoot());
+          editor.execCommand('mceInsertNewLine');
+          spot.each(function (s) {
+            var node = s.container;
+            if (node.data.charAt(s.offset - 1) === zeroWidth) {
+              node.deleteData(s.offset - 1, 1);
+              cleanEmptyNodes(editor.dom, node.parentNode, function (e) {
+                return e === editor.dom.getRoot();
+              });
+            }
+          });
+        });
+        return true;
+      }
+      return false;
+    };
+    var handleInlineKey = function (editor, patternSet) {
+      var inlineMatches = findPatterns(editor, patternSet.inlinePatterns, true);
+      if (inlineMatches.length > 0) {
+        editor.undoManager.transact(function () {
+          applyMatches(editor, inlineMatches);
+        });
+      }
+    };
+    var checkKeyEvent = function (codes, event, predicate) {
+      for (var i = 0; i < codes.length; i++) {
+        if (predicate(codes[i], event)) {
+          return true;
+        }
+      }
+      return false;
+    };
+    var checkKeyCode = function (codes, event) {
+      return checkKeyEvent(codes, event, function (code, event) {
+        return code === event.keyCode && global$3.modifierPressed(event) === false;
+      });
+    };
+    var checkCharCode = function (chars, event) {
+      return checkKeyEvent(chars, event, function (chr, event) {
+        return chr.charCodeAt(0) === event.charCode;
+      });
+    };
 
-			if (firstTextNode) {
-				pattern = findPattern(firstTextNode.data);
-				if (!pattern) {
-					return;
-				}
+    var setup = function (editor, patternsState) {
+      var charCodes = [
+        ',',
+        '.',
+        ';',
+        ':',
+        '!',
+        '?'
+      ];
+      var keyCodes = [32];
+      editor.on('keydown', function (e) {
+        if (e.keyCode === 13 && !global$3.modifierPressed(e)) {
+          if (handleEnter(editor, patternsState.get())) {
+            e.preventDefault();
+          }
+        }
+      }, true);
+      editor.on('keyup', function (e) {
+        if (checkKeyCode(keyCodes, e)) {
+          handleInlineKey(editor, patternsState.get());
+        }
+      });
+      editor.on('keypress', function (e) {
+        if (checkCharCode(charCodes, e)) {
+          global$4.setEditorTimeout(editor, function () {
+            handleInlineKey(editor, patternsState.get());
+          });
+        }
+      });
+    };
 
-				rng = selection.getRng(true);
-				container = rng.startContainer;
-				offset = rng.startOffset;
+    function Plugin () {
+      global$5.add('textpattern', function (editor) {
+        var patternsState = Cell(getPatternSet(editor));
+        setup(editor, patternsState);
+        return get(patternsState);
+      });
+    }
 
-				if (firstTextNode == container) {
-					offset = Math.max(0, offset - pattern.start.length);
-				}
+    Plugin();
 
-				if (tinymce.trim(firstTextNode.data).length == pattern.start.length) {
-					return;
-				}
-
-				if (pattern.format) {
-					format = editor.formatter.get(pattern.format);
-					if (format && format[0].block) {
-						firstTextNode.deleteData(0, pattern.start.length);
-						editor.formatter.apply(pattern.format, {}, firstTextNode);
-
-						rng.setStart(container, offset);
-						rng.collapse(true);
-						selection.setRng(rng);
-					}
-				}
-
-				if (pattern.cmd) {
-					editor.undoManager.transact(function() {
-						firstTextNode.deleteData(0, pattern.start.length);
-						editor.execCommand(pattern.cmd);
-					});
-				}
-			}
-		}
-	}
-
-	function handleEnter() {
-		var rng, wrappedTextNode;
-
-		wrappedTextNode = applyInlineFormat();
-		if (wrappedTextNode) {
-			rng = editor.dom.createRng();
-			rng.setStart(wrappedTextNode, wrappedTextNode.data.length);
-			rng.setEnd(wrappedTextNode, wrappedTextNode.data.length);
-			editor.selection.setRng(rng);
-		}
-
-		applyBlockFormat();
-	}
-
-	function handleSpace() {
-		var wrappedTextNode, lastChar, lastCharNode, rng, dom;
-
-		wrappedTextNode = applyInlineFormat(true);
-		if (wrappedTextNode) {
-			dom = editor.dom;
-			lastChar = wrappedTextNode.data.slice(-1);
-
-			// Move space after the newly formatted node
-			if (/[\u00a0 ]/.test(lastChar)) {
-				wrappedTextNode.deleteData(wrappedTextNode.data.length - 1, 1);
-				lastCharNode = dom.doc.createTextNode(lastChar);
-
-				if (wrappedTextNode.nextSibling) {
-					dom.insertAfter(lastCharNode, wrappedTextNode.nextSibling);
-				} else {
-					wrappedTextNode.parentNode.appendChild(lastCharNode);
-				}
-
-				rng = dom.createRng();
-				rng.setStart(lastCharNode, 1);
-				rng.setEnd(lastCharNode, 1);
-				editor.selection.setRng(rng);
-			}
-		}
-	}
-
-	editor.on('keydown', function(e) {
-		if (e.keyCode == 13 && !tinymce.util.VK.modifierPressed(e)) {
-			handleEnter();
-		}
-	}, true);
-
-	editor.on('keyup', function(e) {
-		if (e.keyCode == 32 && !tinymce.util.VK.modifierPressed(e)) {
-			handleSpace();
-		}
-	});
-
-	this.getPatterns = getPatterns;
-	this.setPatterns = function(newPatterns) {
-		patterns = newPatterns;
-		isPatternsDirty = true;
-	};
-});
+}());

@@ -1,60 +1,91 @@
 /**
-	* plugin.js
-	*
-	* Copyright, Moxiecode Systems AB
-	* Released under LGPL License.
-	*
-	* License: http://www.tinymce.com/license
-	* Contributing: http://www.tinymce.com/contributing
-	*/
+ * Copyright (c) Tiny Technologies, Inc. All rights reserved.
+ * Licensed under the LGPL or a commercial license.
+ * For LGPL see License.txt in the project root for license information.
+ * For commercial licenses see https://www.tiny.cloud/
+ *
+ * Version: 5.10.0 (2021-10-11)
+ */
+(function () {
+    'use strict';
 
-/*global tinymce:true */
+    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-tinymce.PluginManager.add('code', function(editor) {
-	function showDialog() {
-		var win = editor.windowManager.open({
-			title: "Source code",
-			body: {
-				type: 'textbox',
-				name: 'code',
-				multiline: true,
-				minWidth: editor.getParam("code_dialog_width", 600),
-				minHeight: editor.getParam("code_dialog_height", Math.min(tinymce.DOM.getViewPort().h - 200, 500)),
-				spellcheck: false,
-				style: 'direction: ltr; text-align: left'
-			},
-			onSubmit: function(e) {
-				// We get a lovely "Wrong document" error in IE 11 if we
-				// don't move the focus to the editor before creating an undo
-				// transation since it tries to make a bookmark for the current selection
-				editor.focus();
+    var setContent = function (editor, html) {
+      editor.focus();
+      editor.undoManager.transact(function () {
+        editor.setContent(html);
+      });
+      editor.selection.setCursorLocation();
+      editor.nodeChanged();
+    };
+    var getContent = function (editor) {
+      return editor.getContent({ source_view: true });
+    };
 
-				editor.undoManager.transact(function() {
-					editor.setContent(e.data.code);
-				});
+    var open = function (editor) {
+      var editorContent = getContent(editor);
+      editor.windowManager.open({
+        title: 'Source Code',
+        size: 'large',
+        body: {
+          type: 'panel',
+          items: [{
+              type: 'textarea',
+              name: 'code'
+            }]
+        },
+        buttons: [
+          {
+            type: 'cancel',
+            name: 'cancel',
+            text: 'Cancel'
+          },
+          {
+            type: 'submit',
+            name: 'save',
+            text: 'Save',
+            primary: true
+          }
+        ],
+        initialData: { code: editorContent },
+        onSubmit: function (api) {
+          setContent(editor, api.getData().code);
+          api.close();
+        }
+      });
+    };
 
-				editor.selection.setCursorLocation();
-				editor.nodeChanged();
-			}
-		});
+    var register$1 = function (editor) {
+      editor.addCommand('mceCodeEditor', function () {
+        open(editor);
+      });
+    };
 
-		// Gecko has a major performance issue with textarea
-		// contents so we need to set it when all reflows are done
-		win.find('#code').value(editor.getContent({source_view: true}));
-	}
+    var register = function (editor) {
+      var onAction = function () {
+        return editor.execCommand('mceCodeEditor');
+      };
+      editor.ui.registry.addButton('code', {
+        icon: 'sourcecode',
+        tooltip: 'Source code',
+        onAction: onAction
+      });
+      editor.ui.registry.addMenuItem('code', {
+        icon: 'sourcecode',
+        text: 'Source code',
+        onAction: onAction
+      });
+    };
 
-	editor.addCommand("mceCodeEditor", showDialog);
+    function Plugin () {
+      global.add('code', function (editor) {
+        register$1(editor);
+        register(editor);
+        return {};
+      });
+    }
 
-	editor.addButton('code', {
-		icon: 'code',
-		tooltip: 'Source code',
-		onclick: showDialog
-	});
+    Plugin();
 
-	editor.addMenuItem('code', {
-		icon: 'code',
-		text: 'Source code',
-		context: 'tools',
-		onclick: showDialog
-	});
-});
+}());
