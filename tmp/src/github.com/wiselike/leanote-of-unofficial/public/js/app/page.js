@@ -489,7 +489,8 @@ function initEditor() {
 	// 初始化编辑器
 	tinymce.init({
 		inline: true,
-		theme: 'leanote',
+		base_url:  '/public/tinymce',
+		//theme: 'leanote',
 		valid_children: "+pre[div|#text|p|span|textarea|i|b|strong]", // ace
 		/*
 		protect: [
@@ -541,15 +542,15 @@ function initEditor() {
 
 		// content_css 不再需要
 		// content_css : [LEA.sPath + "/css/editor/editor.css"], // .concat(em.getWritingCss()),
-		skin : "custom",
+		//skin : "custom",
 		language: LEA.locale, // 语言
 		plugins : [
-				"autolink link leaui_image leaui_mindmap lists hr", "paste",
-				"searchreplace leanote_nav leanote_code tabfocus",
+				"autolink link lists hr", "paste",
+				"searchreplace tabfocus",
 				"table textcolor" ], // nonbreaking directionality charmap
-		toolbar1 : "formatselect | forecolor backcolor | bold italic underline strikethrough | leaui_image leaui_mindmap | leanote_code leanote_inline_code | bullist numlist | alignleft aligncenter alignright alignjustify",
-		toolbar2 : "outdent indent blockquote | link unlink | table | hr removeformat | subscript superscript | searchreplace | pastetext | leanote_ace_pre | fontselect fontsizeselect",
-
+		toolbar : ["formatselect | forecolor backcolor | bold italic underline strikethrough | | | bullist numlist | alignleft aligncenter alignright alignjustify",
+		"outdent indent blockquote | link unlink | table | hr removeformat | subscript superscript | searchreplace | pastetext | | fontselect fontsizeselect"],
+		toolbar_mode: 'wrap',
 		// 使用tab键: http://www.tinymce.com/wiki.php/Plugin3x:nonbreaking
 		// http://stackoverflow.com/questions/13543220/tiny-mce-how-to-allow-people-to-indent
 		// nonbreaking_force_tab : true,
@@ -584,7 +585,8 @@ function initEditor() {
 		// This option specifies whether data:url images (inline images) should be removed or not from the pasted contents.
 		// Setting this to "true" will allow the pasted images, and setting this to "false" will disallow pasted images.
 		// For example, Firefox enables you to paste images directly into any contentEditable field. This is normally not something people want, so this option is "false" by default.
-		paste_data_images: true
+		paste_data_images: true,
+		branding: false
 	});
 
 	// 刷新时保存 参考autosave插件
