@@ -1,0 +1,150 @@
+<nav class="nav-primary">
+	<ul class="nav" id="nav">
+
+		<li class="active">
+			<a href="/member">
+				<i class="fa fa-dashboard icon">
+					<b class="bg-success">
+					</b>
+				</i>
+				<span class="nav-h1">
+					{{msg . "memberCenter"}}
+				</span>
+			</a>
+		</li>
+
+		<li>
+			<a href="#">
+				<i class="fa fa-user icon">
+					<b class="bg-danger">
+					</b>
+				</i>
+				<span class="pull-right">
+					<i class="fa fa-angle-down text">
+					</i>
+					<i class="fa fa-angle-up text-active">
+					</i>
+				</span>
+				<span class="nav-h1">
+					{{msg . "accountInfo"}}
+				</span>
+			</a>
+			<!-- 导航列表 -->
+			<ul class="nav lt">
+				<li>
+					<a href="/member/user/avatar">
+						<span>
+							{{msg . "Avatar"}}
+						</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/member/user/username">
+						<span>
+							{{msg . "Username"}}
+						</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/member/user/email">
+						<span>
+							{{msg . "Email"}}
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="/member/user/password">
+						<span>
+							{{msg . "Password"}}
+						</span>
+					</a>
+				</li>
+
+			</ul>
+		</li>
+
+		<li id="adminEmailNav">
+			<a href="#layout">
+				<i class="fa fa-bold icon">
+					<b class="bg-warning">
+					</b>
+				</i>
+				<span class="pull-right">
+					<i class="fa fa-angle-down text">
+					</i>
+					<i class="fa fa-angle-up text-active">
+					</i>
+				</span>
+				<span class="nav-h1">
+					{{msg . "blog"}}
+				</span>
+			</a>
+			<ul class="nav lt">
+				<li>
+					<a href="/member/blog/index">
+						<span>
+							{{msg . "Posts"}}
+						</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="/member/blog/base">
+						<span>
+							{{msg . "basicInfoSet"}}
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="/member/blog/comment">
+						<span>
+							{{msg . "Comment"}}
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="/member/blog/cate">
+						<span>
+							{{msg . "Category"}}
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="/member/blog/single">
+						<span>
+							{{msg . "Single"}}
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="/member/blog/paging">
+						<span>
+							{{msg . "pagingAndSort"}}
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="/member/blog/theme">
+						<span>
+							{{msg . "Theme"}}
+						</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="active">
+			<a href="/member/group/index">
+				<i class="fa fa-users icon">
+					<b class="bg-success">
+					</b>
+				</i>
+				<span class="nav-h1">
+					{{msg . "group"}}
+				</span>
+			</a>
+		</li>
+	</ul>
+</nav>

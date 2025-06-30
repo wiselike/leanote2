@@ -1,0 +1,10 @@
+.*
+!.jshintrc
+!.eslintrc
+!.jscsrc
+!.git*
+!.editorconfig
+*.nupkg
+*.log
+node_modules
+nuget.exe

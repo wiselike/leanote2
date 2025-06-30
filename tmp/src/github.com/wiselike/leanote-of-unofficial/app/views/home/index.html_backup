@@ -1,0 +1,81 @@
+{{template "home/header.html" .}}
+</style>
+<section>
+	<div class="header">
+		<h2>Leanote, {{msg . "moto"}}</h2>
+		<p>{{msg . "moto3"}}</p>
+		<p>{{msg . "moto2"}}</p>
+		
+		<div>
+			<a class="btn btn-default btn-primary" href="/register">{{msg . "register"}}</a> 
+			&nbsp;
+			&nbsp;
+			{{if not .userInfo.UserId}}
+				<a class="btn btn-default" href="/login">{{msg . "login"}}</a>
+				&nbsp;
+				&nbsp;
+			{{end}}
+			
+			<!-- <a class="btn btn-default" href="/demo">{{msg . "try"}}</a> -->
+		</div>
+	</div>
+	
+	<div class="preview" style="position: relative;">
+		<div>
+			<div class="img-header">
+				<img src="/images/home/mac-btns.png"/>
+			</div>
+			<div id="webSliderContainer">
+			    <img class="web-slider" data-text="Default theme - markdown" src="/images/slider/v2/default_markdown.png"/>
+			    <img class="web-slider hide-img" data-text="Default theme - rich editor"  src="/images/slider/v2/simple_tinymce.png"/>
+			    <img class="web-slider hide-img" data-text="Simple theme - markdown" src="/images/slider/v2/simple_markdown.png"/>
+			    <img class="web-slider hide-img" data-text="Writting mode" src="/images/slider/v2/writting.png"/>
+			</div>
+		</div>
+		<div class="slider-desc"><span id="webText">Default theme - markdown</span></div>
+		<div class="mobile">
+			<div class="mobile-header">
+				<img src="/images/home/mac-dot.png" />
+			</div>
+			<div id="mobileSliderContainer">
+		        <img class="mobile-slider" data-text="Mobile" src="/images/slider/v2/mobile_simple_list.png" />
+			    <img class="mobile-slider hide-img" data-text="Mobile markdown" src="/images/slider/v2/mobile_markdown.png" />
+			</div>
+		    <div class="slider-desc mobile-text"><span id="mobileText">Default theme - markdown</span></div>
+		</div>
+	</div>
+</section>
+
+<div class="container" id="aboutLeanote">
+	<h2>{{msg . "aboutLeanote"}}</h2>
+     <div class="row">
+        <div class="col-md-3">
+          <h3>{{msg . "knowledge"}}</h3>
+          <p>{{msg . "knowledgeInfo"}}</p>
+        </div>
+         <div class="col-md-3">
+          <h3>{{msg . "blog"}}</h3>
+          <p>{{msg . "blogInfo"}}</p>
+        </div>
+        <div class="col-md-3">
+          <h3>{{msg . "share"}}</h3>
+          <p>{{msg . "shareInfo"}}</p>
+       </div>
+        <div class="col-md-3">
+          <h3>{{msg . "cooperation"}}</h3>
+          <p>{{msg . "cooperationInfo"}}</p>
+        </div>
+      </div>
+</div>
+
+{{template "home/footer.html"}}
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<script>
+var lang = '{{.locale}}';
+</script>
+<script src="/js/home/index.js"></script>
+
+
+</body>
+</html>

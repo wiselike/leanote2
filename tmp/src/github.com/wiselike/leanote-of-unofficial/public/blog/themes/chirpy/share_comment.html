@@ -1,0 +1,58 @@
+{{ if and $.themeInfo.Comment.CommentType (eq $.themeInfo.Comment.CommentType "Valine") }}
+<script src='//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js'></script>
+
+<div id="vcomments" class="pt-2 pb-2">
+</div>
+
+<script type="text/javascript">
+	new Valine({
+		el: '#vcomments',
+		appId: '{{$.themeInfo.Comment.Valine.appId}}', // Valine appID
+		appKey: '{{$.themeInfo.Comment.Valine.appKey}}', // Valine appKey
+		lang: 'zh-CN',
+		visitor: false // 禁用自带的阅读量统计
+	})
+</script>
+
+{{else if and $.themeInfo.Comment.CommentType (eq $.themeInfo.Comment.CommentType "Gitalk") }}
+
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+	var gitalk = new Gitalk({
+		clientID: '{{$.themeInfo.Comment.Gitalk.clientID}}',
+		clientSecret: '{{$.themeInfo.Comment.Gitalk.clientSecret}}',
+		repo: '{{$.themeInfo.Comment.Gitalk.repo}}',
+		owner: '{{$.themeInfo.Comment.Gitalk.owner}}', // 仓库的创建者
+		admin: {{$.themeInfo.Comment.Gitalk.admin}}, // 如果仓库有多个人可以操作，那么在这里以数组形式写出
+		id: '{{$.post.Title}}',      // Ensure uniqueness and length less than 50
+		distractionFreeMode: false,  // Facebook-like distraction free mode
+		labels: ['Gitalk']
+	});
+
+	gitalk.render('gitalk-container');
+</script>
+
+{{ else if and $.themeInfo.Comment.CommentType (eq $.themeInfo.Comment.CommentType "Disqus") }}
+
+<div id="disqus_thread" class="pt-2 pb-2">
+	<p class="text-center text-muted small">Comments powered by <a href="https://disqus.com/">Disqus</a>.</p>
+</div>
+
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = '{{.themeInfo.Comment.Disqus.DisqusId}}'; // required: replace example with your forum shortname
+	var disqus_identifier = '{{.blogInfo.UserId}}/{{$.post.NoteId}}/{{$.post.Title}}'; // 博客链接
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function () {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+
+{{ end }}

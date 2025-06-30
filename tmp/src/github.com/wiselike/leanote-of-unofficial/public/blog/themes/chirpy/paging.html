@@ -1,0 +1,93 @@
+{{if gt .paging.TotalPage 1}}
+
+<!-- 上一页 -->
+{{if gt .paging.CurPage 1}}
+	{{set . "prePageClass" ""}}
+	{{set . "prePageUrl" (urlConcat .pagingBaseUrl "page" (incr .paging.CurPage -1)) }}
+{{else}}
+	{{set . "prePageClass" "disabled"}}
+	{{set . "prePageUrl" "#"}}
+{{end}}
+
+<!-- 下一页 -->
+{{if lt .paging.CurPage .paging.TotalPage }}
+	{{set . "nextPageClass" ""}}
+	{{set . "nextPageUrl" (urlConcat .pagingBaseUrl "page" (incr .paging.CurPage 1)) }}
+{{else}}
+	{{set . "nextPageClass" "disabled"}}
+	{{set . "nextPageUrl" "#"}}
+{{end}}
+
+<ul class="pagination align-items-center mt-4 mb-0 pl-lg-2">
+	<!-- left arrow -->
+	<li class="page-item {{.prePageClass}}">
+		<a class="page-link btn-box-shadow" href="{{.prePageUrl}}" aria-label="previous-page">
+			<i class="fas fa-angle-left"></i>
+		</a>
+	</li>
+
+	<!-- page numbers -->
+	{{ set . "left_ellipsis" false }}
+	{{ set . "right_ellipsis" false }}
+
+	{{ range $i := N 1 $.paging.TotalPage }}
+		{{ set $ "pre" (incr $.paging.CurPage -1) }}
+		{{ set $ "next" (incr $.paging.CurPage 1) }}
+		{{ set $ "pre_less" (incr $.pre -1) }}
+		{{ set $ "next_more" (incr $.next 1) }}
+		{{ set $ "show" false }}
+
+		{{ if eq $.paging.CurPage 1 }}
+			{{ if or (le $i 3) (eq $i $.paging.TotalPage) }}
+				{{ set $ "show" true }}
+			{{ end }}
+		{{ else if eq $.paging.CurPage $.paging.TotalPage }}
+			{{ if or (eq $i 1) (ge $i $.pre_less) }}
+				{{ set $ "show" true }}
+			{{ end }}
+		{{ else }}
+			{{ if or (eq $i 1) (eq $i $.paging.TotalPage) }}
+				{{ set $ "show" true }}
+			{{ else if and (ge $i $.pre) (le $i $.next) }}
+				{{ set $ "show" true }}
+			{{ end }}
+		{{ end }}
+
+		{{ if $.show }}
+			<!-- show number -->
+			<li class="page-item {{ if eq $i $.paging.CurPage }} active disabled{{ end }}">
+				<a class="page-link btn-box-shadow" href='{{ urlConcat $.pagingBaseUrl "page" $i }}'>{{ $i }}</a>
+			</li>
+		{{ else }}
+			<!-- hide number -->
+			{{ if and (lt $i $.pre) (not $.left_ellipsis) }}
+				<li class="page-item disabled">
+					<span class="page-link btn-box-shadow">...</span>
+				</li>
+				{{ set $ "left_ellipsis" true }}
+			{{ else if and (gt $i $.next) (not $.right_ellipsis) }}
+				<li class="page-item disabled">
+					<span class="page-link btn-box-shadow">...</span>
+				</li>
+				{{ set $ "right_ellipsis" true }}
+			{{ end }}
+		{{ end }}
+
+	{{ end }}
+
+	<!-- mobile pagination -->
+	<li class="page-index align-middle">
+		<span>{{ .paging.CurPage }}</span>
+		<span class="text-muted">/ {{ .paging.TotalPage }}</span>
+	</li>
+
+	<!-- right arrow -->
+	<li class="page-item {{.nextPageClass}}">
+		<a class="page-link btn-box-shadow" href="{{.nextPageUrl}}" aria-label="next-page">
+			<i class="fas fa-angle-right"></i>
+		</a>
+	</li>
+
+</ul> <!-- .pagination -->
+
+{{end}}

@@ -1,0 +1,34 @@
+{{template "header.html" .}}
+
+<div id="main-wrapper">
+	<div id="main" class="d-flex justify-content-center">
+		<div class="row">
+			<div class="col-12 col-sm-11 post-content">
+				<div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3">
+					{{range $.posts}}
+					<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">
+						<a href="{{$.postUrl}}/{{.UrlTitle}}">{{.Title}}</a>
+						<div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">
+						<div class="post-tags">
+							{{if .Tags}}
+								<i class="fa fa-tags fa-fw"></i>
+								{{ range $tag := .Tags }}
+									<a href="{{$.tagPostsUrl}}/{{$tag}}" class="post-tag no-text-decoration text-muted">{{ $tag }}</a>
+								{{end}}
+							{{end}}
+						</div>
+						</div>
+						<p>
+							{{.Desc | raw}}
+						</p>
+					</div>
+					{{end}}
+				</div>
+			</div>
+		</div>
+	</div> <!-- #search-result-wrapper -->
+
+</div> <!-- #main-wrapper -->
+{{template "back-to-top.html" .}}
+</body>
+</html>

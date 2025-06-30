@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"leanote.users"},{"v":2,"key":{"Email":1},"name":"Email_1","ns":"leanote.users","background":true},{"v":2,"key":{"Username":1},"name":"Username_1","ns":"leanote.users","background":true}],"uuid":"169817ecfacb427c8dc899de167630a8"}

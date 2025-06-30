@@ -1,0 +1,32 @@
+<!-- Post sharing snippet -->
+<div class="share-wrapper">
+	{{ $url := print $.siteUrl print $.postUrl "/" print $.post.UrlTitle}}
+	<span class="share-label text-muted mr-1">分享</span>
+	<span class="share-icons">
+
+		<a href="http://service.weibo.com/share/share.php?title={{.post.Title}}&url={{$url}}"
+			target="_blank" rel="noopener" aria-label="weibo"  data-original-title="分享到微博" data-toggle="tooltip" data-placement="top">
+			<i class="fa-fw fab fa-weibo"></i>
+		</a>
+
+		<a href="https://twitter.com/intent/tweet?text={{.post.Title}}&url={{$url}}"
+			target="_blank" rel="noopener" aria-label="twitter"  data-original-title="分享到 Twitter" data-toggle="tooltip" data-placement="top">
+			<i class="fa-fw fab fa-twitter"></i>
+		</a>
+
+		<a href="https://telegram.me/share?text={{.post.Title}}&url={{$url}}"
+			target="_blank" rel="noopener" aria-label="telegram" data-original-title="分享到 Telegram" data-toggle="tooltip" data-placement="top">
+			<i class="fa-fw fab fa-telegram"></i>
+		</a>
+
+		<a href="https://www.facebook.com/sharer/sharer.php?title={{.post.Title}}&u={{$url}}"
+			target="_blank" rel="noopener" aria-label="facebook"  data-original-title="分享到 Facebook" data-toggle="tooltip" data-placement="top">
+			<i class="fa-fw fab fa-facebook-square"></i>
+		</a>
+
+		<i id="copy-link" class="fa-fw fas fa-link small clipboard" data-clipboard-action="copy" data-clipboard-text="{{$url}}"
+			data-toggle="tooltip" data-placement="top" title="复制链接">
+		</i>
+
+	</span>
+</div>

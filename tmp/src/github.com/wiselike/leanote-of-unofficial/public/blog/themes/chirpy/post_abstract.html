@@ -1,0 +1,42 @@
+{{range $.posts}}
+<div class="post-preview">
+	<h1><a href="{{$.postUrl}}/{{.UrlTitle}}" title="{{.Title}}">
+		{{if .Title}} {{.Title}} {{else}} Untitled {{end}}
+	</a></h1>
+
+<div class="post-content">
+	<p>
+		{{.Desc | raw}}
+	</p>
+</div>
+
+<div class="post-meta text-muted d-flex justify-content-between">
+	<div>
+		<!-- posted date -->
+		<i class="far fa-calendar fa-fw"></i>
+		{{.CreatedTime | datetime}}
+		<!-- time to read -->
+		<!-- page views -->
+		{{ if $.themeInfo.ReadNumType }}
+			<i class="far fa-eye fa-fw"></i>
+			{{ if eq $.themeInfo.ReadNumType "Leanote"}}
+				<span id="pv_{{.Title}}" class="pageviews">{{.ReadNum}}</span>
+			{{else if eq $.themeInfo.ReadNumType "Leacloud"}}
+				<span id="{{$.postUrl}}/{{.UrlTitle}}" class="leancloud_visitors"><span class="leancloud-visitors-count">1</span></span>
+			{{end}}
+		{{end}}
+	</div>
+	<!-- pin -->
+	{{ if .IsTop }}
+	<div class="pin">
+		<i class="fas fa-thumbtack fa-fw"></i>
+		<span>Pinned</span>
+	</div>
+	{{ end }}
+</div> <!-- .post-meta -->
+</div> <!-- .post-review -->
+{{else}}
+<div class="post-preview">
+	No Post
+</div>
+{{end}}

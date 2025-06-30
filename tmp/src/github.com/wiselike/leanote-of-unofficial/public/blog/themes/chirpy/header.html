@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="{{$.locale}}">
+<head>
+<!-- <meta charset="utf-8"> -->
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="ctaoist,wiselike">
+<link rel="Shortcut icon" href="{{$.themeBaseUrl}}/images/{{$.themeInfo.Icon}}">
+
+<title>
+	{{if $.curIsIndex}}
+		{{$.blogInfo.Title}}
+	{{else if $.curIsCate}}
+		Category-{{$.curCateTitle}}
+	{{else if $.curIsSearch}}
+		Search-{{$.keywords}}
+	{{else if $.curIsTags}}
+		Tags
+	{{else if $.curIsCates}}
+		Categories
+	{{else if $.curIsTagPosts}}
+		Tag-{{$.curTag}}
+	{{else if $.curIsPost}}
+		{{$.post.Title}}
+	{{else if $.curIsSingle}}
+		{{$.single.Title}}
+	{{else if $.curIsArchive}}
+		Archives
+	{{end}}
+</title>
+<!-- jsDelivr CDN -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<!-- JavaScript -->
+<script src="/public/libs/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.16.1,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+
+<!-- <script async src="https://cdn.jsdelivr.net/npm/countup.js@1.9.3/dist/countUp.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/xregexp@5/xregexp-all.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js"></script> -->
+
+<script src="{{$.themeBaseUrl}}/topbar.js"></script>
+<script src="{{$.themeBaseUrl}}/search.js"></script>
+<script src="{{$.themeBaseUrl}}/blog.js"></script>
+<link href="{{$.themeBaseUrl}}/style.css" rel="stylesheet">
+<link href="{{$.themeBaseUrl}}/block-container.css" rel="stylesheet">
+
+{{ if $.themeInfo.GoogleAnalytics.Id }}
+<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', '{{ $.themeInfo.GoogleAnalytics.Id }}', 'auto');
+	ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+{{ end }}
+
+</head>
+<body>
+	<!-- data-spy="scroll" data-target="#toc" -->
+
+<!--sidebar-->
+<div id="sidebar" class="d-flex flex-column align-items-end">
+	<!-- <div id="nav-wrapper"> -->
+	<div class="profile-wrapper text-center">
+		<!--头像-->
+		<div id="avatar">
+			<a href="/" alt="avatar" class="mx-auto">
+			<img src="{{$.themeBaseUrl}}/images/{{$.themeInfo.Avatar}}" alt="avatar" onerror="this.style.display='none'">
+			</a>
+		</div>
+		<!--profile title-->
+		<div class="site-title mt-3">
+			<a href="/">{{$.themeInfo.Title}}</a>
+		</div>
+		<div class="site-subtitle font-italic">{{$.themeInfo.SubTitle}}</div>
+
+	</div><!-- .profile-wrapper -->
+
+	<ul class="w-100">
+
+		<!-- home -->
+		<li class="nav-item{{if $.curIsIndex}} active{{end}}">
+			<a href="{{.indexUrl}}" class="nav-link">
+				<i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+				<span>Home</span>
+			</a>
+		</li>
+		<!-- categories -->
+		<li class="nav-item{{if $.curIsCate}} active{{end}}">
+			<a href="{{$.catesUrl}}" class="nav-link">
+				<i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+				<span>Categories</span>
+			</a>
+		</li>
+		<!-- 归档 -->
+		<li class="nav-item{{if $.curIsArchive}} active{{end}}">
+			<a href="{{$.archiveUrl}}" class="nav-link">
+				<i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+				<span>Archives</span>
+			</a>
+		</li>
+		<!--标签-->
+		<li class="nav-item{{if $.curIsTags}} active{{end}}">
+			<a href="{{$.tagsUrl}}" class="nav-link">
+				<i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
+				<span>Tags</span>
+			</a>
+		</li>
+		<!--About-->
+		<li class="nav-item">
+			<a href="{{$.singleUrl}}/About-Me" class="nav-link">
+				<i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i>
+				<span>About</span>
+			</a>
+		</li>
+
+	</ul> <!-- ul.nav.flex-column -->
+	<!-- </div> #nav-wrapper -->
+
+	{{template "model-toggle.html" $}}
+	<div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center">
+		<a id="mode-toggle-wrapper" tabindex="0" onclick="flipMode()">
+			<i class="mode-toggle fas fa-adjust"></i>
+		</a>
+		{{ if $.themeInfo.SocialLinks }}
+			<span class="icon-border"></span>
+			{{ range $.themeInfo.SocialLinks }}
+				<a href="{{.Url}}" aria-label="{{.Title}}">
+					<i class="fab fa-{{.Title}}"></i>
+				</a>
+			{{ end }} <!-- end range -->
+		{{ end }} <!-- end if -->
+
+	</div> <!-- .sidebar-bottom -->
+</div><!-- #sidebar -->
+
+<!-- The Top Bar -->
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+	<div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+		<span id="breadcrumb">
+			<!-- index page -->
+				<span><a href="/">Home</a></span>
+				{{if $.curIsPost}}
+					<span>{{$.post.Title}}</span>
+				{{else if $.curIsTags}}
+					<span>Tags</span>
+				{{else if $.curIsCates}}
+					<span>Categories</span>
+				{{else if $.curIsCate}}
+					<span><a href="{{$.catesUrl}}">Categories</a></span>
+					<span>{{$.curCateTitle}}</span>
+				{{else if $.curIsTagPosts}}
+					<span><a href="{{$.tagsUrl}}">Tags</a></span>
+					<span>{{$.curTag}}</span>
+				{{else if $.curIsSingle}}
+					<span>{{$.single.Title}}</span>
+				{{else if $.curIsArchive}}
+					<span>Archives</span>
+				{{end}}
+			</span><!-- endof #breadcrumb -->
+
+			<i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+
+			<div id="topbar-title">
+				{{if $.curIsPost}}
+					{{$.post.Title}}
+				{{else if $.curIsTags}}
+					Tags
+				{{else if $.curIsTagPosts}}
+					Tag
+				{{else if $.curIsCates}}
+					Categories
+				{{else if $.curIsCate}}
+					Categories
+				{{else if $.curIsArchive}}
+					Archives
+				{{else if $.curIsSingle}}
+					{{$.single.Title}}
+				{{end}}
+			</div>
+
+			<i id="search-trigger" class="fas fa-search fa-fw"></i>
+			<form id="search-wrapper" class="align-items-center" onsubmit="search(event);return false;">
+				<i class="fas fa-search fa-fw"></i>
+				<input class="form-control" id="search-input" type="search" value="{{.keywords}}"
+					aria-label="search" autocomplete="off" placeholder="Search...">
+				<i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+			</form>
+			<span id="search-cancel" >取消</span>
+		</div>
+	</div> <!-- topbar-wrapper -->

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"leanote.note_images"},{"v":2,"key":{"ImageId":1},"name":"ImageId_1","ns":"leanote.note_images","background":true},{"v":2,"key":{"NoteId":1},"name":"NoteId_1","ns":"leanote.note_images","background":true}],"uuid":"76b2b5dede4f4025ac3d4d5f0b881c6c"}

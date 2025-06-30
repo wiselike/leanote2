@@ -1,0 +1,3 @@
+Version 0.0.4 (2014-09-29)
+	Improved performance of buffer concationation patch contributed by bryanspitz.
+	Fixed so it's possible to add empty files to the zip output. Patch contributed by Elliot Smith.

@@ -1,0 +1,27 @@
+<!-- Navigation buttons at the bottom of the post. -->
+<div class="post-navigation d-flex justify-content-between">
+	{{if $.prePost}}
+	<a href="{{$.postUrl}}/{{$.prePost.UrlTitle}}" class="btn btn-outline-primary"
+		prompt="上一篇">
+		<p>{{$.prePost.Title}}</p>
+	</a>
+	{{ else }}
+	<span class="btn btn-outline-primary disabled"
+		prompt="上一篇">
+		<p>-</p>
+	</span>
+	{{ end }}
+
+	{{if $.nextPost}}
+	<a href="{{$.postUrl}}/{{$.nextPost.UrlTitle}}" class="btn btn-outline-primary"
+		prompt="下一篇">
+		<p>{{$.nextPost.Title}}</p>
+	</a>
+	{{ else }}
+	<span class="btn btn-outline-primary disabled"
+		prompt="下一篇">
+		<p>-</p>
+	</span>
+	{{ end }}
+
+</div>

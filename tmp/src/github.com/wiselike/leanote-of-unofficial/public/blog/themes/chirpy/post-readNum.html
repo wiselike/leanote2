@@ -1,0 +1,65 @@
+{{ if and $.themeInfo.ReadNumType (eq $.themeInfo.ReadNumType "Leacloud") }}
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		AV.init({
+			appId: '{{$.themeInfo.Comment.Valine.appId}}',
+			appKey: '{{$.themeInfo.Comment.Valine.appKey}}'
+		});
+		var $leancloud_visitors = $(".leancloud_visitors");
+		var pageViewsLength = $leancloud_visitors.length;
+		var isPost = $("#isPost").length > 0 ? true : false; // 判断是否是文章页面
+		function showTime() {
+			var Counter = AV.Object.extend("Counter"); // 声明 class
+			if(isPost){
+				addPageViewsNum($leancloud_visitors);
+			}else{
+				$leancloud_visitors.each(function (index, item) { // 处理 leancloud 的QOS限制
+					setTimeout(function () {
+						showPageViewsNum($(item), Counter);
+					}, 50*index);
+				});
+			}
+		}
+		function showPageViewsNum(ele,Counter){
+			var query = new AV.Query("Counter");
+			var url = decodeURI(ele.attr('id').trim());
+			query.equalTo("url",url);
+			query.find().then(function(results){
+				if (results.length>0) $(ele).children().text(results[0].get("time")); // 表中的 time 存的 post 阅读次数
+				else $(ele).children().text('1');
+			},function(error){$(ele).children().text('1');});
+		}
+		function addPageViewsNum(ele){
+			var url = decodeURI(ele.attr('id').trim());var title = $('#post-title').text().trim();
+			var Counter = AV.Object.extend("Counter");
+			var now=new AV.Query(Counter);
+			now.equalTo("url",url);
+			now.find().then(function(results){
+				if (results.length>0){
+					var query=results[0];
+					query.increment("time");
+					query.fetchWhenSave(true); // 操作结束后，返回最新数据
+					query.save().then(function (query) {
+						$leancloud_visitors.children().text(query.attributes.time); // https://github.com/kitian616/jekyll-TeXt-theme/issues/17
+					});
+				} else{
+					var query = new Counter;
+					var acl = new AV.ACL(); // 新建一个 ACL 实例
+					acl.setPublicReadAccess(true);
+					acl.setPublicWriteAccess(true);
+					query.setACL(acl); // 设置 ACL 权限
+					query.set("url",url);
+					query.set("title",title);
+					query.set("time",1);
+					query.save(null,{}).then(function (object) {});
+				}
+			},function(error){});
+		}
+		if(pageViewsLength){showTime();}
+	});
+</script>
+
+{{ else if and $.curIsPost (and $.themeInfo.ReadNumType (eq $.themeInfo.ReadNumType "Leanote")) }}
+<script>$.get("//" + location.host + "/blog/incReadNum", { noteId: "{{$.post.NoteId}}" }, function () {});</script>
+{{ end }}

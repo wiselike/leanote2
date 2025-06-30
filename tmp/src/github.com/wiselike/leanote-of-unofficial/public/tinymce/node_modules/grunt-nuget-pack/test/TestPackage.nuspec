@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>TestPackage</id>
+		<version>1.0.0</version>
+		<authors>Author1,Author2,Author3</authors>
+		<owners>Owner1,Owner2,Owner3</owners>
+		<description>Description.</description>
+		<releaseNotes>Release notes.</releaseNotes>
+		<summary>Summary.</summary>
+		<language>en-us</language>
+		<projectUrl>http://www.moxiecode.com/</projectUrl>
+		<iconUrl>http://www.moxiecode.com/icon.png</iconUrl>
+		<licenseUrl>http://www.moxiecode.com/license</licenseUrl>
+		<copyright>Copyright</copyright>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<dependencies>
+			<dependency id="dependency1" />
+			<dependency id="dependency2" version="(1.0,)" />
+			<dependency id="dependency3" version="1.0" />
+			<dependency id="dependency4" version="(,1.0]" />
+			<dependency id="dependency5" version="(,1.0)" />
+			<dependency id="dependency6" version="[1.0]" />
+			<dependency id="dependency7" version="(1.0,)" />
+			<dependency id="dependency8" version="(1.0,2.0)" />
+			<dependency id="dependency9" version="[1.0,2.0]" />
+		</dependencies>
+		<tags>tag1 tag2 tag3</tags>
+	</metadata>
+	<files>
+		<file src="..\readme.md" target="content\dir1\readme_now.md" />
+		<file src="..\lib\*.*" target="content\dir2\test_lib" />
+	</files>
+</package>

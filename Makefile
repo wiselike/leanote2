@@ -13,7 +13,7 @@ fmt:
 	@simple-formater -dir public
 
 # only build temporarily
-build:
+build: gulp
 	@rm -rf tmp/
 	revel build . tmp/
 

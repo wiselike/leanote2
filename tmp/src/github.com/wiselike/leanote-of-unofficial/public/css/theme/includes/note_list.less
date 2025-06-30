@@ -1,0 +1,273 @@
+/**
+ * 笔记列表
+ */
+
+#noteAndEditor {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: @leftNotebookWidth;
+}
+
+
+#noteList {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  width: @noteListWidth;
+  border-right: 1px solid @noteListBorderColor;
+  border-left: 1px solid @noteListBorderColor;
+  z-index: 333; // 为了显示右侧的线条
+}
+#note {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: @noteListWidth;
+  right: 0;
+  padding-left: 5px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  background-color: @bgColor;
+}
+
+#notesAndSort {
+  background-color: @noteAndSortBgColor; // #65bd77; // @bgColor;
+  border-bottom: 1px solid @borderColor;
+  height: 36px;
+}
+#sortType {
+  float: right;
+}
+
+#noteItemListWrap {
+    position: absolute; left: 0; right: 0; 
+    top: 36px; bottom: 3px;
+}
+
+// 笔记列表与editor的遮罩
+#noteAndEditorMask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    text-align: center;
+    padding-top: 60px;
+    opacity: .3;
+    z-index: 500;
+    display: none;
+}
+
+//-------------
+// 
+
+/* item list */
+#noteItemList {
+  position: absolute;
+  top: 0;
+  left:0;
+  right:0;
+  bottom: 0;
+  width: 100%;
+  overflow-y: hidden;
+  padding: 0 5px;
+}
+#noteItemList {
+  .item {
+    position: relative;
+    height: 110px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid @borderColor;
+    border-radius: 3px;
+    margin-top: 5px;
+    background-color: #fff;
+  }
+  // 列表模式
+  &.list {
+    .item {
+      height: 30px !important;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #ebeff2;
+      margin: 0 -5px;
+      &.item-b {
+        .item-blog {
+          display: none;
+        }
+      }
+      &.item-b:hover {
+        .item-blog {
+          display: block;
+        }
+      }
+    }
+    .item-thumb {
+      display: none;
+    }
+    .item-blog {
+      display: none;
+      top: auto;
+      bottom: 5px;
+      right: 25px;
+    }
+    .item-setting {
+      bottom: 5px;
+    }
+    .item-title {
+      border: none;
+    }
+    .item-desc {
+      right: 0 !important;
+    }
+  }
+}
+
+#noteItemList .item:hover, 
+#noteItemList .contextmenu-hover {
+  background-color: #ddd !important;
+  //color: @aBlackColor;
+  .item-title {
+    //color: @aBlackColor;
+    //font-weight: 800;
+  }
+}
+
+.item-active, #noteItemList .item-active:hover {
+  background-color: #65bd77 !important; // #eee;/*@bgColor*/;
+  color: #fff;
+  .fa {
+     color: #eee !important;
+  }
+  .item-title {
+    color: #fff;
+    // font-weight: 800;
+  }
+}
+#noteItemList .item-thumb  {
+  width: 100px; 
+  height: 100px; 
+  overflow: hidden;
+  position: absolute; 
+  z-index: 1;
+  right: 0px;
+top: 4px;
+  height: 100px;
+  background-color: #fff;
+  margin-right: 5px;
+  line-height: 100px;
+  text-align: center;
+}
+.item-thumb img {
+ max-width: 100px;
+}
+
+.item-title {
+    /*font-weight: 400;*/
+    font-size: 16px;
+    height: 22px;
+    line-height: 20px;
+    overflow: hidden;
+    margin-bottom: 0px;
+    color: @aBlackColor;
+    border-bottom: dashed 1px @borderColor;
+}
+
+#noteItemList .item-desc {
+  position: absolute; 
+  left: 0;
+  top: 4px;
+    right: 0px;
+  margin-left: 4px;
+  .fa { // folder, calender 颜色暗些
+    color: #666;
+  }
+}
+#noteItemList .item-image .item-desc {
+  right: 100px;
+}
+
+.item-info {
+    margin: 0;
+    white-space: nowrap;
+    text-overflow:
+    ellipsis;
+    overflow:hidden;
+}
+.desc {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+// blog
+#noteItemList {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    .item-setting, .item-blog {
+      position: absolute; 
+      right: 1px;
+      font-size: 10px;
+      z-index: 2;
+      padding: 3px;
+      border-radius: 5px;
+      cursor: pointer;
+      .fa {
+          color: #fff !important;
+      }
+      width: 20px;
+      text-align: center;
+      opacity: 0.5;
+      &:hover {
+          opacity: 0.8;
+      }
+      background-color: #464C5E;
+     }
+      
+     .item-blog {
+        top: 1px;
+        display: none;
+     }
+
+     .item-b {
+      .item-blog {
+        display: block;
+      }
+     }
+      
+     .item-setting {
+        bottom: 0;
+        display: none;
+     }
+}
+
+#noteItemList .item:hover  {
+     .item-setting {
+        display: block;
+     }
+}
+
+// 视图
+.sorter-style, .view-style {
+  .fa-check:before {
+    content: "";
+  }
+  &.checked {
+    .fa-check:before {
+      content: "\f00c";
+    }
+  }
+}
+
+#sortType {
+  .dropdown-menu {
+    right: -1px !important;
+  }
+}
+
+#tagSearch {
+  line-height: 34px
+}

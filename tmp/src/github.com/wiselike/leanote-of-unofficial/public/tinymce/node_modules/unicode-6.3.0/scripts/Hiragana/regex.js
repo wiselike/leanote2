@@ -1,0 +1,1 @@
+module.exports=/[\u3041-\u3096\u309D-\u309F]|\uD82C\uDC01|\uD83C\uDE00/
