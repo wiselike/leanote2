@@ -400,7 +400,8 @@ function setEditorContent(content, isMarkdown, preview, callback) {
 			var editor = tinymce.activeEditor;
 			editor.setContent(content);
 			callback && callback();
-			//editor.resetContentChanged && editor.resetContentChanged();
+			editor.resetContentChanged && editor.resetContentChanged();
+			editor.undoManager.clear();
 		} else {
 			// 等下再设置
 			clearIntervalForSetContent = setTimeout(function() {
