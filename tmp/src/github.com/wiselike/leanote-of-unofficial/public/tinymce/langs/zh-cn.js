@@ -1,4 +1,4 @@
-tinymce.addI18n('zh_cn',{
+tinymce.addI18n('zh-cn',{
 "Redo": "重做",
 "Undo": "撤销",
 "Cut": "剪切",

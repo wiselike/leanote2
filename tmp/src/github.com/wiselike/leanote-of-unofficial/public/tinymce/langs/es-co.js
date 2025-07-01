@@ -1,4 +1,4 @@
-tinymce.addI18n('es_co',{
+tinymce.addI18n('es-co',{
 "Redo": "Rehacer",
 "Undo": "Deshacer",
 "Cut": "Cortar",
