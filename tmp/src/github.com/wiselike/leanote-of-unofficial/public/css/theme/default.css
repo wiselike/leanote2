@@ -1054,11 +1054,12 @@ a:hover {
   color: #ddd;
 }
 #moreBtn {
-  dispaly: block;
+  display: block;
   position: absolute;
   cursor: pointer;
   right: 5px;
   padding: 3px 10px;
+  z-index: 100;
 }
 #moreBtn span {
   display: none;
@@ -2130,19 +2131,24 @@ textarea#wmd-input {
   display: inline;
 }
 #editor #mceToolbar {
-  height: 30px;
+  height: 40px;
 }
 #editor.all-tool #mceToolbar {
-  height: 60px;
+  height: 80px;
 }
 #editor.all-tool .more-fa:before {
   content: "\f106";
 }
 #editor.all-tool #editorContent {
-  top: 60px;
+  top: 80px;
 }
 #editor .more-fa:before {
   content: "\f107";
+}
+#mceToolbarContainer .tox .tox-toolbar,
+#mceToolbarContainer .tox .tox-toolbar__primary,
+#mceToolbarContainer .tox .tox-toolbar__overflow {
+   background-color: #f0f0f0 !important;
 }
 #historyList img {
   max-width: 100%;
@@ -2355,7 +2361,7 @@ textarea#wmd-input {
 }
 #editorContent {
   position: absolute;
-  top: 30px;
+  top: 40px;
   bottom: 10px;
   right: 0;
   left: 0;
@@ -2455,9 +2461,9 @@ textarea#wmd-input {
   left: 0;
   right: 0;
   bottom: 0;
-  line-height: 30px;
+  line-height: 40px;
   padding-left: 5px;
-  height: 30px;
+  height: 40px;
   display: none;
   overflow: hidden;
 }

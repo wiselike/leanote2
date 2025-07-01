@@ -369,7 +369,9 @@ function switchEditor(isMarkdown) {
 		$("#leanoteNav").hide();
 	}
 }
-
+function sleep(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
 // editor 设置内容
 // 可能是tinymce还没有渲染成功
 var previewToken = "<div style='display: none'>FORTOKEN</div>"
@@ -394,11 +396,11 @@ function setEditorContent(content, isMarkdown, preview, callback) {
 		*/
 		// $("#editorContent").html(content);
 		// 不能先setHtml, 因为在tinymce的setContent前要获取之前的content, destory ACE
-		if(typeof tinymce != "undefined" && tinymce.activeEditor) {
+		if(typeof tinymce != "undefined" && tinymce.activeEditor && tinymce.activeEditor.initialized == true) {
 			var editor = tinymce.activeEditor;
 			editor.setContent(content);
 			callback && callback();
-			//editor.undoManager.clear(); // 4-7修复BUG
+			//editor.resetContentChanged && editor.resetContentChanged();
 		} else {
 			// 等下再设置
 			clearIntervalForSetContent = setTimeout(function() {

@@ -501,7 +501,22 @@ function initEditor() {
 			// /<\?php.*?\?>/g // Protect php code
 		],
 		*/
+		fixed_toolbar_container: '#mceToolbarContainer',
 		setup: function(ed) {
+			// 实现工具栏的下拉菜单显示在container，而不被遮挡
+			// 方法：使用 MutationObserver 让它“自动搬家”
+			  const observer = new MutationObserver(() => {
+				const sink = document.querySelector('#mceToolbarContainer .tox-silver-sink');
+				if (sink && sink.parentNode !== document.body) {
+				  document.body.appendChild(sink);
+				}
+			  });
+			  // 监听容器，任何时候插入 sink 都立刻搬走
+			  observer.observe(document.getElementById('mceToolbarContainer'), {
+				childList: true,
+				subtree:   true
+			  });
+			
 			ed.on('keydown', function(e) {
 				// 如果是readony, 则不能做任何操作
 				var num = e.which ? e.which : e.keyCode;
@@ -548,6 +563,7 @@ function initEditor() {
 				"autolink link lists hr", "paste",
 				"searchreplace tabfocus",
 				"table textcolor" ], // nonbreaking directionality charmap
+		toolbar_persist: true,
 		toolbar : ["formatselect | forecolor backcolor | bold italic underline strikethrough | | | bullist numlist | alignleft aligncenter alignright alignjustify",
 		"outdent indent blockquote | link unlink | table | hr removeformat | subscript superscript | searchreplace | pastetext | | fontselect fontsizeselect"],
 		toolbar_mode: 'wrap',
