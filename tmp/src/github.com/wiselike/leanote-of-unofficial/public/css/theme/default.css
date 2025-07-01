@@ -2145,10 +2145,13 @@ textarea#wmd-input {
 #editor .more-fa:before {
   content: "\f107";
 }
-#mceToolbarContainer .tox .tox-toolbar,
-#mceToolbarContainer .tox .tox-toolbar__primary,
-#mceToolbarContainer .tox .tox-toolbar__overflow {
+#popularToolbar .tox .tox-toolbar,
+#popularToolbar .tox .tox-toolbar__primary,
+#popularToolbar .tox .tox-toolbar__overflow {
    background-color: #f0f0f0 !important;
+}
+#editor .tox-dialog {
+  top: 60px;
 }
 #historyList img {
   max-width: 100%;

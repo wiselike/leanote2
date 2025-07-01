@@ -501,22 +501,23 @@ function initEditor() {
 			// /<\?php.*?\?>/g // Protect php code
 		],
 		*/
-		fixed_toolbar_container: '#mceToolbarContainer',
+		fixed_toolbar_container: '#popularToolbar',
 		setup: function(ed) {
 			// 实现工具栏的下拉菜单显示在container，而不被遮挡
 			// 方法：使用 MutationObserver 让它“自动搬家”
 			  const observer = new MutationObserver(() => {
-				const sink = document.querySelector('#mceToolbarContainer .tox-silver-sink');
+				const sink = document.querySelector('#popularToolbar .tox-silver-sink');
+				const target = document.getElementById('editor'); // 想放置到的容器里
 				if (sink && sink.parentNode !== document.body) {
-				  document.body.appendChild(sink);
+				  target.appendChild(sink);
 				}
 			  });
 			  // 监听容器，任何时候插入 sink 都立刻搬走
-			  observer.observe(document.getElementById('mceToolbarContainer'), {
+			  observer.observe(document.getElementById('popularToolbar'), {
 				childList: true,
 				subtree:   true
 			  });
-			
+			  
 			ed.on('keydown', function(e) {
 				// 如果是readony, 则不能做任何操作
 				var num = e.which ? e.which : e.keyCode;

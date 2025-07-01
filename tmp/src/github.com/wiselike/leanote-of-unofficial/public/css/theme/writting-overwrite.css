@@ -2144,6 +2144,14 @@ textarea#wmd-input {
 #editor .more-fa:before {
   content: "\f107";
 }
+#popularToolbar .tox .tox-toolbar,
+#popularToolbar .tox .tox-toolbar__primary,
+#popularToolbar .tox .tox-toolbar__overflow {
+   background-color: #fbfcf7 !important;
+}
+#editor .tox-dialog {
+  top: 60px;
+}
 #historyList img {
   max-width: 100%;
 }
@@ -3800,14 +3808,14 @@ body {
   position: static;
 }
 #editor #mceToolbar {
-  height: 40px;
+  height: 85px;
 }
 #editor #editorContent {
-  top: 40px;
+  top: 85px;
 }
 #editor.all-tool #mceToolbar {
-  height: 80px;
+  height: 85px;
 }
 #editor.all-tool #editorContent {
-  top: 80px;
+  top: 85px;
 }
