@@ -1785,6 +1785,7 @@ Note.toggleReadOnly = function(needSave) {
 		$('#mdInfoToolbar .updated-time').html(goNowToDatetime(note.UpdatedTime));
 	}
 	else {
+		//tinymce && tinymce.get('viewer').mode.set('readonly');
 		$('#infoToolbar .created-time').html(goNowToDatetime(note.CreatedTime));
 		$('#infoToolbar .updated-time').html(goNowToDatetime(note.UpdatedTime));
 	}
@@ -1798,6 +1799,7 @@ Note.toggleReadOnly = function(needSave) {
 	LEA.readOnly = true;
 
 	if(!note.IsMarkdown) {
+		tinymce.activeEditor.mode.set('readonly');
 		// 里面的pre也设为不可写
 		$('#editorContent pre').each(function() {
 			LeaAce.setAceReadOnly($(this), true);
@@ -1829,6 +1831,7 @@ LEA.toggleWriteable = Note.toggleWriteable = function(isFromNewNote) {
 		$('#editorContent pre').each(function() {
 			LeaAce.setAceReadOnly($(this), false);
 		});
+		tinymce.activeEditor.mode.set('design');
 		isFromNewNote || tinymce.activeEditor.focus();
 	}
 	else {

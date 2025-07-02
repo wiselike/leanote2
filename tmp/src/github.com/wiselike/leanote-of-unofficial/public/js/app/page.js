@@ -486,6 +486,16 @@ function initEditor() {
 		restoreBookmark();
 	});
 
+	// 先初始化插件
+	tinymce.PluginManager.add('linkCtxTrim', function (editor) {   // ← 改成普通 function
+	  editor.ui.registry.addContextMenu('link', {
+		update: function (elm) {
+		  return (elm && elm.nodeName === 'A')       // 只有超链接
+			? 'openlink unlink link'                 // 需要哪些就写哪些
+			: '';                                    // 其它场景返回空 → 原生菜单
+		}
+	  });
+	});
 	// 初始化编辑器
 	tinymce.init({
 		inline: true,
@@ -563,7 +573,7 @@ function initEditor() {
 		plugins : [
 				"autolink link lists hr", "paste",
 				"searchreplace tabfocus",
-				"table textcolor" ], // nonbreaking directionality charmap
+				"table textcolor", "-linkCtxTrim" ], // nonbreaking directionality charmap
 		toolbar_persist: true,
 		toolbar : ["formatselect | forecolor backcolor | bold italic underline strikethrough | | | bullist numlist | alignleft aligncenter alignright alignjustify",
 		"outdent indent blockquote | link unlink | table | hr removeformat | subscript superscript | searchreplace | pastetext | | fontselect fontsizeselect"],
@@ -603,6 +613,7 @@ function initEditor() {
 		// Setting this to "true" will allow the pasted images, and setting this to "false" will disallow pasted images.
 		// For example, Firefox enables you to paste images directly into any contentEditable field. This is normally not something people want, so this option is "false" by default.
 		paste_data_images: true,
+		readonly: true,
 		branding: false
 	});
 
