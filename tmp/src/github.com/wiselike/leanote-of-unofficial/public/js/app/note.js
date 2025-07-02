@@ -1785,7 +1785,6 @@ Note.toggleReadOnly = function(needSave) {
 		$('#mdInfoToolbar .updated-time').html(goNowToDatetime(note.UpdatedTime));
 	}
 	else {
-		//tinymce && tinymce.get('viewer').mode.set('readonly');
 		$('#infoToolbar .created-time').html(goNowToDatetime(note.CreatedTime));
 		$('#infoToolbar .updated-time').html(goNowToDatetime(note.UpdatedTime));
 	}

@@ -649,8 +649,9 @@ function initEditor() {
 
 //-----------------------
 // 导航
+/* 这部分代码会引发tinymce编辑时发生错误，先注释掉，后面再想办法解决文章标题导航问题
 var random = 1;
-function scrollTo(self, tagName, text) {
+function navScrollTo(self, tagName, text) {
 	var iframe = $("#editorContent"); // .contents();
 	var target = iframe.find(tagName + ":contains(" + text + ")");
 	random++;
@@ -668,6 +669,7 @@ function scrollTo(self, tagName, text) {
 		return;
 	}
 }
+*/
 
 function hideMask () {
 	$("#mainMask").html("");

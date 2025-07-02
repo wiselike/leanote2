@@ -6,7 +6,7 @@
 requirejs.config({
 	paths: {
 		// life
-		'editor_drop_paste': 'js/plugins/editor_drop_paste',
+		// 'editor_drop_paste': 'js/plugins/editor_drop_paste', // 改为使用tinymce里的插件，md编辑器也先禁用此功能
 		'attachment_upload': 'js/plugins/attachment_upload',
 
 		// 'jquery.ui.widget': 'js/plugins/fileupload/jquery.ui.widget',
@@ -26,7 +26,8 @@ requirejs.config({
 // 异步加载
 setTimeout(function () {
 	// 小异步
-	require(["editor_drop_paste", "attachment_upload"]);
+	// require(["editor_drop_paste"]);
+	require(["attachment_upload"]);
 
 	require(['note_info']);
 

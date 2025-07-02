@@ -594,15 +594,16 @@ function log(o) {
 							</div>
 						</div>
 
-						<!-- leaui image drop image to editor-->
+						<!-- leaui image drop image to editor 不用这个插件了，直接用tinymce里的。md编辑器的话，暂时禁用这个功能。
 						<form id="upload" method="post" action="/file/uploadImageLeaui" enctype="multipart/form-data" style="margin-top: 5px;">
 							<div id="drop">
 								{{leaMsg . "Drop images to here"}}
 							<input type="file" name="file" multiple style="display: none"/>
-						</div>
-						<ul id="uploadMsg">
-						</ul>
-					</form>
+							</div>
+							<ul id="uploadMsg">
+							</ul>
+						</form> 
+						-->
 
 						<!-- 由此可以算高度 -->
 						<div id="editorContent" name="editorContent" tabindex="2" /></div>
