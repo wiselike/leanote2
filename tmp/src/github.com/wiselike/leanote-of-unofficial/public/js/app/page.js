@@ -514,7 +514,7 @@ function initEditor() {
 		fixed_toolbar_container: '#popularToolbar',
 		setup: function(ed) {
 			// 实现工具栏的下拉菜单显示在container，而不被遮挡
-			// 方法：使用 MutationObserver 让它“自动搬家”
+			// 方法：使用 MutationObserver 监听容器，任何时候插入 sink 都立刻搬走
 			  const observer = new MutationObserver(() => {
 				const sink = document.querySelector('#popularToolbar .tox-silver-sink');
 				const target = document.getElementById('editor'); // 想放置到的容器里
@@ -522,7 +522,6 @@ function initEditor() {
 				  target.appendChild(sink);
 				}
 			  });
-			  // 监听容器，任何时候插入 sink 都立刻搬走
 			  observer.observe(document.getElementById('popularToolbar'), {
 				childList: true,
 				subtree:   true
@@ -541,14 +540,6 @@ function initEditor() {
 				LeaAce.removeCurToggleRaw();
 			});
 
-			// 为了把下拉菜单关闭
-			/*
-			ed.on("click", function(e) {
-				// $("body").trigger("click");
-				// console.log(tinymce.activeEditor.selection.getNode());
-			});
-			*/
-
 			// electron下有问题, Ace剪切导致行数减少, #16
 			ed.on('cut', function(e) {
 				if($(e.target).hasClass('ace_text-input')) {
@@ -558,16 +549,12 @@ function initEditor() {
 			});
 		},
 
-		// fix TinyMCE Removes site base url
-		// http://stackoverflow.com/questions/3360084/tinymce-removes-site-base-urls
 		convert_urls: false, // true会将url变成../api/
 		relative_urls: true,
 		remove_script_host:false,
 
 		selector : "#editorContent",
 
-		// content_css 不再需要
-		// content_css : [LEA.sPath + "/css/editor/editor.css"], // .concat(em.getWritingCss()),
 		//skin : "custom",
 		language: LEA.locale, // 语言
 		plugins : [
@@ -595,23 +582,6 @@ function initEditor() {
 				+ "新宋体=NSimSun;" + "黑体=SimHei;"
 				+ "微软雅黑=Microsoft YaHei",
 		block_formats : "Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Paragraph=p",
-		/*
-		codemirror: {
-			indentOnInit: true, // Whether or not to indent code on init.
-			path: 'CodeMirror', // Path to CodeMirror distribution
-			config: {           // CodeMirror config object
-				//mode: 'application/x-httpd-php',
-				lineNumbers: true
-			},
-			jsFiles: [          // Additional JS files to load
-				// 'mode/clike/clike.js',
-				//'mode/php/php.js'
-			]
-		},
-		*/
-		// This option specifies whether data:url images (inline images) should be removed or not from the pasted contents.
-		// Setting this to "true" will allow the pasted images, and setting this to "false" will disallow pasted images.
-		// For example, Firefox enables you to paste images directly into any contentEditable field. This is normally not something people want, so this option is "false" by default.
 		paste_data_images: true,
 		readonly: true,
 		branding: false
