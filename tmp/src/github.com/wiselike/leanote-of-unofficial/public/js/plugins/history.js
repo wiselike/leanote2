@@ -4,7 +4,7 @@
 	*
 	*/
 define('history', [], function() {
-	var tpl = ['<div class="modal fade history-modal" tabindex="-1" role="dialog" aria-hidden="true">',
+	var tpl = ['<div class="modal fade history-modal" tabindex="-1" role="dialog">',
 		'<div class="modal-dialog modal-lg ">',
 			'<div class="modal-content">',
 				'<div class="modal-header">',
@@ -19,7 +19,7 @@ define('history', [], function() {
 						'<div class="history-content-header">',
 							'<a class="btn btn-primary back">' + getMsg('restoreFromThisVersion') + '</a>',
 							'<a class="btn btn-primary delete">' + getMsg('deleteThisHistoryVersion') + '</a>',
-							'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>',
+							'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
 						'</div>',
 						'<div class="history-content"></div>',
 					'</div>',
