@@ -560,7 +560,7 @@ function initEditor() {
 		plugins : [
 				"autolink link lists hr", "paste",
 				"searchreplace tabfocus",
-				"table textcolor", "-linkCtxTrim" ], // nonbreaking directionality charmap
+				"table", "-linkCtxTrim" ], // nonbreaking directionality charmap
 		toolbar_persist: true,
 		toolbar : ["formatselect | forecolor backcolor | bold italic underline strikethrough | | | bullist numlist | alignleft aligncenter alignright alignjustify",
 		"outdent indent blockquote | link unlink | table | hr removeformat | subscript superscript | searchreplace | pastetext | | fontselect fontsizeselect"],
