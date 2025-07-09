@@ -1800,9 +1800,9 @@ Note.toggleReadOnly = function(needSave) {
 	if(!note.IsMarkdown) {
 		tinymce.activeEditor.mode.set('readonly');
 		// 里面的pre也设为不可写
-		$('#editorContent pre').each(function() {
-			LeaAce.setAceReadOnly($(this), true);
-		});
+		// $('#editorContent pre').each(function() {
+			// LeaAce.setAceReadOnly($(this), true);
+		// });
 	}
 };
 // 切换到编辑模式
@@ -1827,9 +1827,9 @@ LEA.toggleWriteable = Note.toggleWriteable = function(isFromNewNote) {
 
 	if(!note.IsMarkdown) {
 		// 里面的pre也设为不可写
-		$('#editorContent pre').each(function() {
-			LeaAce.setAceReadOnly($(this), false);
-		});
+		// $('#editorContent pre').each(function() {
+			// LeaAce.setAceReadOnly($(this), false);
+		// });
 		tinymce.activeEditor.mode.set('design');
 		isFromNewNote || tinymce.activeEditor.focus();
 	}

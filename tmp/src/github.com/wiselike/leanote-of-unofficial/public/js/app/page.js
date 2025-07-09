@@ -537,16 +537,16 @@ function initEditor() {
 				}
 
 				// 当输入的时候, 把当前raw删除掉
-				LeaAce.removeCurToggleRaw();
+				//LeaAce.removeCurToggleRaw();
 			});
 
 			// electron下有问题, Ace剪切导致行数减少, #16
-			ed.on('cut', function(e) {
-				if($(e.target).hasClass('ace_text-input')) {
-					e.preventDefault();
-					return;
-				}
-			});
+			// ed.on('cut', function(e) {
+			// 	if($(e.target).hasClass('ace_text-input')) {
+			// 		e.preventDefault();
+			// 		return;
+			// 	}
+			// });
 		},
 
 		convert_urls: false, // true会将url变成../api/
@@ -955,6 +955,7 @@ $(function() {
 
 //----------
 // aceEditor
+/*
 LeaAce = {
 	// aceEditorID
 	_aceId: 0,
@@ -1319,7 +1320,7 @@ LeaAce = {
 		if(!classes) {
 			return '';
 		}
-		var m = classes.match(/brush:[^ ]*/);
+		var m = classes.match(/brush:[^ ]* /);
 		var everBrush = "";
 		if(m && m.length > 0) {
 			everBrush = m[0];
@@ -1474,7 +1475,7 @@ LeaAce = {
 		});
 	}
 };
-
+*/
 function initLeanoteIfrPlugin () {
 	// 如果在iframe下, 很可能是嵌入了leanote
 	if (self != window.parent) {
@@ -1624,7 +1625,7 @@ function _initPage(srcNote, isTop) {
 	// init notebook后才调用
 	initSlimScroll();
 
-	LeaAce.handleEvent();
+	//LeaAce.handleEvent();
 
 	// 如果是插件, 则切换到编辑页, 并切换到写作模式
 	if (isTop) {
