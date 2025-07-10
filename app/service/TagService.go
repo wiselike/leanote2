@@ -103,8 +103,9 @@ func (this *TagService) GetTags(userId string) []info.NoteTag {
 // 也删除所有的笔记含该标签的
 // 返回noteId => usn
 func (this *TagService) DeleteTag(userId string, tag string) map[string]int {
-	usn := userService.IncrUsn(userId)
-	if db.UpdateByQMap(db.NoteTags, bson.M{"UserId": bson.ObjectIdHex(userId), "Tag": tag}, bson.M{"Usn": usn, "IsDeleted": true}) {
+	// usn := userService.IncrUsn(userId)
+	// if db.UpdateByQMap(db.NoteTags, bson.M{"UserId": bson.ObjectIdHex(userId), "Tag": tag}, bson.M{"Usn": usn, "IsDeleted": true}) {
+	if db.Delete(db.NoteTags, bson.M{"UserId": bson.ObjectIdHex(userId), "Tag": tag}) {
 		return noteService.UpdateNoteToDeleteTag(userId, tag)
 	}
 	return map[string]int{}
@@ -122,7 +123,9 @@ func (this *TagService) DeleteTagApi(userId string, tag string, usn int) (ok boo
 		return false, "conflict", 0
 	}
 	toUsn = userService.IncrUsn(userId)
-	if db.UpdateByQMap(db.NoteTags, bson.M{"UserId": bson.ObjectIdHex(userId), "Tag": tag}, bson.M{"Usn": usn, "IsDeleted": true}) {
+	// if db.UpdateByQMap(db.NoteTags, bson.M{"UserId": bson.ObjectIdHex(userId), "Tag": tag}, bson.M{"Usn": usn, "IsDeleted": true}) {
+	if db.Delete(db.NoteTags, bson.M{"UserId": bson.ObjectIdHex(userId), "Tag": tag}) {
+		noteService.UpdateNoteToDeleteTag(userId, tag)
 		return true, "", toUsn
 	}
 	return false, "", 0

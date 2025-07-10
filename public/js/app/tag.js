@@ -141,7 +141,7 @@ Tag.appendTag = function(tag, save) {
 		}
 	}
 	var rawText = text;
-	if(LEA.locale == "zh") {
+	if(LEA.locale.indexOf('zh') >= 0) {
 		text = Tag.mapEn2Cn[text] || text;
 		rawText = Tag.mapCn2En[rawText] || rawText;
 	}
@@ -206,7 +206,7 @@ function reRenderTags() {
 	var tag = $target.data('tag');
 	$target.remove();
 	reRenderTags();
-	if(LEA.locale == "zh") {
+	if(LEA.locale.indexOf('zh') >= 0) {
 		tag = Tag.mapCn2En[tag] || tag;
 	}
 	Note.curChangedSaveIt(true, function() {
@@ -232,7 +232,7 @@ Tag.renderTagNav = function(tags) {
 		var noteTag = tags[i];
 		var tag = noteTag.Tag;
 		var text = tag;
-		if(LEA.locale == "zh") {
+		if(LEA.locale.indexOf('zh') >= 0) {
 			var text = Tag.mapEn2Cn[tag] || text;
 		}
 		text = trimTitle(text);
@@ -391,3 +391,4 @@ $(function() {
 
 	$("#myTag .folderBody").on("click", "li .tag-delete", deleteTag);
 });
+
