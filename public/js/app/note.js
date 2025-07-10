@@ -431,6 +431,7 @@ Note.curChangedSaveIt = function(force, callback, isRefreshOrCtrls) {
 			}, function(error) {
 				// 添加失败处理
 				me.saveInProcess[hasChanged.NoteId] = false;
+				alert(getMsg("saveFailure"));
 				showMsg(getMsg("saveFailure"), 3000);
 				console.error("updateNoteContent失败", error);
 			});
