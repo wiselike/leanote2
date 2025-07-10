@@ -1,0 +1,29 @@
+.ace-editor {
+    font-family: Arial, sans-serif;
+    display: block;
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow: auto;
+    min-height: 100px;
+    background-color: #eee;
+    margin-bottom: 10px;
+    padding-top: 30px;
+}
+
+.ace-editor:before {
+    font-size: 12px;
+    background: #0088bb;
+    color: white;
+    content: attr(data-ace-mode);
+    text-transform: uppercase;
+    font-weight: bold;
+    left: 0;
+    top: 0;
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+}

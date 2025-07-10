@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ACE Editor</title>
+
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <script src="/node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="/node_modules/ace-builds/src/ace.js" type="text/javascript"></script>
+    <script src="/node_modules/ace-builds/src/ext-language_tools.js" type="text/javascript"></script>
+    <script src="/node_modules/ace-builds/src/ext-emmet.js" type="text/javascript"></script>
+    <script src="/node_modules/emmet-core/emmet.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var languages = {
+                "html": "HTML",
+                "css": "CSS",
+                "scss": "SCSS",
+                "javascript": "JavaScript",
+                "php": "PHP",
+                "sql": "SQL",
+                "json": "JSON",
+                "mysql": "MySQL",
+                "java": "Java",
+                "text": "Text",
+            };
+            var data = {
+                mode: "html",
+                code: "",
+                width: "100%",
+                height: "400px",
+            };
+            var editor = null;
+
+            $.each(languages, function (key, item) {
+                var option = $("<option></option>").attr("value", key).html(item);
+                $(".js-mode").append(option);
+            });
+
+            $(".js-mode").change(function () {
+                data.mode = $(this).val();
+                editor.session.setMode("ace/mode/" + data.mode);
+            });
+            $(".js-width").change(function () {
+                data.width = $(this).val();
+                $("#codeEditor").width(data.width);
+                editor.resize();
+            });
+            $(".js-height").change(function () {
+                data.height = $(this).val();
+                $("#codeEditor").height(data.height);
+                editor.resize();
+            });
+
+            window.addEventListener('message', function (event) {
+                switch (event.data.mceAction) {
+                    case 'init':
+                        data.mode = event.data.mode;
+                        data.width = event.data.width;
+                        data.height = event.data.height;
+                        data.code = event.data.code;
+
+                        $(".js-mode").val(data.mode);
+                        $(".js-width").val(data.width);
+                        $(".js-height").val(data.height);
+                        $("#codeEditor").html(data.code);
+                        $("#codeEditor").width(data.width);
+                        $("#codeEditor").height(data.height);
+
+                        ace.require("ace/ext/language_tools");
+                        ace.require("ace/ext/emmet");
+                        editor = ace.edit(document.getElementById("codeEditor"));
+                        editor.getSession().setTabSize(4);
+                        editor.session.setMode("ace/mode/" + data.mode);
+                        editor.setOptions({
+                            enableBasicAutocompletion: true,
+                            enableSnippets: true
+                        });
+                        editor.setOption("enableEmmet", true);
+                        editor.on("change", function (e) {
+                            data.code = editor.getValue();
+                        });
+                        break;
+                    case 'save':
+                        window.parent.postMessage({
+                            mceAction: "save",
+                            mode: data.mode,
+                            width: data.width,
+                            height: data.height,
+                            code: data.code,
+                        }, '*');
+                        break;
+                }
+            });
+
+            window.parent.postMessage({
+                mceAction: "init",
+            }, '*');
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="form">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="control-label">Language:</label>
+                        <select name="type" class="form-control js-mode"></select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="control-label">Width:</label>
+                        <input class="form-control js-width" type="text" name="width" value="" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="control-label">Height:</label>
+                        <input class="form-control js-height" type="text" name="height" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Code:</label>
+                <div class="relative" id="codeEditor" style="width: 100%; height: 300px"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

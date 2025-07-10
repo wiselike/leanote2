@@ -559,10 +559,10 @@ function initEditor() {
 		language: LEA.locale, // 语言
 		plugins : [
 				"autolink link lists hr", "paste",
-				"searchreplace tabfocus",
+				"searchreplace tabfocus", "ace",
 				"table", "-linkCtxTrim" ], // nonbreaking directionality charmap
 		toolbar_persist: true,
-		toolbar : ["formatselect | forecolor backcolor | bold italic underline strikethrough | | | bullist numlist | alignleft aligncenter alignright alignjustify",
+		toolbar : ["formatselect | forecolor backcolor | bold italic underline strikethrough | ace | | bullist numlist | alignleft aligncenter alignright alignjustify",
 		"outdent indent blockquote | link unlink | table | hr removeformat | subscript superscript | searchreplace | pastetext | | fontselect fontsizeselect"],
 		toolbar_mode: 'wrap',
 		// 使用tab键: http://www.tinymce.com/wiki.php/Plugin3x:nonbreaking
