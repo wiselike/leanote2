@@ -1,0 +1,17 @@
+ace 修改
+
+Cannot disable showInvisibles when init Ace
+
+https://github.com/ajaxorg/ace/issues/2402
+
+return self.showInvisibles
+                    ? "<span class='ace_invisible ace_invisible_space ace_invalid'>" + self.SPACE_CHAR + "</span>" :
+                    lang.stringRepeat("\u00a0", c.length);
+                    
+                    
+2. copy时
+s = s.replace(/\xA0/g, " ");
+
+3. 修改方法：
+  a. 直接查找压缩后的ace.js文件，修改SPACE_CHAR
+  b. 直接查找压缩后的ace.js文件，插在getCopyText函数的后面
