@@ -262,6 +262,9 @@ module.exports = function(grunt) {
 
 		uglify: {
 			options: {
+				mangle: {
+					sort: true
+				},
 				beautify: {
 					ascii_only: true
 				}
