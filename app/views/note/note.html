@@ -67,13 +67,13 @@ function log(o) {
 						<a class="new-note" id="newNoteBtn" title="{{msg . "newNote"}}">
 							<!--<i class="fa fa-file-o"></i>-->
 							<span class="new-note-text">{{msg . "newNote"}}</span>
-							<span class="new-note-text-abbr">{{msg . "new"}}</span>
+							<span class="new-note-text-abbr">{{msg . "newNoteShort"}}</span>
 						</a>
 						<span class="new-split">|</span>
-						<a class="new-note new-markdown" id="newNoteMarkdownBtn" title="{{msg . "newMarkdown"}}">
+						<a class="new-note new-markdown" id="newNoteMarkdownBtn" title="{{msg . "newMarkdownNote"}}">
 							<!-- <i class="lea-icon icon-markdown"></i> -->
-							<span class="new-markdown-text">{{msg . "newMarkdown"}}</span>
-							<span class="new-markdown-text-abbr">Md</span>
+							<span class="new-markdown-text">{{msg . "newMarkdownNote"}}</span>
+							<span class="new-markdown-text-abbr">{{msg . "newMarkdownNoteShort"}}</span>
 						</a>
 						<span class="for-split"> - </span>
 						<span id="curNotebookForNewNote" notebookId=""></span>
@@ -99,12 +99,12 @@ function log(o) {
 						<a id="newSharedNoteBtn" class="new-note">
 							<!--<i class="fa fa-file-o"></i> -->
 							<span class="new-note-text">{{msg . "newNote"}}</span>
-							<span class="new-note-text-abbr">{{msg . "new"}}</span>
+							<span class="new-note-text-abbr">{{msg . "newNoteShort"}}</span>
 						</a>
 						<span class="new-split">|</span>
-						<a id="newShareNoteMarkdownBtn" class="new-note new-markdown" title="{{msg . "newMarkdown"}}">
-							<span class="new-markdown-text">{{msg . "newMarkdown"}}</span>
-							<span class="new-markdown-text-abbr">Md</span>
+						<a id="newShareNoteMarkdownBtn" class="new-note new-markdown" title="{{msg . "newMarkdownNote"}}">
+							<span class="new-markdown-text">{{msg . "newMarkdownNote"}}</span>
+							<span class="new-markdown-text-abbr">{{msg . "newMarkdownNoteShort"}}</span>
 						</a>
 						<span class="for-split"> - </span>
 						<span id="curNotebookForNewSharedNote" notebookId="" userId=""></span>
