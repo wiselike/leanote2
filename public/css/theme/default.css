@@ -2708,6 +2708,12 @@ h3 {
   font-family: 'Open Sans', Helvetica, Tahoma, Arial, Hiragino Sans GB, "Microsoft YaHei", "微软雅黑", "Micro Hei", SimSun, "宋体", Heiti, "黑体", sans-serif;
   font-weight: normal !important;
 }
+blockquote {
+    padding: 10px 20px;
+    margin: 0 0 10px;
+    font-size: 14px;
+    border-left: 5px solid #eee
+}
 #noteItemList,
 #notebook,
 #leftNotebook,

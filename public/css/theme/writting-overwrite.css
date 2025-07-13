@@ -2785,6 +2785,12 @@ a.raw {
 a.raw:hover {
   color: #2a6496;
 }
+blockquote {
+    padding: 10px 20px;
+    margin: 0 0 10px;
+    font-size: 16px;
+    border-left: 5px solid #eee
+}
 /* header */
 #header {
   height: 60px;

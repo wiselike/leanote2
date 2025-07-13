@@ -367,7 +367,7 @@
 }
 
 #preview-contents .preview-content > p, #preview-contents .preview-content > pre, #preview-contents .preview-content > blockquote {
-    margin: 0 0 20px
+    margin: 0 0 10px
 }
 
 #preview-contents table {
