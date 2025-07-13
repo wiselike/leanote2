@@ -469,7 +469,8 @@ function _getEditorContent(isMarkdown) {
 	if(!isMarkdown) {
 		var editor = tinymce.activeEditor;
 		if(editor) {
-			var content = $(editor.getBody()).clone();
+			var html = editor.getContent({ format: 'html' });
+			var content = $('<div>').html(html);
 			// 删除toggle raw
 			content.find('.toggle-raw').remove();
 
