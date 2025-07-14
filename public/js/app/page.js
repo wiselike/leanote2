@@ -286,8 +286,8 @@ var Resize = {
 		self.noteSplitter.css("left", noteListWidth);
 		self.note.css("left", noteListWidth);
 
-		UserInfo.NotebookWidth = notebookWidth;
-		UserInfo.NoteListWidth = noteListWidth;
+		UserInfo.NotebookWidth = notebookWidth | 0; // 使用位运算截断，使得只保留整数
+		UserInfo.NoteListWidth = noteListWidth | 0;
 	},
 	resize3Columns: function(event, isFromeIfr) {
 		var self = this;
