@@ -17,6 +17,18 @@ var noteProBase = leanoteBase + '/app/views/note';
 
 var messagesPath = leanoteBase + 'messages';
 
+gulp.task('uglifySingleJs', function() {
+	gulp.src(base + '/js/contextmenu/jquery.contextmenu.js')
+	.pipe(uglify()) // 压缩
+	.pipe(rename({suffix: '-min'}))
+	.pipe(gulp.dest(base + '/js/contextmenu/'));
+
+	gulp.src(base + '/js/object_id.js')
+	.pipe(uglify()) // 压缩
+	.pipe(rename({suffix: '-min'}))
+	.pipe(gulp.dest(base + '/js/'));
+});
+
 // 合并Js, 这些js都是不怎么修改, 且是依赖
 // 840kb, 非常耗时!!
 gulp.task('concatDepJs', function() {
@@ -26,9 +38,9 @@ gulp.task('concatDepJs', function() {
         // 'tinymce/tinymce.full.min.js', // 使用打成的包, 加载速度快
         // 'libs/ace/ace.js',
         'libs/jquery/jQuery-slimScroll-1.3.0/jquery.slimscroll-min.js',
-        'js/contextmenu/jquery.contextmenu.js',
+        'js/contextmenu/jquery.contextmenu-min.js',
         'libs/bootstrap/bootstrap.min.js',
-        'js/object_id.js',
+        'js/object_id-min.js',
     ];
 
     for(var i in jss) {
@@ -139,6 +151,7 @@ gulp.task('devToProHtml', function() {
         // .pipe(replace(/<!-- pro_markdown_js -->/, '<script src="/js/markdown.min.js"></script>')) // 替换
         .pipe(replace(/<!-- pro_markdown_js -->/, '<script src="/js/markdown-v2.min.js"></script>')) // 替换
         .pipe(replace('/tinymce/tinymce.js', '/tinymce/tinymce.full.min.js')) // 替换
+        .pipe(replace('/js/contextmenu/css/contextmenu.css', '/js/contextmenu/css/contextmenu-min.css'))
         .pipe(replace(/<!-- pro_tinymce_init_js -->/, "var tinyMCEPreInit = {base: '/public/tinymce', suffix: '.min'};")) // 替换
         .pipe(replace(/plugins\/main.js/, "plugins/main.min.js")) // 替换
         // 连续两个空行换成一个空行
@@ -406,6 +419,6 @@ gulp.task('minifycss', function() {
 });
 
 
-gulp.task('concat', ['concatDepJs', 'concatAppJs', /* 'concatMarkdownJs', */'concatMarkdownJsV2']);
+gulp.task('concat', ['uglifySingleJs', 'concatDepJs', 'concatAppJs', /* 'concatMarkdownJs', */'concatMarkdownJsV2']);
 gulp.task('html', ['devToProHtml']);
 gulp.task('default', ['concat', 'plugins', 'minifycss', /* 'tinymce', */'i18n', 'concatAlbumJs', 'html']);
