@@ -18,8 +18,9 @@
   font-size: 0px;
   margin: 0 2px;
 }
-.b-m-item, .b-m-idisable, .b-m-ifocus
-{
+.b-m-item,
+.b-m-idisable,
+.b-m-ifocus {
     padding: 4px 10px 4px 4px;
     cursor: default;
     line-height:1.2;
@@ -28,7 +29,8 @@
 {
     color:#808080;
 }
-.b-m-ibody, .b-m-arrow {
+.b-m-ibody,
+.b-m-arrow {
   overflow: hidden;
   text-overflow: ellipsis;
 
@@ -36,11 +38,9 @@
 .b-m-arrow {
   background: url(images/contextmenu/m_arrow.gif) right  no-repeat;
 }
-.b-m-idisable .b-m-arrow
-{
-    background:none;
-}
-.b-m-item img, .b-m-ifocus img, .b-m-idisable img {
+.b-m-item img,
+.b-m-ifocus img,
+.b-m-idisable img {
   margin-right: 8px;
   width: 16px;
 }
@@ -59,3 +59,4 @@
   width: 23px;
   padding-left: 3px;
 }
+

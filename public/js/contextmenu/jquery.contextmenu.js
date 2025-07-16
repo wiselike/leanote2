@@ -136,7 +136,7 @@ LEA.cmroot = 1;
 		// hover
 		var overItem = function(e) {
 			//menu item is disabled
-			if (this.disable)
+			if (!this.group && this.disable)
 				return false;
 			hideMenuPane.call(groups[this.gidx]);
 			//has sub items
@@ -151,13 +151,10 @@ LEA.cmroot = 1;
 		// hover out
 		//menu loses focus
 		var outItem = function(e) {
-			//disabled item
-			if (this.disable )
-				return false;
-			if (!this.group) {
-				//normal item
+			if (!this.group && !this.disable) {
 				this.className = "b-m-item";
-			} //Endif
+			}
+			//this.group is parsed in hideMenuPane()
 			return false;
 		};
 
@@ -194,7 +191,12 @@ LEA.cmroot = 1;
 					break;
 				alias = showGroups.pop();
 				groups[alias].style.display = "none";
-				mitems[alias] && (mitems[alias].className = "b-m-item");
+				if (mitems[alias]) {
+					if (mitems[alias].disable)
+						mitems[alias].className = "b-m-idisable";
+					else
+						mitems[alias].className = "b-m-item";
+				}
 			}
 		};
 		function applyRule(rule) {
@@ -214,10 +216,8 @@ LEA.cmroot = 1;
 				var item = {};
 				item.className = (item.disable = disabled) ? "b-m-idisable" : "b-m-item";
 				mitems[alias] = item;
-				item = null;
 				return;
 			}
-			// item.className = (item.disable = item.lastChild.disabled = disabled) ? "b-m-idisable" : "b-m-item";
 			item.className = (item.disable = disabled) ? "b-m-idisable" : "b-m-item";
 		};
 

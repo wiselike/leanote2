@@ -1972,7 +1972,7 @@ Note.initContextmenu = function() {
 					items.push("set2Blog");
 				}
 
-				// 移动与复制不能是本notebook下
+				// 移动与复制可以是本notebook下的子notebook
 				var notebookTitlePath = Notebook.getNotebookTitlePath(note.NotebookId);
 				items.push("move." + notebookTitlePath);
 				items.push("copy." + notebookTitlePath);
