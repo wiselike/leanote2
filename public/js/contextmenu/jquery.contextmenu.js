@@ -30,6 +30,7 @@ LEA.cmroot = 1;
 			obj = null;
 			return this;
 		};
+
 		var buildItem = function(obj) {
 			var T = this;
 			T.title = obj.text;
@@ -53,7 +54,10 @@ LEA.cmroot = 1;
 			if (obj.disable || (mitems[obj.alias] && mitems[obj.alias].disable)) {
 				T.disable = true;
 				T.className = "b-m-idisable";
+				$(T).find('.c-text').css('text-decoration', 'underline');
 			}
+			if (obj.underline || (mitems[obj.alias] && mitems[obj.alias].underline))
+				$(T).find('.c-text').css('text-decoration', 'underline');
 			obj.items && (T.group = true);
 			obj.action && (actions[obj.alias] = obj.action);
 			mitems[obj.alias] = T;
@@ -133,7 +137,7 @@ LEA.cmroot = 1;
 			} //end for
 			gidx = items = null;
 		};
-		// hover
+		// hover 只负责显示，不负责渲染准备
 		var overItem = function(e) {
 			//menu item is disabled
 			if (!this.group && this.disable)
@@ -148,14 +152,31 @@ LEA.cmroot = 1;
 			this.className = "b-m-ifocus";
 			return false;
 		};
-		// hover out
-		//menu loses focus
+		// hover out 负责下一次的标签的展开渲染
 		var outItem = function(e) {
 			if (!this.group && !this.disable) {
 				this.className = "b-m-item";
 			}
 			//this.group is parsed in hideMenuPane()
 			return false;
+		};
+		//to hide menu 负责下一次的标签的展开渲染
+		var hideMenuPane = function() {
+			var alias = null;
+
+			// console.log('showGroups: ' + showGroups.length)
+			for (var i = showGroups.length - 1; i >= 0; i--) {
+				if (showGroups[i] == this.gidx)
+					break;
+				alias = showGroups.pop();
+				groups[alias].style.display = "none";
+				if (mitems[alias]) {
+					if (mitems[alias].disable)
+						mitems[alias].className = "b-m-idisable";
+					else
+						mitems[alias].className = "b-m-item";
+				}
+			}
 		};
 
 		// 显示group, 这里可以动态生成
@@ -181,29 +202,8 @@ LEA.cmroot = 1;
 			showGroups.push(this.gidx);
 		};
 
-		//to hide menu
-		var hideMenuPane = function() {
-			var alias = null;
-
-			// console.log('showGroups: ' + showGroups.length)
-			for (var i = showGroups.length - 1; i >= 0; i--) {
-				if (showGroups[i] == this.gidx)
-					break;
-				alias = showGroups.pop();
-				groups[alias].style.display = "none";
-				if (mitems[alias]) {
-					if (mitems[alias].disable)
-						mitems[alias].className = "b-m-idisable";
-					else
-						mitems[alias].className = "b-m-item";
-				}
-			}
-		};
+		// 负责第一次显示右键菜单的处理，此时item里可能还没DOM
 		function applyRule(rule) {
-			/*
-			if (ruleName && ruleName == rule.name)
-				return false;
-			*/
 			for (var i in mitems)
 				disable(i, !rule.disable);
 			for (var i = 0; i < rule.items.length; i++)
@@ -211,15 +211,37 @@ LEA.cmroot = 1;
 			ruleName = rule.name;
 		};
 		function disable(alias, disabled) {
-			var item = mitems[alias];
-			if(!item) {
-				var item = {};
-				item.className = (item.disable = disabled) ? "b-m-idisable" : "b-m-item";
-				mitems[alias] = item;
-				return;
+			// 1. 若 alias 有层级（含 '.'），逐级处理下划线
+			if (alias.indexOf('.') !== -1) {
+				var parts = alias.split('.');
+				var path  = parts[0];
+
+				for (var i = 1; i < parts.length; i++) {
+					path += '.' + parts[i];       // 依次累加，让父级菜单也带下划线
+					toggleUnderline(path, disabled);
+				}
 			}
-			item.className = (item.disable = disabled) ? "b-m-idisable" : "b-m-item";
-		};
+			// 2. 最后切换自身样式
+			setDisabledClass(alias, disabled);
+		}
+		function setDisabledClass(alias, disabled) {
+			var itm = ensureItem(alias);
+			itm.disable   = disabled;
+			itm.className = disabled ? 'b-m-idisable' : 'b-m-item';
+		}
+		function toggleUnderline(alias, add) {
+			var itm = ensureItem(alias);
+
+			// 渲染后是 DOM 元素（nodeType === 1），否则是占位对象
+			if (itm.nodeType === 1) {
+				$(itm).find('.c-text').css('text-decoration', add ? 'underline' : '');
+			} else {
+				itm.underline = add; // 占位记录状态，让buildItem()渲染
+			}
+		}
+		function ensureItem(alias) {
+			return mitems[alias] || (mitems[alias] = {});
+		}
 
 		/* to show menu  */
 		function showMenu(e, menutarget) {
