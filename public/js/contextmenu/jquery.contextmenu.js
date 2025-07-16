@@ -142,6 +142,10 @@ LEA.cmroot = 1;
 			//menu item is disabled
 			if (!this.group && this.disable)
 				return false;
+			// disable if top menu is disabled
+			if (this.disable && this.idx.indexOf('.') === -1) {
+				return false;
+			}
 			hideMenuPane.call(groups[this.gidx]);
 			//has sub items
 			if (this.group) {
@@ -220,7 +224,8 @@ LEA.cmroot = 1;
 					path += '.' + parts[i];       // 依次累加，让父级菜单也带下划线
 					toggleUnderline(path, disabled);
 				}
-			}
+			} else
+				$(mitems[alias]).find('.b-m-arrow').css('background', disabled ? 'none' : '');
 			// 2. 最后切换自身样式
 			setDisabledClass(alias, disabled);
 		}
