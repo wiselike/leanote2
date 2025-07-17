@@ -517,12 +517,12 @@ Notebook.selectNotebook = function(target) {
 Notebook.changeNotebookNavForNewNote = function(notebookId, title) {
 	// 没有notebookId, 则选择第1个notebook
 	// 第一个是全部笔记
-	if(!notebookId) {
+	if(notebookId === undefined || notebookId == "0") {
 		var notebook = Notebook.notebooks[0];
 		notebookId = notebook.NotebookId;
 		title = notebook.Title;
 	}
-	if(!title) {
+	if(title === undefined) {
 		var notebook = Notebook.cache[0];
 		title = notebook.Title;
 	} else {
@@ -568,11 +568,11 @@ Notebook.toggleToMyNav = function(userId, notebookId) {
 	// 搜索tag隐藏
 	$("#tagSearch").hide();
 };
-Notebook.changeNotebookNav = function(notebookId, skipList) {
+Notebook.changeNotebookNav = function(notebookId) {
 	Notebook.curNotebookId = notebookId;
 	Notebook.toggleToMyNav();
 
-	// 1 改变当前的notebook
+	// 1 改变当前的notebook，切换导航窗格里的焦点
 	Notebook.selectNotebook($(tt('#notebook [notebookId="?"]', notebookId)));
 
 	var notebook = Notebook.cache[notebookId];
@@ -581,12 +581,10 @@ Notebook.changeNotebookNav = function(notebookId, skipList) {
 		return;
 	}
 
-	// 2
-	if(!skipList) {
-		$("#curNotebookForListNote").html(notebook.Title);
-	}
+	// 2 判断是否跳过“导航窗格里的，ListNote视图里的，笔记本title名称”的刷新（只是名称，不含清单的刷新）
+	$("#curNotebookForListNote").html(notebook.Title);
 
-	// 3
+	// 3 渲染导航窗格的curNotebookForNewNote，就是笔记本路径“- aaa > bbb”部分
 	Notebook.changeNotebookNavForNewNote(notebookId, notebook.Title);
 }
 
