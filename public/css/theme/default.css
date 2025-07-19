@@ -2732,7 +2732,7 @@ blockquote {
 .preview-container {
   -webkit-overflow-scrolling: touch !important;
 }
-.folderBody a:hover,
+.folderBody a:hover:not(.curSelectedNode),
 .folderBody .contextmenu-hover {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.1) !important;
