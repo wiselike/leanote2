@@ -697,7 +697,7 @@ Note.changeNote = function(selectNoteId, isShare, needSaveChanged, callback) {
 	}
 
 	// 更新导航窗格的curNotebookForNewNote，就是笔记本路径“- aaa > bbb”部分
-	Notebook.changeNotebookNavForNewNote(cacheNote.NotebookId, cacheNote.Title);
+	Notebook.changeNotebookNavForNewNote(cacheNote.IsTrash ? Notebook.trashNotebookId:cacheNote.NotebookId, cacheNote.Title);
 
 	if(cacheNote.Content) {
 		setContent(cacheNote, seq);

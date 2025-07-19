@@ -537,7 +537,7 @@ Notebook.changeNotebookNavForNewNote = function(notebookId, title) {
 		title = titles.join(" > ");
 	}
 
-	if(!Notebook.isAllNotebookId(notebookId) && !Notebook.isTrashNotebookId(notebookId)) {
+	if(!Notebook.isAllNotebookId(notebookId)) {
 		$("#curNotebookForNewNote").html(title).attr("notebookId", notebookId);
 	} else if(!$("#curNotebookForNewNote").attr("notebookId")) {
 		// 但又没有一个笔记, 默认选第一个吧
