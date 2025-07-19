@@ -257,8 +257,8 @@ LEA.cmroot = 1;
 			target = menutarget;
 			showMenuGroup.call(groups[cmroot], { left: e.pageX, top: e.pageY }, 0);
 
-			// 在该target上添加contextmenu-hover
-			if(target && !$(target).hasClass("item-active")) {
+			// 在该target上添加contextmenu-hover。同时判断笔记选择区的右键和笔记本选择区的右键
+			if(target && !$(target).hasClass("item-active") && !$(target).hasClass("curSelectedNode")) {
 				$(target).addClass("contextmenu-hover");
 			}
 		}
@@ -297,7 +297,9 @@ LEA.cmroot = 1;
 		});
 
 		function removeContextmenuClass() {
-			Note.$itemList.find('li').removeClass('contextmenu-hover');
+			Note.$itemList.find('li').removeClass('contextmenu-hover'); // 移除笔记选择区的悬浮标记
+			$(notebookList).find('a').removeClass('contextmenu-hover'); // 移除笔记本选择区的悬浮标记
+
 		}
 
 		// life , 之前是document, 绑定document即使stopPro也会执行到这里
