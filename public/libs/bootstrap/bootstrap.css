@@ -6057,7 +6057,7 @@ button.close {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   }
   .modal-sm {
-    width: 300px;
+    width: 600px;
   }
 }
 @media (min-width: 992px) {
