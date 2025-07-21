@@ -27,7 +27,7 @@ var hash = location.hash;
 if(hash.indexOf("writing") >= 0) {
 	var files = '<link rel="stylesheet" href="/css/theme/writting-overwrite.css?id=3" type="text/css" id="themeLink" />';
 } else {
-	var files ='<link rel="stylesheet" href="/css/theme/{{if .userInfo.Theme}}{{.userInfo.Theme}}{{else}}default{{end}}.css?id=7" type="text/css" id="themeLink" />';
+	var files ='<link rel="stylesheet" href="/css/theme/{{if .userInfo.Theme}}{{.userInfo.Theme}}{{else}}default{{end}}.css" type="text/css" id="themeLink" />';
 }
 document.write(files);
 </script>
@@ -35,9 +35,7 @@ document.write(files);
 
 <!-- For Develop writting mod -->
 <script>
-function log(o) {
-	
-}
+function log(o) { }
 </script>
 </head>
 <body class="leanote-plugin lang-{{$.locale}}">
@@ -914,6 +912,6 @@ window.require = {
 
 
 
-<script src="/js/plugins/main.min.js"></script>
+<script src="/js/plugins/plugins.min.js"></script>
 </body>
 </html>

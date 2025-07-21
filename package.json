@@ -36,6 +36,7 @@
     "amdlc": "^0.1.9",
     "grunt": "^1.5.3",
     "grunt-cli": "^1.4.3",
+    "gulp-footer": "^2.1.0",
     "gulp-minify-css": "^1.2.4"
   }
 }
