@@ -107,10 +107,11 @@ Notebook.getTreeSetting = function(isSearch, isShare){
 				icoObj.after($('<span class="fa notebook-setting" title="setting"></span>'));
 			}
 		}
-		if (treeNode.level > 1) {
-			var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
-			switchObj.before(spaceStr);
-		}
+		// 不再使用这种方式来增加2、3级菜单的缩进，会引起：笔记本变更菜单级数的拖动时，缩进不能也跟着及时调整的问题
+		// if (treeNode.level > 1) {
+		// 	var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
+		// 	switchObj.before(spaceStr);
+		// }
 	}
 	// 拖拽
 	function beforeDrag(treeId, treeNodes) {
