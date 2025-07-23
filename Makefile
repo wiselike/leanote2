@@ -15,7 +15,7 @@ fmt:
 # only build temporarily
 build:
 	@rm -rf tmp/
-	revel build . tmp/
+	CGO_ENABLED=0 revel build . tmp/
 
 # build js
 gulp:
@@ -27,7 +27,7 @@ gulp:
 # build all and rerun leanote
 release: gulp
 	@rm -rf release/
-	revel build . release/
+	CGO_ENABLED=0 revel build . release/
 	rsync -azr --delete --delete-before --exclude github.com/wiselike/leanote-of-unofficial/conf/app.conf --exclude github.com/wiselike/leanote-of-unofficial/public/upload --exclude github.com/wiselike/leanote-of-unofficial/mongodb_backup -e 'ssh -p 22' release/src/ root@192.168.0.12:/root/dockers/leanote/leanote/src
 	rsync -azr release/leanote-of-unofficial  -e 'ssh -p 22' root@192.168.0.12:/root/dockers/leanote/leanote/leanote-of-unofficial
 	rm -rf release/
@@ -36,11 +36,11 @@ release: gulp
 github-release: gulp
 	@rm -rf release github-release;
 	@mkdir github-release;
-	GOARCH=arm64 GOPATH=`go env GOPATH` revel build . release/
+	CGO_ENABLED=0 GOARCH=arm64 revel build . release/
 	@mv release/leanote-of-unofficial github-release/linux-arm64-leanote-of-unofficial
 	tar czf js-release.tar.gz release && tar cJf js-release.tar.xz release;
 	@mv js-release.tar.gz github-release && mv js-release.tar.xz github-release;
-	GOARCH=amd64 GOPATH=`go env GOPATH` revel build . release/
+	CGO_ENABLED=0 GOARCH=amd64 revel build . release/
 	@mv release/leanote-of-unofficial github-release/linux-x64-leanote-of-unofficial
 	@rm -rf release;
 	@echo -e "\n\ngithub-release finished in ./github-release:" && ls -alh github-release;
