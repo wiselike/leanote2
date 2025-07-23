@@ -14,9 +14,9 @@ module.exports = function (max, min, useGzip) {
 		throw new Error('`max` and `min` required');
 	}
 
-	var ret = format(max.length) + arrow + format(min.length);
+	var ret = format(typeof max === 'number' ? max : max.length) + arrow + format(typeof min === 'number' ? min : min.length);
 
-	if (useGzip === true) {
+	if (useGzip === true && typeof min !== 'number') {
 		ret += arrow + format(gzipSize.sync(min)) + chalk.gray(' (gzip)');
 	}
 

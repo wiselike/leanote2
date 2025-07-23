@@ -262,12 +262,22 @@ module.exports = function(grunt) {
 
 		uglify: {
 			options: {
+				nameCache: '.uglify-cache.json',
 				mangle: {
-					sort: true
+					sort: true,
+					toplevel: false
 				},
-				beautify: {
-					ascii_only: true
-				}
+				compress: {
+					sequences: false,
+					drop_debugger: true,
+					global_defs: {}
+				},
+				output: {
+					ascii_only: true,
+					beautify: false,
+					comments: false
+				},
+				sourceMap: false
 			},
 
 			themes: {

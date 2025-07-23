@@ -5,7 +5,7 @@
 
 ## Install
 
-```bash
+```sh
 $ npm install --save gzip-size
 ```
 
@@ -14,7 +14,6 @@ $ npm install --save gzip-size
 
 ```js
 var gzipSize = require('gzip-size');
-
 var string = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.';
 
 console.log(string.length);
@@ -32,48 +31,46 @@ console.log(gzipSize.sync(string));
 #### input
 
 *Required*  
-Type: `String`|`Buffer`
+Type: `string`, `buffer`
 
 #### callback(err, size)
 
 *Required*  
-Type: `Function`
+Type: `function`
 
 ### gzipSize.sync(input)
 
+Returns the size.
+
+#### input
+
 *Required*  
-Type: `String`|`Buffer`  
-Returns: size
+Type: `string`, `buffer`  
 
 
 ## CLI
 
-You can also use it as a CLI app by installing it globally:
-
-```bash
+```sh
 $ npm install --global gzip-size
 ```
 
-#### Usage
-
-```bash
+```sh
 $ gzip-size --help
 
-gzip-size <input-file>
-or
-cat <input-file> | gzip-size
+  Usage
+    gzip-size <file>
+    cat <file> | gzip-size
+
+  Example
+    gzip-size index.js
+    211
 ```
 
-#### Example
+### Tip
 
-```bash
-$ gzip-size jquery.min.js
-29344
-```
+Combine it with [pretty-bytes](https://github.com/sindresorhus/pretty-bytes) to get a human readable output:
 
-or with [pretty-bytes](https://github.com/sindresorhus/pretty-bytes):
-
-```bash
+```sh
 $ pretty-bytes $(gzip-size jquery.min.js)
 29.34 kB
 ```
@@ -81,4 +78,4 @@ $ pretty-bytes $(gzip-size jquery.min.js)
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com)
