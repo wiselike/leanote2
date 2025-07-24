@@ -1350,8 +1350,8 @@ Note.deleteNote = function(target, contextmenuItem, isShared) {
 				var noteId = noteIds[i];
 				var note = me.getNote(noteId);
 				if (note) {
-					// 减少数量
-					Notebook.minusNotebookNumberNotes(note.NotebookId);
+					if (!note.IsTrash)
+						Notebook.minusNotebookNumberNotes(note.NotebookId);
 					Note.clearCacheByNotebookId(note.NotebookId);
 					delete Note.cache[noteId];
 				}
