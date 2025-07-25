@@ -42,7 +42,7 @@ github-release: gulp
 	@mv js-release.tar.gz github-release && mv js-release.tar.xz github-release;
 	CGO_ENABLED=0 GOARCH=amd64 revel build . release/
 	@mv release/leanote-of-unofficial github-release/linux-x64-leanote-of-unofficial
-	@rm -rf release;
+	@rm -rf release target;
 	@echo -e "\n\ngithub-release finished in ./github-release:" && ls -alh github-release;
 
 clean:
