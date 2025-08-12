@@ -367,10 +367,8 @@ func (this *NotebookService) DeleteNotebook(userId, notebookId string) (bool, st
 			if len(notebook.ParentNotebookId.Hex()) > 0 { // 更新父的 ChildNotebookIds
 				this.UpdateNotebookChilds(notebook.ParentNotebookId.Hex(), notebookId, userId, "Delete")
 			}
-			// 不是真删除 1/20, 为了同步笔记本
-			ok := db.UpdateByQMap(db.Notebooks, bson.M{"_id": notebookid}, bson.M{"IsDeleted": true, "Usn": userService.IncrUsn(userId)})
-			return ok, ""
-			//			return db.DeleteByIdAndUserId(db.Notebooks, notebookId, userId), ""
+			// 删除空笔记本
+			return db.DeleteByIdAndUserId(db.Notebooks, notebookId, userId), ""
 		}
 		return false, "笔记本下有笔记"
 	} else {
