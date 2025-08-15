@@ -291,7 +291,7 @@ Notebook.renderNotebooks = function(notebooks) {
 
 	// 缓存所有notebooks信息
 	if(!isEmpty(notebooks)) {
-		Notebook.curNotebookId = notebooks[0].NotebookId;
+		Notebook.curNotebookId = curNotebookId ? curNotebookId : notebooks[0].NotebookId;
 		self.cacheAllNotebooks(notebooks);
 	}
 
@@ -587,6 +587,18 @@ Notebook.changeNotebookNav = function(notebookId) {
 
 	// 3 渲染导航窗格的curNotebookForNewNote，就是笔记本路径“- aaa > bbb”部分
 	Notebook.changeNotebookNavForNewNote(notebookId, notebook.Title);
+
+	// 4 渲染笔记的显示方式
+	var view = "";
+	if (Note._isTag || Note._isSearch || Note._isShare || Notebook.curNotebookIsTrashOrAll(notebookId)) {
+		view = localStorage.getItem('viewStyle', view);
+	} else {
+		var notebook = Notebook.getNotebook(notebookId)
+		if (notebook && notebook.View) {
+			view = notebook.View
+		}
+	}
+	Note.showView(view);
 }
 
 Notebook.isAllNotebookId = function(notebookId) {

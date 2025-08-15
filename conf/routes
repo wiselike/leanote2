@@ -24,7 +24,6 @@ POST 	/doFindPassword								Auth.DoFindPassword
 POST	/findPasswordUpdate							Auth.FindPasswordUpdate
 
 #####
-# 这么多列表, 只是为了最后一句pjax
 # note
 * /note/listNotes Note.ListNotes
 * /note/listTrashNotes Note.ListTrashNotes
@@ -41,7 +40,6 @@ POST	/findPasswordUpdate							Auth.FindPasswordUpdate
 * /note/exportPdf Note.ExportPDF
 * /note/toPdf Note.ToPdf
 * /note/getNoteAndContentBySrc Note.GetNoteAndContentBySrc
-# pjax
 GET     /note/:noteId   	                        Note.Index
 
 # blog

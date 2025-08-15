@@ -43,16 +43,10 @@ func ParseAndSortNotebooks(userNotebooks []info.Notebook, noParentDelete, needSo
 	userNotebooksMap := make(map[bson.ObjectId]*info.Notebooks, len(userNotebooks))
 	for _, each := range userNotebooks {
 		newNotebooks := info.Notebooks{Subs: info.SubNotebooks{}}
-		newNotebooks.NotebookId = each.NotebookId
-		newNotebooks.Title = each.Title
-		//		newNotebooks.Title = html.EscapeString(each.Title)
-		newNotebooks.Title = strings.Replace(strings.Replace(each.Title, "<script>", "", -1), "</script", "", -1)
-		newNotebooks.Seq = each.Seq
-		newNotebooks.UserId = each.UserId
-		newNotebooks.ParentNotebookId = each.ParentNotebookId
-		newNotebooks.NumberNotes = each.NumberNotes
-		newNotebooks.IsTrash = each.IsTrash
-		newNotebooks.IsBlog = each.IsBlog
+		newNotebooks.Notebook = each
+		newNotebooks.Title = strings.Replace(strings.Replace(newNotebooks.Title, "<script>", "", -1), "</script", "", -1)
+		newNotebooks.UrlTitle = ""
+		newNotebooks.ChildNotebookIds = nil
 
 		// 存地址
 		userNotebooksMap[each.NotebookId] = &newNotebooks
@@ -302,6 +296,19 @@ func (this *NotebookService) UpdateNotebookTitle(notebookId, userId, title strin
 	usn := userService.IncrUsn(userId)
 	db.UpdateByQField(db.Notes, bson.M{"IsDeleted": false, "IsTrash": false, "Cates.NotebookId": notebookId}, "Cates.$.Title", title) // 修改Notes.$.Cates.$.Title
 	return db.UpdateByIdAndUserIdMap(db.Notebooks, notebookId, userId, bson.M{"Title": title, "Usn": usn})
+}
+
+// 更新笔记本排序和显示方式
+func (this *NotebookService) UpdateNotebookAddition(notebookId, userId, view, sortBy string) bool {
+	addition := make(bson.M, 3)
+	if view != "" {
+		addition["View"] = view
+	}
+	if sortBy != "" {
+		addition["SortBy"] = sortBy
+	}
+	addition["Usn"] = userService.IncrUsn(userId)
+	return db.UpdateByIdAndUserIdMap(db.Notebooks, notebookId, userId, addition)
 }
 
 // 更新notebook

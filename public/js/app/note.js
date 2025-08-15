@@ -115,10 +115,6 @@ Note.notebookHasNotes = function(notebookId) {
 
 // 得到notebook下的notes, 按什么排序 updatedTime?
 Note.getNotesByNotebookId = function(notebookId) {
-	var sorterAndOrder = Note.getSorterAndOrder();
-	var sortBy = sorterAndOrder.sortBy;
-	var isAsc = sorterAndOrder.isAsc;
-
 	Note.listIsIn();
 
 	if (!notebookId) {
@@ -129,6 +125,9 @@ Note.getNotesByNotebookId = function(notebookId) {
 		return [];
 	}
 
+	var sorterAndOrder = Note.getSorterAndOrder();
+	var sortBy = sorterAndOrder.sortBy;
+	var isAsc = sorterAndOrder.isAsc;
 	if (Note.cacheByNotebookId[notebookId][sortBy]) {
 		if (Note.cacheByNotebookId[notebookId][sortBy][isAsc]) {
 			return Note.cacheByNotebookId[notebookId][sortBy][isAsc];
@@ -865,16 +864,28 @@ Note.toggleView = function (e) {
 	if (!view) {
 		view = 'snippet';
 	}
+	if (Note._isTag || Note._isSearch || Note._isShare || Notebook.curNotebookIsTrashOrAll(Notebook.curNotebookId)) {
+		localStorage.setItem('viewStyle', view);
+	} else {
+		ajaxPost("/notebook/updateNotebookAddition", {notebookId: Notebook.curNotebookId, view: view});
+		Notebook.getNotebook(Notebook.curNotebookId).View = view;
+	}
+
+	Note.showView(view)
+};
+
+Note.showView = function (view) {
+	if (!view) {
+		view = 'snippet';
+	}
 	if (view == 'list') {
 		$('#noteItemList').addClass('list');
-	}
-	else {
+	} else {
 		$('#noteItemList').removeClass('list');
 	}
-	localStorage.setItem('viewStyle', view);
 	$('.view-style').removeClass('checked');
 	$('.view-' + view).addClass('checked');
-};
+}
 
 // 重新设置sorter, 此时要重新render
 // sortType = dateCreatedASC dateCreatedDESC
@@ -883,15 +894,16 @@ Note.setNotesSorter = function (e) {
 	if (!sorterType) {
 		sorterType = 'dateUpdatedDESC';
 	}
-	localStorage.setItem("sorterType", sorterType);
-	// alert(localStorage.getItem("sorterType"));
 	Note.checkSorter(sorterType);
 
 	// 如果当前是tagSearch, search, star 怎么办?
 	// 重新Render
-	if (Note._isTag || Note._isSearch || Note._isShare) {
+	if (Note._isTag || Note._isSearch || Note._isShare || Notebook.curNotebookIsTrashOrAll(Notebook.curNotebookId)) {
+		localStorage.setItem("sorterType", sorterType);
 		Note.renderNotesAndFirstOneContent(Note._everNotes, false);
 	} else {
+		ajaxPost("/notebook/updateNotebookAddition", {notebookId: Notebook.curNotebookId, sortBy: sorterType});
+		Notebook.getNotebook(Notebook.curNotebookId).SortBy = sorterType;
 		// 其实这里也可以用Note._everNotes, 主要是为了缓存数据
 		Notebook.changeNotebook(Notebook.curNotebookId);
 	}
@@ -901,10 +913,6 @@ Note.setNotesSorter = function (e) {
 
 var $sorterStyles = $('.sorter-style');
 Note.checkSorter = function (sorterType) {
-	// UC无痕浏览
-	if (!sorterType) {
-		sorterType = 'dateUpdatedDESC';
-	}
 	var $selected = $('.sorter-' + sorterType);
 	if ($selected.is('.checked')) {
 		return;
@@ -950,45 +958,53 @@ Note.sortNotes = function (notes) {
 };
 
 Note.getSorterAndOrder = function () {
+	var sorterType = "";
+	var notebookId = (Notebook.curNotebookId && Notebook.curNotebookId!=="0") ? Notebook.curNotebookId : curNotebookId;
+	if (Note._isTag || Note._isSearch || Note._isShare || Notebook.curNotebookIsTrashOrAll(notebookId)) {
+		sorterType = localStorage.getItem('sorterType');
+	} else {
+		var notebook = Notebook.getNotebook(notebookId)
+		if (notebook) sorterType = notebook.SortBy;
+	}
+
 	var sortBy = "UpdatedTime";
-	var isAsc = false; // 默认是降序
-	var sorterType = localStorage.getItem('sorterType');
-	// console.log(sorterType);
+	var isAsc = false;
+	switch(sorterType) {
+		case 'dateCreatedASC':
+			sortBy = 'CreatedTime';
+			isAsc = true;
+			break;
+		case 'dateCreatedDESC':
+			sortBy = 'CreatedTime';
+			isAsc = false;
+			break;
+		case 'dateUpdatedASC':
+			sortBy = 'UpdatedTime';
+			isAsc = true;
+			break;
+		case 'dateUpdatedDESC':
+			sortBy = 'UpdatedTime';
+			isAsc = false;
+			break;
+		case 'titleASC':
+			sortBy = 'Title';
+			isAsc = true;
+			break;
+		case 'titleDESC':
+			sortBy = 'Title';
+			isAsc = false;
+			break;
+		default:
+			sorterType = 'dateUpdatedDESC';
+			break;
+	}
 	Note.checkSorter(sorterType);
-	if (sorterType) {
-		switch(sorterType) {
-			case 'dateCreatedASC':
-				sortBy = 'CreatedTime';
-				isAsc = true;
-				break;
-			case 'dateCreatedDESC':
-				sortBy = 'CreatedTime';
-				isAsc = false;
-				break;
-			case 'dateUpdatedASC':
-				sortBy = 'UpdatedTime';
-				isAsc = true;
-				break;
-			case 'dateUpdatedDESC':
-				sortBy = 'UpdatedTime';
-				isAsc = false;
-				break;
-			case 'titleASC':
-				sortBy = 'Title';
-				isAsc = true;
-				break;
-			case 'titleDESC':
-				sortBy = 'Title';
-				isAsc = false;
-				break;
-			}
-		}
-		console.log({sortBy: sortBy, isAsc: isAsc});
-		return {sortBy: sortBy, isAsc: isAsc};
-	};
+	log({sortBy: sortBy, isAsc: isAsc});
+	return {sortBy: sortBy, isAsc: isAsc};
+};
 
 	// 列表是
-	Note.listIsIn = function (isTag, isSearch, isShare) {
+Note.listIsIn = function (isTag, isSearch, isShare) {
 	this._isTag = isTag;
 	this._isSearch = isSearch;
 	this._isShare = isShare;
@@ -1002,8 +1018,8 @@ Note.renderNotes = function(notes, forNewNote, isShared, hasSorted) {
 	this.clearSeqForNew();
 	this.batch.reset();
 
-	// 为了切换排序方式用
-	Note._everNotes = notes;
+	// 为了切换排序方式用。拷贝数组，确保不修改来自Note.cacheByNotebookId[notebookId][sortBy][isAsc]的引用
+	Note._everNotes = Array.from(notes);
 
 	// 手机端不用
 	// slimScroll使得手机端滚动不流畅
@@ -2761,8 +2777,6 @@ $(function() {
 		window.open(href);
 	});
 
-	var view = localStorage.getItem('viewStyle');
-	Note.toggleView(view);
 	// view 切换
 	$('.view-style').on('click', function (e) {
 		Note.toggleView(e);

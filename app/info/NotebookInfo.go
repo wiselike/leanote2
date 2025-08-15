@@ -26,6 +26,8 @@ type Notebook struct {
 	NumberNotes      int             `NumberNotes`                       // 笔记数
 	IsTrash          bool            `IsTrash,omitempty`                 // 是否是trash, 默认是false
 	IsBlog           bool            `IsBlog,omitempty`                  // 是否是Blog 2013/12/29 新加
+	View             string          `View,omitempty`                    // snippet(默认)，list
+	SortBy           string          `SortBy,omitempty`                  // 默认降序dateUpdatedDESC
 	CreatedTime      time.Time       `CreatedTime,omitempty`
 	UpdatedTime      time.Time       `UpdatedTime,omitempty`
 

@@ -54,6 +54,11 @@ func (c Notebook) UpdateNotebookTitle(notebookId, title string) revel.Result {
 	return c.RenderJSON(notebookService.UpdateNotebookTitle(notebookId, c.GetUserId(), title))
 }
 
+// 修改笔记本排序和显示方式
+func (c Notebook) UpdateNotebookAddition(notebookId, view, sortBy string) revel.Result {
+	return c.RenderJSON(notebookService.UpdateNotebookAddition(notebookId, c.GetUserId(), view, sortBy))
+}
+
 // 排序
 // 无用
 // func (c Notebook) SortNotebooks(notebookId2Seqs map[string]int) revel.Result {

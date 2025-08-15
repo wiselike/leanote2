@@ -15,6 +15,7 @@ public/config.codekit
 .idea
 *.iml
 /target/
+/export_pdf/
 leanote.log
 /5368c1aa99c37b029d000001
 /backup-origins
