@@ -38,7 +38,6 @@ POST	/findPasswordUpdate							Auth.FindPasswordUpdate
 * /note/searchNoteByTags Note.SearchNoteByTags
 * /note/setNote2Blog Note.SetNote2Blog
 * /note/exportPdf Note.ExportPDF
-* /note/toPdf Note.ToPdf
 * /note/getNoteAndContentBySrc Note.GetNoteAndContentBySrc
 GET     /note/:noteId   	                        Note.Index
 
