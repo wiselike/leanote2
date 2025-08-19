@@ -1031,14 +1031,12 @@ Note.renderNotes = function(notes, forNewNote, isShared, hasSorted) {
 		// 如果没有, 那么是不是应该hide editor?
 		if(!forNewNote) {
 			Note.showEditorMask();
+			Note.noteItemListO.html(""); // 没有notes时，其他笔记本的加载会残留过来，这里return需先强制清空笔记list
 		}
 		return;
 	}
 	Note.hideEditorMask();
 	// 新建笔记时会先创建一个新笔记, 所以不能清空
-	if(forNewNote == undefined) {
-		forNewNote = false;
-	}
 	if(!forNewNote) {
 		Note.noteItemListO.html(""); // 清空
 	}
