@@ -1,19 +1,15 @@
 package api
 
 import (
-	"os"
-	"os/exec"
-	"path"
 	"regexp"
 	"time"
 
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2/bson"
 
+	"github.com/wiselike/leanote-of-unofficial/app/controllers"
 	"github.com/wiselike/leanote-of-unofficial/app/info"
 	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/service"
-	//	"github.com/wiselike/leanote-of-unofficial/app/types"
 )
 
 // 笔记API
@@ -564,78 +560,6 @@ func (c ApiNote) GetHistories(noteId string) revel.Result {
 // 0.2 新增
 // 导出成PDF
 func (c ApiNote) ExportPdf(noteId string) revel.Result {
-	re := info.NewApiRe()
-	userId := c.getUserId()
-	if noteId == "" {
-		re.Msg = "noteNotExists"
-		return c.RenderJSON(re)
-	}
-
-	note := noteService.GetNoteById(noteId)
-	if note.NoteId == "" {
-		re.Msg = "noteNotExists"
-		return c.RenderJSON(re)
-	}
-
-	noteUserId := note.UserId.Hex()
-	// 是否有权限
-	if noteUserId != userId {
-		// 是否是有权限协作的
-		if !note.IsBlog && !shareService.HasReadPerm(noteUserId, userId, noteId) {
-			re.Msg = "noteNotExists"
-			return c.RenderJSON(re)
-		}
-	}
-
-	// path 判断是否需要重新生成之
-	guid := NewGuid()
-	fileUrlPath := "export_pdf"
-	dir := path.Join(service.ConfigS.GlobalStringConfigs["files.dir"], fileUrlPath)
-	if !MkdirAll(dir) {
-		re.Msg = "noDir"
-		return c.RenderJSON(re)
-	}
-	filename := guid + ".pdf"
-	path := dir + "/" + filename
-
-	appKey, _ := revel.Config.String("app.secretLeanote")
-	if appKey == "" {
-		appKey, _ = revel.Config.String("app.secret")
-	}
-
-	// 生成之
-	binPath := configService.GetGlobalStringConfig("exportPdfBinPath")
-	// 默认路径
-	if binPath == "" {
-		binPath = "/usr/local/bin/wkhtmltopdf"
-	}
-
-	url := configService.GetSiteUrl() + "/note/toPdf?noteId=" + noteId + "&appKey=" + appKey
-	var cc string
-	if note.IsMarkdown {
-		cc = binPath + " --lowquality --window-status done \"" + url + "\"  \"" + path + "\"" //  \"" + cookieDomain + "\" \"" + cookieName + "\" \"" + cookieValue + "\""
-	} else {
-		cc = binPath + " --lowquality \"" + url + "\"  \"" + path + "\"" //  \"" + cookieDomain + "\" \"" + cookieName + "\" \"" + cookieValue + "\""
-	}
-
-	cmd := exec.Command("/bin/sh", "-c", cc)
-	_, err := cmd.Output()
-	if err != nil {
-		re.Msg = "sysError"
-		return c.RenderJSON(re)
-	}
-	file, err := os.Open(path)
-	if err != nil {
-		re.Msg = "sysError"
-		return c.RenderJSON(re)
-	}
-
-	filenameReturn := note.Title
-	filenameReturn = FixFilename(filenameReturn)
-	if filenameReturn == "" {
-		filenameReturn = "Untitled.pdf"
-	} else {
-		filenameReturn += ".pdf"
-	}
-	return c.RenderBinary(file, filenameReturn, revel.Attachment, time.Now()) // revel.Attachment
+	node := controllers.Note{BaseController: c.BaseController}
+	return node.ExportPdf(noteId)
 }
