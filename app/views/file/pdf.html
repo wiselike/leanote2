@@ -112,7 +112,7 @@ ok();
 {{end}}
 
 {{if .blog.IsMarkdown }}
-<script src="/public/libs/md2html/md2html_for_export.js"></script>
+<script src="/public/libs/md2html/md2html.min.js"></script>
 <script>
 var content = $.trim($("#markdownContent textarea").val());
 md2Html(content, $("#parsedContent"), function(html) {

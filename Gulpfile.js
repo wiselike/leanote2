@@ -43,6 +43,23 @@ gulp.task('concatMarkdownJsV2', function() {
         .pipe(gulp.dest(base + '/js'));
 });
 
+gulp.task('md2html', function() {
+    var jss = [
+        'libs/md2html/Markdown.Converter.js',
+        'libs/md2html/Markdown.Extra.js',
+        'libs/md2html/Markdown.Extra2.js',
+    ];
+
+    for(var i in jss) {
+        jss[i] = base + '/' + jss[i];
+    }
+
+    return gulp.src(jss)
+        .pipe(concat('md2html.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(base + '/libs/md2html/'));
+});
+
 // mincss
 gulp.task('minifycss', function() {
     gulp.src(base + '/libs/bootstrap/bootstrap.css')
@@ -370,6 +387,6 @@ gulp.task('devToProHtml', function() {
         .pipe(gulp.dest(noteProBase));
 });
 
-gulp.task('concat', ['concatMarkdownJsV2', 'concatDepJs', 'concatAppJs']);
+gulp.task('concat', ['concatMarkdownJsV2', 'md2html', 'concatDepJs', 'concatAppJs']);
 gulp.task('html', ['devToProHtml']);
 gulp.task('default', ['minifycss', 'plugins', 'i18n', 'concatAlbumJs', 'concat', 'html']);
