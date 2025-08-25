@@ -257,7 +257,7 @@ func (c File) CopyHttpImage(src string) revel.Result {
 	// 生成上传路径
 	// newGuid := NewGuid()
 	userId := c.GetUserId()
-	fileUrlPath := GetRandomFilePath(userId, "") + "/images"
+	fileUrlPath := GetRandomFilePath(userId, "") + "/images-tmp"
 	dir := path.Join(service.ConfigS.GlobalStringConfigs["files.dir"], fileUrlPath)
 	err := os.MkdirAll(dir, 0755)
 	if err != nil {
