@@ -930,13 +930,31 @@ else
             var marker = _listItemMarkers[list_type];
             var re = new RegExp("(^[ \\t]*)(" + marker + ")[ \\t]+([^\\r]+?(\\n+))(?=(~0|\\1(" + marker + ")[ \\t]+))", "gm");
             var last_item_had_a_double_newline = false;
-
+            // —— 新增：把 checkbox 注入到条目 HTML 的小工具 —— //
+            function injectCheckbox(html, checked) {
+                var cb = '<input type="checkbox" ' + (checked ? ' checked' : '') + '>' + '&nbsp;';
+                // 如果条目被包成了 <p>…</p>，把 checkbox 放到第一个 <p> 里更稳妥
+                if (/^\s*<p>/.test(html)) {
+                    return html.replace(/^\s*<p>/, '<p>' + cb);
+                }
+                return cb + html;
+            }
             list_str = list_str.replace(re,
                 function (wholeMatch, m1, m2, m3) {
                     var item = m3;
                     var leading_space = m1;
                     var ends_with_double_newline = /\n\n$/.test(item);
                     var contains_double_newline = ends_with_double_newline || item.search(/\n{2,}/) > -1;
+
+                    // —— 新增：检测任务列表标记 —— //
+                    // 仅当条目“开头”是 [ ] / [x] / [X] 才认定为任务项，随后去掉该标记再做后续解析
+                    var task_m = item.match(/^\s*\[( |x|X)\][ \t]+/);
+                    var isTask = false, isChecked = false;
+                    if (task_m) {
+                        isTask = true;
+                        isChecked = /[xX]/.test(task_m[1]);
+                        item = item.substring(task_m[0].length); // 去掉 "[ ] " / "[x] " 前缀
+                    }
 
                     if (contains_double_newline || last_item_had_a_double_newline) {
                         item = _RunBlockGamut(_Outdent(item), /* doNotUnhash = */true);
@@ -949,8 +967,13 @@ else
                             item = _RunSpanGamut(item);
                     }
 
+                    if (isTask) {
+                        item = injectCheckbox(item, isChecked);
+                    }
+
                     last_item_had_a_double_newline = ends_with_double_newline;
-                    return "<li>" + item + "</li>\n";
+                    var li = isTask ? '<li class="task-list-item" >' : '<li>' ;
+                    return li + item + "</li>\n";
                 }
             );
 

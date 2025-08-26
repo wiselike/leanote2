@@ -95,3 +95,18 @@ pre * {
   font-size: 14px;
   font-family: "Open Sans";
 }
+ul li.task-list-item,
+ol li.task-list-item {
+  list-style: none;        /* 隐藏点/序号 */
+}
+/* 列表里只要有任务项，就默认缩进1.5em去掉 */
+ul:has(> li.task-list-item),
+ol:has(> li.task-list-item) {
+  padding-left: 1.5em;
+  margin-left: 0; /* 视主题需要，可留着或去掉 */
+}
+/* 如果任务项内部再嵌套子列表，给子列表恢复缩进 */
+li.task-list-item > ul,
+li.task-list-item > ol {
+  padding-left: 1.5em;
+}
