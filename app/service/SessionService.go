@@ -22,12 +22,18 @@ func (this *SessionService) Update(sessionId, key string, value interface{}) boo
 
 // 注销时清空session
 func (this *SessionService) Clear(sessionId string) bool {
-	return db.Delete(db.Sessions, bson.M{"SessionId": sessionId})
+	// return db.Delete(db.Sessions, bson.M{"SessionId": sessionId})
+	return this.Update(sessionId, "UserId", "") // 仅清理userID，保留追溯记录
 }
 func (this *SessionService) Get(sessionId string) info.Session {
 	session := info.Session{}
 	db.GetByQ(db.Sessions, bson.M{"SessionId": sessionId}, &session)
 
+	// 如果session已过期，就删掉让用户重新登录
+	if !session.UpdatedTime.IsZero() && time.Since(session.UpdatedTime) > configService.GetSessionExpireTime() {
+		db.Delete(db.Sessions, bson.M{"SessionId": sessionId})
+		session = info.Session{}
+	}
 	// 如果没有session, 那么插入一条之
 	if session.Id == "" {
 		session.Id = bson.NewObjectId()
@@ -69,12 +75,11 @@ func (this *SessionService) GetCaptcha(sessionId string) string {
 	return session.Captcha
 }
 func (this *SessionService) SetCaptcha(sessionId, captcha string) bool {
-	this.Get(sessionId)
-	// Log(sessionId)
-	// Log(captcha)
-	ok := this.Update(sessionId, "Captcha", captcha)
-	// Log(ok)
-	return ok
+	session := this.Get(sessionId)
+	if session.UserId != "" && len(captcha) > 20 { // 已经登录就不用更新fake captcha了
+		return true
+	}
+	return this.Update(sessionId, "Captcha", captcha)
 }
 
 // -----------
@@ -91,5 +96,12 @@ func (this *SessionService) GetUserId(sessionId string) string {
 func (this *SessionService) SetUserId(sessionId, userId string) bool {
 	this.Get(sessionId)
 	ok := this.Update(sessionId, "UserId", userId)
+
+	// 清理未登录成功的、已过期的session
+	selector := bson.M{
+		"UserId":      bson.M{"$in": []interface{}{"", nil}},
+		"UpdatedTime": bson.M{"$lt": time.Now().Add(-185 * 24 * time.Hour)}, // 留存六个月
+	}
+	db.DeleteAll(db.Sessions, selector)
 	return ok
 }

@@ -19,9 +19,10 @@ import (
 // 配置服务
 // 只是全局的, 用户的配置没有
 type ConfigService struct {
-	adminUserId   string
-	siteUrl       string
-	adminUsername string
+	adminUserId       string
+	siteUrl           string
+	adminUsername     string
+	sessionExpireTime time.Duration // session过期时间，api校验session有效用
 	// 全局的
 	GlobalAllConfigs    map[string]interface{}
 	GlobalStringConfigs map[string]string
@@ -76,7 +77,21 @@ func (this *ConfigService) InitGlobalConfigs() bool {
 	// note.history.size
 	this.GlobalAllConfigs["note.history.size"] = revel.Config.IntDefault("note.history.size", 10)
 
+	if s, ok := revel.Config.String("session.expires"); ok {
+		if t, err := time.ParseDuration(s); err == nil {
+			this.sessionExpireTime = t
+		} else {
+			this.sessionExpireTime = 18 * time.Hour
+		}
+	} else {
+		this.sessionExpireTime = 18 * time.Hour
+	}
+
 	return true
+}
+
+func (this *ConfigService) GetSessionExpireTime() time.Duration {
+	return this.sessionExpireTime
 }
 
 func (this *ConfigService) GetSiteUrl() string {

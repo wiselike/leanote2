@@ -1,12 +1,13 @@
 package api
 
 import (
+	"time"
+
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2/bson"
 
 	"github.com/wiselike/leanote-of-unofficial/app/info"
 	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	//	"strconv"
 )
 
 // 用户登录后生成一个token, 将这个token保存到session中
@@ -23,17 +24,21 @@ type ApiAuth struct {
 // 成功返回 {Ok: true, Item: token }
 // 失败返回 {Ok: false, Msg: ""}
 func (c ApiAuth) Login(email, pwd string) revel.Result {
-	var msg = ""
+	var msg = "wrongUsernameOrPassword"
 
-	userInfo, err := authService.Login(email, pwd)
-	if err == nil {
-		token := bson.NewObjectId().Hex()
-		sessionService.SetUserId(token, userInfo.UserId.Hex())
-		return c.RenderJSON(info.AuthOk{Ok: true, Token: token, UserId: userInfo.UserId, Email: userInfo.Email, Username: userInfo.Username})
-	} else {
-		// 登录错误, 则错误次数++
-		msg = "wrongUsernameOrPassword"
+	// 没有客户端IP就不用登陆了
+	if c.ClientIP != "" {
+		userInfo, err := authService.Login(email, pwd)
+		if err == nil {
+			token := bson.NewObjectId().Hex()
+			sessionService.SetUserId(token, userInfo.UserId.Hex())
+			sessionService.Update(token, "LastClientIP", c.ClientIP)
+			return c.RenderJSON(info.AuthOk{Ok: true, Token: token, UserId: userInfo.UserId, Email: userInfo.Email, Username: userInfo.Username})
+		}
 	}
+
+	revel.AppLog.Warnf("username(%s) or password(%s) or ip(%s) is incorrect.", email, pwd, c.ClientIP)
+	time.Sleep(time.Second * 2) // 登录错误就休息一下，缓一缓
 	return c.RenderJSON(info.ApiRe{Ok: false, Msg: c.Message(msg)})
 }
 

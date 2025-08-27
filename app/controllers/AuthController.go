@@ -54,18 +54,18 @@ func (c Auth) doLogin(email, pwd string) revel.Result {
 			c.SetSession(userInfo)
 			sessionService.ClearLoginTimes(sessionId)
 			// 记录登陆成功的用户
-			sessionService.Update(sessionId, "UserId", userInfo.UserId.Hex())
+			sessionService.SetUserId(sessionId, userInfo.UserId.Hex())
 			return c.RenderJSON(info.Re{Ok: true})
 		}
-		revel.AppLog.Warnf("username or password is incorrect.\t\tip=%s", c.ClientIP)
 	}
 
+	revel.AppLog.Warnf("username(%s) or password(%s) or ip(%s) is incorrect.", email, pwd, c.ClientIP)
 	return c.RenderJSON(info.Re{Ok: false, Item: sessionService.LoginTimesIsOver(sessionId), Msg: c.Message(msg)})
 }
 func (c Auth) DoLogin(email, pwd string, captcha string) revel.Result {
 	sessionId := c.Session.ID()
 	defer sessionService.Update(sessionId, "LastClientIP", c.ClientIP)
-	const letterBytes = "wiselikeMagicTokenabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	var msg = ""
 
 	// >= 3次需要验证码, 直到登录成功
@@ -79,17 +79,18 @@ func (c Auth) DoLogin(email, pwd string, captcha string) revel.Result {
 				c.SetSession(userInfo)
 				sessionService.ClearLoginTimes(sessionId)
 				// 记录登陆成功的用户
-				sessionService.Update(sessionId, "UserId", userInfo.UserId.Hex())
+				sessionService.SetUserId(sessionId, userInfo.UserId.Hex())
 				return c.RenderJSON(info.Re{Ok: true})
 			}
 		}
 
 		// 登录错误, 则错误次数++
 		msg = "wrongUsernameOrPassword"
-		revel.AppLog.Warnf("username or password is incorrect.\t\tip=%s", c.ClientIP)
+		revel.AppLog.Warnf("username(%s) or password(%s) or ip(%s) is incorrect.", email, pwd, c.ClientIP)
 	}
-	sessionService.IncrLoginTimes(sessionId) // 此函数在return里的函数执行之后执行
-	// 必需要让前端再请求新验证码，避免密码猜测攻击
+	sessionService.IncrLoginTimes(sessionId)
+	// 这部分代码是冗余的，防止前端没有请求新验证码(密码猜测攻击)，这里强制设置一个临时的不可能的fake captcha
+	// 但仍然不能够阻止/api/auth方式的刷密码攻击
 	token := make([]byte, len(letterBytes))
 	for i := range token {
 		token[i] = letterBytes[rand.Intn(len(letterBytes))]

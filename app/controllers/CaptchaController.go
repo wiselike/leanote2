@@ -1,21 +1,12 @@
 package controllers
 
 import (
-	"github.com/wiselike/revel"
-	//	"encoding/json"
-	//	"gopkg.in/mgo.v2/bson"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/lea/captcha"
-
-	//	"github.com/wiselike/leanote-of-unofficial/app/types"
-	//	"io/ioutil"
-	//	"fmt"
-	//	"math"
-	//	"os"
-	//	"path"
-	//	"strconv"
 	"io"
 	"net/http"
+
+	"github.com/wiselike/revel"
+
+	"github.com/wiselike/leanote-of-unofficial/app/lea/captcha"
 )
 
 // 验证码服务
@@ -36,11 +27,6 @@ func (c Captcha) Get() revel.Result {
 	image.WriteTo(out)
 
 	sessionId := c.GetSession("_ID")
-	//	LogJ(c.Session)
-	//	Log("------")
-	//	Log(str)
-	//	Log(sessionId)
-	Log("..")
 	sessionService.SetCaptcha(sessionId, str)
 
 	return c.Render()
