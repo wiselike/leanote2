@@ -12,7 +12,7 @@ import (
 // GenerateHash generates bcrypt hash from plaintext password
 func UpdateConfig(name, value string) error {
 	res := false
-	ConfigPath := "src/github.com/wiselike/leanote-of-unofficial/conf/app.conf"
+	ConfigPath := "src/github.com/wiselike/leanote2/conf/app.conf"
 	file, err := os.OpenFile(ConfigPath, os.O_RDWR, 0666)
 	if err != nil {
 		return fmt.Errorf("open config file fail, err: %s", err)

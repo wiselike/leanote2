@@ -7,10 +7,10 @@ import (
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote2/app/info"
+	. "github.com/wiselike/leanote2/app/lea"
 
-	//	"github.com/wiselike/leanote-of-unofficial/app/types"
+	//	"github.com/wiselike/leanote2/app/types"
 	"io/ioutil"
 	//	"fmt"
 	//	"math"

@@ -7,7 +7,7 @@ services:
 install:
   - go version
   - export PATH=$PATH:$HOME/gopath/bin
-  # - go get -v github.com/wiselike/leanote-of-unofficial/app
+  # - go get -v github.com/wiselike/leanote2/app
   - go get -u github.com/wiselike/revel-cmd/revel
   # - ls $GOPATH/src/github.com/revel/
   # - go get github.com/revel/moudle/revel
@@ -17,7 +17,7 @@ install:
   - ls
 
 script:
-  - wget https://github.com/wiselike/leanote-of-unofficial/archive/refs/heads/master.zip
+  - wget https://github.com/wiselike/leanote2/archive/refs/heads/master.zip
   - unzip master.zip
   - mv leanote-master leanote
   - cd leanote
@@ -26,15 +26,15 @@ script:
   - mongorestore -h localhost -d leanote --dir ./mongodb_backup/leanote_install_data/
 
   - cd ./sh
-  # - cd $GOPATH/src/github.com/wiselike/leanote-of-unofficial/sh
+  # - cd $GOPATH/src/github.com/wiselike/leanote2/sh
   - sh run.sh &
 
   # gen tmp/main.go, routes/routes.go
   #- go run app/cmd/main.go
   # build
-  #- go build -o leanote github.com/wiselike/leanote-of-unofficial/app/tmp
+  #- go build -o leanote github.com/wiselike/leanote2/app/tmp
   # run with port 9000
-  #- ./leanote -importPath=github.com/wiselike/leanote-of-unofficial -runMode=dev -port=9000 &
+  #- ./leanote -importPath=github.com/wiselike/leanote2 -runMode=dev -port=9000 &
 
   - sleep 10s;
   # test
@@ -43,5 +43,5 @@ script:
   - curl http://localhost:9000/login
   - curl http://localhost:9000/demo
 
-  # - revel build github.com/wiselike/leanote-of-unofficial tmp
+  # - revel build github.com/wiselike/leanote2 tmp
   # OK

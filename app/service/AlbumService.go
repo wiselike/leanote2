@@ -1,13 +1,13 @@
 package service
 
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	//	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote2/app/info"
+	//	. "github.com/wiselike/leanote2/app/lea"
 	"time"
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/wiselike/leanote-of-unofficial/app/db"
+	"github.com/wiselike/leanote2/app/db"
 )
 
 const IMAGE_TYPE = 0

@@ -9,7 +9,7 @@ import (
 	"net"
 	"net/http"
 
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	. "github.com/wiselike/leanote2/app/lea"
 )
 
 // net的util

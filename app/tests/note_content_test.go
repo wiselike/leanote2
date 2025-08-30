@@ -5,10 +5,10 @@ import (
 
 	"github.com/wiselike/revel"
 
-	"github.com/wiselike/leanote-of-unofficial/app/db"
+	"github.com/wiselike/leanote2/app/db"
 
-	//  . "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/service"
+	//  . "github.com/wiselike/leanote2/app/lea"
+	"github.com/wiselike/leanote2/app/service"
 	// "regexp"
 	//  "gopkg.in/mgo.v2"
 	// "fmt"
@@ -18,7 +18,7 @@ import (
 // 可在server端调试
 
 func init() {
-	revel.Init("dev", "github.com/wiselike/leanote-of-unofficial", "/Users/life/Documents/Go/package_base/src")
+	revel.Init("dev", "github.com/wiselike/leanote2", "/Users/life/Documents/Go/package_base/src")
 	db.Init("mongodb://localhost:27017/leanote", "leanote")
 	service.InitService()
 	service.ConfigS.InitGlobalConfigs()

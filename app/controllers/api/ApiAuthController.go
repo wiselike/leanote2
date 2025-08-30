@@ -6,8 +6,8 @@ import (
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote2/app/info"
+	. "github.com/wiselike/leanote2/app/lea"
 )
 
 // 用户登录后生成一个token, 将这个token保存到session中

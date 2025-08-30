@@ -11,9 +11,9 @@ import (
 	"github.com/wiselike/revel"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/wiselike/leanote-of-unofficial/app/db"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote2/app/db"
+	"github.com/wiselike/leanote2/app/info"
+	. "github.com/wiselike/leanote2/app/lea"
 )
 
 // 配置服务
@@ -392,7 +392,7 @@ func (this *ConfigService) Restore(createdTime string) (ok bool, msg string) {
 		return
 	}
 
-	// mongorestore -h localhost -d leanote --directoryperdb /home/user1/gopackage/src/github.com/wiselike/leanote-of-unofficial/mongodb_backup/leanote_install_data/
+	// mongorestore -h localhost -d leanote --directoryperdb /home/user1/gopackage/src/github.com/wiselike/leanote2/mongodb_backup/leanote_install_data/
 	binPath := configService.GetGlobalStringConfig("mongorestorePath")
 	config := revel.Config
 	dbname, _ := config.String("db.dbname")

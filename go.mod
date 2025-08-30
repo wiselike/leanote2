@@ -1,4 +1,4 @@
-module github.com/wiselike/leanote-of-unofficial
+module github.com/wiselike/leanote2
 
 go 1.19
 

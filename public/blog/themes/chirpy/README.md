@@ -33,7 +33,7 @@
 
 本分支的安装流程如下：
 
-1. 参考 [Leanote Wiki](https://github.com/wiselike/leanote-of-unofficial/wiki/Leanote-%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%89%88%E8%AF%A6%E7%BB%86%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B----Mac-and-Linux) 安装我修改过的 [Leanote 服务端](https://github.com/ctaoist/leanote/releases)
+1. 参考 [Leanote Wiki](https://github.com/wiselike/leanote2/wiki/Leanote-%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%89%88%E8%AF%A6%E7%BB%86%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B----Mac-and-Linux) 安装我修改过的 [Leanote 服务端](https://github.com/ctaoist/leanote/releases)
 2. 在 [Releases页面](https://github.com/ctaoist/leanote-theme-chirpy/releases) 下载 **1.1.x** 版本的压缩包，或者下载仓库 `master` 分支的压缩包，在 Leanote 主题配置页面导入即可。
 
 ## 使用

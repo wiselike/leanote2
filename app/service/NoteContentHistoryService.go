@@ -7,9 +7,9 @@ import (
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/wiselike/leanote-of-unofficial/app/db"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote2/app/db"
+	"github.com/wiselike/leanote2/app/info"
+	. "github.com/wiselike/leanote2/app/lea"
 )
 
 // 历史记录

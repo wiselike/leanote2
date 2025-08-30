@@ -10,7 +10,7 @@ import (
 	"github.com/robfig/config"
 	"github.com/wiselike/revel"
 
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	. "github.com/wiselike/leanote2/app/lea"
 )
 
 const (

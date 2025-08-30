@@ -5,7 +5,7 @@ all: build
 # format golang code
 fmt:
 	@if command -v goimports >/dev/null 2>&1; then \
-		find ./app -name "*.go" -exec goimports -local github.com/wiselike/leanote-of-unofficial -l -w {} \; ;\
+		find ./app -name "*.go" -exec goimports -local github.com/wiselike/leanote2 -l -w {} \; ;\
 	else \
 		find ./app -name "*.go" -exec go fmt {} \; ;\
 	fi
@@ -28,8 +28,8 @@ gulp:
 release: gulp
 	@rm -rf release/
 	CGO_ENABLED=0 revel build . release/
-	rsync -azr --delete --delete-before --exclude github.com/wiselike/leanote-of-unofficial/conf/app.conf --exclude github.com/wiselike/leanote-of-unofficial/public/upload --exclude github.com/wiselike/leanote-of-unofficial/mongodb_backup -e 'ssh -p 22' release/src/ root@192.168.0.12:/root/dockers/leanote/leanote/src
-	rsync -azr release/leanote-of-unofficial  -e 'ssh -p 22' root@192.168.0.12:/root/dockers/leanote/leanote/leanote-of-unofficial
+	rsync -azr --delete --delete-before --exclude github.com/wiselike/leanote2/conf/app.conf --exclude github.com/wiselike/leanote2/public/upload --exclude github.com/wiselike/leanote2/mongodb_backup -e 'ssh -p 22' release/src/ root@192.168.0.12:/root/dockers/leanote/leanote/src
+	rsync -azr release/leanote2  -e 'ssh -p 22' root@192.168.0.12:/root/dockers/leanote/leanote/leanote2
 	rm -rf release/
 	ssh -p 22 root@192.168.0.12 "docker restart leanote"
 
@@ -37,11 +37,11 @@ github-release: gulp
 	@rm -rf release github-release;
 	@mkdir github-release;
 	CGO_ENABLED=0 GOARCH=arm64 revel build . release/
-	@mv release/leanote-of-unofficial github-release/linux-arm64-leanote-of-unofficial
+	@mv release/leanote2 github-release/linux-arm64-leanote2
 	tar czf js-release.tar.gz release && tar cJf js-release.tar.xz release;
 	@mv js-release.tar.gz github-release && mv js-release.tar.xz github-release;
 	CGO_ENABLED=0 GOARCH=amd64 revel build . release/
-	@mv release/leanote-of-unofficial github-release/linux-x64-leanote-of-unofficial
+	@mv release/leanote2 github-release/linux-x64-leanote2
 	@rm -rf release target;
 	@echo -e "\n\ngithub-release finished in ./github-release:" && ls -alh github-release;
 

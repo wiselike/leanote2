@@ -10,9 +10,9 @@ import (
 
 	"github.com/wiselike/revel"
 
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/service"
+	"github.com/wiselike/leanote2/app/info"
+	. "github.com/wiselike/leanote2/app/lea"
+	"github.com/wiselike/leanote2/app/service"
 )
 
 // 数据管理, 备份和恢复

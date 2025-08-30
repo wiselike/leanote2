@@ -8,7 +8,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/wiselike/leanote-of-unofficial/app/lea"
+	"github.com/wiselike/leanote2/app/lea"
 )
 
 // main functions shows how to TarGz a directory/file and

@@ -2,8 +2,8 @@ package html2image
 
 /*
 import (
-	"github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/lea/netutil"
+	"github.com/wiselike/leanote2/app/lea"
+	"github.com/wiselike/leanote2/app/lea/netutil"
 	"bufio"
 	"code.google.com/p/draw2d/draw2d"
 //	"fmt"

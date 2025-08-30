@@ -13,16 +13,16 @@ import (
 
 	"github.com/wiselike/revel"
 
-	"github.com/wiselike/leanote-of-unofficial/app/controllers"
-	"github.com/wiselike/leanote-of-unofficial/app/controllers/admin"
-	"github.com/wiselike/leanote-of-unofficial/app/controllers/api"
-	"github.com/wiselike/leanote-of-unofficial/app/controllers/member"
-	"github.com/wiselike/leanote-of-unofficial/app/db"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	_ "github.com/wiselike/leanote-of-unofficial/app/lea/binder"
-	"github.com/wiselike/leanote-of-unofficial/app/lea/i18n"
-	"github.com/wiselike/leanote-of-unofficial/app/lea/route"
-	"github.com/wiselike/leanote-of-unofficial/app/service"
+	"github.com/wiselike/leanote2/app/controllers"
+	"github.com/wiselike/leanote2/app/controllers/admin"
+	"github.com/wiselike/leanote2/app/controllers/api"
+	"github.com/wiselike/leanote2/app/controllers/member"
+	"github.com/wiselike/leanote2/app/db"
+	. "github.com/wiselike/leanote2/app/lea"
+	_ "github.com/wiselike/leanote2/app/lea/binder"
+	"github.com/wiselike/leanote2/app/lea/i18n"
+	"github.com/wiselike/leanote2/app/lea/route"
+	"github.com/wiselike/leanote2/app/service"
 )
 
 func init() {

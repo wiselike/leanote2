@@ -4,8 +4,8 @@
 * 必要时，将新特性功能推送到官方
 * 包含部分实验性功能，并始终保持向前兼容
 * 完整的列出所有变更记录
-* [提供docker下的一键部署实施方法](https://github.com/wiselike/leanote-of-unofficial-nolicensed/wiki/docker-deploy-method-docker一键部署方法--Linux)
-* [以docker镜像的方式，提供完整的开发环境，欢迎共同来开发](https://github.com/wiselike/leanote-of-unofficial-nolicensed/wiki/how-to-build-in-docker-docker编译环境搭建方法--Linux)
+* [提供docker下的一键部署实施方法](https://github.com/wiselike/leanote2/wiki/docker-deploy-method-docker一键部署方法--Linux)
+* [以docker镜像的方式，提供完整的开发环境，欢迎共同来开发](https://github.com/wiselike/leanote2/wiki/how-to-build-in-docker-docker编译环境搭建方法--Linux)
 
 # Leanote of non-official version
 * for secondary development only
@@ -13,8 +13,8 @@
 * push to mainline as needed
 * with experimental features
 * with full ChangeLogs
-* [provide deploy method by Docker Container](https://github.com/wiselike/leanote-of-unofficial-nolicensed/wiki/docker-deploy-method-docker一键部署方法--Linux)
-* [provide full develop environment by Docker Container](https://github.com/wiselike/leanote-of-unofficial-nolicensed/wiki/how-to-build-in-docker-docker编译环境搭建方法--Linux)
+* [provide deploy method by Docker Container](https://github.com/wiselike/leanote2/wiki/docker-deploy-method-docker一键部署方法--Linux)
+* [provide full develop environment by Docker Container](https://github.com/wiselike/leanote2/wiki/how-to-build-in-docker-docker编译环境搭建方法--Linux)
 
 # 注意事项
 * 代码合并请求，必须一次commit一个独立完整功能，请不要随意PR。
@@ -64,13 +64,13 @@
 34. 自研：新增删除单条历史记录的按钮，用户可手动删除历史记录了
 35. 自研：修复文章移动/复制的问题。任意子目录下的文章，想移动或复制时，对应栏目没有变成灰色、鼠标不可点选。这会导致，全局查找某文章后，就不知道这篇文章是在哪个子笔记本下的了。现在已修复。
 36. 自研：修复在写作模式下，置顶按钮显示错误的bug。并添加置顶按钮的blog页面跳转功能(同blog按钮一样，鼠标点击后跳转到blog页面)。
-36. 自研：[修复图片、附件时，会同时插入域名到笔记中的故障](https://github.com/wiselike/leanote-of-unofficial/pull/3)，这会导致后续没法修改网站域名
+36. 自研：[修复图片、附件时，会同时插入域名到笔记中的故障](https://github.com/wiselike/leanote2/pull/3)，这会导致后续没法修改网站域名
 37. 自研：修复“未编辑笔记，笔记的更新时间却被刷新了”的故障。
 38. 核心：新增**一键容器部署方法**、**自编译环境搭建**方法
 39. 自研：修复手机端“公开博客、博客置顶”按钮的重叠显示问题；修复手机端笔记编辑按钮点不动的问题
 40. 自研：切换笔记视图时，同时切换更新笔记本视图
 41. 自研：修复服务端后端整理笔记的图片和附件后，图片和附件的编号不连续的问题
-42. 自研：重构图片、附件在服务端存储算法，详见 [#6](https://github.com/wiselike/leanote-of-unofficial/issues/6) [#7](https://github.com/wiselike/leanote-of-unofficial/issues/7)  
+42. 自研：重构图片、附件在服务端存储算法，详见 [#6](https://github.com/wiselike/leanote2/issues/6) [#7](https://github.com/wiselike/leanote2/issues/7)  
 		1. 相册控件无法看到也无法编辑默认相册了，默认相册变为自行管控，无法人为干预。  
 		2. 在相册控件里相册里的图片，只做图片存储使用。一旦插入到笔记中，就会自动复制一份出来。图片原始文件会保存到文章标题的文件夹下，imageID则会记录到默认相册。  
 		3. 从笔记删除图片或不引用图片，则文章标题的文件夹下的图片原始文件会自动被清理，默认相册里的imageID也会自动被清理；  

@@ -3,13 +3,13 @@ package api
 import (
 	"github.com/wiselike/revel"
 
-	"github.com/wiselike/leanote-of-unofficial/app/service"
+	"github.com/wiselike/leanote2/app/service"
 
 	//	"encoding/json"
-	//	. "github.com/wiselike/leanote-of-unofficial/app/lea"
+	//	. "github.com/wiselike/leanote2/app/lea"
 	//	"gopkg.in/mgo.v2/bson"
-	//	"github.com/wiselike/leanote-of-unofficial/app/lea/netutil"
-	//	"github.com/wiselike/leanote-of-unofficial/app/info"
+	//	"github.com/wiselike/leanote2/app/lea/netutil"
+	//	"github.com/wiselike/leanote2/app/info"
 	//	"io/ioutil"
 	"os"
 	"path"

@@ -6,7 +6,7 @@ import (
 
 	"github.com/wiselike/revel"
 
-	"github.com/wiselike/leanote-of-unofficial/app/lea/captcha"
+	"github.com/wiselike/leanote2/app/lea/captcha"
 )
 
 // 验证码服务

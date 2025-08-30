@@ -9,10 +9,10 @@ import (
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/wiselike/leanote-of-unofficial/app/controllers"
-	"github.com/wiselike/leanote-of-unofficial/app/info"
-	. "github.com/wiselike/leanote-of-unofficial/app/lea"
-	"github.com/wiselike/leanote-of-unofficial/app/service"
+	"github.com/wiselike/leanote2/app/controllers"
+	"github.com/wiselike/leanote2/app/info"
+	. "github.com/wiselike/leanote2/app/lea"
+	"github.com/wiselike/leanote2/app/service"
 )
 
 // 公用Controller, 其它Controller继承它
