@@ -55,7 +55,11 @@ leanote2 保留了原 leanote 的许多核心功能，并根据现代需求做�
 
 ### 2. 安装步骤
 
-[提供docker下的一键部署实施方法](https://github.com/wiselike/leanote2/wiki/docker-deploy-method-docker一键部署方法--Linux)
+```sh
+docker pull wiselike2/leanote2:latest
+docker run -itd --init -p 9000:9000 --restart=always --name leanote2 -v /etc/localtime:/etc/localtime wiselike2/leanote2
+```
+完整细节请查看：[提供docker下的一键部署实施方法](https://github.com/wiselike/leanote2/wiki/docker-deploy-method-docker一键部署方法--Linux)
 
 ## 四、贡献
 
